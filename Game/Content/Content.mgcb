@@ -13,3 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Maps/TestMap.tmx
+/copy:Maps/TestMap.tmx
+
+#begin Maps/Tiles.tsx
+/copy:Maps/Tiles.tsx
+
+#begin Textures/Tiles.PNG
+/copy:Textures/Tiles.PNG
+
