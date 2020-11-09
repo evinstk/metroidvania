@@ -11,7 +11,7 @@ namespace FE
             base.Initialize();
             Window.AllowUserResizing = true;
             ExitOnEscapeKeypress = false;
-            Scene = new MainScene();
+            Scene = new MainScene("TestMap.tmx");
         }
     }
 }

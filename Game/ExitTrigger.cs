@@ -1,11 +1,20 @@
-﻿using Nez;
+﻿using FE;
+using Nez;
 
 namespace Game
 {
-    class ExitTrigger : Component, IUpdatable
+    class ExitTrigger : Component, ITriggerListener
     {
+        string _transitionSrc;
+
         Collider _collider;
         Collider _playerCollider;
+        static bool _transitioning = false;
+
+        public ExitTrigger(string transitionSrc)
+        {
+            _transitionSrc = transitionSrc;
+        }
 
         public override void OnAddedToEntity()
         {
@@ -15,12 +24,25 @@ namespace Game
             _playerCollider = Entity.Scene.FindEntity("player").GetComponent<Collider>();
         }
 
-        public void Update()
+        void SetTransitioningOff()
         {
-            if (_collider.CollidesWith(_playerCollider, out _))
+            _transitioning = false;
+        }
+
+        public void OnTriggerEnter(Collider other, Collider local)
+        {
+            if (!_transitioning && other == _playerCollider)
             {
-                Debug.Log("Trigger exit.");
+                _transitioning = true;
+                var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene(_transitionSrc)));
+                transition.FadeOutDuration = 0.3f;
+                transition.FadeInDuration = 0.2f;
+                transition.OnTransitionCompleted += SetTransitioningOff;
             }
+        }
+
+        public void OnTriggerExit(Collider other, Collider local)
+        {
         }
     }
 }
