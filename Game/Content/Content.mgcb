@@ -13,6 +13,9 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Maps/BossRoom.tmx
+/copy:Maps/BossRoom.tmx
+
 #begin Maps/TestMap.tmx
 /copy:Maps/TestMap.tmx
 
