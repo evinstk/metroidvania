@@ -3,7 +3,7 @@ using Nez;
 
 namespace Game
 {
-    class ExitTrigger : Component, ITriggerListener
+    class ExitTrigger : Component, IUpdatable
     {
         string _transitionSrc;
 
@@ -22,6 +22,7 @@ namespace Game
             Insist.IsNotNull(_collider);
 
             _playerCollider = Entity.Scene.FindEntity("player").GetComponent<Collider>();
+            Insist.IsNotNull(_playerCollider);
         }
 
         void SetTransitioningOff()
@@ -29,9 +30,9 @@ namespace Game
             _transitioning = false;
         }
 
-        public void OnTriggerEnter(Collider other, Collider local)
+        public void Update()
         {
-            if (!_transitioning && other == _playerCollider)
+            if (!_transitioning && _collider.CollidesWith(_playerCollider, out _))
             {
                 _transitioning = true;
                 var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene(_transitionSrc)));
@@ -39,10 +40,6 @@ namespace Game
                 transition.FadeInDuration = 0.2f;
                 transition.OnTransitionCompleted += SetTransitioningOff;
             }
-        }
-
-        public void OnTriggerExit(Collider other, Collider local)
-        {
         }
     }
 }
