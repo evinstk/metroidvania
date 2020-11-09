@@ -1,0 +1,20 @@
+{
+    "maps": [
+        {
+            "fileName": "TransitionMap.tmx",
+            "height": 768,
+            "width": 2560,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "fileName": "TestMap.tmx",
+            "height": 768,
+            "width": 2560,
+            "x": 2560,
+            "y": 0
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

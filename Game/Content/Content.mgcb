@@ -19,6 +19,9 @@
 #begin Maps/Tiles.tsx
 /copy:Maps/Tiles.tsx
 
+#begin Maps/TransitionMap.tmx
+/copy:Maps/TransitionMap.tmx
+
 #begin Textures/Tiles.PNG
 /copy:Textures/Tiles.PNG
 
