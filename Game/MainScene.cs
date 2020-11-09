@@ -10,10 +10,12 @@ namespace FE
 	class MainScene : Scene
 	{
         string _mapSrc;
+        string _spawn;
 
-        public MainScene(string mapSrc)
+        public MainScene(string mapSrc, string spawn)
         {
             _mapSrc = mapSrc;
+            _spawn = spawn;
         }
 
         public override void OnStart()
@@ -28,7 +30,7 @@ namespace FE
 
             var instanceLayer = map.GetObjectGroup("instances");
 
-            var playerObj = instanceLayer.Objects.First(o => o.Name == "playerSpawn");
+            var playerObj = instanceLayer.Objects.First(o => o.Name == _spawn && o.Type == "playerSpawn");
             var playerEntity = CreateEntity("player");
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
             playerEntity.AddComponent(new RectangleRenderer(Color.DeepPink, 32, 64));
@@ -45,7 +47,8 @@ namespace FE
                 var exitCollider = exitEntity.AddComponent(new BoxCollider(exit.X, exit.Y, exit.Width, exit.Height));
                 exitCollider.IsTrigger = true;
                 var mapSrc = Path.GetFileName(exit.Properties["map"]);
-                exitEntity.AddComponent(new ExitTrigger(mapSrc));
+                var spawn = exit.Properties["spawn"];
+                exitEntity.AddComponent(new ExitTrigger(mapSrc, spawn));
             }
 
             var cameraEntity = Camera.Entity;
@@ -53,6 +56,7 @@ namespace FE
             cameraEntity.AddComponent(new CameraComponent(
                 new Vector2(map.TileWidth, 0),
                 new Vector2(map.TileWidth * (map.Width - 1), map.TileHeight * map.Height)));
+            cameraEntity.Position = playerEntity.Position;
         }
     }
 }

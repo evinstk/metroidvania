@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-namespace FE
+﻿namespace FE
 {
     public class Game : Nez.Core
     {
@@ -11,7 +7,7 @@ namespace FE
             base.Initialize();
             Window.AllowUserResizing = true;
             ExitOnEscapeKeypress = false;
-            Scene = new MainScene("TestMap.tmx");
+            Scene = new MainScene("TestMap.tmx", "start");
         }
     }
 }

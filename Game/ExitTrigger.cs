@@ -6,14 +6,16 @@ namespace Game
     class ExitTrigger : Component, IUpdatable
     {
         string _transitionSrc;
+        string _spawn;
 
         Collider _collider;
         Collider _playerCollider;
         static bool _transitioning = false;
 
-        public ExitTrigger(string transitionSrc)
+        public ExitTrigger(string transitionSrc, string spawn)
         {
             _transitionSrc = transitionSrc;
+            _spawn = spawn;
         }
 
         public override void OnAddedToEntity()
@@ -35,7 +37,7 @@ namespace Game
             if (!_transitioning && _collider.CollidesWith(_playerCollider, out _))
             {
                 _transitioning = true;
-                var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene(_transitionSrc)));
+                var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene(_transitionSrc, _spawn)));
                 transition.FadeOutDuration = 0.3f;
                 transition.FadeInDuration = 0.2f;
                 transition.OnTransitionCompleted += SetTransitioningOff;

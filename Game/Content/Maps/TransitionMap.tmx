@@ -60,11 +60,5 @@
  <objectgroup id="4" name="instances">
   <object id="1" name="playerSpawn" x="2464" y="480"/>
  </objectgroup>
- <objectgroup color="#005500" id="3" name="triggers">
-  <object id="2" type="exit" x="2560" y="0" width="192" height="576">
-   <properties>
-    <property name="map" type="file" value="TestMap.tmx"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup color="#005500" id="3" name="triggers"/>
 </map>
