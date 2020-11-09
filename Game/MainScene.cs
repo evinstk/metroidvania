@@ -1,6 +1,7 @@
 ﻿using Game;
 using Microsoft.Xna.Framework;
 using Nez;
+using Nez.Tiled;
 using System.IO;
 using System.Linq;
 
@@ -31,6 +32,7 @@ namespace FE
             var playerEntity = CreateEntity("player");
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
             playerEntity.AddComponent(new RectangleRenderer(Color.DeepPink, 32, 64));
+            playerEntity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             playerEntity.AddComponent<ControllerComponent>();
             var playerCollider = playerEntity.AddComponent<BoxCollider>();
 

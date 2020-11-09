@@ -1,20 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
+using Nez.Tiled;
+using static Nez.Tiled.TiledMapMover;
 
 namespace Game
 {
     class ControllerComponent : Component, IUpdatable
     {
-        static int _speed = 300;
+        public int MoveSpeed = 300;
+        public float Gravity = 1000;
+        public float JumpHeight = 32 * 5;
 
-        Mover _mover;
-        SubpixelVector2 _subpixelV2 = new SubpixelVector2();
+        TiledMapMover _mover;
+        CollisionState _collisionState = new CollisionState();
+        BoxCollider _boxCollider;
+
         VirtualAxis _xAxisInput;
+        VirtualButton _jumpInput;
+
+        Vector2 _velocity;
 
         public override void OnAddedToEntity()
         {
-            _mover = Entity.AddComponent<Mover>();
+            _mover = Entity.GetComponent<TiledMapMover>();
+            Insist.IsNotNull(_mover);
+            _boxCollider = Entity.GetComponent<BoxCollider>();
+            Insist.IsNotNull(_boxCollider);
 
             _xAxisInput = new VirtualAxis();
             _xAxisInput.Nodes.Add(
@@ -23,18 +35,29 @@ namespace Game
             _xAxisInput.Nodes.Add(
                 new VirtualAxis.KeyboardKeys(
                     VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right));
+
+            _jumpInput = new VirtualButton();
+            _jumpInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
         }
 
         public void Update()
         {
             var moveDir = new Vector2(_xAxisInput.Value, 0);
-            if (moveDir != Vector2.Zero)
-            {
-                var movement = moveDir * _speed * Time.DeltaTime;
-                _mover.CalculateMovement(ref movement, out var res);
-                _subpixelV2.Update(ref movement);
-                _mover.ApplyMovement(movement);
-            }
+
+            _velocity.X = MoveSpeed * moveDir.X;
+
+            if (_collisionState.Below && _jumpInput.IsPressed)
+                _velocity.Y = -Mathf.Sqrt(2f * JumpHeight * Gravity);
+
+            if (!_jumpInput.IsDown && _velocity.Y < 0)
+                _velocity.Y = 0;
+
+            _velocity.Y += Gravity * Time.DeltaTime;
+
+            _mover.Move(_velocity * Time.DeltaTime, _boxCollider, _collisionState);
+
+            if (_collisionState.Below)
+                _velocity.Y = 0;
         }
     }
 }
