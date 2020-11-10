@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="80" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="5">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="80" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="7">
  <tileset firstgid="1" source="Tiles.tsx"/>
  <layer id="2" name="background" width="80" height="24">
   <data encoding="csv">
@@ -60,12 +60,19 @@
  <objectgroup id="3" name="instances">
   <object id="1" name="start" type="playerSpawn" x="1440" y="416"/>
   <object id="4" name="testRight" type="playerSpawn" x="2464" y="480"/>
+  <object id="6" name="testLeft" type="playerSpawn" x="64" y="480"/>
  </objectgroup>
  <objectgroup color="#00aa7f" id="4" name="triggers">
   <object id="3" type="exit" x="2560" y="0" width="192" height="544">
    <properties>
     <property name="map" type="file" value="BossRoom.tmx"/>
     <property name="spawn" value="bossLeft"/>
+   </properties>
+  </object>
+  <object id="5" type="exit" x="-224" y="0" width="224" height="544">
+   <properties>
+    <property name="map" type="file" value="TransitionMap.tmx"/>
+    <property name="spawn" value="transitionRight"/>
    </properties>
   </object>
  </objectgroup>
