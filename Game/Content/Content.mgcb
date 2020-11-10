@@ -10,8 +10,24 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\bin\Debug\net471\Data.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin Data/AnimationGroups.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Data/AnimationGroups.xml
+
+#begin Data/Animations.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Data/Animations.xml
+
+#begin Data/SpriteAtlases.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Data/SpriteAtlases.xml
 
 #begin Maps/BossRoom.tmx
 /copy:Maps/BossRoom.tmx
@@ -27,4 +43,16 @@
 
 #begin Textures/Tiles.PNG
 /copy:Textures/Tiles.PNG
+
+#begin Textures/Warrior.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Warrior.png
 

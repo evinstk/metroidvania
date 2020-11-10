@@ -12,14 +12,16 @@ namespace Game
         public float Gravity = 1000;
         public float JumpHeight = 32 * 5;
 
+        public Vector2 Velocity => _velocity;
+        Vector2 _velocity;
+        public int Facing = 1;
+
+        public CollisionState Collision { get; } = new CollisionState();
         TiledMapMover _mover;
-        CollisionState _collisionState = new CollisionState();
         BoxCollider _boxCollider;
 
         VirtualAxis _xAxisInput;
         VirtualButton _jumpInput;
-
-        Vector2 _velocity;
 
         public override void OnAddedToEntity()
         {
@@ -45,8 +47,12 @@ namespace Game
             var moveDir = new Vector2(_xAxisInput.Value, 0);
 
             _velocity.X = MoveSpeed * moveDir.X;
+            if (_velocity.X != 0)
+            {
+                Facing = _velocity.X > 0 ? 1 : -1;
+            }
 
-            if (_collisionState.Below && _jumpInput.IsPressed)
+            if (Collision.Below && _jumpInput.IsPressed)
                 _velocity.Y = -Mathf.Sqrt(2f * JumpHeight * Gravity);
 
             if (!_jumpInput.IsDown && _velocity.Y < 0)
@@ -54,9 +60,9 @@ namespace Game
 
             _velocity.Y += Gravity * Time.DeltaTime;
 
-            _mover.Move(_velocity * Time.DeltaTime, _boxCollider, _collisionState);
+            _mover.Move(_velocity * Time.DeltaTime, _boxCollider, Collision);
 
-            if (_collisionState.Below)
+            if (Collision.Below)
                 _velocity.Y = 0;
         }
     }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<XnaContent>
+	<Asset Type="Data.AnimationGroup[]">
+		<Item>
+			<Name>Warrior</Name>
+			<AnimationTypes>
+				<Item>
+					<Type>IdleRight</Type>
+					<Animation>WarriorIdle</Animation>
+				</Item>
+				<Item>
+					<Type>IdleLeft</Type>
+					<Animation>WarriorIdle</Animation>
+					<Flip>true</Flip>
+				</Item>
+				<Item>
+					<Type>WalkRight</Type>
+					<Animation>WarriorWalkRight</Animation>
+				</Item>
+				<Item>
+					<Type>WalkLeft</Type>
+					<Animation>WarriorWalkRight</Animation>
+					<Flip>true</Flip>
+				</Item>
+			</AnimationTypes>
+		</Item>
+	</Asset>
+</XnaContent>

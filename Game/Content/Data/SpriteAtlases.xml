@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Asset Type="Data.SpriteAtlas[]">
+		<Item>
+			<Name>Warrior</Name>
+			<Texture>Warrior</Texture>
+			<CellWidth>32</CellWidth>
+			<CellHeight>32</CellHeight>
+		</Item>
+	</Asset>
+</XnaContent>

@@ -33,9 +33,9 @@ namespace FE
             var playerObj = instanceLayer.Objects.First(o => o.Name == _spawn && o.Type == "playerSpawn");
             var playerEntity = CreateEntity("player");
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
-            playerEntity.AddComponent(new RectangleRenderer(Color.DeepPink, 32, 64));
             playerEntity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             playerEntity.AddComponent<ControllerComponent>();
+            playerEntity.AddComponent(new AnimationComponent("Warrior"));
             var playerCollider = playerEntity.AddComponent<BoxCollider>();
 
             var triggerLayer = map.GetObjectGroup("triggers");

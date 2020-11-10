@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Asset Type="Data.Animation[]">
+		<Item>
+			<Name>WarriorIdle</Name>
+			<SpriteAtlas>Warrior</SpriteAtlas>
+			<CellStart>0</CellStart>
+			<CellCount>10</CellCount>
+		</Item>
+		<Item>
+			<Name>WarriorWalkRight</Name>
+			<SpriteAtlas>Warrior</SpriteAtlas>
+			<CellStart>20</CellStart>
+			<CellCount>10</CellCount>
+		</Item>
+	</Asset>
+</XnaContent>
