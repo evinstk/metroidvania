@@ -37,9 +37,12 @@ namespace Game
             _xAxisInput.Nodes.Add(
                 new VirtualAxis.KeyboardKeys(
                     VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right));
+            _xAxisInput.Nodes.Add(
+                new VirtualAxis.GamePadLeftStickX());
 
             _jumpInput = new VirtualButton();
             _jumpInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
+            _jumpInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
         }
 
         public void Update()
