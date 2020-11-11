@@ -12,6 +12,9 @@ namespace FE
         string _mapSrc;
         string _spawn;
 
+        static int resWidth = 1176;
+        static int resHeight = 664;
+
         public MainScene(string mapSrc, string spawn)
         {
             _mapSrc = mapSrc;
@@ -20,8 +23,8 @@ namespace FE
 
         public override void OnStart()
         {
-            SetDesignResolution(1280, 768, SceneResolutionPolicy.ShowAllPixelPerfect);
-            Screen.SetSize(1280, 768);
+            SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
+            Screen.SetSize(resWidth, resHeight);
 
             var map = Content.LoadTiledMap("Content/Maps/" + _mapSrc);
 
