@@ -12,8 +12,8 @@ namespace FE
         string _mapSrc;
         string _spawn;
 
-        static int resWidth = 1176;
-        static int resHeight = 664;
+        static int resWidth = 1920;
+        static int resHeight = 1080;
 
         public MainScene(string mapSrc, string spawn)
         {

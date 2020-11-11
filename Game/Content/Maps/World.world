@@ -9,10 +9,10 @@
         },
         {
             "fileName": "TestMap.tmx",
-            "height": 768,
+            "height": 1536,
             "width": 2560,
             "x": 2560,
-            "y": 0
+            "y": -768
         },
         {
             "fileName": "BossRoom.tmx",
