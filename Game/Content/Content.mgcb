@@ -41,6 +41,18 @@
 #begin Maps/TransitionMap.tmx
 /copy:Maps/TransitionMap.tmx
 
+#begin Textures/hero.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/hero.png
+
 #begin Textures/Tiles.PNG
 /copy:Textures/Tiles.PNG
 
