@@ -8,7 +8,7 @@ namespace Game
 {
     class ControllerComponent : Component, IUpdatable
     {
-        public int MoveSpeed = 300;
+        public int MoveSpeed = 450;
         public float Gravity = 1000;
         public float JumpHeight = 32 * 5;
 

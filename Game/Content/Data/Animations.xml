@@ -13,5 +13,25 @@
 			<CellStart>20</CellStart>
 			<CellCount>10</CellCount>
 		</Item>
+		<Item>
+			<Name>HeroIdleRight</Name>
+			<SpriteAtlas>Hero</SpriteAtlas>
+			<CellStart>0</CellStart>
+			<CellCount>1</CellCount>
+			<ColliderSize>
+				<X>78</X>
+				<Y>147</Y>
+			</ColliderSize>
+		</Item>
+		<Item>
+			<Name>HeroWalkRight</Name>
+			<SpriteAtlas>Hero</SpriteAtlas>
+			<CellStart>1</CellStart>
+			<CellCount>8</CellCount>
+			<ColliderSize>
+				<X>78</X>
+				<Y>147</Y>
+			</ColliderSize>
+		</Item>
 	</Asset>
 </XnaContent>

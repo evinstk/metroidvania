@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Sprites;
 using Nez.Textures;
@@ -7,13 +7,21 @@ using System.Linq;
 
 namespace Game
 {
+    class AnimationMeta
+    {
+        public bool Flip;
+        public Vector2 ColliderSize;
+    }
+
     class AnimationComponent : Component, IUpdatable
     {
         string _animationGroup;
 
+        BoxCollider _collider;
+
         SpriteAnimator _animator;
         ControllerComponent _controller;
-        Dictionary<string, bool> _flips;
+        Dictionary<string, AnimationMeta> _meta;
 
         public AnimationComponent(string animationGroup)
         {
@@ -22,13 +30,17 @@ namespace Game
 
         public override void OnAddedToEntity()
         {
+            _collider = Entity.GetComponent<BoxCollider>();
+            Insist.IsNotNull(_collider);
+
             var group = Entity.Scene.Content.Load<Data.AnimationGroup[]>("Data/AnimationGroups").First(g => g.Name == _animationGroup);
             var animations = Entity.Scene.Content.Load<Data.Animation[]>("Data/Animations").ToDictionary(a => a.Name);
             var atlases = Entity.Scene.Content.Load<Data.SpriteAtlas[]>("Data/SpriteAtlases").ToDictionary(
                 a => a.Name, a =>
                 {
                     var texture = Entity.Scene.Content.LoadTexture("Textures/" + a.Texture);
-                    return Sprite.SpritesFromAtlas(texture, a.CellWidth, a.CellHeight);
+                    var sprites = Sprite.SpritesFromAtlas(texture, a.CellWidth, a.CellHeight);
+                    return sprites;
                 });
 
             _animator = Entity.AddComponent<SpriteAnimator>();
@@ -38,15 +50,32 @@ namespace Game
             foreach (var animType in group.AnimationTypes)
             {
                 var anim = animations[animType.Animation];
-                var sprites2 = atlases[anim.SpriteAtlas];
+                var sprites = atlases[anim.SpriteAtlas];
                 _animator.AddAnimation(
                     animType.Type,
-                    Enumerable.Range(anim.CellStart, anim.CellCount).Select(i => sprites2[i]).ToArray());
+                    Enumerable.Range(anim.CellStart, anim.CellCount).Select(i => sprites[i]).ToArray(),
+                    12);
             }
 
-            _flips = group.AnimationTypes.ToDictionary(t => t.Type, t => t.Flip);
+            _meta = group.AnimationTypes.ToDictionary(t => t.Type, t =>
+            {
+                return new AnimationMeta
+                {
+                    Flip = t.Flip,
+                    ColliderSize = animations[t.Animation].ColliderSize.ToVector2(),
+                };
+            });
 
-            _animator.Play("IdleRight");
+            PlayAnimation("IdleRight");
+        }
+
+        void PlayAnimation(string animation)
+        {
+            _animator.Play(animation);
+            var meta = _meta[animation];
+            _animator.FlipX = meta.Flip;
+            var size = meta.ColliderSize;
+            _collider.SetSize(size.X, size.Y);
         }
 
         public void Update()
@@ -73,8 +102,7 @@ namespace Game
 
             if (animation != null && !_animator.IsAnimationActive(animation))
             {
-                _animator.Play(animation);
-                _animator.FlipX = _flips[animation];
+                PlayAnimation(animation);
             }
         }
     }

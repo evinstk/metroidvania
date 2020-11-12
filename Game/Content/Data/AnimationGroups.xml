@@ -24,5 +24,28 @@
 				</Item>
 			</AnimationTypes>
 		</Item>
+		<Item>
+			<Name>Hero</Name>
+			<AnimationTypes>
+				<Item>
+					<Type>IdleRight</Type>
+					<Animation>HeroIdleRight</Animation>
+				</Item>
+				<Item>
+					<Type>IdleLeft</Type>
+					<Animation>HeroIdleRight</Animation>
+					<Flip>true</Flip>
+				</Item>
+				<Item>
+					<Type>WalkRight</Type>
+					<Animation>HeroWalkRight</Animation>
+				</Item>
+				<Item>
+					<Type>WalkLeft</Type>
+					<Animation>HeroWalkRight</Animation>
+					<Flip>true</Flip>
+				</Item>
+			</AnimationTypes>
+		</Item>
 	</Asset>
 </XnaContent>
