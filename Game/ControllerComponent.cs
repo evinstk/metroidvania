@@ -12,6 +12,7 @@ namespace Game
         public float Gravity = 3000;
         public float JumpHeight = 32 * 5;
         public float JumpDuration = 0.2f;
+        public float MaxY = 1000f;
 
         public Vector2 Velocity => _velocity;
         Vector2 _velocity;
@@ -79,6 +80,8 @@ namespace Game
             {
                 _velocity.Y += Gravity * Time.DeltaTime;
             }
+
+            _velocity.Y = Mathf.Clamp(_velocity.Y, -MaxY, MaxY);
 
             _mover.Move(_velocity * Time.DeltaTime, _boxCollider, Collision);
 
