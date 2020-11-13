@@ -56,11 +56,11 @@
 				</Item>
 				<Item>
 					<Type>AttackRight</Type>
-					<Animation>HeroWalkRight</Animation>
+					<Animation>HeroAttackRight</Animation>
 				</Item>
 				<Item>
 					<Type>AttackLeft</Type>
-					<Animation>HeroWalkRight</Animation>
+					<Animation>HeroAttackRight</Animation>
 					<Flip>true</Flip>
 				</Item>
 			</AnimationTypes>
