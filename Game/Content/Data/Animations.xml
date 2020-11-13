@@ -33,7 +33,7 @@
 		<Item>
 			<Name>HeroWalkRight</Name>
 			<SpriteAtlas>Hero</SpriteAtlas>
-			<CellStart>13</CellStart>
+			<CellStart>19</CellStart>
 			<CellCount>8</CellCount>
 			<ColliderSize>
 				<X>78</X>
@@ -45,6 +45,26 @@
 			<SpriteAtlas>Hero</SpriteAtlas>
 			<CellStart>10</CellStart>
 			<CellCount>3</CellCount>
+			<ColliderSize>
+				<X>78</X>
+				<Y>147</Y>
+			</ColliderSize>
+		</Item>
+		<Item>
+			<Name>HeroJumpRight</Name>
+			<SpriteAtlas>Hero</SpriteAtlas>
+			<CellStart>13</CellStart>
+			<CellCount>5</CellCount>
+			<ColliderSize>
+				<X>78</X>
+				<Y>147</Y>
+			</ColliderSize>
+		</Item>
+		<Item>
+			<Name>HeroLandRight</Name>
+			<SpriteAtlas>Hero</SpriteAtlas>
+			<CellStart>18</CellStart>
+			<CellCount>1</CellCount>
 			<ColliderSize>
 				<X>78</X>
 				<Y>147</Y>

@@ -89,6 +89,8 @@ namespace Game.Animator
             }, new IdleState());
             _fsm.AddState(new WalkState());
             _fsm.AddState(new AttackState());
+            _fsm.AddState(new JumpState());
+            _fsm.AddState(new LandState());
         }
 
         public void Update()
@@ -107,6 +109,10 @@ namespace Game.Animator
 
         public override void Update(float deltaTime)
         {
+            if (_context.Controller.Velocity.Y < 0)
+            {
+                _machine.ChangeState<JumpState>();
+            }
             if (_context.Controller.Velocity.X != 0)
             {
                 _machine.ChangeState<WalkState>();
@@ -128,6 +134,10 @@ namespace Game.Animator
 
         public override void Update(float deltaTime)
         {
+            if (_context.Controller.Velocity.Y < 0)
+            {
+                _machine.ChangeState<JumpState>();
+            }
             if (_context.Controller.Velocity.X == 0 && _context.Controller.Collision.Below)
             {
                 _machine.ChangeState<IdleState>();
@@ -145,6 +155,51 @@ namespace Game.Animator
         {
             _context.PlayAnimation(_context.Controller.Facing > 0
                 ? "AttackRight" : "AttackLeft", LoopMode.Once);
+            _context.SpriteAnimator.OnAnimationCompletedEvent += HandleComplete;
+        }
+
+        void HandleComplete(string animation)
+        {
+            _machine.ChangeState<IdleState>();
+        }
+
+        public override void End()
+        {
+            _context.SpriteAnimator.OnAnimationCompletedEvent -= HandleComplete;
+        }
+
+        public override void Update(float deltaTime)
+        {
+        }
+    }
+
+    class JumpState : State<AnimatorContext>
+    {
+        public override void Begin()
+        {
+            _context.PlayAnimation(_context.Controller.Facing > 0
+                ? "JumpRight" : "JumpLeft", LoopMode.ClampForever);
+        }
+
+        public override void Update(float deltaTime)
+        {
+            if (_context.Controller.Velocity.Y == 0)
+            {
+                _machine.ChangeState<LandState>();
+            }
+            if (_context.Controller.AttackInput)
+            {
+                _machine.ChangeState<AttackState>();
+            }
+        }
+    }
+
+    class LandState : State<AnimatorContext>
+    {
+        public override void Begin()
+        {
+            _context.PlayAnimation(_context.Controller.Facing > 0
+                ? "LandRight" : "LandLeft", LoopMode.ClampForever);
             _context.SpriteAnimator.OnAnimationCompletedEvent += HandleComplete;
         }
 

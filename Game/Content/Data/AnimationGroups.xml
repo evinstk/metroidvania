@@ -63,6 +63,24 @@
 					<Animation>HeroAttackRight</Animation>
 					<Flip>true</Flip>
 				</Item>
+				<Item>
+					<Type>JumpRight</Type>
+					<Animation>HeroJumpRight</Animation>
+				</Item>
+				<Item>
+					<Type>JumpLeft</Type>
+					<Animation>HeroJumpRight</Animation>
+					<Flip>true</Flip>
+				</Item>
+				<Item>
+					<Type>LandRight</Type>
+					<Animation>HeroLandRight</Animation>
+				</Item>
+				<Item>
+					<Type>LandLeft</Type>
+					<Animation>HeroLandRight</Animation>
+					<Flip>true</Flip>
+				</Item>
 			</AnimationTypes>
 		</Item>
 	</Asset>
