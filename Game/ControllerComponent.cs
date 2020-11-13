@@ -8,12 +8,14 @@ namespace Game
 {
     class ControllerComponent : Component, IUpdatable
     {
-        public int MoveSpeed = 450;
-        public float Gravity = 1000;
+        public int MoveSpeed = 600;
+        public float Gravity = 3000;
         public float JumpHeight = 32 * 5;
+        public float JumpDuration = 0.2f;
 
         public Vector2 Velocity => _velocity;
         Vector2 _velocity;
+        float _jumpElapsed = 0;
         public int Facing = 1;
 
         public CollisionState Collision { get; } = new CollisionState();
@@ -64,6 +66,7 @@ namespace Game
             if (Collision.Below && _jumpInput.IsPressed)
             {
                 _velocity.Y = -Mathf.Sqrt(2f * JumpHeight * Gravity);
+                _jumpElapsed = 0;
             }
 
             if (!_jumpInput.IsDown && _velocity.Y < 0)
@@ -71,7 +74,11 @@ namespace Game
                 _velocity.Y = 0;
             }
 
-            _velocity.Y += Gravity * Time.DeltaTime;
+            _jumpElapsed += Time.DeltaTime;
+            if (_velocity.Y > 0 || !_jumpInput.IsDown || _jumpElapsed > JumpDuration)
+            {
+                _velocity.Y += Gravity * Time.DeltaTime;
+            }
 
             _mover.Move(_velocity * Time.DeltaTime, _boxCollider, Collision);
 
