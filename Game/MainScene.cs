@@ -1,4 +1,5 @@
 ﻿using Game;
+using Game.Animator;
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Tiled;
@@ -38,7 +39,7 @@ namespace FE
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
             playerEntity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             playerEntity.AddComponent<BoxCollider>();
-            playerEntity.AddComponent(new AnimationComponent("Hero"));
+            playerEntity.AddComponent(new Animator("Hero"));
             playerEntity.AddComponent<ControllerComponent>();
 
             var triggerLayer = map.GetObjectGroup("triggers");
