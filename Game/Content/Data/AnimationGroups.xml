@@ -22,6 +22,15 @@
 					<Animation>WarriorWalkRight</Animation>
 					<Flip>true</Flip>
 				</Item>
+				<Item>
+					<Type>AttackRight</Type>
+					<Animation>WarriorAttackRight</Animation>
+				</Item>
+				<Item>
+					<Type>AttackLeft</Type>
+					<Animation>WarriorAttackRight</Animation>
+					<Flip>true</Flip>
+				</Item>
 			</AnimationTypes>
 		</Item>
 		<Item>
@@ -42,6 +51,15 @@
 				</Item>
 				<Item>
 					<Type>WalkLeft</Type>
+					<Animation>HeroWalkRight</Animation>
+					<Flip>true</Flip>
+				</Item>
+				<Item>
+					<Type>AttackRight</Type>
+					<Animation>HeroWalkRight</Animation>
+				</Item>
+				<Item>
+					<Type>AttackLeft</Type>
 					<Animation>HeroWalkRight</Animation>
 					<Flip>true</Flip>
 				</Item>

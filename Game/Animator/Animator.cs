@@ -5,6 +5,7 @@ using Nez.Sprites;
 using Nez.Textures;
 using System.Collections.Generic;
 using System.Linq;
+using static Nez.Sprites.SpriteAnimator;
 
 namespace Game.Animator
 {
@@ -15,9 +16,9 @@ namespace Game.Animator
         public BoxCollider Collider;
         public Dictionary<string, AnimationMeta> Meta;
 
-        public void PlayAnimation(string animation)
+        public void PlayAnimation(string animation, LoopMode? loopMode = null)
         {
-            SpriteAnimator.Play(animation);
+            SpriteAnimator.Play(animation, loopMode);
             var meta = Meta[animation];
             SpriteAnimator.FlipX = meta.Flip;
             var size = meta.ColliderSize;
@@ -71,10 +72,11 @@ namespace Game.Animator
 
             var meta = group.AnimationTypes.ToDictionary(t => t.Type, t =>
             {
+                var animation = animations[t.Animation];
                 return new AnimationMeta
                 {
                     Flip = t.Flip,
-                    ColliderSize = animations[t.Animation].ColliderSize.ToVector2(),
+                    ColliderSize = animation.ColliderSize?.ToVector2() ?? atlases[animation.SpriteAtlas][0].SourceRect.GetSize().ToVector2(),
                 };
             });
 
@@ -86,6 +88,7 @@ namespace Game.Animator
                 Meta = meta,
             }, new IdleState());
             _fsm.AddState(new WalkState());
+            _fsm.AddState(new AttackState());
         }
 
         public void Update()
@@ -108,6 +111,10 @@ namespace Game.Animator
             {
                 _machine.ChangeState<WalkState>();
             }
+            if (_context.Controller.AttackInput)
+            {
+                _machine.ChangeState<AttackState>();
+            }
         }
     }
 
@@ -125,6 +132,34 @@ namespace Game.Animator
             {
                 _machine.ChangeState<IdleState>();
             }
+            if (_context.Controller.AttackInput)
+            {
+                _machine.ChangeState<AttackState>();
+            }
+        }
+    }
+
+    class AttackState : State<AnimatorContext>
+    {
+        public override void Begin()
+        {
+            _context.PlayAnimation(_context.Controller.Facing > 0
+                ? "AttackRight" : "AttackLeft", LoopMode.Once);
+            _context.SpriteAnimator.OnAnimationCompletedEvent += HandleComplete;
+        }
+
+        void HandleComplete(string animation)
+        {
+            _machine.ChangeState<IdleState>();
+        }
+
+        public override void End()
+        {
+            _context.SpriteAnimator.OnAnimationCompletedEvent -= HandleComplete;
+        }
+
+        public override void Update(float deltaTime)
+        {
         }
     }
 }

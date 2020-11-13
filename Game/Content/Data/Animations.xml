@@ -14,6 +14,12 @@
 			<CellCount>10</CellCount>
 		</Item>
 		<Item>
+			<Name>WarriorAttackRight</Name>
+			<SpriteAtlas>Warrior</SpriteAtlas>
+			<CellStart>30</CellStart>
+			<CellCount>10</CellCount>
+		</Item>
+		<Item>
 			<Name>HeroIdleRight</Name>
 			<SpriteAtlas>Hero</SpriteAtlas>
 			<CellStart>0</CellStart>

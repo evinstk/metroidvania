@@ -22,6 +22,8 @@ namespace Game
 
         VirtualAxis _xAxisInput;
         VirtualButton _jumpInput;
+        public bool AttackInput => _attackInput.IsPressed;
+        VirtualButton _attackInput;
 
         public override void OnAddedToEntity()
         {
@@ -43,6 +45,10 @@ namespace Game
             _jumpInput = new VirtualButton();
             _jumpInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
             _jumpInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
+
+            _attackInput = new VirtualButton();
+            _attackInput.Nodes.Add(new VirtualButton.MouseLeftButton());
+            _attackInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.X));
         }
 
         public void Update()
@@ -56,17 +62,23 @@ namespace Game
             }
 
             if (Collision.Below && _jumpInput.IsPressed)
+            {
                 _velocity.Y = -Mathf.Sqrt(2f * JumpHeight * Gravity);
+            }
 
             if (!_jumpInput.IsDown && _velocity.Y < 0)
+            {
                 _velocity.Y = 0;
+            }
 
             _velocity.Y += Gravity * Time.DeltaTime;
 
             _mover.Move(_velocity * Time.DeltaTime, _boxCollider, Collision);
 
             if (Collision.Below)
+            {
                 _velocity.Y = 0;
+            }
         }
     }
 }
