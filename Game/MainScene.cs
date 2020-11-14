@@ -41,6 +41,13 @@ namespace Game
             });
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
 
+            foreach (var mobSpawn in instanceLayer.Objects.ToLookup(t => t.Type)["mobSpawn"])
+            {
+                var mobType = mobSpawn.Properties["mobType"];
+                var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType);
+                mobEntity.Position = new Vector2(mobSpawn.X, mobSpawn.Y);
+            }
+
             var triggerLayer = Map.GetObjectGroup("triggers");
             var triggersByType = triggerLayer.Objects.ToLookup(t => t.Type);
 

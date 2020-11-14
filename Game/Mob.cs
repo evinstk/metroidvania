@@ -28,9 +28,9 @@ namespace Game
             entity.AddComponent<BoxCollider>();
             entity.AddComponent(new Animator(mobData.Animator));
             if (options.PlayerControlled)
-            {
                 entity.AddComponent<PlayerController>();
-            }
+            else
+                entity.AddComponent<MobController>();
             entity.AddComponent<MobMover>();
 
             return entity;
