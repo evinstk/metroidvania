@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Tiled;
-using static Nez.Tiled.TiledMapMover;
 
 namespace Game
 {
@@ -18,7 +17,7 @@ namespace Game
         float _jumpElapsed = 0;
         public int Facing = 1;
 
-        public CollisionState Collision { get; } = new CollisionState();
+        CollisionComponent _collision;
         ControllerComponent _controller;
         TiledMapMover _mover;
         BoxCollider _boxCollider;
@@ -27,6 +26,8 @@ namespace Game
 
         public override void OnAddedToEntity()
         {
+            _collision = Entity.GetComponent<CollisionComponent>();
+            Insist.IsNotNull(_collision);
             _controller = Entity.GetComponent<ControllerComponent>();
             Insist.IsNotNull(_controller);
             _mover = Entity.GetComponent<TiledMapMover>();
@@ -45,7 +46,7 @@ namespace Game
                 Facing = _velocity.X > 0 ? 1 : -1;
             }
 
-            if (Collision.Below && _controller.JumpPressed)
+            if (_collision.Collision.Below && _controller.JumpPressed)
             {
                 _velocity.Y = -Mathf.Sqrt(2f * JumpHeight * Gravity);
                 _jumpElapsed = 0;
@@ -64,9 +65,9 @@ namespace Game
 
             _velocity.Y = Mathf.Clamp(_velocity.Y, -MaxY, MaxY);
 
-            _mover.Move(_velocity * Time.DeltaTime, _boxCollider, Collision);
+            _mover.Move(_velocity * Time.DeltaTime, _boxCollider, _collision.Collision);
 
-            if (Collision.Below)
+            if (_collision.Collision.Below)
             {
                 _velocity.Y = 0;
             }

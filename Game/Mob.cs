@@ -25,6 +25,7 @@ namespace Game
             var entity = Core.Scene.CreateEntity(name);
 
             entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
+            entity.AddComponent<CollisionComponent>();
             entity.AddComponent<BoxCollider>();
             entity.AddComponent(new Animator(mobData.Animator));
             if (options.PlayerControlled)

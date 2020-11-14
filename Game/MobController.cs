@@ -7,17 +7,17 @@ namespace Game
         public override float XAxis => _dir;
         float _dir = 1f;
 
-        MobMover _mover;
+        CollisionComponent _collision;
 
         public override void OnAddedToEntity()
         {
-            _mover = Entity.GetComponent<MobMover>();
-            Insist.IsNotNull(_mover);
+            _collision = Entity.GetComponent<CollisionComponent>();
+            Insist.IsNotNull(_collision);
         }
 
         public void Update()
         {
-            if (_mover.Collision.Right || _mover.Collision.Left)
+            if (_collision.Collision.Right || _collision.Collision.Left)
                 _dir = -_dir;
             if (Entity.Position.X <= 0)
                 _dir = 1f;

@@ -11,6 +11,7 @@ namespace Game
 {
     class AnimatorContext
     {
+        public CollisionComponent Collision;
         public SpriteAnimator SpriteAnimator;
         public MobMover Mover;
         public BoxCollider Collider;
@@ -55,8 +56,10 @@ namespace Game
                 });
 
             var spriteAnimator = Entity.AddComponent<SpriteAnimator>();
-            var controller = Entity.GetComponent<MobMover>();
-            Insist.IsNotNull(controller);
+            var collision = Entity.GetComponent<CollisionComponent>();
+            Insist.IsNotNull(collision);
+            var mover = Entity.GetComponent<MobMover>();
+            Insist.IsNotNull(mover);
             var collider = Entity.GetComponent<BoxCollider>();
             Insist.IsNotNull(collider);
 
@@ -82,8 +85,9 @@ namespace Game
 
             _fsm = new StateMachine<AnimatorContext>(new AnimatorContext
             {
+                Collision = collision,
                 SpriteAnimator = spriteAnimator,
-                Mover = controller,
+                Mover = mover,
                 Collider = collider,
                 Meta = meta,
             }, new IdleState());
@@ -146,7 +150,7 @@ namespace Game
             {
                 _machine.ChangeState<JumpState>();
             }
-            if (_context.Mover.Velocity.X == 0 && _context.Mover.Collision.Below)
+            if (_context.Mover.Velocity.X == 0 && _context.Collision.Collision.Below)
             {
                 _machine.ChangeState<IdleState>();
             }
