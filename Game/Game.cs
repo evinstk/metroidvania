@@ -1,4 +1,4 @@
-﻿namespace FE
+﻿namespace Game
 {
     public class Game : Nez.Core
     {

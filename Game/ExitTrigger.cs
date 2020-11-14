@@ -1,5 +1,4 @@
-﻿using FE;
-using Nez;
+﻿using Nez;
 
 namespace Game
 {

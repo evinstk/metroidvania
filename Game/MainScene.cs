@@ -1,12 +1,10 @@
-﻿using Game;
-using Game.Animator;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Tiled;
 using System.IO;
 using System.Linq;
 
-namespace FE
+namespace Game
 {
 	class MainScene : Scene
 	{
@@ -15,6 +13,8 @@ namespace FE
 
         static int resWidth = 1920;
         static int resHeight = 1080;
+
+        public TmxMap Map { get; private set; }
 
         public MainScene(string mapSrc, string spawn)
         {
@@ -27,23 +27,21 @@ namespace FE
             SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(resWidth, resHeight);
 
-            var map = Content.LoadTiledMap("Content/Maps/" + _mapSrc);
+            Map = Content.LoadTiledMap("Content/Maps/" + _mapSrc);
 
             var mapEntity = CreateEntity("map");
-            mapEntity.AddComponent(new TiledMapRenderer(map, "terrain"));
+            mapEntity.AddComponent(new TiledMapRenderer(Map, "terrain"));
 
-            var instanceLayer = map.GetObjectGroup("instances");
+            var instanceLayer = Map.GetObjectGroup("instances");
 
             var playerObj = instanceLayer.Objects.First(o => o.Name == _spawn && o.Type == "playerSpawn");
-            var playerEntity = CreateEntity("player");
+            var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
+            {
+                PlayerControlled = true,
+            });
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
-            playerEntity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
-            playerEntity.AddComponent<BoxCollider>();
-            playerEntity.AddComponent(new Animator("Hero"));
-            playerEntity.AddComponent<PlayerController>();
-            playerEntity.AddComponent<MobMover>();
 
-            var triggerLayer = map.GetObjectGroup("triggers");
+            var triggerLayer = Map.GetObjectGroup("triggers");
             var triggersByType = triggerLayer.Objects.ToLookup(t => t.Type);
 
             foreach (var exit in triggersByType["exit"])
@@ -59,8 +57,8 @@ namespace FE
             var cameraEntity = Camera.Entity;
             cameraEntity.AddComponent(new FollowCamera(playerEntity));
             cameraEntity.AddComponent(new CameraComponent(
-                new Vector2(map.TileWidth, 0),
-                new Vector2(map.TileWidth * (map.Width - 1), map.TileHeight * map.Height)));
+                new Vector2(Map.TileWidth, 0),
+                new Vector2(Map.TileWidth * (Map.Width - 1), Map.TileHeight * Map.Height)));
             cameraEntity.Position = playerEntity.Position;
         }
     }

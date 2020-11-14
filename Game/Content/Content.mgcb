@@ -24,6 +24,11 @@
 /processor:PassThroughProcessor
 /build:Data/Animations.xml
 
+#begin Data/Mobs.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Data/Mobs.xml
+
 #begin Data/SpriteAtlases.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor

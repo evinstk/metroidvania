@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Asset Type="Data.Mob[]">
+		<Item>
+			<Type>Hero</Type>
+			<Animator>Hero</Animator>
+		</Item>
+	</Asset>
+</XnaContent>

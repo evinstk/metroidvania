@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static Nez.Sprites.SpriteAnimator;
 
-namespace Game.Animator
+namespace Game
 {
     class AnimatorContext
     {
