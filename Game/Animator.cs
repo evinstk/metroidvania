@@ -36,11 +36,13 @@ namespace Game
     class Animator : Component, IUpdatable
     {
         string _animationGroup;
+        Color _color;
         StateMachine<AnimatorContext> _fsm;
 
-        public Animator(string animationGroup)
+        public Animator(string animationGroup, Color? color = null)
         {
             _animationGroup = animationGroup;
+            _color = color ?? Color.White;
         }
 
         public override void OnAddedToEntity()
@@ -56,6 +58,8 @@ namespace Game
                 });
 
             var spriteAnimator = Entity.AddComponent<SpriteAnimator>();
+            spriteAnimator.Color = _color;
+
             var collision = Entity.GetComponent<CollisionComponent>();
             Insist.IsNotNull(collision);
             var mover = Entity.GetComponent<MobMover>();

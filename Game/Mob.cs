@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Nez;
 using Nez.Tiled;
 using System.Linq;
 
@@ -7,6 +8,7 @@ namespace Game
     class MobOptions
     {
         public bool PlayerControlled = false;
+        public Color? Color = null;
 
         public static MobOptions DefaultOptions = new MobOptions();
     }
@@ -27,7 +29,7 @@ namespace Game
             entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             entity.AddComponent<CollisionComponent>();
             entity.AddComponent<BoxCollider>();
-            entity.AddComponent(new Animator(mobData.Animator));
+            entity.AddComponent(new Animator(mobData.Animator, options.Color));
             if (options.PlayerControlled)
                 entity.AddComponent<PlayerController>();
             else

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Tiled;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -44,7 +45,15 @@ namespace Game
             foreach (var mobSpawn in instanceLayer.Objects.ToLookup(t => t.Type)["mobSpawn"])
             {
                 var mobType = mobSpawn.Properties["mobType"];
-                var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType);
+                if (!mobSpawn.Properties.TryGetValue("color", out var colorStr))
+                    colorStr = "#ffffff";
+                colorStr = "0x" + colorStr.Substring(1, 6);
+                var color = new Color(Convert.ToUInt32(colorStr, 16));
+                color.A = 255;
+                var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType, new MobOptions
+                {
+                    Color = color,
+                });
                 mobEntity.Position = new Vector2(mobSpawn.X, mobSpawn.Y);
             }
 
