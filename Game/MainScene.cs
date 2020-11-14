@@ -40,7 +40,8 @@ namespace FE
             playerEntity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             playerEntity.AddComponent<BoxCollider>();
             playerEntity.AddComponent(new Animator("Hero"));
-            playerEntity.AddComponent<ControllerComponent>();
+            playerEntity.AddComponent<PlayerController>();
+            playerEntity.AddComponent<MobMover>();
 
             var triggerLayer = map.GetObjectGroup("triggers");
             var triggersByType = triggerLayer.Objects.ToLookup(t => t.Type);

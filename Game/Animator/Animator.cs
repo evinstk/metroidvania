@@ -12,7 +12,7 @@ namespace Game.Animator
     class AnimatorContext
     {
         public SpriteAnimator SpriteAnimator;
-        public ControllerComponent Controller;
+        public MobMover Mover;
         public BoxCollider Collider;
         public Dictionary<string, AnimationMeta> Meta;
 
@@ -55,7 +55,7 @@ namespace Game.Animator
                 });
 
             var spriteAnimator = Entity.AddComponent<SpriteAnimator>();
-            var controller = Entity.GetComponent<ControllerComponent>();
+            var controller = Entity.GetComponent<MobMover>();
             Insist.IsNotNull(controller);
             var collider = Entity.GetComponent<BoxCollider>();
             Insist.IsNotNull(collider);
@@ -83,7 +83,7 @@ namespace Game.Animator
             _fsm = new StateMachine<AnimatorContext>(new AnimatorContext
             {
                 SpriteAnimator = spriteAnimator,
-                Controller = controller,
+                Mover = controller,
                 Collider = collider,
                 Meta = meta,
             }, new IdleState());
@@ -103,21 +103,21 @@ namespace Game.Animator
     {
         public override void Begin()
         {
-            _context.PlayAnimation(_context.Controller.Facing > 0
+            _context.PlayAnimation(_context.Mover.Facing > 0
                 ? "IdleRight" : "IdleLeft");
         }
 
         public override void Update(float deltaTime)
         {
-            if (_context.Controller.Velocity.Y < 0)
+            if (_context.Mover.Velocity.Y < 0)
             {
                 _machine.ChangeState<JumpState>();
             }
-            if (_context.Controller.Velocity.X != 0)
+            if (_context.Mover.Velocity.X != 0)
             {
                 _machine.ChangeState<WalkState>();
             }
-            if (_context.Controller.AttackInput)
+            if (_context.Mover.AttackInput)
             {
                 _machine.ChangeState<AttackState>();
             }
@@ -128,21 +128,21 @@ namespace Game.Animator
     {
         public override void Begin()
         {
-            _context.PlayAnimation(_context.Controller.Facing > 0
+            _context.PlayAnimation(_context.Mover.Facing > 0
                 ? "WalkRight" : "WalkLeft");
         }
 
         public override void Update(float deltaTime)
         {
-            if (_context.Controller.Velocity.Y < 0)
+            if (_context.Mover.Velocity.Y < 0)
             {
                 _machine.ChangeState<JumpState>();
             }
-            if (_context.Controller.Velocity.X == 0 && _context.Controller.Collision.Below)
+            if (_context.Mover.Velocity.X == 0 && _context.Mover.Collision.Below)
             {
                 _machine.ChangeState<IdleState>();
             }
-            if (_context.Controller.AttackInput)
+            if (_context.Mover.AttackInput)
             {
                 _machine.ChangeState<AttackState>();
             }
@@ -153,7 +153,7 @@ namespace Game.Animator
     {
         public override void Begin()
         {
-            _context.PlayAnimation(_context.Controller.Facing > 0
+            _context.PlayAnimation(_context.Mover.Facing > 0
                 ? "AttackRight" : "AttackLeft", LoopMode.Once);
             _context.SpriteAnimator.OnAnimationCompletedEvent += HandleComplete;
         }
@@ -177,17 +177,17 @@ namespace Game.Animator
     {
         public override void Begin()
         {
-            _context.PlayAnimation(_context.Controller.Facing > 0
+            _context.PlayAnimation(_context.Mover.Facing > 0
                 ? "JumpRight" : "JumpLeft", LoopMode.ClampForever);
         }
 
         public override void Update(float deltaTime)
         {
-            if (_context.Controller.Velocity.Y == 0)
+            if (_context.Mover.Velocity.Y == 0)
             {
                 _machine.ChangeState<LandState>();
             }
-            if (_context.Controller.AttackInput)
+            if (_context.Mover.AttackInput)
             {
                 _machine.ChangeState<AttackState>();
             }
@@ -198,7 +198,7 @@ namespace Game.Animator
     {
         public override void Begin()
         {
-            _context.PlayAnimation(_context.Controller.Facing > 0
+            _context.PlayAnimation(_context.Mover.Facing > 0
                 ? "LandRight" : "LandLeft", LoopMode.ClampForever);
             _context.SpriteAnimator.OnAnimationCompletedEvent += HandleComplete;
         }
