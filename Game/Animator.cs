@@ -134,6 +134,14 @@ namespace Game
 
         public override void Update(float deltaTime)
         {
+            if (_context.Mover.Facing > 0 && _context.SpriteAnimator.IsAnimationActive("WalkLeft"))
+            {
+                _context.PlayAnimation("WalkRight");
+            }
+            if (_context.Mover.Facing < 0 && _context.SpriteAnimator.IsAnimationActive("WalkRight"))
+            {
+                _context.PlayAnimation("WalkLeft");
+            }
             if (_context.Mover.Velocity.Y < 0)
             {
                 _machine.ChangeState<JumpState>();
