@@ -111,7 +111,7 @@
   <object id="6" name="testLeft" type="playerSpawn" x="64" y="1184"/>
   <object id="7" type="mobSpawn" x="192" y="1248">
    <properties>
-    <property name="mobType" value="Hero"/>
+    <property name="mobType" value="EnemyHero"/>
    </properties>
   </object>
  </objectgroup>

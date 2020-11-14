@@ -4,6 +4,12 @@
 		<Item>
 			<Type>Hero</Type>
 			<Animator>Hero</Animator>
+			<MoveSpeed>600</MoveSpeed>
+		</Item>
+		<Item>
+			<Type>EnemyHero</Type>
+			<Animator>Hero</Animator>
+			<MoveSpeed>300</MoveSpeed>
 		</Item>
 	</Asset>
 </XnaContent>

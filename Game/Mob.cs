@@ -32,7 +32,8 @@ namespace Game
                 entity.AddComponent<PlayerController>();
             else
                 entity.AddComponent<MobController>();
-            entity.AddComponent<MobMover>();
+            var mover = entity.AddComponent<MobMover>();
+            mover.MoveSpeed = mobData.MoveSpeed;
 
             return entity;
         }
