@@ -14,25 +14,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Animations/Hero.json
+/copy:Animations/Hero.json
+
 #begin Data/AnimationGroups.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Data/AnimationGroups.xml
 
-#begin Data/Animations.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Data/Animations.xml
-
 #begin Data/Mobs.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Data/Mobs.xml
-
-#begin Data/SpriteAtlases.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Data/SpriteAtlases.xml
 
 #begin Maps/BossRoom.tmx
 /copy:Maps/BossRoom.tmx

@@ -2,83 +2,61 @@
 <XnaContent>
 	<Asset Type="Data.AnimationGroup[]">
 		<Item>
-			<Name>Warrior</Name>
-			<AnimationTypes>
-				<Item>
-					<Type>IdleRight</Type>
-					<Animation>WarriorIdle</Animation>
-				</Item>
-				<Item>
-					<Type>IdleLeft</Type>
-					<Animation>WarriorIdle</Animation>
-					<Flip>true</Flip>
-				</Item>
-				<Item>
-					<Type>WalkRight</Type>
-					<Animation>WarriorWalkRight</Animation>
-				</Item>
-				<Item>
-					<Type>WalkLeft</Type>
-					<Animation>WarriorWalkRight</Animation>
-					<Flip>true</Flip>
-				</Item>
-				<Item>
-					<Type>AttackRight</Type>
-					<Animation>WarriorAttackRight</Animation>
-				</Item>
-				<Item>
-					<Type>AttackLeft</Type>
-					<Animation>WarriorAttackRight</Animation>
-					<Flip>true</Flip>
-				</Item>
-			</AnimationTypes>
-		</Item>
-		<Item>
 			<Name>Hero</Name>
 			<AnimationTypes>
 				<Item>
 					<Type>IdleRight</Type>
-					<Animation>HeroIdleRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>IdleRight</Name>
 				</Item>
 				<Item>
 					<Type>IdleLeft</Type>
-					<Animation>HeroIdleRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>IdleRight</Name>
 					<Flip>true</Flip>
 				</Item>
 				<Item>
 					<Type>WalkRight</Type>
-					<Animation>HeroWalkRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>WalkRight</Name>
 				</Item>
 				<Item>
 					<Type>WalkLeft</Type>
-					<Animation>HeroWalkRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>WalkRight</Name>
 					<Flip>true</Flip>
 				</Item>
 				<Item>
 					<Type>AttackRight</Type>
-					<Animation>HeroAttackRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>AttackRight</Name>
 				</Item>
 				<Item>
 					<Type>AttackLeft</Type>
-					<Animation>HeroAttackRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>AttackRight</Name>
 					<Flip>true</Flip>
 				</Item>
 				<Item>
 					<Type>JumpRight</Type>
-					<Animation>HeroJumpRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>JumpRight</Name>
 				</Item>
 				<Item>
 					<Type>JumpLeft</Type>
-					<Animation>HeroJumpRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>JumpRight</Name>
 					<Flip>true</Flip>
 				</Item>
 				<Item>
 					<Type>LandRight</Type>
-					<Animation>HeroLandRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>LandRight</Name>
 				</Item>
 				<Item>
 					<Type>LandLeft</Type>
-					<Animation>HeroLandRight</Animation>
+					<Tileset>Hero</Tileset>
+					<Name>LandRight</Name>
 					<Flip>true</Flip>
 				</Item>
 			</AnimationTypes>

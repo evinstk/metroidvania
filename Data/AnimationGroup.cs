@@ -11,7 +11,8 @@ namespace Data
     public class AnimationType
     {
         public string Type;
-        public string Animation;
+        public string Tileset;
+        public string Name;
         [ContentSerializer(Optional = true)]
         public bool Flip;
     }

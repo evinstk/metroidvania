@@ -1,10 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game.Tiled;
+using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 using Nez;
 using Nez.AI.FSM;
 using Nez.Sprites;
 using Nez.Textures;
+using Nez.Tiled;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Linq;
 using static Nez.Sprites.SpriteAnimator;
 
 namespace Game
@@ -22,15 +27,15 @@ namespace Game
             SpriteAnimator.Play(animation, loopMode);
             var meta = Meta[animation];
             SpriteAnimator.FlipX = meta.Flip;
-            var size = meta.ColliderSize;
-            Collider.SetSize(size.X, size.Y);
+            //var size = meta.ColliderSize;
+            //Collider.SetSize(size.X, size.Y);
         }
     }
 
     class AnimationMeta
     {
         public bool Flip;
-        public Vector2 ColliderSize;
+        //public Vector2 ColliderSize;
     }
 
     class Animator : Component, IUpdatable
@@ -48,14 +53,6 @@ namespace Game
         public override void OnAddedToEntity()
         {
             var group = Entity.Scene.Content.Load<Data.AnimationGroup[]>("Data/AnimationGroups").First(g => g.Name == _animationGroup);
-            var animations = Entity.Scene.Content.Load<Data.Animation[]>("Data/Animations").ToDictionary(a => a.Name);
-            var atlases = Entity.Scene.Content.Load<Data.SpriteAtlas[]>("Data/SpriteAtlases").ToDictionary(
-                a => a.Name, a =>
-                {
-                    var texture = Entity.Scene.Content.LoadTexture("Textures/" + a.Texture);
-                    var sprites = Sprite.SpritesFromAtlas(texture, a.CellWidth, a.CellHeight);
-                    return sprites;
-                });
 
             var spriteAnimator = Entity.AddComponent<SpriteAnimator>();
             spriteAnimator.Color = _color;
@@ -69,21 +66,22 @@ namespace Game
 
             foreach (var animType in group.AnimationTypes)
             {
-                var anim = animations[animType.Animation];
-                var sprites = atlases[anim.SpriteAtlas];
+                var tileset = Tileset.Load("Content/Animations/" + animType.Tileset + ".json");
+                var anim = tileset.Tiles.First(t => t.Type == animType.Name);
+                var texture = Entity.Scene.Content.LoadTexture("Textures/" + Path.GetFileNameWithoutExtension(tileset.Image));
+                var sprites = Sprite.SpritesFromAtlas(texture, tileset.TileWidth, tileset.TileHeight);
+                var frames = anim.Animation.Select(f => sprites[f.TileId]).ToArray();
                 spriteAnimator.AddAnimation(
                     animType.Type,
-                    Enumerable.Range(anim.CellStart, anim.CellCount).Select(i => sprites[i]).ToArray(),
+                    frames,
                     12);
             }
 
             var meta = group.AnimationTypes.ToDictionary(t => t.Type, t =>
             {
-                var animation = animations[t.Animation];
                 return new AnimationMeta
                 {
                     Flip = t.Flip,
-                    ColliderSize = animation.ColliderSize?.ToVector2() ?? atlases[animation.SpriteAtlas][0].SourceRect.GetSize().ToVector2(),
                 };
             });
 

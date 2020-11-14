@@ -5,11 +5,19 @@
 			<Type>Hero</Type>
 			<Animator>Hero</Animator>
 			<MoveSpeed>600</MoveSpeed>
+			<ColliderSize>
+				<X>78</X>
+				<Y>147</Y>
+			</ColliderSize>
 		</Item>
 		<Item>
 			<Type>EnemyHero</Type>
 			<Animator>Hero</Animator>
 			<MoveSpeed>300</MoveSpeed>
+			<ColliderSize>
+				<X>78</X>
+				<Y>147</Y>
+			</ColliderSize>
 		</Item>
 	</Asset>
 </XnaContent>
