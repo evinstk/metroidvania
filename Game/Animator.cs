@@ -19,7 +19,6 @@ namespace Game
         public CollisionComponent Collision;
         public SpriteAnimator SpriteAnimator;
         public MobMover Mover;
-        public BoxCollider Collider;
         public Dictionary<string, AnimationMeta> Meta;
 
         public void PlayAnimation(string animation, LoopMode? loopMode = null)
@@ -27,15 +26,12 @@ namespace Game
             SpriteAnimator.Play(animation, loopMode);
             var meta = Meta[animation];
             SpriteAnimator.FlipX = meta.Flip;
-            //var size = meta.ColliderSize;
-            //Collider.SetSize(size.X, size.Y);
         }
     }
 
     class AnimationMeta
     {
         public bool Flip;
-        //public Vector2 ColliderSize;
     }
 
     class Animator : Component, IUpdatable
@@ -61,8 +57,6 @@ namespace Game
             Insist.IsNotNull(collision);
             var mover = Entity.GetComponent<MobMover>();
             Insist.IsNotNull(mover);
-            var collider = Entity.GetComponent<BoxCollider>();
-            Insist.IsNotNull(collider);
 
             foreach (var animType in group.AnimationTypes)
             {
@@ -90,7 +84,6 @@ namespace Game
                 Collision = collision,
                 SpriteAnimator = spriteAnimator,
                 Mover = mover,
-                Collider = collider,
                 Meta = meta,
             }, new IdleState());
             _fsm.AddState(new WalkState());
