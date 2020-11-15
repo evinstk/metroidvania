@@ -20,9 +20,16 @@ namespace Game
         CollisionComponent _collision;
         ControllerComponent _controller;
         TiledMapMover _mover;
+        ColliderTriggerHelper _triggerHelper;
         BoxCollider _boxCollider;
 
         public bool AttackInput => _controller.AttackPressed;
+
+        public MobMover(BoxCollider boxCollider)
+        {
+            _boxCollider = boxCollider;
+            Insist.IsNotNull(_boxCollider);
+        }
 
         public override void OnAddedToEntity()
         {
@@ -32,8 +39,7 @@ namespace Game
             Insist.IsNotNull(_controller);
             _mover = Entity.GetComponent<TiledMapMover>();
             Insist.IsNotNull(_mover);
-            _boxCollider = Entity.GetComponent<BoxCollider>();
-            Insist.IsNotNull(_boxCollider);
+            _triggerHelper = new ColliderTriggerHelper(Entity);
         }
 
         public void Update()
@@ -66,6 +72,7 @@ namespace Game
             _velocity.Y = Mathf.Clamp(_velocity.Y, -MaxY, MaxY);
 
             _mover.Move(_velocity * Time.DeltaTime, _boxCollider, _collision.Collision);
+            _triggerHelper.Update();
 
             if (_collision.Collision.Below)
             {

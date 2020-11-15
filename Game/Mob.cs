@@ -28,13 +28,13 @@ namespace Game
 
             entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             entity.AddComponent<CollisionComponent>();
-            entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
+            var physicsCollider = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
             entity.AddComponent(new Animator(mobData.Animator, options.Color));
             if (options.PlayerControlled)
                 entity.AddComponent<PlayerController>();
             else
                 entity.AddComponent<MobController>();
-            var mover = entity.AddComponent<MobMover>();
+            var mover = entity.AddComponent(new MobMover(physicsCollider));
             mover.MoveSpeed = mobData.MoveSpeed;
 
             return entity;
