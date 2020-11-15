@@ -29,7 +29,7 @@ namespace Game
             entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             entity.AddComponent<CollisionComponent>();
             var physicsCollider = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
-            entity.AddComponent(new Animator(mobData.Animator, options.Color));
+            entity.AddComponent(new AnimationMachine(mobData.Animator, options.Color));
             if (options.PlayerControlled)
                 entity.AddComponent<PlayerController>();
             else

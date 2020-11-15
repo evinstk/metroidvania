@@ -34,13 +34,13 @@ namespace Game
         public bool Flip;
     }
 
-    class Animator : Component, IUpdatable
+    class AnimationMachine : Component, IUpdatable
     {
         string _animationGroup;
         Color _color;
         StateMachine<AnimatorContext> _fsm;
 
-        public Animator(string animationGroup, Color? color = null)
+        public AnimationMachine(string animationGroup, Color? color = null)
         {
             _animationGroup = animationGroup;
             _color = color ?? Color.White;
