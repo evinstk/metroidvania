@@ -1,37 +1,25 @@
 ﻿using Game.Tiled;
 using Microsoft.Xna.Framework;
-using Newtonsoft.Json;
 using Nez;
 using Nez.AI.FSM;
 using Nez.Sprites;
 using Nez.Textures;
-using Nez.Tiled;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml.Linq;
-using static Nez.Sprites.SpriteAnimator;
+using static Game.Animator;
 
 namespace Game
 {
     class AnimatorContext
     {
         public CollisionComponent Collision;
-        public SpriteAnimator SpriteAnimator;
+        public Animator Animator;
         public MobMover Mover;
-        public Dictionary<string, AnimationMeta> Meta;
 
         public void PlayAnimation(string animation, LoopMode? loopMode = null)
         {
-            SpriteAnimator.Play(animation, loopMode);
-            var meta = Meta[animation];
-            SpriteAnimator.FlipX = meta.Flip;
+            Animator.Play(animation, loopMode);
         }
-    }
-
-    class AnimationMeta
-    {
-        public bool Flip;
     }
 
     class AnimationMachine : Component, IUpdatable
@@ -50,13 +38,14 @@ namespace Game
         {
             var group = Entity.Scene.Content.Load<Data.AnimationGroup[]>("Data/AnimationGroups").First(g => g.Name == _animationGroup);
 
-            var spriteAnimator = Entity.AddComponent<SpriteAnimator>();
-            spriteAnimator.Color = _color;
+            var animator = Entity.AddComponent<Animator>();
 
             var collision = Entity.GetComponent<CollisionComponent>();
             Insist.IsNotNull(collision);
             var mover = Entity.GetComponent<MobMover>();
             Insist.IsNotNull(mover);
+            var spriteRenderer = Entity.GetComponent<SpriteRenderer>();
+            Insist.IsNotNull(spriteRenderer);
 
             foreach (var animType in group.AnimationTypes)
             {
@@ -64,27 +53,26 @@ namespace Game
                 var anim = tileset.Tiles.First(t => t.Type == animType.Name);
                 var texture = Entity.Scene.Content.LoadTexture("Textures/" + Path.GetFileNameWithoutExtension(tileset.Image));
                 var sprites = Sprite.SpritesFromAtlas(texture, tileset.TileWidth, tileset.TileHeight);
-                var frames = anim.Animation.Select(f => sprites[f.TileId]).ToArray();
-                spriteAnimator.AddAnimation(
+                var frames = anim.Animation.Select(f => new Frame(
+                    sprites[f.TileId],
+                    spriteRenderer,
+                    new FrameOptions
+                    {
+                        FlipX = animType.Flip,
+                        Color = _color,
+                    })).ToArray();
+                animator.AddAnimation(
                     animType.Type,
-                    frames,
-                    12);
+                    new Animation(
+                        frames,
+                        12));
             }
-
-            var meta = group.AnimationTypes.ToDictionary(t => t.Type, t =>
-            {
-                return new AnimationMeta
-                {
-                    Flip = t.Flip,
-                };
-            });
 
             _fsm = new StateMachine<AnimatorContext>(new AnimatorContext
             {
                 Collision = collision,
-                SpriteAnimator = spriteAnimator,
+                Animator = animator,
                 Mover = mover,
-                Meta = meta,
             }, new IdleState());
             _fsm.AddState(new WalkState());
             _fsm.AddState(new AttackState());
@@ -133,11 +121,11 @@ namespace Game
 
         public override void Update(float deltaTime)
         {
-            if (_context.Mover.Facing > 0 && _context.SpriteAnimator.IsAnimationActive("WalkLeft"))
+            if (_context.Mover.Facing > 0 && _context.Animator.IsAnimationActive("WalkLeft"))
             {
                 _context.PlayAnimation("WalkRight");
             }
-            if (_context.Mover.Facing < 0 && _context.SpriteAnimator.IsAnimationActive("WalkRight"))
+            if (_context.Mover.Facing < 0 && _context.Animator.IsAnimationActive("WalkRight"))
             {
                 _context.PlayAnimation("WalkLeft");
             }
@@ -162,7 +150,7 @@ namespace Game
         {
             _context.PlayAnimation(_context.Mover.Facing > 0
                 ? "AttackRight" : "AttackLeft", LoopMode.Once);
-            _context.SpriteAnimator.OnAnimationCompletedEvent += HandleComplete;
+            _context.Animator.OnAnimationCompletedEvent += HandleComplete;
         }
 
         void HandleComplete(string animation)
@@ -172,7 +160,7 @@ namespace Game
 
         public override void End()
         {
-            _context.SpriteAnimator.OnAnimationCompletedEvent -= HandleComplete;
+            _context.Animator.OnAnimationCompletedEvent -= HandleComplete;
         }
 
         public override void Update(float deltaTime)
@@ -207,7 +195,7 @@ namespace Game
         {
             _context.PlayAnimation(_context.Mover.Facing > 0
                 ? "LandRight" : "LandLeft", LoopMode.ClampForever);
-            _context.SpriteAnimator.OnAnimationCompletedEvent += HandleComplete;
+            _context.Animator.OnAnimationCompletedEvent += HandleComplete;
         }
 
         void HandleComplete(string animation)
@@ -217,7 +205,7 @@ namespace Game
 
         public override void End()
         {
-            _context.SpriteAnimator.OnAnimationCompletedEvent -= HandleComplete;
+            _context.Animator.OnAnimationCompletedEvent -= HandleComplete;
         }
 
         public override void Update(float deltaTime)
