@@ -43,7 +43,7 @@ namespace Game
 
             var hurtbox = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
             hurtbox.IsTrigger = true;
-            var hitbox = entity.AddComponent(new BoxCollider(-100, -100, 100, 100));
+            var hitbox = entity.AddComponent<BoxCollider>();
             hitbox.IsTrigger = true;
             Flags.SetFlagExclusive(ref hurtbox.CollidesWithLayers, HurtBoxLayer);
             Flags.SetFlagExclusive(ref hitbox.PhysicsLayer, HurtBoxLayer);

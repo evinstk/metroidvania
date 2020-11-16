@@ -21,6 +21,16 @@ namespace Game
             _pendingHit = false;
         }
 
+        public override void OnEnabled()
+        {
+            HitBox.SetEnabled(true);
+        }
+
+        public override void OnDisabled()
+        {
+            HitBox.SetEnabled(false);
+        }
+
         public void OnTriggerEnter(Collider other, Collider local)
         {
             if (local == HitBox && other.Entity != local.Entity)
