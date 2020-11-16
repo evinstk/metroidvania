@@ -29,7 +29,6 @@ namespace Game
         HitComponent _hitC;
 
         Sprite _sprite;
-        Color _color;
         bool _flipX;
         TiledObject _hitBoxData;
 
@@ -37,14 +36,12 @@ namespace Game
             SpriteRenderer renderer,
             HitComponent hitC,
             Sprite sprite,
-            Color color,
             bool flipX,
             TiledObject hitBoxData)
         {
             _renderer = renderer;
             _hitC = hitC;
             _sprite = sprite;
-            _color = color;
             _flipX = flipX;
             _hitBoxData = hitBoxData;
         }
@@ -52,7 +49,6 @@ namespace Game
         public void Animate()
         {
             _renderer.Sprite = _sprite;
-            _renderer.Color = _color;
             _renderer.FlipX = _flipX;
             _hitC.SetEnabled(_hitBoxData != null);
             if (_hitBoxData != null)
@@ -68,13 +64,11 @@ namespace Game
     class AnimationMachine : Component, IUpdatable
     {
         string _animationGroup;
-        Color _color;
         StateMachine<AnimatorContext> _fsm;
 
-        public AnimationMachine(string animationGroup, Color? color = null)
+        public AnimationMachine(string animationGroup)
         {
             _animationGroup = animationGroup;
-            _color = color ?? Color.White;
         }
 
         public override void OnAddedToEntity()
@@ -112,7 +106,6 @@ namespace Game
                         spriteRenderer,
                         hitC,
                         sprite,
-                        _color,
                         animType.Flip,
                         hits.FirstOrDefault());
                 }).ToArray();
