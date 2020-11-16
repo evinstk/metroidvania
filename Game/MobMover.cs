@@ -8,14 +8,14 @@ namespace Game
     {
         public int MoveSpeed = 600;
         public float Gravity = 3000;
-        public float JumpHeight = 32 * 5;
+        public float JumpVelocity = 980f;
         public float JumpDuration = 0.2f;
-        public float MaxY = 1000f;
+        public float MaxFallVelocity = 1000f;
 
         public Vector2 Velocity => _velocity;
         Vector2 _velocity;
         float _jumpElapsed = 0;
-        public int Facing = 1;
+        public int Facing { get; private set; } = 1;
 
         CollisionComponent _collision;
         ControllerComponent _controller;
@@ -54,7 +54,7 @@ namespace Game
 
             if (_collision.Collision.Below && _controller.JumpPressed)
             {
-                _velocity.Y = -Mathf.Sqrt(2f * JumpHeight * Gravity);
+                _velocity.Y = -JumpVelocity;
                 _jumpElapsed = 0;
             }
 
@@ -69,7 +69,7 @@ namespace Game
                 _velocity.Y += Gravity * Time.DeltaTime;
             }
 
-            _velocity.Y = Mathf.Clamp(_velocity.Y, -MaxY, MaxY);
+            _velocity.Y = Mathf.Clamp(_velocity.Y, -JumpVelocity, MaxFallVelocity);
 
             _mover.Move(_velocity * Time.DeltaTime, _boxCollider, _collision.Collision);
             _triggerHelper.Update();
