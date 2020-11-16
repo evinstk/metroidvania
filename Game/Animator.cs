@@ -1,63 +1,24 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
-using Nez.Sprites;
-using Nez.Textures;
+﻿using Nez;
 using System;
 using System.Collections.Generic;
 
 namespace Game
 {
-	interface IAnimation
-    {
-		IFrame[] GetFrames();
-        float GetFrameRate();
-    }
-
 	interface IFrame
     {
 		void Animate();
     }
 
-	class Animation : IAnimation
+	class Animation
     {
 		public IFrame[] GetFrames() => _frames;
-		Frame[] _frames;
-		public float GetFrameRate() => _fps;
-		float _fps;
+		IFrame[] _frames;
+		public float FrameRate { get; }
 
-		public Animation(Frame[] frames, float fps)
+		public Animation(IFrame[] frames, float fps)
         {
 			_frames = frames;
-			_fps = fps;
-        }
-    }
-
-	class FrameOptions
-    {
-		public bool FlipX = false;
-		public Color Color = Color.White;
-
-		public readonly static FrameOptions DefaultOptions = new FrameOptions();
-    }
-
-	class Frame : IFrame
-    {
-		Sprite _sprite;
-		SpriteRenderer _renderer;
-		FrameOptions _options;
-
-		public Frame(Sprite sprite, SpriteRenderer renderer, FrameOptions options = null)
-        {
-			_sprite = sprite;
-			_renderer = renderer;
-			_options = options ?? FrameOptions.DefaultOptions;
-        }
-
-        public void Animate()
-        {
-			_renderer.FlipX = _options.FlipX;
-			_renderer.Color = _options.Color;
-			_renderer.Sprite = _sprite;
+			FrameRate = fps;
         }
     }
 
@@ -118,7 +79,7 @@ namespace Game
 		/// the current animation
 		/// </summary>
 		//public SpriteAnimation CurrentAnimation { get; private set; }
-		public IAnimation CurrentAnimation { get; private set; }
+		public Animation CurrentAnimation { get; private set; }
 
 		/// <summary>
 		/// the name of the current animation
@@ -135,7 +96,7 @@ namespace Game
 		/// </summary>
 		public bool IsRunning => AnimationState == State.Running;
 
-		readonly Dictionary<string, IAnimation> _animations = new Dictionary<string, IAnimation>();
+		readonly Dictionary<string, Animation> _animations = new Dictionary<string, Animation>();
 
 		float _elapsedTime;
 		LoopMode _loopMode;
@@ -150,7 +111,7 @@ namespace Game
 				return;
 
 			var animation = CurrentAnimation;
-			var secondsPerFrame = 1 / (animation.GetFrameRate() * Speed);
+			var secondsPerFrame = 1 / (animation.FrameRate * Speed);
 			var frames = animation.GetFrames();
 			var iterationDuration = secondsPerFrame * frames.Length;
 			var pingPongIterationDuration = frames.Length < 3 ? iterationDuration : secondsPerFrame * (frames.Length * 2 - 2);
@@ -204,7 +165,7 @@ namespace Game
 			CurrentAnimation.GetFrames()[frame].Animate();
         }
 
-		public Animator AddAnimation(string name, IAnimation animation)
+		public Animator AddAnimation(string name, Animation animation)
         {
 			_animations[name] = animation;
 			return this;

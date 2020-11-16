@@ -16,6 +16,8 @@ namespace Game
 
     static class Mob
     {
+        const int HurtBoxLayer = 1;
+
         public static Entity MakeMobEntity(string name, string type, MobOptions options = null)
         {
             options = options ?? MobOptions.DefaultOptions;
@@ -31,13 +33,24 @@ namespace Game
             entity.AddComponent<CollisionComponent>();
             var physicsCollider = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
             entity.AddComponent<SpriteRenderer>();
-            entity.AddComponent(new AnimationMachine(mobData.Animator, options.Color));
             if (options.PlayerControlled)
                 entity.AddComponent<PlayerController>();
             else
                 entity.AddComponent<MobController>();
             var mover = entity.AddComponent(new MobMover(physicsCollider));
             mover.MoveSpeed = mobData.MoveSpeed;
+
+            var hurtbox = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
+            hurtbox.IsTrigger = true;
+            var hitbox = entity.AddComponent(new BoxCollider(-100, -100, 100, 100));
+            hitbox.IsTrigger = true;
+            Flags.SetFlagExclusive(ref hurtbox.CollidesWithLayers, HurtBoxLayer);
+            Flags.SetFlagExclusive(ref hitbox.PhysicsLayer, HurtBoxLayer);
+            Flags.SetFlagExclusive(ref hitbox.CollidesWithLayers, HurtBoxLayer);
+            var hitC = entity.AddComponent(new HitComponent(hitbox));
+            hitC.SetEnabled(false);
+
+            entity.AddComponent(new AnimationMachine(mobData.Animator, options.Color));
 
             return entity;
         }

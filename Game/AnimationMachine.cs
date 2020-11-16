@@ -4,6 +4,7 @@ using Nez;
 using Nez.AI.FSM;
 using Nez.Sprites;
 using Nez.Textures;
+using System;
 using System.IO;
 using System.Linq;
 using static Game.Animator;
@@ -19,6 +20,48 @@ namespace Game
         public void PlayAnimation(string animation, LoopMode? loopMode = null)
         {
             Animator.Play(animation, loopMode);
+        }
+    }
+
+    class Frame : IFrame
+    {
+        SpriteRenderer _renderer;
+        HitComponent _hitC;
+
+        Sprite _sprite;
+        Color _color;
+        bool _flipX;
+        TiledObject _hitBoxData;
+
+        public Frame(
+            SpriteRenderer renderer,
+            HitComponent hitC,
+            Sprite sprite,
+            Color color,
+            bool flipX,
+            TiledObject hitBoxData)
+        {
+            _renderer = renderer;
+            _hitC = hitC;
+            _sprite = sprite;
+            _color = color;
+            _flipX = flipX;
+            _hitBoxData = hitBoxData;
+        }
+
+        public void Animate()
+        {
+            _renderer.Sprite = _sprite;
+            _renderer.Color = _color;
+            _renderer.FlipX = _flipX;
+            _hitC.SetEnabled(_hitBoxData != null);
+            if (_hitBoxData != null)
+            {
+                _hitC.HitBox.SetSize(_hitBoxData.Width, _hitBoxData.Height);
+                _hitC.HitBox.SetLocalOffset(new Vector2(
+                    (_hitBoxData.X + .5f * (_hitBoxData.Width - _renderer.Bounds.Width)) * (_flipX ? -1 : 1),
+                    _hitBoxData.Y + .5f * (_hitBoxData.Height - _renderer.Bounds.Height)));
+            }
         }
     }
 
@@ -46,6 +89,8 @@ namespace Game
             Insist.IsNotNull(mover);
             var spriteRenderer = Entity.GetComponent<SpriteRenderer>();
             Insist.IsNotNull(spriteRenderer);
+            var hitC = Entity.GetComponent<HitComponent>();
+            Insist.IsNotNull(hitC);
 
             foreach (var animType in group.AnimationTypes)
             {
@@ -53,14 +98,24 @@ namespace Game
                 var anim = tileset.Tiles.First(t => t.Type == animType.Name);
                 var texture = Entity.Scene.Content.LoadTexture("Textures/" + Path.GetFileNameWithoutExtension(tileset.Image));
                 var sprites = Sprite.SpritesFromAtlas(texture, tileset.TileWidth, tileset.TileHeight);
-                var frames = anim.Animation.Select(f => new Frame(
-                    sprites[f.TileId],
-                    spriteRenderer,
-                    new FrameOptions
+                var hitsByTileId = tileset.Tiles
+                    .Where(t => t.ObjectGroup?.Objects?.Where(o => o.Type == "hit") != null)
+                    .ToDictionary(t => t.Id, t => t.ObjectGroup.Objects);
+                var frames = anim.Animation.Select(f =>
+                {
+                    var sprite = sprites[f.TileId];
+                    if (!hitsByTileId.TryGetValue(f.TileId, out var hits))
                     {
-                        FlipX = animType.Flip,
-                        Color = _color,
-                    })).ToArray();
+                        hits = Array.Empty<TiledObject>();
+                    }
+                    return new Frame(
+                        spriteRenderer,
+                        hitC,
+                        sprite,
+                        _color,
+                        animType.Flip,
+                        hits.FirstOrDefault());
+                }).ToArray();
                 animator.AddAnimation(
                     animType.Type,
                     new Animation(
