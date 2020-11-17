@@ -1,11 +1,19 @@
-{ "columns":9,
+{ "columns":2,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"",
+         "target":"."
+        }
+    },
  "image":"..\/Textures\/hero.png",
- "imageheight":600,
- "imagewidth":1800,
+ "imageheight":1800,
+ "imagewidth":400,
  "margin":0,
  "name":"hero",
  "spacing":0,
- "tilecount":27,
+ "tilecount":18,
  "tiledversion":"1.4.2",
  "tileheight":200,
  "tiles":[
@@ -13,13 +21,54 @@
          "animation":[
                 {
                  "duration":83,
-                 "tileid":9
+                 "tileid":0
                 }],
-         "id":9,
+         "id":0,
          "type":"IdleRight"
         }, 
         {
          "animation":[
+                {
+                 "duration":83,
+                 "tileid":1
+                }, 
+                {
+                 "duration":83,
+                 "tileid":2
+                }, 
+                {
+                 "duration":83,
+                 "tileid":3
+                }, 
+                {
+                 "duration":83,
+                 "tileid":4
+                }, 
+                {
+                 "duration":83,
+                 "tileid":5
+                }, 
+                {
+                 "duration":83,
+                 "tileid":6
+                }, 
+                {
+                 "duration":83,
+                 "tileid":7
+                }, 
+                {
+                 "duration":83,
+                 "tileid":8
+                }],
+         "id":1,
+         "type":"WalkRight"
+        }, 
+        {
+         "animation":[
+                {
+                 "duration":83,
+                 "tileid":9
+                }, 
                 {
                  "duration":83,
                  "tileid":10
@@ -27,16 +76,12 @@
                 {
                  "duration":83,
                  "tileid":11
-                }, 
-                {
-                 "duration":83,
-                 "tileid":12
                 }],
-         "id":10,
+         "id":9,
          "type":"AttackRight"
         }, 
         {
-         "id":11,
+         "id":10,
          "objectgroup":
             {
              "draworder":"index",
@@ -51,8 +96,8 @@
                      "type":"hit",
                      "visible":true,
                      "width":200,
-                     "x":74,
-                     "y":-17
+                     "x":100,
+                     "y":-50
                     }],
              "opacity":1,
              "type":"objectgroup",
@@ -63,6 +108,10 @@
         }, 
         {
          "animation":[
+                {
+                 "duration":83,
+                 "tileid":12
+                }, 
                 {
                  "duration":83,
                  "tileid":13
@@ -78,59 +127,18 @@
                 {
                  "duration":83,
                  "tileid":16
-                }, 
-                {
-                 "duration":83,
-                 "tileid":17
                 }],
-         "id":13,
+         "id":12,
          "type":"JumpRight"
         }, 
         {
          "animation":[
                 {
                  "duration":83,
-                 "tileid":18
+                 "tileid":17
                 }],
-         "id":18,
+         "id":17,
          "type":"LandRight"
-        }, 
-        {
-         "animation":[
-                {
-                 "duration":83,
-                 "tileid":19
-                }, 
-                {
-                 "duration":83,
-                 "tileid":20
-                }, 
-                {
-                 "duration":83,
-                 "tileid":21
-                }, 
-                {
-                 "duration":83,
-                 "tileid":22
-                }, 
-                {
-                 "duration":83,
-                 "tileid":23
-                }, 
-                {
-                 "duration":83,
-                 "tileid":24
-                }, 
-                {
-                 "duration":83,
-                 "tileid":25
-                }, 
-                {
-                 "duration":83,
-                 "tileid":26
-                }],
-         "id":19,
-         "type":"WalkRight"
         }],
  "tilewidth":200,
  "type":"tileset",
