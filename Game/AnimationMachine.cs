@@ -26,7 +26,7 @@ namespace Game
     class Frame : IFrame
     {
         SpriteRenderer _renderer;
-        HitComponent _hitC;
+        HitBoxComponent _hitC;
 
         Sprite _sprite;
         bool _flipX;
@@ -34,7 +34,7 @@ namespace Game
 
         public Frame(
             SpriteRenderer renderer,
-            HitComponent hitC,
+            HitBoxComponent hitC,
             Sprite sprite,
             bool flipX,
             TiledObject hitBoxData)
@@ -53,8 +53,8 @@ namespace Game
             _hitC.SetEnabled(_hitBoxData != null);
             if (_hitBoxData != null)
             {
-                _hitC.HitBox.SetSize(_hitBoxData.Width, _hitBoxData.Height);
-                _hitC.HitBox.SetLocalOffset(new Vector2(
+                _hitC.Collider.SetSize(_hitBoxData.Width, _hitBoxData.Height);
+                _hitC.Collider.SetLocalOffset(new Vector2(
                     (_hitBoxData.X + .5f * (_hitBoxData.Width - _renderer.Bounds.Width)) * (_flipX ? -1 : 1),
                     _hitBoxData.Y + .5f * (_hitBoxData.Height - _renderer.Bounds.Height)));
             }
@@ -83,7 +83,7 @@ namespace Game
             Insist.IsNotNull(mover);
             var spriteRenderer = Entity.GetComponent<SpriteRenderer>();
             Insist.IsNotNull(spriteRenderer);
-            var hitC = Entity.GetComponent<HitComponent>();
+            var hitC = Entity.GetComponent<HitBoxComponent>();
             Insist.IsNotNull(hitC);
 
             foreach (var animType in group.AnimationTypes)

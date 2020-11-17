@@ -65,6 +65,7 @@ namespace Game
                 var exitEntity = CreateEntity(exit.Name != "" ? exit.Name : "exit");
                 var exitCollider = exitEntity.AddComponent(new BoxCollider(exit.X, exit.Y, exit.Width, exit.Height));
                 exitCollider.IsTrigger = true;
+                Flags.SetFlagExclusive(ref exitCollider.CollidesWithLayers, Layer.Default);
                 var mapSrc = Path.GetFileName(exit.Properties["map"]);
                 var spawn = exit.Properties["spawn"];
                 exitEntity.AddComponent(new ExitTrigger(mapSrc, spawn));

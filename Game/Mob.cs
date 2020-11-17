@@ -16,8 +16,6 @@ namespace Game
 
     static class Mob
     {
-        const int HurtBoxLayer = 1;
-
         public static Entity MakeMobEntity(string name, string type, MobOptions options = null)
         {
             options = options ?? MobOptions.DefaultOptions;
@@ -32,6 +30,7 @@ namespace Game
             entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             entity.AddComponent<CollisionComponent>();
             var physicsCollider = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
+            Flags.SetFlagExclusive(ref physicsCollider.CollidesWithLayers, Layer.Default);
             var renderer = entity.AddComponent<SpriteRenderer>();
             renderer.Color = options.Color ?? Color.White;
             if (options.PlayerControlled)
@@ -41,15 +40,16 @@ namespace Game
             var mover = entity.AddComponent(new MobMover(physicsCollider));
             mover.MoveSpeed = mobData.MoveSpeed;
 
-            var hurtbox = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
+            var hurtbox = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X / 2, mobData.ColliderSize.Y / 2));
             hurtbox.IsTrigger = true;
+            Flags.SetFlagExclusive(ref hurtbox.PhysicsLayer, Layer.HurtBox);
+            var healthC = entity.AddComponent(new HealthComponent(hurtbox));
+            healthC.Health = mobData.Health;
+
             var hitbox = entity.AddComponent<BoxCollider>();
-            hitbox.IsTrigger = true;
-            Flags.SetFlagExclusive(ref hurtbox.CollidesWithLayers, HurtBoxLayer);
-            Flags.SetFlagExclusive(ref hitbox.PhysicsLayer, HurtBoxLayer);
-            Flags.SetFlagExclusive(ref hitbox.CollidesWithLayers, HurtBoxLayer);
-            var hitC = entity.AddComponent(new HitComponent(hitbox));
-            hitC.SetEnabled(false);
+            Flags.SetFlagExclusive(ref hitbox.CollidesWithLayers, Layer.HurtBox);
+            var hitboxC = entity.AddComponent(new HitBoxComponent(hitbox));
+            hitboxC.SetEnabled(false);
 
             entity.AddComponent(new AnimationMachine(mobData.Animator));
 

@@ -6,5 +6,6 @@
         public string Animator;
         public int MoveSpeed;
         public Point ColliderSize;
+        public int Health;
     }
 }

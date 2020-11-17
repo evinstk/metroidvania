@@ -9,6 +9,7 @@
 				<X>78</X>
 				<Y>147</Y>
 			</ColliderSize>
+			<Health>5</Health>
 		</Item>
 		<Item>
 			<Type>EnemyHero</Type>
@@ -18,6 +19,7 @@
 				<X>78</X>
 				<Y>147</Y>
 			</ColliderSize>
+			<Health>3</Health>
 		</Item>
 	</Asset>
 </XnaContent>
