@@ -3,7 +3,7 @@ using Nez;
 
 namespace Game
 {
-    class MobController : ControllerComponent, IUpdatable
+    class AttackerController : ControllerComponent, IUpdatable
     {
         public int LinecastDistance = 150;
         public float AttackTimeout = 1f;

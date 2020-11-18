@@ -20,6 +20,7 @@
 				<Y>147</Y>
 			</ColliderSize>
 			<Health>3</Health>
+			<AiType>Attacker</AiType>
 		</Item>
 	</Asset>
 </XnaContent>

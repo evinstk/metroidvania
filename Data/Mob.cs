@@ -1,4 +1,6 @@
-﻿namespace Data
+﻿using Microsoft.Xna.Framework.Content;
+
+namespace Data
 {
     public class Mob
     {
@@ -7,5 +9,7 @@
         public int MoveSpeed;
         public Point ColliderSize;
         public int Health;
+        [ContentSerializer(Optional = true)]
+        public string AiType;
     }
 }

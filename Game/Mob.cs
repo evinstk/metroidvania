@@ -34,9 +34,20 @@ namespace Game
             var renderer = entity.AddComponent<SpriteRenderer>();
             renderer.Color = options.Color ?? Color.White;
             if (options.PlayerControlled)
+            {
                 entity.AddComponent<PlayerController>();
-            else
-                entity.AddComponent<MobController>();
+            }
+            else if (mobData.AiType != null)
+            {
+                switch (mobData.AiType)
+                {
+                    case "Attacker":
+                        entity.AddComponent<AttackerController>();
+                        break;
+                    default:
+                        throw new System.Exception("Unsupported AI type");
+                }
+            }
             var mover = entity.AddComponent(new MobMover(physicsCollider));
             mover.MoveSpeed = mobData.MoveSpeed;
 
