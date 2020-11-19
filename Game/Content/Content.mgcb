@@ -45,6 +45,12 @@
 /processorParam:Quality=Best
 /build:Sounds/hit.wav
 
+#begin Sounds/impact.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/impact.wav
+
 #begin Sounds/jump.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

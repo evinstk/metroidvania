@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Nez;
 using Nez.Sprites;
 
@@ -11,6 +12,7 @@ namespace Game
         Collider _hurtbox;
         SpriteRenderer _renderer;
         Color _originalColor;
+        SoundEffect _impactEffect;
 
         public HealthComponent(Collider hurtbox)
         {
@@ -19,6 +21,9 @@ namespace Game
 
         public override void OnAddedToEntity()
         {
+            _impactEffect = Core.Content.LoadSoundEffect("Sounds/impact");
+            Insist.IsNotNull(_impactEffect);
+
             _renderer = Entity.GetComponent<SpriteRenderer>();
             Insist.IsNotNull(_renderer);
             _originalColor = _renderer.Color;
@@ -38,6 +43,7 @@ namespace Game
             {
                 Health -= 1;
                 _renderer.Color = Color.Red;
+                _impactEffect.Play();
                 _renderer.TweenColorTo(_originalColor)
                     .SetRecycleTween(true)
                     .Start();
