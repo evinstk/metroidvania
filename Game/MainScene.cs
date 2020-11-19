@@ -28,6 +28,8 @@ namespace Game
             SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(resWidth, resHeight);
 
+            Physics.RaycastsHitTriggers = true;
+
             Map = Content.LoadTiledMap("Content/Maps/" + _mapSrc);
 
             var mapEntity = CreateEntity("map");

@@ -34,7 +34,7 @@ namespace Game
             var hit = Physics.Linecast(
                 Entity.Position,
                 Entity.Position + new Vector2(LinecastDistance * _dir, 0),
-                Layer.HurtBox);
+                1 << Layer.HurtBox);
             if (hit.Collider != null && !_attackTimeoutActive)
             {
                 _attack = _attackTimeoutActive = true;
