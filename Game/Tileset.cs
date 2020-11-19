@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -34,8 +35,9 @@ namespace Game.Tiled
     {
         public int Id;
         public string Type;
-        public AnimationFrame[] Animation;
-        public ObjectGroup ObjectGroup;
+        public AnimationFrame[] Animation = Array.Empty<AnimationFrame>();
+        public ObjectGroup ObjectGroup = new ObjectGroup();
+        public Property[] Properties = Array.Empty<Property>();
     }
 
     class AnimationFrame
@@ -46,7 +48,7 @@ namespace Game.Tiled
 
     class ObjectGroup
     {
-        public TiledObject[] Objects;
+        public TiledObject[] Objects = Array.Empty<TiledObject>();
     }
 
     class TiledObject
@@ -56,5 +58,12 @@ namespace Game.Tiled
         public int Y;
         public int Width;
         public int Height;
+    }
+
+    class Property
+    {
+        public string Name;
+        public string Type;
+        public string Value;
     }
 }
