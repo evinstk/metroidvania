@@ -7,17 +7,16 @@ using Nez.Sprites;
 using Nez.Textures;
 using System.IO;
 using System.Linq;
-using static Game.Animator;
 
 namespace Game
 {
     class AnimatorContext
     {
         public CollisionComponent Collision;
-        public Animator Animator;
+        public Animator<Frame> Animator;
         public MobMover Mover;
 
-        public void PlayAnimation(string animation, LoopMode? loopMode = null)
+        public void PlayAnimation(string animation, Animator<Frame>.LoopMode? loopMode = null)
         {
             Animator.Play(animation, loopMode);
         }
@@ -30,7 +29,7 @@ namespace Game
         public SoundEffect Sound;
     }
 
-    class Frame : AnimationFrame
+    class Frame : IFrame
     {
         SpriteRenderer _renderer;
         HitBoxComponent _hitC;
@@ -50,7 +49,7 @@ namespace Game
             _options = options;
         }
 
-        public override void OnEnter()
+        public void OnEnter()
         {
             _renderer.Sprite = _sprite;
             _renderer.FlipX = _options.FlipX;
@@ -87,7 +86,7 @@ namespace Game
         {
             var group = Entity.Scene.Content.Load<Data.AnimationGroup[]>("Data/AnimationGroups").First(g => g.Name == _animationGroup);
 
-            var animator = Entity.AddComponent<Animator>();
+            var animator = Entity.AddComponent<Animator<Frame>>();
 
             var collision = Entity.GetComponent<CollisionComponent>();
             Insist.IsNotNull(collision);
@@ -136,7 +135,7 @@ namespace Game
                 }).ToArray();
                 animator.AddAnimation(
                     animType.Type,
-                    new Animation(
+                    new Animation<Frame>(
                         frames,
                         12));
             }
@@ -222,7 +221,7 @@ namespace Game
         public override void Begin()
         {
             _context.PlayAnimation(_context.Mover.Facing > 0
-                ? "AttackRight" : "AttackLeft", LoopMode.Once);
+                ? "AttackRight" : "AttackLeft", Animator<Frame>.LoopMode.Once);
             _context.Animator.OnAnimationCompletedEvent += HandleComplete;
         }
 
@@ -246,7 +245,7 @@ namespace Game
         public override void Begin()
         {
             _context.PlayAnimation(_context.Mover.Facing > 0
-                ? "JumpRight" : "JumpLeft", LoopMode.ClampForever);
+                ? "JumpRight" : "JumpLeft", Animator<Frame>.LoopMode.ClampForever);
         }
 
         public override void Update(float deltaTime)
@@ -267,7 +266,7 @@ namespace Game
         public override void Begin()
         {
             _context.PlayAnimation(_context.Mover.Facing > 0
-                ? "LandRight" : "LandLeft", LoopMode.ClampForever);
+                ? "LandRight" : "LandLeft", Animator<Frame>.LoopMode.ClampForever);
             _context.Animator.OnAnimationCompletedEvent += HandleComplete;
         }
 

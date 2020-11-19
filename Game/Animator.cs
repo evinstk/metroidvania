@@ -4,26 +4,27 @@ using System.Collections.Generic;
 
 namespace Game
 {
-	abstract class AnimationFrame
+	interface IFrame
     {
-		public virtual void OnEnter() { }
-		public virtual void Animate() { }
+		void OnEnter();
     }
 
-	class Animation
+	class Animation<T>
+		where T : IFrame
     {
-		public AnimationFrame[] GetFrames() => _frames;
-		AnimationFrame[] _frames;
+		public T[] GetFrames() => _frames;
+		T[] _frames;
 		public float FrameRate { get; }
 
-		public Animation(AnimationFrame[] frames, float fps)
+		public Animation(T[] frames, float fps)
         {
 			_frames = frames;
 			FrameRate = fps;
         }
     }
 
-	class Animator : Component, IUpdatable
+	class Animator<T> : Component, IUpdatable
+		where T : IFrame
 	{
 		public enum LoopMode
 		{
@@ -80,7 +81,7 @@ namespace Game
 		/// the current animation
 		/// </summary>
 		//public SpriteAnimation CurrentAnimation { get; private set; }
-		public Animation CurrentAnimation { get; private set; }
+		public Animation<T> CurrentAnimation { get; private set; }
 
 		/// <summary>
 		/// the name of the current animation
@@ -97,7 +98,7 @@ namespace Game
 		/// </summary>
 		public bool IsRunning => AnimationState == State.Running;
 
-		readonly Dictionary<string, Animation> _animations = new Dictionary<string, Animation>();
+		readonly Dictionary<string, Animation<T>> _animations = new Dictionary<string, Animation<T>>();
 
 		float _elapsedTime;
 		LoopMode _loopMode;
@@ -167,10 +168,10 @@ namespace Game
 				frame.OnEnter();
 				_lastFrameIndex = CurrentFrame;
             }
-			frame.Animate();
+			//frame.Animate();
         }
 
-		public Animator AddAnimation(string name, Animation animation)
+		public Animator<T> AddAnimation(string name, Animation<T> animation)
         {
 			_animations[name] = animation;
 			return this;
