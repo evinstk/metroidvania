@@ -4,18 +4,19 @@ using System.Collections.Generic;
 
 namespace Game
 {
-	interface IFrame
+	abstract class AnimationFrame
     {
-		void Animate();
+		public virtual void OnEnter() { }
+		public virtual void Animate() { }
     }
 
 	class Animation
     {
-		public IFrame[] GetFrames() => _frames;
-		IFrame[] _frames;
+		public AnimationFrame[] GetFrames() => _frames;
+		AnimationFrame[] _frames;
 		public float FrameRate { get; }
 
-		public Animation(IFrame[] frames, float fps)
+		public Animation(AnimationFrame[] frames, float fps)
         {
 			_frames = frames;
 			FrameRate = fps;
@@ -100,6 +101,7 @@ namespace Game
 
 		float _elapsedTime;
 		LoopMode _loopMode;
+		int _lastFrameIndex = -1;
 
 
 		public Animator()
@@ -126,8 +128,7 @@ namespace Game
 				AnimationState = State.Completed;
 				_elapsedTime = 0;
 				CurrentFrame = 0;
-				//Sprite = animation.Sprites[0];
-				SetFrame(0);
+				PlayFrame();
 				OnAnimationCompletedEvent?.Invoke(CurrentAnimationName);
 				return;
 			}
@@ -135,10 +136,8 @@ namespace Game
 			if (_loopMode == LoopMode.ClampForever && time > iterationDuration)
 			{
 				AnimationState = State.Completed;
-				//CurrentFrame = animation.Sprites.Length - 1;
 				CurrentFrame = frames.Length - 1;
-				//Sprite = animation.Sprites[CurrentFrame];
-				SetFrame(CurrentFrame);
+				PlayFrame();
 				OnAnimationCompletedEvent?.Invoke(CurrentAnimationName);
 				return;
 			}
@@ -157,12 +156,18 @@ namespace Game
 				CurrentFrame = i % n;
 
 			//Sprite = animation.Sprites[CurrentFrame];
-			SetFrame(CurrentFrame);
+			PlayFrame();
 		}
 
-		void SetFrame(int frame)
+		void PlayFrame()
         {
-			CurrentAnimation.GetFrames()[frame].Animate();
+			var frame = CurrentAnimation.GetFrames()[CurrentFrame];
+			if (CurrentFrame != _lastFrameIndex)
+            {
+				frame.OnEnter();
+				_lastFrameIndex = CurrentFrame;
+            }
+			frame.Animate();
         }
 
 		public Animator AddAnimation(string name, Animation animation)
@@ -181,10 +186,10 @@ namespace Game
 			CurrentAnimation = _animations[name];
 			CurrentAnimationName = name;
 			CurrentFrame = 0;
+			_lastFrameIndex = -1;
 			AnimationState = State.Running;
 
-			//Sprite = CurrentAnimation.Sprites[0];
-			SetFrame(0);
+			PlayFrame();
 			_elapsedTime = 0;
 			_loopMode = loopMode ?? LoopMode.Loop;
 		}
@@ -212,6 +217,7 @@ namespace Game
 			CurrentAnimation = null;
 			CurrentAnimationName = null;
 			CurrentFrame = 0;
+			_lastFrameIndex = -1;
 			AnimationState = State.None;
 		}
 
