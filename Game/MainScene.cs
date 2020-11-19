@@ -48,8 +48,8 @@ namespace Game
             {
                 var mobType = mobSpawn.Properties["mobType"];
                 if (!mobSpawn.Properties.TryGetValue("color", out var colorStr))
-                    colorStr = "#ffffff";
-                colorStr = "0x" + colorStr.Substring(1, 6);
+                    colorStr = "#ffffffff";
+                colorStr = "0x" + colorStr.Substring(1, 6) + "ff";
                 var color = new Color(Convert.ToUInt32(colorStr, 16));
                 color.A = 255;
                 var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType, new MobOptions
