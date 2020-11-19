@@ -85,7 +85,6 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
                     {
@@ -104,7 +103,13 @@
              "visible":true,
              "x":0,
              "y":0
-            }
+            },
+         "properties":[
+                {
+                 "name":"sound",
+                 "type":"file",
+                 "value":"..\/Sounds\/swing.wav"
+                }]
         }, 
         {
          "animation":[
@@ -129,6 +134,12 @@
                  "tileid":16
                 }],
          "id":12,
+         "properties":[
+                {
+                 "name":"sound",
+                 "type":"file",
+                 "value":"..\/Sounds\/jump.wav"
+                }],
          "type":"JumpRight"
         }, 
         {
@@ -138,6 +149,12 @@
                  "tileid":17
                 }],
          "id":17,
+         "properties":[
+                {
+                 "name":"sound",
+                 "type":"file",
+                 "value":"..\/Sounds\/hit.wav"
+                }],
          "type":"LandRight"
         }],
  "tilewidth":200,

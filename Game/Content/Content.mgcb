@@ -39,6 +39,24 @@
 #begin Maps/TransitionMap.tmx
 /copy:Maps/TransitionMap.tmx
 
+#begin Sounds/hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/hit.wav
+
+#begin Sounds/jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/jump.wav
+
+#begin Sounds/swing.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/swing.wav
+
 #begin Textures/hero.png
 /importer:TextureImporter
 /processor:TextureProcessor
