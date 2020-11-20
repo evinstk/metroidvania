@@ -43,6 +43,7 @@ namespace Game
                 .EndComposite();
 
             _tree = builder.Build();
+            _tree.UpdatePeriod = 0;
         }
 
         public void Update()
