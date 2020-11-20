@@ -8,6 +8,17 @@ namespace Game
     {
         public int LinecastDistance = 150;
         public float AttackTimeout = 0.8f;
+        public Teams Team
+        {
+            get => _team;
+            set
+            {
+                _team = value;
+                _enemyMask = Layer.GetOtherTeamsMask(value);
+            }
+        }
+        Teams _team = Teams.A;
+        int _enemyMask = Layer.GetOtherTeamsMask(Teams.A);
 
         public override float XAxis => _moving ? _dir : 0;
         float _dir = 1f;
@@ -51,7 +62,7 @@ namespace Game
             var hit = Physics.Linecast(
                 Entity.Position,
                 Entity.Position + new Vector2(LinecastDistance * _dir, 0),
-                1 << Layer.HurtBox);
+                _enemyMask);
             if (hit.Collider != null)
             {
                 _attack = true;

@@ -47,6 +47,7 @@ namespace Game
             {
                 PlayerControlled = true,
                 StartingHealth = _startingHealth,
+                Team = Teams.A,
             });
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
 
@@ -61,6 +62,7 @@ namespace Game
                 var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType, new MobOptions
                 {
                     Color = color,
+                    Team = Teams.B,
                 });
                 mobEntity.Position = new Vector2(mobSpawn.X, mobSpawn.Y);
             }

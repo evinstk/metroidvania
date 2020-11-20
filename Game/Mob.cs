@@ -2,6 +2,7 @@
 using Nez;
 using Nez.Sprites;
 using Nez.Tiled;
+using System;
 using System.Linq;
 
 namespace Game
@@ -11,6 +12,7 @@ namespace Game
         public bool PlayerControlled = false;
         public Color? Color = null;
         public int StartingHealth = -1;
+        public Teams Team = Teams.A;
 
         public static MobOptions DefaultOptions = new MobOptions();
     }
@@ -43,7 +45,8 @@ namespace Game
                 switch (mobData.AiType)
                 {
                     case "Attacker":
-                        entity.AddComponent<AttackerController>();
+                        var attack = entity.AddComponent<AttackerController>();
+                        attack.Team = options.Team;
                         break;
                     default:
                         throw new System.Exception("Unsupported AI type");
@@ -54,12 +57,12 @@ namespace Game
 
             var hurtbox = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X / 2, mobData.ColliderSize.Y / 2));
             hurtbox.IsTrigger = true;
-            Flags.SetFlagExclusive(ref hurtbox.PhysicsLayer, Layer.HurtBox);
+            Flags.SetFlagExclusive(ref hurtbox.PhysicsLayer, Layer.GetTeamHurtBox(options.Team));
             var healthC = entity.AddComponent(new HealthComponent(hurtbox));
             healthC.Health = options.StartingHealth != -1 ? options.StartingHealth : mobData.Health;
 
             var hitbox = entity.AddComponent<BoxCollider>();
-            Flags.SetFlagExclusive(ref hitbox.CollidesWithLayers, Layer.HurtBox);
+            hitbox.CollidesWithLayers = Layer.GetOtherTeamsMask(options.Team);
             var hitboxC = entity.AddComponent(new HitBoxComponent(hitbox));
             hitboxC.SetEnabled(false);
 
