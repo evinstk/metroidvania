@@ -82,7 +82,7 @@ namespace Game
             }
 
             var cameraEntity = Camera.Entity;
-            var followCamera = cameraEntity.AddComponent(new FollowCamera(playerEntity, FollowCamera.CameraStyle.CameraWindow));
+            var followCamera = playerEntity.AddComponent(new FollowCamera(playerEntity, Camera, FollowCamera.CameraStyle.CameraWindow));
             followCamera.MapLockEnabled = true;
             followCamera.MapSize = new Vector2(Map.TileWidth * Map.Width, Map.TileHeight * Map.Height);
             cameraEntity.Position = playerEntity.Position;
