@@ -1,4 +1,5 @@
 ﻿using Nez;
+using Nez.Console;
 
 namespace Game
 {
@@ -9,6 +10,7 @@ namespace Game
             base.Initialize();
             Window.AllowUserResizing = true;
             ExitOnEscapeKeypress = false;
+            DebugConsole.RenderScale = 2f;
             Scene = new MainScene("Prison.tmx", "start");
         }
 
