@@ -2,7 +2,6 @@
 using Nez;
 using Nez.Sprites;
 using Nez.Tiled;
-using System;
 using System.Linq;
 
 namespace Game

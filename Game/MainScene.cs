@@ -82,10 +82,9 @@ namespace Game
             }
 
             var cameraEntity = Camera.Entity;
-            cameraEntity.AddComponent(new FollowCamera(playerEntity));
-            cameraEntity.AddComponent(new CameraComponent(
-                new Vector2(Map.TileWidth, 0),
-                new Vector2(Map.TileWidth * (Map.Width - 1), Map.TileHeight * Map.Height)));
+            var followCamera = cameraEntity.AddComponent(new FollowCamera(playerEntity, FollowCamera.CameraStyle.CameraWindow));
+            followCamera.MapLockEnabled = true;
+            followCamera.MapSize = new Vector2(Map.TileWidth * Map.Width, Map.TileHeight * Map.Height);
             cameraEntity.Position = playerEntity.Position;
         }
     }
