@@ -11,16 +11,21 @@ namespace Game
 	{
         string _mapSrc;
         string _spawn;
+        int _startingHealth;
 
         static int resWidth = 1920;
         static int resHeight = 1080;
 
         public TmxMap Map { get; private set; }
 
-        public MainScene(string mapSrc, string spawn)
+        public MainScene(
+            string mapSrc,
+            string spawn,
+            int startingHealth = -1)
         {
             _mapSrc = mapSrc;
             _spawn = spawn;
+            _startingHealth = startingHealth;
         }
 
         public override void OnStart()
@@ -41,6 +46,7 @@ namespace Game
             var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
             {
                 PlayerControlled = true,
+                StartingHealth = _startingHealth,
             });
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
 

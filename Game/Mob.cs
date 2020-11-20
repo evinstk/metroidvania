@@ -10,6 +10,7 @@ namespace Game
     {
         public bool PlayerControlled = false;
         public Color? Color = null;
+        public int StartingHealth = -1;
 
         public static MobOptions DefaultOptions = new MobOptions();
     }
@@ -55,7 +56,7 @@ namespace Game
             hurtbox.IsTrigger = true;
             Flags.SetFlagExclusive(ref hurtbox.PhysicsLayer, Layer.HurtBox);
             var healthC = entity.AddComponent(new HealthComponent(hurtbox));
-            healthC.Health = mobData.Health;
+            healthC.Health = options.StartingHealth != -1 ? options.StartingHealth : mobData.Health;
 
             var hitbox = entity.AddComponent<BoxCollider>();
             Flags.SetFlagExclusive(ref hitbox.CollidesWithLayers, Layer.HurtBox);
