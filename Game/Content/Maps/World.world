@@ -20,6 +20,13 @@
             "width": 1344,
             "x": 5119,
             "y": 0
+        },
+        {
+            "fileName": "Prison.tmx",
+            "height": 3200,
+            "width": 5120,
+            "x": 2560,
+            "y": -3200
         }
     ],
     "onlyShowAdjacentMaps": false,

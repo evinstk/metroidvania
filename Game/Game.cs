@@ -9,7 +9,7 @@ namespace Game
             base.Initialize();
             Window.AllowUserResizing = true;
             ExitOnEscapeKeypress = false;
-            Scene = new MainScene("TestMap.tmx", "start");
+            Scene = new MainScene("Prison.tmx", "start");
         }
 
         public static Scene Transition(string transitionSrc, string spawn)

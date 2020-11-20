@@ -30,6 +30,9 @@
 #begin Maps/BossRoom.tmx
 /copy:Maps/BossRoom.tmx
 
+#begin Maps/Prison.tmx
+/copy:Maps/Prison.tmx
+
 #begin Maps/TestMap.tmx
 /copy:Maps/TestMap.tmx
 
