@@ -10,7 +10,6 @@ namespace Game
     {
         public string StartingNode;
         public Dictionary<string, Node> Nodes;
-        public List<Line> Script;
     }
 
     class Node
@@ -23,6 +22,7 @@ namespace Game
     {
         public string Speaker;
         public string Speech;
+        public string Sound;
     }
 
     class DialogComponent : Component

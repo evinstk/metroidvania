@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using System.Collections.Generic;
@@ -40,14 +41,23 @@ namespace Game
 
         public void Update()
         {
-            var currSpeech = _lineReader?.Current.Speech;
-            var charIndex = (int)(_charElapsed * 1000 / MsPerChar);
-            while (currSpeech != null && _readerIndex <= charIndex && _readerIndex < currSpeech.Length)
+            var currentLine = _lineReader?.Current;
+            if (currentLine != null)
             {
-                _sb.Append(currSpeech[_readerIndex++]);
-                _text = new FontCharacterSource(_sb);
+                var currSpeech = _lineReader?.Current.Speech;
+                var charIndex = (int)(_charElapsed * 1000 / MsPerChar);
+                while (currSpeech != null && _readerIndex <= charIndex && _readerIndex < currSpeech.Length)
+                {
+                    _sb.Append(currSpeech[_readerIndex++]);
+                    _text = new FontCharacterSource(_sb);
+                }
+                if (_charElapsed == 0 && currentLine.Sound != null)
+                {
+                    var sound = Entity.Scene.Content.Load<SoundEffect>("Sounds/" + currentLine.Sound);
+                    sound.Play();
+                }
+                _charElapsed += Time.DeltaTime;
             }
-            _charElapsed += Time.DeltaTime;
 
             if (_controller.InteractPressed)
             {

@@ -5,11 +5,16 @@
       "lines": [
         {
           "speaker": "Jim",
-          "speech": "Hello, there. Managed to break out, have you?"
+          "speech": "Hurry, we've not much time.",
+          "sound": "oh"
         },
         {
           "speaker": "Jim",
-          "speech": "These are dangerous times. Take these."
+          "speech": "The guards will be arriving any moment."
+        },
+        {
+          "speaker": "Jim",
+          "speech": "I'll meet you at the exit. Now get going!"
         }
       ],
       "nextNode": "exhausted"
@@ -18,20 +23,10 @@
       "lines": [
         {
           "speaker": "Jim",
-          "speech": "Better get going."
+          "speech": "Better get going!",
+          "sound":  "hm"
         }
       ]
     }
-  },
-
-  "script": [
-    {
-      "speaker": "Jim",
-      "speech": "Hello, there. Managed to break out, have you?"
-    },
-    {
-      "speaker": "Jim",
-      "speech": "These are dangerous times. Take these."
-    }
-  ]
+  }
 }

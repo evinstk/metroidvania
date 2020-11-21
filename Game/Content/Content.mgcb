@@ -58,6 +58,12 @@
 /processorParam:Quality=Best
 /build:Sounds/hit.wav
 
+#begin Sounds/hm.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/hm.wav
+
 #begin Sounds/impact.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -69,6 +75,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/jump.wav
+
+#begin Sounds/oh.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/oh.wav
 
 #begin Sounds/swing.wav
 /importer:WavImporter
