@@ -46,7 +46,7 @@ namespace Game
 
             _interactInput = new VirtualButton();
             _interactInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.S));
-            _interactInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Y));
+            _interactInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.DPadDown));
         }
 
         public override float XAxis => _interaction.InDialog ? 0 : _xAxisInput.Value;
