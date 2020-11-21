@@ -3,7 +3,7 @@ using Nez;
 
 namespace Game
 {
-    class ControllerComponent : Component
+    abstract class ControllerComponent : Component
     {
         public virtual float XAxis => 0;
         public virtual bool JumpPressed => false;

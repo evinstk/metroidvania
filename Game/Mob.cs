@@ -55,7 +55,7 @@ namespace Game
             }
             else
             {
-                entity.AddComponent<ControllerComponent>();
+                entity.AddComponent<FreeController>();
             }
             var mover = entity.AddComponent(new MobMover(physicsCollider));
             mover.MoveSpeed = mobData.MoveSpeed;
