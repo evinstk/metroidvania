@@ -22,5 +22,15 @@
 			<Health>3</Health>
 			<AiType>Attacker</AiType>
 		</Item>
+		<Item>
+			<Type>NPC</Type>
+			<Animator>Hero</Animator>
+			<MoveSpeed>300</MoveSpeed>
+			<ColliderSize>
+				<X>78</X>
+				<Y>147</Y>
+			</ColliderSize>
+			<Health>3</Health>
+		</Item>
 	</Asset>
 </XnaContent>

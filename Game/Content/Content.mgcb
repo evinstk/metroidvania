@@ -27,6 +27,16 @@
 /processor:PassThroughProcessor
 /build:Data/Mobs.xml
 
+#begin Dialog/SampleDialog.json
+/copy:Dialog/SampleDialog.json
+
+#begin Fonts/DefaultFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DefaultFont.spritefont
+
 #begin Maps/BossRoom.tmx
 /copy:Maps/BossRoom.tmx
 

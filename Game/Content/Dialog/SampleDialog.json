@@ -1,0 +1,37 @@
+{
+  "startingNode":  "start",
+  "nodes": {
+    "start": {
+      "lines": [
+        {
+          "speaker": "Jim",
+          "speech": "Hello, there. Managed to break out, have you?"
+        },
+        {
+          "speaker": "Jim",
+          "speech": "These are dangerous times. Take these."
+        }
+      ],
+      "nextNode": "exhausted"
+    },
+    "exhausted": {
+      "lines": [
+        {
+          "speaker": "Jim",
+          "speech": "Better get going."
+        }
+      ]
+    }
+  },
+
+  "script": [
+    {
+      "speaker": "Jim",
+      "speech": "Hello, there. Managed to break out, have you?"
+    },
+    {
+      "speaker": "Jim",
+      "speech": "These are dangerous times. Take these."
+    }
+  ]
+}

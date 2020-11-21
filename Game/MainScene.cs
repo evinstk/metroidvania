@@ -42,15 +42,6 @@ namespace Game
 
             var instanceLayer = Map.GetObjectGroup("instances");
 
-            var playerObj = instanceLayer.Objects.First(o => o.Name == _spawn && o.Type == "playerSpawn");
-            var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
-            {
-                PlayerControlled = true,
-                StartingHealth = _startingHealth,
-                Team = Teams.A,
-            });
-            playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
-
             foreach (var mobSpawn in instanceLayer.Objects.ToLookup(t => t.Type)["mobSpawn"])
             {
                 var mobType = mobSpawn.Properties["mobType"];
@@ -59,13 +50,29 @@ namespace Game
                 colorStr = "0x" + colorStr.Substring(1, 6) + "ff";
                 var color = new Color(Convert.ToUInt32(colorStr, 16));
                 color.A = 255;
+                if (!mobSpawn.Properties.TryGetValue("team", out var team))
+                {
+                    team = "1";
+                }
+                mobSpawn.Properties.TryGetValue("dialog", out var dialogSrc);
+                if (dialogSrc != null) dialogSrc = Path.GetFileName(dialogSrc);
                 var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType, new MobOptions
                 {
                     Color = color,
-                    Team = Teams.B,
+                    Team = (Teams)int.Parse(team),
+                    DialogSrc = dialogSrc,
                 });
                 mobEntity.Position = new Vector2(mobSpawn.X, mobSpawn.Y);
             }
+
+            var playerObj = instanceLayer.Objects.First(o => o.Name == _spawn && o.Type == "playerSpawn");
+            var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
+            {
+                PlayerControlled = true,
+                StartingHealth = _startingHealth,
+                Team = Teams.A,
+            });
+            playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
 
             var triggerLayer = Map.GetObjectGroup("triggers");
             var triggersByType = triggerLayer.Objects.ToLookup(t => t.Type);

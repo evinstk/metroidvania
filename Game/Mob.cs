@@ -12,6 +12,7 @@ namespace Game
         public Color? Color = null;
         public int StartingHealth = -1;
         public Teams Team = Teams.A;
+        public string DialogSrc = null;
 
         public static MobOptions DefaultOptions = new MobOptions();
     }
@@ -38,6 +39,7 @@ namespace Game
             if (options.PlayerControlled)
             {
                 entity.AddComponent<PlayerController>();
+                entity.AddComponent<InteractionComponent>();
             }
             else if (mobData.AiType != null)
             {
@@ -50,6 +52,10 @@ namespace Game
                     default:
                         throw new System.Exception("Unsupported AI type");
                 }
+            }
+            else
+            {
+                entity.AddComponent<ControllerComponent>();
             }
             var mover = entity.AddComponent(new MobMover(physicsCollider));
             mover.MoveSpeed = mobData.MoveSpeed;
@@ -66,6 +72,11 @@ namespace Game
             hitboxC.SetEnabled(false);
 
             entity.AddComponent(new AnimationMachine(mobData.Animator));
+
+            if (options.DialogSrc != null)
+            {
+                entity.AddComponent(new DialogComponent(options.DialogSrc));
+            }
 
             return entity;
         }
