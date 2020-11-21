@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="8">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="13">
  <tileset firstgid="1" source="Tiles.tsx"/>
  <layer id="2" name="background" width="160" height="100">
   <data encoding="csv">
@@ -250,5 +250,21 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="3" name="triggers"/>
+ <objectgroup id="5" name="scripts">
+  <object id="11" x="96" y="2848">
+   <properties>
+    <property name="condition" value="onEnter"/>
+    <property name="condition:entityName" value="player"/>
+    <property name="condition:region" type="object" value="8"/>
+    <property name="script" value="leave"/>
+    <property name="script:entityName" value="NPC"/>
+    <property name="script:leaveZone" type="object" value="12"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#55ffff" id="3" name="triggers">
+  <object id="8" name="leaveTrigger" x="320" y="2816" width="160" height="160"/>
+  <object id="12" name="leaveZone" x="-352" y="2304" width="160" height="288"/>
+ </objectgroup>
 </map>

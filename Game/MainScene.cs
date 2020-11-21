@@ -75,17 +75,19 @@ namespace Game
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
 
             var triggerLayer = Map.GetObjectGroup("triggers");
-            var triggersByType = triggerLayer.Objects.ToLookup(t => t.Type);
 
-            foreach (var exit in triggersByType["exit"])
+            foreach (var trigger in triggerLayer.Objects)
             {
-                var exitEntity = CreateEntity(exit.Name != "" ? exit.Name : "exit");
-                var exitCollider = exitEntity.AddComponent(new BoxCollider(exit.X, exit.Y, exit.Width, exit.Height));
-                exitCollider.IsTrigger = true;
-                Flags.SetFlagExclusive(ref exitCollider.CollidesWithLayers, Layer.Default);
-                var mapSrc = Path.GetFileName(exit.Properties["map"]);
-                var spawn = exit.Properties["spawn"];
-                exitEntity.AddComponent(new ExitTrigger(mapSrc, spawn));
+                var triggerEntity = CreateEntity("trigger" + trigger.Id.ToString());
+                var triggerCollider = triggerEntity.AddComponent(new BoxCollider(trigger.X, trigger.Y, trigger.Width, trigger.Height));
+                triggerCollider.IsTrigger = true;
+                Flags.SetFlagExclusive(ref triggerCollider.CollidesWithLayers, Layer.Default);
+                if (trigger.Type == "exit")
+                {
+                    var mapSrc = Path.GetFileName(trigger.Properties["map"]);
+                    var spawn = trigger.Properties["spawn"];
+                    triggerEntity.AddComponent(new ExitTrigger(mapSrc, spawn));
+                }
             }
 
             var cameraEntity = Camera.Entity;
@@ -93,6 +95,17 @@ namespace Game
             followCamera.MapLockEnabled = true;
             followCamera.MapSize = new Vector2(Map.TileWidth * Map.Width, Map.TileHeight * Map.Height);
             cameraEntity.Position = playerEntity.Position;
+
+            var scriptLayer = Map.GetObjectGroup("scripts");
+            if (scriptLayer != null)
+            {
+                var scriptEntity = CreateEntity("scripts");
+                var scriptC = scriptEntity.AddComponent<ScriptComponent>();
+                foreach (var script in scriptLayer.Objects)
+                {
+                    scriptC.RegisterScript(script);
+                }
+            }
         }
     }
 }
