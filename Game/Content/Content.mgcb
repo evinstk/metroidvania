@@ -52,6 +52,12 @@
 #begin Maps/TransitionMap.tmx
 /copy:Maps/TransitionMap.tmx
 
+#begin Scripts/common.lua
+/copy:Scripts/common.lua
+
+#begin Scripts/prison.lua
+/copy:Scripts/prison.lua
+
 #begin Sounds/hit.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

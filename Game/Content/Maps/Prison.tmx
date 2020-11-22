@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="13">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="14">
+ <properties>
+  <property name="script" type="file" value="../Scripts/prison.lua"/>
+ </properties>
  <tileset firstgid="1" source="Tiles.tsx"/>
  <layer id="2" name="background" width="160" height="100">
   <data encoding="csv">
@@ -248,19 +251,6 @@
     <property name="mobType" value="NPC"/>
     <property name="team" type="int" value="0"/>
    </properties>
-  </object>
- </objectgroup>
- <objectgroup id="5" name="scripts">
-  <object id="11" x="96" y="2848">
-   <properties>
-    <property name="condition" value="onEnter"/>
-    <property name="condition:entityName" value="player"/>
-    <property name="condition:region" type="object" value="8"/>
-    <property name="script" value="leave"/>
-    <property name="script:entityName" value="NPC"/>
-    <property name="script:leaveZone" type="object" value="12"/>
-   </properties>
-   <point/>
   </object>
  </objectgroup>
  <objectgroup color="#55ffff" id="3" name="triggers">

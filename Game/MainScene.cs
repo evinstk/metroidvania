@@ -77,18 +77,20 @@ namespace Game
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
 
             var triggerLayer = Map.GetObjectGroup("triggers");
-
-            foreach (var trigger in triggerLayer.Objects)
+            if (triggerLayer != null)
             {
-                var triggerEntity = CreateEntity("trigger" + trigger.Id.ToString());
-                var triggerCollider = triggerEntity.AddComponent(new BoxCollider(trigger.X, trigger.Y, trigger.Width, trigger.Height));
-                triggerCollider.IsTrigger = true;
-                Flags.SetFlagExclusive(ref triggerCollider.CollidesWithLayers, Layer.Default);
-                if (trigger.Type == "exit")
+                foreach (var trigger in triggerLayer.Objects)
                 {
-                    var mapSrc = Path.GetFileName(trigger.Properties["map"]);
-                    var spawn = trigger.Properties["spawn"];
-                    triggerEntity.AddComponent(new ExitTrigger(mapSrc, spawn));
+                    var triggerEntity = CreateEntity(trigger.Name != string.Empty ? trigger.Name : "trigger" + trigger.Id.ToString());
+                    var triggerCollider = triggerEntity.AddComponent(new BoxCollider(trigger.X, trigger.Y, trigger.Width, trigger.Height));
+                    triggerCollider.IsTrigger = true;
+                    Flags.SetFlagExclusive(ref triggerCollider.CollidesWithLayers, Layer.Default);
+                    if (trigger.Type == "exit")
+                    {
+                        var mapSrc = Path.GetFileName(trigger.Properties["map"]);
+                        var spawn = trigger.Properties["spawn"];
+                        triggerEntity.AddComponent(new ExitTrigger(mapSrc, spawn));
+                    }
                 }
             }
 
@@ -98,15 +100,10 @@ namespace Game
             followCamera.MapSize = new Vector2(Map.TileWidth * Map.Width, Map.TileHeight * Map.Height);
             cameraEntity.Position = playerEntity.Position;
 
-            var scriptLayer = Map.GetObjectGroup("scripts");
-            if (scriptLayer != null)
+            if (Map.Properties.TryGetValue("script", out var scriptSrc))
             {
-                var scriptEntity = CreateEntity("scripts");
-                var scriptC = scriptEntity.AddComponent<ScriptComponent>();
-                foreach (var script in scriptLayer.Objects)
-                {
-                    scriptC.RegisterScript(script);
-                }
+                var mapScriptEntity = CreateEntity("mapScript");
+                mapScriptEntity.AddComponent(new Scripting.MapScript(Path.GetFileName(scriptSrc)));
             }
         }
     }
