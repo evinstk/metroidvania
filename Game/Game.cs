@@ -41,11 +41,17 @@ namespace Game
             Scene = new MainScene("Prison.tmx", "start");
         }
 
-        public static Scene Transition(string transitionSrc, string spawn)
+        public static SceneTransition Transition(string transitionSrc, string spawn, int health = -1)
         {
-            var health = Scene.FindEntity("player").GetComponent<HealthComponent>().Health;
+            if (health == -1)
+            {
+                health = Scene.FindEntity("player").GetComponent<HealthComponent>().Health;
+            }
             var nextScene = new MainScene(transitionSrc, spawn, health);
-            return nextScene;
+            var transition = StartSceneTransition(new FadeTransition(() => nextScene));
+            transition.FadeOutDuration = 0.3f;
+            transition.FadeInDuration = 0.2f;
+            return transition;
         }
     }
 

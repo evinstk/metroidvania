@@ -9,9 +9,9 @@ namespace Game
 {
 	class MainScene : Scene
 	{
-        string _mapSrc;
-        string _spawn;
-        int _startingHealth;
+        public string MapSrc { get; }
+        public string Spawn { get; }
+        public int StartingHealth { get; }
 
         static int resWidth = 1920;
         static int resHeight = 1080;
@@ -23,9 +23,9 @@ namespace Game
             string spawn,
             int startingHealth = -1)
         {
-            _mapSrc = mapSrc;
-            _spawn = spawn;
-            _startingHealth = startingHealth;
+            MapSrc = mapSrc;
+            Spawn = spawn;
+            StartingHealth = startingHealth;
         }
 
         public override void OnStart()
@@ -35,7 +35,9 @@ namespace Game
 
             Physics.RaycastsHitTriggers = true;
 
-            Map = Content.LoadTiledMap("Content/Maps/" + _mapSrc);
+            CreateEntity("gameManager").AddComponent<GameManager>();
+
+            Map = Content.LoadTiledMap("Content/Maps/" + MapSrc);
 
             var mapEntity = CreateEntity("map");
             mapEntity.AddComponent(new TiledMapRenderer(Map, "terrain"));
@@ -65,11 +67,11 @@ namespace Game
                 mobEntity.Position = new Vector2(mobSpawn.X, mobSpawn.Y);
             }
 
-            var playerObj = instanceLayer.Objects.First(o => o.Name == _spawn && o.Type == "playerSpawn");
+            var playerObj = instanceLayer.Objects.First(o => o.Name == Spawn && o.Type == "playerSpawn");
             var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
             {
                 PlayerControlled = true,
-                StartingHealth = _startingHealth,
+                StartingHealth = StartingHealth,
                 Team = Teams.A,
             });
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);

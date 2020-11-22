@@ -36,9 +36,7 @@ namespace Game
             if (!_transitioning && _collider.CollidesWith(_playerCollider, out _))
             {
                 _transitioning = true;
-                var transition = Core.StartSceneTransition(new FadeTransition(() => Game.Transition(_transitionSrc, _spawn)));
-                transition.FadeOutDuration = 0.3f;
-                transition.FadeInDuration = 0.2f;
+                var transition = Game.Transition(_transitionSrc, _spawn);
                 transition.OnTransitionCompleted += SetTransitioningOff;
             }
         }
