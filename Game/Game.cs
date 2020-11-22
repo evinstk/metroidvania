@@ -1,5 +1,8 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
+using Nez;
 using Nez.Console;
+using System.IO;
 
 namespace Game
 {
@@ -8,9 +11,33 @@ namespace Game
         protected override void Initialize()
         {
             base.Initialize();
+
+            InitOptions options;
+            try
+            {
+                using (var stream = TitleContainer.OpenStream("config.json"))
+                using (var sr = new StreamReader(stream))
+                using (var jsonTextReader = new JsonTextReader(sr))
+                {
+                    options = new JsonSerializer().Deserialize<InitOptions>(jsonTextReader);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                // use default options
+                options = new InitOptions();
+            }
+            // overwrite file even if exists in case new properties
+            using (StreamWriter file = File.CreateText("config.json"))
+            {
+                var optionsSerialized = JsonConvert.SerializeObject(options, Formatting.Indented);
+                file.WriteLine(optionsSerialized);
+            }
+
             Window.AllowUserResizing = true;
-            ExitOnEscapeKeypress = false;
-            DebugConsole.RenderScale = 2f;
+            Screen.IsFullscreen = options.Fullscreen;
+            ExitOnEscapeKeypress = true;
+            DebugConsole.RenderScale = options.ConsoleRenderScale;
             Scene = new MainScene("Prison.tmx", "start");
         }
 
@@ -20,5 +47,11 @@ namespace Game
             var nextScene = new MainScene(transitionSrc, spawn, health);
             return nextScene;
         }
+    }
+
+    class InitOptions
+    {
+        public bool Fullscreen = true;
+        public float ConsoleRenderScale = 2f;
     }
 }
