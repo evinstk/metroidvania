@@ -17,6 +17,8 @@ namespace Game.Scripting
         static string _commonCode = File.ReadAllText("Content/Scripts/common.lua");
 
         string _scriptSrc;
+
+        List<Trigger> _pendingAdditions = new List<Trigger>();
         List<Trigger> _triggers = new List<Trigger>();
         List<Trigger> _pendingRemovals = new List<Trigger>();
 
@@ -46,6 +48,18 @@ namespace Game.Scripting
 
         public void Update()
         {
+            foreach (var addition in _pendingAdditions)
+            {
+                _triggers.Add(addition);
+            }
+            _pendingAdditions.Clear();
+
+            foreach (var removal in _pendingRemovals)
+            {
+                _triggers.Remove(removal);
+            }
+            _pendingRemovals.Clear();
+
             foreach (var trigger in _triggers)
             {
                 if (trigger.Condition.Call().Boolean)
@@ -54,15 +68,11 @@ namespace Game.Scripting
                     _pendingRemovals.Add(trigger);
                 }
             }
-
-            foreach (var removal in _pendingRemovals)
-                _triggers.Remove(removal);
-            _pendingRemovals.Clear();
         }
 
         void Trigger(Closure condition, Closure effect)
         {
-            _triggers.Add(new Trigger()
+            _pendingAdditions.Add(new Trigger()
             {
                 Condition = condition,
                 Effect = effect,
