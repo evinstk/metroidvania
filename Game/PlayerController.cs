@@ -21,11 +21,8 @@ namespace Game
         VirtualButton _attackInput;
         VirtualButton _interactInput;
 
-        public override void OnAddedToEntity()
+        public PlayerController()
         {
-            _interaction = Entity.GetComponent<InteractionComponent>();
-            Insist.IsNotNull(_interaction);
-
             _xAxisInput = new VirtualAxis();
             _xAxisInput.Nodes.Add(
                 new VirtualAxis.KeyboardKeys(
@@ -47,6 +44,12 @@ namespace Game
             _interactInput = new VirtualButton();
             _interactInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.S));
             _interactInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.DPadDown));
+        }
+
+        public override void OnAddedToEntity()
+        {
+            _interaction = Entity.GetComponent<InteractionComponent>();
+            Insist.IsNotNull(_interaction);
         }
 
         public override float XAxis => _interaction.InDialog ? 0 : _xAxisInput.Value;
