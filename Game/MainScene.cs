@@ -100,7 +100,8 @@ namespace Game
             followCamera.MapSize = new Vector2(Map.TileWidth * Map.Width, Map.TileHeight * Map.Height);
             cameraEntity.Position = playerEntity.Position;
 
-            if (Map.Properties.TryGetValue("script", out var scriptSrc))
+            string scriptSrc = null;
+            if (Map.Properties?.TryGetValue("script", out scriptSrc) == true)
             {
                 var mapScriptEntity = CreateEntity("mapScript");
                 mapScriptEntity.AddComponent(new Scripting.MapScript(Path.GetFileName(scriptSrc)));
