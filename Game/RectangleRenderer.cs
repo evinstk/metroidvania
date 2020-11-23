@@ -20,7 +20,7 @@ namespace Game
 
         public override void Render(Batcher batcher, Camera camera)
         {
-            batcher.DrawRect(Entity.Position, _width, _height, _color);
+            batcher.DrawRect(Entity.Position - new Vector2(_width / 2, _height / 2), _width, _height, _color);
         }
     }
 }
