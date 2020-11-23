@@ -9,7 +9,6 @@ namespace Game
 
         Collider _collider;
         Collider _playerCollider;
-        static bool _transitioning = false;
 
         public ExitTrigger(string transitionSrc, string spawn)
         {
@@ -26,18 +25,11 @@ namespace Game
             Insist.IsNotNull(_playerCollider);
         }
 
-        void SetTransitioningOff()
-        {
-            _transitioning = false;
-        }
-
         public void Update()
         {
-            if (!_transitioning && _collider.CollidesWith(_playerCollider, out _))
+            if (_collider.CollidesWith(_playerCollider, out _))
             {
-                _transitioning = true;
-                var transition = Game.Transition(_transitionSrc, _spawn);
-                transition.OnTransitionCompleted += SetTransitioningOff;
+                Game.Transition(_transitionSrc, _spawn);
             }
         }
     }

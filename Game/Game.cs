@@ -41,8 +41,11 @@ namespace Game
             Scene = new MainScene("Prison.tmx", "start");
         }
 
+        static bool _transitioning = false;
         public static SceneTransition Transition(string transitionSrc, string spawn, int health = -1)
         {
+            if (_transitioning) return null;
+            _transitioning = true;
             if (health == -1)
             {
                 health = Scene.FindEntity("player").GetComponent<HealthComponent>().Health;
@@ -51,6 +54,7 @@ namespace Game
             var transition = StartSceneTransition(new FadeTransition(() => nextScene));
             transition.FadeOutDuration = 0.3f;
             transition.FadeInDuration = 0.2f;
+            transition.OnTransitionCompleted += () => _transitioning = false;
             return transition;
         }
     }
