@@ -12,6 +12,16 @@ namespace Game
         {
             base.Initialize();
 
+            LoadConfig();
+
+            var saveSystem = new SaveSystem();
+            var checkpoint = saveSystem.Load();
+
+            Scene = new MainScene(checkpoint.MapSrc, checkpoint.Name);
+        }
+
+        void LoadConfig()
+        {
             InitOptions options;
             try
             {
@@ -28,9 +38,9 @@ namespace Game
                 options = new InitOptions();
             }
             // overwrite file even if exists in case new properties
+            var optionsSerialized = JsonConvert.SerializeObject(options, Formatting.Indented);
             using (StreamWriter file = File.CreateText("config.json"))
             {
-                var optionsSerialized = JsonConvert.SerializeObject(options, Formatting.Indented);
                 file.WriteLine(optionsSerialized);
             }
 
@@ -38,7 +48,6 @@ namespace Game
             Screen.IsFullscreen = options.Fullscreen;
             ExitOnEscapeKeypress = true;
             DebugConsole.RenderScale = options.ConsoleRenderScale;
-            Scene = new MainScene("Prison.tmx", "start");
         }
 
         static bool _transitioning = false;

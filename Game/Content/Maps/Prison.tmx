@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="14">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="21">
  <properties>
   <property name="script" type="file" value="../Scripts/prison.lua"/>
  </properties>
@@ -252,9 +252,19 @@
     <property name="team" type="int" value="0"/>
    </properties>
   </object>
+  <object id="14" name="prisonLeft" type="playerSpawn" x="64" y="2496"/>
+  <object id="20" name="checkpoint" type="checkpoint" x="192" y="2016">
+   <point/>
+  </object>
  </objectgroup>
  <objectgroup color="#55ffff" id="3" name="triggers">
   <object id="8" name="leaveTrigger" x="320" y="2816" width="160" height="160"/>
   <object id="12" name="leaveZone" x="-352" y="2304" width="160" height="288"/>
+  <object id="17" type="exit" x="-160" y="2304" width="160" height="288">
+   <properties>
+    <property name="map" type="file" value="Start.tmx"/>
+    <property name="spawn" value="startRight"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

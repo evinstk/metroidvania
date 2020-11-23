@@ -43,31 +43,44 @@ namespace Game
             mapEntity.AddComponent(new TiledMapRenderer(Map, "terrain"));
 
             var instanceLayer = Map.GetObjectGroup("instances");
-
-            foreach (var mobSpawn in instanceLayer.Objects.ToLookup(t => t.Type)["mobSpawn"])
+            if (instanceLayer != null)
             {
-                var mobType = mobSpawn.Properties["mobType"];
-                if (!mobSpawn.Properties.TryGetValue("color", out var colorStr))
-                    colorStr = "#ffffffff";
-                colorStr = "0x" + colorStr.Substring(1, 6) + "ff";
-                var color = new Color(Convert.ToUInt32(colorStr, 16));
-                color.A = 255;
-                if (!mobSpawn.Properties.TryGetValue("team", out var team))
+                var instanceLookup = instanceLayer.Objects.ToLookup(t => t.Type);
+                foreach (var mobSpawn in instanceLookup["mobSpawn"])
                 {
-                    team = "1";
+                    var mobType = mobSpawn.Properties["mobType"];
+                    if (!mobSpawn.Properties.TryGetValue("color", out var colorStr))
+                        colorStr = "#ffffffff";
+                    colorStr = "0x" + colorStr.Substring(1, 6) + "ff";
+                    var color = new Color(Convert.ToUInt32(colorStr, 16));
+                    color.A = 255;
+                    if (!mobSpawn.Properties.TryGetValue("team", out var team))
+                    {
+                        team = "1";
+                    }
+                    mobSpawn.Properties.TryGetValue("dialog", out var dialogSrc);
+                    if (dialogSrc != null) dialogSrc = Path.GetFileName(dialogSrc);
+                    var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType, new MobOptions
+                    {
+                        Color = color,
+                        Team = (Teams)int.Parse(team),
+                        DialogSrc = dialogSrc,
+                    });
+                    mobEntity.Position = new Vector2(mobSpawn.X, mobSpawn.Y);
                 }
-                mobSpawn.Properties.TryGetValue("dialog", out var dialogSrc);
-                if (dialogSrc != null) dialogSrc = Path.GetFileName(dialogSrc);
-                var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType, new MobOptions
+                var width = 128; var height = 192;
+                foreach (var checkpoint in instanceLookup["checkpoint"])
                 {
-                    Color = color,
-                    Team = (Teams)int.Parse(team),
-                    DialogSrc = dialogSrc,
-                });
-                mobEntity.Position = new Vector2(mobSpawn.X, mobSpawn.Y);
+                    var checkpointEntity = CreateEntity(checkpoint.Name != string.Empty ? checkpoint.Name : "checkpoint" + checkpoint.Id.ToString());
+                    checkpointEntity.AddComponent(new RectangleRenderer(Color.PaleGoldenrod, width, height));
+                    checkpointEntity.AddComponent(new BoxCollider(0, 0));
+                    checkpointEntity.AddComponent<CheckpointComponent>();
+                    checkpointEntity.Position = new Vector2(checkpoint.X, checkpoint.Y);
+                }
             }
 
-            var playerObj = instanceLayer.Objects.First(o => o.Name == Spawn && o.Type == "playerSpawn");
+            var playerObj = instanceLayer.Objects.First(o =>
+                o.Name == Spawn && (o.Type == "playerSpawn" || o.Type == "checkpoint"));
             var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
             {
                 PlayerControlled = true,

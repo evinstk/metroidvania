@@ -43,6 +43,9 @@
 #begin Maps/Prison.tmx
 /copy:Maps/Prison.tmx
 
+#begin Maps/Start.tmx
+/copy:Maps/Start.tmx
+
 #begin Maps/TestMap.tmx
 /copy:Maps/TestMap.tmx
 
