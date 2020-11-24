@@ -1,5 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Nez;
+using Nez.Sprites;
+using Nez.Textures;
 using Nez.Tiled;
 using System;
 using System.IO;
@@ -28,12 +31,19 @@ namespace Game
             StartingHealth = startingHealth;
         }
 
+        int _spriteLightRenderLayer = 50;
+
         public override void OnStart()
         {
             SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(resWidth, resHeight);
 
             Physics.RaycastsHitTriggers = true;
+
+            var lightRenderer = AddRenderer(new RenderLayerRenderer(-1, _spriteLightRenderLayer));
+            lightRenderer.RenderTexture = new RenderTexture();
+            lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
+            var spriteLightPostProcessor = AddPostProcessor(new SpriteLightPostProcessor(0, lightRenderer.RenderTexture));
 
             CreateEntity("gameManager").AddComponent<GameManager>();
 
@@ -88,6 +98,14 @@ namespace Game
                 Team = Teams.A,
             });
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
+
+            var lightTex = Content.Load<Texture2D>("Textures/sprite-light");
+            var lightEntity = CreateEntity("light");
+            var lightSprite = lightEntity.AddComponent(new SpriteRenderer(lightTex));
+            lightEntity.Scale = new Vector2(8);
+            lightSprite.RenderLayer = _spriteLightRenderLayer;
+            lightEntity.Parent = playerEntity.Transform;
+
 
             var triggerLayer = Map.GetObjectGroup("triggers");
             if (triggerLayer != null)
