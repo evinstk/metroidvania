@@ -49,14 +49,10 @@ namespace Game
         }
 
         static bool _transitioning = false;
-        public static SceneTransition Transition(string transitionSrc, string spawn, int health = -1)
+        public static SceneTransition Transition(string transitionSrc, string spawn, int health)
         {
             if (_transitioning) return null;
             _transitioning = true;
-            if (health == -1)
-            {
-                health = Scene.FindEntity("player").GetComponent<HealthComponent>().Health;
-            }
             var nextScene = new MainScene(transitionSrc, spawn, health);
             var transition = StartSceneTransition(new FadeTransition(() => nextScene));
             transition.FadeOutDuration = 0.3f;

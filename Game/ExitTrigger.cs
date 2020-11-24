@@ -9,6 +9,7 @@ namespace Game
 
         Collider _collider;
         Collider _playerCollider;
+        HealthComponent _health;
 
         public ExitTrigger(string transitionSrc, string spawn)
         {
@@ -21,15 +22,19 @@ namespace Game
             _collider = Entity.GetComponent<Collider>();
             Insist.IsNotNull(_collider);
 
-            _playerCollider = Entity.Scene.FindEntity("player").GetComponent<Collider>();
+            var player = Entity.Scene.FindEntity("player");
+            _playerCollider = player.GetComponent<Collider>();
             Insist.IsNotNull(_playerCollider);
+
+            _health = player.GetComponent<HealthComponent>();
+            Insist.IsNotNull(_health);
         }
 
         public void Update()
         {
             if (_collider.CollidesWith(_playerCollider, out _))
             {
-                Game.Transition(_transitionSrc, _spawn);
+                Game.Transition(_transitionSrc, _spawn, _health.Health);
             }
         }
     }
