@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Nez;
 using Nez.Console;
 using System.IO;
@@ -25,8 +24,7 @@ namespace Game
             InitOptions options;
             try
             {
-                using (var stream = TitleContainer.OpenStream("config.json"))
-                using (var sr = new StreamReader(stream))
+                using (var sr = File.OpenText(GameFile.ConfigPath))
                 using (var jsonTextReader = new JsonTextReader(sr))
                 {
                     options = new JsonSerializer().Deserialize<InitOptions>(jsonTextReader);
@@ -39,7 +37,7 @@ namespace Game
             }
             // overwrite file even if exists in case new properties
             var optionsSerialized = JsonConvert.SerializeObject(options, Formatting.Indented);
-            using (StreamWriter file = File.CreateText("config.json"))
+            using (StreamWriter file = File.CreateText(GameFile.ConfigPath))
             {
                 file.WriteLine(optionsSerialized);
             }
