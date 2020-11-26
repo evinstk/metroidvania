@@ -11,15 +11,24 @@ namespace Game
         {
             base.Initialize();
 
-            LoadConfig();
+            var opts = LoadConfig();
+
+            Window.AllowUserResizing = true;
+            Screen.IsFullscreen = opts.Fullscreen;
+            ExitOnEscapeKeypress = true;
+            DebugConsole.RenderScale = opts.ConsoleRenderScale;
 
             var saveSystem = new SaveSystem();
             var checkpoint = saveSystem.Load();
 
-            Scene = new MainScene(checkpoint.MapSrc, checkpoint.Name);
+            var sceneOpts = new SceneOptions
+            {
+                UseLighting = opts.UseLighting,
+            };
+            Scene = new MainScene(checkpoint.MapSrc, checkpoint.Name, sceneOpts);
         }
 
-        void LoadConfig()
+        InitOptions LoadConfig()
         {
             InitOptions options;
             try
@@ -42,10 +51,7 @@ namespace Game
                 file.WriteLine(optionsSerialized);
             }
 
-            Window.AllowUserResizing = true;
-            Screen.IsFullscreen = options.Fullscreen;
-            ExitOnEscapeKeypress = true;
-            DebugConsole.RenderScale = options.ConsoleRenderScale;
+            return options;
         }
 
         static bool _transitioning = false;
@@ -53,7 +59,13 @@ namespace Game
         {
             if (_transitioning) return null;
             _transitioning = true;
-            var nextScene = new MainScene(transitionSrc, spawn, health);
+            var currScene = Scene as MainScene;
+            var opts = new SceneOptions
+            {
+                StartingHealth = health,
+                UseLighting = currScene.UseLighting,
+            };
+            var nextScene = new MainScene(transitionSrc, spawn, opts);
             var transition = StartSceneTransition(new FadeTransition(() => nextScene));
             transition.FadeOutDuration = 0.3f;
             transition.FadeInDuration = 0.2f;
@@ -66,5 +78,6 @@ namespace Game
     {
         public bool Fullscreen = true;
         public float ConsoleRenderScale = 2f;
+        public bool UseLighting = false;
     }
 }

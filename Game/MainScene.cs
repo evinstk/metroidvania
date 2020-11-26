@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
+using Nez.Sprites;
+using Nez.Textures;
 using Nez.Tiled;
 using System;
 using System.IO;
@@ -7,31 +9,48 @@ using System.Linq;
 
 namespace Game
 {
+    class SceneOptions
+    {
+        public int StartingHealth = -1;
+        public bool UseLighting = true;
+    }
+
 	class MainScene : Scene
 	{
         public string MapSrc { get; }
         public string Spawn { get; }
         public int StartingHealth { get; }
+        public bool UseLighting { get; }
 
-        static int resWidth = 1920;
-        static int resHeight = 1080;
+        const int resWidth = 1920;
+        const int resHeight = 1080;
+
+        const int LIGHT_LAYER = 5;
+        const int LIGHT_MAP_LAYER = 10;
+        const int BG_LAYER = 15;
 
         public TmxMap Map { get; private set; }
 
         public MainScene(
             string mapSrc,
             string spawn,
-            int startingHealth = -1)
+            SceneOptions opts)
         {
             MapSrc = mapSrc;
             Spawn = spawn;
-            StartingHealth = startingHealth;
+            StartingHealth = opts.StartingHealth;
+            UseLighting = opts.UseLighting;
         }
 
         public override void OnStart()
         {
             SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(resWidth, resHeight);
+
+            AddRenderer(new RenderLayerRenderer(0, BG_LAYER));
+            AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
+            // default render layer rendered last
+            AddRenderer(new RenderLayerRenderer(2, 0));
 
             Physics.RaycastsHitTriggers = true;
 
@@ -40,7 +59,9 @@ namespace Game
             Map = Content.LoadTiledMap("Content/Maps/" + MapSrc);
 
             var mapEntity = CreateEntity("map");
-            mapEntity.AddComponent(new TiledMapRenderer(Map, "terrain"));
+            var mapRenderer = mapEntity.AddComponent(new TiledMapRenderer(Map, "terrain"));
+            Flags.SetFlagExclusive(ref mapRenderer.PhysicsLayer, 10);
+            mapRenderer.SetRenderLayer(BG_LAYER);
 
             var instanceLayer = Map.GetObjectGroup("instances");
             if (instanceLayer != null)
@@ -119,6 +140,26 @@ namespace Game
                 var mapScriptEntity = CreateEntity("mapScript");
                 mapScriptEntity.AddComponent(new Scripting.MapScript(Path.GetFileName(scriptSrc)));
             }
+
+            if (UseLighting) SetupLighting();
+        }
+
+        void SetupLighting()
+        {
+            var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
+            lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
+            Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, 10);
+
+            CreateEntity("light-map")
+                .AddComponent<CenteringComponent>()
+                .AddComponent(new SpriteRenderer(lightRenderer.RenderTexture))
+                .SetMaterial(Material.BlendMultiply())
+                .SetRenderLayer(LIGHT_MAP_LAYER);
+
+            CreateEntity("light")
+                .SetParent(FindEntity("player").Transform)
+                .AddComponent(new StencilLight(400, Color.AntiqueWhite))
+                .SetRenderLayer(LIGHT_LAYER);
         }
     }
 }
