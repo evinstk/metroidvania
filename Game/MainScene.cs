@@ -29,6 +29,7 @@ namespace Game
         const int LIGHT_LAYER = 5;
         const int LIGHT_MAP_LAYER = 10;
         const int BG_LAYER = 15;
+        const int FG_LAYER = 20;
 
         public TmxMap Map { get; private set; }
 
@@ -50,8 +51,9 @@ namespace Game
 
             AddRenderer(new RenderLayerRenderer(0, BG_LAYER));
             AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
-            // default render layer rendered last
+            // default render layer
             AddRenderer(new RenderLayerRenderer(2, 0));
+            AddRenderer(new RenderLayerRenderer(3, FG_LAYER));
 
             Physics.RaycastsHitTriggers = true;
         }
@@ -63,9 +65,26 @@ namespace Game
             Map = Content.LoadTiledMap("Content/Maps/" + MapSrc);
 
             var mapEntity = CreateEntity("map");
+
             var mapRenderer = mapEntity.AddComponent(new TiledMapRenderer(Map, "terrain"));
+            mapRenderer.SetLayersToRender(new[] { "background", "terrain" });
             Flags.SetFlagExclusive(ref mapRenderer.PhysicsLayer, 10);
             mapRenderer.SetRenderLayer(BG_LAYER);
+
+            var fgLayer = Map.GetObjectGroup("foreground");
+            if (fgLayer != null)
+            {
+                foreach (var obj in fgLayer.Objects)
+                {
+                    var tileset = fgLayer.Map.GetTilesetForTileGid(obj.Tile.Gid);
+                    var sourceRect = tileset.TileRegions[obj.Tile.Gid];
+                    CreateEntity("parallax" + obj.Id.ToString())
+                        .SetPosition(new Vector2(obj.X + sourceRect.Width / 2, obj.Y - sourceRect.Height / 2))
+                        .AddComponent(new SpriteRenderer(new Sprite(tileset.Image.Texture, sourceRect)))
+                        .SetRenderLayer(FG_LAYER)
+                        .AddComponent<ParallaxComponent>();
+                }
+            }
 
             var instanceLayer = Map.GetObjectGroup("instances");
             if (instanceLayer != null)

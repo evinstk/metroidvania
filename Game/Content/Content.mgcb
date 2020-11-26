@@ -40,6 +40,9 @@
 #begin Maps/BossRoom.tmx
 /copy:Maps/BossRoom.tmx
 
+#begin Maps/pillar.tsx
+/copy:Maps/pillar.tsx
+
 #begin Maps/Prison.tmx
 /copy:Maps/Prison.tmx
 
@@ -108,6 +111,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/hero.png
+
+#begin Textures/pillar.png
+/copy:Textures/pillar.png
 
 #begin Textures/Tiles.PNG
 /copy:Textures/Tiles.PNG
