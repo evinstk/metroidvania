@@ -41,6 +41,9 @@ namespace Game.Scripting
             script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
             script.Globals["destroy"] = (Action<Entity>)Destroy;
 
+            var scene = Entity.Scene as MainScene;
+            script.Globals["spawn"] = scene.Spawn;
+
             var scriptCode = File.ReadAllText("Content/Scripts/" + _scriptSrc);
             script.DoString(_commonCode);
             script.DoString(scriptCode);
