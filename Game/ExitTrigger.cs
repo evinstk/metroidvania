@@ -34,7 +34,8 @@ namespace Game
         {
             if (_collider.CollidesWith(_playerCollider, out _))
             {
-                Game.Transition(_transitionSrc, _spawn, _health.Health);
+                var scene = Entity.Scene as MainScene;
+                scene.Transition(_transitionSrc, _spawn);
             }
         }
     }

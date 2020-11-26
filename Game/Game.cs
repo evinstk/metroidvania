@@ -53,25 +53,6 @@ namespace Game
 
             return options;
         }
-
-        static bool _transitioning = false;
-        public static SceneTransition Transition(string transitionSrc, string spawn, int health)
-        {
-            if (_transitioning) return null;
-            _transitioning = true;
-            var currScene = Scene as MainScene;
-            var opts = new SceneOptions
-            {
-                StartingHealth = health,
-                UseLighting = currScene.UseLighting,
-            };
-            var nextScene = new MainScene(transitionSrc, spawn, opts);
-            var transition = StartSceneTransition(new FadeTransition(() => nextScene));
-            transition.FadeOutDuration = 0.3f;
-            transition.FadeInDuration = 0.2f;
-            transition.OnTransitionCompleted += () => _transitioning = false;
-            return transition;
-        }
     }
 
     class InitOptions

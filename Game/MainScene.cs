@@ -12,15 +12,16 @@ namespace Game
     class SceneOptions
     {
         public int StartingHealth = -1;
-        public bool UseLighting = true;
+        public bool UseLighting = false;
     }
 
 	class MainScene : Scene
 	{
         public string MapSrc { get; }
         public string Spawn { get; }
-        public int StartingHealth { get; }
-        public bool UseLighting { get; }
+
+        int _startingHealth;
+        bool _useLighting;
 
         const int resWidth = 1920;
         const int resHeight = 1080;
@@ -38,11 +39,11 @@ namespace Game
         {
             MapSrc = mapSrc;
             Spawn = spawn;
-            StartingHealth = opts.StartingHealth;
-            UseLighting = opts.UseLighting;
+            _startingHealth = opts.StartingHealth;
+            _useLighting = opts.UseLighting;
         }
 
-        public override void OnStart()
+        public override void Initialize()
         {
             SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(resWidth, resHeight);
@@ -53,7 +54,10 @@ namespace Game
             AddRenderer(new RenderLayerRenderer(2, 0));
 
             Physics.RaycastsHitTriggers = true;
+        }
 
+        public override void OnStart()
+        {
             CreateEntity("gameManager").AddComponent<GameManager>();
 
             Map = Content.LoadTiledMap("Content/Maps/" + MapSrc);
@@ -105,7 +109,7 @@ namespace Game
             var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
             {
                 PlayerControlled = true,
-                StartingHealth = StartingHealth,
+                StartingHealth = _startingHealth,
                 Team = Teams.A,
             });
             playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
@@ -141,7 +145,7 @@ namespace Game
                 mapScriptEntity.AddComponent(new Scripting.MapScript(Path.GetFileName(scriptSrc)));
             }
 
-            if (UseLighting) SetupLighting();
+            if (_useLighting) SetupLighting();
         }
 
         void SetupLighting()
@@ -160,6 +164,30 @@ namespace Game
                 .SetParent(FindEntity("player").Transform)
                 .AddComponent(new StencilLight(400, Color.AntiqueWhite))
                 .SetRenderLayer(LIGHT_LAYER);
+        }
+
+        static bool _transitioning = false;
+        public SceneTransition Transition(string transitionSrc, string spawn)
+        {
+            if (_transitioning) return null;
+            _transitioning = true;
+            var playerHealth = FindEntity("player").GetComponent<HealthComponent>();
+            var opts = new SceneOptions
+            {
+                StartingHealth = playerHealth.Health,
+                UseLighting = _useLighting,
+            };
+            var nextScene = new MainScene(transitionSrc, spawn, opts);
+            var transition = Core.StartSceneTransition(new FadeTransition(() => nextScene));
+            transition.FadeOutDuration = 0.3f;
+            transition.FadeInDuration = 0.2f;
+            transition.OnTransitionCompleted += () => _transitioning = false;
+            return transition;
+        }
+
+        public SceneTransition Reset()
+        {
+            return Transition(MapSrc, Spawn);
         }
     }
 }
