@@ -25,8 +25,22 @@
             "fileName": "Prison.tmx",
             "height": 3200,
             "width": 5120,
-            "x": 2560,
-            "y": -3200
+            "x": 2720,
+            "y": -3392
+        },
+        {
+            "fileName": "Start.tmx",
+            "height": 1088,
+            "width": 1920,
+            "x": 800,
+            "y": -1632
+        },
+        {
+            "fileName": "Arch.tmx",
+            "height": 1280,
+            "width": 3840,
+            "x": -1120,
+            "y": -3520
         }
     ],
     "onlyShowAdjacentMaps": false,

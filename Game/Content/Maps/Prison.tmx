@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="27">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="160" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="33">
  <properties>
   <property name="script" type="file" value="../Scripts/prison.lua"/>
  </properties>
  <tileset firstgid="1" source="Tiles.tsx"/>
  <tileset firstgid="9" source="pillar.tsx"/>
+ <tileset firstgid="10" source="distantPillar.tsx"/>
  <layer id="2" name="background" width="160" height="100">
   <data encoding="csv">
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
@@ -109,6 +110,17 @@
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
 </data>
  </layer>
+ <objectgroup id="8" name="distance">
+  <properties>
+   <property name="parallaxX" type="float" value="-0.02"/>
+  </properties>
+  <object id="27" gid="10" x="800" y="3168" width="200" height="3000"/>
+  <object id="28" gid="10" x="1440" y="3168" width="200" height="3000"/>
+  <object id="29" gid="10" x="2048" y="3168" width="200" height="3000"/>
+  <object id="30" gid="10" x="2688" y="3136" width="200" height="3000"/>
+  <object id="31" gid="10" x="3264" y="3136" width="200" height="3000"/>
+  <object id="32" gid="10" x="3872" y="3168" width="200" height="3000"/>
+ </objectgroup>
  <layer id="1" name="terrain" width="160" height="100">
   <data encoding="csv">
 8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
@@ -268,7 +280,10 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="7" name="foreground">
+ <objectgroup id="7" name="foreground" visible="0">
+  <properties>
+   <property name="parallaxX" type="float" value="1"/>
+  </properties>
   <object id="23" gid="9" x="992" y="3168" width="400" height="3000"/>
   <object id="24" gid="9" x="1760" y="3168" width="400" height="3000"/>
   <object id="25" gid="9" x="2560" y="3168" width="400" height="3000"/>

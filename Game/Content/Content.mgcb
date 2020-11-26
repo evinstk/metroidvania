@@ -37,8 +37,17 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DefaultFont.spritefont
 
+#begin Maps/Arch.tmx
+/copy:Maps/Arch.tmx
+
 #begin Maps/BossRoom.tmx
 /copy:Maps/BossRoom.tmx
+
+#begin Maps/distantPillar.tsx
+/copy:Maps/distantPillar.tsx
+
+#begin Maps/environment.tsx
+/copy:Maps/environment.tsx
 
 #begin Maps/pillar.tsx
 /copy:Maps/pillar.tsx
@@ -99,6 +108,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/swing.wav
+
+#begin Textures/distantPillar.png
+/copy:Textures/distantPillar.png
+
+#begin Textures/environment.png
+/copy:Textures/environment.png
 
 #begin Textures/hero.png
 /importer:TextureImporter

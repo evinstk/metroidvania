@@ -28,10 +28,8 @@ namespace Game
         const int screenWidth = 1920;
         const int screenHeight = 1080;
 
-        const int LIGHT_LAYER = 5;
-        const int LIGHT_MAP_LAYER = 10;
-        const int BG_LAYER = 15;
-        const int FG_LAYER = 20;
+        const int LIGHT_LAYER = -1;
+        const int LIGHT_MAP_LAYER = -2;
 
         public TmxMap Map { get; private set; }
 
@@ -44,18 +42,16 @@ namespace Game
             Spawn = spawn;
             _startingHealth = opts.StartingHealth;
             _useLighting = opts.UseLighting;
-        }
 
-        public override void Initialize()
-        {
             SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(screenWidth, screenHeight);
 
-            AddRenderer(new RenderLayerRenderer(0, BG_LAYER));
-            AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
-            // default render layer
-            AddRenderer(new RenderLayerRenderer(2, 0));
-            AddRenderer(new RenderLayerRenderer(3, FG_LAYER));
+            Map = Content.LoadTiledMap("Content/Maps/" + MapSrc);
+
+            for (var i = 0; i < Map.Layers.Count; ++i)
+            {
+                AddRenderer(new RenderLayerRenderer(i * 10, i));
+            }
 
             Physics.RaycastsHitTriggers = true;
         }
@@ -64,33 +60,53 @@ namespace Game
         {
             CreateEntity("gameManager").AddComponent<GameManager>();
 
-            Map = Content.LoadTiledMap("Content/Maps/" + MapSrc);
-
             var mapEntity = CreateEntity("map");
 
-            var mapRenderer = mapEntity.AddComponent(new TiledMapRenderer(Map, "terrain"));
-            mapRenderer.SetLayersToRender(new[] { "background", "terrain" });
-            Flags.SetFlagExclusive(ref mapRenderer.PhysicsLayer, 10);
-            mapRenderer.SetRenderLayer(BG_LAYER);
-
-            var fgLayer = Map.GetObjectGroup("foreground");
-            if (fgLayer != null)
+            for (var i = 0; i < Map.Layers.Count; ++i)
             {
-                foreach (var obj in fgLayer.Objects)
+                var tileLayer = Map.Layers[i] as TmxLayer;
+                if (tileLayer != null)
                 {
-                    var tileset = fgLayer.Map.GetTilesetForTileGid(obj.Tile.Gid);
-                    var sourceRect = tileset.TileRegions[obj.Tile.Gid];
-                    CreateEntity("parallax" + obj.Id.ToString())
-                        .SetPosition(new Vector2(obj.X + sourceRect.Width / 2, obj.Y - sourceRect.Height / 2))
-                        .AddComponent(new SpriteRenderer(new Sprite(tileset.Image.Texture, sourceRect)))
-                        .SetRenderLayer(FG_LAYER)
-                        .AddComponent<ParallaxComponent>();
+                    var mapRenderer = mapEntity
+                        .AddComponent(new TiledMapRenderer(Map, tileLayer.Name));
+                    mapRenderer.SetRenderLayer(i);
+                    mapRenderer.SetLayersToRender(tileLayer.Name);
+                    if (tileLayer.Name == "terrain")
+                    {
+                        Flags.SetFlagExclusive(ref mapRenderer.PhysicsLayer, 10);
+                        mapRenderer.CollisionLayer = tileLayer;
+                    }
                 }
             }
 
-            var objects = Map.ObjectGroups.SelectMany((g, i) => g.Objects.Select(o => (TmxObject: o, LayerIndex: i)));
+            var objects = Map.Layers.SelectMany((l, i) =>
+            {
+                var g = l as TmxObjectGroup;
+                return g?.Objects.Select(o => (TmxObject: o, LayerIndex: i))
+                    ?? Enumerable.Empty<(TmxObject TmxObject, int LayerIndex)>();
+            });
             foreach ((var obj, var i) in objects)
             {
+                if (obj.Tile != null)
+                {
+                    var tileset = Map.GetTilesetForTileGid(obj.Tile.Gid);
+                    var sourceRect = tileset.TileRegions[obj.Tile.Gid];
+                    var tileEntity = CreateEntity("parallax" + obj.Id.ToString())
+                        .SetPosition(new Vector2(obj.X + sourceRect.Width / 2, obj.Y - sourceRect.Height / 2));
+                    tileEntity.AddComponent(new SpriteRenderer(new Sprite(tileset.Image.Texture, sourceRect)))
+                        .SetRenderLayer(i);
+
+                    // parallax tiles
+                    var layer = Map.Layers[i] as TmxObjectGroup;
+                    string parallaxX = string.Empty;
+                    if (layer.Properties?.TryGetValue("parallaxX", out parallaxX) == true)
+                    {
+                        tileEntity
+                            .AddComponent<ParallaxComponent>()
+                            .SetParallaxScale(new Vector2(float.Parse(parallaxX), 1));
+                    }
+                }
+
                 if (obj.Type == "mobSpawn")
                 {
                     var mobType = obj.Properties["mobType"];
@@ -110,6 +126,7 @@ namespace Game
                         Color = color,
                         Team = (Teams)int.Parse(team),
                         DialogSrc = dialogSrc,
+                        RenderLayer = i,
                     });
                     mobEntity.Position = new Vector2(obj.X, obj.Y);
                 }
@@ -125,7 +142,7 @@ namespace Game
                 }
 
                 // untyped objects are assumed to be triggers
-                if (obj.Type == "" || obj.Type == "exit")
+                if ((obj.Type == "" || obj.Type == "exit") && obj.Tile == null)
                 {
                     var triggerEntity = CreateEntity(obj.Name != string.Empty ? obj.Name : "trigger" + obj.Id.ToString());
                     var triggerCollider = triggerEntity.AddComponent(new BoxCollider(obj.X, obj.Y, obj.Width, obj.Height));
@@ -149,6 +166,7 @@ namespace Game
                     PlayerControlled = true,
                     StartingHealth = _startingHealth,
                     Team = Teams.A,
+                    RenderLayer = playerObj.LayerIndex,
                 });
                 playerEntity.Position = new Vector2(playerObj.TmxObject.X, playerObj.TmxObject.Y);
 
@@ -179,6 +197,11 @@ namespace Game
             lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
             Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, 10);
 
+            var playerEntity = FindEntity("player");
+
+            AddRenderer(new RenderLayerRenderer(
+                playerEntity.GetComponent<SpriteRenderer>().RenderLayer * 10 - 1, LIGHT_MAP_LAYER));
+
             CreateEntity("light-map")
                 .AddComponent<CenteringComponent>()
                 .AddComponent(new SpriteRenderer(lightRenderer.RenderTexture))
@@ -186,7 +209,7 @@ namespace Game
                 .SetRenderLayer(LIGHT_MAP_LAYER);
 
             CreateEntity("light")
-                .SetParent(FindEntity("player").Transform)
+                .SetParent(playerEntity.Transform)
                 .AddComponent(new StencilLight(400, Color.AntiqueWhite))
                 .SetRenderLayer(LIGHT_LAYER);
         }

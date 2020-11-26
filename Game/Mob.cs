@@ -13,6 +13,7 @@ namespace Game
         public int StartingHealth = -1;
         public Teams Team = Teams.A;
         public string DialogSrc = null;
+        public int RenderLayer = 0;
 
         public static MobOptions DefaultOptions = new MobOptions();
     }
@@ -36,6 +37,7 @@ namespace Game
             Flags.SetFlagExclusive(ref physicsCollider.CollidesWithLayers, Layer.Default);
             var renderer = entity.AddComponent<SpriteRenderer>();
             renderer.Color = options.Color ?? Color.White;
+            renderer.RenderLayer = options.RenderLayer;
             if (options.PlayerControlled)
             {
                 entity.AddComponent<PlayerController>();
