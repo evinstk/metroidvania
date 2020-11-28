@@ -25,6 +25,8 @@ namespace Game
 
         const int resWidth = 1920;
         const int resHeight = 1080;
+        const int screenWidth = 1920;
+        const int screenHeight = 1080;
 
         const int LIGHT_LAYER = 5;
         const int LIGHT_MAP_LAYER = 10;
@@ -47,7 +49,7 @@ namespace Game
         public override void Initialize()
         {
             SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
-            Screen.SetSize(resWidth, resHeight);
+            Screen.SetSize(screenWidth, screenHeight);
 
             AddRenderer(new RenderLayerRenderer(0, BG_LAYER));
             AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
