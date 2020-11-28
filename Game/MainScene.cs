@@ -88,76 +88,80 @@ namespace Game
                 }
             }
 
-            var instanceLayer = Map.GetObjectGroup("instances");
-            if (instanceLayer != null)
+            var objects = Map.ObjectGroups.SelectMany((g, i) => g.Objects.Select(o => (TmxObject: o, LayerIndex: i)));
+            foreach ((var obj, var i) in objects)
             {
-                var instanceLookup = instanceLayer.Objects.ToLookup(t => t.Type);
-                foreach (var mobSpawn in instanceLookup["mobSpawn"])
+                if (obj.Type == "mobSpawn")
                 {
-                    var mobType = mobSpawn.Properties["mobType"];
-                    if (!mobSpawn.Properties.TryGetValue("color", out var colorStr))
+                    var mobType = obj.Properties["mobType"];
+                    if (!obj.Properties.TryGetValue("color", out var colorStr))
                         colorStr = "#ffffffff";
                     colorStr = "0x" + colorStr.Substring(1, 6) + "ff";
                     var color = new Color(Convert.ToUInt32(colorStr, 16));
                     color.A = 255;
-                    if (!mobSpawn.Properties.TryGetValue("team", out var team))
+                    if (!obj.Properties.TryGetValue("team", out var team))
                     {
                         team = "1";
                     }
-                    mobSpawn.Properties.TryGetValue("dialog", out var dialogSrc);
+                    obj.Properties.TryGetValue("dialog", out var dialogSrc);
                     if (dialogSrc != null) dialogSrc = Path.GetFileName(dialogSrc);
-                    var mobEntity = Mob.MakeMobEntity(mobSpawn.Name != "" ? mobSpawn.Name : "mob", mobType, new MobOptions
+                    var mobEntity = Mob.MakeMobEntity(obj.Name != "" ? obj.Name : "mob", mobType, new MobOptions
                     {
                         Color = color,
                         Team = (Teams)int.Parse(team),
                         DialogSrc = dialogSrc,
                     });
-                    mobEntity.Position = new Vector2(mobSpawn.X, mobSpawn.Y);
+                    mobEntity.Position = new Vector2(obj.X, obj.Y);
                 }
-                var width = 128; var height = 192;
-                foreach (var checkpoint in instanceLookup["checkpoint"])
+
+                if (obj.Type == "checkpoint")
                 {
-                    var checkpointEntity = CreateEntity(checkpoint.Name != string.Empty ? checkpoint.Name : "checkpoint" + checkpoint.Id.ToString());
-                    checkpointEntity.AddComponent(new RectangleRenderer(Color.PaleGoldenrod, width, height));
-                    checkpointEntity.AddComponent(new BoxCollider(0, 0));
-                    checkpointEntity.AddComponent<CheckpointComponent>();
-                    checkpointEntity.Position = new Vector2(checkpoint.X, checkpoint.Y);
+                    var width = 128; var height = 192;
+                    CreateEntity(obj.Name != string.Empty ? obj.Name : "checkpoint" + obj.Id.ToString())
+                        .SetPosition(new Vector2(obj.X, obj.Y))
+                        .AddComponent(new RectangleRenderer(Color.PaleGoldenrod, width, height))
+                        .AddComponent(new BoxCollider(0, 0))
+                        .AddComponent<CheckpointComponent>();
                 }
-            }
 
-            var playerObj = instanceLayer.Objects.First(o =>
-                o.Name == Spawn && (o.Type == "playerSpawn" || o.Type == "checkpoint"));
-            var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
-            {
-                PlayerControlled = true,
-                StartingHealth = _startingHealth,
-                Team = Teams.A,
-            });
-            playerEntity.Position = new Vector2(playerObj.X, playerObj.Y);
-
-            var triggerLayer = Map.GetObjectGroup("triggers");
-            if (triggerLayer != null)
-            {
-                foreach (var trigger in triggerLayer.Objects)
+                // untyped objects are assumed to be triggers
+                if (obj.Type == "" || obj.Type == "exit")
                 {
-                    var triggerEntity = CreateEntity(trigger.Name != string.Empty ? trigger.Name : "trigger" + trigger.Id.ToString());
-                    var triggerCollider = triggerEntity.AddComponent(new BoxCollider(trigger.X, trigger.Y, trigger.Width, trigger.Height));
+                    var triggerEntity = CreateEntity(obj.Name != string.Empty ? obj.Name : "trigger" + obj.Id.ToString());
+                    var triggerCollider = triggerEntity.AddComponent(new BoxCollider(obj.X, obj.Y, obj.Width, obj.Height));
                     triggerCollider.IsTrigger = true;
                     Flags.SetFlagExclusive(ref triggerCollider.CollidesWithLayers, Layer.Default);
-                    if (trigger.Type == "exit")
+                    if (obj.Type == "exit")
                     {
-                        var mapSrc = Path.GetFileName(trigger.Properties["map"]);
-                        var spawn = trigger.Properties["spawn"];
+                        var mapSrc = Path.GetFileName(obj.Properties["map"]);
+                        var spawn = obj.Properties["spawn"];
                         triggerEntity.AddComponent(new ExitTrigger(mapSrc, spawn));
                     }
                 }
             }
 
-            var cameraEntity = Camera.Entity;
-            var followCamera = playerEntity.AddComponent(new FollowCamera(playerEntity, Camera, FollowCamera.CameraStyle.CameraWindow));
-            followCamera.MapLockEnabled = true;
-            followCamera.MapSize = new Vector2(Map.TileWidth * Map.Width, Map.TileHeight * Map.Height);
-            cameraEntity.Position = playerEntity.Position;
+            var playerObj = objects.FirstOrDefault(x =>
+                x.TmxObject.Name == Spawn && (x.TmxObject.Type == "playerSpawn" || x.TmxObject.Type == "checkpoint"));
+            if (playerObj.TmxObject != null)
+            {
+                var playerEntity = Mob.MakeMobEntity("player", "Hero", new MobOptions
+                {
+                    PlayerControlled = true,
+                    StartingHealth = _startingHealth,
+                    Team = Teams.A,
+                });
+                playerEntity.Position = new Vector2(playerObj.TmxObject.X, playerObj.TmxObject.Y);
+
+                var cameraEntity = Camera.Entity;
+                var followCamera = playerEntity.AddComponent(new FollowCamera(playerEntity, Camera, FollowCamera.CameraStyle.CameraWindow));
+                followCamera.MapLockEnabled = true;
+                followCamera.MapSize = new Vector2(Map.TileWidth * Map.Width, Map.TileHeight * Map.Height);
+                cameraEntity.Position = playerEntity.Position;
+            }
+            else
+            {
+                Debug.Log("No object with type \"playerSpawn\" found.");
+            }
 
             string scriptSrc = null;
             if (Map.Properties?.TryGetValue("script", out scriptSrc) == true)
