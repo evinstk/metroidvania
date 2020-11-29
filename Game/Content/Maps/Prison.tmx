@@ -121,6 +121,51 @@
   <object id="31" gid="10" x="3264" y="3136" width="200" height="3000"/>
   <object id="32" gid="10" x="3872" y="3168" width="200" height="3000"/>
  </objectgroup>
+ <objectgroup id="4" name="instances">
+  <object id="1" name="start" type="playerSpawn" x="224" y="2496"/>
+  <object id="2" type="mobSpawn" x="928" y="2880">
+   <properties>
+    <property name="color" type="color" value="#ff681415"/>
+    <property name="mobType" value="EnemyHero"/>
+   </properties>
+  </object>
+  <object id="3" type="mobSpawn" x="1344" y="2880">
+   <properties>
+    <property name="color" type="color" value="#ff681415"/>
+    <property name="mobType" value="EnemyHero"/>
+   </properties>
+  </object>
+  <object id="4" type="mobSpawn" x="1216" y="2016">
+   <properties>
+    <property name="color" type="color" value="#ff681415"/>
+    <property name="mobType" value="EnemyHero"/>
+   </properties>
+  </object>
+  <object id="5" type="mobSpawn" x="4736" y="2880">
+   <properties>
+    <property name="color" type="color" value="#ff681415"/>
+    <property name="mobType" value="EnemyHero"/>
+   </properties>
+  </object>
+  <object id="6" type="mobSpawn" x="3200" y="2880">
+   <properties>
+    <property name="color" type="color" value="#ff681415"/>
+    <property name="mobType" value="EnemyHero"/>
+   </properties>
+  </object>
+  <object id="7" name="NPC" type="mobSpawn" x="128" y="2496">
+   <properties>
+    <property name="color" type="color" value="#ff0055ff"/>
+    <property name="dialog" type="file" value="../Dialog/SampleDialog.json"/>
+    <property name="mobType" value="NPC"/>
+    <property name="team" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="14" name="prisonLeft" type="playerSpawn" x="64" y="2496"/>
+  <object id="20" name="checkpoint" type="checkpoint" x="192" y="2016">
+   <point/>
+  </object>
+ </objectgroup>
  <layer id="1" name="terrain" width="160" height="100">
   <data encoding="csv">
 8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
@@ -225,51 +270,6 @@
 8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
 </data>
  </layer>
- <objectgroup id="4" name="instances">
-  <object id="1" name="start" type="playerSpawn" x="224" y="2496"/>
-  <object id="2" type="mobSpawn" x="928" y="2880">
-   <properties>
-    <property name="color" type="color" value="#ff681415"/>
-    <property name="mobType" value="EnemyHero"/>
-   </properties>
-  </object>
-  <object id="3" type="mobSpawn" x="1344" y="2880">
-   <properties>
-    <property name="color" type="color" value="#ff681415"/>
-    <property name="mobType" value="EnemyHero"/>
-   </properties>
-  </object>
-  <object id="4" type="mobSpawn" x="1216" y="2016">
-   <properties>
-    <property name="color" type="color" value="#ff681415"/>
-    <property name="mobType" value="EnemyHero"/>
-   </properties>
-  </object>
-  <object id="5" type="mobSpawn" x="4736" y="2880">
-   <properties>
-    <property name="color" type="color" value="#ff681415"/>
-    <property name="mobType" value="EnemyHero"/>
-   </properties>
-  </object>
-  <object id="6" type="mobSpawn" x="3200" y="2880">
-   <properties>
-    <property name="color" type="color" value="#ff681415"/>
-    <property name="mobType" value="EnemyHero"/>
-   </properties>
-  </object>
-  <object id="7" name="NPC" type="mobSpawn" x="128" y="2496">
-   <properties>
-    <property name="color" type="color" value="#ff0055ff"/>
-    <property name="dialog" type="file" value="../Dialog/SampleDialog.json"/>
-    <property name="mobType" value="NPC"/>
-    <property name="team" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="14" name="prisonLeft" type="playerSpawn" x="64" y="2496"/>
-  <object id="20" name="checkpoint" type="checkpoint" x="192" y="2016">
-   <point/>
-  </object>
- </objectgroup>
  <objectgroup color="#55ffff" id="3" name="triggers">
   <object id="8" name="leaveTrigger" x="320" y="2816" width="160" height="160"/>
   <object id="12" name="leaveZone" x="-352" y="2304" width="160" height="288"/>
