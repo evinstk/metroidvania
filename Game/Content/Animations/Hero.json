@@ -124,14 +124,6 @@
                 {
                  "duration":83,
                  "tileid":14
-                }, 
-                {
-                 "duration":83,
-                 "tileid":15
-                }, 
-                {
-                 "duration":83,
-                 "tileid":16
                 }],
          "id":12,
          "properties":[
@@ -141,6 +133,19 @@
                  "value":"..\/Sounds\/jump.wav"
                 }],
          "type":"JumpRight"
+        }, 
+        {
+         "animation":[
+                {
+                 "duration":83,
+                 "tileid":15
+                }, 
+                {
+                 "duration":83,
+                 "tileid":16
+                }],
+         "id":15,
+         "type":"FallRight"
         }, 
         {
          "animation":[

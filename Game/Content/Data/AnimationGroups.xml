@@ -49,6 +49,17 @@
 					<Flip>true</Flip>
 				</Item>
 				<Item>
+					<Type>FallRight</Type>
+					<Tileset>Hero</Tileset>
+					<Name>FallRight</Name>
+				</Item>
+				<Item>
+					<Type>FallLeft</Type>
+					<Tileset>Hero</Tileset>
+					<Name>FallRight</Name>
+					<Flip>true</Flip>
+				</Item>
+				<Item>
 					<Type>LandRight</Type>
 					<Tileset>Hero</Tileset>
 					<Name>LandRight</Name>
