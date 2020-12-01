@@ -78,7 +78,7 @@
 </data>
  </layer>
  <objectgroup id="3" name="instances">
-  <object id="1" name="start" type="playerSpawn" x="992" y="704"/>
+  <object id="1" name="start" type="playerSpawn" x="992" y="806"/>
   <object id="4" name="startRight" type="playerSpawn" x="1824" y="736"/>
  </objectgroup>
  <objectgroup id="4" name="triggers">

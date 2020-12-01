@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game.MobState;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
@@ -17,7 +18,7 @@ namespace Game
         public bool InDialog => _lineReader != null;
 
         ControllerComponent _controller;
-        MobMover _mover;
+        MobStateMachine _mobStateMachine;
         NezSpriteFont _font;
 
         StringBuilder _sb = new StringBuilder(1000);
@@ -32,8 +33,8 @@ namespace Game
         {
             _controller = Entity.GetComponent<ControllerComponent>();
             Insist.IsNotNull(_controller);
-            _mover = Entity.GetComponent<MobMover>();
-            Insist.IsNotNull(_mover);
+            _mobStateMachine = Entity.GetComponent<MobStateMachine>();
+            Insist.IsNotNull(_mobStateMachine);
 
             var font = Core.Content.Load<SpriteFont>("Fonts/DefaultFont");
             _font = new NezSpriteFont(font);
@@ -69,7 +70,7 @@ namespace Game
 
                 var hit = Physics.Linecast(
                     Entity.Position,
-                    Entity.Position + new Vector2(_mover.Facing * 150, 0));
+                    Entity.Position + new Vector2(_mobStateMachine.Facing * 150, 0));
                 var dialogC = hit.Collider?.GetComponent<DialogComponent>();
                 if (dialogC != null)
                 {

@@ -1,4 +1,5 @@
 ﻿using Game.Tiled;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Nez;
 using Nez.Sprites;
@@ -8,6 +9,56 @@ using System.Linq;
 
 namespace Game
 {
+    class FrameOptions
+    {
+        public bool FlipX = false;
+        public TiledObject HitBoxData;
+        public SoundEffect Sound;
+    }
+
+    class Frame : IFrame
+    {
+        SpriteRenderer _renderer;
+        HitBoxComponent _hitC;
+
+        Sprite _sprite;
+        FrameOptions _options;
+
+        public Frame(
+            SpriteRenderer renderer,
+            HitBoxComponent hitC,
+            Sprite sprite,
+            FrameOptions options)
+        {
+            _renderer = renderer;
+            _hitC = hitC;
+            _sprite = sprite;
+            _options = options;
+        }
+
+        public void OnEnter()
+        {
+            _renderer.Sprite = _sprite;
+            _renderer.FlipX = _options.FlipX;
+
+            var hitBoxData = _options.HitBoxData;
+            _hitC.SetEnabled(hitBoxData != null);
+            if (hitBoxData != null)
+            {
+                _hitC.Collider.SetSize(hitBoxData.Width, hitBoxData.Height);
+                _hitC.Collider.SetLocalOffset(new Vector2(
+                    (hitBoxData.X + .5f * (hitBoxData.Width - _renderer.Bounds.Width)) * (_options.FlipX ? -1 : 1),
+                    hitBoxData.Y + .5f * (hitBoxData.Height - _renderer.Bounds.Height)));
+            }
+
+            var sound = _options.Sound;
+            if (sound != null)
+            {
+                sound.Play();
+            }
+        }
+    }
+
     static class EntityExt
     {
         public static Animator<Frame> AddAnimator(this Entity entity, string animationGroup)

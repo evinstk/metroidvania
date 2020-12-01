@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game.MobState;
+using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Sprites;
 using Nez.Tiled;
@@ -59,8 +60,6 @@ namespace Game
             {
                 entity.AddComponent<FreeController>();
             }
-            var mover = entity.AddComponent(new MobMover(physicsCollider));
-            mover.MoveSpeed = mobData.MoveSpeed;
 
             var hurtbox = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X / 2, mobData.ColliderSize.Y / 2));
             hurtbox.IsTrigger = true;
@@ -73,7 +72,8 @@ namespace Game
             var hitboxC = entity.AddComponent(new HitBoxComponent(hitbox));
             hitboxC.SetEnabled(false);
 
-            entity.AddComponent(new AnimationMachine(mobData.Animator));
+            entity.AddAnimator(mobData.Animator);
+            entity.AddComponent(new MobStateMachine(physicsCollider)).SetMoveSpeed(mobData.MoveSpeed);
 
             if (options.DialogSrc != null)
             {
