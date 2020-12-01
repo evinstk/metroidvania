@@ -235,7 +235,18 @@ namespace Game
 
         public SceneTransition Reset()
         {
-            return Transition(MapSrc, Spawn);
+            if (_transitioning) return null;
+            _transitioning = true;
+            var scene = new MainScene(MapSrc, Spawn, new SceneOptions
+            {
+                UseLighting = _useLighting,
+                StartingHealth = _startingHealth,
+            });
+            var transition = Core.StartSceneTransition(new FadeTransition(() => scene));
+            transition.FadeOutDuration = 0.3f;
+            transition.FadeInDuration = 0.2f;
+            transition.OnTransitionCompleted += () => _transitioning = false;
+            return transition;
         }
     }
 }
