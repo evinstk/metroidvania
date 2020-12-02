@@ -88,23 +88,45 @@ namespace Game.MobState
             }
         }
 
-        bool CanClimb
+        enum ClimbCasts
         {
-            get
-            {
-                var canClimb = ClimbEnabled
-                    && (_collision.Collision.Left || _collision.Collision.Right)
-                    && _controller.YAxis != 0;
-                if (!canClimb) return canClimb; // save linecast if unnecessary
+            Air,
+            Climbable,
+            NotClimbable,
+        }
+        struct ClimbCollisionState
+        {
+            public ClimbCasts Top;
+            public ClimbCasts Bottom;
+        }
 
-                var hit = Physics.Linecast(
-                    Entity.Position,
-                    Entity.Position + new Vector2(Facing * 150, 0));
-                var scene = Entity.Scene as MainScene;
-                var hitPoint = new Point((int)hit.Point.X / scene.Map.TileWidth, (int)hit.Point.Y / scene.Map.TileHeight);
-                if (hit.Normal.X > 0) hitPoint.X -= 1;
-                return scene.ClimbableTiles.Contains(hitPoint);
-            }
+        bool GetCanClimb(out ClimbCollisionState climbState)
+        {
+            climbState = new ClimbCollisionState();
+            var canClimb = ClimbEnabled
+                && (_collision.Collision.Left || _collision.Collision.Right);
+            if (!canClimb) return canClimb; // save linecast if unnecessary
+
+            climbState.Top = CheckClimbable(Entity.Position + new Vector2(0, -25));
+            climbState.Bottom = CheckClimbable(Entity.Position + new Vector2(0, 25));
+            return (climbState.Top == ClimbCasts.Climbable) && (climbState.Bottom == ClimbCasts.Climbable);
+        }
+
+        ClimbCasts CheckClimbable(Vector2 start)
+        {
+            int mask = 0;
+            Flags.SetFlagExclusive(ref mask, 10);
+            var hit = Physics.Linecast(
+                start,
+                start + new Vector2(Facing * 150),
+                mask);
+            if (hit.Collider == null) return ClimbCasts.Air;
+            var scene = Entity.Scene as MainScene;
+            //var hitPoint = new Point((int)(hit.Point.X + .5f * scene.Map.TileWidth * Facing) / scene.Map.TileWidth, (int)hit.Point.Y / scene.Map.TileHeight);
+            var hitPoint = new Point((int)hit.Point.X / scene.Map.TileWidth, (int)hit.Point.Y / scene.Map.TileHeight);
+            if (hit.Normal.X > 0) hitPoint.X -= 1;
+            if (scene.ClimbableTiles.Contains(hitPoint)) return ClimbCasts.Climbable;
+            return ClimbCasts.NotClimbable;
         }
 
         class GroundState : State<MobStateMachine>
@@ -125,7 +147,7 @@ namespace Game.MobState
                 {
                     _machine.ChangeState<AttackState>();
                 }
-                if (_context.CanClimb)
+                if (_context._controller.YAxis != 0 && _context.GetCanClimb(out _))
                 {
                     _machine.ChangeState<ClimbState>();
                 }
@@ -203,7 +225,7 @@ namespace Game.MobState
                     _context.ChangeAnimation("Land", Animator<Frame>.LoopMode.ClampForever);
                     _context._animator.OnAnimationCompletedEvent += _context.GroundOrAir;
                 }
-                if (_context.CanClimb)
+                if (_context._controller.YAxis != 0 && _context.GetCanClimb(out _))
                 {
                     _machine.ChangeState<ClimbState>();
                 }
@@ -215,7 +237,7 @@ namespace Game.MobState
 
                 // cancel upward motion if jump released or collision above
                 if (_context._velocity.Y < 0 &&
-                    (!_context._controller.JumpDown)
+                    (_context._controller.JumpReleased)
                      //|| _context._jumpElapsed >= _context.JumpDuration)
                     || _context._collision.Collision.Above)
                 {
@@ -257,12 +279,16 @@ namespace Game.MobState
 
             public override void Reason()
             {
-                if (_context._controller.JumpPressed)
+                // TODO: enter a climb over state if past ledge
+                _context.GetCanClimb(out var climbState);
+                // jump if controller press or over ledge
+                if (_context._controller.JumpPressed || climbState.Top == ClimbCasts.Air)
                 {
                     _machine.ChangeState<AirState>();
                     _context._velocity.Y = -_context.JumpVelocity;
                 }
-                if (!_context._collision.Collision.Left && !_context._collision.Collision.Right)
+                // fall if no bottom hit
+                if (climbState.Bottom == ClimbCasts.Air)
                 {
                     _machine.ChangeState<AirState>();
                 }
