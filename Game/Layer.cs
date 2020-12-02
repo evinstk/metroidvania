@@ -13,8 +13,9 @@ namespace Game
     static class Layer
     {
         public const int Default = 0;
+        public const int Terrain = 1;
 
-        const int TeamLayersOffset = 1;
+        const int TeamLayersOffset = 2;
         public static int GetTeamHurtBox(Teams team) => TeamLayersOffset + (int)team;
         public static int GetOtherTeamsMask(Teams team)
         {

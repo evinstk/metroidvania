@@ -115,7 +115,7 @@ namespace Game.MobState
         ClimbCasts CheckClimbable(Vector2 start)
         {
             int mask = 0;
-            Flags.SetFlagExclusive(ref mask, 10);
+            Flags.SetFlagExclusive(ref mask, Layer.Terrain);
             var hit = Physics.Linecast(
                 start,
                 start + new Vector2(Facing * 150),

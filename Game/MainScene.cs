@@ -94,7 +94,7 @@ namespace Game
                     mapRenderer.SetLayersToRender(tileLayer.Name);
                     if (tileLayer.Name == "terrain")
                     {
-                        Flags.SetFlagExclusive(ref mapRenderer.PhysicsLayer, 10);
+                        Flags.SetFlagExclusive(ref mapRenderer.PhysicsLayer, Layer.Terrain);
                         mapRenderer.CollisionLayer = tileLayer;
                     }
                 }
