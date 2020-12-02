@@ -9,6 +9,7 @@ namespace Game
         public virtual float YAxis => 0;
         public virtual bool JumpPressed => false;
         public virtual bool JumpDown => false;
+        public virtual bool JumpReleased => false;
         public virtual bool AttackPressed => false;
         public virtual bool InteractPressed => false;
     }
@@ -68,6 +69,7 @@ namespace Game
         public override float YAxis => _interaction.InDialog ? 0 : _yAxisInput.Value;
         public override bool JumpDown => _interaction.InDialog ? false : _jumpInput.IsDown;
         public override bool JumpPressed => _interaction.InDialog ? false : _jumpInput.IsPressed;
+        public override bool JumpReleased => _interaction.InDialog ? false : _jumpInput.IsReleased;
         public override bool AttackPressed => _interaction.InDialog ? false : _attackInput.IsPressed;
         public override bool InteractPressed => _interactInput.IsPressed;
     }
