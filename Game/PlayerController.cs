@@ -6,6 +6,7 @@ namespace Game
     abstract class ControllerComponent : Component
     {
         public virtual float XAxis => 0;
+        public virtual float YAxis => 0;
         public virtual bool JumpPressed => false;
         public virtual bool JumpDown => false;
         public virtual bool AttackPressed => false;
@@ -17,6 +18,7 @@ namespace Game
         InteractionComponent _interaction;
 
         VirtualAxis _xAxisInput;
+        VirtualAxis _yAxisInput;
         VirtualButton _jumpInput;
         VirtualButton _attackInput;
         VirtualButton _interactInput;
@@ -32,6 +34,16 @@ namespace Game
                     VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right));
             _xAxisInput.Nodes.Add(
                 new VirtualAxis.GamePadLeftStickX());
+
+            _yAxisInput = new VirtualAxis();
+            _yAxisInput.Nodes.Add(
+                new VirtualAxis.KeyboardKeys(
+                    VirtualInput.OverlapBehavior.CancelOut, Keys.W, Keys.S));
+            _yAxisInput.Nodes.Add(
+                new VirtualAxis.KeyboardKeys(
+                    VirtualInput.OverlapBehavior.CancelOut, Keys.Up, Keys.Down));
+            _yAxisInput.Nodes.Add(
+                new VirtualAxis.GamePadLeftStickY());
 
             _jumpInput = new VirtualButton();
             _jumpInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
@@ -53,6 +65,7 @@ namespace Game
         }
 
         public override float XAxis => _interaction.InDialog ? 0 : _xAxisInput.Value;
+        public override float YAxis => _interaction.InDialog ? 0 : _yAxisInput.Value;
         public override bool JumpDown => _interaction.InDialog ? false : _jumpInput.IsDown;
         public override bool JumpPressed => _interaction.InDialog ? false : _jumpInput.IsPressed;
         public override bool AttackPressed => _interaction.InDialog ? false : _attackInput.IsPressed;

@@ -10,10 +10,12 @@ namespace Game.MobState
     class MobStateMachine : Component, IUpdatable
     {
         public int MoveSpeed = 600;
+        public int ClimbSpeed = 600;
         public float Gravity = 3000;
         public float JumpVelocity = 980f;
         public float MaxFallVelocity = 1000f;
         public float JumpDuration = 0.2f;
+        public bool ClimbEnabled = true;
 
         public int Facing { get; private set; } = 1;
 
@@ -52,8 +54,7 @@ namespace Game.MobState
             _fsm = new StateMachine<MobStateMachine>(this, new GroundState());
             _fsm.AddState(new AttackState());
             _fsm.AddState(new AirState());
-            //_fsm = new StateMachine<MobStateMachine>(this, new IdleState());
-            //_fsm.AddState(new WalkState());
+            _fsm.AddState(new ClimbState());
         }
 
         public void Update()
@@ -87,6 +88,10 @@ namespace Game.MobState
             }
         }
 
+        bool CanClimb => ClimbEnabled
+            && (_collision.Collision.Left || _collision.Collision.Right)
+            && _controller.YAxis != 0;
+
         class GroundState : State<MobStateMachine>
         {
             public override void Begin()
@@ -104,6 +109,10 @@ namespace Game.MobState
                 if (_context._controller.AttackPressed)
                 {
                     _machine.ChangeState<AttackState>();
+                }
+                if (_context.CanClimb)
+                {
+                    _machine.ChangeState<ClimbState>();
                 }
             }
 
@@ -179,6 +188,10 @@ namespace Game.MobState
                     _context.ChangeAnimation("Land", Animator<Frame>.LoopMode.ClampForever);
                     _context._animator.OnAnimationCompletedEvent += _context.GroundOrAir;
                 }
+                if (_context.CanClimb)
+                {
+                    _machine.ChangeState<ClimbState>();
+                }
             }
 
             public override void Update(float deltaTime)
@@ -217,6 +230,38 @@ namespace Game.MobState
             public override void End()
             {
                 _context._animator.OnAnimationCompletedEvent -= _context.GroundOrAir;
+            }
+        }
+
+        class ClimbState : State<MobStateMachine>
+        {
+            public override void Begin()
+            {
+                _context._velocity.X = 0;
+            }
+
+            public override void Reason()
+            {
+                if (_context._controller.JumpPressed)
+                {
+                    _machine.ChangeState<AirState>();
+                    _context._velocity.Y = -_context.JumpVelocity;
+                }
+                if (!_context._collision.Collision.Left && !_context._collision.Collision.Right)
+                {
+                    _machine.ChangeState<AirState>();
+                }
+                if (_context._collision.Collision.Below)
+                {
+                    _machine.ChangeState<GroundState>();
+                }
+            }
+
+            public override void Update(float deltaTime)
+            {
+                _context._velocity.X = _context.Facing * _context.MoveSpeed; // ensure collision
+                _context._velocity.Y = _context.ClimbSpeed * _context._controller.YAxis;
+                _context.Move(deltaTime);
             }
         }
     }
