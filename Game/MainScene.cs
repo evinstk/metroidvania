@@ -4,6 +4,7 @@ using Nez.Sprites;
 using Nez.Textures;
 using Nez.Tiled;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -19,6 +20,7 @@ namespace Game
 	{
         public string MapSrc { get; }
         public string Spawn { get; }
+        public HashSet<Point> ClimbableTiles { get; }
 
         int _startingHealth;
         bool _useLighting;
@@ -51,6 +53,25 @@ namespace Game
             for (var i = 0; i < Map.Layers.Count; ++i)
             {
                 AddRenderer(new RenderLayerRenderer(i * 10, i));
+            }
+
+            var terrainLayer = Map.TileLayers.FirstOrDefault(l => l.Name == "terrain");
+            if (terrainLayer != null)
+            {
+                ClimbableTiles = new HashSet<Point>(terrainLayer.Tiles.Where(t =>
+                {
+                    string climbable = string.Empty;
+                    if (t?.TilesetTile?.Properties?.TryGetValue("climbable", out climbable) == true)
+                    {
+                        return bool.Parse(climbable);
+                    }
+                    return false;
+                }).Select(t => new Point(t.X, t.Y)));
+            }
+            else
+            {
+                Debug.Log("No terrain layer found.");
+                ClimbableTiles = new HashSet<Point>();
             }
 
             Physics.RaycastsHitTriggers = true;
