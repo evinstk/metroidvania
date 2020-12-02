@@ -59,6 +59,6 @@ namespace Game
     {
         public bool Fullscreen = true;
         public float ConsoleRenderScale = 2f;
-        public bool UseLighting = false;
+        public bool UseLighting = true;
     }
 }
