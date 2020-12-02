@@ -61,39 +61,6 @@ namespace Game.MobState
             _fsm.Update(Time.DeltaTime);
         }
 
-        //class IdleState : State<MobStateMachine>
-        //{
-        //    public override void Reason()
-        //    {
-        //        if (_context._controller.XAxis != 0)
-        //            _machine.ChangeState<WalkState>();
-        //    }
-
-        //    public override void Begin()
-        //    {
-        //        _context._animator.Play("IdleRight");
-        //    }
-
-        //    public override void Update(float deltaTime)
-        //    {
-        //    }
-        //}
-
-        //class WalkState : State<MobStateMachine>
-        //{
-        //    public override void Begin()
-        //    {
-        //        _context._animator.Play("WalkRight");
-        //    }
-
-        //    public override void Update(float deltaTime)
-        //    {
-        //        var moveDir = new Vector2(_context._controller.XAxis, 0);
-        //        _context._velocity.X = _context.MoveSpeed * moveDir.X;
-        //        _context._mover.Move(_context._velocity * deltaTime, _context._boxCollider, _context._collision.Collision);
-        //    }
-        //}
-
         void ChangeAnimation(string animationPrefix, Animator<Frame>.LoopMode loopMode = Animator<Frame>.LoopMode.Loop)
         {
             var animation = animationPrefix + (Facing >= 0 ? "Right" : "Left");
