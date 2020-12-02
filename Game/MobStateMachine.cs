@@ -88,9 +88,24 @@ namespace Game.MobState
             }
         }
 
-        bool CanClimb => ClimbEnabled
-            && (_collision.Collision.Left || _collision.Collision.Right)
-            && _controller.YAxis != 0;
+        bool CanClimb
+        {
+            get
+            {
+                var canClimb = ClimbEnabled
+                    && (_collision.Collision.Left || _collision.Collision.Right)
+                    && _controller.YAxis != 0;
+                if (!canClimb) return canClimb; // save linecast if unnecessary
+
+                var hit = Physics.Linecast(
+                    Entity.Position,
+                    Entity.Position + new Vector2(Facing * 150, 0));
+                var scene = Entity.Scene as MainScene;
+                var hitPoint = new Point((int)hit.Point.X / scene.Map.TileWidth, (int)hit.Point.Y / scene.Map.TileHeight);
+                if (hit.Normal.X > 0) hitPoint.X -= 1;
+                return scene.ClimbableTiles.Contains(hitPoint);
+            }
+        }
 
         class GroundState : State<MobStateMachine>
         {
