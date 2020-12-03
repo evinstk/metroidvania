@@ -240,7 +240,7 @@ namespace Game
         {
             if (_transitioning) return null;
             _transitioning = true;
-            var playerHealth = FindEntity("player").GetComponent<HealthComponent>();
+            var playerHealth = FindEntity("player-hurtbox").GetComponent<HealthComponent>();
             var opts = new SceneOptions
             {
                 StartingHealth = playerHealth.Health,

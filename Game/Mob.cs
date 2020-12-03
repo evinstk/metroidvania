@@ -61,13 +61,17 @@ namespace Game
                 entity.AddComponent<FreeController>();
             }
 
-            var hurtbox = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X / 2, mobData.ColliderSize.Y / 2));
+            var hurtboxEntity = Core.Scene.CreateEntity(name + "-hurtbox");
+            hurtboxEntity.Parent = entity.Transform;
+            var hurtbox = hurtboxEntity.AddComponent(new BoxCollider(mobData.ColliderSize.X / 2, mobData.ColliderSize.Y / 2));
             hurtbox.IsTrigger = true;
             Flags.SetFlagExclusive(ref hurtbox.PhysicsLayer, Layer.GetTeamHurtBox(options.Team));
-            var healthC = entity.AddComponent(new HealthComponent(hurtbox));
+            var healthC = hurtboxEntity.AddComponent(new HealthComponent(hurtbox));
             healthC.Health = options.StartingHealth != -1 ? options.StartingHealth : mobData.Health;
 
-            var hitbox = entity.AddComponent<BoxCollider>();
+            var hitboxEntity = Core.Scene.CreateEntity(name + "-hitbox");
+            hitboxEntity.Parent = entity.Transform;
+            var hitbox = hitboxEntity.AddComponent<BoxCollider>();
             hitbox.CollidesWithLayers = Layer.GetOtherTeamsMask(options.Team);
             var hitboxC = entity.AddComponent(new HitBoxComponent(hitbox));
             hitboxC.SetEnabled(false);

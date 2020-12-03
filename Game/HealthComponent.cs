@@ -24,7 +24,7 @@ namespace Game
             _impactEffect = Core.Content.LoadSoundEffect("Sounds/impact");
             Insist.IsNotNull(_impactEffect);
 
-            _renderer = Entity.GetComponent<SpriteRenderer>();
+            _renderer = Entity.Parent.Entity.GetComponent<SpriteRenderer>();
             Insist.IsNotNull(_renderer);
             _originalColor = _renderer.Color;
         }
@@ -33,7 +33,7 @@ namespace Game
         {
             if (Health <= 0)
             {
-                Entity.Destroy();
+                Entity.Parent.Entity.Destroy();
             }
         }
 
