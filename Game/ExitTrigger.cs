@@ -9,7 +9,6 @@ namespace Game
 
         Collider _collider;
         Collider _playerCollider;
-        HealthComponent _health;
 
         public ExitTrigger(string transitionSrc, string spawn)
         {
@@ -25,9 +24,6 @@ namespace Game
             var player = Entity.Scene.FindEntity("player");
             _playerCollider = player.GetComponent<Collider>();
             Insist.IsNotNull(_playerCollider);
-
-            _health = player.GetComponent<HealthComponent>();
-            Insist.IsNotNull(_health);
         }
 
         public void Update()
