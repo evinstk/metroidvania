@@ -35,7 +35,7 @@ namespace Game
             entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             entity.AddComponent<CollisionComponent>();
             var physicsCollider = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
-            Flags.SetFlagExclusive(ref physicsCollider.CollidesWithLayers, Layer.Default);
+            Flags.SetFlagExclusive(ref physicsCollider.CollidesWithLayers, Layer.Terrain);
             var renderer = entity.AddComponent<SpriteRenderer>();
             renderer.Color = options.Color ?? Color.White;
             renderer.RenderLayer = options.RenderLayer;
