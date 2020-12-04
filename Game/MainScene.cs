@@ -216,7 +216,7 @@ namespace Game
         {
             var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
             lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
-            Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, 10);
+            Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, Layer.Terrain);
 
             var playerEntity = FindEntity("player");
 
