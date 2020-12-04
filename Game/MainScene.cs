@@ -89,7 +89,7 @@ namespace Game
                 if (tileLayer != null)
                 {
                     var mapRenderer = mapEntity
-                        .AddComponent(new TiledMapRenderer(Map, tileLayer.Name));
+                        .AddComponent(new TiledMapRenderer(Map));
                     mapRenderer.SetRenderLayer(i);
                     mapRenderer.SetLayersToRender(tileLayer.Name);
                     if (tileLayer.Name == "terrain")
