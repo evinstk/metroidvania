@@ -225,7 +225,7 @@ namespace Game.MobState
                     _context.ChangeAnimation("Land", Animator<Frame>.LoopMode.ClampForever);
                     _context._animator.OnAnimationCompletedEvent += _context.GroundOrAir;
                 }
-                if (_context._controller.YAxis != 0 && _context.GetCanClimb(out _))
+                if (_context.GetCanClimb(out _))
                 {
                     _machine.ChangeState<ClimbState>();
                 }
