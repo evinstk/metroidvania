@@ -159,7 +159,7 @@ namespace Game.MobState
                 {
                     _machine.ChangeState<AttackState>();
                 }
-                if (_context._controller.YAxis != 0 && _context.GetCanClimb(out _))
+                if (_context._controller.YAxis < 0 && _context.GetCanClimb(out _))
                 {
                     _machine.ChangeState<ClimbState>();
                 }
