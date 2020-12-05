@@ -42,7 +42,7 @@ namespace Game
             _renderer.FlipX = _options.FlipX;
 
             var hitBoxData = _options.HitBoxData;
-            _hitC.SetEnabled(hitBoxData != null);
+            _hitC?.SetEnabled(hitBoxData != null);
             if (hitBoxData != null)
             {
                 _hitC.Collider.SetSize(hitBoxData.Width, hitBoxData.Height);
