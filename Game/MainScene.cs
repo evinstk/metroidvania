@@ -16,7 +16,7 @@ namespace Game
         public bool UseLighting = false;
     }
 
-	class MainScene : Scene
+	partial class MainScene : Scene
 	{
         public string MapSrc { get; }
         public string Spawn { get; }
@@ -150,6 +150,11 @@ namespace Game
                         RenderLayer = i,
                     });
                     mobEntity.Position = new Vector2(obj.X, obj.Y);
+                }
+
+                if (obj.Type == "trapdoor")
+                {
+                    MakeTrapdoor(obj, i);
                 }
 
                 if (obj.Type == "checkpoint")
