@@ -33,7 +33,7 @@ namespace Game
             {
                 if (trapdoorAnimator.IsAnimationActive("closed"))
                 {
-                    trapdoorAnimator.Play("trapdoor", Animator<Frame>.LoopMode.ClampForever);
+                    trapdoorAnimator.Play("open", Animator<Frame>.LoopMode.ClampForever);
                     collider.SetEnabled(false);
                     trigger.SetEnabled(false);
                 }
