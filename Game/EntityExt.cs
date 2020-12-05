@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Nez;
 using Nez.Sprites;
 using Nez.Textures;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -113,6 +114,37 @@ namespace Game
                     new Animation<Frame>(
                         frames,
                         12));
+            }
+
+            return entity.AddComponent(animator);
+        }
+
+        public static Animator<Frame> AddAnimator(
+            this Entity entity,
+            Data.TextureMap.TextureMap textureMap)
+        {
+            var animator = new Animator<Frame>();
+
+            var renderer = entity.GetComponent<SpriteRenderer>();
+            Insist.IsNotNull(renderer);
+
+            var texture = Core.Scene.Content.LoadTexture($"Textures/{Path.GetFileNameWithoutExtension(textureMap.Meta.Image)}");
+
+            foreach (var group in textureMap.GetGroups())
+            {
+                var frames = new List<Frame>();
+                foreach (var frame in group)
+                {
+                    var sprite = new Sprite(texture, new Rectangle
+                    {
+                        X = frame.Bounds.X,
+                        Y = frame.Bounds.Y,
+                        Width = frame.Bounds.W,
+                        Height = frame.Bounds.H,
+                    }, new Vector2(frame.Pivot.X * frame.Bounds.W, frame.Pivot.Y * frame.Bounds.H));
+                    frames.Add(new Frame(renderer, null, sprite, new FrameOptions()));
+                }
+                animator.AddAnimation(group.Key, new Animation<Frame>(frames.ToArray(), 12));
             }
 
             return entity.AddComponent(animator);
