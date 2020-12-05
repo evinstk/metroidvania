@@ -1,0 +1,57 @@
+{"frames": [
+
+{
+	"filename": "closed0000.png",
+	"frame": {"x":1,"y":1,"w":256,"h":33},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":33},
+	"sourceSize": {"w":256,"h":256},
+	"pivot": {"x":0.5,"y":0}
+},
+{
+	"filename": "trapdoor0000.png",
+	"frame": {"x":1,"y":1,"w":256,"h":33},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":33},
+	"sourceSize": {"w":256,"h":256},
+	"pivot": {"x":0.5,"y":0}
+},
+{
+	"filename": "trapdoor0001.png",
+	"frame": {"x":1,"y":36,"w":256,"h":79},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":79},
+	"sourceSize": {"w":256,"h":256},
+	"pivot": {"x":0.5,"y":0}
+},
+{
+	"filename": "trapdoor0002.png",
+	"frame": {"x":1,"y":117,"w":256,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":126},
+	"sourceSize": {"w":256,"h":256},
+	"pivot": {"x":0.5,"y":0}
+},
+{
+	"filename": "trapdoor0003.png",
+	"frame": {"x":1,"y":245,"w":256,"h":129},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":129},
+	"sourceSize": {"w":256,"h":256},
+	"pivot": {"x":0.5,"y":0}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "trapdoor.png",
+	"format": "RGBA8888",
+	"size": {"w":258,"h":375},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:c51ae07fed359ca538b2d40a78bb6280:3971b9df481304e59b555b0114871d27:7b1026a487aee130c63b4cab1e12d0cf$"
+}
+}
