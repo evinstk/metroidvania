@@ -25,14 +25,10 @@ namespace Game
         {
             options = options ?? MobOptions.DefaultOptions;
 
-            var map = (Core.Scene as MainScene).Map;
-            Insist.IsNotNull(map);
-
             var mobData = Core.Scene.Content.Load<Data.Mob[]>("Data/Mobs").First(m => m.Type == type);
 
             var entity = Core.Scene.CreateEntity(name);
 
-            entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             entity.AddComponent<CollisionComponent>();
             var physicsCollider = entity.AddComponent(new BoxCollider(mobData.ColliderSize.X, mobData.ColliderSize.Y));
             Flags.SetFlagExclusive(ref physicsCollider.CollidesWithLayers, Layer.Terrain);

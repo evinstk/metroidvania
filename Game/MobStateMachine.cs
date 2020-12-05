@@ -27,7 +27,8 @@ namespace Game.MobState
         BoxCollider _boxCollider;
         CollisionComponent _collision;
         ControllerComponent _controller;
-        TiledMapMover _mover;
+        Mover _mover;
+        TiledMapMover _tiledMapMover;
         Animator<Frame> _animator;
 
         public MobStateMachine(BoxCollider boxCollider)
@@ -45,7 +46,9 @@ namespace Game.MobState
         {
             _collision = Entity.GetComponent<CollisionComponent>();
             _controller = Entity.GetComponent<ControllerComponent>();
-            _mover = Entity.GetComponent<TiledMapMover>();
+            _mover = Entity.AddComponent<Mover>();
+            var map = (Entity.Scene as MainScene).Map;
+            _tiledMapMover = Entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
             _animator = Entity.GetComponent<Animator<Frame>>();
 
             // assume on ground
@@ -73,7 +76,16 @@ namespace Game.MobState
 
         void Move(float deltaTime)
         {
-            _mover.Move(_velocity * deltaTime, _boxCollider, _collision.Collision);
+            var motion = _velocity * deltaTime;
+            _tiledMapMover.TestCollisions(ref motion, _boxCollider.Bounds, _collision.Collision);
+            var preMotion = motion;
+            _mover.CalculateMovement(ref motion, out _);
+            if (preMotion.Y > motion.Y)
+            {
+                // if Y value got reduced, must have hit object below
+                _collision.Collision.Below = true;
+            }
+            _mover.ApplyMovement(motion);
         }
 
         void GroundOrAir(string animation)
