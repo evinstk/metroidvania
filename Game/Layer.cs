@@ -14,8 +14,9 @@ namespace Game
     {
         public const int Default = 0;
         public const int Terrain = 1;
+        public const int Doodad = 2;
 
-        const int TeamLayersOffset = 2;
+        const int TeamLayersOffset = 3;
         public static int GetTeamHurtBox(Teams team) => TeamLayersOffset + (int)team;
         public static int GetOtherTeamsMask(Teams team)
         {
