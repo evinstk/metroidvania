@@ -64,6 +64,9 @@
 #begin Maps/Tiles.tsx
 /copy:Maps/Tiles.tsx
 
+#begin Maps/tileset.tsx
+/copy:Maps/tileset.tsx
+
 #begin Maps/TransitionMap.tmx
 /copy:Maps/TransitionMap.tmx
 
@@ -132,6 +135,9 @@
 
 #begin Textures/Tiles.PNG
 /copy:Textures/Tiles.PNG
+
+#begin Textures/tileset.png
+/copy:Textures/tileset.png
 
 #begin Textures/trapdoor.json
 /copy:Textures/trapdoor.json
