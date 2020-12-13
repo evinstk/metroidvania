@@ -36,7 +36,7 @@ namespace Game
             {
                 payload = new CheckpointPayload
                 {
-                    MapSrc = "Start.tmx",
+                    MapSrc = "Map8.tmx",
                     Name = "start",
                 };
             }

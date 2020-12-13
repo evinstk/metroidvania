@@ -49,6 +49,9 @@
 #begin Maps/environment.tsx
 /copy:Maps/environment.tsx
 
+#begin Maps/Map8.tmx
+/copy:Maps/Map8.tmx
+
 #begin Maps/pillar.tsx
 /copy:Maps/pillar.tsx
 
@@ -57,6 +60,9 @@
 
 #begin Maps/Start.tmx
 /copy:Maps/Start.tmx
+
+#begin Maps/terrain8.tsx
+/copy:Maps/terrain8.tsx
 
 #begin Maps/TestMap.tmx
 /copy:Maps/TestMap.tmx
@@ -132,6 +138,9 @@
 
 #begin Textures/pillar.png
 /copy:Textures/pillar.png
+
+#begin Textures/terrain8.png
+/copy:Textures/terrain8.png
 
 #begin Textures/Tiles.PNG
 /copy:Textures/Tiles.PNG

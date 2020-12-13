@@ -25,13 +25,15 @@ namespace Game
         int _startingHealth;
         bool _useLighting;
 
-        const int resWidth = 1920;
-        const int resHeight = 1080;
+        const int resWidth = 480;
+        const int resHeight = 270;
         const int screenWidth = 1920;
         const int screenHeight = 1080;
 
         const int LIGHT_LAYER = -1;
         const int LIGHT_MAP_LAYER = -2;
+
+        static Color _clearColor = new Color(5, 7, 14);
 
         public TmxMap Map { get; private set; }
 
@@ -47,6 +49,8 @@ namespace Game
 
             SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(screenWidth, screenHeight);
+
+            ClearColor = _clearColor;
 
             Map = Content.LoadTiledMap("Content/Maps/" + MapSrc);
 
@@ -219,13 +223,18 @@ namespace Game
 
         void SetupLighting()
         {
+            var playerEntity = FindEntity("player");
+            if (playerEntity == null)
+            {
+                Debug.Log("Cannot set up lighting without player entity.");
+                return;
+            }
+
             var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
             lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
             lightRenderer.CollidesWithLayers = 0;
             Flags.SetFlag(ref lightRenderer.CollidesWithLayers, Layer.Terrain);
             Flags.SetFlag(ref lightRenderer.CollidesWithLayers, Layer.Doodad);
-
-            var playerEntity = FindEntity("player");
 
             AddRenderer(new RenderLayerRenderer(
                 playerEntity.GetComponent<SpriteRenderer>().RenderLayer * 10 - 1, LIGHT_MAP_LAYER));
