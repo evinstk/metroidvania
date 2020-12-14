@@ -18,6 +18,14 @@ namespace Game
         public static MobOptions DefaultOptions = new MobOptions();
     }
 
+    class RectangleOptions
+    {
+        public Color Color;
+        public int Width;
+        public int Height;
+        public int RenderLayer = 0;
+    }
+
     static class Mob
     {
         public static Entity MakeMobEntity(string name, string type, MobOptions options = null)
@@ -78,6 +86,22 @@ namespace Game
             {
                 entity.AddComponent(new DialogComponent(options.DialogSrc));
             }
+
+            return entity;
+        }
+
+        public static Entity MakeRectangleEntity(string name, RectangleOptions opts)
+        {
+            var entity = Core.Scene.CreateEntity(name);
+
+            entity.AddComponent(new RectangleRenderer(opts.Color, opts.Width, opts.Height))
+                .SetRenderLayer(opts.RenderLayer);
+
+            var collider = entity.AddComponent<BoxCollider>();
+            Flags.SetFlagExclusive(ref collider.PhysicsLayer, Layer.Doodad);
+
+            entity.AddComponent<PlayerController>();
+            entity.AddComponent<SimpleMover>();
 
             return entity;
         }
