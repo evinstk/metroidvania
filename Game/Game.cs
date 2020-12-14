@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Nez;
 using Nez.Console;
+using Nez.ImGuiTools;
 using System.IO;
 
 namespace Game
@@ -17,6 +18,10 @@ namespace Game
             Screen.IsFullscreen = opts.Fullscreen;
             ExitOnEscapeKeypress = true;
             DebugConsole.RenderScale = opts.ConsoleRenderScale;
+
+            var imGuiManager = new ImGuiManager();
+            RegisterGlobalManager(imGuiManager);
+            imGuiManager.SetEnabled(opts.ImGuiEnabled);
 
             var saveSystem = new SaveSystem();
             var checkpoint = saveSystem.Load();
@@ -60,5 +65,6 @@ namespace Game
         public bool Fullscreen = true;
         public float ConsoleRenderScale = 2f;
         public bool UseLighting = true;
+        public bool ImGuiEnabled = false;
     }
 }
