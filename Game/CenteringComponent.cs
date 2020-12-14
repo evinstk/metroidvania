@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Nez;
 
 namespace Game
 {
@@ -6,7 +7,10 @@ namespace Game
     {
         public void Update()
         {
-            Entity.Position = Entity.Scene.Camera.ScreenToWorldPoint(Screen.Center);
+            var pos = Entity.Scene.Camera.ScreenToWorldPoint(Screen.Center) * new Vector2(
+                (float)MainScene.ResWidth / MainScene.ScreenWidth,
+                (float)MainScene.ResHeight / MainScene.ScreenHeight);
+            Entity.Position = pos;
         }
     }
 }

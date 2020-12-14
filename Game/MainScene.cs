@@ -25,10 +25,10 @@ namespace Game
         int _startingHealth;
         bool _useLighting;
 
-        const int resWidth = 480;
-        const int resHeight = 270;
-        const int screenWidth = 1920;
-        const int screenHeight = 1080;
+        public const int ResWidth = 480;
+        public const int ResHeight = 270;
+        public const int ScreenWidth = 1920;
+        public const int ScreenHeight = 1080;
 
         const int LIGHT_LAYER = -1;
         const int LIGHT_MAP_LAYER = -2;
@@ -47,8 +47,8 @@ namespace Game
             _startingHealth = opts.StartingHealth;
             _useLighting = opts.UseLighting;
 
-            SetDesignResolution(resWidth, resHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
-            Screen.SetSize(screenWidth, screenHeight);
+            SetDesignResolution(ResWidth, ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
+            Screen.SetSize(ScreenWidth, ScreenHeight);
 
             ClearColor = _clearColor;
 
