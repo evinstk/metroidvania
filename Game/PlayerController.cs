@@ -62,15 +62,15 @@ namespace Game
         public override void OnAddedToEntity()
         {
             _interaction = Entity.GetComponent<InteractionComponent>();
-            Insist.IsNotNull(_interaction);
+            Debug.LogIf(_interaction == null, "Player controller has no interaction component.");
         }
 
-        public override float XAxis => _interaction.InDialog ? 0 : _xAxisInput.Value;
-        public override float YAxis => _interaction.InDialog ? 0 : _yAxisInput.Value;
-        public override bool JumpDown => _interaction.InDialog ? false : _jumpInput.IsDown;
-        public override bool JumpPressed => _interaction.InDialog ? false : _jumpInput.IsPressed;
-        public override bool JumpReleased => _interaction.InDialog ? false : _jumpInput.IsReleased;
-        public override bool AttackPressed => _interaction.InDialog ? false : _attackInput.IsPressed;
+        public override float XAxis => _interaction?.InDialog == true ? 0 : _xAxisInput.Value;
+        public override float YAxis => _interaction?.InDialog == true ? 0 : _yAxisInput.Value;
+        public override bool JumpDown => _interaction?.InDialog == true ? false : _jumpInput.IsDown;
+        public override bool JumpPressed => _interaction?.InDialog == true ? false : _jumpInput.IsPressed;
+        public override bool JumpReleased => _interaction?.InDialog == true ? false : _jumpInput.IsReleased;
+        public override bool AttackPressed => _interaction?.InDialog == true ? false : _attackInput.IsPressed;
         public override bool InteractPressed => _interactInput.IsPressed;
     }
 }
