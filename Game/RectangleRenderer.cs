@@ -7,7 +7,6 @@ namespace Game
     {
         float _width;
         float _height;
-        Color _color;
         Vector2 _origin;
 
         public override RectangleF Bounds
@@ -26,7 +25,7 @@ namespace Game
 
         public RectangleRenderer(Color color, float width = 32, float height = 32)
         {
-            _color = color;
+            Color = color;
             _width = width;
             _height = height;
 
@@ -35,7 +34,7 @@ namespace Game
 
         public override void Render(Batcher batcher, Camera camera)
         {
-            batcher.DrawRect(Entity.Position - new Vector2(_width / 2, _height / 2), _width, _height, _color);
+            batcher.DrawRect(Entity.Position - new Vector2(_width / 2, _height / 2), _width, _height, Color);
         }
     }
 }
