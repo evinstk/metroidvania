@@ -241,10 +241,10 @@ namespace Game
                 LIGHT_MAP_LAYER));
 
             CreateEntity("light-map")
-                .AddComponent<CenteringComponent>()
                 .AddComponent(new SpriteRenderer(lightRenderer.RenderTexture))
                 .SetMaterial(Material.BlendMultiply())
-                .SetRenderLayer(LIGHT_MAP_LAYER);
+                .SetRenderLayer(LIGHT_MAP_LAYER)
+                .Transform.SetParent(Camera.Transform);
 
             CreateEntity("light")
                 .SetParent(playerEntity.Transform)
