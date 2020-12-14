@@ -5,17 +5,32 @@ namespace Game
 {
     class RectangleRenderer : RenderableComponent
     {
-        public override float Width => _width;
         float _width;
-        public override float Height => _height;
         float _height;
         Color _color;
+        Vector2 _origin;
+
+        public override RectangleF Bounds
+        {
+            get
+            {
+                if (_areBoundsDirty)
+                {
+                    _bounds.CalculateBounds(Entity.Transform.Position, _localOffset, _origin,
+                        Entity.Transform.Scale, Entity.Transform.Rotation, _width, _height);
+                    _areBoundsDirty = false;
+                }
+                return _bounds;
+            }
+        }
 
         public RectangleRenderer(Color color, float width = 32, float height = 32)
         {
             _color = color;
             _width = width;
             _height = height;
+
+            _origin = new Vector2(width / 2, height / 2);
         }
 
         public override void Render(Batcher batcher, Camera camera)
