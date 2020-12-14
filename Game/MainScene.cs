@@ -237,7 +237,8 @@ namespace Game
             Flags.SetFlag(ref lightRenderer.CollidesWithLayers, Layer.Doodad);
 
             AddRenderer(new RenderLayerRenderer(
-                playerEntity.GetComponent<SpriteRenderer>().RenderLayer * 10 - 1, LIGHT_MAP_LAYER));
+                playerEntity.GetComponent<RenderableComponent>().RenderLayer * 10 - 1,
+                LIGHT_MAP_LAYER));
 
             CreateEntity("light-map")
                 .AddComponent<CenteringComponent>()
