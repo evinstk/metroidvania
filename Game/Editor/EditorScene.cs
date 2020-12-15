@@ -1,5 +1,6 @@
 ﻿using Nez;
 using Game.Tiled;
+using Game.Editor;
 using System.IO;
 
 namespace Game
@@ -10,6 +11,9 @@ namespace Game
         {
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
+
+            CreateEntity("controller")
+                .AddComponent<EditorController>();
 
             var world = Json.ReadJson<World>("Content/Maps/world8.world");
 

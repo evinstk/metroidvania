@@ -9,7 +9,7 @@ namespace Game
         {
             if (args.Length > 0 && args[0] == "-e")
             {
-                using (var editor = new Editor())
+                using (var editor = new EditorCore())
                     editor.Run();
             }
             else

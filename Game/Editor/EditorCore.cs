@@ -4,7 +4,7 @@ using Nez.ImGuiTools;
 
 namespace Game
 {
-    class Editor : Core
+    class EditorCore : Core
     {
         protected override void Initialize()
         {
