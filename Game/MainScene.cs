@@ -257,10 +257,10 @@ namespace Game
         {
             if (_transitioning) return null;
             _transitioning = true;
-            var playerHealth = FindEntity("player-hurtbox").GetComponent<HealthComponent>();
+            var playerHealth = FindEntity("player-hurtbox")?.GetComponent<HealthComponent>();
             var opts = new SceneOptions
             {
-                StartingHealth = playerHealth.Health,
+                StartingHealth = playerHealth?.Health ?? -1,
                 UseLighting = _useLighting,
             };
             var nextScene = new MainScene(transitionSrc, spawn, opts);
