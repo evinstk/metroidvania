@@ -52,6 +52,9 @@
 #begin Maps/Map8.tmx
 /copy:Maps/Map8.tmx
 
+#begin Maps/Map8-2.tmx
+/copy:Maps/Map8-2.tmx
+
 #begin Maps/pillar.tsx
 /copy:Maps/pillar.tsx
 
