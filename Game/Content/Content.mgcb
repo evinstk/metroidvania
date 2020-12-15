@@ -79,6 +79,9 @@
 #begin Maps/TransitionMap.tmx
 /copy:Maps/TransitionMap.tmx
 
+#begin Maps/world8.world
+/copy:Maps/world8.world
+
 #begin Scripts/common.lua
 /copy:Scripts/common.lua
 

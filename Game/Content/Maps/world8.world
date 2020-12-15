@@ -1,5 +1,19 @@
 {
     "maps": [
+        {
+            "fileName": "Map8.tmx",
+            "height": 272,
+            "width": 480,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "fileName": "Map8-2.tmx",
+            "height": 272,
+            "width": 480,
+            "x": -480,
+            "y": 0
+        }
     ],
     "onlyShowAdjacentMaps": false,
     "type": "world"
