@@ -12,6 +12,7 @@ namespace Game
 
             Window.AllowUserResizing = true;
             DebugConsole.RenderScale = 2f;
+            ExitOnEscapeKeypress = false;
 
             var imGuiManager = new ImGuiManager();
             RegisterGlobalManager(imGuiManager);
