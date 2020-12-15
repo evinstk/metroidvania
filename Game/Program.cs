@@ -5,10 +5,18 @@ namespace Game
     public static class Program
     {
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            using (var game = new Game())
-                game.Run();
+            if (args.Length > 0 && args[0] == "-e")
+            {
+                using (var editor = new Editor())
+                    editor.Run();
+            }
+            else
+            {
+                using (var game = new Game())
+                    game.Run();
+            }
         }
     }
 }
