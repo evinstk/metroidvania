@@ -12,6 +12,8 @@ namespace Game
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
 
+            Time.TimeScale = 0;
+
             CreateEntity("controller")
                 .AddComponent<EditorController>();
 
