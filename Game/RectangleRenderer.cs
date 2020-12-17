@@ -5,8 +5,8 @@ namespace Game
 {
     class RectangleRenderer : RenderableComponent
     {
-        float _width;
-        float _height;
+        float _width = 32;
+        float _height = 32;
         Vector2 _origin;
 
         public override RectangleF Bounds
@@ -21,6 +21,11 @@ namespace Game
                 }
                 return _bounds;
             }
+        }
+
+        public RectangleRenderer()
+        {
+            _origin = new Vector2(_width / 2, _height / 2);
         }
 
         public RectangleRenderer(Color color, float width = 32, float height = 32)
