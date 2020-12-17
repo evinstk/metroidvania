@@ -14,6 +14,9 @@ namespace Game
 
             Time.TimeScale = 0;
 
+            CreateEntity("windows")
+                .AddComponent<PrefabWindow>();
+
             CreateEntity("controller")
                 .AddComponent<EditorController>();
 
