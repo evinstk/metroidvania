@@ -46,6 +46,9 @@
 #begin Maps/distantPillar.tsx
 /copy:Maps/distantPillar.tsx
 
+#begin Maps/doodad8.tsx
+/copy:Maps/doodad8.tsx
+
 #begin Maps/environment.tsx
 /copy:Maps/environment.tsx
 
@@ -126,6 +129,9 @@
 
 #begin Textures/distantPillar.png
 /copy:Textures/distantPillar.png
+
+#begin Textures/doodad8.png
+/copy:Textures/doodad8.png
 
 #begin Textures/environment.png
 /copy:Textures/environment.png
