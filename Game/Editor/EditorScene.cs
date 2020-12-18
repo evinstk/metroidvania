@@ -2,6 +2,7 @@
 using Game.Tiled;
 using Game.Editor;
 using System.IO;
+using Microsoft.Xna.Framework;
 
 namespace Game
 {
@@ -13,6 +14,7 @@ namespace Game
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
 
             Time.TimeScale = 0;
+            ClearColor = new Color(0xff371f0f);
 
             CreateEntity("windows")
                 .AddComponent<PrefabWindow>();
