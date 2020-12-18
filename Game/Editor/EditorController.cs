@@ -10,6 +10,11 @@ namespace Game.Editor
             {
                 Entity.Scene.Camera.Position -= Input.ScaledMousePositionDelta;
             }
+            if (Input.MouseWheelDelta !=0)
+            {
+                var value = Input.MouseWheelDelta * .005f;
+                Entity.Scene.Camera.RawZoom += value;
+            }
         }
     }
 }
