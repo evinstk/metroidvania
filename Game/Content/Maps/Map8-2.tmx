@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="60" height="68" tilewidth="8" tileheight="8" infinite="0" nextlayerid="4" nextobjectid="9">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="60" height="68" tilewidth="8" tileheight="8" infinite="0" nextlayerid="8" nextobjectid="11">
  <tileset firstgid="1" source="terrain8.tsx"/>
  <tileset firstgid="1025" source="doodad8.tsx"/>
+ <imagelayer id="6" name="farMountains">
+  <image source="../Textures/farMountain.png" width="720" height="270"/>
+  <properties>
+   <property name="scrollX" type="float" value="0.1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="7" name="farTrees">
+  <image source="../Textures/farTrees.png" width="480" height="270"/>
+  <properties>
+   <property name="scrollX" type="float" value="0.3"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="5" name="nearMountains">
+  <image source="../Textures/nearMountain.png" width="480" height="270"/>
+  <properties>
+   <property name="scrollX" type="float" value="0.5"/>
+  </properties>
+ </imagelayer>
  <layer id="1" name="wall" width="60" height="68">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

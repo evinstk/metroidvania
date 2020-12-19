@@ -136,6 +136,12 @@
 #begin Textures/environment.png
 /copy:Textures/environment.png
 
+#begin Textures/farMountain.png
+/copy:Textures/farMountain.png
+
+#begin Textures/farTrees.png
+/copy:Textures/farTrees.png
+
 #begin Textures/hero.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -147,6 +153,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/hero.png
+
+#begin Textures/nearMountain.png
+/copy:Textures/nearMountain.png
 
 #begin Textures/pillar.png
 /copy:Textures/pillar.png
