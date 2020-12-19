@@ -104,6 +104,25 @@ namespace Game
                             }
                         }
                     }
+
+                    if (map.Layers[i] is TmxImageLayer imageLayer)
+                    {
+                        string scrollX = null; string scrollY = null;
+                        imageLayer.Properties?.TryGetValue("scrollX", out scrollX);
+                        scrollX = scrollX ?? "1";
+                        imageLayer.Properties?.TryGetValue("scrollY", out scrollY);
+                        scrollY = scrollY ?? "0";
+
+                        var imageEntity = CreateEntity(imageLayer.Name);
+                        imageEntity.SetParent(Camera.Transform);
+                        imageEntity
+                            .AddComponent(new TiledSpriteRenderer(imageLayer.Image.Texture))
+                            .SetRenderLayer(renderLayer)
+                            .AddComponent<TiledParallaxComponent>()
+                            .SetParallaxScale(new Vector2(
+                                float.Parse(scrollX),
+                                float.Parse(scrollY)));
+                    }
                 }
             }
         }
