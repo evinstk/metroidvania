@@ -17,7 +17,7 @@ namespace Game
         public void Update()
         {
             var cameraPos = Entity.Scene.Camera.Position;
-            Entity.Position = _basePosition + new Vector2(_basePosition.X - cameraPos.X, 0) * ParallaxScale;
+            Entity.Position = _basePosition + new Vector2(_basePosition.X - cameraPos.X, _basePosition.Y - cameraPos.Y) * ParallaxScale;
         }
 
         public ParallaxComponent SetParallaxScale(Vector2 scale)

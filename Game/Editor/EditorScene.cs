@@ -22,7 +22,6 @@ namespace Game
 
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
-            //Screen.ApplyChanges();
 
             Time.TimeScale = 0;
             ClearColor = new Color(0xff371f0f);
@@ -44,10 +43,12 @@ namespace Game
                 mapEntity.SetPosition(m.X, m.Y);
                 for (var i = 0; i < map.Layers.Count; ++i)
                 {
+                    var renderLayer = i - terrainI;
+
                     // set up render layer renderer
-                    if (!layerRenderers.ContainsKey(i - terrainI))
+                    if (!layerRenderers.ContainsKey(renderLayer))
                     {
-                        layerRenderers[i - terrainI] = AddRenderer(new RenderLayerRenderer((i - terrainI) * 10, i - terrainI));
+                        layerRenderers[renderLayer] = AddRenderer(new RenderLayerRenderer(renderLayer * 10, renderLayer));
                     }
 
                     // set up tiled map renderer for tile layer
@@ -55,7 +56,7 @@ namespace Game
                     {
                         var mapRenderer = mapEntity.AddComponent(new TiledMapRenderer(map));
                         mapRenderer.SetLayerToRender(tmxLayer.Name);
-                        mapRenderer.SetRenderLayer(i - terrainI);
+                        mapRenderer.SetRenderLayer(renderLayer);
                         if (tmxLayer.Name == "terrain")
                         {
                             Flags.SetFlagExclusive(ref mapRenderer.PhysicsLayer, Layer.Terrain);
@@ -65,27 +66,41 @@ namespace Game
 
                     if (map.Layers[i] is TmxObjectGroup group)
                     {
+                        string parallaxX = null;
+                        group.Properties?.TryGetValue("parallaxX", out parallaxX);
+                        string parallaxY = null;
+                        group.Properties?.TryGetValue("parallaxY", out parallaxY);
+
                         foreach (var obj in group.Objects)
                         {
                             var entity = CreateEntity(obj.Name != string.Empty ? obj.Name : $"object-{obj.Id}");
                             entity.SetPosition(obj.X + m.X, obj.Y + m.Y);
                             if (obj.Tile != null)
                             {
-                                entity.Position -= new Vector2(0, obj.Tile.Tileset.TileHeight);
+                                entity.Position += new Vector2(obj.Tile.Tileset.TileWidth / 2, -obj.Tile.Tileset.TileHeight / 2);
                                 var sourceRect = obj.Tile.Tileset.TileRegions[obj.Tile.Gid];
                                 var sprite = new Sprite(obj.Tile.Tileset.Image.Texture, sourceRect);
-                                sprite.Origin = new Vector2(0, 0);
-                                entity.AddComponent(new SpriteRenderer(sprite));
+                                entity.AddComponent(new SpriteRenderer(sprite))
+                                    .SetRenderLayer(renderLayer);
+
+                                var light = obj.Tile?.TilesetTile?.ObjectGroups?.SelectMany(o => o.Objects).FirstOrDefault(o => o.Type == "light");
+                                if (light != null)
+                                {
+                                    var lightEntity = CreateEntity($"object-{obj.Id}-light");
+                                    lightEntity.SetParent(entity.Transform);
+                                    lightEntity.SetLocalPosition(new Vector2(light.X, light.Y) - new Vector2(obj.Tile.Tileset.TileWidth / 2, obj.Tile.Tileset.TileHeight / 2));
+                                    lightEntity
+                                        .AddComponent(new StencilLight(128, Color.AntiqueWhite))
+                                        .SetRenderLayer(LIGHT_LAYER);
+                                }
                             }
-                            var light = obj.Tile?.TilesetTile?.ObjectGroups?.SelectMany(o => o.Objects).FirstOrDefault(o => o.Type == "light");
-                            if (light != null)
+                            if (parallaxX != null || parallaxY != null)
                             {
-                                var lightEntity = CreateEntity($"object-{obj.Id}-light");
-                                lightEntity.SetParent(entity.Transform);
-                                lightEntity.SetLocalPosition(new Vector2(light.X, light.Y));
-                                lightEntity
-                                    .AddComponent(new StencilLight(128, Color.AntiqueWhite))
-                                    .SetRenderLayer(LIGHT_LAYER);
+                                entity
+                                    .AddComponent<ParallaxComponent>()
+                                    .SetParallaxScale(new Vector2(
+                                        parallaxX != null ? float.Parse(parallaxX) : 0,
+                                        parallaxY != null ? float.Parse(parallaxY) : 0));
                             }
                         }
                     }
