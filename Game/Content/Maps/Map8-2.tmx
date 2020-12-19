@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="60" height="68" tilewidth="8" tileheight="8" infinite="0" nextlayerid="4" nextobjectid="6">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="60" height="68" tilewidth="8" tileheight="8" infinite="0" nextlayerid="4" nextobjectid="9">
  <tileset firstgid="1" source="terrain8.tsx"/>
  <tileset firstgid="1025" source="doodad8.tsx"/>
  <layer id="1" name="wall" width="60" height="68">
@@ -86,6 +86,8 @@
   </object>
   <object id="4" gid="1025" x="48" y="184" width="24" height="24"/>
   <object id="5" gid="1026" x="384" y="184" width="24" height="24"/>
+  <object id="7" gid="1025" x="48" y="288" width="24" height="24"/>
+  <object id="8" gid="1026" x="392" y="288" width="24" height="24"/>
  </objectgroup>
  <layer id="3" name="terrain" width="60" height="68">
   <data encoding="csv">
