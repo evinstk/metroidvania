@@ -62,6 +62,33 @@ namespace Game
                             mapRenderer.CollisionLayer = tmxLayer;
                         }
                     }
+
+                    if (map.Layers[i] is TmxObjectGroup group)
+                    {
+                        foreach (var obj in group.Objects)
+                        {
+                            var entity = CreateEntity(obj.Name != string.Empty ? obj.Name : $"object-{obj.Id}");
+                            entity.SetPosition(obj.X + m.X, obj.Y + m.Y);
+                            if (obj.Tile != null)
+                            {
+                                entity.Position -= new Vector2(0, obj.Tile.Tileset.TileHeight);
+                                var sourceRect = obj.Tile.Tileset.TileRegions[obj.Tile.Gid];
+                                var sprite = new Sprite(obj.Tile.Tileset.Image.Texture, sourceRect);
+                                sprite.Origin = new Vector2(0, 0);
+                                entity.AddComponent(new SpriteRenderer(sprite));
+                            }
+                            var light = obj.Tile?.TilesetTile?.ObjectGroups?.SelectMany(o => o.Objects).FirstOrDefault(o => o.Type == "light");
+                            if (light != null)
+                            {
+                                var lightEntity = CreateEntity($"object-{obj.Id}-light");
+                                lightEntity.SetParent(entity.Transform);
+                                lightEntity.SetLocalPosition(new Vector2(light.X, light.Y));
+                                lightEntity
+                                    .AddComponent(new StencilLight(128, Color.AntiqueWhite))
+                                    .SetRenderLayer(LIGHT_LAYER);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -83,10 +110,10 @@ namespace Game
                 .SetRenderLayer(LIGHT_MAP_LAYER)
                 .Transform.SetParent(Camera.Transform);
 
-            CreateEntity("light")
-                .SetParent(Camera.Transform)
-                .AddComponent(new StencilLight(64, Color.AntiqueWhite))
-                .SetRenderLayer(LIGHT_LAYER);
+            //CreateEntity("camera-light")
+            //    .SetParent(Camera.Transform)
+            //    .AddComponent(new StencilLight(64, Color.AntiqueWhite))
+            //    .SetRenderLayer(LIGHT_LAYER);
         }
     }
 }
