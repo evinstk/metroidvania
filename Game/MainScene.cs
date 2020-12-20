@@ -25,8 +25,8 @@ namespace Game
         int _startingHealth;
         bool _useLighting;
 
-        public const int ResWidth = 320;
-        public const int ResHeight = 180;
+        public const int ResWidth = 480;
+        public const int ResHeight = 270;
         public const int ScreenWidth = 1920;
         public const int ScreenHeight = 1080;
 

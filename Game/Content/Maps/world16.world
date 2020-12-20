@@ -1,0 +1,13 @@
+{
+    "maps": [
+        {
+            "fileName": "Map16-1.tmx",
+            "height": 544,
+            "width": 960,
+            "x": 0,
+            "y": 0
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

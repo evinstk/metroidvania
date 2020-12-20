@@ -52,6 +52,9 @@
 #begin Maps/environment.tsx
 /copy:Maps/environment.tsx
 
+#begin Maps/Map16-1.tmx
+/copy:Maps/Map16-1.tmx
+
 #begin Maps/Map8.tmx
 /copy:Maps/Map8.tmx
 
@@ -67,6 +70,9 @@
 #begin Maps/Start.tmx
 /copy:Maps/Start.tmx
 
+#begin Maps/terrain16.tsx
+/copy:Maps/terrain16.tsx
+
 #begin Maps/terrain8.tsx
 /copy:Maps/terrain8.tsx
 
@@ -81,6 +87,9 @@
 
 #begin Maps/TransitionMap.tmx
 /copy:Maps/TransitionMap.tmx
+
+#begin Maps/world16.world
+/copy:Maps/world16.world
 
 #begin Maps/world8.world
 /copy:Maps/world8.world
@@ -159,6 +168,9 @@
 
 #begin Textures/pillar.png
 /copy:Textures/pillar.png
+
+#begin Textures/terrain16.png
+/copy:Textures/terrain16.png
 
 #begin Textures/terrain8.png
 /copy:Textures/terrain8.png
