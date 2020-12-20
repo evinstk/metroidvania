@@ -4,11 +4,15 @@ namespace Game.Editor
 {
     class EditorController : Component, IUpdatable
     {
+        SubpixelVector2 _subpixelV2;
+
         public void Update()
         {
             if (Input.LeftMouseButtonDown)
             {
-                Entity.Scene.Camera.Position -= Input.ScaledMousePositionDelta;
+                var delta = Input.ScaledMousePositionDelta;
+                _subpixelV2.Update(ref delta);
+                Entity.Scene.Camera.Position -= delta;
             }
             if (Input.MouseWheelDelta !=0)
             {
