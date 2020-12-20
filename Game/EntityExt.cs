@@ -135,13 +135,10 @@ namespace Game
                 var frames = new List<Frame>();
                 foreach (var frame in group)
                 {
-                    var sprite = new Sprite(texture, new Rectangle
-                    {
-                        X = frame.Bounds.X,
-                        Y = frame.Bounds.Y,
-                        Width = frame.Bounds.W,
-                        Height = frame.Bounds.H,
-                    }, new Vector2(frame.Pivot.X * frame.Bounds.W, frame.Pivot.Y * frame.Bounds.H));
+                    var sprite = new Sprite(
+                        texture,
+                        frame.Bounds,
+                        new Vector2(frame.Pivot.X * frame.Bounds.W, frame.Pivot.Y * frame.Bounds.H));
                     frames.Add(new Frame(renderer, null, sprite, new FrameOptions()));
                 }
                 animator.AddAnimation(group.Key, new Animation<Frame>(frames.ToArray(), 12));

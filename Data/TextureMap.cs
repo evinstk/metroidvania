@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -30,12 +31,20 @@ namespace Data.TextureMap
         public Vector2 Pivot;
     }
 
-    public class FrameBounds
+    public struct FrameBounds
     {
         public int X;
         public int Y;
         public int W;
         public int H;
+
+        public static implicit operator Rectangle(FrameBounds bounds) => new Rectangle
+        {
+            X = bounds.X,
+            Y = bounds.Y,
+            Width = bounds.W,
+            Height = bounds.H,
+        };
     }
 
     public class Meta
