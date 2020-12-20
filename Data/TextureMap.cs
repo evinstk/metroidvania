@@ -28,6 +28,8 @@ namespace Data.TextureMap
         public FrameBounds Bounds;
         public bool Rotated;
         public bool Trimmed;
+        public FrameBounds SpriteSourceSize;
+        public SourceSize SourceSize;
         public Vector2 Pivot;
     }
 
@@ -56,5 +58,11 @@ namespace Data.TextureMap
     {
         public float X;
         public float Y;
+    }
+
+    public class SourceSize
+    {
+        public int W;
+        public int H;
     }
 }

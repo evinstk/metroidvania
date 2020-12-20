@@ -138,7 +138,7 @@ namespace Game
                     var sprite = new Sprite(
                         texture,
                         frame.Bounds,
-                        new Vector2(frame.Pivot.X * frame.Bounds.W, frame.Pivot.Y * frame.Bounds.H));
+                        new Vector2(frame.Pivot.X * frame.SourceSize.W - frame.SpriteSourceSize.X, frame.Pivot.Y * frame.SourceSize.H - frame.SpriteSourceSize.Y));
                     frames.Add(new Frame(renderer, null, sprite, new FrameOptions()));
                 }
                 animator.AddAnimation(group.Key, new Animation<Frame>(frames.ToArray(), 12));
