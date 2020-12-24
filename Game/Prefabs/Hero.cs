@@ -1,10 +1,8 @@
 ﻿using Game.Editor;
-using Microsoft.Xna.Framework.Graphics;
+using Game.MobState;
+using Game.Movement;
 using Nez;
 using Nez.Sprites;
-using Nez.Textures;
-using System.IO;
-using System.Linq;
 
 namespace Game.Prefabs
 {
@@ -26,9 +24,22 @@ namespace Game.Prefabs
             //entity.AddComponent(new SpriteRenderer(sprite));
             //var animator = entity.AddComponent(new SpriteAnimator(idleAnimation.Sprites[0]));
 
-            entity.AddComponent<SpriteRenderer>();
+            //entity
+            //    .AddComponent<BoxCollider>()
+            //    .AddComponent<CollisionComponent>()
+            //    .AddComponent<PlayerController>();
+
+            entity.AddComponent<SpriteRenderer>().SetRenderLayer(-1);
             var animator = entity.AddAnimator(textureMap);
-            animator.Play("heroIdle");
+            animator.Play("default");
+
+            entity.AddComponent(new BoxCollider(12, 32));
+            entity.AddComponent<PlayerController>();
+            entity.AddComponent<PlayerMovement>();
+            var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
+            followCamera.FollowLerp = 1;
+
+            //entity.AddComponent<MobStateMachine>();
 
             return entity;
         }
