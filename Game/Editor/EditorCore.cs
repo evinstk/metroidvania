@@ -2,7 +2,7 @@
 using Nez.Console;
 using Nez.ImGuiTools;
 
-namespace Game
+namespace Game.Editor
 {
     class EditorCore : Core
     {

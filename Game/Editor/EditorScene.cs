@@ -1,6 +1,5 @@
 ﻿using Nez;
 using Game.Tiled;
-using Game.Editor;
 using System.IO;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -9,7 +8,7 @@ using Nez.Textures;
 using Nez.Sprites;
 using System.Linq;
 
-namespace Game
+namespace Game.Editor
 {
     class EditorScene : Scene
     {
@@ -18,8 +17,6 @@ namespace Game
 
         public override void Initialize()
         {
-            base.Initialize();
-
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
 
