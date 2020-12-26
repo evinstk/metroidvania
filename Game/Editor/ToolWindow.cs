@@ -69,10 +69,17 @@ namespace Game.Editor
             var roomData = _roomWindow.RoomData;
             var textureFile = _tilesetWindow.TextureFile;
 
-            if (Input.LeftMouseButtonDown && roomData != null && textureFile != null)
+            if (Input.LeftMouseButtonDown
+                && roomData != null
+                && textureFile != null
+                && Core.Scene.Camera.Bounds.Contains(Input.MousePosition))
             {
                 var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
                 var layerPoint = (worldPoint / roomData.TileSize.ToVector2()).ToPoint();
+
+                if (layerPoint.X < 0 || layerPoint.X >= roomData.Width || layerPoint.Y < 0 || layerPoint.Y >= roomData.Height)
+                    return;
+
                 var tileSelection = _tilesetWindow.TileSelection;
 
                 // TODO: select layer through window
