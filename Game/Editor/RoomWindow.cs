@@ -12,6 +12,7 @@ namespace Game.Editor
     {
         static string RoomFolder = "../../../Content/Rooms";
 
+        public RoomData RoomData => _roomData;
         RoomData _roomData;
         string _roomFile;
 

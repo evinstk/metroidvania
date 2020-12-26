@@ -14,12 +14,16 @@ namespace Game.Editor
             ClearColor = new Color(0xff371f0f);
 
             CreateWindows();
+
+            CreateEntity("map-renderer").AddComponent<MapRenderer>();
         }
 
         void CreateWindows()
         {
             CreateEntity("windows")
-                .AddComponent<RoomWindow>();
+                .AddComponent<RoomWindow>()
+                .AddComponent<ToolWindow>()
+                .AddComponent<TilesetWindow>();
 
             //CreateEntity("room-data")
             //    .AddComponent<RoomDataComponent>();

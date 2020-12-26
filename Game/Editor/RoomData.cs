@@ -1,6 +1,8 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Nez;
 using Nez.Persistence;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Game.Editor
@@ -9,8 +11,17 @@ namespace Game.Editor
     class RoomData
     {
         public string Name = "";
-        public int Width = 1;
-        public int Height = 1;
+
+        public int Width = 128;
+        public int Height = 128;
+        public int TileWidth = 16;
+        public int TileHeight = 16;
+        public Point TileSize => new Point(TileWidth, TileHeight);
+
+        public List<RoomLayer> Layers = new List<RoomLayer>
+        {
+            new RoomLayer(),
+        };
 
         public void SaveToFile(string filename)
         {
@@ -36,6 +47,18 @@ namespace Game.Editor
             var roomData = Json.FromJson<RoomData>(roomDataStr);
             return roomData;
         }
+    }
+
+    class RoomLayer
+    {
+        public List<LayerTile> Tiles = new List<LayerTile>();
+    }
+
+    class LayerTile
+    {
+        public string Tileset;
+        public Point TilesetLocation;
+        public Point LayerLocation;
     }
 
     //class RoomDataComponent : Component
