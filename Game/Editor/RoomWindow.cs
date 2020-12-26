@@ -22,6 +22,11 @@ namespace Game.Editor
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
         }
 
+        public override void OnRemovedFromEntity()
+        {
+            Core.GetGlobalManager<ImGuiManager>().UnregisterDrawCommand(Draw);
+        }
+
         void Draw()
         {
             ImGui.SetNextWindowPos(new Num.Vector2(25, 500), ImGuiCond.FirstUseEver);
