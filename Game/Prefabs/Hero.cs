@@ -13,7 +13,7 @@ namespace Game.Prefabs
         {
             var entity = new Entity(name);
 
-            var textureMap = Json.ReadJson<Data.TextureMap.TextureMap>("Content/Textures/hero32.json");
+            var textureMap = IO.Json.ReadJson<Data.TextureMap.TextureMap>("Content/Textures/hero32.json");
             //var texture = Core.Scene.Content.Load<Texture2D>(
             //    "Textures/" + Path.GetFileNameWithoutExtension(textureMap.Meta.Image));
             //var groups = textureMap.GetGroups();

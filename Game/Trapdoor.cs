@@ -12,7 +12,7 @@ namespace Game
             var trapdoor = CreateEntity("trapdoor");
             trapdoor.SetPosition(tmxObject.X, tmxObject.Y);
 
-            var trapdoorMap = Json.ReadJson<Data.TextureMap.TextureMap>("Content/Textures/trapdoor.json");
+            var trapdoorMap = IO.Json.ReadJson<Data.TextureMap.TextureMap>("Content/Textures/trapdoor.json");
 
             var trapdoorRenderer = trapdoor.AddComponent<SpriteRenderer>();
             trapdoorRenderer.SetRenderLayer(layerIndex);

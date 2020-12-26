@@ -29,7 +29,7 @@ namespace Game.Editor
             CreateEntity("controller")
                 .AddComponent<EditorController>();
 
-            var world = Json.ReadJson<World>("Content/Maps/world16.world");
+            var world = IO.Json.ReadJson<World>("Content/Maps/world16.world");
 
             var layerRenderers = new Dictionary<int, RenderLayerRenderer>();
             foreach (var m in world.Maps)
