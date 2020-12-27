@@ -4,32 +4,40 @@ using Nez;
 
 namespace Game.Editor
 {
-    class RoomScene : Scene
+    class RoomEditorScene : Scene
     {
+        RoomMetadata _roomMetadata;
+
+        public RoomEditorScene() { }
+
+        public RoomEditorScene(RoomMetadata roomMetadata)
+        {
+            _roomMetadata = roomMetadata;
+        }
+
         public override void Initialize()
         {
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
-            Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
+            //Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
 
             //Time.TimeScale = 0;
             ClearColor = new Color(0xff371f0f);
+        }
 
+        public override void OnStart()
+        {
             CreateWindows();
-
             CreateEntity("map-renderer").AddComponent<MapRenderer>();
         }
 
         void CreateWindows()
         {
             CreateEntity("windows")
-                .AddComponent<RoomWindow>()
+                .AddComponent(new RoomWindow(_roomMetadata))
                 .AddComponent<ToolWindow>()
                 .AddComponent<TilesetWindow>()
                 .AddComponent<LayerWindow>()
                 .AddComponent<TransportWindow>();
-
-            //CreateEntity("room-data")
-            //    .AddComponent<RoomDataComponent>();
         }
     }
 }

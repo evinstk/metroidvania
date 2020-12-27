@@ -14,9 +14,16 @@ namespace Game.Editor
 
         public RoomData RoomData => _roomData;
         RoomData _roomData;
+        public string Filename => _roomFile;
         string _roomFile;
 
         List<AbstractTypeInspector> _inspectors = new List<AbstractTypeInspector>();
+
+        public RoomWindow(RoomMetadata roomMetadata)
+        {
+            _roomData = roomMetadata?.RoomData;
+            _roomFile = roomMetadata?.Filename;
+        }
 
         public override void OnAddedToEntity()
         {

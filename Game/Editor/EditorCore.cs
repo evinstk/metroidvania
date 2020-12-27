@@ -17,7 +17,7 @@ namespace Game.Editor
             var imGuiManager = new ImGuiManager();
             RegisterGlobalManager(imGuiManager);
 
-            Scene = new RoomScene();
+            Scene = new RoomEditorScene();
         }
     }
 }

@@ -7,6 +7,12 @@ using System.IO;
 
 namespace Game.Editor
 {
+    class RoomMetadata
+    {
+        public RoomData RoomData;
+        public string Filename;
+    }
+
     [Serializable]
     class RoomData
     {
