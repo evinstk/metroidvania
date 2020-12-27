@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game.Editor.Tool;
+using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Game.Editor
@@ -10,7 +11,7 @@ namespace Game.Editor
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
 
-            Time.TimeScale = 0;
+            //Time.TimeScale = 0;
             ClearColor = new Color(0xff371f0f);
 
             CreateWindows();
@@ -23,7 +24,9 @@ namespace Game.Editor
             CreateEntity("windows")
                 .AddComponent<RoomWindow>()
                 .AddComponent<ToolWindow>()
-                .AddComponent<TilesetWindow>();
+                .AddComponent<TilesetWindow>()
+                .AddComponent<LayerWindow>()
+                .AddComponent<TransportWindow>();
 
             //CreateEntity("room-data")
             //    .AddComponent<RoomDataComponent>();

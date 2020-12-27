@@ -146,5 +146,12 @@ namespace Game
 
             return entity.AddComponent(animator);
         }
+
+        public static T GetComponentStrict<T>(this Entity entity) where T : Component
+        {
+            var component = entity.GetComponent<T>();
+            Insist.IsNotNull(component);
+            return component;
+        }
     }
 }

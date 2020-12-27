@@ -16,9 +16,11 @@ namespace Game.Editor.Tool
             public void Update()
             {
                 var roomData = _window._roomWindow.RoomData;
+                var layer = _window._layerWindow.SelectedLayer;
 
                 if (Input.LeftMouseButtonDown
                     && roomData != null
+                    && layer != null
                     && Core.Scene.Camera.Bounds.Contains(Input.MousePosition))
                 {
                     var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
@@ -26,9 +28,6 @@ namespace Game.Editor.Tool
 
                     if (layerPoint.X < 0 || layerPoint.X >= roomData.Width || layerPoint.Y < 0 || layerPoint.Y >= roomData.Height)
                         return;
-
-                    // TODO: select layer through window
-                    var layer = roomData.Layers[0];
 
                     layer.Tiles.RemoveAll(t => t.LayerLocation == layerPoint);
                 }

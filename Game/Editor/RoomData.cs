@@ -51,6 +51,7 @@ namespace Game.Editor
 
     class RoomLayer
     {
+        public string Name = "New Layer";
         public List<LayerTile> Tiles = new List<LayerTile>();
     }
 
@@ -60,12 +61,4 @@ namespace Game.Editor
         public Point TilesetLocation;
         public Point LayerLocation;
     }
-
-    //class RoomDataComponent : Component
-    //{
-    //    public RoomData RoomData = new RoomData
-    //    {
-    //        Name = "",
-    //    };
-    //}
 }

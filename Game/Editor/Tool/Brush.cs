@@ -18,10 +18,12 @@ namespace Game.Editor.Tool
             {
                 var roomData = _window._roomWindow.RoomData;
                 var textureFile = _window._tilesetWindow.TextureFile;
+                var layer = _window._layerWindow.SelectedLayer;
 
                 if (Input.LeftMouseButtonDown
                     && roomData != null
                     && textureFile != null
+                    && layer != null
                     && Core.Scene.Camera.Bounds.Contains(Input.MousePosition))
                 {
                     var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
@@ -31,9 +33,6 @@ namespace Game.Editor.Tool
                         return;
 
                     var tileSelection = _window._tilesetWindow.TileSelection;
-
-                    // TODO: select layer through window
-                    var layer = roomData.Layers[0];
 
                     LayerTile existingTile = null;
                     foreach (var tile in layer.Tiles)

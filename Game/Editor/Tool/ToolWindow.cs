@@ -18,6 +18,7 @@ namespace Game.Editor.Tool
 
         RoomWindow _roomWindow;
         TilesetWindow _tilesetWindow;
+        LayerWindow _layerWindow;
 
         Brush _brush;
         Erase _erase;
@@ -26,11 +27,9 @@ namespace Game.Editor.Tool
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
 
-            _roomWindow = Entity.GetComponent<RoomWindow>();
-            Insist.IsNotNull(_roomWindow);
-
-            _tilesetWindow = Entity.GetComponent<TilesetWindow>();
-            Insist.IsNotNull(_tilesetWindow);
+            _roomWindow = Entity.GetComponentStrict<RoomWindow>();
+            _tilesetWindow = Entity.GetComponentStrict<TilesetWindow>();
+            _layerWindow = Entity.GetComponentStrict<LayerWindow>();
 
             _brush = new Brush(this);
             _erase = new Erase(this);
@@ -44,18 +43,14 @@ namespace Game.Editor.Tool
         void Draw()
         {
             ImGui.SetNextWindowPos(new Num.Vector2(25, 25), ImGuiCond.FirstUseEver);
-            ImGui.SetNextWindowSize(new Num.Vector2(300, 60), ImGuiCond.FirstUseEver);
+            ImGui.SetNextWindowSize(new Num.Vector2(150, 100), ImGuiCond.FirstUseEver);
 
             if (ImGui.Begin("Tools"))
             {
-                if (ImGui.BeginCombo("Tool", CurrentTool.ToString()))
+                foreach (Tools i in Enum.GetValues(typeof(Tools)))
                 {
-                    foreach (int i in Enum.GetValues(typeof(Tools)))
-                    {
-                        if (ImGui.Selectable(((Tools)i).ToString()))
-                            CurrentTool = (Tools)i;
-                    }
-                    ImGui.EndCombo();
+                    if (ImGui.RadioButton(i.ToString(), CurrentTool == i))
+                        CurrentTool = i;
                 }
                 ImGui.End();
             }
