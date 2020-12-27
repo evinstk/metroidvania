@@ -10,6 +10,7 @@ namespace Game.Editor
     enum Tools
     {
         Brush,
+        Erase,
         Select,
     }
 
@@ -61,6 +62,7 @@ namespace Game.Editor
             switch (CurrentTool)
             {
                 case Tools.Brush: UpdateBrush(); return;
+                case Tools.Erase: UpdateErase(); return;
             }
         }
 
@@ -101,6 +103,27 @@ namespace Game.Editor
                     TilesetLocation = tileSelection,
                     LayerLocation = layerPoint,
                 });
+            }
+        }
+
+        void UpdateErase()
+        {
+            var roomData = _roomWindow.RoomData;
+
+            if (Input.LeftMouseButtonDown
+                && roomData != null
+                && Core.Scene.Camera.Bounds.Contains(Input.MousePosition))
+            {
+                var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
+                var layerPoint = (worldPoint / roomData.TileSize.ToVector2()).ToPoint();
+
+                if (layerPoint.X < 0 || layerPoint.X >= roomData.Width || layerPoint.Y < 0 || layerPoint.Y >= roomData.Height)
+                    return;
+
+                // TODO: select layer through window
+                var layer = roomData.Layers[0];
+
+                layer.Tiles.RemoveAll(t => t.LayerLocation == layerPoint);
             }
         }
     }
