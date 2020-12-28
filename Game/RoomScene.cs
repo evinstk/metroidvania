@@ -1,5 +1,6 @@
 ﻿using Game.Editor;
 using ImGuiNET;
+using Microsoft.Xna.Framework;
 using Nez;
 using Nez.ImGuiTools;
 
@@ -18,6 +19,7 @@ namespace Game
         public override void Initialize()
         {
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
+            ClearColor = new Color(0xff371f0f);
         }
 
         public override void OnStart()

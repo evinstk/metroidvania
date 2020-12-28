@@ -3,7 +3,7 @@ using Nez;
 
 namespace Game.Editor
 {
-    class MapRenderer : RenderableComponent
+    class MapEditorRenderer : RenderableComponent
     {
         public override float Width => 1;
         public override float Height => 1;

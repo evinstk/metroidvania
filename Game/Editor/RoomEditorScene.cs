@@ -27,7 +27,7 @@ namespace Game.Editor
         public override void OnStart()
         {
             CreateWindows();
-            CreateEntity("map-renderer").AddComponent<MapRenderer>();
+            CreateEntity("map-renderer").AddComponent<MapEditorRenderer>();
         }
 
         void CreateWindows()
