@@ -41,6 +41,11 @@ namespace Game
                 var layerEntity = CreateEntity(layer.Name);
                 layerEntity.Transform.SetParent(mapEntity.Transform);
                 layerEntity.AddComponent(new MapRenderer(roomData, i)).SetRenderLayer((count - 1 - i) * 10);
+
+                if (layer.HasColliders)
+                {
+                    layerEntity.AddComponent(new MapCollider(roomData, i));
+                }
             }
         }
     }

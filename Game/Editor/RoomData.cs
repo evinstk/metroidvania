@@ -26,7 +26,8 @@ namespace Game.Editor
 
         public List<RoomLayer> Layers = new List<RoomLayer>
         {
-            new RoomLayer(),
+            new RoomLayer { Name = "terrain", HasColliders = true },
+            new RoomLayer { Name = "doodad" },
         };
 
         public void SaveToFile(string filename)
@@ -59,6 +60,7 @@ namespace Game.Editor
     {
         public string Name = "New Layer";
         public List<LayerTile> Tiles = new List<LayerTile>();
+        public bool HasColliders = false;
     }
 
     class LayerTile
