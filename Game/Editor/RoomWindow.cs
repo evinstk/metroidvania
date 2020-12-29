@@ -23,6 +23,8 @@ namespace Game.Editor
         {
             _roomData = roomMetadata?.RoomData;
             _roomFile = roomMetadata?.Filename;
+            if (roomMetadata != null)
+                _inspectors = TypeInspectorUtils.GetInspectableProperties(_roomData);
         }
 
         public override void OnAddedToEntity()

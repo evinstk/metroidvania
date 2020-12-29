@@ -13,6 +13,7 @@ namespace Game
         public RoomScene(
             RoomMetadata roomMetadata)
         {
+            Insist.IsNotNull(roomMetadata);
             _roomMetadata = roomMetadata;
         }
 
@@ -24,10 +25,22 @@ namespace Game
 
         public override void OnStart()
         {
-            if (_roomMetadata != null)
+            if (Core.GetGlobalManager<ImGuiManager>() != null)
             {
                 CreateEntity("windows")
                     .AddComponent(new RoomTransport(_roomMetadata));
+            }
+
+            var roomData = _roomMetadata.RoomData;
+
+            var mapEntity = CreateEntity("map");
+            var count = roomData.Layers.Count;
+            for (var i = 0; i < count; ++i)
+            {
+                var layer = roomData.Layers[i];
+                var layerEntity = CreateEntity(layer.Name);
+                layerEntity.Transform.SetParent(mapEntity.Transform);
+                layerEntity.AddComponent(new MapRenderer(roomData, i)).SetRenderLayer((count - 1 - i) * 10);
             }
         }
     }

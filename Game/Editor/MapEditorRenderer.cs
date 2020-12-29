@@ -3,10 +3,12 @@ using Nez;
 
 namespace Game.Editor
 {
-    class MapEditorRenderer : RenderableComponent
+    class MapEditorRenderer : RenderableComponent, IUpdatable
     {
-        public override float Width => 1;
-        public override float Height => 1;
+        public override float Width =>
+            _roomWindow.RoomData != null ? _roomWindow.RoomData.Width * _roomWindow.RoomData.TileWidth : 1;
+        public override float Height =>
+            _roomWindow.RoomData != null ? _roomWindow.RoomData.Height * _roomWindow.RoomData.TileHeight : 1;
 
         RoomWindow _roomWindow;
 
@@ -34,6 +36,15 @@ namespace Game.Editor
                     }
                 }
             }
+        }
+
+        bool _nullLastFrame = false;
+        public void Update()
+        {
+            var nullThisFrame = _roomWindow.RoomData == null;
+            if (_nullLastFrame && !nullThisFrame)
+                _areBoundsDirty = true;
+            _nullLastFrame = nullThisFrame;
         }
     }
 }
