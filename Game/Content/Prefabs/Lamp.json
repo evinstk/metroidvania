@@ -1,0 +1,24 @@
+{
+	"@id": "1",
+	"Name": "Lamp",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteData",
+			"Color": 4294901503,
+			"TextureFile": "doodad8.png",
+			"SourceRect": {
+				"@id": "3",
+				"X": 0,
+				"Y": 0,
+				"Width": 24,
+				"Height": 24
+			},
+			"Origin": {
+				"@id": "4",
+				"X": 12,
+				"Y": 12
+			}
+		}
+	]
+}

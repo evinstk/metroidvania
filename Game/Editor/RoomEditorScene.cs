@@ -28,14 +28,18 @@ namespace Game.Editor
         {
             CreateWindows();
             CreateEntity("map-renderer").AddComponent<MapEditorRenderer>();
+            CreateEntity("prefab-renderer").AddComponent<PrefabEditorRenderer>();
         }
 
         void CreateWindows()
         {
+            var toolWindow = new ToolWindow();
+            toolWindow.SetRenderLayer(-1);
             CreateEntity("windows")
                 .AddComponent(new RoomWindow(_roomMetadata))
-                .AddComponent<ToolWindow>()
+                .AddComponent(toolWindow)
                 .AddComponent<TilesetWindow>()
+                .AddComponent<Prefab.PrefabWindow>()
                 .AddComponent<LayerWindow>()
                 .AddComponent<TransportWindow>();
         }

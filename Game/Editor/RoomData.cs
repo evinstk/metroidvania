@@ -29,6 +29,7 @@ namespace Game.Editor
             new RoomLayer { Name = "terrain", HasColliders = true },
             new RoomLayer { Name = "doodad" },
         };
+        public List<RoomEntity> Entities = new List<RoomEntity>();
 
         public void SaveToFile(string filename)
         {
@@ -68,5 +69,11 @@ namespace Game.Editor
         public string Tileset;
         public Point TilesetLocation;
         public Point LayerLocation;
+    }
+
+    class RoomEntity
+    {
+        public string Name;
+        public Vector2 Position;
     }
 }

@@ -10,18 +10,24 @@ namespace Game.Editor.Tool
     {
         Brush,
         Erase,
+        Prefab,
     }
 
-    partial class ToolWindow : Component, IUpdatable
+    partial class ToolWindow : RenderableComponent, IUpdatable
     {
+        public override float Width => 16;
+        public override float Height => 16;
+
         public Tools CurrentTool { get; private set; } = Tools.Brush;
 
         RoomWindow _roomWindow;
         TilesetWindow _tilesetWindow;
         LayerWindow _layerWindow;
+        Editor.Prefab.PrefabWindow _entityWindow;
 
         Brush _brush;
         Erase _erase;
+        Prefab _prefab;
 
         public override void OnAddedToEntity()
         {
@@ -30,9 +36,11 @@ namespace Game.Editor.Tool
             _roomWindow = Entity.GetComponentStrict<RoomWindow>();
             _tilesetWindow = Entity.GetComponentStrict<TilesetWindow>();
             _layerWindow = Entity.GetComponentStrict<LayerWindow>();
+            _entityWindow = Entity.GetComponentStrict<Editor.Prefab.PrefabWindow>();
 
             _brush = new Brush(this);
             _erase = new Erase(this);
+            _prefab = new Prefab(this);
         }
 
         public override void OnRemovedFromEntity()
@@ -62,6 +70,15 @@ namespace Game.Editor.Tool
             {
                 case Tools.Brush: _brush.Update(); return;
                 case Tools.Erase: _erase.Update(); return;
+                case Tools.Prefab: _prefab.Update(); return;
+            }
+        }
+
+        public override void Render(Batcher batcher, Camera camera)
+        {
+            switch (CurrentTool)
+            {
+                case Tools.Prefab: _prefab.Render(batcher, camera); break;
             }
         }
     }
