@@ -73,6 +73,7 @@ namespace Game.Editor
 
     class RoomEntity
     {
+        public string Name;
         public string PrefabName;
         public Vector2 Position;
     }

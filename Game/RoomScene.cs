@@ -70,7 +70,7 @@ namespace Game
             {
                 var prefab = prefabs.Find(p => p.Name == entityData.PrefabName);
                 Insist.IsNotNull(prefab);
-                var entity = CreateEntity(Utils.RandomString(8));
+                var entity = CreateEntity(entityData.Name);
                 entity.SetPosition(entityData.Position);
                 foreach (var component in prefab.Components)
                 {

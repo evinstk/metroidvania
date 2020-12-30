@@ -28,6 +28,7 @@ namespace Game.Editor.Tool
                     worldPoint.Y = Mathf.RoundToNearest(worldPoint.Y, 4);
                     roomData.Entities.Add(new RoomEntity
                     {
+                        Name = selectedPrefab.Name,
                         PrefabName = selectedPrefab.Name,
                         Position = worldPoint,
                     });
