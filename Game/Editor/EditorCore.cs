@@ -17,6 +17,8 @@ namespace Game.Editor
             var imGuiManager = new ImGuiManager();
             RegisterGlobalManager(imGuiManager);
 
+            Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
+
             Scene = new RoomEditorScene();
         }
     }
