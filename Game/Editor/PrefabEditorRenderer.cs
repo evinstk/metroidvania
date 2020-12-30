@@ -35,7 +35,7 @@ namespace Game.Editor
                     if (spriteData == null)
                         continue;
 
-                    var texture = spriteData.Texture;
+                    var texture = spriteData.TextureData.Texture;
                     if (texture == null)
                         continue;
 

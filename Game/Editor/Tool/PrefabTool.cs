@@ -44,7 +44,7 @@ namespace Game.Editor.Tool
                     && roomData != null)
                 {
                     var spriteData = selectedEntity.Components.Find(c => c is SpriteData) as SpriteData;
-                    var texture = spriteData?.Texture;
+                    var texture = spriteData?.TextureData.Texture;
                     if (texture == null)
                         return;
 

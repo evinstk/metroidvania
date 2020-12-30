@@ -81,7 +81,7 @@ namespace Game
                 {
                     if (component is SpriteData spriteData)
                     {
-                        var texture = spriteData.Texture;
+                        var texture = spriteData.TextureData.Texture;
                         var sprite = new Sprite(texture, spriteData.SourceRect, spriteData.Origin);
                         var renderer = entity.AddComponent(new SpriteRenderer(sprite));
                         renderer.Color = spriteData.Color;
