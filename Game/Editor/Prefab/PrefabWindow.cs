@@ -61,7 +61,7 @@ namespace Game.Editor.Prefab
             Core.GetGlobalManager<ImGuiManager>().UnregisterDrawCommand(Draw);
         }
 
-        static JsonTypeConverter[] _converters = new JsonTypeConverter[]
+        public static JsonTypeConverter[] TypeConverters = new JsonTypeConverter[]
         {
             new SpriteDataConverter(),
         };
@@ -73,7 +73,7 @@ namespace Game.Editor.Prefab
                 var serializedEntity = File.ReadAllText(f);
                 var entityData = Json.FromJson<PrefabData>(serializedEntity, new JsonSettings
                 {
-                    TypeConverters = _converters,
+                    TypeConverters = TypeConverters,
                 });
                 _entities.Add(new PrefabMetadata
                 {
@@ -92,7 +92,7 @@ namespace Game.Editor.Prefab
                     PrettyPrint = true,
                     TypeNameHandling = TypeNameHandling.Auto,
                     PreserveReferencesHandling = true,
-                    TypeConverters = _converters,
+                    TypeConverters = TypeConverters,
                 });
                 File.WriteAllText(m.Filename, serializedEntity);
             }

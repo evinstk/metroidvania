@@ -62,10 +62,7 @@ namespace Game
                 var serializedEntity = File.ReadAllText(f);
                 var entityData = Json.FromJson<PrefabData>(serializedEntity, new JsonSettings
                 {
-                    TypeConverters = new JsonTypeConverter[]
-                    {
-                        new SpriteDataConverter(),
-                    }
+                    TypeConverters = Editor.Prefab.PrefabWindow.TypeConverters,
                 });
                 prefabs.Add(entityData);
             }
