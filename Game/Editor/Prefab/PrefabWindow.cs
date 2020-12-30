@@ -64,6 +64,7 @@ namespace Game.Editor.Prefab
         public static JsonTypeConverter[] TypeConverters = new JsonTypeConverter[]
         {
             new SpriteDataConverter(),
+            new LightDataConverter(),
         };
 
         void ReadEntities()

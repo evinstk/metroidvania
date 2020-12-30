@@ -16,6 +16,9 @@ namespace Game
     {
         RoomMetadata _roomMetadata;
 
+        const int LIGHT_LAYER = 100;
+        const int LIGHT_MAP_LAYER = 101;
+
         public RoomScene(
             RoomMetadata roomMetadata)
         {
@@ -27,6 +30,8 @@ namespace Game
         {
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             ClearColor = new Color(0xff371f0f);
+
+            AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER));
         }
 
         public override void OnStart()
@@ -81,8 +86,32 @@ namespace Game
                         var renderer = entity.AddComponent(new SpriteRenderer(sprite));
                         renderer.Color = spriteData.Color;
                     }
+                    if (component is LightData lightData)
+                    {
+                        CreateEntity("light")
+                            .SetParent(entity.Transform)
+                            .SetLocalPosition(lightData.LocalOffset)
+                            .AddComponent(new StencilLight(lightData.Radius, lightData.Color, lightData.Power))
+                            .SetRenderLayer(LIGHT_LAYER);
+                    }
                 }
             }
+
+            SetupLights();
+        }
+
+        void SetupLights()
+        {
+            var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
+            lightRenderer.RenderTargetClearColor = new Color(20, 20, 20, 255);
+
+            AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
+
+            CreateEntity("light-map")
+                .SetParent(Camera.Transform)
+                .AddComponent(new SpriteRenderer(lightRenderer.RenderTexture))
+                .SetMaterial(Material.BlendMultiply())
+                .SetRenderLayer(LIGHT_MAP_LAYER);
         }
     }
 
