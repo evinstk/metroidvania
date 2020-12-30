@@ -23,6 +23,7 @@ namespace Game.Editor
         public int TileWidth = 16;
         public int TileHeight = 16;
         public Point TileSize => new Point(TileWidth, TileHeight);
+        public int LightRendererClearColor = 127;
 
         public List<RoomLayer> Layers = new List<RoomLayer>
         {

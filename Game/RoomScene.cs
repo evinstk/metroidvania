@@ -103,7 +103,8 @@ namespace Game
         void SetupLights()
         {
             var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
-            lightRenderer.RenderTargetClearColor = new Color(20, 20, 20, 255);
+            var level = _roomMetadata.RoomData.LightRendererClearColor;
+            lightRenderer.RenderTargetClearColor = new Color(level, level, level, 255);
 
             AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
 

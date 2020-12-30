@@ -1,0 +1,36 @@
+{
+	"@id": "1",
+	"Name": "Right Lamp",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteData",
+			"Color": 4294967295,
+			"TextureFile": "doodad8.png",
+			"SourceRect": {
+				"@id": "3",
+				"X": 24,
+				"Y": 0,
+				"Width": 24,
+				"Height": 24
+			},
+			"Origin": {
+				"@id": "4",
+				"X": 12,
+				"Y": 12
+			}
+		},
+		{
+			"@id": "5",
+			"@type": "Game.Editor.Prefab.LightData",
+			"Color": 4294967295,
+			"Radius": 200,
+			"Power": 1,
+			"LocalOffset": {
+				"@id": "6",
+				"X": 0,
+				"Y": 0
+			}
+		}
+	]
+}
