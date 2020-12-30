@@ -35,7 +35,9 @@ namespace Game.Editor
                     if (spriteData == null)
                         continue;
 
-                    var texture = Core.Scene.Content.LoadTexture("Content/Textures/" + spriteData.TextureFile);
+                    var texture = spriteData.Texture;
+                    if (texture == null)
+                        continue;
 
                     batcher.Draw(
                         texture,

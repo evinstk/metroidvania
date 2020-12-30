@@ -55,12 +55,12 @@ namespace Game
             }
 
             // TODO: use entities folder in build folder
-            var prefabs = new List<EntityData>();
+            var prefabs = new List<PrefabData>();
             var prefabsFolder = "../../../Content/Prefabs";
             foreach (var f in Directory.GetFiles(prefabsFolder))
             {
                 var serializedEntity = File.ReadAllText(f);
-                var entityData = Json.FromJson<EntityData>(serializedEntity, new JsonSettings
+                var entityData = Json.FromJson<PrefabData>(serializedEntity, new JsonSettings
                 {
                     TypeConverters = new JsonTypeConverter[]
                     {

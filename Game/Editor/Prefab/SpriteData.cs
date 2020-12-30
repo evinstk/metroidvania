@@ -7,7 +7,7 @@ using System;
 namespace Game.Editor.Prefab
 {
     [Serializable]
-    class SpriteData : EditorComponent
+    class SpriteData : PrefabComponent
     {
         public string TextureFile;
         public Rectangle SourceRect;

@@ -3,41 +3,50 @@ using Nez;
 using Nez.ImGuiTools;
 using Nez.ImGuiTools.TypeInspectors;
 using Nez.Persistence;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Num = System.Numerics;
 
 namespace Game.Editor.Prefab
 {
-    class EntityData
+    class PrefabData
     {
         public string Name = "";
-        public List<EditorComponent> Components = new List<EditorComponent>();
+        public List<PrefabComponent> Components = new List<PrefabComponent>();
     }
 
-    class EntityMetadata
+    class PrefabMetadata
     {
-        public EntityData Data;
+        public PrefabData Data;
         public string Filename;
     }
 
-    abstract class EditorComponent
+    abstract class PrefabComponent
     {
     }
 
     class PrefabWindow : Component
     {
         static string _prefabsFolder = "../../../Content/Prefabs";
+        Type[] _componentSubclasses;
 
-        List<EntityMetadata> _entities = new List<EntityMetadata>();
+        List<PrefabMetadata> _entities = new List<PrefabMetadata>();
 
-        public EntityData SelectedEntity => _selectedEntity > -1 ? _entities[_selectedEntity].Data : null;
+        public PrefabData SelectedEntity => _selectedEntity > -1 ? _entities[_selectedEntity].Data : null;
         int _selectedEntity = -1;
 
-        public EntityData GetPrefabByName(string name)
+        public PrefabData GetPrefabByName(string name)
         {
             var entity = _entities.Find(m => m.Data.Name == name);
             return entity.Data;
+        }
+
+        public override void Initialize()
+        {
+            var subclasses = ReflectionUtils.GetAllSubclasses(typeof(PrefabComponent), true);
+            subclasses.Sort((t, u) => t.Name.CompareTo(u.Name));
+            _componentSubclasses = subclasses.ToArray();
         }
 
         public override void OnAddedToEntity()
@@ -62,11 +71,11 @@ namespace Game.Editor.Prefab
             foreach (var f in Directory.GetFiles(_prefabsFolder))
             {
                 var serializedEntity = File.ReadAllText(f);
-                var entityData = Json.FromJson<EntityData>(serializedEntity, new JsonSettings
+                var entityData = Json.FromJson<PrefabData>(serializedEntity, new JsonSettings
                 {
                     TypeConverters = _converters,
                 });
-                _entities.Add(new EntityMetadata
+                _entities.Add(new PrefabMetadata
                 {
                     Filename = f,
                     Data = entityData,
@@ -134,6 +143,8 @@ namespace Game.Editor.Prefab
         {
             public string Name;
             public List<AbstractTypeInspector> Inspectors;
+            public int Id;
+            public PrefabComponent Component;
         }
         List<EditorComponentInspector> _inspectors;
         void DrawEntitySelector()
@@ -159,6 +170,8 @@ namespace Game.Editor.Prefab
                 {
                     Name = component.GetType().Name,
                     Inspectors = TypeInspectorUtils.GetInspectableProperties(component),
+                    Id = NezImGui.GetScopeId(),
+                    Component = component,
                 });
             }
         }
@@ -169,6 +182,7 @@ namespace Game.Editor.Prefab
                 return;
 
             var addComponent = false;
+            PrefabComponent toRemove = null;
 
             var entity = _entities[_selectedEntity].Data;
             ImGui.Text("Name:");
@@ -177,21 +191,55 @@ namespace Game.Editor.Prefab
             ImGui.Text("Components:");
             foreach (var group in _inspectors)
             {
-                if (ImGui.CollapsingHeader(group.Name))
+                ImGui.PushID(group.Id);
+                var isHeaderOpen = ImGui.CollapsingHeader(group.Name);
+                if (ImGui.BeginPopupContextItem())
+                {
+                    if (ImGui.Selectable("Remove Component"))
+                    {
+                        toRemove = group.Component;
+                    }
+                    ImGui.EndPopup();
+                }
+                if (isHeaderOpen)
                 {
                     foreach (var inspector in group.Inspectors)
                     {
                         inspector.Draw();
                     }
                 }
+                ImGui.PopID();
             }
             if (ImGui.Button("Add Component"))
                 addComponent = true;
 
             if (addComponent)
             {
-                entity.Components.Add(new SpriteData());
+                ImGui.OpenPopup("component-selector");
+            }
+            if (toRemove != null)
+            {
+                entity.Components.Remove(toRemove);
                 GenerateInspectors();
+            }
+
+            DrawComponentSelectorPopup();
+        }
+
+        void DrawComponentSelectorPopup()
+        {
+            if (ImGui.BeginPopup("component-selector"))
+            {
+                foreach (var subclass in _componentSubclasses)
+                {
+                    if (ImGui.Selectable(subclass.Name))
+                    {
+                        _entities[_selectedEntity].Data.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
+                        GenerateInspectors();
+                        ImGui.CloseCurrentPopup();
+                    }
+                }
+                ImGui.EndPopup();
             }
         }
     }

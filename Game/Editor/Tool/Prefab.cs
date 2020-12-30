@@ -41,12 +41,13 @@ namespace Game.Editor.Tool
                     && roomData != null)
                 {
                     var spriteData = selectedEntity.Components.Find(c => c is SpriteData) as SpriteData;
-                    if (spriteData == null)
+                    var texture = spriteData?.Texture;
+                    if (texture == null)
                         return;
 
                     var mousePos = Input.MousePosition;
                     batcher.Draw(
-                        spriteData.Texture,
+                        texture,
                         mousePos - spriteData.Origin,
                         spriteData.SourceRect,
                         spriteData.Color);
