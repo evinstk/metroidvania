@@ -27,7 +27,7 @@ namespace Game.Editor
             {
                 foreach (var entity in roomData.Entities)
                 {
-                    var prefab = _entityWindow.GetPrefabByName(entity.Name);
+                    var prefab = _entityWindow.GetPrefabByName(entity.PrefabName);
                     if (prefab == null)
                         continue;
 

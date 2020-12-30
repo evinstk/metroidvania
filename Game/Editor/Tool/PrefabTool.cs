@@ -15,11 +15,11 @@ namespace Game.Editor.Tool
 
             public void Update()
             {
-                var selectedEntity = _window._entityWindow.SelectedEntity;
+                var selectedPrefab = _window._entityWindow.SelectedEntity;
                 var roomData = _window._roomWindow.RoomData;
 
                 if (Input.LeftMouseButtonPressed
-                    && selectedEntity != null
+                    && selectedPrefab != null
                     && roomData != null
                     && Core.Scene.Camera.Bounds.Contains(Input.MousePosition))
                 {
@@ -28,7 +28,7 @@ namespace Game.Editor.Tool
                     worldPoint.Y = Mathf.RoundToNearest(worldPoint.Y, 4);
                     roomData.Entities.Add(new RoomEntity
                     {
-                        Name = selectedEntity.Name,
+                        PrefabName = selectedPrefab.Name,
                         Position = worldPoint,
                     });
                 }

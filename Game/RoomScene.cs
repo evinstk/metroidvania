@@ -71,7 +71,7 @@ namespace Game
             }
             foreach (var entityData in roomData.Entities)
             {
-                var prefab = prefabs.Find(p => p.Name == entityData.Name);
+                var prefab = prefabs.Find(p => p.Name == entityData.PrefabName);
                 Insist.IsNotNull(prefab);
                 var entity = CreateEntity(Utils.RandomString(8));
                 entity.SetPosition(entityData.Position);
