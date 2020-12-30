@@ -11,6 +11,7 @@ namespace Game.Editor.Tool
         Brush,
         Erase,
         Prefab,
+        Select,
     }
 
     partial class ToolWindow : RenderableComponent, IUpdatable
@@ -23,11 +24,13 @@ namespace Game.Editor.Tool
         RoomWindow _roomWindow;
         TilesetWindow _tilesetWindow;
         LayerWindow _layerWindow;
-        Editor.Prefab.PrefabWindow _entityWindow;
+        Editor.Prefab.PrefabWindow _prefabWindow;
+        EntityWindow _entityWindow;
 
         Brush _brush;
         Erase _erase;
         PrefabTool _prefab;
+        SelectTool _select;
 
         public override void OnAddedToEntity()
         {
@@ -36,11 +39,13 @@ namespace Game.Editor.Tool
             _roomWindow = Entity.GetComponentStrict<RoomWindow>();
             _tilesetWindow = Entity.GetComponentStrict<TilesetWindow>();
             _layerWindow = Entity.GetComponentStrict<LayerWindow>();
-            _entityWindow = Entity.GetComponentStrict<Editor.Prefab.PrefabWindow>();
+            _prefabWindow = Entity.GetComponentStrict<Prefab.PrefabWindow>();
+            _entityWindow = Entity.GetOrCreateComponent<EntityWindow>();
 
             _brush = new Brush(this);
             _erase = new Erase(this);
             _prefab = new PrefabTool(this);
+            _select = new SelectTool(this);
         }
 
         public override void OnRemovedFromEntity()
@@ -72,6 +77,7 @@ namespace Game.Editor.Tool
                 case Tools.Brush: _brush.Update(); return;
                 case Tools.Erase: _erase.Update(); return;
                 case Tools.Prefab: _prefab.Update(); return;
+                case Tools.Select: _select.Update(); return;
             }
         }
 

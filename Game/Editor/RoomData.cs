@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game.Editor.Prefab;
+using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Persistence;
 using System;
@@ -74,8 +75,11 @@ namespace Game.Editor
 
     class RoomEntity
     {
+        public string Id = Utils.RandomString();
         public string Name;
         public string PrefabId;
         public Vector2 Position;
+
+        public PrefabData Prefab => Core.Scene.FindEntity("windows").GetComponent<Prefab.PrefabWindow>().GetPrefabById(PrefabId);
     }
 }

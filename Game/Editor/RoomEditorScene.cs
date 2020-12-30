@@ -41,7 +41,8 @@ namespace Game.Editor
                 .AddComponent<TilesetWindow>()
                 .AddComponent<Prefab.PrefabWindow>()
                 .AddComponent<LayerWindow>()
-                .AddComponent<TransportWindow>();
+                .AddComponent<TransportWindow>()
+                .AddComponent<EntityWindow>();
         }
     }
 }

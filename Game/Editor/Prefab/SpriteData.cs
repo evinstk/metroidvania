@@ -37,7 +37,7 @@ namespace Game.Editor.Prefab
     }
 
     [CustomInspector(typeof(SpriteTextureDataInspector))]
-    class SpriteTextureData
+    struct SpriteTextureData
     {
         [JsonInclude]
         public string TextureFile
@@ -47,7 +47,7 @@ namespace Game.Editor.Prefab
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    Texture = Core.Scene.Content.LoadTexture("Content/Textures/" + value);
+                    Texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + value);
                 }
                 else
                 {
@@ -73,22 +73,17 @@ namespace Game.Editor.Prefab
         public override void DrawMutable()
         {
             var texData = GetValue<SpriteTextureData>();
-            if (texData != null)
+            if (ImGui.BeginCombo("Texture", texData.TextureFile))
             {
-                //ImGui.Text("Texture Data");
-                if (ImGui.BeginCombo("Texture", texData.TextureFile))
+                foreach (var file in _textureFiles)
                 {
-                    //ImGui.Selectable("dude");
-                    foreach (var file in _textureFiles)
+                    var name = Path.GetFileName(file);
+                    if (ImGui.Selectable(name, name == texData.TextureFile))
                     {
-                        var name = Path.GetFileName(file);
-                        if (ImGui.Selectable(name, name == texData.TextureFile))
-                        {
-                            texData.TextureFile = name;
-                        }
+                        texData.TextureFile = name;
                     }
-                    ImGui.EndCombo();
                 }
+                ImGui.EndCombo();
             }
         }
     }

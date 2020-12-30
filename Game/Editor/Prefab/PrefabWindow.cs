@@ -15,6 +15,8 @@ namespace Game.Editor.Prefab
         public string Id = Utils.RandomString();
         public string Name = "";
         public List<PrefabComponent> Components = new List<PrefabComponent>();
+
+        public T GetComponent<T>() where T : PrefabComponent => Components.Find(c => c is T) as T;
     }
 
     class PrefabMetadata
@@ -104,7 +106,7 @@ namespace Game.Editor.Prefab
         {
             ImGui.SetNextWindowSize(new Num.Vector2(Screen.Width / 2, Screen.Height / 2), ImGuiCond.FirstUseEver);
 
-            if (ImGui.Begin("Entity", ImGuiWindowFlags.MenuBar))
+            if (ImGui.Begin("Prefab", ImGuiWindowFlags.MenuBar))
             {
                 DrawMenuBar();
 
