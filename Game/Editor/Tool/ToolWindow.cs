@@ -15,8 +15,8 @@ namespace Game.Editor.Tool
 
     partial class ToolWindow : RenderableComponent, IUpdatable
     {
-        public override float Width => 16;
-        public override float Height => 16;
+        public override float Width => 1;
+        public override float Height => 1;
 
         public Tools CurrentTool { get; private set; } = Tools.Brush;
 
@@ -27,7 +27,7 @@ namespace Game.Editor.Tool
 
         Brush _brush;
         Erase _erase;
-        Prefab _prefab;
+        PrefabTool _prefab;
 
         public override void OnAddedToEntity()
         {
@@ -40,7 +40,7 @@ namespace Game.Editor.Tool
 
             _brush = new Brush(this);
             _erase = new Erase(this);
-            _prefab = new Prefab(this);
+            _prefab = new PrefabTool(this);
         }
 
         public override void OnRemovedFromEntity()
@@ -66,6 +66,7 @@ namespace Game.Editor.Tool
 
         public void Update()
         {
+            Entity.Position = Entity.Scene.Camera.MouseToWorldPoint();
             switch (CurrentTool)
             {
                 case Tools.Brush: _brush.Update(); return;

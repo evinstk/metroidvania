@@ -3,7 +3,7 @@ using Nez;
 
 namespace Game.Editor
 {
-    class PrefabEditorRenderer : RenderableComponent
+    class PrefabEditorRenderer : RenderableComponent, IUpdatable
     {
         public override float Width =>
             _roomWindow.RoomData != null ? _roomWindow.RoomData.Width * _roomWindow.RoomData.TileWidth : 1;
@@ -46,6 +46,15 @@ namespace Game.Editor
                         spriteData.Color);
                 }
             }
+        }
+
+        bool _nullLastFrame = false;
+        public void Update()
+        {
+            var nullThisFrame = _roomWindow.RoomData == null;
+            if (_nullLastFrame && !nullThisFrame)
+                _areBoundsDirty = true;
+            _nullLastFrame = nullThisFrame;
         }
     }
 }

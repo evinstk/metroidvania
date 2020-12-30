@@ -102,8 +102,7 @@ namespace Game.Editor.Prefab
         {
             ImGui.SetNextWindowSize(new Num.Vector2(Screen.Width / 2, Screen.Height / 2), ImGuiCond.FirstUseEver);
 
-            var isOpen = true;
-            if (ImGui.Begin("Entity", ref isOpen, ImGuiWindowFlags.MenuBar))
+            if (ImGui.Begin("Entity", ImGuiWindowFlags.MenuBar))
             {
                 DrawMenuBar();
 
