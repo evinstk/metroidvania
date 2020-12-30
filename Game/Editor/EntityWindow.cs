@@ -32,6 +32,16 @@ namespace Game.Editor
                     {
                         _roomWindow.RoomData.Entities.Remove(entity);
                     }
+
+                    ImGui.InputText("##name", ref entity.Name, 25);
+                    ImGui.SameLine();
+                    ImGui.Text("Name");
+
+                    var value = entity.Position.ToNumerics();
+                    if (ImGui.DragFloat2("##position", ref value))
+                    {
+                        entity.Position = value.ToXNA();
+                    }
                 }
                 ImGui.End();
             }
