@@ -12,6 +12,7 @@ namespace Game.Editor.Prefab
 {
     class PrefabData
     {
+        public string Id = Utils.RandomString();
         public string Name = "";
         public List<PrefabComponent> Components = new List<PrefabComponent>();
     }
@@ -36,9 +37,9 @@ namespace Game.Editor.Prefab
         public PrefabData SelectedEntity => _selectedEntity > -1 ? _entities[_selectedEntity].Data : null;
         int _selectedEntity = -1;
 
-        public PrefabData GetPrefabByName(string name)
+        public PrefabData GetPrefabById(string id)
         {
-            var entity = _entities.Find(m => m.Data.Name == name);
+            var entity = _entities.Find(m => m.Data.Id == id);
             return entity.Data;
         }
 

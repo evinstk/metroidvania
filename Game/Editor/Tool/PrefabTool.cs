@@ -29,7 +29,7 @@ namespace Game.Editor.Tool
                     roomData.Entities.Add(new RoomEntity
                     {
                         Name = selectedPrefab.Name,
-                        PrefabName = selectedPrefab.Name,
+                        PrefabId = selectedPrefab.Id,
                         Position = worldPoint,
                     });
                 }
