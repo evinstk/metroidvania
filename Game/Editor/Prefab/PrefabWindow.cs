@@ -15,16 +15,10 @@ namespace Game.Editor.Prefab
         [JsonInclude]
         public string Id { get; set; } = Utils.RandomString();
         public string DisplayName => Name;
-        public string Name = "";
+        public string Name = "New Prefab";
         public List<PrefabComponent> Components = new List<PrefabComponent>();
 
         public T GetComponent<T>() where T : PrefabComponent => Components.Find(c => c is T) as T;
-    }
-
-    class PrefabMetadata
-    {
-        public PrefabData Data;
-        public string Filename;
     }
 
     abstract class PrefabComponent
@@ -211,7 +205,7 @@ namespace Game.Editor.Prefab
                 {
                     if (ImGui.Selectable(subclass.Name))
                     {
-                        //Prefabs[_selectedEntity].Data.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
+                        SelectedEntity.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
                         GenerateInspectors();
                         ImGui.CloseCurrentPopup();
                     }
