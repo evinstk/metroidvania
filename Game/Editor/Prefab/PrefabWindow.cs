@@ -10,9 +10,11 @@ using Num = System.Numerics;
 
 namespace Game.Editor.Prefab
 {
-    class PrefabData
+    class PrefabData : IResource
     {
-        public string Id = Utils.RandomString();
+        [JsonInclude]
+        public string Id { get; set; } = Utils.RandomString();
+        public string DisplayName => Name;
         public string Name = "";
         public List<PrefabComponent> Components = new List<PrefabComponent>();
 
@@ -31,19 +33,12 @@ namespace Game.Editor.Prefab
 
     class PrefabWindow : Component
     {
-        static string _prefabsFolder = "../../../Content/Prefabs";
         Type[] _componentSubclasses;
 
-        List<PrefabMetadata> _entities = new List<PrefabMetadata>();
+        PrefabManager _prefabManager = EditorCore.GetManager<PrefabManager>();
 
-        public PrefabData SelectedEntity => _selectedEntity > -1 ? _entities[_selectedEntity].Data : null;
-        int _selectedEntity = -1;
-
-        public PrefabData GetPrefabById(string id)
-        {
-            var entity = _entities.Find(m => m.Data.Id == id);
-            return entity.Data;
-        }
+        public PrefabData SelectedEntity => _selectedEntityId != null ? _prefabManager.GetResource(_selectedEntityId) : null;
+        string _selectedEntityId = null;
 
         public override void Initialize()
         {
@@ -55,8 +50,6 @@ namespace Game.Editor.Prefab
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
-
-            ReadEntities();
         }
 
         public override void OnRemovedFromEntity()
@@ -69,38 +62,6 @@ namespace Game.Editor.Prefab
             new SpriteDataConverter(),
             new LightDataConverter(),
         };
-
-        void ReadEntities()
-        {
-            foreach (var f in Directory.GetFiles(_prefabsFolder))
-            {
-                var serializedEntity = File.ReadAllText(f);
-                var entityData = Json.FromJson<PrefabData>(serializedEntity, new JsonSettings
-                {
-                    TypeConverters = TypeConverters,
-                });
-                _entities.Add(new PrefabMetadata
-                {
-                    Filename = f,
-                    Data = entityData,
-                });
-            }
-        }
-
-        void SaveEntities()
-        {
-            foreach (var m in _entities)
-            {
-                var serializedEntity = Json.ToJson(m.Data, new JsonSettings
-                {
-                    PrettyPrint = true,
-                    TypeNameHandling = TypeNameHandling.Auto,
-                    PreserveReferencesHandling = true,
-                    TypeConverters = TypeConverters,
-                });
-                File.WriteAllText(m.Filename, serializedEntity);
-            }
-        }
 
         void Draw()
         {
@@ -139,7 +100,7 @@ namespace Game.Editor.Prefab
             }
 
             if (saveAll)
-                SaveEntities();
+                _prefabManager.SaveAll();
         }
 
         class EditorComponentInspector
@@ -152,20 +113,33 @@ namespace Game.Editor.Prefab
         List<EditorComponentInspector> _inspectors;
         void DrawEntitySelector()
         {
-            for (var i = 0; i < _entities.Count; ++i)
+            //for (var i = 0; i < Prefabs.Count; ++i)
+            //{
+            //    var data = Prefabs[i].Data;
+            //    if (ImGui.RadioButton($"{i + 1}: {data.Name}", i == _selectedEntity))
+            //    {
+            //        _selectedEntity = i;
+            //        GenerateInspectors();
+            //    }
+            //}
+
+            //string selection = string.Empty;
+            //if (EditorCore.GetManager<PrefabManager>().RadioButtons(_selectedEntity > -1 ? Prefabs[_selectedEntity].Data.Id : null, ref selection))
+            //{
+            //    var prefab = Prefabs.Find(p => p.Data.Id == selection);
+            //    _selectedEntity = Prefabs.IndexOf(prefab);
+            //    GenerateInspectors();
+            //}
+
+            if (_prefabManager.RadioButtons(_selectedEntityId, ref _selectedEntityId))
             {
-                var data = _entities[i].Data;
-                if (ImGui.RadioButton($"{i + 1}: {data.Name}", i == _selectedEntity))
-                {
-                    _selectedEntity = i;
-                    GenerateInspectors();
-                }
+                GenerateInspectors();
             }
         }
 
         void GenerateInspectors()
         {
-            var data = _entities[_selectedEntity].Data;
+            var data = _prefabManager.GetResource(_selectedEntityId);
             _inspectors = new List<EditorComponentInspector>();
             foreach (var component in data.Components)
             {
@@ -181,13 +155,13 @@ namespace Game.Editor.Prefab
 
         void DrawEntityInspector()
         {
-            if (_selectedEntity == -1)
+            if (_selectedEntityId == null)
                 return;
 
             var addComponent = false;
             PrefabComponent toRemove = null;
 
-            var entity = _entities[_selectedEntity].Data;
+            var entity = _prefabManager.GetResource(_selectedEntityId);
             ImGui.Text("Name:");
             ImGui.InputText("##entityName", ref entity.Name, 25);
 
@@ -237,7 +211,7 @@ namespace Game.Editor.Prefab
                 {
                     if (ImGui.Selectable(subclass.Name))
                     {
-                        _entities[_selectedEntity].Data.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
+                        //Prefabs[_selectedEntity].Data.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
                         GenerateInspectors();
                         ImGui.CloseCurrentPopup();
                     }

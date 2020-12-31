@@ -11,13 +11,13 @@ namespace Game.Editor
             _roomWindow.RoomData != null ? _roomWindow.RoomData.Height * _roomWindow.RoomData.TileHeight : 1;
 
         RoomWindow _roomWindow;
-        Prefab.PrefabWindow _entityWindow;
+        PrefabManager _prefabManager;
 
         public override void OnAddedToEntity()
         {
             var windows = Core.Scene.FindEntity("windows");
             _roomWindow = windows.GetComponentStrict<RoomWindow>();
-            _entityWindow = windows.GetComponentStrict<Prefab.PrefabWindow>();
+            _prefabManager = EditorCore.GetManager<PrefabManager>();
         }
 
         public override void Render(Batcher batcher, Camera camera)
@@ -27,7 +27,7 @@ namespace Game.Editor
             {
                 foreach (var entity in roomData.Entities)
                 {
-                    var prefab = _entityWindow.GetPrefabById(entity.PrefabId);
+                    var prefab = _prefabManager.GetResource(entity.PrefabId);
                     if (prefab == null)
                         continue;
 

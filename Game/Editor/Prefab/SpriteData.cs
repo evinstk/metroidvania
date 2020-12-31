@@ -39,26 +39,9 @@ namespace Game.Editor.Prefab
     [CustomInspector(typeof(SpriteTextureDataInspector))]
     struct SpriteTextureData
     {
-        [JsonInclude]
-        public string TextureFile
-        {
-            get { return _textureFile; }
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    Texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + value);
-                }
-                else
-                {
-                    Texture = null;
-                }
-                _textureFile = value;
-            }
-        }
-        string _textureFile;
+        public string TextureFile;
 
-        public Texture2D Texture { get; private set; }
+        public Texture2D Texture => Core.Scene.Content.LoadTexture(ContentPath.Textures + TextureFile);
     }
 
     class SpriteTextureDataInspector : AbstractTypeInspector

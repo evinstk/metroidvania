@@ -80,6 +80,6 @@ namespace Game.Editor
         public string PrefabId;
         public Vector2 Position;
 
-        public PrefabData Prefab => Core.Scene.FindEntity("windows").GetComponent<Prefab.PrefabWindow>().GetPrefabById(PrefabId);
+        public PrefabData Prefab => EditorCore.GetManager<PrefabManager>().GetResource(PrefabId);
     }
 }

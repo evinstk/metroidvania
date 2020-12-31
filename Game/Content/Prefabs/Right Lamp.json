@@ -1,6 +1,5 @@
 {
 	"@id": "1",
-	"Id": "YQPCIZICKSJXKXAHKAHHSZPXIKOTCNYMLEENDF",
 	"Name": "Right Lamp",
 	"Components": [
 		{
@@ -36,5 +35,6 @@
 				"Y": 0
 			}
 		}
-	]
+	],
+	"Id": "YQPCIZICKSJXKXAHKAHHSZPXIKOTCNYMLEENDF"
 }

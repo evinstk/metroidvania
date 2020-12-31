@@ -1,6 +1,5 @@
 {
 	"@id": "1",
-	"Id": "OOXSIJCVTBFVFYNZQDDTHOHQZJUEMJNMSRABNL",
 	"Name": "Left Lamp",
 	"Components": [
 		{
@@ -36,5 +35,6 @@
 				"Y": 0
 			}
 		}
-	]
+	],
+	"Id": "OOXSIJCVTBFVFYNZQDDTHOHQZJUEMJNMSRABNL"
 }

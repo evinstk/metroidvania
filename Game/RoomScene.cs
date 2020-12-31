@@ -4,11 +4,8 @@ using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.ImGuiTools;
-using Nez.Persistence;
 using Nez.Sprites;
 using Nez.Textures;
-using System.Collections.Generic;
-using System.IO;
 
 namespace Game
 {
@@ -19,8 +16,7 @@ namespace Game
         const int LIGHT_LAYER = 100;
         const int LIGHT_MAP_LAYER = 101;
 
-        public RoomScene(
-            RoomMetadata roomMetadata)
+        public RoomScene(RoomMetadata roomMetadata)
         {
             Insist.IsNotNull(roomMetadata);
             _roomMetadata = roomMetadata;
@@ -59,21 +55,9 @@ namespace Game
                 }
             }
 
-            // TODO: use entities folder in build folder
-            var prefabs = new List<PrefabData>();
-            var prefabsFolder = "../../../Content/Prefabs";
-            foreach (var f in Directory.GetFiles(prefabsFolder))
-            {
-                var serializedEntity = File.ReadAllText(f);
-                var entityData = Json.FromJson<PrefabData>(serializedEntity, new JsonSettings
-                {
-                    TypeConverters = Editor.Prefab.PrefabWindow.TypeConverters,
-                });
-                prefabs.Add(entityData);
-            }
             foreach (var entityData in roomData.Entities)
             {
-                var prefab = prefabs.Find(p => p.Id == entityData.PrefabId);
+                var prefab = entityData.Prefab;
                 Insist.IsNotNull(prefab);
                 var entity = CreateEntity(entityData.Name);
                 entity.SetPosition(entityData.Position);
