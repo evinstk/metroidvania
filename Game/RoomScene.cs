@@ -11,15 +11,15 @@ namespace Game
 {
     class RoomScene : Scene
     {
-        RoomMetadata _roomMetadata;
+        RoomData _roomData;
 
         const int LIGHT_LAYER = 100;
         const int LIGHT_MAP_LAYER = 101;
 
-        public RoomScene(RoomMetadata roomMetadata)
+        public RoomScene(RoomData roomData)
         {
-            Insist.IsNotNull(roomMetadata);
-            _roomMetadata = roomMetadata;
+            Insist.IsNotNull(roomData);
+            _roomData = roomData;
         }
 
         public override void Initialize()
@@ -35,27 +35,25 @@ namespace Game
             if (Core.GetGlobalManager<ImGuiManager>() != null)
             {
                 CreateEntity("windows")
-                    .AddComponent(new RoomTransport(_roomMetadata));
+                    .AddComponent(new RoomTransport());
             }
 
-            var roomData = _roomMetadata.RoomData;
-
             var mapEntity = CreateEntity("map");
-            var count = roomData.Layers.Count;
+            var count = _roomData.Layers.Count;
             for (var i = 0; i < count; ++i)
             {
-                var layer = roomData.Layers[i];
+                var layer = _roomData.Layers[i];
                 var layerEntity = CreateEntity(layer.Name);
                 layerEntity.Transform.SetParent(mapEntity.Transform);
-                layerEntity.AddComponent(new MapRenderer(roomData, i)).SetRenderLayer(count - 1 - i);
+                layerEntity.AddComponent(new MapRenderer(_roomData, i)).SetRenderLayer(count - 1 - i);
 
                 if (layer.HasColliders)
                 {
-                    layerEntity.AddComponent(new MapCollider(roomData, i));
+                    layerEntity.AddComponent(new MapCollider(_roomData, i));
                 }
             }
 
-            foreach (var entityData in roomData.Entities)
+            foreach (var entityData in _roomData.Entities)
             {
                 var prefab = entityData.Prefab;
                 Insist.IsNotNull(prefab);
@@ -87,7 +85,7 @@ namespace Game
         void SetupLights()
         {
             var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
-            var level = _roomMetadata.RoomData.LightRendererClearColor;
+            var level = _roomData.LightRendererClearColor;
             lightRenderer.RenderTargetClearColor = new Color(level, level, level, 255);
 
             AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
@@ -102,13 +100,6 @@ namespace Game
 
     class RoomTransport : Component
     {
-        RoomMetadata _roomMetadata;
-
-        public RoomTransport(RoomMetadata roomMetadata)
-        {
-            _roomMetadata = roomMetadata;
-        }
-
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
@@ -125,7 +116,7 @@ namespace Game
             {
                 if (ImGui.Button("Stop"))
                 {
-                    Core.Scene = new RoomEditorScene(_roomMetadata);
+                    Core.Scene = new RoomEditorScene();
                 }
                 ImGui.End();
             }

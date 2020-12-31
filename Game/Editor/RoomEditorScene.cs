@@ -6,15 +6,6 @@ namespace Game.Editor
 {
     class RoomEditorScene : Scene
     {
-        RoomMetadata _roomMetadata;
-
-        public RoomEditorScene() { }
-
-        public RoomEditorScene(RoomMetadata roomMetadata)
-        {
-            _roomMetadata = roomMetadata;
-        }
-
         public override void Initialize()
         {
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
@@ -36,7 +27,7 @@ namespace Game.Editor
             var toolWindow = new ToolWindow();
             toolWindow.SetRenderLayer(-1);
             CreateEntity("windows")
-                .AddComponent(new RoomWindow(_roomMetadata))
+                .AddComponent(new RoomWindow())
                 .AddComponent(toolWindow)
                 .AddComponent<TilesetWindow>()
                 .AddComponent<Prefab.PrefabWindow>()

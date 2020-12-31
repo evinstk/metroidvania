@@ -103,6 +103,25 @@ namespace Game.Editor
             return ret;
         }
 
+        public bool Combo(string label, string activeId, ref string selectedId)
+        {
+            var ret = false;
+            var active = GetResource(activeId);
+            if (ImGui.BeginCombo(label, active?.DisplayName))
+            {
+                foreach (var resource in _resources)
+                {
+                    if (ImGui.Selectable(resource.Data.DisplayName))
+                    {
+                        selectedId = resource.Data.Id;
+                        ret = true;
+                    }
+                }
+                ImGui.EndCombo();
+            }
+            return ret;
+        }
+
         #endregion
     }
 }

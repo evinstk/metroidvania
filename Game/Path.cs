@@ -5,5 +5,6 @@
         public static readonly string Textures = "Content/Textures/";
 
         public static readonly string Prefabs = "../../../Content/Prefabs/";
+        public static readonly string Rooms = "../../../Content/Rooms/";
     }
 }

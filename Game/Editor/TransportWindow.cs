@@ -27,11 +27,7 @@ namespace Game.Editor
             {
                 if (ImGui.Button("Launch Room") && roomData != null)
                 {
-                    Core.Scene = new RoomScene(new RoomMetadata
-                    {
-                        RoomData = roomData,
-                        Filename = _roomWindow.Filename,
-                    });
+                    Core.Scene = new RoomScene(roomData);
                 }
                 ImGui.End();
             }

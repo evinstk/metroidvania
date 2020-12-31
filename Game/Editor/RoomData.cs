@@ -1,23 +1,17 @@
 ﻿using Game.Editor.Prefab;
 using Microsoft.Xna.Framework;
 using Nez;
-using Nez.Persistence;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Game.Editor
 {
-    class RoomMetadata
-    {
-        public RoomData RoomData;
-        public string Filename;
-    }
-
     [Serializable]
-    class RoomData
+    class RoomData : IResource
     {
-        public string Name = "";
+        public string Id { get; set; } = Utils.RandomString();
+        public string DisplayName => Name;
+        public string Name = "New Room";
 
         public int Width = 128;
         public int Height = 128;
@@ -32,31 +26,6 @@ namespace Game.Editor
             new RoomLayer { Name = "doodad" },
         };
         public List<RoomEntity> Entities = new List<RoomEntity>();
-
-        public void SaveToFile(string filename)
-        {
-            if (File.Exists(filename))
-                File.Delete(filename);
-
-            var roomData = Json.ToJson(this, new JsonSettings
-            {
-                PrettyPrint = true,
-                TypeNameHandling = TypeNameHandling.Auto,
-                PreserveReferencesHandling = true,
-            });
-
-            using (var writer = new StreamWriter(filename))
-            {
-                writer.WriteLine(roomData);
-            }
-        }
-
-        public static RoomData ReadFromFile(string filename)
-        {
-            var roomDataStr = File.ReadAllText(filename);
-            var roomData = Json.FromJson<RoomData>(roomDataStr);
-            return roomData;
-        }
     }
 
     class RoomLayer
