@@ -14,7 +14,7 @@ namespace Game.Editor
         string DisplayName { get; }
     }
 
-    abstract class Manager
+    abstract class Manager : GlobalManager
     {
         protected static JsonTypeConverter[] _typeConverters;
         static Manager()

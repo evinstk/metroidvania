@@ -1,6 +1,7 @@
 ﻿using Nez;
 using Nez.Console;
 using Nez.ImGuiTools;
+using System;
 using System.Collections.Generic;
 
 namespace Game.Editor
@@ -18,22 +19,16 @@ namespace Game.Editor
             var imGuiManager = new ImGuiManager();
             RegisterGlobalManager(imGuiManager);
 
+            var managerTypes = ReflectionUtils.GetAllSubclasses(typeof(Manager), true);
+            foreach (var managerType in managerTypes)
+            {
+                var manager = Activator.CreateInstance(managerType) as Manager;
+                RegisterGlobalManager(manager);
+            }
+
             Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
 
             Scene = new RoomEditorScene();
-        }
-
-        static List<Manager> _managers = new List<Manager>();
-        public static T GetManager<T>() where T : Manager, new()
-        {
-            foreach (var manager in _managers)
-            {
-                if (manager is T typedManager)
-                    return typedManager;
-            }
-            var newManager = new T();
-            _managers.Add(newManager);
-            return newManager;
         }
     }
 }

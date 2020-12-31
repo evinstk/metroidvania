@@ -17,7 +17,7 @@ namespace Game.Editor
         {
             var windows = Core.Scene.FindEntity("windows");
             _roomWindow = windows.GetComponentStrict<RoomWindow>();
-            _prefabManager = EditorCore.GetManager<PrefabManager>();
+            _prefabManager = Core.GetGlobalManager<PrefabManager>();
         }
 
         public override void Render(Batcher batcher, Camera camera)

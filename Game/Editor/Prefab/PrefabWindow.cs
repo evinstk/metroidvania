@@ -35,7 +35,7 @@ namespace Game.Editor.Prefab
     {
         Type[] _componentSubclasses;
 
-        PrefabManager _prefabManager = EditorCore.GetManager<PrefabManager>();
+        PrefabManager _prefabManager = Core.GetGlobalManager<PrefabManager>();
 
         public PrefabData SelectedEntity => _selectedEntityId != null ? _prefabManager.GetResource(_selectedEntityId) : null;
         string _selectedEntityId = null;
