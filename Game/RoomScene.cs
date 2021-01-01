@@ -16,6 +16,8 @@ namespace Game
         const int LIGHT_LAYER = 100;
         const int LIGHT_MAP_LAYER = 101;
 
+        const int PHYSICS_TERRAIN = 1;
+
         public RoomScene(RoomData roomData)
         {
             Insist.IsNotNull(roomData);
@@ -49,7 +51,8 @@ namespace Game
 
                 if (layer.HasColliders)
                 {
-                    layerEntity.AddComponent(new MapCollider(_roomData, i));
+                    var mapCollider = layerEntity.AddComponent(new MapCollider(_roomData, i));
+                    Flags.SetFlagExclusive(ref mapCollider.PhysicsLayer, PHYSICS_TERRAIN);
                 }
             }
 
@@ -85,6 +88,7 @@ namespace Game
         void SetupLights()
         {
             var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
+            Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, PHYSICS_TERRAIN);
             var level = _roomData.LightRendererClearColor;
             lightRenderer.RenderTargetClearColor = new Color(level, level, level, 255);
 
