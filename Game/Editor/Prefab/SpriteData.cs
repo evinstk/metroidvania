@@ -37,7 +37,7 @@ namespace Game.Editor.Prefab
     }
 
     [CustomInspector(typeof(SpriteTextureDataInspector))]
-    struct SpriteTextureData
+    class SpriteTextureData
     {
         public string TextureFile;
 
