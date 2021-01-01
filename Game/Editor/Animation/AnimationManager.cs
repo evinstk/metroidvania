@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+﻿using Nez;
 using Nez.Persistence;
 using System.Collections.Generic;
 

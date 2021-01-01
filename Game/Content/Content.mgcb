@@ -173,16 +173,7 @@
 /copy:Textures/hero32.json
 
 #begin Textures/hero32.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Textures/hero32.png
+/copy:Textures/hero32.png
 
 #begin Textures/nearMountain.png
 /copy:Textures/nearMountain.png
