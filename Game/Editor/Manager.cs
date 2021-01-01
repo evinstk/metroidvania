@@ -137,6 +137,8 @@ namespace Game.Editor
             return ret;
         }
 
+        public bool RadioButtons(ref string selectedId) => RadioButtons(selectedId, ref selectedId);
+
         public bool Combo(string label, string activeId, ref string selectedId)
         {
             var ret = false;
@@ -155,6 +157,8 @@ namespace Game.Editor
             }
             return ret;
         }
+
+        public bool Combo(string label, ref string selectedId) => Combo(label, selectedId, ref selectedId);
 
         #endregion
     }
