@@ -125,10 +125,21 @@ namespace Game.Editor.Prefab
             //    GenerateInspectors();
             //}
 
+            bool newPrefab = false;
+
             if (_prefabManager.RadioButtons(_selectedEntityId, ref _selectedEntityId))
             {
                 GenerateInspectors();
             }
+            if (NezImGui.CenteredButton("New Prefab", 1f))
+            {
+                newPrefab = true;
+            }
+
+            if (newPrefab)
+                ImGui.OpenPopup("new-resource");
+
+            _prefabManager.NewResourcePopup();
         }
 
         void GenerateInspectors()

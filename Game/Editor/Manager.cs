@@ -28,7 +28,7 @@ namespace Game.Editor
     }
 
     abstract class Manager<T> : Manager
-        where T : class, IResource
+        where T : class, IResource, new()
     {
         protected class ResourceMeta
         {
@@ -53,6 +53,17 @@ namespace Game.Editor
             }
         }
 
+        public void NewResource(string filename)
+        {
+            var resourceMeta = new ResourceMeta
+            {
+                Data = new T(),
+                Filename = filename,
+            };
+            SaveResource(resourceMeta);
+            _resources.Add(resourceMeta);
+        }
+
         protected virtual T LoadResource(string file)
         {
             var serialized = File.ReadAllText(file);
@@ -72,7 +83,7 @@ namespace Game.Editor
                 PreserveReferencesHandling = true,
                 TypeConverters = _typeConverters,
             });
-            File.WriteAllText(meta.Filename, serialized);
+            File.WriteAllText(Path + System.IO.Path.GetFileName(meta.Filename), serialized);
         }
 
         public T GetResource(string id) => _resources.Find(r => r.Data.Id == id)?.Data;
@@ -86,6 +97,29 @@ namespace Game.Editor
         }
 
         #region ImGui
+
+        string _newResourceInput = "";
+        public void NewResourcePopup()
+        {
+            if (ImGui.BeginPopupModal("new-resource"))
+            {
+                ImGui.Text("File name:");
+                ImGui.InputText("##newResourceName", ref _newResourceInput, 25);
+                if (ImGui.Button("Cancel"))
+                {
+                    _newResourceInput = "";
+                    ImGui.CloseCurrentPopup();
+                }
+                ImGui.SameLine();
+                if (ImGui.Button("Save") && _newResourceInput.Length > 0)
+                {
+                    NewResource(_newResourceInput);
+                    _newResourceInput = "";
+                    ImGui.CloseCurrentPopup();
+                }
+                ImGui.EndPopup();
+            }
+        }
 
         public bool RadioButtons(string activeId, ref string selectedId)
         {
