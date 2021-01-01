@@ -1,0 +1,16 @@
+{
+	"@id": "1",
+	"Name": "heroIdle",
+	"FramesPerSecond": 12,
+	"Frames": [
+		{
+			"@id": "2",
+			"Sprite": {
+				"@id": "3",
+				"TextureMapId": "hero32.png",
+				"FrameFilename": "idle000.png"
+			}
+		}
+	],
+	"Id": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU"
+}
