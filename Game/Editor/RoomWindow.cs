@@ -8,6 +8,7 @@ using Num = System.Numerics;
 
 namespace Game.Editor
 {
+    [EditorWindow]
     class RoomWindow : Component
     {
         static string RoomFolder = "../../../Content/Rooms";

@@ -1,6 +1,8 @@
-﻿using Game.Editor.Tool;
+﻿using Game.Editor.Animation;
+using Game.Editor.Tool;
 using Microsoft.Xna.Framework;
 using Nez;
+using System;
 
 namespace Game.Editor
 {
@@ -24,16 +26,13 @@ namespace Game.Editor
 
         void CreateWindows()
         {
-            var toolWindow = new ToolWindow();
-            toolWindow.SetRenderLayer(-1);
-            CreateEntity("windows")
-                .AddComponent(new RoomWindow())
-                .AddComponent(toolWindow)
-                .AddComponent<TilesetWindow>()
-                .AddComponent<Prefab.PrefabWindow>()
-                .AddComponent<LayerWindow>()
-                .AddComponent<TransportWindow>()
-                .AddComponent<EntityWindow>();
+            var windows = CreateEntity("windows");
+            foreach (var windowType in ReflectionUtils.GetAllTypesWithAttribute<EditorWindowAttribute>())
+            {
+                var window = Activator.CreateInstance(windowType) as Component;
+                Insist.IsNotNull(window);
+                windows.AddComponent(window);
+            }
         }
     }
 }

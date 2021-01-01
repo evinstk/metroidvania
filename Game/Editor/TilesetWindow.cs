@@ -9,6 +9,7 @@ using Num = System.Numerics;
 
 namespace Game.Editor
 {
+    [EditorWindow]
     class TilesetWindow : Component
     {
         static readonly string TextureFolder = "../../../Content/Textures";

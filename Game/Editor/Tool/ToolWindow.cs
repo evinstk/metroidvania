@@ -14,6 +14,7 @@ namespace Game.Editor.Tool
         Select,
     }
 
+    [EditorWindow]
     partial class ToolWindow : RenderableComponent, IUpdatable
     {
         public override float Width => 1;
@@ -31,6 +32,11 @@ namespace Game.Editor.Tool
         Erase _erase;
         PrefabTool _prefab;
         SelectTool _select;
+
+        public override void Initialize()
+        {
+            SetRenderLayer(-1);
+        }
 
         public override void OnAddedToEntity()
         {

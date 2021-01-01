@@ -5,7 +5,6 @@ using Nez.ImGuiTools.TypeInspectors;
 using Nez.Persistence;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Num = System.Numerics;
 
 namespace Game.Editor.Prefab
@@ -25,6 +24,7 @@ namespace Game.Editor.Prefab
     {
     }
 
+    [EditorWindow]
     class PrefabWindow : Component
     {
         Type[] _componentSubclasses;
@@ -50,12 +50,6 @@ namespace Game.Editor.Prefab
         {
             Core.GetGlobalManager<ImGuiManager>().UnregisterDrawCommand(Draw);
         }
-
-        public static JsonTypeConverter[] TypeConverters = new JsonTypeConverter[]
-        {
-            new SpriteDataConverter(),
-            new LightDataConverter(),
-        };
 
         void Draw()
         {

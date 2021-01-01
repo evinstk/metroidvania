@@ -4,6 +4,7 @@ using Nez.ImGuiTools;
 
 namespace Game.Editor
 {
+    [EditorWindow]
     class LayerWindow : Component
     {
         public RoomLayer SelectedLayer =>
