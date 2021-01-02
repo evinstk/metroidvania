@@ -9,12 +9,9 @@ namespace Game.Editor
     {
         public string Selection;
 
-        RoomWindow _roomWindow;
-
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
-            _roomWindow = Entity.GetComponentStrict<RoomWindow>();
         }
 
         public override void OnRemovedFromEntity()
@@ -26,12 +23,12 @@ namespace Game.Editor
         {
             if (ImGui.Begin("Entity"))
             {
-                var entity = _roomWindow.RoomData?.Entities.Find(e => e.Id == Selection);
+                var entity = EditorState.RoomData?.Entities.Find(e => e.Id == Selection);
                 if (entity != null)
                 {
                     if (NezImGui.CenteredButton("Remove Entity", 1f))
                     {
-                        _roomWindow.RoomData.Entities.Remove(entity);
+                        EditorState.RoomData.Entities.Remove(entity);
                     }
 
                     ImGui.InputText("##name", ref entity.Name, 25);

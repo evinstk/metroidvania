@@ -8,17 +8,13 @@ namespace Game.Editor
     class LayerWindow : Component
     {
         public RoomLayer SelectedLayer =>
-            _selectedLayer >= 0 && _selectedLayer < _room?.RoomData?.Layers.Count
-            ? _room.RoomData.Layers[_selectedLayer]
+            _selectedLayer >= 0 && _selectedLayer < EditorState.RoomData?.Layers.Count
+            ? EditorState.RoomData.Layers[_selectedLayer]
             : null;
-
-        RoomWindow _room;
 
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
-
-            _room = Entity.GetComponentStrict<RoomWindow>();
         }
 
         public override void OnRemovedFromEntity()
@@ -29,7 +25,7 @@ namespace Game.Editor
         int _selectedLayer = 0;
         void Draw()
         {
-            var roomData = _room.RoomData;
+            var roomData = EditorState.RoomData;
             if (roomData == null) return;
 
             if (ImGui.Begin("Layer"))

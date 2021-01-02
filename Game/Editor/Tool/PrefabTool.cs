@@ -16,7 +16,7 @@ namespace Game.Editor.Tool
             public void Update()
             {
                 var selectedPrefab = _window._prefabWindow.SelectedEntity;
-                var roomData = _window._roomWindow.RoomData;
+                var roomData = EditorState.RoomData;
 
                 if (Input.LeftMouseButtonPressed
                     && selectedPrefab != null
@@ -38,7 +38,7 @@ namespace Game.Editor.Tool
             public void Render(Batcher batcher, Camera camera)
             {
                 var selectedEntity = _window._prefabWindow.SelectedEntity;
-                var roomData = _window._roomWindow.RoomData;
+                var roomData = EditorState.RoomData;
 
                 if (selectedEntity != null
                     && roomData != null)

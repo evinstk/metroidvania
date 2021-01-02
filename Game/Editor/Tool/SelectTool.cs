@@ -17,7 +17,7 @@ namespace Game.Editor.Tool
 
             public void Update()
             {
-                var roomData = _window._roomWindow.RoomData;
+                var roomData = EditorState.RoomData;
 
                 if (Input.LeftMouseButtonPressed
                     && roomData != null)

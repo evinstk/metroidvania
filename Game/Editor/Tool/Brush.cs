@@ -16,7 +16,7 @@ namespace Game.Editor.Tool
 
             public void Update()
             {
-                var roomData = _window._roomWindow.RoomData;
+                var roomData = EditorState.RoomData;
                 var textureFile = _window._tilesetWindow.TextureFile;
                 var layer = _window._layerWindow.SelectedLayer;
 
