@@ -17,7 +17,7 @@ namespace Game.Editor.Prefab
         [CustomInspector(typeof(AnimationDataInspector))]
         public class AnimationData
         {
-            public string AnimationId;
+            public string AnimationId = "default";
             public bool Flip;
         }
 
