@@ -67,6 +67,8 @@ namespace Game
 		/// </summary>
 		public event Action<string> OnAnimationCompletedEvent;
 
+		public event Action<T> OnFrameEnter;
+
 		/// <summary>
 		/// animation playback speed
 		/// </summary>
@@ -166,6 +168,7 @@ namespace Game
 			if (CurrentFrame != _lastFrameIndex)
             {
 				frame.OnEnter();
+				OnFrameEnter?.Invoke(frame);
 				_lastFrameIndex = CurrentFrame;
             }
 			//frame.Animate();
