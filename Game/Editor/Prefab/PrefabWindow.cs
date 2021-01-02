@@ -22,6 +22,7 @@ namespace Game.Editor.Prefab
 
     abstract class PrefabComponent
     {
+        public virtual void AddToEntity(Entity entity) { }
     }
 
     [EditorWindow]

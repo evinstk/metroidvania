@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.ImGuiTools.TypeInspectors;
 using Nez.Persistence;
+using Nez.Sprites;
+using Nez.Textures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +20,14 @@ namespace Game.Editor.Prefab
         public Vector2 Origin;
         [JsonExclude]
         public Color Color = Color.White;
+
+        public override void AddToEntity(Entity entity)
+        {
+            var texture = TextureData.Texture;
+            var sprite = new Sprite(texture, SourceRect, Origin);
+            var renderer = entity.AddComponent(new SpriteRenderer(sprite));
+            renderer.Color = Color;
+        }
     }
 
     class SpriteDataConverter : JsonTypeConverter<SpriteData>

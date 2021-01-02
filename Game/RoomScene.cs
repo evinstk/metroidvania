@@ -1,5 +1,4 @@
 ﻿using Game.Editor;
-using Game.Editor.Prefab;
 using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Nez;
@@ -64,21 +63,7 @@ namespace Game
                 entity.SetPosition(entityData.Position);
                 foreach (var component in prefab.Components)
                 {
-                    if (component is SpriteData spriteData)
-                    {
-                        var texture = spriteData.TextureData.Texture;
-                        var sprite = new Sprite(texture, spriteData.SourceRect, spriteData.Origin);
-                        var renderer = entity.AddComponent(new SpriteRenderer(sprite));
-                        renderer.Color = spriteData.Color;
-                    }
-                    if (component is LightData lightData)
-                    {
-                        CreateEntity("light")
-                            .SetParent(entity.Transform)
-                            .SetLocalPosition(lightData.LocalOffset)
-                            .AddComponent(new StencilLight(lightData.Radius, lightData.Color, lightData.Power))
-                            .SetRenderLayer(LIGHT_LAYER);
-                    }
+                    component.AddToEntity(entity);
                 }
             }
 
