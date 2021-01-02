@@ -1,4 +1,5 @@
 ﻿using Game.Editor.Prefab;
+using Game.Editor.Tool;
 using Nez;
 
 namespace Game.Editor
@@ -10,5 +11,7 @@ namespace Game.Editor
 
         public static PrefabData SelectedPrefab => Core.GetGlobalManager<PrefabManager>().GetResource(SelectedPrefabId);
         public static string SelectedPrefabId = null;
+
+        public static Tools CurrentTool { get; set; } = Tools.Brush;
     }
 }

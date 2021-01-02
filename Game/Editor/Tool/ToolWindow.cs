@@ -20,12 +20,8 @@ namespace Game.Editor.Tool
         public override float Width => 1;
         public override float Height => 1;
 
-        public Tools CurrentTool { get; private set; } = Tools.Brush;
-
-        RoomWindow _roomWindow;
         TilesetWindow _tilesetWindow;
         LayerWindow _layerWindow;
-        Editor.Prefab.PrefabWindow _prefabWindow;
         EntityWindow _entityWindow;
 
         Brush _brush;
@@ -42,10 +38,8 @@ namespace Game.Editor.Tool
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
 
-            _roomWindow = Entity.GetComponentStrict<RoomWindow>();
             _tilesetWindow = Entity.GetComponentStrict<TilesetWindow>();
             _layerWindow = Entity.GetComponentStrict<LayerWindow>();
-            _prefabWindow = Entity.GetComponentStrict<Prefab.PrefabWindow>();
             _entityWindow = Entity.GetOrCreateComponent<EntityWindow>();
 
             _brush = new Brush(this);
@@ -68,8 +62,8 @@ namespace Game.Editor.Tool
             {
                 foreach (Tools i in Enum.GetValues(typeof(Tools)))
                 {
-                    if (ImGui.RadioButton(i.ToString(), CurrentTool == i))
-                        CurrentTool = i;
+                    if (ImGui.RadioButton(i.ToString(), EditorState.CurrentTool == i))
+                        EditorState.CurrentTool = i;
                 }
                 ImGui.End();
             }
@@ -78,7 +72,7 @@ namespace Game.Editor.Tool
         public void Update()
         {
             Entity.Position = Entity.Scene.Camera.MouseToWorldPoint();
-            switch (CurrentTool)
+            switch (EditorState.CurrentTool)
             {
                 case Tools.Brush: _brush.Update(); return;
                 case Tools.Erase: _erase.Update(); return;
@@ -89,7 +83,7 @@ namespace Game.Editor.Tool
 
         public override void Render(Batcher batcher, Camera camera)
         {
-            switch (CurrentTool)
+            switch (EditorState.CurrentTool)
             {
                 case Tools.Prefab: _prefab.Render(batcher, camera); break;
             }
