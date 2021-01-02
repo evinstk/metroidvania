@@ -17,7 +17,7 @@ namespace Game.Editor.Tool
             public void Update()
             {
                 var roomData = EditorState.RoomData;
-                var textureFile = _window._tilesetWindow.TextureFile;
+                var textureFile = EditorState.TilesetTextureFile;
                 var layer = _window._layerWindow.SelectedLayer;
 
                 if (Input.LeftMouseButtonDown
@@ -32,7 +32,7 @@ namespace Game.Editor.Tool
                     if (layerPoint.X < 0 || layerPoint.X >= roomData.Width || layerPoint.Y < 0 || layerPoint.Y >= roomData.Height)
                         return;
 
-                    var tileSelection = _window._tilesetWindow.TileSelection;
+                    var tileSelection = EditorState.TileSelection;
 
                     LayerTile existingTile = null;
                     foreach (var tile in layer.Tiles)

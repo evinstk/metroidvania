@@ -14,17 +14,15 @@ namespace Game.Editor
     {
         static readonly string TextureFolder = "../../../Content/Textures";
 
-        public string TextureFile => _textureFile;
-        string _textureFile;
         Texture2D _texture;
         float _imageZoom = 3;
         Num.Vector2 _tileSize = new Num.Vector2(16, 16);
-        public Point TileSelection => _tileSelection;
-        Point _tileSelection;
 
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
+            if (EditorState.TilesetTextureFile != null)
+                LoadTexture();
         }
 
         public override void OnRemovedFromEntity()
@@ -53,35 +51,14 @@ namespace Game.Editor
                 var bounds = _texture.Bounds;
                 ImGui.Image(_texturePtr, new Num.Vector2(bounds.Width, bounds.Height) * _imageZoom);
 
-                //for (var yi = 0; yi * _tileSize.Y < bounds.Height; ++yi)
-                //{
-                //    for (var xi = 0; xi * _tileSize.X < bounds.Width; ++xi)
-                //    {
-                //        var tile = new Num.Vector2(xi, yi);
-                //        DrawRect(
-                //            cursorPosImageTopLeft + tile * _tileSize * _imageZoom,
-                //            tile.ToXNA().ToPoint() == _tileSelection);
-                //        //DrawRect(
-                //        //    cursorPosImageTopLeft + (new Num.Vector2(_tileSize.X * xi, _tileSize.Y * yi) * _imageZoom));
-                //    }
-                //}
-
-                DrawRect(cursorPosImageTopLeft + _tileSelection.ToNumerics() * _tileSize * _imageZoom);
+                DrawRect(cursorPosImageTopLeft + EditorState.TileSelection.ToNumerics() * _tileSize * _imageZoom);
 
                 if (ImGui.IsWindowFocused() && ImGui.IsMouseDoubleClicked(0))
                 {
                     var tilePos = (ImGui.GetMousePos() - cursorPosImageTopLeft) / (_tileSize * _imageZoom);
-                    _tileSelection = tilePos.ToXNA().ToPoint();
+                    EditorState.TileSelection = tilePos.ToXNA().ToPoint();
                 }
             }
-        }
-
-        void DrawRect(Num.Vector2 cursorPos, bool selected)
-        {
-            ImGui.GetWindowDrawList().AddRect(
-                cursorPos,
-                cursorPos + _tileSize * _imageZoom,
-                selected ? Color.Green.PackedValue : Color.Yellow.PackedValue);
         }
 
         void DrawRect(Num.Vector2 cursorPos)
@@ -120,7 +97,7 @@ namespace Game.Editor
                 var picker = FilePicker.GetFilePicker(this, TextureFolder);
                 if (picker.Draw())
                 {
-                    _textureFile = picker.SelectedFile;
+                    EditorState.TilesetTextureFile = picker.SelectedFile;
                     LoadTexture();
                     FilePicker.RemoveFilePicker(this);
                 }
@@ -134,7 +111,7 @@ namespace Game.Editor
             if (_texturePtr != IntPtr.Zero)
                 Core.GetGlobalManager<ImGuiManager>().UnbindTexture(_texturePtr);
 
-            _texture = Texture2D.FromStream(Core.GraphicsDevice, File.OpenRead(_textureFile));
+            _texture = Texture2D.FromStream(Core.GraphicsDevice, File.OpenRead(EditorState.TilesetTextureFile));
             _texturePtr = Core.GetGlobalManager<ImGuiManager>().BindTexture(_texture);
         }
 

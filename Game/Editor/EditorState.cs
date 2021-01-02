@@ -1,5 +1,6 @@
 ﻿using Game.Editor.Prefab;
 using Game.Editor.Tool;
+using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Game.Editor
@@ -15,5 +16,8 @@ namespace Game.Editor
         public static Tools CurrentTool { get; set; } = Tools.Brush;
 
         public static string SelectedAnimationId = null;
+
+        public static string TilesetTextureFile = null;
+        public static Point TileSelection;
     }
 }
