@@ -59,11 +59,7 @@ namespace Game.Movement
 
             _animator = Entity.GetComponentStrict<Animator<ObserverFrame>>();
             _animator.OnFrameEnter += HandleFrameEnter;
-            _animator.AddAnimation("IdleRight", Idle.Right);
-            _animator.AddAnimation("IdleLeft", Idle.Left);
-            _animator.AddAnimation("WalkRight", Walk.Right);
-            _animator.AddAnimation("WalkLeft", Walk.Left);
-            _animator.Play("IdleRight");
+            _animator.Play(Idle.Right);
 
             Entity.GetOrCreateComponent<BoxCollider>();
         }
@@ -95,7 +91,7 @@ namespace Game.Movement
             _mover.ApplyMovement(motion);
         }
 
-        void ChangeAnimation(string animation)
+        void ChangeAnimation(Animation<ObserverFrame> animation)
         {
             if (!_animator.IsAnimationActive(animation))
                 _animator.Play(animation);

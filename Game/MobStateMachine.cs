@@ -29,7 +29,7 @@ namespace Game.MobState
         ControllerComponent _controller;
         Mover _mover;
         TiledMapMover _tiledMapMover;
-        Animator<Frame> _animator;
+        //Animator<Frame> _animator;
 
         public MobStateMachine(BoxCollider boxCollider)
         {
@@ -49,7 +49,7 @@ namespace Game.MobState
             _mover = Entity.AddComponent<Mover>();
             var map = (Entity.Scene as MainScene).Map;
             _tiledMapMover = Entity.AddComponent(new TiledMapMover(map.GetLayer<TmxLayer>("terrain")));
-            _animator = Entity.GetComponent<Animator<Frame>>();
+            //_animator = Entity.GetComponent<Animator<Frame>>();
 
             // assume on ground
             _collision.Collision.Below = true;
@@ -68,10 +68,10 @@ namespace Game.MobState
         void ChangeAnimation(string animationPrefix, Animator<Frame>.LoopMode loopMode = Animator<Frame>.LoopMode.Loop)
         {
             var animation = animationPrefix + (Facing >= 0 ? "Right" : "Left");
-            if (_animator.CurrentAnimationName != animation)
-            {
-                _animator.Play(animation, loopMode);
-            }
+            //if (_animator.CurrentAnimationName != animation)
+            //{
+            //    //_animator.Play(animation, loopMode);
+            //}
         }
 
         void Move(float deltaTime)
@@ -201,12 +201,12 @@ namespace Game.MobState
             public override void Begin()
             {
                 _context.ChangeAnimation("Attack", Animator<Frame>.LoopMode.Once);
-                _context._animator.OnAnimationCompletedEvent += _context.GroundOrAir;
+                //_context._animator.OnAnimationCompletedEvent += _context.GroundOrAir;
             }
 
             public override void End()
             {
-                _context._animator.OnAnimationCompletedEvent -= _context.GroundOrAir;
+                //_context._animator.OnAnimationCompletedEvent -= _context.GroundOrAir;
             }
 
             public override void Update(float deltaTime)
@@ -235,7 +235,7 @@ namespace Game.MobState
                 if (_context._collision.Collision.BecameGroundedThisFrame)
                 {
                     _context.ChangeAnimation("Land", Animator<Frame>.LoopMode.ClampForever);
-                    _context._animator.OnAnimationCompletedEvent += _context.GroundOrAir;
+                    //_context._animator.OnAnimationCompletedEvent += _context.GroundOrAir;
                 }
                 if (_context.GetCanClimb(out _))
                 {
@@ -270,15 +270,15 @@ namespace Game.MobState
                 _context._velocity.X = _context.MoveSpeed * moveDir.X;
                 _context.Move(deltaTime);
 
-                if (!_context._animator.CurrentAnimationName.Contains("Land"))
-                {
-                    _context.ChangeAnimation(_context._velocity.Y >= 0 ? "Fall" : "Jump", Animator<Frame>.LoopMode.ClampForever);
-                }
+                //if (!_context._animator.CurrentAnimationName.Contains("Land"))
+                //{
+                //    _context.ChangeAnimation(_context._velocity.Y >= 0 ? "Fall" : "Jump", Animator<Frame>.LoopMode.ClampForever);
+                //}
             }
 
             public override void End()
             {
-                _context._animator.OnAnimationCompletedEvent -= _context.GroundOrAir;
+                //_context._animator.OnAnimationCompletedEvent -= _context.GroundOrAir;
             }
         }
 

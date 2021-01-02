@@ -31,7 +31,7 @@ namespace Game.Prefabs
 
             entity.AddComponent<SpriteRenderer>().SetRenderLayer(-1);
             var animator = entity.AddAnimator(textureMap);
-            animator.Play("default");
+            //animator.Play("default");
 
             entity.AddComponent(new BoxCollider(12, 32));
             entity.AddComponent<PlayerController>();

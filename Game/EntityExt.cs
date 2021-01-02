@@ -109,11 +109,10 @@ namespace Game
                         sprite,
                         opts);
                 }).ToArray();
-                animator.AddAnimation(
-                    animType.Type,
-                    new Animation<Frame>(
-                        frames,
-                        12));
+                //animator.AddAnimation(
+                //    new Animation<Frame>(
+                //        frames,
+                //        12));
             }
 
             return entity.AddComponent(animator);
@@ -141,7 +140,7 @@ namespace Game
                         new Vector2(frame.Pivot.X * frame.SourceSize.W - frame.SpriteSourceSize.X, frame.Pivot.Y * frame.SourceSize.H - frame.SpriteSourceSize.Y));
                     frames.Add(new Frame(renderer, null, sprite, new FrameOptions()));
                 }
-                animator.AddAnimation(group.Key, new Animation<Frame>(frames.ToArray(), 12));
+                //animator.AddAnimation(group.Key, new Animation<Frame>(frames.ToArray(), 12));
             }
 
             return entity.AddComponent(animator);

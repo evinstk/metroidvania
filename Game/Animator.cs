@@ -65,7 +65,7 @@ namespace Game
 		/// <summary>
 		/// fired when an animation completes, includes the animation name;
 		/// </summary>
-		public event Action<string> OnAnimationCompletedEvent;
+		public event Action<Animation<T>> OnAnimationCompletedEvent;
 
 		public event Action<T> OnFrameEnter;
 
@@ -86,11 +86,6 @@ namespace Game
 		public Animation<T> CurrentAnimation { get; private set; }
 
 		/// <summary>
-		/// the name of the current animation
-		/// </summary>
-		public string CurrentAnimationName { get; private set; }
-
-		/// <summary>
 		/// index of the current frame in sprite array of the current animation
 		/// </summary>
 		public int CurrentFrame { get; set; }
@@ -99,8 +94,6 @@ namespace Game
 		/// checks to see if the CurrentAnimation is running
 		/// </summary>
 		public bool IsRunning => AnimationState == State.Running;
-
-		readonly Dictionary<string, Animation<T>> _animations = new Dictionary<string, Animation<T>>();
 
 		float _elapsedTime;
 		LoopMode _loopMode;
@@ -132,7 +125,7 @@ namespace Game
 				_elapsedTime = 0;
 				CurrentFrame = 0;
 				PlayFrame();
-				OnAnimationCompletedEvent?.Invoke(CurrentAnimationName);
+				OnAnimationCompletedEvent?.Invoke(CurrentAnimation);
 				return;
 			}
 
@@ -141,7 +134,7 @@ namespace Game
 				AnimationState = State.Completed;
 				CurrentFrame = frames.Length - 1;
 				PlayFrame();
-				OnAnimationCompletedEvent?.Invoke(CurrentAnimationName);
+				OnAnimationCompletedEvent?.Invoke(CurrentAnimation);
 				return;
 			}
 
@@ -174,21 +167,14 @@ namespace Game
 			//frame.Animate();
         }
 
-		public Animator<T> AddAnimation(string name, Animation<T> animation)
-        {
-			_animations[name] = animation;
-			return this;
-        }
-
 		#region Playback
 
 		/// <summary>
 		/// plays the animation with the given name. If no loopMode is specified it is defaults to Loop
 		/// </summary>
-		public void Play(string name, LoopMode? loopMode = null)
+		public void Play(Animation<T> animation, LoopMode? loopMode = null)
 		{
-			CurrentAnimation = _animations[name];
-			CurrentAnimationName = name;
+			CurrentAnimation = animation;
 			CurrentFrame = 0;
 			_lastFrameIndex = -1;
 			AnimationState = State.Running;
@@ -201,7 +187,7 @@ namespace Game
 		/// <summary>
 		/// checks to see if the animation is playing (i.e. the animation is active. it may still be in the paused state)
 		/// </summary>
-		public bool IsAnimationActive(string name) => CurrentAnimation != null && CurrentAnimationName.Equals(name);
+		public bool IsAnimationActive(Animation<T> animation) => CurrentAnimation == animation;
 
 		/// <summary>
 		/// pauses the animator
@@ -219,7 +205,6 @@ namespace Game
 		public void Stop()
 		{
 			CurrentAnimation = null;
-			CurrentAnimationName = null;
 			CurrentFrame = 0;
 			_lastFrameIndex = -1;
 			AnimationState = State.None;

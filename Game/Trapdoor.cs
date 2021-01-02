@@ -18,7 +18,7 @@ namespace Game
             trapdoorRenderer.SetRenderLayer(layerIndex);
 
             var trapdoorAnimator = trapdoor.AddAnimator(trapdoorMap);
-            trapdoorAnimator.Play("closed", Animator<Frame>.LoopMode.ClampForever);
+            //trapdoorAnimator.Play("closed", Animator<Frame>.LoopMode.ClampForever);
 
             var collider = trapdoor.AddComponent<BoxCollider>();
             Flags.SetFlagExclusive(ref collider.PhysicsLayer, Layer.Doodad);
@@ -31,12 +31,12 @@ namespace Game
             var listener = trapdoor.AddComponent<TriggerListener>();
             listener.TriggerEnter = () =>
             {
-                if (trapdoorAnimator.IsAnimationActive("closed"))
-                {
-                    trapdoorAnimator.Play("open", Animator<Frame>.LoopMode.ClampForever);
-                    collider.SetEnabled(false);
-                    trigger.SetEnabled(false);
-                }
+                //if (trapdoorAnimator.IsAnimationActive("closed"))
+                //{
+                //    trapdoorAnimator.Play("open", Animator<Frame>.LoopMode.ClampForever);
+                //    collider.SetEnabled(false);
+                //    trigger.SetEnabled(false);
+                //}
             };
 
             return trapdoor;
