@@ -11,8 +11,6 @@ namespace Game.Editor.Animation
         AnimationManager _animationManager;
         TextureMapDataManager _textureMapDataManager;
 
-        string _animationId;
-
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
@@ -64,7 +62,7 @@ namespace Game.Editor.Animation
         {
             var newAnimation = false;
 
-            _animationManager.RadioButtons(_animationId, ref _animationId);
+            _animationManager.RadioButtons(EditorState.SelectedAnimationId, ref EditorState.SelectedAnimationId);
             if (NezImGui.CenteredButton("New Animation", 1f))
             {
                 newAnimation = true;
@@ -78,7 +76,7 @@ namespace Game.Editor.Animation
 
         void DrawRightPane()
         {
-            var animation = _animationManager.GetResource(_animationId);
+            var animation = _animationManager.GetResource(EditorState.SelectedAnimationId);
             if (animation != null)
             {
                 AnimationData.Frame deleteFrame = null;

@@ -13,5 +13,7 @@ namespace Game.Editor
         public static string SelectedPrefabId = null;
 
         public static Tools CurrentTool { get; set; } = Tools.Brush;
+
+        public static string SelectedAnimationId = null;
     }
 }
