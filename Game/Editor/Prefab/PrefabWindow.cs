@@ -32,9 +32,6 @@ namespace Game.Editor.Prefab
 
         PrefabManager _prefabManager = Core.GetGlobalManager<PrefabManager>();
 
-        public PrefabData SelectedEntity => _selectedEntityId != null ? _prefabManager.GetResource(_selectedEntityId) : null;
-        string _selectedEntityId = null;
-
         public override void Initialize()
         {
             var subclasses = ReflectionUtils.GetAllSubclasses(typeof(PrefabComponent), true);
@@ -45,6 +42,8 @@ namespace Game.Editor.Prefab
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
+
+            GenerateInspectors();
         }
 
         public override void OnRemovedFromEntity()
@@ -102,27 +101,9 @@ namespace Game.Editor.Prefab
         List<EditorComponentInspector> _inspectors;
         void DrawEntitySelector()
         {
-            //for (var i = 0; i < Prefabs.Count; ++i)
-            //{
-            //    var data = Prefabs[i].Data;
-            //    if (ImGui.RadioButton($"{i + 1}: {data.Name}", i == _selectedEntity))
-            //    {
-            //        _selectedEntity = i;
-            //        GenerateInspectors();
-            //    }
-            //}
-
-            //string selection = string.Empty;
-            //if (EditorCore.GetManager<PrefabManager>().RadioButtons(_selectedEntity > -1 ? Prefabs[_selectedEntity].Data.Id : null, ref selection))
-            //{
-            //    var prefab = Prefabs.Find(p => p.Data.Id == selection);
-            //    _selectedEntity = Prefabs.IndexOf(prefab);
-            //    GenerateInspectors();
-            //}
-
             bool newPrefab = false;
 
-            if (_prefabManager.RadioButtons(_selectedEntityId, ref _selectedEntityId))
+            if (_prefabManager.RadioButtons(EditorState.SelectedPrefabId, ref EditorState.SelectedPrefabId))
             {
                 GenerateInspectors();
             }
@@ -139,8 +120,9 @@ namespace Game.Editor.Prefab
 
         void GenerateInspectors()
         {
-            var data = _prefabManager.GetResource(_selectedEntityId);
             _inspectors = new List<EditorComponentInspector>();
+            var data = EditorState.SelectedPrefab;
+            if (data == null) return;
             foreach (var component in data.Components)
             {
                 _inspectors.Add(new EditorComponentInspector
@@ -155,13 +137,13 @@ namespace Game.Editor.Prefab
 
         void DrawEntityInspector()
         {
-            if (_selectedEntityId == null)
+            if (EditorState.SelectedPrefabId == null)
                 return;
 
             var addComponent = false;
             PrefabComponent toRemove = null;
 
-            var entity = _prefabManager.GetResource(_selectedEntityId);
+            var entity = _prefabManager.GetResource(EditorState.SelectedPrefabId);
             ImGui.Text("Name:");
             ImGui.InputText("##entityName", ref entity.Name, 25);
 
@@ -211,7 +193,7 @@ namespace Game.Editor.Prefab
                 {
                     if (ImGui.Selectable(subclass.Name))
                     {
-                        SelectedEntity.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
+                        EditorState.SelectedPrefab.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
                         GenerateInspectors();
                         ImGui.CloseCurrentPopup();
                     }
