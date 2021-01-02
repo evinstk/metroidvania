@@ -1,0 +1,77 @@
+{
+	"@id": "1",
+	"Name": "Hero",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteData",
+			"Color": 4294967295,
+			"TextureData": {
+				"@id": "3",
+				"TextureFile": "hero32.png"
+			},
+			"SourceRect": {
+				"@id": "4",
+				"X": 0,
+				"Y": 33,
+				"Width": 43,
+				"Height": 32
+			},
+			"Origin": {
+				"@id": "5",
+				"X": 32,
+				"Y": 16
+			}
+		},
+		{
+			"@id": "6",
+			"@type": "Game.Editor.Prefab.PlayerMovementData",
+			"IdleRight": {
+				"@id": "7",
+				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
+				"Flip": false
+			},
+			"IdleLeft": {
+				"@id": "8",
+				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
+				"Flip": true
+			},
+			"WalkRight": {
+				"@id": "9",
+				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
+				"Flip": false
+			},
+			"WalkLeft": {
+				"@id": "10",
+				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
+				"Flip": true
+			}
+		},
+		{
+			"@id": "11",
+			"@type": "Game.Editor.Prefab.LightData",
+			"Color": 4294967295,
+			"Radius": 200,
+			"Power": 1,
+			"LocalOffset": {
+				"@id": "12",
+				"X": 0,
+				"Y": 0
+			}
+		},
+		{
+			"@id": "13",
+			"@type": "Game.Editor.Prefab.PlayerControllerData"
+		},
+		{
+			"@id": "14",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@id": "15",
+				"X": 12,
+				"Y": 32
+			}
+		}
+	],
+	"Id": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC"
+}
