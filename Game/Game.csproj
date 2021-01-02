@@ -34,8 +34,5 @@
     <ProjectReference Include="..\Nez\Nez.ImGui\Nez.ImGui.csproj" />
     <ProjectReference Include="..\Nez\Nez.Portable\Nez.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Animations2\" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>
