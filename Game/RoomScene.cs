@@ -13,10 +13,10 @@ namespace Game
     {
         RoomData _roomData;
 
-        const int LIGHT_LAYER = 100;
-        const int LIGHT_MAP_LAYER = 101;
+        public const int LIGHT_LAYER = 100;
+        public const int LIGHT_MAP_LAYER = 101;
 
-        const int PHYSICS_TERRAIN = 1;
+        public const int PHYSICS_TERRAIN = 1;
 
         public RoomScene(RoomData roomData)
         {
