@@ -2,19 +2,19 @@
 
 {
 	"filename": "default000.png",
-	"frame": {"x":1,"y":1,"w":64,"h":64},
+	"frame": {"x":1,"y":1,"w":27,"h":33},
 	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"trimmed": true,
+	"spriteSourceSize": {"x":12,"y":31,"w":27,"h":33},
 	"sourceSize": {"w":64,"h":64},
 	"pivot": {"x":0.5,"y":0.75}
 },
 {
 	"filename": "idle000.png",
-	"frame": {"x":1,"y":1,"w":64,"h":64},
+	"frame": {"x":1,"y":1,"w":27,"h":33},
 	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"trimmed": true,
+	"spriteSourceSize": {"x":12,"y":31,"w":27,"h":33},
 	"sourceSize": {"w":64,"h":64},
 	"pivot": {"x":0.5,"y":0.75}
 }],
@@ -23,8 +23,8 @@
 	"version": "1.0",
 	"image": "hero32.png",
 	"format": "RGBA8888",
-	"size": {"w":66,"h":66},
+	"size": {"w":29,"h":35},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:64966a508cfc7de0839335dbef9d7959:57f64837388ab07be58566754afef760:1299a95b405689236f96ca3e876c386b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:36d517079902e946d715e6b9705a17c0:57f64837388ab07be58566754afef760:1299a95b405689236f96ca3e876c386b$"
 }
 }
