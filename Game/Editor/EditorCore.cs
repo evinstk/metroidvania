@@ -2,7 +2,6 @@
 using Nez.Console;
 using Nez.ImGuiTools;
 using System;
-using System.Collections.Generic;
 
 namespace Game.Editor
 {

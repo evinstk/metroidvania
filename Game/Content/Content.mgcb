@@ -4,7 +4,7 @@
 /outputDir:..\bin\$(Config)\net471\Content
 /intermediateDir:obj/$(Platform)
 /platform:DesktopGL
-/config:Release
+/config:Debug
 /profile:Reach
 /compress:False
 
