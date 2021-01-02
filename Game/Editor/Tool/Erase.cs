@@ -16,7 +16,7 @@ namespace Game.Editor.Tool
             public void Update()
             {
                 var roomData = EditorState.RoomData;
-                var layer = _window._layerWindow.SelectedLayer;
+                var layer = EditorState.SelectedLayer;
 
                 if (Input.LeftMouseButtonDown
                     && roomData != null

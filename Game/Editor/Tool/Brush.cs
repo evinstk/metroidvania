@@ -18,7 +18,7 @@ namespace Game.Editor.Tool
             {
                 var roomData = EditorState.RoomData;
                 var textureFile = EditorState.TilesetTextureFile;
-                var layer = _window._layerWindow.SelectedLayer;
+                var layer = EditorState.SelectedLayer;
 
                 if (Input.LeftMouseButtonDown
                     && roomData != null

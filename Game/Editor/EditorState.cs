@@ -19,5 +19,11 @@ namespace Game.Editor
 
         public static string TilesetTextureFile = null;
         public static Point TileSelection;
+
+        public static RoomLayer SelectedLayer =>
+            SelectedLayerIndex >= 0 && SelectedLayerIndex < RoomData?.Layers.Count
+            ? RoomData.Layers[SelectedLayerIndex]
+            : null;
+        public static int SelectedLayerIndex = 0;
     }
 }
