@@ -72,12 +72,11 @@ namespace Game.Editor.Prefab
                 var textureMap = textureMapManager.GetResource(frame.Sprite.TextureMapId);
                 var spriteData = textureMap.frames.Find(f => f.filename == frame.Sprite.FrameFilename);
                 var texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + Path.GetFileName(textureMap.meta.image));
-                var pivotX = animationData.Flip ? 1f - spriteData.pivot.x : spriteData.pivot.x;
                 var sprite = new Sprite(
                     texture,
                     spriteData.bounds,
                     new Microsoft.Xna.Framework.Vector2(
-                        pivotX * spriteData.sourceSize.w - spriteData.spriteSourceSize.x,
+                        spriteData.pivot.x * spriteData.sourceSize.w - spriteData.spriteSourceSize.x,
                         spriteData.pivot.y * spriteData.sourceSize.h - spriteData.spriteSourceSize.y));
                 frames.Add(new ObserverFrame
                 {
