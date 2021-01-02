@@ -1,10 +1,10 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:..\bin\Debug\net471\Content
+/outputDir:..\bin\$(Config)\net471\Content
 /intermediateDir:obj/$(Platform)
 /platform:DesktopGL
-/config:
+/config:Release
 /profile:Reach
 /compress:False
 
@@ -14,8 +14,260 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../Nez/DefaultContent/effects/Bevels.mgfxo
+/copy:../../Nez/DefaultContent/effects/Bevels.mgfxo;nez/effects/Bevels.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/BloomCombine.mgfxo
+/copy:../../Nez/DefaultContent/effects/BloomCombine.mgfxo;nez/effects/BloomCombine.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/BloomExtract.mgfxo
+/copy:../../Nez/DefaultContent/effects/BloomExtract.mgfxo;nez/effects/BloomExtract.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Crosshatch.mgfxo
+/copy:../../Nez/DefaultContent/effects/Crosshatch.mgfxo;nez/effects/Crosshatch.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/DeferredLighting.mgfxo
+/copy:../../Nez/DefaultContent/effects/DeferredLighting.mgfxo;nez/effects/DeferredLighting.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/DeferredSprite.mgfxo
+/copy:../../Nez/DefaultContent/effects/DeferredSprite.mgfxo;nez/effects/DeferredSprite.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Dissolve.mgfxo
+/copy:../../Nez/DefaultContent/effects/Dissolve.mgfxo;nez/effects/Dissolve.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Dots.mgfxo
+/copy:../../Nez/DefaultContent/effects/Dots.mgfxo;nez/effects/Dots.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/ForwardLighting.mgfxo
+/copy:../../Nez/DefaultContent/effects/ForwardLighting.mgfxo;nez/effects/ForwardLighting.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/GaussianBlur.mgfxo
+/copy:../../Nez/DefaultContent/effects/GaussianBlur.mgfxo;nez/effects/GaussianBlur.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Grayscale.mgfxo
+/copy:../../Nez/DefaultContent/effects/Grayscale.mgfxo;nez/effects/Grayscale.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/HeatDistortion.mgfxo
+/copy:../../Nez/DefaultContent/effects/HeatDistortion.mgfxo;nez/effects/HeatDistortion.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Invert.mgfxo
+/copy:../../Nez/DefaultContent/effects/Invert.mgfxo;nez/effects/Invert.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Letterbox.mgfxo
+/copy:../../Nez/DefaultContent/effects/Letterbox.mgfxo;nez/effects/Letterbox.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/MultiTexture.mgfxo
+/copy:../../Nez/DefaultContent/effects/MultiTexture.mgfxo;nez/effects/MultiTexture.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/MultiTextureOverlay.mgfxo
+/copy:../../Nez/DefaultContent/effects/MultiTextureOverlay.mgfxo;nez/effects/MultiTextureOverlay.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Noise.mgfxo
+/copy:../../Nez/DefaultContent/effects/Noise.mgfxo;nez/effects/Noise.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/PaletteCycler.mgfxo
+/copy:../../Nez/DefaultContent/effects/PaletteCycler.mgfxo;nez/effects/PaletteCycler.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/PixelGlitch.mgfxo
+/copy:../../Nez/DefaultContent/effects/PixelGlitch.mgfxo;nez/effects/PixelGlitch.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/PolygonLight.mgfxo
+/copy:../../Nez/DefaultContent/effects/PolygonLight.mgfxo;nez/effects/PolygonLight.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Reflection.mgfxo
+/copy:../../Nez/DefaultContent/effects/Reflection.mgfxo;nez/effects/Reflection.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Scanlines.mgfxo
+/copy:../../Nez/DefaultContent/effects/Scanlines.mgfxo;nez/effects/Scanlines.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Sepia.mgfxo
+/copy:../../Nez/DefaultContent/effects/Sepia.mgfxo;nez/effects/Sepia.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/SpriteAlphaTest.mgfxo
+/copy:../../Nez/DefaultContent/effects/SpriteAlphaTest.mgfxo;nez/effects/SpriteAlphaTest.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/SpriteBlinkEffect.mgfxo
+/copy:../../Nez/DefaultContent/effects/SpriteBlinkEffect.mgfxo;nez/effects/SpriteBlinkEffect.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/SpriteEffect.mgfxo
+/copy:../../Nez/DefaultContent/effects/SpriteEffect.mgfxo;nez/effects/SpriteEffect.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/SpriteLightMultiply.mgfxo
+/copy:../../Nez/DefaultContent/effects/SpriteLightMultiply.mgfxo;nez/effects/SpriteLightMultiply.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/SpriteLines.mgfxo
+/copy:../../Nez/DefaultContent/effects/SpriteLines.mgfxo;nez/effects/SpriteLines.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/StencilLight.mgfxo
+/copy:../../Nez/DefaultContent/effects/StencilLight.mgfxo;nez/effects/StencilLight.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/transitions/Squares.mgfxo
+/copy:../../Nez/DefaultContent/effects/transitions/Squares.mgfxo;nez/effects/transitions/Squares.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/transitions/TextureWipe.mgfxo
+/copy:../../Nez/DefaultContent/effects/transitions/TextureWipe.mgfxo;nez/effects/transitions/TextureWipe.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/transitions/Wind.mgfxo
+/copy:../../Nez/DefaultContent/effects/transitions/Wind.mgfxo;nez/effects/transitions/Wind.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Twist.mgfxo
+/copy:../../Nez/DefaultContent/effects/Twist.mgfxo;nez/effects/Twist.mgfxo
+
+#begin ../../Nez/DefaultContent/effects/Vignette.mgfxo
+/copy:../../Nez/DefaultContent/effects/Vignette.mgfxo;nez/effects/Vignette.mgfxo
+
+#begin ../../Nez/DefaultContent/FNAEffects/Bevels.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Bevels.fxb;nez/FNAEffects/Bevels.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/BloomCombine.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/BloomCombine.fxb;nez/FNAEffects/BloomCombine.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/BloomExtract.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/BloomExtract.fxb;nez/FNAEffects/BloomExtract.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Crosshatch.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Crosshatch.fxb;nez/FNAEffects/Crosshatch.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/DeferredLighting.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/DeferredLighting.fxb;nez/FNAEffects/DeferredLighting.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/DeferredSprite.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/DeferredSprite.fxb;nez/FNAEffects/DeferredSprite.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Dissolve.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Dissolve.fxb;nez/FNAEffects/Dissolve.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Dots.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Dots.fxb;nez/FNAEffects/Dots.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/ForwardLighting.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/ForwardLighting.fxb;nez/FNAEffects/ForwardLighting.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/GaussianBlur.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/GaussianBlur.fxb;nez/FNAEffects/GaussianBlur.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Grayscale.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Grayscale.fxb;nez/FNAEffects/Grayscale.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/HeatDistortion.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/HeatDistortion.fxb;nez/FNAEffects/HeatDistortion.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Invert.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Invert.fxb;nez/FNAEffects/Invert.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Letterbox.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Letterbox.fxb;nez/FNAEffects/Letterbox.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/MultiTexture.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/MultiTexture.fxb;nez/FNAEffects/MultiTexture.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/MultiTextureOverlay.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/MultiTextureOverlay.fxb;nez/FNAEffects/MultiTextureOverlay.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Noise.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Noise.fxb;nez/FNAEffects/Noise.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/PaletteCycler.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/PaletteCycler.fxb;nez/FNAEffects/PaletteCycler.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/PixelGlitch.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/PixelGlitch.fxb;nez/FNAEffects/PixelGlitch.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/PolygonLight.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/PolygonLight.fxb;nez/FNAEffects/PolygonLight.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Reflection.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Reflection.fxb;nez/FNAEffects/Reflection.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Scanlines.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Scanlines.fxb;nez/FNAEffects/Scanlines.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Sepia.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Sepia.fxb;nez/FNAEffects/Sepia.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/SpriteAlphaTest.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/SpriteAlphaTest.fxb;nez/FNAEffects/SpriteAlphaTest.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/SpriteBlinkEffect.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/SpriteBlinkEffect.fxb;nez/FNAEffects/SpriteBlinkEffect.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/SpriteEffect.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/SpriteEffect.fxb;nez/FNAEffects/SpriteEffect.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/SpriteLightMultiply.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/SpriteLightMultiply.fxb;nez/FNAEffects/SpriteLightMultiply.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/SpriteLines.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/SpriteLines.fxb;nez/FNAEffects/SpriteLines.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Squares.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Squares.fxb;nez/FNAEffects/Squares.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/StencilLight.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/StencilLight.fxb;nez/FNAEffects/StencilLight.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/TextureWipe.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/TextureWipe.fxb;nez/FNAEffects/TextureWipe.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/transitions/Squares.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/transitions/Squares.fxb;nez/FNAEffects/transitions/Squares.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/transitions/TextureWipe.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/transitions/TextureWipe.fxb;nez/FNAEffects/transitions/TextureWipe.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/transitions/Wind.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/transitions/Wind.fxb;nez/FNAEffects/transitions/Wind.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Twist.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Twist.fxb;nez/FNAEffects/Twist.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Vignette.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Vignette.fxb;nez/FNAEffects/Vignette.fxb
+
+#begin ../../Nez/DefaultContent/FNAEffects/Wind.fxb
+/copy:../../Nez/DefaultContent/FNAEffects/Wind.fxb;nez/FNAEffects/Wind.fxb
+
+#begin ../../Nez/DefaultContent/NezDefaultBMFont.xnb
+/copy:../../Nez/DefaultContent/NezDefaultBMFont.xnb;nez/NezDefaultBMFont.xnb
+
+#begin ../../Nez/DefaultContent/textures/heatDistortionNoise.xnb
+/copy:../../Nez/DefaultContent/textures/heatDistortionNoise.xnb;nez/textures/heatDistortionNoise.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/angular.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/angular.xnb;nez/textures/textureWipeTransition/angular.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/crissCross.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/crissCross.xnb;nez/textures/textureWipeTransition/crissCross.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/diagonalDistort.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/diagonalDistort.xnb;nez/textures/textureWipeTransition/diagonalDistort.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/horizontal.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/horizontal.xnb;nez/textures/textureWipeTransition/horizontal.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/noise.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/noise.xnb;nez/textures/textureWipeTransition/noise.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/pokemon.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/pokemon.xnb;nez/textures/textureWipeTransition/pokemon.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/sawTooth.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/sawTooth.xnb;nez/textures/textureWipeTransition/sawTooth.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/spiral.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/spiral.xnb;nez/textures/textureWipeTransition/spiral.xnb
+
+#begin ../../Nez/DefaultContent/textures/textureWipeTransition/wink.xnb
+/copy:../../Nez/DefaultContent/textures/textureWipeTransition/wink.xnb;nez/textures/textureWipeTransition/wink.xnb
+
 #begin Animations/Hero.json
 /copy:Animations/Hero.json
+
+#begin Animations2/default.json
+/copy:Animations2/default.json
+
+#begin Animations2/hero.json
+/copy:Animations2/hero.json
 
 #begin Data/AnimationGroups.xml
 /importer:XmlImporter
@@ -96,6 +348,21 @@
 
 #begin Maps/world8.world
 /copy:Maps/world8.world
+
+#begin Prefabs/hero.json
+/copy:Prefabs/hero.json
+
+#begin Prefabs/Left Lamp.json
+/copy:Prefabs/Left Lamp.json
+
+#begin Prefabs/Right Lamp.json
+/copy:Prefabs/Right Lamp.json
+
+#begin Rooms/collision.json
+/copy:Rooms/collision.json
+
+#begin Rooms/room1.json
+/copy:Rooms/room1.json
 
 #begin Scripts/common.lua
 /copy:Scripts/common.lua

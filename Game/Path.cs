@@ -4,10 +4,14 @@
     {
         public static readonly string Textures = "Content/Textures/";
 
-        #region editor strings
+#if DEBUG
         public static readonly string Prefabs = "../../../Content/Prefabs/";
         public static readonly string Rooms = "../../../Content/Rooms/";
         public static readonly string Animations = "../../../Content/Animations2/";
-        #endregion
+#else
+        public static readonly string Prefabs = "Content/Prefabs/";
+        public static readonly string Rooms = "Content/Rooms/";
+        public static readonly string Animations = "Content/Animations2/";
+#endif
     }
 }

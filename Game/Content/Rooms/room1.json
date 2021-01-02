@@ -1,0 +1,3916 @@
+{
+	"@id": "1",
+	"Name": "room",
+	"Width": 32,
+	"Height": 32,
+	"TileWidth": 16,
+	"TileHeight": 16,
+	"LightRendererClearColor": 40,
+	"Layers": [
+		{
+			"@id": "2",
+			"Name": "terrain",
+			"Tiles": [
+				{
+					"@id": "3",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@id": "4",
+						"X": 1,
+						"Y": 1
+					},
+					"LayerLocation": {
+						"@id": "5",
+						"X": 0,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "6",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "7",
+						"X": 1,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "8",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "9",
+						"X": 2,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "10",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "11",
+						"X": 3,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "12",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "13",
+						"X": 4,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "14",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "15",
+						"X": 5,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "16",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "17",
+						"X": 6,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "18",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "19",
+						"X": 6,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "20",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "21",
+						"X": 2,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "22",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@ref": "4"
+					}
+				},
+				{
+					"@id": "23",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "24",
+						"X": 0,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "25",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "26",
+						"X": 0,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "27",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "28",
+						"X": 1,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "29",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "30",
+						"X": 2,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "31",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "32",
+						"X": 3,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "33",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "34",
+						"X": 4,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "35",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "36",
+						"X": 5,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "37",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "38",
+						"X": 4,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "39",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "40",
+						"X": 3,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "41",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "42",
+						"X": 4,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "43",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "44",
+						"X": 3,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "45",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "46",
+						"X": 2,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "47",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "48",
+						"X": 1,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "49",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "50",
+						"X": 0,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "51",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "52",
+						"X": 0,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "53",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "54",
+						"X": 1,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "55",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "56",
+						"X": 2,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "57",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "58",
+						"X": 3,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "59",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "60",
+						"X": 4,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "61",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "62",
+						"X": 5,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "63",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "64",
+						"X": 6,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "65",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "66",
+						"X": 7,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "67",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "68",
+						"X": 8,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "69",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "70",
+						"X": 9,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "71",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "72",
+						"X": 10,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "73",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "74",
+						"X": 10,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "75",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "76",
+						"X": 10,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "77",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "78",
+						"X": 10,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "79",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "80",
+						"X": 10,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "81",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "82",
+						"X": 10,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "83",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "84",
+						"X": 10,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "85",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "86",
+						"X": 10,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "87",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "88",
+						"X": 7,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "89",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "90",
+						"X": 6,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "91",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "92",
+						"X": 5,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "93",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "94",
+						"X": 4,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "95",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "96",
+						"X": 3,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "97",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "98",
+						"X": 2,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "99",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "100",
+						"X": 1,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "101",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "102",
+						"X": 0,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "103",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "104",
+						"X": 5,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "105",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "106",
+						"X": 7,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "107",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "108",
+						"X": 10,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "109",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "110",
+						"X": 9,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "111",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "112",
+						"X": 8,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "113",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "114",
+						"X": 6,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "115",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "116",
+						"X": 4,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "117",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "118",
+						"X": 3,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "119",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "120",
+						"X": 2,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "121",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "122",
+						"X": 1,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "123",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "124",
+						"X": 0,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "125",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "126",
+						"X": 1,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "127",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "128",
+						"X": 2,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "129",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "130",
+						"X": 3,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "131",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "132",
+						"X": 4,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "133",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "134",
+						"X": 5,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "135",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "136",
+						"X": 6,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "137",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "138",
+						"X": 7,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "139",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "140",
+						"X": 8,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "141",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "142",
+						"X": 9,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "143",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "144",
+						"X": 9,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "145",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "146",
+						"X": 9,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "147",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "148",
+						"X": 9,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "149",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "150",
+						"X": 9,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "151",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "152",
+						"X": 9,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "153",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "154",
+						"X": 9,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "155",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "156",
+						"X": 8,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "157",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "158",
+						"X": 7,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "159",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "160",
+						"X": 6,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "161",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "162",
+						"X": 5,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "163",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "164",
+						"X": 4,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "165",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "166",
+						"X": 0,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "167",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "168",
+						"X": 0,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "169",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "170",
+						"X": 0,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "171",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "172",
+						"X": 0,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "173",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "174",
+						"X": 1,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "175",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "176",
+						"X": 2,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "177",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "178",
+						"X": 3,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "179",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "180",
+						"X": 4,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "181",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "182",
+						"X": 5,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "183",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "184",
+						"X": 6,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "185",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "186",
+						"X": 7,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "187",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "188",
+						"X": 8,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "189",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "190",
+						"X": 8,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "191",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "192",
+						"X": 8,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "193",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "194",
+						"X": 8,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "195",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "196",
+						"X": 7,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "197",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "198",
+						"X": 6,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "199",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "200",
+						"X": 0,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "201",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "202",
+						"X": 0,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "203",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "204",
+						"X": 1,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "205",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "206",
+						"X": 1,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "207",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "208",
+						"X": 2,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "209",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "210",
+						"X": 3,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "211",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "212",
+						"X": 2,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "213",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "214",
+						"X": 1,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "215",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "216",
+						"X": 3,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "217",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "218",
+						"X": 5,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "219",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "220",
+						"X": 4,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "221",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "222",
+						"X": 2,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "223",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "224",
+						"X": 3,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "225",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "226",
+						"X": 4,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "227",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "228",
+						"X": 5,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "229",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "230",
+						"X": 6,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "231",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "232",
+						"X": 8,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "233",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "234",
+						"X": 7,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "235",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "236",
+						"X": 7,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "237",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "238",
+						"X": 6,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "239",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "240",
+						"X": 5,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "241",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "242",
+						"X": 4,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "243",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "244",
+						"X": 3,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "245",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "246",
+						"X": 2,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "247",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "248",
+						"X": 1,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "249",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "9"
+					},
+					"LayerLocation": {
+						"@id": "250",
+						"X": 11,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "251",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "252",
+						"X": 11,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "253",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "254",
+						"X": 11,
+						"Y": 10
+					}
+				},
+				{
+					"@id": "255",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "256",
+						"X": 11,
+						"Y": 11
+					}
+				},
+				{
+					"@id": "257",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "258",
+						"X": 11,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "259",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "260",
+						"X": 11,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "261",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "262",
+						"X": 11,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "263",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "264",
+						"X": 11,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "265",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "266",
+						"X": 11,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "267",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "268",
+						"X": 20,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "269",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "270",
+						"X": 19,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "271",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "272",
+						"X": 21,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "273",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "274",
+						"X": 22,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "275",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "276",
+						"X": 23,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "277",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "278",
+						"X": 24,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "279",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "280",
+						"X": 25,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "281",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "282",
+						"X": 26,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "283",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "284",
+						"X": 28,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "285",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "286",
+						"X": 29,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "287",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "288",
+						"X": 29,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "289",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "290",
+						"X": 29,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "291",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "292",
+						"X": 22,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "293",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "294",
+						"X": 24,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "295",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "296",
+						"X": 23,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "297",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "298",
+						"X": 29,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "299",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "300",
+						"X": 28,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "301",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "302",
+						"X": 27,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "303",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "304",
+						"X": 27,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "305",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "306",
+						"X": 26,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "307",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "308",
+						"X": 25,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "309",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "310",
+						"X": 18,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "311",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "312",
+						"X": 17,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "313",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "314",
+						"X": 18,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "315",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "316",
+						"X": 19,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "317",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "318",
+						"X": 20,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "319",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "320",
+						"X": 22,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "321",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "322",
+						"X": 23,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "323",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "324",
+						"X": 24,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "325",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "326",
+						"X": 26,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "327",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "328",
+						"X": 27,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "329",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "330",
+						"X": 28,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "331",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "332",
+						"X": 29,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "333",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "5"
+					},
+					"LayerLocation": {
+						"@id": "334",
+						"X": 16,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "335",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "5"
+					},
+					"LayerLocation": {
+						"@id": "336",
+						"X": 21,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "337",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "5"
+					},
+					"LayerLocation": {
+						"@id": "338",
+						"X": 25,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "339",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "38"
+					},
+					"LayerLocation": {
+						"@id": "340",
+						"X": 21,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "341",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "38"
+					},
+					"LayerLocation": {
+						"@id": "342",
+						"X": 25,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "343",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "24"
+					},
+					"LayerLocation": {
+						"@id": "344",
+						"X": 16,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "345",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "24"
+					},
+					"LayerLocation": {
+						"@id": "346",
+						"X": 16,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "347",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "348",
+						"X": 17,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "349",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "350",
+						"X": 18,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "351",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "352",
+						"X": 19,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "353",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "354",
+						"X": 23,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "355",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "356",
+						"X": 24,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "357",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "358",
+						"X": 25,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "359",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "360",
+						"X": 26,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "361",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "362",
+						"X": 27,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "363",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "364",
+						"X": 28,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "365",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "366",
+						"X": 29,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "367",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "368",
+						"X": 22,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "369",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "370",
+						"X": 21,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "371",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "372",
+						"X": 20,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "373",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "374",
+						"X": 17,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "375",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "376",
+						"X": 18,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "377",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "378",
+						"X": 19,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "379",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "380",
+						"X": 20,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "381",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "382",
+						"X": 21,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "383",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "384",
+						"X": 22,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "385",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "386",
+						"X": 23,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "387",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "388",
+						"X": 24,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "389",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "390",
+						"X": 25,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "391",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "392",
+						"X": 26,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "393",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "394",
+						"X": 27,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "395",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "396",
+						"X": 28,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "397",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "398",
+						"X": 29,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "399",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "400",
+						"X": 22,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "401",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "402",
+						"X": 23,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "403",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "404",
+						"X": 24,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "405",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "406",
+						"X": 25,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "407",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "408",
+						"X": 26,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "409",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "410",
+						"X": 27,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "411",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "412",
+						"X": 28,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "413",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "414",
+						"X": 29,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "415",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "416",
+						"X": 26,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "417",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "418",
+						"X": 27,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "419",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "420",
+						"X": 28,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "421",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "422",
+						"X": 29,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "423",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "424",
+						"X": 17,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "425",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "426",
+						"X": 5,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "427",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "428",
+						"X": 6,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "429",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "430",
+						"X": 7,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "431",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "432",
+						"X": 8,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "433",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "434",
+						"X": 9,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "435",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "436",
+						"X": 10,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "437",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "438",
+						"X": 11,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "439",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "440",
+						"X": 12,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "441",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "442",
+						"X": 13,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "443",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "444",
+						"X": 5,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "445",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "446",
+						"X": 6,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "447",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "448",
+						"X": 7,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "449",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "450",
+						"X": 8,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "451",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "452",
+						"X": 9,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "453",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "454",
+						"X": 10,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "455",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "456",
+						"X": 11,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "457",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "458",
+						"X": 12,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "459",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "460",
+						"X": 13,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "461",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "462",
+						"X": 14,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "463",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "464",
+						"X": 15,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "465",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "466",
+						"X": 17,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "467",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "468",
+						"X": 18,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "469",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "470",
+						"X": 19,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "471",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "472",
+						"X": 20,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "473",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "474",
+						"X": 21,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "475",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "476",
+						"X": 21,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "477",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "478",
+						"X": 20,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "479",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "480",
+						"X": 19,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "481",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "482",
+						"X": 18,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "483",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "484",
+						"X": 22,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "485",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "486",
+						"X": 23,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "487",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "488",
+						"X": 24,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "489",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "490",
+						"X": 25,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "491",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "492",
+						"X": 26,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "493",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "494",
+						"X": 27,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "495",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "496",
+						"X": 28,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "497",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "498",
+						"X": 29,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "499",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "500",
+						"X": 21,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "501",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "502",
+						"X": 22,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "503",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "504",
+						"X": 23,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "505",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "506",
+						"X": 24,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "507",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "24"
+					},
+					"LayerLocation": {
+						"@id": "508",
+						"X": 25,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "509",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "510",
+						"X": 26,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "511",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "512",
+						"X": 27,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "513",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "514",
+						"X": 28,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "515",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "516",
+						"X": 28,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "517",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "518",
+						"X": 27,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "519",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "520",
+						"X": 26,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "521",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "13"
+					},
+					"LayerLocation": {
+						"@id": "522",
+						"X": 25,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "523",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "26"
+					},
+					"LayerLocation": {
+						"@id": "524",
+						"X": 25,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "525",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "526",
+						"X": 26,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "527",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "528",
+						"X": 27,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "529",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "530",
+						"X": 28,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "531",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "532",
+						"X": 29,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "533",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "534",
+						"X": 16,
+						"Y": 2
+					}
+				},
+				{
+					"@id": "535",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "536",
+						"X": 17,
+						"Y": 6
+					}
+				},
+				{
+					"@id": "537",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "538",
+						"X": 18,
+						"Y": 6
+					}
+				},
+				{
+					"@id": "539",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "540",
+						"X": 19,
+						"Y": 6
+					}
+				},
+				{
+					"@id": "541",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "542",
+						"X": 19,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "543",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "544",
+						"X": 19,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "545",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "546",
+						"X": 19,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "547",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "548",
+						"X": 18,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "549",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "550",
+						"X": 17,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "551",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "552",
+						"X": 17,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "553",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "554",
+						"X": 17,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "555",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "556",
+						"X": 18,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "557",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "558",
+						"X": 18,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "559",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "560",
+						"X": 17,
+						"Y": 7
+					}
+				},
+				{
+					"@id": "561",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "562",
+						"X": 18,
+						"Y": 7
+					}
+				},
+				{
+					"@id": "563",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "564",
+						"X": 19,
+						"Y": 7
+					}
+				},
+				{
+					"@id": "565",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "30"
+					},
+					"LayerLocation": {
+						"@id": "566",
+						"X": 20,
+						"Y": 7
+					}
+				},
+				{
+					"@id": "567",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "568",
+						"X": 20,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "569",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "570",
+						"X": 20,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "571",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "21"
+					},
+					"LayerLocation": {
+						"@id": "572",
+						"X": 20,
+						"Y": 6
+					}
+				},
+				{
+					"@id": "573",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "11"
+					},
+					"LayerLocation": {
+						"@id": "574",
+						"X": 20,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "575",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "576",
+						"X": 14,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "577",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "24"
+					},
+					"LayerLocation": {
+						"@id": "578",
+						"X": 16,
+						"Y": 6
+					}
+				},
+				{
+					"@id": "579",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "24"
+					},
+					"LayerLocation": {
+						"@id": "580",
+						"X": 16,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "581",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "24"
+					},
+					"LayerLocation": {
+						"@id": "582",
+						"X": 16,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "583",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "28"
+					},
+					"LayerLocation": {
+						"@id": "584",
+						"X": 15,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "585",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "26"
+					},
+					"LayerLocation": {
+						"@id": "586",
+						"X": 16,
+						"Y": 7
+					}
+				},
+				{
+					"@id": "587",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "13"
+					},
+					"LayerLocation": {
+						"@id": "588",
+						"X": 16,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "589",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "590",
+						"X": 7,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "591",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "592",
+						"X": 12,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "593",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "594",
+						"X": 13,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "595",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "596",
+						"X": 14,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "597",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "598",
+						"X": 15,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "599",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "600",
+						"X": 16,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "601",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "602",
+						"X": 17,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "603",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "604",
+						"X": 16,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "605",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "606",
+						"X": 15,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "607",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "608",
+						"X": 14,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "609",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "610",
+						"X": 13,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "611",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "612",
+						"X": 12,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "613",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "614",
+						"X": 11,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "615",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "616",
+						"X": 10,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "617",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "618",
+						"X": 9,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "619",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "620",
+						"X": 8,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "621",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "622",
+						"X": 7,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "623",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "624",
+						"X": 8,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "625",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "626",
+						"X": 9,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "627",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "628",
+						"X": 10,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "629",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "630",
+						"X": 11,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "631",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "632",
+						"X": 30,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "633",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "634",
+						"X": 31,
+						"Y": 1
+					}
+				},
+				{
+					"@id": "635",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "636",
+						"X": 31,
+						"Y": 0
+					}
+				},
+				{
+					"@id": "637",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "638",
+						"X": 30,
+						"Y": 0
+					}
+				}
+			],
+			"HasColliders": true
+		},
+		{
+			"@id": "639",
+			"Name": "doodad",
+			"Tiles": [
+				{
+					"@id": "640",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "40"
+					},
+					"LayerLocation": {
+						"@ref": "444"
+					}
+				},
+				{
+					"@id": "641",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "40"
+					},
+					"LayerLocation": {
+						"@ref": "446"
+					}
+				},
+				{
+					"@id": "642",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "40"
+					},
+					"LayerLocation": {
+						"@ref": "448"
+					}
+				},
+				{
+					"@id": "643",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "40"
+					},
+					"LayerLocation": {
+						"@ref": "450"
+					}
+				}
+			],
+			"HasColliders": false
+		}
+	],
+	"Entities": [
+		{
+			"@id": "644",
+			"Id": "WNDVKVNCXNPVTYAPEBBYFRHJYSMRMOMGYVPDMF",
+			"Name": "Lamp",
+			"PrefabId": "OOXSIJCVTBFVFYNZQDDTHOHQZJUEMJNMSRABNL",
+			"Position": {
+				"@id": "645",
+				"X": 348,
+				"Y": 112
+			}
+		},
+		{
+			"@id": "646",
+			"Id": "QFHDERXYNQEWETSKFATBSLDTVHXAVKKEZPXBKU",
+			"Name": "Special Lamp",
+			"PrefabId": "YQPCIZICKSJXKXAHKAHHSZPXIKOTCNYMLEENDF",
+			"Position": {
+				"@id": "647",
+				"X": 244,
+				"Y": 132
+			}
+		},
+		{
+			"@id": "648",
+			"Id": "QULJRYRMZXHSGCSHDULVDBBXRWQBUDCSQYPASY",
+			"Name": "Hero",
+			"PrefabId": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC",
+			"Position": {
+				"@id": "649",
+				"X": 164,
+				"Y": 112
+			}
+		}
+	]
+}
