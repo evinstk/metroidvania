@@ -64,6 +64,10 @@ namespace Game.Editor.Tool
                     if (ImGui.RadioButton(i.ToString(), EditorState.CurrentTool == i))
                         EditorState.CurrentTool = i;
                 }
+
+                var pos = Entity.Scene.Camera.MouseToWorldPoint();
+                ImGui.Text($"World: ({(int)pos.X}, {(int)pos.Y})");
+
                 ImGui.End();
             }
         }
