@@ -47,12 +47,19 @@ namespace Game.Editor
         }
 
         bool _nullLastFrame = false;
+        Microsoft.Xna.Framework.Vector2 _lastSize = new Microsoft.Xna.Framework.Vector2(EditorState.RoomData?.Width ?? 0, EditorState.RoomData?.Height ?? 0);
+        Microsoft.Xna.Framework.Vector2 _lastTileSize = new Microsoft.Xna.Framework.Vector2(EditorState.RoomData?.TileWidth ?? 0, EditorState.RoomData?.TileHeight ?? 0);
         public void Update()
         {
             var nullThisFrame = EditorState.RoomData == null;
-            if (_nullLastFrame && !nullThisFrame)
+            var currSize = new Microsoft.Xna.Framework.Vector2(EditorState.RoomData?.Width ?? 0, EditorState.RoomData?.Height ?? 0);
+            var currTileSize = new Microsoft.Xna.Framework.Vector2(EditorState.RoomData?.TileWidth ?? 0, EditorState.RoomData?.TileHeight ?? 0);
+            if ((_nullLastFrame && !nullThisFrame) || _lastSize != currSize || _lastTileSize != currTileSize)
                 _areBoundsDirty = true;
+
             _nullLastFrame = nullThisFrame;
+            _lastSize = currSize;
+            _lastTileSize = currTileSize;
         }
     }
 }
