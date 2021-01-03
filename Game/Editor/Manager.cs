@@ -53,15 +53,16 @@ namespace Game.Editor
             }
         }
 
-        public void NewResource(string filename)
+        public T NewResource(string filename = null)
         {
             var resourceMeta = new ResourceMeta
             {
                 Data = new T(),
-                Filename = filename,
             };
+            resourceMeta.Filename = filename ?? (resourceMeta.Data.Id + ".json");
             SaveResource(resourceMeta);
             _resources.Add(resourceMeta);
+            return resourceMeta.Data;
         }
 
         protected virtual T LoadResource(string file)
@@ -96,11 +97,38 @@ namespace Game.Editor
             }
         }
 
+        public void Save(T resource)
+        {
+            foreach (var r in _resources)
+            {
+                if (r.Data == resource)
+                    SaveResource(r);
+            }
+        }
+
+        public void Delete(T resource)
+        {
+            ResourceMeta meta = null;
+            foreach (var r in _resources)
+            {
+                if (r.Data == resource)
+                    meta = r;
+            }
+            Insist.IsNotNull(meta);
+            if (meta != null)
+            {
+                File.Delete(meta.Filename);
+                _resources.Remove(meta);
+            }
+        }
+
         #region ImGui
 
         string _newResourceInput = "";
-        public void NewResourcePopup()
+        public bool NewResourcePopup(out T newResource)
         {
+            var ret = false;
+            newResource = null;
             if (ImGui.BeginPopupModal("new-resource"))
             {
                 ImGui.Text("File name:");
@@ -113,12 +141,19 @@ namespace Game.Editor
                 ImGui.SameLine();
                 if (ImGui.Button("Save") && _newResourceInput.Length > 0)
                 {
-                    NewResource(_newResourceInput);
+                    newResource = NewResource(_newResourceInput);
                     _newResourceInput = "";
+                    ret = true;
                     ImGui.CloseCurrentPopup();
                 }
                 ImGui.EndPopup();
             }
+            return ret;
+        }
+
+        public bool NewResourcePopup()
+        {
+            return NewResourcePopup(out _);
         }
 
         public bool RadioButtons(string activeId, ref string selectedId)
