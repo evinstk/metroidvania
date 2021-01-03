@@ -71,6 +71,10 @@
 				"X": 12,
 				"Y": 32
 			}
+		},
+		{
+			"@id": "16",
+			"@type": "Game.Editor.Prefab.FollowCameraData"
 		}
 	],
 	"Id": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC"
