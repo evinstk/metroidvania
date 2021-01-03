@@ -39,7 +39,7 @@ namespace Game.Editor
         public abstract string Path { get; }
         protected virtual string _searchPattern => "*.json";
 
-        List<ResourceMeta> _resources = new List<ResourceMeta>();
+        protected List<ResourceMeta> _resources = new List<ResourceMeta>();
         public Manager()
         {
             foreach (var f in Directory.GetFiles(Path, _searchPattern))
