@@ -1,4 +1,5 @@
 ﻿using ImGuiNET;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.ImGuiTools;
 using System;
@@ -20,14 +21,14 @@ namespace Game.Editor.Tool
         public override float Width => 1;
         public override float Height => 1;
 
-        TilesetWindow _tilesetWindow;
-        LayerWindow _layerWindow;
         EntityWindow _entityWindow;
 
         Brush _brush;
         Erase _erase;
         PrefabTool _prefab;
         SelectTool _select;
+
+        SubpixelVector2 _subpixelV2;
 
         public override void Initialize()
         {
@@ -38,8 +39,6 @@ namespace Game.Editor.Tool
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
 
-            _tilesetWindow = Entity.GetComponentStrict<TilesetWindow>();
-            _layerWindow = Entity.GetComponentStrict<LayerWindow>();
             _entityWindow = Entity.GetOrCreateComponent<EntityWindow>();
 
             _brush = new Brush(this);
@@ -72,13 +71,27 @@ namespace Game.Editor.Tool
         public void Update()
         {
             Entity.Position = Entity.Scene.Camera.MouseToWorldPoint();
-            switch (EditorState.CurrentTool)
+            if (Input.LeftMouseButtonDown && (Input.IsKeyDown(Keys.LeftAlt) || Input.IsKeyDown(Keys.RightAlt)))
             {
-                case Tools.Brush: _brush.Update(); return;
-                case Tools.Erase: _erase.Update(); return;
-                case Tools.Prefab: _prefab.Update(); return;
-                case Tools.Select: _select.Update(); return;
+                Move();
             }
+            else
+            {
+                switch (EditorState.CurrentTool)
+                {
+                    case Tools.Brush: _brush.Update(); return;
+                    case Tools.Erase: _erase.Update(); return;
+                    case Tools.Prefab: _prefab.Update(); return;
+                    case Tools.Select: _select.Update(); return;
+                }
+            }
+        }
+
+        void Move()
+        {
+            var delta = Input.ScaledMousePositionDelta;
+            _subpixelV2.Update(ref delta);
+            Entity.Scene.Camera.Position -= delta;
         }
 
         public override void Render(Batcher batcher, Camera camera)

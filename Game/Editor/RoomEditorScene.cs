@@ -1,6 +1,4 @@
-﻿using Game.Editor.Animation;
-using Game.Editor.Tool;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using System;
 
