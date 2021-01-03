@@ -1,6 +1,7 @@
 ﻿using Game.Editor.Prefab;
 using Microsoft.Xna.Framework;
 using Nez;
+using Nez.Persistence;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +10,7 @@ namespace Game.Editor
     [Serializable]
     class RoomData : IResource
     {
+        [JsonInclude]
         public string Id { get; set; } = Utils.RandomString();
         public string DisplayName => Name;
         public string Name = "New Room";
