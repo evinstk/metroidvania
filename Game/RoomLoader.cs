@@ -59,7 +59,7 @@ namespace Game
                 var currRoomIndex = 1 - adjacentRoomIndex;
                 SetupRoom(
                     edge.Rooms[adjacentRoomIndex].RoomId,
-                    (edge.Rooms[currRoomIndex].Position - edge.Rooms[adjacentRoomIndex].Position).ToVector2());
+                    (edge.Rooms[currRoomIndex].Position - edge.Rooms[adjacentRoomIndex].Position).ToVector2() + offset);
             }
         }
 
