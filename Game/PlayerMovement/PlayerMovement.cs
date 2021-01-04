@@ -78,9 +78,14 @@ namespace Game.Movement
         void Move(float deltaTime)
         {
             var motion = _velocity * deltaTime;
-            _mover.CalculateMovement(ref motion, out var collisionResult);
             _subpixelX.Update(ref motion.X);
             _subpixelY.Update(ref motion.Y);
+            if (_collisionBelow && motion.Y == 0 && _subpixelY.Remainder > 0)
+            {
+                motion.Y = 1;
+                _subpixelY.Reset();
+            }
+            _mover.CalculateMovement(ref motion, out var collisionResult);
 
             _collisionBelow = collisionResult.Normal.Y < 0;
             _collisionAbove = collisionResult.Normal.Y > 0;
