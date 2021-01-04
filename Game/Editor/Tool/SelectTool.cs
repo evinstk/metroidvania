@@ -32,7 +32,7 @@ namespace Game.Editor.Tool
                             new Point(spriteData.SourceRect.Width, spriteData.SourceRect.Height));
                         if (spriteData != null && rect.Contains(position))
                         {
-                            _window._entityWindow.Selection = entity.Id;
+                            EditorState.SelectedEntityId = entity.Id;
                         }
                     }
                 }

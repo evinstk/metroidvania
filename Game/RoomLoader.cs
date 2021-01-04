@@ -97,6 +97,10 @@ namespace Game
                 {
                     component.AddToEntity(entity);
                 }
+                foreach (var component in entityData.Components)
+                {
+                    component.AddToEntity(entity);
+                }
             }
 
             _loadedRooms.Add(

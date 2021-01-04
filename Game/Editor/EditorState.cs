@@ -25,5 +25,8 @@ namespace Game.Editor
             ? RoomData.Layers[SelectedLayerIndex]
             : null;
         public static int SelectedLayerIndex = 0;
+
+        public static RoomEntity SelectedEntity => RoomData?.Entities.Find(e => e.Id == SelectedEntityId);
+        public static string SelectedEntityId = null;
     }
 }

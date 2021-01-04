@@ -91,7 +91,7 @@ namespace Game.Editor.Prefab
                 _prefabManager.SaveAll();
         }
 
-        class EditorComponentInspector
+        public class EditorComponentInspector
         {
             public string Name;
             public List<AbstractTypeInspector> Inspectors;
