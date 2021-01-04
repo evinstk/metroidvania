@@ -2,7 +2,7 @@
 	"@id": "1",
 	"Name": "collision",
 	"Width": 30,
-	"Height": 10,
+	"Height": 17,
 	"TileWidth": 16,
 	"TileHeight": 16,
 	"LightRendererClearColor": 127,

@@ -39,6 +39,9 @@ namespace Game
                     .AddComponent(new RoomTransport(_roomDataId));
             }
 
+            Camera.AddComponent<CameraBounds>();
+            Camera.Entity.UpdateOrder = int.MaxValue;
+
             CreateEntity("roomLoader").AddComponent(new RoomLoader(_roomDataId));
 
             SetupLights();

@@ -8,6 +8,8 @@ namespace Game
 {
     class RoomLoader : Component, IUpdatable
     {
+        public RectangleF CurrentRoomBounds => _loadedRooms[_currRoomId];
+
         string _currRoomId;
         RoomManager _roomManager = Core.GetGlobalManager<RoomManager>();
         RoomEdgeManager _roomEdgeManager = Core.GetGlobalManager<RoomEdgeManager>();
