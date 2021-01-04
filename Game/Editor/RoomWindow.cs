@@ -66,9 +66,23 @@ namespace Game.Editor
                 Entity.Scene.Camera.Position = new Microsoft.Xna.Framework.Vector2(MainScene.ResWidth / 2, MainScene.ResHeight / 2);
             }
 
+            if (NezImGui.CenteredButton("New Room", 1f))
+            {
+                var newRoomData = roomManager.NewResource();
+                EditorState.SelectedRoomId = newRoomData.Id;
+                _inspectors = TypeInspectorUtils.GetInspectableProperties(newRoomData);
+                Entity.Scene.Camera.Position = new Microsoft.Xna.Framework.Vector2(MainScene.ResWidth / 2, MainScene.ResHeight / 2);
+            }
+
             foreach (var inspector in _inspectors)
             {
                 inspector.Draw();
+            }
+            if (ImGui.Button("Delete"))
+            {
+                roomManager.Delete(EditorState.SelectedRoomId);
+                EditorState.SelectedRoomId = null;
+                _inspectors = new List<AbstractTypeInspector>();
             }
         }
     }
