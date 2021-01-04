@@ -10,17 +10,17 @@ namespace Game
 {
     class RoomScene : Scene
     {
-        RoomData _roomData;
+        string _roomDataId;
 
         public const int LIGHT_LAYER = 100;
         public const int LIGHT_MAP_LAYER = 101;
 
         public const int PHYSICS_TERRAIN = 1;
 
-        public RoomScene(RoomData roomData)
+        public RoomScene(string roomDataId)
         {
-            Insist.IsNotNull(roomData);
-            _roomData = roomData;
+            Insist.IsNotNull(roomDataId);
+            _roomDataId = roomDataId;
         }
 
         public override void Initialize()
@@ -39,33 +39,7 @@ namespace Game
                     .AddComponent(new RoomTransport());
             }
 
-            var mapEntity = CreateEntity("map");
-            var count = _roomData.Layers.Count;
-            for (var i = 0; i < count; ++i)
-            {
-                var layer = _roomData.Layers[i];
-                var layerEntity = CreateEntity(layer.Name);
-                layerEntity.Transform.SetParent(mapEntity.Transform);
-                layerEntity.AddComponent(new MapRenderer(_roomData, i)).SetRenderLayer(count - 1 - i);
-
-                if (layer.HasColliders)
-                {
-                    var mapCollider = layerEntity.AddComponent(new MapCollider(_roomData, i));
-                    Flags.SetFlagExclusive(ref mapCollider.PhysicsLayer, PHYSICS_TERRAIN);
-                }
-            }
-
-            foreach (var entityData in _roomData.Entities)
-            {
-                var prefab = entityData.Prefab;
-                Insist.IsNotNull(prefab);
-                var entity = CreateEntity(entityData.Name);
-                entity.SetPosition(entityData.Position);
-                foreach (var component in prefab.Components)
-                {
-                    component.AddToEntity(entity);
-                }
-            }
+            CreateEntity("roomLoader").AddComponent(new RoomLoader(_roomDataId));
 
             SetupLights();
         }
@@ -74,7 +48,7 @@ namespace Game
         {
             var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
             Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, PHYSICS_TERRAIN);
-            var level = _roomData.LightRendererClearColor;
+            var level = Core.GetGlobalManager<RoomManager>().GetResource(_roomDataId).LightRendererClearColor;
             lightRenderer.RenderTargetClearColor = new Color(level, level, level, 255);
 
             AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));

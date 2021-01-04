@@ -1,8 +1,8 @@
 {
 	"@id": "1",
 	"Name": "collision",
-	"Width": 128,
-	"Height": 128,
+	"Width": 30,
+	"Height": 10,
 	"TileWidth": 16,
 	"TileHeight": 16,
 	"LightRendererClearColor": 127,
@@ -788,42 +788,42 @@
 					"LayerLocation": {
 						"@id": "132",
 						"X": 21,
-						"Y": 5
+						"Y": 2
 					}
 				},
 				{
 					"@id": "133",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "59"
+						"@ref": "4"
 					},
 					"LayerLocation": {
 						"@id": "134",
-						"X": 21,
-						"Y": 4
+						"X": 16,
+						"Y": 2
 					}
 				},
 				{
 					"@id": "135",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "59"
+						"@ref": "4"
 					},
 					"LayerLocation": {
 						"@id": "136",
-						"X": 21,
-						"Y": 3
+						"X": 17,
+						"Y": 2
 					}
 				},
 				{
 					"@id": "137",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "59"
+						"@ref": "4"
 					},
 					"LayerLocation": {
 						"@id": "138",
-						"X": 21,
+						"X": 18,
 						"Y": 2
 					}
 				},
@@ -835,7 +835,7 @@
 					},
 					"LayerLocation": {
 						"@id": "140",
-						"X": 16,
+						"X": 19,
 						"Y": 2
 					}
 				},
@@ -847,7 +847,7 @@
 					},
 					"LayerLocation": {
 						"@id": "142",
-						"X": 17,
+						"X": 20,
 						"Y": 2
 					}
 				},
@@ -859,8 +859,8 @@
 					},
 					"LayerLocation": {
 						"@id": "144",
-						"X": 18,
-						"Y": 2
+						"X": 20,
+						"Y": 3
 					}
 				},
 				{
@@ -871,8 +871,8 @@
 					},
 					"LayerLocation": {
 						"@id": "146",
-						"X": 19,
-						"Y": 2
+						"X": 20,
+						"Y": 4
 					}
 				},
 				{
@@ -884,7 +884,7 @@
 					"LayerLocation": {
 						"@id": "148",
 						"X": 20,
-						"Y": 2
+						"Y": 5
 					}
 				},
 				{
@@ -895,8 +895,8 @@
 					},
 					"LayerLocation": {
 						"@id": "150",
-						"X": 20,
-						"Y": 3
+						"X": 19,
+						"Y": 5
 					}
 				},
 				{
@@ -907,8 +907,8 @@
 					},
 					"LayerLocation": {
 						"@id": "152",
-						"X": 20,
-						"Y": 4
+						"X": 18,
+						"Y": 5
 					}
 				},
 				{
@@ -919,7 +919,7 @@
 					},
 					"LayerLocation": {
 						"@id": "154",
-						"X": 20,
+						"X": 17,
 						"Y": 5
 					}
 				},
@@ -931,7 +931,7 @@
 					},
 					"LayerLocation": {
 						"@id": "156",
-						"X": 19,
+						"X": 16,
 						"Y": 5
 					}
 				},
@@ -943,8 +943,8 @@
 					},
 					"LayerLocation": {
 						"@id": "158",
-						"X": 18,
-						"Y": 5
+						"X": 16,
+						"Y": 3
 					}
 				},
 				{
@@ -955,8 +955,8 @@
 					},
 					"LayerLocation": {
 						"@id": "160",
-						"X": 17,
-						"Y": 5
+						"X": 16,
+						"Y": 4
 					}
 				},
 				{
@@ -967,8 +967,8 @@
 					},
 					"LayerLocation": {
 						"@id": "162",
-						"X": 16,
-						"Y": 5
+						"X": 17,
+						"Y": 4
 					}
 				},
 				{
@@ -979,8 +979,8 @@
 					},
 					"LayerLocation": {
 						"@id": "164",
-						"X": 16,
-						"Y": 3
+						"X": 18,
+						"Y": 4
 					}
 				},
 				{
@@ -991,7 +991,7 @@
 					},
 					"LayerLocation": {
 						"@id": "166",
-						"X": 16,
+						"X": 19,
 						"Y": 4
 					}
 				},
@@ -1003,8 +1003,8 @@
 					},
 					"LayerLocation": {
 						"@id": "168",
-						"X": 17,
-						"Y": 4
+						"X": 19,
+						"Y": 3
 					}
 				},
 				{
@@ -1016,7 +1016,7 @@
 					"LayerLocation": {
 						"@id": "170",
 						"X": 18,
-						"Y": 4
+						"Y": 3
 					}
 				},
 				{
@@ -1027,8 +1027,8 @@
 					},
 					"LayerLocation": {
 						"@id": "172",
-						"X": 19,
-						"Y": 4
+						"X": 17,
+						"Y": 3
 					}
 				},
 				{
@@ -1039,8 +1039,8 @@
 					},
 					"LayerLocation": {
 						"@id": "174",
-						"X": 19,
-						"Y": 3
+						"X": 16,
+						"Y": 6
 					}
 				},
 				{
@@ -1051,8 +1051,8 @@
 					},
 					"LayerLocation": {
 						"@id": "176",
-						"X": 18,
-						"Y": 3
+						"X": 17,
+						"Y": 6
 					}
 				},
 				{
@@ -1063,8 +1063,8 @@
 					},
 					"LayerLocation": {
 						"@id": "178",
-						"X": 17,
-						"Y": 3
+						"X": 16,
+						"Y": 1
 					}
 				},
 				{
@@ -1076,74 +1076,242 @@
 					"LayerLocation": {
 						"@id": "180",
 						"X": 16,
-						"Y": 6
+						"Y": 0
 					}
 				},
 				{
 					"@id": "181",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "57"
 					},
 					"LayerLocation": {
 						"@id": "182",
 						"X": 17,
-						"Y": 6
+						"Y": 1
 					}
 				},
 				{
 					"@id": "183",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "59"
 					},
 					"LayerLocation": {
 						"@id": "184",
-						"X": 16,
-						"Y": 1
+						"X": 17,
+						"Y": 0
 					}
 				},
 				{
 					"@id": "185",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "7"
 					},
 					"LayerLocation": {
 						"@id": "186",
-						"X": 16,
-						"Y": 0
+						"X": 29,
+						"Y": 8
 					}
 				},
 				{
 					"@id": "187",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "57"
+						"@ref": "7"
 					},
 					"LayerLocation": {
 						"@id": "188",
-						"X": 17,
-						"Y": 1
+						"X": 28,
+						"Y": 8
 					}
 				},
 				{
 					"@id": "189",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "59"
+						"@ref": "7"
 					},
 					"LayerLocation": {
 						"@id": "190",
-						"X": 17,
-						"Y": 0
+						"X": 27,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "191",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "5"
+					},
+					"LayerLocation": {
+						"@id": "192",
+						"X": 26,
+						"Y": 8
+					}
+				},
+				{
+					"@id": "193",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "62"
+					},
+					"LayerLocation": {
+						"@id": "194",
+						"X": 26,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "195",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "196",
+						"X": 27,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "197",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "198",
+						"X": 28,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "199",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "200",
+						"X": 29,
+						"Y": 9
+					}
+				},
+				{
+					"@id": "201",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "7"
+					},
+					"LayerLocation": {
+						"@id": "202",
+						"X": 22,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "203",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "57"
+					},
+					"LayerLocation": {
+						"@id": "204",
+						"X": 21,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "205",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "206",
+						"X": 23,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "207",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "9"
+					},
+					"LayerLocation": {
+						"@id": "208",
+						"X": 23,
+						"Y": 3
+					}
+				},
+				{
+					"@id": "209",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "210",
+						"X": 22,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "211",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "4"
+					},
+					"LayerLocation": {
+						"@id": "212",
+						"X": 21,
+						"Y": 4
+					}
+				},
+				{
+					"@id": "213",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "64"
+					},
+					"LayerLocation": {
+						"@id": "214",
+						"X": 22,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "215",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "89"
+					},
+					"LayerLocation": {
+						"@id": "216",
+						"X": 23,
+						"Y": 5
+					}
+				},
+				{
+					"@id": "217",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "11"
+					},
+					"LayerLocation": {
+						"@id": "218",
+						"X": 21,
+						"Y": 5
 					}
 				}
 			],
 			"HasColliders": true
 		},
 		{
-			"@id": "191",
+			"@id": "219",
 			"Name": "doodad",
 			"Tiles": [
 
@@ -1152,17 +1320,7 @@
 		}
 	],
 	"Entities": [
-		{
-			"@id": "192",
-			"Id": "WVHAZZTBBZICHWBFPLQDTJLROJCGWJRNGUVDHY",
-			"Name": "Left Lamp",
-			"PrefabId": "OOXSIJCVTBFVFYNZQDDTHOHQZJUEMJNMSRABNL",
-			"Position": {
-				"@id": "193",
-				"X": 364,
-				"Y": 80
-			}
-		}
+
 	],
 	"Id": "FXYGBRPPFAFQUJRZACOCYEWGDCRNVHUFWHZQJN"
 }

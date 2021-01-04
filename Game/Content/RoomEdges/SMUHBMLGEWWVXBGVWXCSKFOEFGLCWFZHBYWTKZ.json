@@ -1,0 +1,24 @@
+{
+	"@id": "1",
+	"Rooms": [
+		{
+			"@id": "2",
+			"RoomId": "TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC",
+			"Position": {
+				"@id": "3",
+				"X": 288,
+				"Y": 512
+			}
+		},
+		{
+			"@id": "4",
+			"RoomId": "FXYGBRPPFAFQUJRZACOCYEWGDCRNVHUFWHZQJN",
+			"Position": {
+				"@id": "5",
+				"X": 288,
+				"Y": 0
+			}
+		}
+	],
+	"Id": "SMUHBMLGEWWVXBGVWXCSKFOEFGLCWFZHBYWTKZ"
+}
