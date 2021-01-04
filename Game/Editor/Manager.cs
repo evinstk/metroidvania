@@ -122,6 +122,22 @@ namespace Game.Editor
             }
         }
 
+        public void Delete(string resourceId)
+        {
+            ResourceMeta meta = null;
+            foreach (var r in _resources)
+            {
+                if (r.Data.Id == resourceId)
+                    meta = r;
+            }
+            Insist.IsNotNull(meta);
+            if (meta != null)
+            {
+                File.Delete(meta.Filename);
+                _resources.Remove(meta);
+            }
+        }
+
         #region ImGui
 
         string _newResourceInput = "";
