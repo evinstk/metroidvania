@@ -18,7 +18,7 @@ namespace Game
             _currRoomId = roomDataId;
         }
 
-        public override void OnAddedToEntity()
+        public override void Initialize()
         {
             Insist.IsNotNull(_currRoomId);
             LoadRoomAndAdjacent(_currRoomId, Vector2.Zero);
