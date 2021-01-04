@@ -18,12 +18,12 @@ namespace Game.Editor.Tool
                 var roomData = EditorState.RoomData;
                 var layer = EditorState.SelectedLayer;
 
+                var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
                 if (Input.LeftMouseButtonDown
                     && roomData != null
                     && layer != null
-                    && Core.Scene.Camera.Bounds.Contains(Input.MousePosition))
+                    && Core.Scene.Camera.Bounds.Contains(worldPoint))
                 {
-                    var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
                     var layerPoint = (worldPoint / roomData.TileSize.ToVector2()).ToPoint();
 
                     if (layerPoint.X < 0 || layerPoint.X >= roomData.Width || layerPoint.Y < 0 || layerPoint.Y >= roomData.Height)
