@@ -36,7 +36,7 @@ namespace Game
             if (Core.GetGlobalManager<ImGuiManager>() != null)
             {
                 CreateEntity("windows")
-                    .AddComponent(new RoomTransport());
+                    .AddComponent(new RoomTransport(_roomDataId));
             }
 
             CreateEntity("roomLoader").AddComponent(new RoomLoader(_roomDataId));
@@ -63,6 +63,13 @@ namespace Game
 
     class RoomTransport : Component
     {
+        string _roomDataId;
+
+        public RoomTransport(string roomDataId)
+        {
+            _roomDataId = roomDataId;
+        }
+
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
@@ -80,6 +87,11 @@ namespace Game
                 if (ImGui.Button("Stop"))
                 {
                     Core.Scene = new RoomEditorScene();
+                }
+                ImGui.SameLine();
+                if (ImGui.Button("Restart"))
+                {
+                    Core.Scene = new RoomScene(_roomDataId);
                 }
                 ImGui.End();
             }
