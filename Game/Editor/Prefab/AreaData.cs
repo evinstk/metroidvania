@@ -18,10 +18,6 @@ namespace Game.Editor.Prefab
         {
             var collider = entity.AddComponent(new BoxCollider(0, 0, Size.X, Size.Y));
             collider.IsTrigger = true;
-            var listener = collider.AddComponent(new TriggerListener());
-            listener.TriggerEnter = () =>
-            {
-            };
         }
     }
 }
