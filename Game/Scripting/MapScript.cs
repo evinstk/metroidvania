@@ -44,6 +44,7 @@ namespace Game.Scripting
             _script.Globals["trigger"] = (Action<Closure, Closure>)Trigger;
             _script.Globals["findEntity"] = (Func<string, Entity>)FindEntity;
             _script.Globals["move"] = (Action<Entity, Entity>)Move;
+            _script.Globals["stop"] = (Action<Entity>)Stop;
             _script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
             _script.Globals["destroy"] = (Action<Entity>)Destroy;
 
@@ -126,6 +127,22 @@ namespace Game.Scripting
             }
             controller.SetXAxis(Mathf.SignThreshold(dest.Position.X - entity.Position.X, 0));
             Debug.Log($"Moving \"{entity.Name}\" to \"{dest.Name}\"");
+        }
+
+        void Stop(Entity entity)
+        {
+            var entityNull = entity == null;
+            Debug.LogIf(entityNull, "Argument entity not defined");
+            if (entityNull) return;
+
+            var controller = entity.GetComponent<FreeController>();
+            if (controller == null)
+            {
+                Debug.Log($"No FreeController found on \"{entity.Name}\"");
+                return;
+            }
+            controller.SetXAxis(0);
+            Debug.Log($"Stopping \"{entity.Name}\"");
         }
 
         void Destroy(Entity entity)
