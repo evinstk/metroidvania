@@ -18,12 +18,12 @@ namespace Game.Editor.Tool
                 var selectedPrefab = EditorState.SelectedPrefab;
                 var roomData = EditorState.RoomData;
 
+                var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
                 if (Input.LeftMouseButtonPressed
                     && selectedPrefab != null
                     && roomData != null
-                    && Core.Scene.Camera.Bounds.Contains(Input.MousePosition))
+                    && Core.Scene.Camera.Bounds.Contains(worldPoint))
                 {
-                    var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
                     worldPoint.X = Mathf.RoundToNearest(worldPoint.X, 4);
                     worldPoint.Y = Mathf.RoundToNearest(worldPoint.Y, 4);
                     roomData.Entities.Add(new RoomEntity
