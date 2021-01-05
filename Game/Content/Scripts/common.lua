@@ -15,3 +15,9 @@ function destroyCommand(entity)
 		destroy(entity)
 	end
 end
+
+function onStart()
+	return function()
+		return true
+	end
+end
