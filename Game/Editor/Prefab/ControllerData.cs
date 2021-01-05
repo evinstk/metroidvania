@@ -9,4 +9,12 @@ namespace Game.Editor.Prefab
             entity.AddComponent<PlayerController>();
         }
     }
+
+    class FreeControllerData : PrefabComponent
+    {
+        public override void AddToEntity(Entity entity)
+        {
+            entity.AddComponent<FreeController>();
+        }
+    }
 }
