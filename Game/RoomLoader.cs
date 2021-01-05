@@ -90,13 +90,15 @@ namespace Game
 
             foreach (var entityData in roomData.Entities)
             {
-                var prefab = entityData.Prefab;
-                Insist.IsNotNull(prefab);
                 var entity = Core.Scene.CreateEntity(entityData.Name);
                 entity.SetPosition(entityData.Position + offset);
-                foreach (var component in prefab.Components)
+                var prefab = entityData.Prefab;
+                if (prefab != null)
                 {
-                    component.AddToEntity(entity);
+                    foreach (var component in prefab.Components)
+                    {
+                        component.AddToEntity(entity);
+                    }
                 }
                 foreach (var component in entityData.Components)
                 {
