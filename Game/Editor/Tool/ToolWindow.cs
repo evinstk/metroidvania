@@ -12,6 +12,7 @@ namespace Game.Editor.Tool
         Brush,
         Erase,
         Prefab,
+        Area,
         Select,
     }
 
@@ -26,6 +27,7 @@ namespace Game.Editor.Tool
         Brush _brush;
         Erase _erase;
         PrefabTool _prefab;
+        AreaTool _area;
         SelectTool _select;
 
         SubpixelVector2 _subpixelV2;
@@ -44,6 +46,7 @@ namespace Game.Editor.Tool
             _brush = new Brush(this);
             _erase = new Erase(this);
             _prefab = new PrefabTool(this);
+            _area = new AreaTool(this);
             _select = new SelectTool(this);
         }
 
@@ -86,6 +89,7 @@ namespace Game.Editor.Tool
                     case Tools.Brush: _brush.Update(); return;
                     case Tools.Erase: _erase.Update(); return;
                     case Tools.Prefab: _prefab.Update(); return;
+                    case Tools.Area: _area.Update(); return;
                     case Tools.Select: _select.Update(); return;
                 }
             }
@@ -103,6 +107,7 @@ namespace Game.Editor.Tool
             switch (EditorState.CurrentTool)
             {
                 case Tools.Prefab: _prefab.Render(batcher, camera); break;
+                case Tools.Area: _area.Render(batcher, camera); break;
             }
         }
     }
