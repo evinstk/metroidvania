@@ -21,6 +21,10 @@ namespace Game.Scripting
         List<Trigger> _pendingAdditions = new List<Trigger>();
         List<Trigger> _triggers = new List<Trigger>();
         List<Trigger> _pendingRemovals = new List<Trigger>();
+        List<DynValue> _coroutines = new List<DynValue>();
+        List<DynValue> _pendingCoroutineRemovals = new List<DynValue>();
+
+        Script _script;
 
         static MapScript()
         {
@@ -36,21 +40,21 @@ namespace Game.Scripting
 
         public override void OnAddedToEntity()
         {
-            var script = new Script();
-            script.Globals["trigger"] = (Action<Closure, Closure>)Trigger;
-            script.Globals["findEntity"] = (Func<string, Entity>)FindEntity;
-            script.Globals["move"] = (Action<Entity, Entity>)Move;
-            script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
-            script.Globals["destroy"] = (Action<Entity>)Destroy;
+            _script = new Script();
+            _script.Globals["trigger"] = (Action<Closure, Closure>)Trigger;
+            _script.Globals["findEntity"] = (Func<string, Entity>)FindEntity;
+            _script.Globals["move"] = (Action<Entity, Entity>)Move;
+            _script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
+            _script.Globals["destroy"] = (Action<Entity>)Destroy;
 
             //var scene = Entity.Scene as MainScene;
             //script.Globals["spawn"] = scene.Spawn;
 
-            script.DoString(_commonCode);
+            _script.DoString(_commonCode);
             if (_scriptSrc != null)
             {
                 var scriptCode = File.ReadAllText(ContentPath.Scripts + _scriptSrc);
-                script.DoString(scriptCode);
+                _script.DoString(scriptCode);
             }
         }
 
@@ -72,10 +76,23 @@ namespace Game.Scripting
             {
                 if (trigger.Condition.Call().Boolean)
                 {
-                    trigger.Effect.Call();
+                    var coroutine = _script.CreateCoroutine(trigger.Effect);
+                    _coroutines.Add(coroutine);
                     _pendingRemovals.Add(trigger);
                 }
             }
+
+            foreach (var coroutine in _coroutines)
+            {
+                coroutine.Coroutine.Resume();
+                if (coroutine.Coroutine.State == CoroutineState.Dead)
+                    _pendingCoroutineRemovals.Add(coroutine);
+            }
+            foreach (var coroutineRemoval in _pendingCoroutineRemovals)
+            {
+                _coroutines.Remove(coroutineRemoval);
+            }
+            _pendingCoroutineRemovals.Clear();
         }
 
         void Trigger(Closure condition, Closure effect)
