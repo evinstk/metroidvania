@@ -21,3 +21,19 @@ function onStart()
 		return true
 	end
 end
+
+--- coroutines
+
+function move_to(entity, dest)
+    while true
+	do
+		if (collides(entity, dest))
+		then
+			stop(entity)
+			-- return 0
+			break
+		end
+        move(entity, dest)
+        coroutine.yield()
+    end
+end
