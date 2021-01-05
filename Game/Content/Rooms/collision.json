@@ -6,6 +6,7 @@
 	"TileWidth": 16,
 	"TileHeight": 16,
 	"LightRendererClearColor": 127,
+	"Script": null,
 	"Layers": [
 		{
 			"@id": "2",
@@ -1320,7 +1321,20 @@
 		}
 	],
 	"Entities": [
+		{
+			"@id": "220",
+			"Id": "EBHJMERFCNATOTEKRNWVLTUFBPFGKVEORZENJP",
+			"Name": "Left Lamp",
+			"PrefabId": "OOXSIJCVTBFVFYNZQDDTHOHQZJUEMJNMSRABNL",
+			"Position": {
+				"@id": "221",
+				"X": 364,
+				"Y": 116
+			},
+			"Components": [
 
+			]
+		}
 	],
 	"Id": "FXYGBRPPFAFQUJRZACOCYEWGDCRNVHUFWHZQJN"
 }

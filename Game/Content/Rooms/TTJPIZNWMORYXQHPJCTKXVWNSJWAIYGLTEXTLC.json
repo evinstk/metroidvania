@@ -6,6 +6,7 @@
 	"TileWidth": 16,
 	"TileHeight": 16,
 	"LightRendererClearColor": 127,
+	"Script": null,
 	"Layers": [
 		{
 			"@id": "2",

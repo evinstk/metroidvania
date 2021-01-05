@@ -14,7 +14,7 @@ namespace Game.Scripting
 
     class MapScript : Component, IUpdatable
     {
-        static string _commonCode = File.ReadAllText("Content/Scripts/common.lua");
+        static string _commonCode = File.ReadAllText(ContentPath.Scripts + "common.lua");
 
         string _scriptSrc;
 
@@ -26,6 +26,8 @@ namespace Game.Scripting
         {
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
         }
+
+        public MapScript() { }
 
         public MapScript(string scriptSrc)
         {
@@ -41,12 +43,15 @@ namespace Game.Scripting
             script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
             script.Globals["destroy"] = (Action<Entity>)Destroy;
 
-            var scene = Entity.Scene as MainScene;
-            script.Globals["spawn"] = scene.Spawn;
+            //var scene = Entity.Scene as MainScene;
+            //script.Globals["spawn"] = scene.Spawn;
 
-            var scriptCode = File.ReadAllText("Content/Scripts/" + _scriptSrc);
             script.DoString(_commonCode);
-            script.DoString(scriptCode);
+            if (_scriptSrc != null)
+            {
+                var scriptCode = File.ReadAllText(ContentPath.Scripts + _scriptSrc);
+                script.DoString(scriptCode);
+            }
         }
 
         public void Update()

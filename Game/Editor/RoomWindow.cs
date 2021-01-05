@@ -3,6 +3,7 @@ using Nez;
 using Nez.ImGuiTools;
 using Nez.ImGuiTools.TypeInspectors;
 using System.Collections.Generic;
+using System.IO;
 using Num = System.Numerics;
 
 namespace Game.Editor
@@ -11,6 +12,17 @@ namespace Game.Editor
     class RoomWindow : Component
     {
         List<AbstractTypeInspector> _inspectors = new List<AbstractTypeInspector>();
+
+        List<string> _scriptFilenames = new List<string>();
+        public override void Initialize()
+        {
+            foreach (var f in Directory.GetFiles(ContentPath.Scripts, "*.lua"))
+            {
+                var filename = Path.GetFileName(f);
+                if (filename != "common.lua")
+                    _scriptFilenames.Add(filename);
+            }
+        }
 
         public override void OnAddedToEntity()
         {
@@ -74,15 +86,29 @@ namespace Game.Editor
                 Entity.Scene.Camera.Position = new Microsoft.Xna.Framework.Vector2(MainScene.ResWidth / 2, MainScene.ResHeight / 2);
             }
 
-            foreach (var inspector in _inspectors)
+            var room = EditorState.RoomData;
+            if (room != null)
             {
-                inspector.Draw();
-            }
-            if (ImGui.Button("Delete"))
-            {
-                roomManager.Delete(EditorState.SelectedRoomId);
-                EditorState.SelectedRoomId = null;
-                _inspectors = new List<AbstractTypeInspector>();
+                if (ImGui.BeginCombo("Script", room.Script))
+                {
+                    foreach (var filename in _scriptFilenames)
+                    {
+                        if (ImGui.Selectable(filename))
+                            room.Script = filename;
+                    }
+                    ImGui.EndCombo();
+                }
+
+                foreach (var inspector in _inspectors)
+                {
+                    inspector.Draw();
+                }
+                if (ImGui.Button("Delete"))
+                {
+                    roomManager.Delete(EditorState.SelectedRoomId);
+                    EditorState.SelectedRoomId = null;
+                    _inspectors = new List<AbstractTypeInspector>();
+                }
             }
         }
     }

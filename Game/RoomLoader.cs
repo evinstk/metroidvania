@@ -3,6 +3,7 @@ using Nez;
 using Microsoft.Xna.Framework;
 using Game.Editor.RoomEdge;
 using System.Collections.Generic;
+using Game.Scripting;
 
 namespace Game
 {
@@ -102,6 +103,8 @@ namespace Game
                     component.AddToEntity(entity);
                 }
             }
+
+            Core.Scene.CreateEntity($"Scripting: {roomData.DisplayName}").AddComponent(new MapScript(roomData.Script));
 
             _loadedRooms.Add(
                 roomData.Id,

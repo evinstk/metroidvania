@@ -1,0 +1,1 @@
+player = findEntity("Hero")
