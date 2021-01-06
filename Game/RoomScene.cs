@@ -14,6 +14,7 @@ namespace Game
 
         public const int LIGHT_LAYER = 100;
         public const int LIGHT_MAP_LAYER = 101;
+        public const int UI_LAYER = 200;
 
         public const int PHYSICS_TERRAIN = 1;
 
@@ -28,7 +29,7 @@ namespace Game
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             ClearColor = new Color(0xff371f0f);
 
-            AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER));
+            AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, UI_LAYER));
         }
 
         public override void OnStart()
@@ -45,6 +46,7 @@ namespace Game
             CreateEntity("roomLoader").AddComponent(new RoomLoader(_roomDataId));
 
             SetupLights();
+            SetupUi();
         }
 
         void SetupLights()
@@ -61,6 +63,14 @@ namespace Game
                 .AddComponent(new SpriteRenderer(lightRenderer.RenderTexture))
                 .SetMaterial(Material.BlendMultiply())
                 .SetRenderLayer(LIGHT_MAP_LAYER);
+        }
+
+        void SetupUi()
+        {
+            AddRenderer(new RenderLayerRenderer(100, UI_LAYER));
+            var dialogSystem = CreateEntity("dialogSystem");
+            dialogSystem.SetParent(Camera.Transform);
+            dialogSystem.AddComponent<DialogSystem>().SetRenderLayer(UI_LAYER);
         }
     }
 
