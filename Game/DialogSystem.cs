@@ -32,6 +32,7 @@ namespace Game
         {
             _line = line;
             _sb.Clear();
+            _text = new FontCharacterSource(_sb);
             _charElapsed = 0;
             _readerIndex = 0;
         }
