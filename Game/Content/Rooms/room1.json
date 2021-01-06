@@ -3921,6 +3921,28 @@
 			"Components": [
 
 			]
+		},
+		{
+			"@id": "650",
+			"Id": "IJLMGDPHNBNROUVRLFLLJBYPJFUDRDOSBEJJPR",
+			"Name": "Some Area",
+			"PrefabId": null,
+			"Position": {
+				"@id": "651",
+				"X": 0,
+				"Y": 64
+			},
+			"Components": [
+				{
+					"@id": "652",
+					"@type": "Game.Editor.Prefab.AreaData",
+					"Size": {
+						"@id": "653",
+						"X": 48,
+						"Y": 64
+					}
+				}
+			]
 		}
 	],
 	"Id": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO"
