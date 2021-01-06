@@ -1,4 +1,6 @@
-﻿using MoonSharp.Interpreter;
+﻿using Game.Movement;
+using Microsoft.Xna.Framework.Input;
+using MoonSharp.Interpreter;
 using Nez;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,8 @@ namespace Game.Scripting
 
         Script _script;
 
+        VirtualButton _interactInput;
+
         static MapScript()
         {
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
@@ -40,6 +44,13 @@ namespace Game.Scripting
 
         public override void OnAddedToEntity()
         {
+            var dialogSystem = Entity.Scene.FindComponentOfType<DialogSystem>();
+            Insist.IsNotNull(dialogSystem);
+
+            _interactInput = new VirtualButton();
+            _interactInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
+            _interactInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
+
             _script = new Script();
             _script.Globals["trigger"] = (Action<Closure, Closure>)Trigger;
             _script.Globals["findEntity"] = (Func<string, Entity>)FindEntity;
@@ -47,6 +58,10 @@ namespace Game.Scripting
             _script.Globals["stop"] = (Action<Entity>)Stop;
             _script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
             _script.Globals["destroy"] = (Action<Entity>)Destroy;
+            _script.Globals["speak"] = (Action<string>)dialogSystem.FeedLine;
+            _script.Globals["disable"] = (Action<Entity>)Disable;
+            _script.Globals["enable"] = (Action<Entity>)Enable;
+            _script.Globals["interact"] = (Func<bool>)Interact;
 
             //var scene = Entity.Scene as MainScene;
             //script.Globals["spawn"] = scene.Spawn;
@@ -94,6 +109,8 @@ namespace Game.Scripting
                 _coroutines.Remove(coroutineRemoval);
             }
             _pendingCoroutineRemovals.Clear();
+
+            _interactionConsumed = false;
         }
 
         void Trigger(Closure condition, Closure effect)
@@ -171,6 +188,50 @@ namespace Game.Scripting
             if (colliderLNull || colliderRNull) return false;
 
             return colliderL.CollidesWith(colliderR, out _);
+        }
+
+        void Disable(Entity entity)
+        {
+            if (entity == null)
+            {
+                Debug.Log("Argument entity not defined");
+                return;
+            }
+            var movement = entity.GetComponent<PlayerMovement>();
+            if (movement == null)
+            {
+                Debug.Log("No PlayerMovement on entity");
+                return;
+            }
+            movement.SetEnabled(false);
+        }
+
+        void Enable(Entity entity)
+        {
+            if (entity == null)
+            {
+                Debug.Log("Argument entity not defined");
+                return;
+            }
+            var movement = entity.GetComponent<PlayerMovement>();
+            if (movement == null)
+            {
+                Debug.Log("No PlayerMovement on entity");
+                return;
+            }
+            movement.SetEnabled(true);
+        }
+
+        // can only call interact() once per frame
+        bool _interactionConsumed = false;
+        bool Interact()
+        {
+            if (!_interactionConsumed)
+            {
+                _interactionConsumed = true;
+                return _interactInput.IsPressed;
+            }
+            return false;
         }
     }
 
