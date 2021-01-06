@@ -1,3 +1,5 @@
+--- triggers
+
 function onEnter(lhs, rhs)
 	return function()
 		return collides(lhs, rhs)
@@ -36,4 +38,28 @@ function move_to(entity, dest)
         move(entity, dest)
         coroutine.yield()
     end
+end
+
+function dialog(line)
+	speak(line)
+	while true
+	do
+		if (interact())
+		then
+			-- clear speech
+			speak()
+			break
+		end
+		coroutine.yield()
+	end
+end
+
+--- higher-order
+
+function cutscene(player, fn)
+	return function()
+		disable(player)
+		fn()
+		enable(player)
+	end
 end
