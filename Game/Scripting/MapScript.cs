@@ -14,6 +14,14 @@ namespace Game.Scripting
         public Closure Effect;
     }
 
+    class ScriptException : Exception
+    {
+        public ScriptException(Exception inner)
+            : base("An error occurred whie running a script.", inner)
+        {
+        }
+    }
+
     class MapScript : Component, IUpdatable
     {
         static string _commonCode = File.ReadAllText(ContentPath.Scripts + "common.lua");
@@ -70,47 +78,66 @@ namespace Game.Scripting
             if (_scriptSrc != null)
             {
                 var scriptCode = File.ReadAllText(ContentPath.Scripts + _scriptSrc);
-                _script.DoString(scriptCode);
+                try
+                {
+                    _script.DoString(scriptCode);
+                }
+                catch (Exception e)
+                {
+                    throw new ScriptException(e);
+                }
             }
         }
 
         public void Update()
         {
-            foreach (var addition in _pendingAdditions)
+            try
             {
-                _triggers.Add(addition);
-            }
-            _pendingAdditions.Clear();
-
-            foreach (var removal in _pendingRemovals)
-            {
-                _triggers.Remove(removal);
-            }
-            _pendingRemovals.Clear();
-
-            foreach (var trigger in _triggers)
-            {
-                if (trigger.Condition.Call().Boolean)
+                foreach (var addition in _pendingAdditions)
                 {
-                    var coroutine = _script.CreateCoroutine(trigger.Effect);
-                    _coroutines.Add(coroutine);
-                    _pendingRemovals.Add(trigger);
+                    _triggers.Add(addition);
                 }
-            }
+                _pendingAdditions.Clear();
 
-            foreach (var coroutine in _coroutines)
-            {
-                coroutine.Coroutine.Resume();
-                if (coroutine.Coroutine.State == CoroutineState.Dead)
-                    _pendingCoroutineRemovals.Add(coroutine);
-            }
-            foreach (var coroutineRemoval in _pendingCoroutineRemovals)
-            {
-                _coroutines.Remove(coroutineRemoval);
-            }
-            _pendingCoroutineRemovals.Clear();
+                foreach (var removal in _pendingRemovals)
+                {
+                    _triggers.Remove(removal);
+                }
+                _pendingRemovals.Clear();
 
-            _interactionConsumed = false;
+                foreach (var trigger in _triggers)
+                {
+                    if (trigger.Condition.Call().Boolean)
+                    {
+                        var coroutine = _script.CreateCoroutine(trigger.Effect);
+                        _coroutines.Add(coroutine);
+                        _pendingRemovals.Add(trigger);
+                    }
+                }
+
+                foreach (var coroutine in _coroutines)
+                {
+                    coroutine.Coroutine.Resume();
+                    if (coroutine.Coroutine.State == CoroutineState.Dead)
+                        _pendingCoroutineRemovals.Add(coroutine);
+                }
+                foreach (var coroutineRemoval in _pendingCoroutineRemovals)
+                {
+                    _coroutines.Remove(coroutineRemoval);
+                }
+                _pendingCoroutineRemovals.Clear();
+
+                _interactionConsumed = false;
+            }
+            catch (Exception exception)
+            {
+                _pendingAdditions.Clear();
+                _triggers.Clear();
+                _pendingRemovals.Clear();
+                _coroutines.Clear();
+                _pendingCoroutineRemovals.Clear();
+                throw new ScriptException(exception);
+            }
         }
 
         void Trigger(Closure condition, Closure effect)

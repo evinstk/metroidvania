@@ -2,6 +2,7 @@
 using Game.Editor.Tool;
 using Microsoft.Xna.Framework;
 using Nez;
+using System;
 
 namespace Game.Editor
 {
@@ -28,5 +29,7 @@ namespace Game.Editor
 
         public static RoomEntity SelectedEntity => RoomData?.Entities.Find(e => e.Id == SelectedEntityId);
         public static string SelectedEntityId = null;
+
+        public static Exception Exception;
     }
 }
