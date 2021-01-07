@@ -24,8 +24,6 @@ namespace Game.Scripting
 
     class MapScript : Component, IUpdatable
     {
-        static string _commonCode = File.ReadAllText(ContentPath.Scripts + "common.lua");
-
         string _scriptSrc;
 
         List<Trigger> _pendingAdditions = new List<Trigger>();
@@ -74,18 +72,19 @@ namespace Game.Scripting
             //var scene = Entity.Scene as MainScene;
             //script.Globals["spawn"] = scene.Spawn;
 
-            _script.DoString(_commonCode);
-            if (_scriptSrc != null)
+            try
             {
-                var scriptCode = File.ReadAllText(ContentPath.Scripts + _scriptSrc);
-                try
+                var commonCode = File.ReadAllText(ContentPath.Scripts + "common.lua");
+                _script.DoString(commonCode);
+                if (_scriptSrc != null)
                 {
+                    var scriptCode = File.ReadAllText(ContentPath.Scripts + _scriptSrc);
                     _script.DoString(scriptCode);
                 }
-                catch (Exception e)
-                {
-                    throw new ScriptException(e);
-                }
+            }
+            catch (Exception e)
+            {
+                throw new ScriptException(e);
             }
         }
 

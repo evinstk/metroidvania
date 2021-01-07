@@ -26,6 +26,7 @@ namespace Game.Editor
             {
                 ImGui.TextColored(Color.Red.ToVector4().ToNumerics(), EditorState.Exception.Message);
                 ImGui.Text(EditorState.Exception.InnerException.Message);
+                ImGui.Text(EditorState.Exception.InnerException.StackTrace);
                 ImGui.End();
             }
         }
