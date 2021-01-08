@@ -3943,6 +3943,20 @@
 					}
 				}
 			]
+		},
+		{
+			"@id": "654",
+			"Id": "AFOSLNCGQAKEUGTRIBGJZJBSIBXITTDJLJNDCX",
+			"Name": "Dummy Hero",
+			"PrefabId": "ZQMJCXOPAMKCYGQMAOIQQYJCKTVWGYPCIFDGAQ",
+			"Position": {
+				"@id": "655",
+				"X": 368,
+				"Y": 192
+			},
+			"Components": [
+
+			]
 		}
 	],
 	"Id": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO"

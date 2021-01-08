@@ -1,0 +1,42 @@
+{
+	"@id": "1",
+	"Name": "Dummy Hero",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteData",
+			"Color": 4294967295,
+			"TextureData": {
+				"@id": "3",
+				"TextureFile": "hero32.png"
+			},
+			"SourceRect": {
+				"@id": "4",
+				"X": 1,
+				"Y": 1,
+				"Width": 64,
+				"Height": 64
+			},
+			"Origin": {
+				"@id": "5",
+				"X": 32,
+				"Y": 48
+			}
+		},
+		{
+			"@id": "6",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@id": "7",
+				"X": 0,
+				"Y": 0
+			},
+			"PhysicsData": {
+				"@id": "8",
+				"PhysicsLayer": 2,
+				"CollidesWithLayers": -1
+			}
+		}
+	],
+	"Id": "ZQMJCXOPAMKCYGQMAOIQQYJCKTVWGYPCIFDGAQ"
+}
