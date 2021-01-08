@@ -65,35 +65,44 @@
 				"@id": "14",
 				"AnimationId": "default",
 				"Flip": true
+			},
+			"Hit": {
+				"@id": "15",
+				"HitMask": 2
 			}
 		},
 		{
-			"@id": "15",
+			"@id": "16",
 			"@type": "Game.Editor.Prefab.LightData",
 			"Color": 4294967295,
 			"Radius": 200,
 			"Power": 1,
 			"LocalOffset": {
-				"@id": "16",
+				"@id": "17",
 				"X": 0,
 				"Y": 0
 			}
 		},
 		{
-			"@id": "17",
+			"@id": "18",
 			"@type": "Game.Editor.Prefab.PlayerControllerData"
 		},
 		{
-			"@id": "18",
+			"@id": "19",
 			"@type": "Game.Editor.Prefab.BoxColliderData",
 			"Size": {
-				"@id": "19",
+				"@id": "20",
 				"X": 12,
 				"Y": 32
+			},
+			"PhysicsData": {
+				"@id": "21",
+				"PhysicsLayer": -1,
+				"CollidesWithLayers": 256
 			}
 		},
 		{
-			"@id": "20",
+			"@id": "22",
 			"@type": "Game.Editor.Prefab.FollowCameraData"
 		}
 	],

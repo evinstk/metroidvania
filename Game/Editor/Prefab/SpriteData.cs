@@ -7,7 +7,6 @@ using Nez.Persistence;
 using Nez.Sprites;
 using Nez.Textures;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Game.Editor.Prefab

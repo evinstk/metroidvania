@@ -24,6 +24,7 @@ namespace Game.Movement
         public float MaxFallVelocity = 150;
         public float JumpVelocity = 200;
         public float JumpDuration = 0.2f;
+        public int HitMask = -1;
 
         int _facing = 1;
 
@@ -88,13 +89,14 @@ namespace Game.Movement
             var location = hitbox.Location;
             if (flip) location.X = -location.X - hitbox.Width;
             hitbox.Location = location + Entity.Position;
-            Physics.OverlapRectangleAll(ref hitbox, _colliderResults);
+            Physics.OverlapRectangleAll(ref hitbox, _colliderResults, HitMask);
             for (var i = 0; i < _colliderResults.Length; ++i)
             {
                 var collider = _colliderResults[i];
                 if (collider != null)
                 {
                     // handle attack collision
+                    collider.Entity.Destroy();
                 }
                 _colliderResults[i] = null;
             }

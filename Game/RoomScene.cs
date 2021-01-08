@@ -16,7 +16,8 @@ namespace Game
         public const int LIGHT_MAP_LAYER = 101;
         public const int UI_LAYER = 200;
 
-        public const int PHYSICS_TERRAIN = 1;
+        // layers 0-7 reserved for teams
+        public const int PHYSICS_TERRAIN = 8;
 
         public RoomScene(string roomDataId)
         {

@@ -21,6 +21,7 @@ namespace Game.Editor.Prefab
         public AnimationData AttackLeft = new AnimationData();
         public AnimationData JumpRight = new AnimationData();
         public AnimationData JumpLeft = new AnimationData();
+        public HitData Hit = new HitData();
 
         [CustomInspector(typeof(AnimationDataInspector))]
         public class AnimationData
@@ -54,6 +55,21 @@ namespace Game.Editor.Prefab
             }
         }
 
+        [CustomInspector(typeof(HitDataInspector))]
+        public class HitData
+        {
+            public int HitMask = -1;
+        }
+
+        class HitDataInspector : AbstractTypeInspector
+        {
+            public override void DrawMutable()
+            {
+                var data = GetValue<HitData>();
+                ImGuiExt.DrawPhysicsLayerInput("Hits", ref data.HitMask);
+            }
+        }
+
         public override void AddToEntity(Entity entity)
         {
             entity.AddComponent<Animator<ObserverFrame>>();
@@ -66,6 +82,7 @@ namespace Game.Editor.Prefab
             movement.Attack.Left = MakeAnimation(AttackLeft);
             movement.Jump.Right = MakeAnimation(JumpRight);
             movement.Jump.Left = MakeAnimation(JumpLeft);
+            movement.HitMask = Hit.HitMask;
         }
 
         Animation<ObserverFrame> MakeAnimation(AnimationData animationData)
