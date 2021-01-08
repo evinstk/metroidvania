@@ -86,7 +86,7 @@ namespace Game.Movement
         void CastHitBox(RectangleF hitbox, bool flip)
         {
             var location = hitbox.Location;
-            if (_flip) location.X = -location.X - hitbox.Width;
+            if (flip) location.X = -location.X - hitbox.Width;
             hitbox.Location = location + Entity.Position;
             Physics.OverlapRectangleAll(ref hitbox, _colliderResults);
             for (var i = 0; i < _colliderResults.Length; ++i)
