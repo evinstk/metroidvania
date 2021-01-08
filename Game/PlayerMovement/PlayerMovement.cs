@@ -1,12 +1,7 @@
-﻿using Game.Editor.Animation;
-using Game.Editor.Prefab;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.AI.FSM;
 using Nez.Sprites;
-using Nez.Textures;
-using System.Collections.Generic;
-using System.IO;
 
 namespace Game.Movement
 {
@@ -16,7 +11,13 @@ namespace Game.Movement
         public Animation<ObserverFrame> Right;
     }
 
-    partial class PlayerMovement : Component, IUpdatable
+    partial class PlayerMovement :
+#if DEBUG
+        RenderableComponent,
+#else
+        Component,
+#endif
+        IUpdatable
     {
         public float Gravity = 300; // acceleration
         public float MoveSpeed = 130;
@@ -29,6 +30,8 @@ namespace Game.Movement
         // animations
         public MovementAnimation Idle;
         public MovementAnimation Walk;
+        public MovementAnimation Attack;
+        public MovementAnimation Jump;
 
         // external dependencies
         ControllerComponent _controller;
@@ -54,6 +57,7 @@ namespace Game.Movement
             _mover = Entity.AddComponent<Mover>();
             _fsm = new StateMachine<PlayerMovement>(this, new GroundState());
             _fsm.AddState(new AirState());
+            _fsm.AddState(new AttackState());
 
             _renderer = Entity.GetComponentStrict<SpriteRenderer>();
 
@@ -68,11 +72,46 @@ namespace Game.Movement
         {
             _renderer.SetSprite(frame.Sprite);
             _renderer.FlipX = frame.Flip;
+            for (var i = 0; i < frame.HitBoxes.Length; ++i)
+            {
+                CastHitBox(frame.HitBoxes[i], frame.Flip);
+            }
+#if DEBUG
+            _flip = frame.Flip;
+            _hitboxes = frame.HitBoxes;
+#endif
+        }
+
+        Collider[] _colliderResults = new Collider[8];
+        void CastHitBox(RectangleF hitbox, bool flip)
+        {
+            var location = hitbox.Location;
+            if (_flip) location.X = -location.X - hitbox.Width;
+            hitbox.Location = location + Entity.Position;
+            Physics.OverlapRectangleAll(ref hitbox, _colliderResults);
+            for (var i = 0; i < _colliderResults.Length; ++i)
+            {
+                var collider = _colliderResults[i];
+                if (collider != null)
+                {
+                    // handle attack collision
+                }
+                _colliderResults[i] = null;
+            }
         }
 
         public void Update()
         {
+            Reason();
             _fsm.Update(Time.DeltaTime);
+        }
+
+        void Reason()
+        {
+            if (_controller.AttackPressed)
+            {
+                _fsm.ChangeState<AttackState>();
+            }
         }
 
         void Move(float deltaTime)
@@ -96,10 +135,41 @@ namespace Game.Movement
             _mover.ApplyMovement(motion);
         }
 
-        void ChangeAnimation(Animation<ObserverFrame> animation)
+        void ChangeAnimation(
+            MovementAnimation animationPack,
+            Animator<ObserverFrame>.LoopMode loopMode = Animator<ObserverFrame>.LoopMode.Loop)
         {
+            var animation = _facing > 0 ? animationPack.Right : animationPack.Left;
             if (!_animator.IsAnimationActive(animation))
-                _animator.Play(animation);
+                _animator.Play(animation, loopMode);
         }
+
+#if DEBUG
+        RectangleF[] _hitboxes = null;
+        bool _flip = false;
+
+        public override RectangleF Bounds => _renderer.Bounds;
+
+        public override void Render(Batcher batcher, Camera camera)
+        {
+        }
+
+        public override void DebugRender(Batcher batcher)
+        {
+            if (_hitboxes != null)
+            {
+                var color = Color.DarkRed;
+                color.A = 20;
+                for (var i = 0; i < _hitboxes.Length; ++i)
+                {
+                    var hitbox = _hitboxes[i];
+                    var location = hitbox.Location;
+                    if (_flip) location.X = -location.X - hitbox.Width;
+                    hitbox.Location = location + Entity.Position;
+                    batcher.DrawRect(hitbox, color);
+                }
+            }
+        }
+#endif
     }
 }

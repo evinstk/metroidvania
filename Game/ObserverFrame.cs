@@ -8,7 +8,7 @@ namespace Game
     {
         public Sprite Sprite;
         public bool Flip;
-        public Rectangle[] HitBoxes;
+        public RectangleF[] HitBoxes;
 
         public void OnEnter()
         {

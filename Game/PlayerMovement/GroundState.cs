@@ -43,9 +43,9 @@ namespace Game.Movement
                 }
 
                 if (moveDir.X != 0)
-                    _context.ChangeAnimation(_context._facing > 0 ? _context.Walk.Right : _context.Walk.Left);
+                    _context.ChangeAnimation(_context.Walk);
                 else
-                    _context.ChangeAnimation(_context._facing > 0 ? _context.Idle.Right : _context.Idle.Left);
+                    _context.ChangeAnimation(_context.Idle);
             }
         }
     }

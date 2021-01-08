@@ -17,6 +17,10 @@ namespace Game.Editor.Prefab
         public AnimationData IdleLeft = new AnimationData();
         public AnimationData WalkRight = new AnimationData();
         public AnimationData WalkLeft = new AnimationData();
+        public AnimationData AttackRight = new AnimationData();
+        public AnimationData AttackLeft = new AnimationData();
+        public AnimationData JumpRight = new AnimationData();
+        public AnimationData JumpLeft = new AnimationData();
 
         [CustomInspector(typeof(AnimationDataInspector))]
         public class AnimationData
@@ -58,6 +62,10 @@ namespace Game.Editor.Prefab
             movement.Idle.Left = MakeAnimation(IdleLeft);
             movement.Walk.Right = MakeAnimation(WalkRight);
             movement.Walk.Left = MakeAnimation(WalkLeft);
+            movement.Attack.Right = MakeAnimation(AttackRight);
+            movement.Attack.Left = MakeAnimation(AttackLeft);
+            movement.Jump.Right = MakeAnimation(JumpRight);
+            movement.Jump.Left = MakeAnimation(JumpLeft);
         }
 
         Animation<ObserverFrame> MakeAnimation(AnimationData animationData)
@@ -78,11 +86,16 @@ namespace Game.Editor.Prefab
                     new Microsoft.Xna.Framework.Vector2(
                         spriteData.pivot.x * spriteData.sourceSize.w - spriteData.spriteSourceSize.x,
                         spriteData.pivot.y * spriteData.sourceSize.h - spriteData.spriteSourceSize.y));
+                var hitboxesF = new List<RectangleF>();
+                for (var i = 0; i < frame.HitBoxes.Count; ++i)
+                    hitboxesF.Add(new RectangleF(
+                        frame.HitBoxes[i].Location.ToVector2(),
+                        frame.HitBoxes[i].Size.ToVector2()));
                 frames.Add(new ObserverFrame
                 {
                     Sprite = sprite,
                     Flip = animationData.Flip,
-                    HitBoxes = frame.HitBoxes.ToArray(),
+                    HitBoxes = hitboxesF.ToArray(),
                 });
             }
             return new Animation<ObserverFrame>(frames.ToArray(), animation.FramesPerSecond);

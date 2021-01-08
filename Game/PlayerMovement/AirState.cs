@@ -41,6 +41,7 @@ namespace Game.Movement
                 _context._velocity.X = _context.MoveSpeed * moveDir.X;
 
                 _context.Move(deltaTime);
+                _context.ChangeAnimation(_context.Jump);
             }
         }
     }
