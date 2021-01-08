@@ -1,4 +1,6 @@
-﻿using Nez.Textures;
+﻿using Microsoft.Xna.Framework;
+using Nez;
+using Nez.Textures;
 
 namespace Game
 {
@@ -6,6 +8,7 @@ namespace Game
     {
         public Sprite Sprite;
         public bool Flip;
+        public Rectangle[] HitBoxes;
 
         public void OnEnter()
         {

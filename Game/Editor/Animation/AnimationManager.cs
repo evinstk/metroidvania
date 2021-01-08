@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Nez;
 using Nez.Persistence;
 using System.Collections.Generic;
 
@@ -18,6 +19,7 @@ namespace Game.Editor.Animation
         public class Frame
         {
             public Sprite Sprite = new Sprite();
+            public List<Rectangle> HitBoxes = new List<Rectangle>();
             // other animatable things
         }
 

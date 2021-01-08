@@ -1,4 +1,5 @@
 ﻿using ImGuiNET;
+using Microsoft.Xna.Framework;
 using Nez;
 using Nez.ImGuiTools;
 using Num = System.Numerics;
@@ -89,6 +90,8 @@ namespace Game.Editor.Animation
                 ImGui.SameLine();
                 ImGui.Text("FPS");
 
+                ImGui.Separator();
+
                 for (var i = 0; i < animation.Frames.Count; ++i)
                 {
                     ImGui.PushID(i);
@@ -112,10 +115,37 @@ namespace Game.Editor.Animation
                             ImGui.EndCombo();
                         }
                     }
+
+                    var hitboxRemovalIndex = -1;
+                    if (frame.HitBoxes.Count > 0)
+                        ImGui.Text("Hitboxes:");
+                    for (var h = 0; h < frame.HitBoxes.Count; ++h)
+                    {
+                        ImGui.PushID(h);
+                        var hitbox = frame.HitBoxes[h];
+                        var location = hitbox.Location;
+                        ImGui.DragInt2("Location", ref location.X);
+                        var size = hitbox.Size;
+                        ImGui.DragInt2("Size", ref size.X);
+                        frame.HitBoxes[h] = new Rectangle(location, size);
+                        if (ImGui.Button("Remove Hitbox"))
+                            hitboxRemovalIndex = h;
+                        ImGui.Separator();
+                        ImGui.PopID();
+                    }
+                    if (hitboxRemovalIndex > -1)
+                        frame.HitBoxes.RemoveAt(hitboxRemovalIndex);
+
+                    if (ImGui.Button("Add Hitbox"))
+                    {
+                        frame.HitBoxes.Add(new RectangleF());
+                    }
                     if (ImGui.Button("Delete Frame"))
                     {
                         deleteFrame = frame;
                     }
+
+                    ImGui.Separator();
                     ImGui.PopID();
                 }
                 if (NezImGui.CenteredButton("Add Frame", 1f))

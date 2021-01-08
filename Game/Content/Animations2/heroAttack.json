@@ -1,6 +1,6 @@
 {
 	"@id": "1",
-	"Name": "default",
+	"Name": "heroAttack",
 	"FramesPerSecond": 12,
 	"Frames": [
 		{
@@ -11,9 +11,15 @@
 				"FrameFilename": "idle000.png"
 			},
 			"HitBoxes": [
-
+				{
+					"@id": "4",
+					"X": 16,
+					"Y": 0,
+					"Width": 32,
+					"Height": 32
+				}
 			]
 		}
 	],
-	"Id": "default"
+	"Id": "VLILEXWWMRLHDPLEAFYKZTBLMLHMBWADUJJBFA"
 }

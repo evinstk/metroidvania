@@ -9,7 +9,10 @@
 				"@id": "3",
 				"TextureMapId": "hero32.png",
 				"FrameFilename": "idle000.png"
-			}
+			},
+			"HitBoxes": [
+
+			]
 		}
 	],
 	"Id": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU"

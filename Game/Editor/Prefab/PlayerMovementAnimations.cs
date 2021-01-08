@@ -82,6 +82,7 @@ namespace Game.Editor.Prefab
                 {
                     Sprite = sprite,
                     Flip = animationData.Flip,
+                    HitBoxes = frame.HitBoxes.ToArray(),
                 });
             }
             return new Animation<ObserverFrame>(frames.ToArray(), animation.FramesPerSecond);
