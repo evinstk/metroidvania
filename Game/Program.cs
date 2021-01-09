@@ -14,7 +14,7 @@ namespace Game
             }
             else
             {
-                using (var game = new Game())
+                using (var game = new RoomCore())
                     game.Run();
             }
         }
