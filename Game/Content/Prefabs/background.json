@@ -1,0 +1,49 @@
+{
+	"@id": "1",
+	"Name": "Mountain Background",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.TiledParallaxData",
+			"TextureData": {
+				"@id": "3",
+				"TextureFile": "farMountain.png"
+			},
+			"ScrollScale": {
+				"@id": "4",
+				"X": 0.1,
+				"Y": 0
+			},
+			"RenderLayer": 99
+		},
+		{
+			"@id": "5",
+			"@type": "Game.Editor.Prefab.TiledParallaxData",
+			"TextureData": {
+				"@id": "6",
+				"TextureFile": "nearMountain.png"
+			},
+			"ScrollScale": {
+				"@id": "7",
+				"X": 0.5,
+				"Y": 0
+			},
+			"RenderLayer": 97
+		},
+		{
+			"@id": "8",
+			"@type": "Game.Editor.Prefab.TiledParallaxData",
+			"TextureData": {
+				"@id": "9",
+				"TextureFile": "farTrees.png"
+			},
+			"ScrollScale": {
+				"@id": "10",
+				"X": 0.3,
+				"Y": 0
+			},
+			"RenderLayer": 98
+		}
+	],
+	"Id": "OVMLPNUVMFKZTUTSTDEKNRKWLBDDCFXFIZABVQ"
+}
