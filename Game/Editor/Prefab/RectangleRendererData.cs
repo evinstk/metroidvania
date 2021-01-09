@@ -9,12 +9,14 @@ namespace Game.Editor.Prefab
     class RectangleRendererData : DataComponent
     {
         public Vector2 Size = new Vector2(32, 32);
+        public int RenderLayer = 0;
         [JsonExclude]
         public Color Color = Color.White;
 
         public override void AddToEntity(Entity entity)
         {
-            entity.AddComponent(new RectangleRenderer(Color, Size.X, Size.Y));
+            var renderer = entity.AddComponent(new RectangleRenderer(Color, Size.X, Size.Y));
+            renderer.RenderLayer = RenderLayer;
         }
 
         public override void Render(Batcher batcher, Vector2 position)

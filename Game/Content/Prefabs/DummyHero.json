@@ -33,12 +33,10 @@
 			},
 			"PhysicsLayer": {
 				"@id": "8",
-				"Name": "Physics Layer",
 				"Mask": 2
 			},
 			"CollidesWithLayers": {
 				"@id": "9",
-				"Name": "Collides With",
 				"Mask": 0
 			}
 		}
