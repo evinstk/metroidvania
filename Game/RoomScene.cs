@@ -17,9 +17,6 @@ namespace Game
         public const int LIGHT_MAP_LAYER = 101;
         public const int UI_LAYER = 200;
 
-        // layers 0-7 reserved for teams
-        public const int PHYSICS_TERRAIN = 8;
-
         public RoomScene(string roomDataId)
         {
             Insist.IsNotNull(roomDataId);
@@ -58,7 +55,7 @@ namespace Game
         void SetupLights()
         {
             var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
-            Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, PHYSICS_TERRAIN);
+            Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, PhysicsLayer.Terrain);
             var level = Core.GetGlobalManager<RoomManager>().GetResource(_roomDataId).LightRendererClearColor;
             lightRenderer.RenderTargetClearColor = new Color(level, level, level, 255);
 
@@ -78,6 +75,12 @@ namespace Game
             dialogSystem.SetParent(Camera.Transform);
             dialogSystem.AddComponent<DialogSystem>().SetRenderLayer(UI_LAYER);
         }
+    }
+
+    static class PhysicsLayer
+    {
+        // layers 0-7 reserved for teams
+        public const int Terrain = 8;
     }
 
     class RoomTransport : Component

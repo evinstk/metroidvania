@@ -84,7 +84,7 @@ namespace Game
                 if (layer.HasColliders)
                 {
                     var mapCollider = layerEntity.AddComponent(new MapCollider(roomData, i));
-                    Flags.SetFlagExclusive(ref mapCollider.PhysicsLayer, RoomScene.PHYSICS_TERRAIN);
+                    Flags.SetFlagExclusive(ref mapCollider.PhysicsLayer, PhysicsLayer.Terrain);
                 }
             }
 

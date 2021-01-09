@@ -1,5 +1,6 @@
 ﻿using ImGuiNET;
 using Nez;
+using System.Reflection;
 
 namespace Game.Editor
 {
@@ -19,11 +20,16 @@ namespace Game.Editor
                 if (i > 0) ImGui.SameLine();
                 ImGui.PopID();
             }
-            var isTerrainSet = Flags.IsUnshiftedFlagSet(mask, RoomScene.PHYSICS_TERRAIN);
-            ImGui.PushID(label + " terrain");
-            if (ImGui.Checkbox("Terrain", ref isTerrainSet))
-                SetFlagValue(ref mask, RoomScene.PHYSICS_TERRAIN, isTerrainSet);
-            ImGui.PopID();
+            var layerFields = typeof(PhysicsLayer).GetFields(BindingFlags.Static | BindingFlags.Public);
+            foreach (var field in layerFields)
+            {
+                ImGui.PushID(field.Name);
+                var value = (int)field.GetValue(null);
+                var isSet = Flags.IsUnshiftedFlagSet(mask, value);
+                if (ImGui.Checkbox(field.Name, ref isSet))
+                    SetFlagValue(ref mask, value, isSet);
+                ImGui.PopID();
+            }
             ImGui.Unindent();
         }
 
