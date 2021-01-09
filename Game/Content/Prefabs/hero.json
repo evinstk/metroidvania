@@ -97,7 +97,7 @@
 			},
 			"PhysicsData": {
 				"@id": "21",
-				"PhysicsLayer": -1,
+				"PhysicsLayer": 0,
 				"CollidesWithLayers": 256
 			}
 		},
