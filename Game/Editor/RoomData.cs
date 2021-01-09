@@ -62,5 +62,17 @@ namespace Game.Editor
             foreach (var component in Components)
                 component.Render(batcher, Position);
         }
+
+        public bool Select(Vector2 mousePosition)
+        {
+            if (Prefab?.Select(Position, mousePosition) == true)
+                return true;
+            foreach (var component in Components)
+            {
+                if (component.Select(Position, mousePosition))
+                    return true;
+            }
+            return false;
+        }
     }
 }

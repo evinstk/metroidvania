@@ -40,12 +40,23 @@ namespace Game.Editor.Prefab
             foreach (var component in Components)
                 component.Render(batcher, position);
         }
+
+        public bool Select(Vector2 entityPosition, Vector2 mousePosition)
+        {
+            foreach (var component in Components)
+            {
+                if (component.Select(entityPosition, mousePosition))
+                    return true;
+            }
+            return false;
+        }
     }
 
     abstract class DataComponent
     {
         public virtual void AddToEntity(Entity entity) { }
         public virtual void Render(Batcher batcher, Vector2 position) { }
+        public virtual bool Select(Vector2 entityPosition, Vector2 mousePosition) => false;
     }
 
     [EditorWindow]

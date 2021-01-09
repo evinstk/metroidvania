@@ -32,6 +32,14 @@ namespace Game.Editor.Prefab
         {
             batcher.Draw(TextureData.Texture, position - Origin, SourceRect, Color);
         }
+
+        public override bool Select(Vector2 entityPosition, Vector2 mousePosition)
+        {
+            var rect = new Rectangle(
+                (entityPosition - Origin).ToPoint(),
+                new Point(SourceRect.Width, SourceRect.Height));
+            return rect.Contains(mousePosition);
+        }
     }
 
     class SpriteDataConverter : JsonTypeConverter<SpriteData>

@@ -26,6 +26,14 @@ namespace Game.Editor.Prefab
                 rect,
                 Color);
         }
+
+        public override bool Select(Vector2 entityPosition, Vector2 mousePosition)
+        {
+            var rect = new RectangleF(
+                entityPosition - Size / 2,
+                Size);
+            return rect.Contains(mousePosition);
+        }
     }
 
     class RectangleRendererDataConverter : JsonTypeConverter<RectangleRendererData>

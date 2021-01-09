@@ -25,5 +25,11 @@ namespace Game.Editor.Prefab
             color.A = 1;
             batcher.DrawRect(position, Size.X, Size.Y, color);
         }
+
+        public override bool Select(Vector2 entityPosition, Vector2 mousePosition)
+        {
+            var bounds = new RectangleF(entityPosition, Size.ToVector2());
+            return bounds.Contains(mousePosition);
+        }
     }
 }
