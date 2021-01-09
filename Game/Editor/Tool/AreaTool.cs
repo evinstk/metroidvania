@@ -49,7 +49,7 @@ namespace Game.Editor.Tool
                             entity.Position = new Vector2(
                                 Math.Min(_start.X, worldPoint.X),
                                 Math.Min(_start.Y, worldPoint.Y));
-                            roomData.Entities.Add(entity);
+                            roomData.AddEntity(entity);
                             EditorState.SelectedEntityId = entity.Id;
                         }
                     }

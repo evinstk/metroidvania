@@ -29,6 +29,12 @@ namespace Game.Editor
             new RoomLayer { Name = "doodad" },
         };
         public List<RoomEntity> Entities = new List<RoomEntity>();
+
+        public void AddEntity(RoomEntity entity)
+        {
+            Entities.Add(entity);
+            entity.Room = this;
+        }
     }
 
     class RoomLayer

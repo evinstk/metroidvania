@@ -25,7 +25,7 @@ namespace Game.Editor.Tool
                 {
                     worldPoint.X = Mathf.RoundToNearest(worldPoint.X, 4);
                     worldPoint.Y = Mathf.RoundToNearest(worldPoint.Y, 4);
-                    roomData.Entities.Add(new RoomEntity
+                    roomData.AddEntity(new RoomEntity
                     {
                         Name = selectedPrefab.Name,
                         PrefabId = selectedPrefab.Id,
