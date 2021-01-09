@@ -26,6 +26,18 @@ namespace Game.Editor
                 foreach (var entity in roomData.Entities)
                 {
                     var prefab = _prefabManager.GetResource(entity.PrefabId);
+
+                    var rectangleData = prefab?.Components.Find(c => c is RectangleRendererData) as RectangleRendererData;
+                    if (rectangleData != null)
+                    {
+                        var rect = new RectangleF(
+                            entity.Position - rectangleData.Size / 2,
+                            rectangleData.Size);
+                        batcher.DrawRect(
+                            rect,
+                            rectangleData.Color);
+                    }
+
                     var spriteData = prefab?.Components.Find(c => c is SpriteData) as SpriteData;
                     var texture = spriteData?.TextureData.Texture;
                     if (spriteData != null && texture != null)
@@ -36,6 +48,7 @@ namespace Game.Editor
                             spriteData.SourceRect,
                             spriteData.Color);
                     }
+
                     foreach (var component in entity.Components)
                     {
                         if (component is AreaData areaData)

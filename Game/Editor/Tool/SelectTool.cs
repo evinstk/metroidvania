@@ -27,13 +27,24 @@ namespace Game.Editor.Tool
                     foreach (var entity in roomData.Entities)
                     {
                         var prefab = entity.Prefab;
-                        if (prefab != null)
+                        SpriteData spriteData = null;
+                        RectangleRendererData rectRenderer = null;
+                        if (prefab?.TryGetComponent(out spriteData) == true)
                         {
-                            var spriteData = prefab.GetComponent<SpriteData>();
                             var rect = new Rectangle(
                                 (entity.Position - spriteData.Origin).ToPoint(),
                                 new Point(spriteData.SourceRect.Width, spriteData.SourceRect.Height));
-                            if (spriteData != null && rect.Contains(position))
+                            if (rect.Contains(position))
+                            {
+                                selection = entity.Id;
+                            }
+                        }
+                        else if (prefab?.TryGetComponent(out rectRenderer) == true)
+                        {
+                            var rect = new RectangleF(
+                                entity.Position - rectRenderer.Size / 2,
+                                rectRenderer.Size);
+                            if (rect.Contains(position))
                             {
                                 selection = entity.Id;
                             }
@@ -42,10 +53,13 @@ namespace Game.Editor.Tool
                         else if (selection == null)
                         {
                             var area = entity.Components.Find(c => c is AreaData) as AreaData;
-                            var bounds = new RectangleF(entity.Position, area.Size.ToVector2());
-                            if (area != null && bounds.Contains(position))
+                            if (area != null)
                             {
-                                selection = entity.Id;
+                                var bounds = new RectangleF(entity.Position, area.Size.ToVector2());
+                                if (area != null && bounds.Contains(position))
+                                {
+                                    selection = entity.Id;
+                                }
                             }
                         }
                     }

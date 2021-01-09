@@ -1,0 +1,36 @@
+﻿using Microsoft.Xna.Framework;
+using Nez;
+using Nez.Persistence;
+using System;
+
+namespace Game.Editor.Prefab
+{
+    [Serializable]
+    class RectangleRendererData : DataComponent
+    {
+        public Vector2 Size = new Vector2(32, 32);
+        [JsonExclude]
+        public Color Color = Color.White;
+
+        public override void AddToEntity(Entity entity)
+        {
+            entity.AddComponent(new RectangleRenderer(Color, Size.X, Size.Y));
+        }
+    }
+
+    class RectangleRendererDataConverter : JsonTypeConverter<RectangleRendererData>
+    {
+        public override void OnFoundCustomData(RectangleRendererData instance, string key, object value)
+        {
+            if (key == "Color")
+            {
+                instance.Color = new Color(Convert.ToUInt32(value));
+            }
+        }
+
+        public override void WriteJson(IJsonEncoder encoder, RectangleRendererData value)
+        {
+            encoder.EncodeKeyValuePair("Color", value.Color.PackedValue);
+        }
+    }
+}
