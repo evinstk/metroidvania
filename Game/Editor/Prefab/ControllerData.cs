@@ -2,7 +2,7 @@
 
 namespace Game.Editor.Prefab
 {
-    class PlayerControllerData : PrefabComponent
+    class PlayerControllerData : DataComponent
     {
         public override void AddToEntity(Entity entity)
         {
@@ -10,7 +10,7 @@ namespace Game.Editor.Prefab
         }
     }
 
-    class FreeControllerData : PrefabComponent
+    class FreeControllerData : DataComponent
     {
         public override void AddToEntity(Entity entity)
         {

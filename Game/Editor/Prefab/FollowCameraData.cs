@@ -2,7 +2,7 @@
 
 namespace Game.Editor.Prefab
 {
-    class FollowCameraData : PrefabComponent
+    class FollowCameraData : DataComponent
     {
         public override void AddToEntity(Entity entity)
         {

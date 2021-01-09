@@ -17,7 +17,7 @@ namespace Game.Editor
 
         public override void Initialize()
         {
-            var subclasses = ReflectionUtils.GetAllSubclasses(typeof(PrefabComponent), true);
+            var subclasses = ReflectionUtils.GetAllSubclasses(typeof(DataComponent), true);
             subclasses.Sort((t, u) => t.Name.CompareTo(u.Name));
             _componentSubclasses = subclasses.ToArray();
         }
@@ -56,7 +56,7 @@ namespace Game.Editor
                 entity.Position = value.ToXNA();
             }
 
-            PrefabComponent toRemove = null;
+            DataComponent toRemove = null;
             ImGui.Text("Components:");
             foreach (var group in _inspectors)
             {
@@ -109,7 +109,7 @@ namespace Game.Editor
                 {
                     if (ImGui.Selectable(subclass.Name))
                     {
-                        EditorState.SelectedEntity.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
+                        EditorState.SelectedEntity.Components.Add(Activator.CreateInstance(subclass) as DataComponent);
                         GenerateInspectors();
                         ImGui.CloseCurrentPopup();
                     }

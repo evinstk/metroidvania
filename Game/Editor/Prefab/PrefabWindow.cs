@@ -15,9 +15,9 @@ namespace Game.Editor.Prefab
         public string Id { get; set; } = Utils.RandomString();
         public string DisplayName => Name;
         public string Name = "New Prefab";
-        public List<PrefabComponent> Components = new List<PrefabComponent>();
+        public List<DataComponent> Components = new List<DataComponent>();
 
-        public T GetComponent<T>() where T : PrefabComponent => Components.Find(c => c is T) as T;
+        public T GetComponent<T>() where T : DataComponent => Components.Find(c => c is T) as T;
 
         public Entity CreateEntity(string name, Scene scene)
         {
@@ -30,7 +30,7 @@ namespace Game.Editor.Prefab
         }
     }
 
-    abstract class PrefabComponent
+    abstract class DataComponent
     {
         public virtual void AddToEntity(Entity entity) { }
     }
@@ -44,7 +44,7 @@ namespace Game.Editor.Prefab
 
         public override void Initialize()
         {
-            var subclasses = ReflectionUtils.GetAllSubclasses(typeof(PrefabComponent), true);
+            var subclasses = ReflectionUtils.GetAllSubclasses(typeof(DataComponent), true);
             subclasses.Sort((t, u) => t.Name.CompareTo(u.Name));
             _componentSubclasses = subclasses.ToArray();
         }
@@ -106,7 +106,7 @@ namespace Game.Editor.Prefab
             public string Name;
             public List<AbstractTypeInspector> Inspectors;
             public int Id;
-            public PrefabComponent Component;
+            public DataComponent Component;
         }
         List<EditorComponentInspector> _inspectors;
         void DrawEntitySelector()
@@ -151,7 +151,7 @@ namespace Game.Editor.Prefab
                 return;
 
             var addComponent = false;
-            PrefabComponent toRemove = null;
+            DataComponent toRemove = null;
 
             var entity = _prefabManager.GetResource(EditorState.SelectedPrefabId);
             ImGui.Text("Name:");
@@ -203,7 +203,7 @@ namespace Game.Editor.Prefab
                 {
                     if (ImGui.Selectable(subclass.Name))
                     {
-                        EditorState.SelectedPrefab.Components.Add(Activator.CreateInstance(subclass) as PrefabComponent);
+                        EditorState.SelectedPrefab.Components.Add(Activator.CreateInstance(subclass) as DataComponent);
                         GenerateInspectors();
                         ImGui.CloseCurrentPopup();
                     }

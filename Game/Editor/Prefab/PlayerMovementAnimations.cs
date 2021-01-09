@@ -11,7 +11,7 @@ using Num = System.Numerics;
 
 namespace Game.Editor.Prefab
 {
-    class PlayerMovementData : PrefabComponent
+    class PlayerMovementData : DataComponent
     {
         public AnimationData IdleRight = new AnimationData();
         public AnimationData IdleLeft = new AnimationData();

@@ -4,7 +4,7 @@ using System;
 
 namespace Game.Editor.Prefab
 {
-    class AreaData : PrefabComponent
+    class AreaData : DataComponent
     {
         public Point Size;
 

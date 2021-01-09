@@ -5,7 +5,7 @@ using Nez.ImGuiTools.TypeInspectors;
 
 namespace Game.Editor.Prefab
 {
-    class BoxColliderData : PrefabComponent
+    class BoxColliderData : DataComponent
     {
         public Vector2 Size;
         //public int PhysicsLayer = -1;

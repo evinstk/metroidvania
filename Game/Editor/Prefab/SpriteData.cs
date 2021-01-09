@@ -12,7 +12,7 @@ using System.IO;
 namespace Game.Editor.Prefab
 {
     [Serializable]
-    class SpriteData : PrefabComponent
+    class SpriteData : DataComponent
     {
         public SpriteTextureData TextureData = new SpriteTextureData();
         public Rectangle SourceRect;

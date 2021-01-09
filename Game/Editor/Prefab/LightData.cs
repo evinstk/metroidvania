@@ -6,7 +6,7 @@ using System;
 namespace Game.Editor.Prefab
 {
     [Serializable]
-    class LightData : PrefabComponent
+    class LightData : DataComponent
     {
         public float Radius = 200f;
         public float Power = 1f;

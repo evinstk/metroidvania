@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Game.Editor.Prefab
 {
-    class TiledParallaxData : PrefabComponent
+    class TiledParallaxData : DataComponent
     {
         public SpriteTextureData TextureData = new SpriteTextureData();
         public Vector2 ScrollScale = new Vector2(1, 0);
