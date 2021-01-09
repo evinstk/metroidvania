@@ -87,7 +87,7 @@ namespace Game.Editor
             File.WriteAllText(Path + System.IO.Path.GetFileName(meta.Filename), serialized);
         }
 
-        public T GetResource(string id) => _resources.Find(r => r.Data.Id == id)?.Data;
+        public T GetResource(string id) => id != null ? _resources.Find(r => r.Data.Id == id)?.Data : null;
 
         public void SaveAll()
         {
