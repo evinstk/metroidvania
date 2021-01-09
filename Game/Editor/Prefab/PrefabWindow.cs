@@ -18,6 +18,11 @@ namespace Game.Editor.Prefab
         public List<DataComponent> Components = new List<DataComponent>();
 
         public T GetComponent<T>() where T : DataComponent => Components.Find(c => c is T) as T;
+        public bool TryGetComponent<T>(out T component) where T : DataComponent
+        {
+            component = GetComponent<T>();
+            return component != null;
+        }
 
         public Entity CreateEntity(string name, Scene scene)
         {
