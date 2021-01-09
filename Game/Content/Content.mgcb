@@ -4,7 +4,7 @@
 /outputDir:..\bin\$(Config)\net471\Content
 /intermediateDir:obj/$(Platform)
 /platform:DesktopGL
-/config:Debug
+/config:Release
 /profile:Reach
 /compress:False
 
@@ -269,6 +269,9 @@
 #begin Animations2/hero.json
 /copy:Animations2/hero.json
 
+#begin Animations2/heroAttack.json
+/copy:Animations2/heroAttack.json
+
 #begin Data/AnimationGroups.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -349,6 +352,15 @@
 #begin Maps/world8.world
 /copy:Maps/world8.world
 
+#begin Prefabs/background.json
+/copy:Prefabs/background.json
+
+#begin Prefabs/checkpoint.json
+/copy:Prefabs/checkpoint.json
+
+#begin Prefabs/DummyHero.json
+/copy:Prefabs/DummyHero.json
+
 #begin Prefabs/hero.json
 /copy:Prefabs/hero.json
 
@@ -358,17 +370,29 @@
 #begin Prefabs/Right Lamp.json
 /copy:Prefabs/Right Lamp.json
 
+#begin RoomEdges/NFXCOJSALQHDEALEIAFICIEUPKWWICMFSFZAMA.json
+/copy:RoomEdges/NFXCOJSALQHDEALEIAFICIEUPKWWICMFSFZAMA.json
+
+#begin RoomEdges/SMUHBMLGEWWVXBGVWXCSKFOEFGLCWFZHBYWTKZ.json
+/copy:RoomEdges/SMUHBMLGEWWVXBGVWXCSKFOEFGLCWFZHBYWTKZ.json
+
 #begin Rooms/collision.json
 /copy:Rooms/collision.json
 
 #begin Rooms/room1.json
 /copy:Rooms/room1.json
 
+#begin Rooms/TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC.json
+/copy:Rooms/TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC.json
+
 #begin Scripts/common.lua
 /copy:Scripts/common.lua
 
 #begin Scripts/prison.lua
 /copy:Scripts/prison.lua
+
+#begin Scripts/room.lua
+/copy:Scripts/room.lua
 
 #begin Sounds/hit.wav
 /importer:WavImporter
