@@ -18,6 +18,16 @@ namespace Game.Editor.Prefab
         public List<PrefabComponent> Components = new List<PrefabComponent>();
 
         public T GetComponent<T>() where T : PrefabComponent => Components.Find(c => c is T) as T;
+
+        public Entity CreateEntity(string name, Scene scene)
+        {
+            var entity = scene.CreateEntity(name);
+            foreach (var component in Components)
+            {
+                component.AddToEntity(entity);
+            }
+            return entity;
+        }
     }
 
     abstract class PrefabComponent

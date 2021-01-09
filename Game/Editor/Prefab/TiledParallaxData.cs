@@ -19,6 +19,7 @@ namespace Game.Editor.Prefab
             parallax.ScrollScale = ScrollScale;
             backgroundEntity.Parent = entity.Transform;
             backgroundEntity.UpdateOrder = int.MaxValue;
+            entity.Parent = entity.Scene.Camera.Transform;
         }
     }
 }

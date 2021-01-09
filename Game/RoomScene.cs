@@ -50,14 +50,9 @@ namespace Game
             SetupLights();
             SetupUi();
 
-            var prefabManager = Core.GetGlobalManager<PrefabManager>();
-            var backgroundPrefab = prefabManager.GetResource("OVMLPNUVMFKZTUTSTDEKNRKWLBDDCFXFIZABVQ");
-            var backgroundEntity = CreateEntity("background");
-            backgroundEntity.Parent = Camera.Transform;
-            foreach (var component in backgroundPrefab.Components)
-            {
-                component.AddToEntity(backgroundEntity);
-            }
+            Core.GetGlobalManager<PrefabManager>()
+                .GetResource("OVMLPNUVMFKZTUTSTDEKNRKWLBDDCFXFIZABVQ")
+                .CreateEntity("background", this);
         }
 
         void SetupLights()
