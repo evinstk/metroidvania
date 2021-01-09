@@ -89,22 +89,7 @@ namespace Game
             }
 
             foreach (var entityData in roomData.Entities)
-            {
-                var entity = Core.Scene.CreateEntity(entityData.Name);
-                entity.SetPosition(entityData.Position + offset);
-                var prefab = entityData.Prefab;
-                if (prefab != null)
-                {
-                    foreach (var component in prefab.Components)
-                    {
-                        component.AddToEntity(entity);
-                    }
-                }
-                foreach (var component in entityData.Components)
-                {
-                    component.AddToEntity(entity);
-                }
-            }
+                entityData.CreateEntity(Entity.Scene, offset);
 
             Core.Scene.CreateEntity($"Scripting: {roomData.DisplayName}").AddComponent(new MapScript(roomData.Script));
 

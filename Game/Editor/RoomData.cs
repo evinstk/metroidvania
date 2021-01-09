@@ -74,5 +74,30 @@ namespace Game.Editor
             }
             return false;
         }
+
+        public Entity CreateEntity(Scene scene, Vector2 offset = new Vector2())
+        {
+            var entity = scene.CreateEntity(Name);
+            entity.SetPosition(Position + offset);
+            var roomEntityData = entity.AddComponent<RoomEntityComponent>();
+            roomEntityData.RoomEntityId = Id;
+            roomEntityData.RoomId = Room.Id;
+            var prefab = Prefab;
+            if (prefab != null)
+            {
+                foreach (var component in prefab.Components)
+                    component.AddToEntity(entity);
+            }
+            foreach (var component in Components)
+                component.AddToEntity(entity);
+            return entity;
+        }
+    }
+
+    class RoomEntityComponent : Component
+    {
+        //public RoomEntity RoomEntity;
+        public string RoomEntityId;
+        public string RoomId;
     }
 }
