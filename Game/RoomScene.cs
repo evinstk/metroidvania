@@ -1,4 +1,5 @@
 ﻿using Game.Editor;
+using Game.Editor.Prefab;
 using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Nez;
@@ -42,12 +43,21 @@ namespace Game
             }
 
             Camera.AddComponent<CameraBounds>();
-            Camera.Entity.UpdateOrder = int.MaxValue;
+            Camera.Entity.UpdateOrder = int.MaxValue - 1;
 
             CreateEntity("roomLoader").AddComponent(new RoomLoader(_roomDataId));
 
             SetupLights();
             SetupUi();
+
+            var prefabManager = Core.GetGlobalManager<PrefabManager>();
+            var backgroundPrefab = prefabManager.GetResource("OVMLPNUVMFKZTUTSTDEKNRKWLBDDCFXFIZABVQ");
+            var backgroundEntity = CreateEntity("background");
+            backgroundEntity.Parent = Camera.Transform;
+            foreach (var component in backgroundPrefab.Components)
+            {
+                component.AddToEntity(backgroundEntity);
+            }
         }
 
         void SetupLights()
