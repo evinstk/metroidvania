@@ -31,10 +31,15 @@
 				"X": 0,
 				"Y": 0
 			},
-			"PhysicsData": {
+			"PhysicsLayer": {
 				"@id": "8",
-				"PhysicsLayer": 2,
-				"CollidesWithLayers": -1
+				"Name": "Physics Layer",
+				"Mask": 2
+			},
+			"CollidesWithLayers": {
+				"@id": "9",
+				"Name": "Collides With",
+				"Mask": 0
 			}
 		}
 	],

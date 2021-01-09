@@ -95,14 +95,19 @@
 				"X": 12,
 				"Y": 32
 			},
-			"PhysicsData": {
+			"PhysicsLayer": {
 				"@id": "21",
-				"PhysicsLayer": 0,
-				"CollidesWithLayers": 256
+				"Name": "Physics Layer",
+				"Mask": 1
+			},
+			"CollidesWithLayers": {
+				"@id": "22",
+				"Name": "Collides With",
+				"Mask": 256
 			}
 		},
 		{
-			"@id": "22",
+			"@id": "23",
 			"@type": "Game.Editor.Prefab.FollowCameraData"
 		}
 	],
