@@ -1,0 +1,29 @@
+{
+	"@id": "1",
+	"Name": "Checkpoint",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.RectangleRendererData",
+			"Color": 4294967295,
+			"Size": {
+				"@id": "3",
+				"X": 32,
+				"Y": 32
+			}
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.Prefab.CheckpointData",
+			"Size": {
+				"@ref": "3"
+			},
+			"PhysicsLayer": {
+				"@id": "5",
+				"Name": "Mask",
+				"Mask": 1
+			}
+		}
+	],
+	"Id": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX"
+}
