@@ -6,12 +6,14 @@ using Nez;
 using Nez.ImGuiTools;
 using Nez.Sprites;
 using Nez.Textures;
+using System;
 
 namespace Game
 {
     class RoomScene : Scene
     {
         string _roomDataId;
+        string _checkpointId;
 
         public const int LIGHT_LAYER = 100;
         public const int LIGHT_MAP_LAYER = 101;
@@ -21,6 +23,15 @@ namespace Game
         {
             Insist.IsNotNull(roomDataId);
             _roomDataId = roomDataId;
+        }
+
+        public RoomScene()
+        {
+            var saveFile = SaveSystem2.Load();
+            _roomDataId = saveFile.RoomId;
+            Insist.IsNotNull(_roomDataId);
+            _checkpointId = saveFile.CheckpointId;
+            Insist.IsNotNull(_checkpointId);
         }
 
         public override void Initialize()
@@ -47,9 +58,26 @@ namespace Game
             SetupLights();
             SetupUi();
 
-            Core.GetGlobalManager<PrefabManager>()
+            var prefabManager = Core.GetGlobalManager<PrefabManager>();
+
+            var checkpoints = FindComponentsOfType<Checkpoint>();
+            foreach (var checkpoint in checkpoints)
+            {
+                if (checkpoint.GetComponent<RoomEntityComponent>().RoomEntityId == _checkpointId || _checkpointId == null)
+                {
+                    prefabManager
+                        .GetResource("WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC")
+                        .CreateEntity("hero", this)
+                        .SetPosition(checkpoint.Entity.Position);
+                    break;
+                }
+            }
+
+            prefabManager
                 .GetResource("OVMLPNUVMFKZTUTSTDEKNRKWLBDDCFXFIZABVQ")
                 .CreateEntity("background", this);
+
+            GC.Collect();
         }
 
         void SetupLights()

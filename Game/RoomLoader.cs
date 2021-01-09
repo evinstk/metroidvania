@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Game.Editor.RoomEdge;
 using System.Collections.Generic;
 using Game.Scripting;
+using System;
 
 namespace Game
 {
@@ -43,6 +44,7 @@ namespace Game
                         {
                             _currRoomId = room.Key;
                             LoadRoomAndAdjacent(_currRoomId, room.Value.Location);
+                            GC.Collect();
                             break;
                         }
                     }
