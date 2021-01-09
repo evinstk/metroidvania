@@ -3910,34 +3910,20 @@
 		},
 		{
 			"@id": "648",
-			"Id": "QULJRYRMZXHSGCSHDULVDBBXRWQBUDCSQYPASY",
-			"Name": "Hero",
-			"PrefabId": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC",
-			"Position": {
-				"@id": "649",
-				"X": 164,
-				"Y": 112
-			},
-			"Components": [
-
-			]
-		},
-		{
-			"@id": "650",
 			"Id": "IJLMGDPHNBNROUVRLFLLJBYPJFUDRDOSBEJJPR",
 			"Name": "Some Area",
 			"PrefabId": null,
 			"Position": {
-				"@id": "651",
+				"@id": "649",
 				"X": 0,
 				"Y": 64
 			},
 			"Components": [
 				{
-					"@id": "652",
+					"@id": "650",
 					"@type": "Game.Editor.Prefab.AreaData",
 					"Size": {
-						"@id": "653",
+						"@id": "651",
 						"X": 48,
 						"Y": 64
 					}
@@ -3945,14 +3931,28 @@
 			]
 		},
 		{
-			"@id": "654",
+			"@id": "652",
 			"Id": "AFOSLNCGQAKEUGTRIBGJZJBSIBXITTDJLJNDCX",
 			"Name": "Dummy Hero",
 			"PrefabId": "ZQMJCXOPAMKCYGQMAOIQQYJCKTVWGYPCIFDGAQ",
 			"Position": {
-				"@id": "655",
+				"@id": "653",
 				"X": 368,
 				"Y": 192
+			},
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "654",
+			"Id": "LKSBKDXEHTMWQXJYMQATLDOVLNDCKPTTFGJZLI",
+			"Name": "Checkpoint",
+			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
+			"Position": {
+				"@id": "655",
+				"X": 280,
+				"Y": 208
 			},
 			"Components": [
 
