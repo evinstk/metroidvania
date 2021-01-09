@@ -33,7 +33,7 @@ namespace Game
                     Size);
                 var collider = Physics.OverlapRectangle(rect, PhysicsMask);
                 if (collider != null)
-                    SaveSystem2.Save(_roomEntity.RoomEntityId, _roomEntity.RoomId);
+                    SaveSystem2.Save(_roomEntity.RoomId, _roomEntity.RoomEntityId);
             }
         }
     }
