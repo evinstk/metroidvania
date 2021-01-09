@@ -6,7 +6,6 @@ namespace Game.Editor.Prefab
     [CustomInspector(typeof(PhysicsInspector))]
     class PhysicsLayerData
     {
-        public string Name = "Mask";
         public int Mask = -1;
     }
 
@@ -15,7 +14,7 @@ namespace Game.Editor.Prefab
         public override void DrawMutable()
         {
             var physicsData = GetValue<PhysicsLayerData>();
-            ImGuiExt.DrawPhysicsLayerInput(physicsData.Name, ref physicsData.Mask);
+            ImGuiExt.DrawPhysicsLayerInput(_name, ref physicsData.Mask);
         }
     }
 }
