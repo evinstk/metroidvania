@@ -2797,7 +2797,20 @@
 		}
 	],
 	"Entities": [
+		{
+			"@id": "466",
+			"Id": "RLHLPCRZRXIRNTEORXZYTVIYDQHIIQASXHHWHM",
+			"Name": "Checkpoint",
+			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
+			"Position": {
+				"@id": "467",
+				"X": 192,
+				"Y": 464
+			},
+			"Components": [
 
+			]
+		}
 	],
 	"Id": "TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC"
 }
