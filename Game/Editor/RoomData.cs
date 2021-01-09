@@ -55,5 +55,12 @@ namespace Game.Editor
         public PrefabData Prefab => Core.GetGlobalManager<PrefabManager>().GetResource(PrefabId);
         public List<DataComponent> Components = new List<DataComponent>();
         public RoomData Room { get; set; }
+
+        public void Render(Batcher batcher)
+        {
+            Prefab?.Render(batcher, Position);
+            foreach (var component in Components)
+                component.Render(batcher, Position);
+        }
     }
 }

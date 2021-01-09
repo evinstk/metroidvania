@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
-using System;
 
 namespace Game.Editor.Prefab
 {
@@ -18,6 +17,13 @@ namespace Game.Editor.Prefab
         {
             var collider = entity.AddComponent(new BoxCollider(0, 0, Size.X, Size.Y));
             collider.IsTrigger = true;
+        }
+
+        public override void Render(Batcher batcher, Vector2 position)
+        {
+            var color = Color.DarkMagenta;
+            color.A = 1;
+            batcher.DrawRect(position, Size.X, Size.Y, color);
         }
     }
 }

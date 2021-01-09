@@ -1,5 +1,4 @@
-﻿using Game.Editor.Prefab;
-using Nez;
+﻿using Nez;
 
 namespace Game.Editor.Tool
 {
@@ -37,25 +36,16 @@ namespace Game.Editor.Tool
 
             public void Render(Batcher batcher, Camera camera)
             {
-                var selectedEntity = EditorState.SelectedPrefab;
+                var selectedPrefab = EditorState.SelectedPrefab;
                 var roomData = EditorState.RoomData;
 
-                if (selectedEntity != null
+                if (selectedPrefab != null
                     && roomData != null)
                 {
-                    var spriteData = selectedEntity.Components.Find(c => c is SpriteData) as SpriteData;
-                    var texture = spriteData?.TextureData.Texture;
-                    if (texture == null)
-                        return;
-
                     var mousePos = Core.Scene.Camera.MouseToWorldPoint();
                     mousePos.X = Mathf.RoundToNearest(mousePos.X, 4);
                     mousePos.Y = Mathf.RoundToNearest(mousePos.Y, 4);
-                    batcher.Draw(
-                        texture,
-                        mousePos - spriteData.Origin,
-                        spriteData.SourceRect,
-                        spriteData.Color);
+                    selectedPrefab.Render(batcher, mousePos);
                 }
             }
         }

@@ -27,6 +27,11 @@ namespace Game.Editor.Prefab
             var renderer = entity.AddComponent(new SpriteRenderer(sprite));
             renderer.Color = Color;
         }
+
+        public override void Render(Batcher batcher, Vector2 position)
+        {
+            batcher.Draw(TextureData.Texture, position - Origin, SourceRect, Color);
+        }
     }
 
     class SpriteDataConverter : JsonTypeConverter<SpriteData>

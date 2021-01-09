@@ -16,6 +16,16 @@ namespace Game.Editor.Prefab
         {
             entity.AddComponent(new RectangleRenderer(Color, Size.X, Size.Y));
         }
+
+        public override void Render(Batcher batcher, Vector2 position)
+        {
+            var rect = new RectangleF(
+                position - Size / 2,
+                Size);
+            batcher.DrawRect(
+                rect,
+                Color);
+        }
     }
 
     class RectangleRendererDataConverter : JsonTypeConverter<RectangleRendererData>

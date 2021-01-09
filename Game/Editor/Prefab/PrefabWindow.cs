@@ -1,4 +1,5 @@
 ﻿using ImGuiNET;
+using Microsoft.Xna.Framework;
 using Nez;
 using Nez.ImGuiTools;
 using Nez.ImGuiTools.TypeInspectors;
@@ -33,11 +34,18 @@ namespace Game.Editor.Prefab
             }
             return entity;
         }
+
+        public void Render(Batcher batcher, Vector2 position)
+        {
+            foreach (var component in Components)
+                component.Render(batcher, position);
+        }
     }
 
     abstract class DataComponent
     {
         public virtual void AddToEntity(Entity entity) { }
+        public virtual void Render(Batcher batcher, Vector2 position) { }
     }
 
     [EditorWindow]
