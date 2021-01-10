@@ -39,6 +39,8 @@ namespace Game.Scripting
         static MapScript()
         {
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
+
+            Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
 
         public MapScript() { }
