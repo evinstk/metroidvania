@@ -19,10 +19,10 @@ namespace Game.Movement
 #endif
         IUpdatable
     {
-        public float Gravity = 300; // acceleration
-        public float MoveSpeed = 130;
-        public float MaxFallVelocity = 150;
-        public float JumpVelocity = 200;
+        public float Gravity = 750; // acceleration
+        public float MoveSpeed = 150;
+        public float MaxFallVelocity = 200;
+        public float JumpVelocity = 250;
         public float JumpDuration = 0.2f;
         public int HitMask = -1;
 

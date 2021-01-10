@@ -11,6 +11,7 @@ namespace Game.Movement
             public override void Begin()
             {
                 _context._velocity.Y = 0;
+                _context._jumpElapsed = 0;
             }
 
             public override void Reason()
@@ -23,7 +24,7 @@ namespace Game.Movement
 
             public override void Update(float deltaTime)
             {
-                _context._velocity.Y += _context.Gravity * deltaTime; // ensure collision below
+                _context._velocity.Y = 1; // ensure collision below
 
                 var moveDir = new Vector2(_context._controller.XAxis, 0);
                 _context._velocity.X = _context.MoveSpeed * moveDir.X;

@@ -8,11 +8,6 @@ namespace Game.Movement
     {
         class AirState : State<PlayerMovement>
         {
-            public override void Begin()
-            {
-                _context._jumpElapsed = 0;
-            }
-
             public override void Reason()
             {
                 if (_context._collisionBelow)
