@@ -104,8 +104,12 @@ namespace Game.Movement
 
         public void Update()
         {
-            Reason();
-            _fsm.Update(Time.DeltaTime);
+            var deltaTime = Time.DeltaTime;
+            if (deltaTime > 0)
+            {
+                Reason();
+                _fsm.Update(Time.DeltaTime);
+            }
         }
 
         void Reason()
