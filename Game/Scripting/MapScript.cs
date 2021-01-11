@@ -38,7 +38,12 @@ namespace Game.Scripting
 
         public object this[string key]
         {
-            get { return _vars[key]; }
+            get
+            {
+                if (!_vars.TryGetValue(key, out var val))
+                    return null;
+                return val;
+            }
             set { _vars[key] = value; }
         }
     }
