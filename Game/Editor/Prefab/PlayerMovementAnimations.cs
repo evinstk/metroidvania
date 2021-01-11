@@ -72,7 +72,9 @@ namespace Game.Editor.Prefab
 
         public override void AddToEntity(Entity entity)
         {
+            entity.AddComponent<Mover>();
             entity.AddComponent<Animator<ObserverFrame>>();
+
             var movement = entity.AddComponent<PlayerMovement>();
             movement.Idle.Right = MakeAnimation(IdleRight);
             movement.Idle.Left = MakeAnimation(IdleLeft);

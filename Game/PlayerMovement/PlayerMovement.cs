@@ -55,7 +55,7 @@ namespace Game.Movement
             if (_controller == null)
                 _controller = Entity.AddComponent<FreeController>();
 
-            _mover = Entity.AddComponent<Mover>();
+            _mover = Entity.GetComponentStrict<Mover>();
             _fsm = new StateMachine<PlayerMovement>(this, new GroundState());
             _fsm.AddState(new AirState());
             _fsm.AddState(new AttackState());
@@ -104,12 +104,8 @@ namespace Game.Movement
 
         public void Update()
         {
-            var deltaTime = Time.DeltaTime;
-            if (deltaTime > 0)
-            {
-                Reason();
-                _fsm.Update(Time.DeltaTime);
-            }
+            Reason();
+            _fsm.Update(Time.DeltaTime);
         }
 
         void Reason()
