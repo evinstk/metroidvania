@@ -1336,5 +1336,11 @@
 			]
 		}
 	],
+	"RoomVariables": {
+		"@id": "222",
+		"Variables": [
+
+		]
+	},
 	"Id": "FXYGBRPPFAFQUJRZACOCYEWGDCRNVHUFWHZQJN"
 }

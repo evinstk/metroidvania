@@ -29,12 +29,19 @@ namespace Game.Editor
             new RoomLayer { Name = "doodad" },
         };
         public List<RoomEntity> Entities = new List<RoomEntity>();
+        public RoomVariables RoomVariables = new RoomVariables();
 
         public void AddEntity(RoomEntity entity)
         {
             Entities.Add(entity);
             entity.Room = this;
         }
+    }
+
+    // separate class to avoid inpsector errors
+    class RoomVariables
+    {
+        public List<RoomVariable> Variables = new List<RoomVariable>();
     }
 
     class RoomLayer

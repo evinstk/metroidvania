@@ -3947,5 +3947,24 @@
 			]
 		}
 	],
+	"RoomVariables": {
+		"@id": "654",
+		"Variables": [
+			{
+				"@id": "655",
+				"Id": "LWNULXXHFOXTZJBWJYYOFPGLVWZBJXJMENWMRG",
+				"Name": "strVal",
+				"Type": "String",
+				"Value": "asdf"
+			},
+			{
+				"@id": "656",
+				"Id": "AKYJSODANBUCVTERQSPUFKKXFLKBZRMQDELSRL",
+				"Name": "someBool",
+				"Type": "Boolean",
+				"Value": true
+			}
+		]
+	},
 	"Id": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO"
 }
