@@ -5,6 +5,7 @@ using Game.Editor.RoomEdge;
 using System.Collections.Generic;
 using Game.Scripting;
 using System;
+using Game.Editor.Prefab;
 
 namespace Game
 {
@@ -13,19 +14,39 @@ namespace Game
         public RectangleF CurrentRoomBounds => _loadedRooms[_currRoomId];
 
         string _currRoomId;
+        string _checkpointId;
+
         RoomManager _roomManager = Core.GetGlobalManager<RoomManager>();
         RoomEdgeManager _roomEdgeManager = Core.GetGlobalManager<RoomEdgeManager>();
         Dictionary<string, RectangleF> _loadedRooms = new Dictionary<string, RectangleF>();
 
-        public RoomLoader(string roomDataId)
+        MapScript _scripting;
+
+        public RoomLoader(string roomDataId, string checkpointId)
         {
             _currRoomId = roomDataId;
+            Insist.IsNotNull(_currRoomId);
+            _checkpointId = checkpointId;
         }
 
-        public override void Initialize()
+        public override void OnAddedToEntity()
         {
-            Insist.IsNotNull(_currRoomId);
+            _scripting = Core.Scene.FindComponentOfType<MapScript>();
+            Insist.IsNotNull(_scripting);
             LoadRoomAndAdjacent(_currRoomId, Vector2.Zero);
+
+            var checkpoints = Entity.Scene.FindComponentsOfType<Checkpoint>();
+            foreach (var checkpoint in checkpoints)
+            {
+                if (checkpoint.GetComponent<RoomEntityComponent>().RoomEntityId == _checkpointId || _checkpointId == null)
+                {
+                    Core.GetGlobalManager<PrefabManager>()
+                        .GetResource("WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC")
+                        .CreateEntity("hero", Entity.Scene)
+                        .SetPosition(checkpoint.Entity.Position);
+                    break;
+                }
+            }
         }
 
         public void Update()
@@ -90,10 +111,11 @@ namespace Game
                 }
             }
 
+            if (roomData.Script != null)
+                _scripting.Queue(roomData.Id, roomData.Script, roomData.RoomVariables.Variables);
+
             foreach (var entityData in roomData.Entities)
                 entityData.CreateEntity(Entity.Scene, offset);
-
-            Core.Scene.CreateEntity($"Scripting: {roomData.DisplayName}").AddComponent(new MapScript(roomData.Script));
 
             _loadedRooms.Add(
                 roomData.Id,

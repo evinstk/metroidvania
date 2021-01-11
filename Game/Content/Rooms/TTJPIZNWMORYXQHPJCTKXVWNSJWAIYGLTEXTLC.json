@@ -6,7 +6,7 @@
 	"TileWidth": 16,
 	"TileHeight": 16,
 	"LightRendererClearColor": 127,
-	"Script": null,
+	"Script": "above.lua",
 	"Layers": [
 		{
 			"@id": "2",

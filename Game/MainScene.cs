@@ -211,12 +211,12 @@ namespace Game
                 Debug.Log("No object with type \"playerSpawn\" found.");
             }
 
-            string scriptSrc = null;
-            if (Map.Properties?.TryGetValue("script", out scriptSrc) == true)
-            {
-                var mapScriptEntity = CreateEntity("mapScript");
-                mapScriptEntity.AddComponent(new Scripting.MapScript(Path.GetFileName(scriptSrc)));
-            }
+            //string scriptSrc = null;
+            //if (Map.Properties?.TryGetValue("script", out scriptSrc) == true)
+            //{
+            //    var mapScriptEntity = CreateEntity("mapScript");
+            //    mapScriptEntity.AddComponent(new Scripting.MapScript(Path.GetFileName(scriptSrc)));
+            //}
 
             if (_useLighting) SetupLighting();
         }

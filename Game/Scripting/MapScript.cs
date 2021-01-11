@@ -1,4 +1,5 @@
-﻿using Game.Movement;
+﻿using Game.Editor;
+using Game.Movement;
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
 using Nez;
@@ -12,6 +13,7 @@ namespace Game.Scripting
     {
         public Closure Condition;
         public Closure Effect;
+        public string RoomId;
     }
 
     class ScriptException : Exception
@@ -22,9 +24,36 @@ namespace Game.Scripting
         }
     }
 
+    class RoomVariables
+    {
+        Dictionary<string, object> _vars = new Dictionary<string, object>();
+
+        public RoomVariables(List<RoomVariable> vars)
+        {
+            foreach (var variable in vars)
+            {
+                _vars[variable.Name] = variable.Value;
+            }
+        }
+
+        public object this[string key]
+        {
+            get { return _vars[key]; }
+            set { _vars[key] = value; }
+        }
+    }
+
     class MapScript : Component, IUpdatable
     {
-        string _scriptSrc;
+        struct QueuedScript
+        {
+            public string RoomId;
+            public string ScriptCode;
+            public List<RoomVariable> Variables;
+        }
+
+        List<QueuedScript> _pendingScripts = new List<QueuedScript>();
+        Dictionary<string, Script> _scripts = new Dictionary<string, Script>();
 
         List<Trigger> _pendingAdditions = new List<Trigger>();
         List<Trigger> _triggers = new List<Trigger>();
@@ -32,68 +61,87 @@ namespace Game.Scripting
         List<DynValue> _coroutines = new List<DynValue>();
         List<DynValue> _pendingCoroutineRemovals = new List<DynValue>();
 
-        Script _script;
+        string _commonCode;
 
         VirtualButton _interactInput;
+
+        DialogSystem _dialogSystem;
 
         static MapScript()
         {
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
+            UserData.RegisterType<RoomVariables>();
 
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
 
-        public MapScript() { }
-
-        public MapScript(string scriptSrc)
-        {
-            _scriptSrc = scriptSrc;
-        }
-
         public override void OnAddedToEntity()
         {
-            var dialogSystem = Entity.Scene.FindComponentOfType<DialogSystem>();
-            Insist.IsNotNull(dialogSystem);
+            _dialogSystem = Entity.Scene.FindComponentOfType<DialogSystem>();
+            Insist.IsNotNull(_dialogSystem);
 
             _interactInput = new VirtualButton();
             _interactInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
             _interactInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
 
-            _script = new Script();
-            _script.Globals["trigger"] = (Action<Closure, Closure>)Trigger;
-            _script.Globals["findEntity"] = (Func<string, Entity>)FindEntity;
-            _script.Globals["move"] = (Action<Entity, Entity>)Move;
-            _script.Globals["stop"] = (Action<Entity>)Stop;
-            _script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
-            _script.Globals["destroy"] = (Action<Entity>)Destroy;
-            _script.Globals["speak"] = (Action<string>)dialogSystem.FeedLine;
-            _script.Globals["disable"] = (Action<Entity>)Disable;
-            _script.Globals["enable"] = (Action<Entity>)Enable;
-            _script.Globals["interact"] = (Func<bool>)Interact;
+            _commonCode = File.ReadAllText(ContentPath.Scripts + "common.lua");
+        }
 
-            //var scene = Entity.Scene as MainScene;
-            //script.Globals["spawn"] = scene.Spawn;
-
-            try
+        public void Queue(string roomId, string scriptSrc, List<RoomVariable> roomVariables = null)
+        {
+            _pendingScripts.Add(new QueuedScript
             {
-                var commonCode = File.ReadAllText(ContentPath.Scripts + "common.lua");
-                _script.DoString(commonCode);
-                if (_scriptSrc != null)
+                RoomId = roomId,
+                ScriptCode = File.ReadAllText(ContentPath.Scripts + scriptSrc),
+                Variables = roomVariables,
+            });
+        }
+
+        void LoadScript(QueuedScript payload)
+        {
+            if (!_scripts.TryGetValue(payload.RoomId, out var script))
+            {
+                script = new Script();
+                script.Globals["trigger"] = (Action<Closure, Closure>)((Closure condition, Closure effect) =>
                 {
-                    var scriptCode = File.ReadAllText(ContentPath.Scripts + _scriptSrc);
-                    _script.DoString(scriptCode);
-                }
+                    _pendingAdditions.Add(new Trigger()
+                    {
+                        Condition = condition,
+                        Effect = effect,
+                        RoomId = payload.RoomId,
+                    });
+                });
+                script.Globals["findEntity"] = (Func<string, Entity>)FindEntity;
+                script.Globals["move"] = (Action<Entity, Entity>)Move;
+                script.Globals["stop"] = (Action<Entity>)Stop;
+                script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
+                script.Globals["destroy"] = (Action<Entity>)Destroy;
+                script.Globals["speak"] = (Action<string>)_dialogSystem.FeedLine;
+                script.Globals["disable"] = (Action<Entity>)Disable;
+                script.Globals["enable"] = (Action<Entity>)Enable;
+                script.Globals["interact"] = (Func<bool>)Interact;
+
+                script.DoString(_commonCode);
+
+                if (payload.Variables != null)
+                    script.Globals["roomVars"] = new RoomVariables(payload.Variables);
+
+                _scripts.Add(payload.RoomId, script);
             }
-            catch (Exception e)
-            {
-                throw new ScriptException(e);
-            }
+
+            script.DoString(payload.ScriptCode);
         }
 
         public void Update()
         {
             try
             {
+                foreach (var script in _pendingScripts)
+                {
+                    LoadScript(script);
+                }
+                _pendingScripts.Clear();
+
                 foreach (var addition in _pendingAdditions)
                 {
                     _triggers.Add(addition);
@@ -110,7 +158,7 @@ namespace Game.Scripting
                 {
                     if (trigger.Condition.Call().Boolean)
                     {
-                        var coroutine = _script.CreateCoroutine(trigger.Effect);
+                        var coroutine = _scripts[trigger.RoomId].CreateCoroutine(trigger.Effect);
                         _coroutines.Add(coroutine);
                         _pendingRemovals.Add(trigger);
                     }
@@ -132,9 +180,10 @@ namespace Game.Scripting
             }
             catch (Exception exception)
             {
+                _pendingScripts.Clear();
                 _pendingAdditions.Clear();
-                _triggers.Clear();
                 _pendingRemovals.Clear();
+                _triggers.Clear();
                 _coroutines.Clear();
                 _pendingCoroutineRemovals.Clear();
                 throw new ScriptException(exception);

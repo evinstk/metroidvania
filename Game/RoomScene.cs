@@ -1,5 +1,6 @@
 ﻿using Game.Editor;
 using Game.Editor.Prefab;
+using Game.Scripting;
 using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Nez;
@@ -53,25 +54,14 @@ namespace Game
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
 
-            CreateEntity("roomLoader").AddComponent(new RoomLoader(_roomDataId));
+            CreateEntity("scripting").AddComponent<MapScript>();
+
+            CreateEntity("roomLoader").AddComponent(new RoomLoader(_roomDataId, _checkpointId));
 
             SetupLights();
             SetupUi();
 
             var prefabManager = Core.GetGlobalManager<PrefabManager>();
-
-            var checkpoints = FindComponentsOfType<Checkpoint>();
-            foreach (var checkpoint in checkpoints)
-            {
-                if (checkpoint.GetComponent<RoomEntityComponent>().RoomEntityId == _checkpointId || _checkpointId == null)
-                {
-                    prefabManager
-                        .GetResource("WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC")
-                        .CreateEntity("hero", this)
-                        .SetPosition(checkpoint.Entity.Position);
-                    break;
-                }
-            }
 
             prefabManager
                 .GetResource("OVMLPNUVMFKZTUTSTDEKNRKWLBDDCFXFIZABVQ")
