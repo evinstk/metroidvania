@@ -102,6 +102,8 @@ namespace Game.Scripting
             });
         }
 
+        public Script GetScript(string roomId) => _scripts[roomId];
+
         void LoadScript(QueuedScript payload)
         {
             if (!_scripts.TryGetValue(payload.RoomId, out var script))
