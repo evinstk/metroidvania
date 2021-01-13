@@ -74,6 +74,7 @@ namespace Game.Editor.Prefab
         {
             entity.AddComponent<Mover>();
             entity.AddComponent<Animator<ObserverFrame>>();
+            entity.AddComponent<Interaction>();
 
             var movement = entity.AddComponent<PlayerMovement>();
             movement.Idle.Right = MakeAnimation(IdleRight);
