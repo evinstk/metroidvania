@@ -21,7 +21,7 @@ namespace Game.Editor
                     {
                         if (tile.LayerLocation.X < roomData.Width && tile.LayerLocation.Y < roomData.Height)
                         {
-                            var texture = Core.Scene.Content.LoadTexture("Content/Textures/" + tile.Tileset);
+                            var texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + tile.Tileset);
                             batcher.Draw(
                                 texture,
                                 new Rectangle(tile.LayerLocation * roomData.TileSize, roomData.TileSize),

@@ -12,8 +12,6 @@ namespace Game.Editor
     [EditorWindow]
     class TilesetWindow : Component
     {
-        static readonly string TextureFolder = "../../../Content/Textures";
-
         Texture2D _texture;
         float _imageZoom = 3;
         Num.Vector2 _tileSize = new Num.Vector2(16, 16);
@@ -94,7 +92,7 @@ namespace Game.Editor
         {
             if (ImGui.BeginPopupModal("open-tileset-png"))
             {
-                var picker = FilePicker.GetFilePicker(this, TextureFolder);
+                var picker = FilePicker.GetFilePicker(this, ContentPath.Textures);
                 if (picker.Draw())
                 {
                     EditorState.TilesetTextureFile = picker.SelectedFile;
