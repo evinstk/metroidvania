@@ -40,6 +40,7 @@ namespace Game
         {
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             ClearColor = new Color(0xff371f0f);
+            Physics.SpatialHashCellSize = 32;
 
             AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, UI_LAYER));
         }
@@ -105,6 +106,7 @@ namespace Game
     {
         // layers 0-7 reserved for teams
         public const int Terrain = 8;
+        public const int Interaction = 9;
     }
 
     class RoomTransport : Component
