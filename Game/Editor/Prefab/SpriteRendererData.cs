@@ -12,7 +12,7 @@ using System.IO;
 namespace Game.Editor.Prefab
 {
     [Serializable]
-    class SpriteData : DataComponent
+    class SpriteRendererData : DataComponent
     {
         public SpriteTextureData TextureData = new SpriteTextureData();
         public Rectangle SourceRect;
@@ -30,7 +30,14 @@ namespace Game.Editor.Prefab
 
         public override void Render(Batcher batcher, Vector2 position)
         {
-            batcher.Draw(TextureData.Texture, position - Origin, SourceRect, Color);
+            if (TextureData.TextureFile != null)
+            {
+                batcher.Draw(TextureData.Texture, position - Origin, SourceRect, Color);
+            }
+            else
+            {
+                batcher.DrawPixel(position, Color.Green, 3);
+            }
         }
 
         public override bool Select(Vector2 entityPosition, Vector2 mousePosition)
@@ -42,9 +49,19 @@ namespace Game.Editor.Prefab
         }
     }
 
-    class SpriteDataConverter : JsonTypeConverter<SpriteData>
+    //[Serializable]
+    //class SpriteData
+    //{
+    //    public SpriteTextureData TextureData = new SpriteTextureData();
+    //    public Rectangle SourceRect;
+    //    public Vector2 Origin;
+    //    [JsonExclude]
+    //    public Color Color = Color.White;
+    //}
+
+    class SpriteDataConverter : JsonTypeConverter<SpriteRendererData>
     {
-        public override void OnFoundCustomData(SpriteData instance, string key, object value)
+        public override void OnFoundCustomData(SpriteRendererData instance, string key, object value)
         {
             if (key == "Color")
             {
@@ -52,7 +69,7 @@ namespace Game.Editor.Prefab
             }
         }
 
-        public override void WriteJson(IJsonEncoder encoder, SpriteData value)
+        public override void WriteJson(IJsonEncoder encoder, SpriteRendererData value)
         {
             encoder.EncodeKeyValuePair("Color", value.Color.PackedValue);
         }

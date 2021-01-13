@@ -4,7 +4,7 @@
 	"Components": [
 		{
 			"@id": "2",
-			"@type": "Game.Editor.Prefab.SpriteData",
+			"@type": "Game.Editor.Prefab.SpriteRendererData",
 			"Color": 4294901503,
 			"TextureData": {
 				"@id": "3",
