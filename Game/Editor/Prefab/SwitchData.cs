@@ -7,8 +7,8 @@ namespace Game.Editor.Prefab
 {
     class SwitchData : DataComponent
     {
-        public SpriteData OnSprite = new SpriteData();
-        public SpriteData OffSprite = new SpriteData();
+        public SpriteRendererData OnSprite = new SpriteRendererData();
+        public SpriteRendererData OffSprite = new SpriteRendererData();
 
         public override void AddToEntity(Entity entity)
         {
