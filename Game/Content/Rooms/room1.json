@@ -3945,20 +3945,62 @@
 			"Components": [
 
 			]
+		},
+		{
+			"@id": "654",
+			"Id": "USEIERPFOICQUXAPUVBETVICFFOZRHIYMBVIAO",
+			"Name": "Switch",
+			"PrefabId": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD",
+			"Position": {
+				"@id": "655",
+				"X": 104,
+				"Y": 116
+			},
+			"Components": [
+				{
+					"@id": "656",
+					"@type": "Game.Editor.Prefab.SwitchState",
+					"State": {
+						"@id": "657",
+						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
+					}
+				}
+			]
+		},
+		{
+			"@id": "658",
+			"Id": "SORPUWUXUZFBSNMKIFXBRHIJQNKFHPJYYRIXUW",
+			"Name": "Switch",
+			"PrefabId": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD",
+			"Position": {
+				"@id": "659",
+				"X": 436,
+				"Y": 180
+			},
+			"Components": [
+				{
+					"@id": "660",
+					"@type": "Game.Editor.Prefab.SwitchState",
+					"State": {
+						"@id": "661",
+						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
+					}
+				}
+			]
 		}
 	],
 	"RoomVariables": {
-		"@id": "654",
+		"@id": "662",
 		"Variables": [
 			{
-				"@id": "655",
+				"@id": "663",
 				"Id": "LWNULXXHFOXTZJBWJYYOFPGLVWZBJXJMENWMRG",
 				"Name": "strVal",
 				"Type": "String",
 				"Value": "asdf"
 			},
 			{
-				"@id": "656",
+				"@id": "664",
 				"Id": "AKYJSODANBUCVTERQSPUFKKXFLKBZRMQDELSRL",
 				"Name": "someBool",
 				"Type": "Boolean",

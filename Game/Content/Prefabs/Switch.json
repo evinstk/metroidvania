@@ -1,0 +1,49 @@
+{
+	"@id": "1",
+	"Name": "Switch",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteRendererData",
+			"Color": 4294967295,
+			"TextureData": {
+				"@id": "3",
+				"TextureFile": "doodad8.png"
+			},
+			"SourceRect": {
+				"@id": "4",
+				"X": 72,
+				"Y": 0,
+				"Width": 24,
+				"Height": 24
+			},
+			"Origin": {
+				"@id": "5",
+				"X": 12,
+				"Y": 12
+			}
+		},
+		{
+			"@id": "6",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@id": "7",
+				"X": 24,
+				"Y": 24
+			},
+			"PhysicsLayer": {
+				"@id": "8",
+				"Mask": 512
+			},
+			"CollidesWithLayers": {
+				"@id": "9",
+				"Mask": 0
+			}
+		},
+		{
+			"@id": "10",
+			"@type": "Game.Editor.Prefab.SwitchData"
+		}
+	],
+	"Id": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD"
+}
