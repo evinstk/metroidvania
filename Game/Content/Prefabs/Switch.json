@@ -42,7 +42,37 @@
 		},
 		{
 			"@id": "10",
-			"@type": "Game.Editor.Prefab.SwitchData"
+			"@type": "Game.Editor.Prefab.SwitchData",
+			"OnSprite": {
+				"@id": "11",
+				"TextureData": {
+					"@id": "12",
+					"TextureFile": "doodad8.png"
+				},
+				"SourceRect": {
+					"@id": "13",
+					"X": 96,
+					"Y": 0,
+					"Width": 24,
+					"Height": 24
+				},
+				"Origin": {
+					"@ref": "5"
+				}
+			},
+			"OffSprite": {
+				"@id": "14",
+				"TextureData": {
+					"@id": "15",
+					"TextureFile": "doodad8.png"
+				},
+				"SourceRect": {
+					"@ref": "4"
+				},
+				"Origin": {
+					"@ref": "5"
+				}
+			}
 		}
 	],
 	"Id": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD"

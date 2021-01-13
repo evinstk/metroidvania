@@ -49,15 +49,20 @@ namespace Game.Editor.Prefab
         }
     }
 
-    //[Serializable]
-    //class SpriteData
-    //{
-    //    public SpriteTextureData TextureData = new SpriteTextureData();
-    //    public Rectangle SourceRect;
-    //    public Vector2 Origin;
-    //    [JsonExclude]
-    //    public Color Color = Color.White;
-    //}
+    [Serializable]
+    class SpriteData
+    {
+        public SpriteTextureData TextureData = new SpriteTextureData();
+        public Rectangle SourceRect;
+        public Vector2 Origin;
+        [JsonExclude]
+        public Color Color = Color.White;
+
+        public Sprite MakeSprite()
+        {
+            return new Sprite(TextureData.Texture, SourceRect, Origin);
+        }
+    }
 
     class SpriteDataConverter : JsonTypeConverter<SpriteRendererData>
     {
