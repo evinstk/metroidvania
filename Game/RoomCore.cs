@@ -1,4 +1,5 @@
 ﻿using Game.Editor;
+using Game.Editor.Scriptable;
 using Nez;
 using Nez.Console;
 using System;
@@ -18,7 +19,17 @@ namespace Game
             var managerTypes = ReflectionUtils.GetAllSubclasses(typeof(Manager), true);
             foreach (var managerType in managerTypes)
             {
-                var manager = Activator.CreateInstance(managerType) as Manager;
+                if (!managerType.ContainsGenericParameters)
+                {
+                    var manager = Activator.CreateInstance(managerType) as Manager;
+                    RegisterGlobalManager(manager);
+                }
+            }
+
+            var soTypes = ReflectionUtils.GetAllSubclasses(typeof(ScriptableObject));
+            foreach (var soType in soTypes)
+            {
+                var manager = Activator.CreateInstance(typeof(ScriptableObjectManager<>).MakeGenericType(soType)) as Manager;
                 RegisterGlobalManager(manager);
             }
 

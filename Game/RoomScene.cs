@@ -1,5 +1,6 @@
 ﻿using Game.Editor;
 using Game.Editor.Prefab;
+using Game.Editor.Scriptable;
 using Game.Scripting;
 using ImGuiNET;
 using Microsoft.Xna.Framework;
@@ -45,11 +46,7 @@ namespace Game
 
         public override void OnStart()
         {
-            if (Core.GetGlobalManager<ImGuiManager>() != null)
-            {
-                CreateEntity("windows")
-                    .AddComponent(new RoomTransport(_roomDataId));
-            }
+            SetupImGui();
 
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
@@ -68,6 +65,15 @@ namespace Game
                 .CreateEntity("background", this);
 
             GC.Collect();
+        }
+
+        void SetupImGui()
+        {
+            if (Core.GetGlobalManager<ImGuiManager>() == null) return;
+
+            CreateEntity("windows")
+                .AddComponent(new RoomTransport(_roomDataId))
+                .AddComponent<ScriptableObjectWindow>();
         }
 
         void SetupLights()
