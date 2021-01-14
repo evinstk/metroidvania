@@ -8,5 +8,5 @@ namespace Game.Editor.Scriptable
     }
 
     [CustomInspector(typeof(ReferenceInspector<FloatValue>))]
-    class FloatReference : Reference {}
+    class FloatReference : Reference<FloatValue> {}
 }

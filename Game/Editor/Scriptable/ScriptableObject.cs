@@ -13,9 +13,16 @@ namespace Game.Editor.Scriptable
         public string Name = "New Scriptable Object";
     }
 
-    abstract class Reference
+    abstract class Reference<T>
+        where T : ScriptableObject, new()
     {
         public string Id;
+        public T Dereference()
+        {
+            var resource = Core.GetGlobalManager<ScriptableObjectManager<T>>().GetResource(Id);
+            Debug.LogIf(resource == null, $"{typeof(T).Name} not found. Supplying default value.");
+            return resource ?? new T();
+        }
     }
 
     class ReferenceInspector<T> : AbstractTypeInspector
@@ -23,7 +30,7 @@ namespace Game.Editor.Scriptable
     {
         public override void DrawMutable()
         {
-            var val = GetValue<Reference>();
+            var val = GetValue<Reference<T>>();
             var manager = Core.GetGlobalManager<ScriptableObjectManager<T>>();
             var id = val.Id;
             if (manager.Combo(_memberInfo.Name, ref id))

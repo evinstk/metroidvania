@@ -8,5 +8,5 @@ namespace Game.Editor.Scriptable
     }
 
     [CustomInspector(typeof(ReferenceInspector<BooleanValue>))]
-    class BooleanReference : Reference {}
+    class BooleanReference : Reference<BooleanValue> {}
 }

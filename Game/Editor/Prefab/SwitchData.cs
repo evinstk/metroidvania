@@ -27,7 +27,7 @@ namespace Game.Editor.Prefab
             var switchC = entity.GetComponent<Switch>();
             if (switchC != null)
             {
-                var boolVal = Core.GetGlobalManager<ScriptableObjectManager<BooleanValue>>().GetResource(State.Id);
+                var boolVal = State.Dereference();
                 switchC.State = boolVal;
             }
             else
