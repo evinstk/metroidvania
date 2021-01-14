@@ -59,7 +59,7 @@ namespace Game.Editor
             {
                 Data = new T(),
             };
-            resourceMeta.Filename = filename ?? (resourceMeta.Data.Id + ".json");
+            resourceMeta.Filename = Path + (filename ?? (resourceMeta.Data.Id + ".json"));
             SaveResource(resourceMeta);
             _resources.Add(resourceMeta);
             return resourceMeta.Data;
@@ -84,7 +84,7 @@ namespace Game.Editor
                 PreserveReferencesHandling = true,
                 TypeConverters = _typeConverters,
             });
-            File.WriteAllText(Path + System.IO.Path.GetFileName(meta.Filename), serialized);
+            File.WriteAllText(meta.Filename, serialized);
         }
 
         public T GetResource(string id) => id != null ? _resources.Find(r => r.Data.Id == id)?.Data : null;
