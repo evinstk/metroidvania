@@ -15,6 +15,7 @@ namespace Game
             Window.AllowUserResizing = true;
             DebugConsole.RenderScale = 2f;
             ExitOnEscapeKeypress = false;
+            Window.Title = "Metroidvania";
 
             var managerTypes = ReflectionUtils.GetAllSubclasses(typeof(Manager), true);
             foreach (var managerType in managerTypes)
