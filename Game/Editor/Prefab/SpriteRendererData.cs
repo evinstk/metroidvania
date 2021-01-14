@@ -22,8 +22,7 @@ namespace Game.Editor.Prefab
 
         public override void AddToEntity(Entity entity)
         {
-            var texture = TextureData.Texture;
-            var sprite = new Sprite(texture, SourceRect, Origin);
+            var sprite = !string.IsNullOrEmpty(TextureData.TextureFile) ? new Sprite(TextureData.Texture, SourceRect, Origin) : null;
             var renderer = entity.AddComponent(new SpriteRenderer(sprite));
             renderer.Color = Color;
         }
@@ -60,7 +59,7 @@ namespace Game.Editor.Prefab
 
         public Sprite MakeSprite()
         {
-            return new Sprite(TextureData.Texture, SourceRect, Origin);
+            return !string.IsNullOrEmpty(TextureData.TextureFile) ? new Sprite(TextureData.Texture, SourceRect, Origin) : null;
         }
     }
 
