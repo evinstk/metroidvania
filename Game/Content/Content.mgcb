@@ -373,6 +373,9 @@
 #begin Prefabs/Right Lamp.json
 /copy:Prefabs/Right Lamp.json
 
+#begin Prefabs/Switch.json
+/copy:Prefabs/Switch.json
+
 #begin RoomEdges/NFXCOJSALQHDEALEIAFICIEUPKWWICMFSFZAMA.json
 /copy:RoomEdges/NFXCOJSALQHDEALEIAFICIEUPKWWICMFSFZAMA.json
 
@@ -387,6 +390,12 @@
 
 #begin Rooms/TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC.json
 /copy:Rooms/TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC.json
+
+#begin ScriptableObjects/BooleanValue/IVYYAUUYUCSIJMLBXZNPXVBEAAHHYGSEDNFTEA.json
+/copy:ScriptableObjects/BooleanValue/IVYYAUUYUCSIJMLBXZNPXVBEAAHHYGSEDNFTEA.json
+
+#begin Scripts/above.lua
+/copy:Scripts/above.lua
 
 #begin Scripts/common.lua
 /copy:Scripts/common.lua

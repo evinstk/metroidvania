@@ -1,5 +1,4 @@
-﻿using Game.Editor.Prefab;
-using ImGuiNET;
+﻿using ImGuiNET;
 using Nez;
 using Nez.Persistence;
 using System;
