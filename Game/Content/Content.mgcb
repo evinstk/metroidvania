@@ -361,6 +361,9 @@
 #begin Prefabs/DummyHero.json
 /copy:Prefabs/DummyHero.json
 
+#begin Prefabs/gate.json
+/copy:Prefabs/gate.json
+
 #begin Prefabs/hero.json
 /copy:Prefabs/hero.json
 

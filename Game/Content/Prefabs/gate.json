@@ -1,0 +1,85 @@
+{
+	"@id": "1",
+	"Name": "Gate",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.GateData",
+			"ClosedSprite": {
+				"@id": "3",
+				"TextureData": {
+					"@id": "4",
+					"TextureFile": "doodad48.png"
+				},
+				"SourceRect": {
+					"@id": "5",
+					"X": 0,
+					"Y": 0,
+					"Width": 48,
+					"Height": 64
+				},
+				"Origin": {
+					"@id": "6",
+					"X": 24,
+					"Y": 32
+				}
+			},
+			"OpenSprite": {
+				"@id": "7",
+				"TextureData": {
+					"@id": "8",
+					"TextureFile": "doodad48.png"
+				},
+				"SourceRect": {
+					"@id": "9",
+					"X": 0,
+					"Y": 0,
+					"Width": 1,
+					"Height": 1
+				},
+				"Origin": {
+					"@id": "10",
+					"X": 0,
+					"Y": 0
+				}
+			},
+			"OpenState": {
+				"@id": "11",
+				"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
+			}
+		},
+		{
+			"@id": "12",
+			"@type": "Game.Editor.Prefab.SpriteRendererData",
+			"Color": 4294967295,
+			"TextureData": {
+				"@id": "13",
+				"TextureFile": "doodad48.png"
+			},
+			"SourceRect": {
+				"@ref": "5"
+			},
+			"Origin": {
+				"@ref": "6"
+			}
+		},
+		{
+			"@id": "14",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@id": "15",
+				"X": 12,
+				"Y": 64
+			},
+			"PhysicsLayer": {
+				"@id": "16",
+				"Mask": 256
+			},
+			"CollidesWithLayers": {
+				"@id": "17",
+				"Mask": 0
+			}
+		}
+	],
+	"Id": "CRJSFXWQFPQSTCYUUMHYQXRBDSSLKKTMSVVSGF"
+}
