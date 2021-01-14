@@ -175,6 +175,7 @@ namespace Game.Editor
         public bool RadioButtons(string activeId, ref string selectedId)
         {
             var ret = false;
+            string resourceIdToRemove = null;
             foreach (var resource in _resources)
             {
                 ImGui.PushID(resource.Data.Id);
@@ -183,8 +184,16 @@ namespace Game.Editor
                     selectedId = resource.Data.Id;
                     ret = true;
                 }
+                if (ImGui.BeginPopupContextItem())
+                {
+                    if (ImGui.Selectable("Delete"))
+                        resourceIdToRemove = resource.Data.Id;
+                    ImGui.EndPopup();
+                }
                 ImGui.PopID();
             }
+            if (resourceIdToRemove != null)
+                Delete(resourceIdToRemove);
             return ret;
         }
 
