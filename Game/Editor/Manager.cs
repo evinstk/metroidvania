@@ -171,8 +171,9 @@ namespace Game.Editor
             return NewResourcePopup(out _);
         }
 
-        public bool RadioButtons(string activeId, ref string selectedId)
+        public bool RadioButtons(string activeId, ref string selectedId, out string deletedId)
         {
+            deletedId = null;
             var ret = false;
             string resourceIdToRemove = null;
             foreach (var resource in _resources)
@@ -186,7 +187,10 @@ namespace Game.Editor
                 if (ImGui.BeginPopupContextItem())
                 {
                     if (ImGui.Selectable("Delete"))
+                    {
                         resourceIdToRemove = resource.Data.Id;
+                        deletedId = resource.Data.Id;
+                    }
                     ImGui.EndPopup();
                 }
                 ImGui.PopID();
@@ -196,7 +200,7 @@ namespace Game.Editor
             return ret;
         }
 
-        public bool RadioButtons(ref string selectedId) => RadioButtons(selectedId, ref selectedId);
+        public bool RadioButtons(ref string selectedId, out string deletedId) => RadioButtons(selectedId, ref selectedId, out deletedId);
 
         public bool Combo(string label, string activeId, ref string selectedId)
         {

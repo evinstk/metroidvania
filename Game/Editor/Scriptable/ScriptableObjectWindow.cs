@@ -73,7 +73,7 @@ namespace Game.Editor.Scriptable
             {
                 var manager = Core.GetGlobalManager<ScriptableObjectManager<T>>();
                 var selectedId = EditorState.SelectedScriptableObject?.Id;
-                if (manager.RadioButtons(ref selectedId))
+                if (manager.RadioButtons(ref selectedId, out _))
                 {
                     var so = manager.GetResource(selectedId);
                     EditorState.SelectedScriptableObject = so;

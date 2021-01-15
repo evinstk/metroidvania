@@ -137,7 +137,7 @@ namespace Game.Editor.Prefab
         {
             bool newPrefab = false;
 
-            if (_prefabManager.RadioButtons(EditorState.SelectedPrefabId, ref EditorState.SelectedPrefabId))
+            if (_prefabManager.RadioButtons(EditorState.SelectedPrefabId, ref EditorState.SelectedPrefabId, out var deletedId))
             {
                 GenerateInspectors();
             }

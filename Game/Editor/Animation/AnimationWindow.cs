@@ -63,7 +63,7 @@ namespace Game.Editor.Animation
         {
             var newAnimation = false;
 
-            _animationManager.RadioButtons(EditorState.SelectedAnimationId, ref EditorState.SelectedAnimationId);
+            _animationManager.RadioButtons(EditorState.SelectedAnimationId, ref EditorState.SelectedAnimationId, out _);
             if (NezImGui.CenteredButton("New Animation", 1f))
             {
                 newAnimation = true;
