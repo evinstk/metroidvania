@@ -5,6 +5,7 @@ using Nez;
 using Nez.Console;
 using Nez.ImGuiTools;
 using System;
+using System.Collections.Generic;
 
 namespace Game.Editor
 {
@@ -21,6 +22,8 @@ namespace Game.Editor
             var imGuiManager = new ImGuiManager();
             RegisterGlobalManager(imGuiManager);
 
+            // TODO: move manager initialization (RoomCore) into common location
+            var managers = new List<Manager>();
             var managerTypes = ReflectionUtils.GetAllSubclasses(typeof(Manager), true);
             foreach (var managerType in managerTypes)
             {
@@ -28,6 +31,7 @@ namespace Game.Editor
                 {
                     var manager = Activator.CreateInstance(managerType) as Manager;
                     RegisterGlobalManager(manager);
+                    managers.Add(manager);
                 }
             }
 
@@ -36,7 +40,11 @@ namespace Game.Editor
             {
                 var manager = Activator.CreateInstance(typeof(ScriptableObjectManager<>).MakeGenericType(soType)) as Manager;
                 RegisterGlobalManager(manager);
+                managers.Add(manager);
             }
+
+            foreach (var manager in managers)
+                manager.Initialize();
 
             Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
 

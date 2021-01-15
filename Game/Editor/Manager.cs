@@ -24,6 +24,9 @@ namespace Game.Editor
                 converters.Add(Activator.CreateInstance(subclass) as JsonTypeConverter);
             _typeConverters = converters.ToArray();
         }
+
+        // called after all Manager objects are instantiated
+        public virtual void Initialize() { }
     }
 
     abstract class Manager<T> : Manager

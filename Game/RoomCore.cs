@@ -3,6 +3,7 @@ using Game.Editor.Scriptable;
 using Nez;
 using Nez.Console;
 using System;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -17,6 +18,7 @@ namespace Game
             ExitOnEscapeKeypress = false;
             Window.Title = "Metroidvania";
 
+            var managers = new List<Manager>();
             var managerTypes = ReflectionUtils.GetAllSubclasses(typeof(Manager), true);
             foreach (var managerType in managerTypes)
             {
@@ -33,6 +35,9 @@ namespace Game
                 var manager = Activator.CreateInstance(typeof(ScriptableObjectManager<>).MakeGenericType(soType)) as Manager;
                 RegisterGlobalManager(manager);
             }
+
+            foreach (var manager in managers)
+                manager.Initialize();
 
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
 
