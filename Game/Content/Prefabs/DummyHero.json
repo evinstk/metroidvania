@@ -1,42 +1,36 @@
 {
 	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
 	"Name": "Dummy Hero",
 	"Components": [
 		{
 			"@id": "2",
 			"@type": "Game.Editor.Prefab.SpriteRendererData",
-			"Color": 4294967295,
-			"TextureData": {
+			"SpriteData": {
 				"@id": "3",
-				"TextureFile": "hero32.png"
-			},
-			"SourceRect": {
-				"@id": "4",
-				"X": 1,
-				"Y": 1,
-				"Width": 64,
-				"Height": 64
-			},
-			"Origin": {
-				"@id": "5",
-				"X": 32,
-				"Y": 48
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4285822174,
+				"TextureMapId": "hero32.png",
+				"FrameFilename": "default000.png"
 			}
 		},
 		{
-			"@id": "6",
+			"@id": "4",
 			"@type": "Game.Editor.Prefab.BoxColliderData",
 			"Size": {
-				"@id": "7",
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 0,
 				"Y": 0
 			},
 			"PhysicsLayer": {
-				"@id": "8",
+				"@id": "6",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 2
 			},
 			"CollidesWithLayers": {
-				"@id": "9",
+				"@id": "7",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			}
 		}

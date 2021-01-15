@@ -7,14 +7,14 @@ namespace Game.Editor.Prefab
 {
     class SwitchData : DataComponent
     {
-        public SpriteData OnSprite = new SpriteData();
-        public SpriteData OffSprite = new SpriteData();
+        public TextureMapSpriteData OnSprite = new TextureMapSpriteData();
+        public TextureMapSpriteData OffSprite = new TextureMapSpriteData();
 
         public override void AddToEntity(Entity entity)
         {
             var switchC = entity.AddComponent<Switch>();
-            switchC.OnSprite = OnSprite.MakeSprite();
-            switchC.OffSprite = OffSprite.MakeSprite();
+            switchC.OnSprite = OnSprite.Sprite;
+            switchC.OffSprite = OffSprite.Sprite;
         }
     }
 

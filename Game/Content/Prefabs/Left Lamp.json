@@ -1,36 +1,28 @@
 {
 	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
 	"Name": "Left Lamp",
 	"Components": [
 		{
 			"@id": "2",
 			"@type": "Game.Editor.Prefab.SpriteRendererData",
-			"Color": 4294901503,
-			"TextureData": {
+			"SpriteData": {
 				"@id": "3",
-				"TextureFile": "doodad8.png"
-			},
-			"SourceRect": {
-				"@id": "4",
-				"X": 0,
-				"Y": 0,
-				"Width": 24,
-				"Height": 24
-			},
-			"Origin": {
-				"@id": "5",
-				"X": 12,
-				"Y": 12
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "leftLamp.png"
 			}
 		},
 		{
-			"@id": "6",
+			"@id": "4",
 			"@type": "Game.Editor.Prefab.LightData",
-			"Color": 4294901503,
+			"Color": 4294967295,
 			"Radius": 200,
 			"Power": 1,
 			"LocalOffset": {
-				"@id": "7",
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 0,
 				"Y": 0
 			}

@@ -1,111 +1,115 @@
 {
 	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
 	"Name": "Hero",
 	"Components": [
 		{
 			"@id": "2",
 			"@type": "Game.Editor.Prefab.SpriteRendererData",
-			"Color": 4294967295,
-			"TextureData": {
+			"SpriteData": {
 				"@id": "3",
-				"TextureFile": "hero32.png"
-			},
-			"SourceRect": {
-				"@id": "4",
-				"X": 1,
-				"Y": 1,
-				"Width": 64,
-				"Height": 64
-			},
-			"Origin": {
-				"@id": "5",
-				"X": 32,
-				"Y": 48
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "hero32.png",
+				"FrameFilename": "default000.png"
 			}
 		},
 		{
-			"@id": "6",
+			"@id": "4",
 			"@type": "Game.Editor.Prefab.PlayerMovementData",
 			"IdleRight": {
-				"@id": "7",
+				"@id": "5",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
 				"Flip": false
 			},
 			"IdleLeft": {
-				"@id": "8",
+				"@id": "6",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
 				"Flip": true
 			},
 			"WalkRight": {
-				"@id": "9",
+				"@id": "7",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
 				"Flip": false
 			},
 			"WalkLeft": {
-				"@id": "10",
+				"@id": "8",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
 				"Flip": true
 			},
 			"AttackRight": {
-				"@id": "11",
+				"@id": "9",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "VLILEXWWMRLHDPLEAFYKZTBLMLHMBWADUJJBFA",
 				"Flip": false
 			},
 			"AttackLeft": {
-				"@id": "12",
+				"@id": "10",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "VLILEXWWMRLHDPLEAFYKZTBLMLHMBWADUJJBFA",
 				"Flip": true
 			},
 			"JumpRight": {
-				"@id": "13",
+				"@id": "11",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "default",
 				"Flip": false
 			},
 			"JumpLeft": {
-				"@id": "14",
+				"@id": "12",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "default",
 				"Flip": true
 			},
 			"Hit": {
-				"@id": "15",
+				"@id": "13",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+HitData",
 				"HitMask": 2
 			}
 		},
 		{
-			"@id": "16",
+			"@id": "14",
 			"@type": "Game.Editor.Prefab.LightData",
 			"Color": 4294967295,
 			"Radius": 200,
 			"Power": 1,
 			"LocalOffset": {
-				"@id": "17",
+				"@id": "15",
+				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 0,
 				"Y": 0
 			}
 		},
 		{
-			"@id": "18",
+			"@id": "16",
 			"@type": "Game.Editor.Prefab.PlayerControllerData"
 		},
 		{
-			"@id": "19",
+			"@id": "17",
 			"@type": "Game.Editor.Prefab.BoxColliderData",
 			"Size": {
-				"@id": "20",
+				"@id": "18",
+				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 12,
 				"Y": 32
 			},
 			"PhysicsLayer": {
-				"@id": "21",
+				"@id": "19",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 1
 			},
 			"CollidesWithLayers": {
-				"@id": "22",
+				"@id": "20",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 256
 			}
 		},
 		{
-			"@id": "23",
+			"@id": "21",
 			"@type": "Game.Editor.Prefab.FollowCameraData"
 		}
 	],

@@ -8,14 +8,14 @@ namespace Game
 {
     class GateData : DataComponent
     {
-        public SpriteData ClosedSprite = new SpriteData();
-        public SpriteData OpenSprite = new SpriteData();
+        public TextureMapSpriteData ClosedSprite = new TextureMapSpriteData();
+        public TextureMapSpriteData OpenSprite = new TextureMapSpriteData();
 
         public override void AddToEntity(Entity entity)
         {
             var gate = entity.AddComponent<Gate>();
-            gate.ClosedSprite = ClosedSprite.MakeSprite();
-            gate.OpenSprite = OpenSprite.MakeSprite();
+            gate.ClosedSprite = ClosedSprite.Sprite;
+            gate.OpenSprite = OpenSprite.Sprite;
         }
     }
 

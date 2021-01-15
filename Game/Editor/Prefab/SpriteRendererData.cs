@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
+using Nez.ImGuiTools;
 using Nez.ImGuiTools.TypeInspectors;
 using Nez.Persistence;
 using Nez.Sprites;
@@ -14,24 +15,21 @@ namespace Game.Editor.Prefab
     [Serializable]
     class SpriteRendererData : DataComponent
     {
-        public SpriteTextureData TextureData = new SpriteTextureData();
-        public Rectangle SourceRect;
-        public Vector2 Origin;
-        [JsonExclude]
-        public Color Color = Color.White;
+        public TextureMapSpriteData SpriteData = new TextureMapSpriteData();
 
         public override void AddToEntity(Entity entity)
         {
-            var sprite = !string.IsNullOrEmpty(TextureData.TextureFile) ? new Sprite(TextureData.Texture, SourceRect, Origin) : null;
+            var sprite = SpriteData.Sprite;
             var renderer = entity.AddComponent(new SpriteRenderer(sprite));
-            renderer.Color = Color;
+            renderer.Color = SpriteData.Color;
         }
 
         public override void Render(Batcher batcher, Vector2 position)
         {
-            if (TextureData.TextureFile != null)
+            var sprite = SpriteData.Sprite;
+            if (sprite != null)
             {
-                batcher.Draw(TextureData.Texture, position - Origin, SourceRect, Color);
+                batcher.Draw(sprite, position, SpriteData.Color, 0f, sprite.Origin, 1f, SpriteEffects.None, 0);
             }
             else
             {
@@ -41,31 +39,84 @@ namespace Game.Editor.Prefab
 
         public override bool Select(Vector2 entityPosition, Vector2 mousePosition)
         {
+            var frame = SpriteData.Frame;
             var rect = new Rectangle(
-                (entityPosition - Origin).ToPoint(),
-                new Point(SourceRect.Width, SourceRect.Height));
+                (entityPosition - frame.Origin).ToPoint(),
+                new Point(frame.bounds.w, frame.bounds.h));
             return rect.Contains(mousePosition);
         }
     }
 
-    [Serializable]
-    class SpriteData
+    [CustomInspector(typeof(TextureMapSpriteDataInspector))]
+    class TextureMapSpriteData
     {
-        public SpriteTextureData TextureData = new SpriteTextureData();
-        public Rectangle SourceRect;
-        public Vector2 Origin;
+        public string TextureMapId = "";
+        public string FrameFilename = "";
         [JsonExclude]
         public Color Color = Color.White;
 
-        public Sprite MakeSprite()
+        public Animation.TextureMapData TextureMap => Core.GetGlobalManager<Animation.TextureMapDataManager>().GetResource(TextureMapId);
+        public Animation.Frame Frame => TextureMap.frames.Find(f => f.filename == FrameFilename);
+
+        public Sprite Sprite
         {
-            return !string.IsNullOrEmpty(TextureData.TextureFile) ? new Sprite(TextureData.Texture, SourceRect, Origin) : null;
+            get
+            {
+                if (string.IsNullOrEmpty(TextureMapId) || string.IsNullOrEmpty(FrameFilename)) return null;
+                var textureMap = Core.GetGlobalManager<Animation.TextureMapDataManager>().GetResource(TextureMapId);
+                var texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + Path.GetFileName(textureMap.meta.image));
+                var frame = textureMap.frames.Find(f => f.filename == FrameFilename);
+                var sprite = new Sprite(
+                    texture,
+                    frame.bounds,
+                    frame.Origin);
+                return sprite;
+            }
+        }
+
+    }
+
+    class TextureMapSpriteDataInspector : AbstractTypeInspector
+    {
+        bool _isHeaderOpen;
+        AbstractTypeInspector _colorInspector;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            var obj = GetValue();
+
+            var colorField = _valueType.GetField(nameof(TextureMapSpriteData.Color));
+            _colorInspector = TypeInspectorUtils.GetInspectorForType(colorField.FieldType, obj, colorField);
+            _colorInspector.SetTarget(obj, _valueType.GetField(nameof(TextureMapSpriteData.Color)));
+            _colorInspector.Initialize();
+        }
+
+        public override void DrawMutable()
+        {
+            ImGui.Indent();
+            NezImGui.BeginBorderedGroup();
+
+            _isHeaderOpen = ImGui.CollapsingHeader($"{_name}");
+            if (_isHeaderOpen)
+            {
+                var obj = GetValue<TextureMapSpriteData>();
+                var manager = Core.GetGlobalManager<Animation.TextureMapDataManager>();
+                manager.Combo("Texture Map", ref obj.TextureMapId);
+                manager.FrameCombo(obj.TextureMapId, ref obj.FrameFilename);
+
+                _colorInspector.Draw();
+            }
+
+            NezImGui.EndBorderedGroup(new System.Numerics.Vector2(4, 1), new System.Numerics.Vector2(4, 2));
+            ImGui.Unindent();
         }
     }
 
-    class SpriteDataConverter : JsonTypeConverter<SpriteRendererData>
+    class TextureMapSpriteDataConverter : JsonTypeConverter<TextureMapSpriteData>
     {
-        public override void OnFoundCustomData(SpriteRendererData instance, string key, object value)
+        public override void OnFoundCustomData(TextureMapSpriteData instance, string key, object value)
         {
             if (key == "Color")
             {
@@ -73,44 +124,9 @@ namespace Game.Editor.Prefab
             }
         }
 
-        public override void WriteJson(IJsonEncoder encoder, SpriteRendererData value)
+        public override void WriteJson(IJsonEncoder encoder, TextureMapSpriteData value)
         {
             encoder.EncodeKeyValuePair("Color", value.Color.PackedValue);
-        }
-    }
-
-    [CustomInspector(typeof(SpriteTextureDataInspector))]
-    class SpriteTextureData
-    {
-        public string TextureFile;
-
-        public Texture2D Texture => Core.Scene.Content.LoadTexture(ContentPath.Textures + TextureFile);
-    }
-
-    class SpriteTextureDataInspector : AbstractTypeInspector
-    {
-        string[] _textureFiles;
-
-        public SpriteTextureDataInspector()
-        {
-            _textureFiles = Directory.GetFiles(ContentPath.Textures, "*.png");
-        }
-
-        public override void DrawMutable()
-        {
-            var texData = GetValue<SpriteTextureData>();
-            if (ImGui.BeginCombo("Texture", texData.TextureFile))
-            {
-                foreach (var file in _textureFiles)
-                {
-                    var name = Path.GetFileName(file);
-                    if (ImGui.Selectable(name, name == texData.TextureFile))
-                    {
-                        texData.TextureFile = name;
-                    }
-                }
-                ImGui.EndCombo();
-            }
         }
     }
 }

@@ -79,7 +79,7 @@ namespace Game.Editor
             var serialized = Json.ToJson(meta.Data, new JsonSettings
             {
                 PrettyPrint = true,
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = TypeNameHandling.All,
                 PreserveReferencesHandling = true,
                 TypeConverters = _typeConverters,
             });

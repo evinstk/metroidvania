@@ -1,5 +1,6 @@
 {
 	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
 	"Name": "Checkpoint",
 	"Components": [
 		{
@@ -8,6 +9,7 @@
 			"Color": 4294967295,
 			"Size": {
 				"@id": "3",
+				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 32,
 				"Y": 32
 			},
@@ -21,6 +23,7 @@
 			},
 			"PhysicsLayer": {
 				"@id": "5",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 1
 			}
 		}

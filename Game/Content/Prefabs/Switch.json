@@ -1,77 +1,55 @@
 {
 	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
 	"Name": "Switch",
 	"Components": [
 		{
 			"@id": "2",
 			"@type": "Game.Editor.Prefab.SpriteRendererData",
-			"Color": 4294967295,
-			"TextureData": {
+			"SpriteData": {
 				"@id": "3",
-				"TextureFile": "doodad8.png"
-			},
-			"SourceRect": {
-				"@id": "4",
-				"X": 72,
-				"Y": 0,
-				"Width": 24,
-				"Height": 24
-			},
-			"Origin": {
-				"@id": "5",
-				"X": 12,
-				"Y": 12
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "offSwitch.png"
 			}
 		},
 		{
-			"@id": "6",
+			"@id": "4",
 			"@type": "Game.Editor.Prefab.BoxColliderData",
 			"Size": {
-				"@id": "7",
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 24,
 				"Y": 24
 			},
 			"PhysicsLayer": {
-				"@id": "8",
+				"@id": "6",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 512
 			},
 			"CollidesWithLayers": {
-				"@id": "9",
+				"@id": "7",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			}
 		},
 		{
-			"@id": "10",
+			"@id": "8",
 			"@type": "Game.Editor.Prefab.SwitchData",
 			"OnSprite": {
-				"@id": "11",
-				"TextureData": {
-					"@id": "12",
-					"TextureFile": "doodad8.png"
-				},
-				"SourceRect": {
-					"@id": "13",
-					"X": 96,
-					"Y": 0,
-					"Width": 24,
-					"Height": 24
-				},
-				"Origin": {
-					"@ref": "5"
-				}
+				"@id": "9",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "onSwitch.png"
 			},
 			"OffSprite": {
-				"@id": "14",
-				"TextureData": {
-					"@id": "15",
-					"TextureFile": "doodad8.png"
-				},
-				"SourceRect": {
-					"@ref": "4"
-				},
-				"Origin": {
-					"@ref": "5"
-				}
+				"@id": "10",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "offSwitch.png"
 			}
 		}
 	],

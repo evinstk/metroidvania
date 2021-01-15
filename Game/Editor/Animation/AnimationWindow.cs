@@ -100,21 +100,7 @@ namespace Game.Editor.Animation
                     ImGui.Text($"Frame {i}:");
 
                     _textureMapDataManager.Combo("Texture Map", frame.Sprite.TextureMapId, ref frame.Sprite.TextureMapId);
-                    var textureMap = _textureMapDataManager.GetResource(frame.Sprite.TextureMapId);
-                    if (textureMap != null)
-                    {
-                        if (ImGui.BeginCombo("Frame", frame.Sprite.FrameFilename))
-                        {
-                            foreach (var spriteFrame in textureMap.frames)
-                            {
-                                if (ImGui.Selectable(spriteFrame.filename, spriteFrame.filename == frame.Sprite.FrameFilename))
-                                {
-                                    frame.Sprite.FrameFilename = spriteFrame.filename;
-                                }
-                            }
-                            ImGui.EndCombo();
-                        }
-                    }
+                    _textureMapDataManager.FrameCombo(frame.Sprite.TextureMapId, ref frame.Sprite.FrameFilename);
 
                     var hitboxRemovalIndex = -1;
                     if (frame.HitBoxes.Count > 0)

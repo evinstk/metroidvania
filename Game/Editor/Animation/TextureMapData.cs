@@ -25,6 +25,10 @@ namespace Game.Editor.Animation
         public FrameBounds spriteSourceSize;
         public SourceSize sourceSize;
         public Vector2 pivot;
+
+        public Microsoft.Xna.Framework.Vector2 Origin => new Microsoft.Xna.Framework.Vector2(
+            pivot.x * sourceSize.w - spriteSourceSize.x,
+            pivot.y * sourceSize.h - spriteSourceSize.y);
     }
 
     public struct FrameBounds
