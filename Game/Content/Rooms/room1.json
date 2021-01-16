@@ -4831,7 +4831,7 @@
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 					},
-					"DataComponentId": "XZSEAMBFEZKCUXLSIFVEZVDJZNGHGUXXJJKVFN"
+					"DataComponentId": "JYZXQKVNUSXOQXNFGLHQOBPDCDZUKTCIOASWCN"
 				}
 			],
 			"Components": [
@@ -4851,9 +4851,6 @@
 				"Y": 96
 			},
 			"EntityOnlyComponents": [
-
-			],
-			"Components": [
 				{
 					"@id": "688",
 					"@type": "Game.GateState",
@@ -4862,8 +4859,11 @@
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 					},
-					"Id": "EMAVHYNFXGYBVNKOONJSZROWKGYNHLNLKKLDVC"
+					"DataComponentId": "PNSYZTXVZJRGSIHBOLEQDMDDQNFKXKNATCXIXL"
 				}
+			],
+			"Components": [
+
 			]
 		}
 	],

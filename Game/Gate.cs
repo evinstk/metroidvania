@@ -6,6 +6,7 @@ using Nez.Textures;
 
 namespace Game
 {
+    [EntityOnly(typeof(GateState))]
     class GateData : DataComponent
     {
         public TextureMapSpriteData ClosedSprite = new TextureMapSpriteData();
@@ -19,8 +20,7 @@ namespace Game
         }
     }
 
-    // TODO: make entity inspector attribute
-    class GateState : DataComponent
+    class GateState : EntityOnlyComponent
     {
         public BooleanReference OpenState = new BooleanReference();
 
