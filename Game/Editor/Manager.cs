@@ -91,6 +91,8 @@ namespace Game.Editor
 
         public T GetResource(string id) => id != null ? _resources.Find(r => r.Data.Id == id)?.Data : null;
 
+        public T GetResourceByName(string name) => name != null ? _resources.Find(r => r.Data.DisplayName == name)?.Data : null;
+
         public void SaveAll()
         {
             foreach (var r in _resources)
