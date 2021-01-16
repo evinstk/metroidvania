@@ -4,6 +4,7 @@ using Nez;
 using Nez.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Game.Editor
 {
@@ -35,6 +36,16 @@ namespace Game.Editor
         {
             Entities.Add(entity);
             entity.Room = this;
+            entity.Initialize();
+        }
+
+        public void Initialize()
+        {
+            // set rooms for all entities before calling Initialize
+            foreach (var entity in Entities)
+                entity.Room = this;
+            foreach (var entity in Entities)
+                entity.Initialize();
         }
     }
 
@@ -60,14 +71,63 @@ namespace Game.Editor
 
     class RoomEntity
     {
+        static readonly Type entityOnlyComponentType = typeof(EntityOnlyComponent);
+
         public string Id = Utils.RandomString();
         public string Name;
         public string PrefabId;
         public Vector2 Position;
 
         public PrefabData Prefab => Core.GetGlobalManager<PrefabManager>().GetResource(PrefabId);
+        public List<EntityOnlyComponent> EntityOnlyComponents = new List<EntityOnlyComponent>();
         public List<DataComponent> Components = new List<DataComponent>();
         public RoomData Room { get; set; }
+
+        public void Initialize()
+        {
+            SyncEntityOnlyComponents();
+        }
+
+        public void SyncEntityOnlyComponents()
+        {
+            var components = new List<DataComponent>();
+
+            var prefab = Prefab;
+            if (prefab != null)
+                components.AddRange(prefab.Components);
+            components.AddRange(Components);
+
+            foreach (var component in components)
+            {
+                // component already exists for this entity
+                if (EntityOnlyComponents.FindIndex(c => c.DataComponentId == component.Id) > -1)
+                    continue;
+
+                var entityOnlyType = component.GetType().GetAttribute<EntityOnlyAttribute>();
+                if (entityOnlyType != null)
+                {
+                    if (entityOnlyType.EntityOnlyComponentType.GetTypeInfo().IsSubclassOf(entityOnlyComponentType))
+                    {
+                        var eoComponent = (EntityOnlyComponent)Activator.CreateInstance(entityOnlyType.EntityOnlyComponentType);
+                        eoComponent.DataComponentId = component.Id;
+                        EntityOnlyComponents.Add(eoComponent);
+                    }
+                    else
+                    {
+                        Debug.Warn($"found entity only {entityOnlyType.EntityOnlyComponentType} but it is not a subclass of EntityOnlyComponent");
+                    }
+                }
+            }
+
+            var staleComponents = new List<EntityOnlyComponent>();
+            foreach (var eoComponent in EntityOnlyComponents)
+            {
+                if (components.FindIndex(c => c.Id == eoComponent.DataComponentId) == -1)
+                    staleComponents.Add(eoComponent);
+            }
+            foreach (var eoComponent in staleComponents)
+                EntityOnlyComponents.Remove(eoComponent);
+        }
 
         public void Render(Batcher batcher)
         {
@@ -103,6 +163,8 @@ namespace Game.Editor
             }
             foreach (var component in Components)
                 component.AddToEntity(entity);
+            foreach (var eoComponent in EntityOnlyComponents)
+                eoComponent.AddToEntity(entity);
             return entity;
         }
     }

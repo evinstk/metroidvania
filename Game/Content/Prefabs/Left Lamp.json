@@ -12,7 +12,8 @@
 				"Color": 4294967295,
 				"TextureMapId": "doodads.png",
 				"FrameFilename": "leftLamp.png"
-			}
+			},
+			"Id": "DMDKPNTRVWNZUWCGSULAEEDKEWNKSGFAVFQNNS"
 		},
 		{
 			"@id": "4",
@@ -25,7 +26,8 @@
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 0,
 				"Y": 0
-			}
+			},
+			"Id": "KXQRGSYREIRJEFCPGZISFSAJZORNDOGPSZJNJM"
 		}
 	],
 	"Id": "OOXSIJCVTBFVFYNZQDDTHOHQZJUEMJNMSRABNL"

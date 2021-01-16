@@ -5,6 +5,7 @@ using Nez.Textures;
 
 namespace Game.Editor.Prefab
 {
+    [EntityOnly(typeof(SwitchState))]
     class SwitchData : DataComponent
     {
         public TextureMapSpriteData OnSprite = new TextureMapSpriteData();
@@ -18,22 +19,14 @@ namespace Game.Editor.Prefab
         }
     }
 
-    class SwitchState : DataComponent
+    class SwitchState : EntityOnlyComponent
     {
         public BooleanReference State = new BooleanReference();
 
         public override void AddToEntity(Entity entity)
         {
             var switchC = entity.GetComponent<Switch>();
-            if (switchC != null)
-            {
-                var boolVal = State.Dereference();
-                switchC.State = boolVal;
-            }
-            else
-            {
-                Debug.Log("No Switch component on entity.");
-            }
+            switchC.State = State.Dereference();
         }
     }
 

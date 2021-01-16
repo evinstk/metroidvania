@@ -14,6 +14,7 @@ namespace Game.Editor
     {
         Type[] _componentSubclasses;
         List<EditorComponentInspector> _inspectors = new List<EditorComponentInspector>();
+        List<EntityOnlyComponentInspector> _eoInspectors = new List<EntityOnlyComponentInspector>();
 
         public override void Initialize()
         {
@@ -25,11 +26,13 @@ namespace Game.Editor
         public override void OnAddedToEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
+            Core.GetGlobalManager<RoomManager>().OnEntityOnlySync += GenerateInspectors;
         }
 
         public override void OnRemovedFromEntity()
         {
             Core.GetGlobalManager<ImGuiManager>().UnregisterDrawCommand(Draw);
+            Core.GetGlobalManager<RoomManager>().OnEntityOnlySync -= GenerateInspectors;
         }
 
         void Draw()
@@ -80,6 +83,11 @@ namespace Game.Editor
                 ImGui.PopID();
             }
 
+            foreach (var inspector in _eoInspectors)
+            {
+                inspector.Draw();
+            }
+
             var addComponent = NezImGui.CenteredButton("Add Component", 1f);
 
             if (NezImGui.CenteredButton("Remove Entity", 1f))
@@ -95,6 +103,7 @@ namespace Game.Editor
             if (toRemove != null)
             {
                 entity.Components.Remove(toRemove);
+                entity.SyncEntityOnlyComponents();
                 GenerateInspectors();
             }
 
@@ -109,7 +118,9 @@ namespace Game.Editor
                 {
                     if (ImGui.Selectable(subclass.Name))
                     {
-                        EditorState.SelectedEntity.Components.Add(Activator.CreateInstance(subclass) as DataComponent);
+                        var entity = EditorState.SelectedEntity;
+                        entity.Components.Add(Activator.CreateInstance(subclass) as DataComponent);
+                        entity.SyncEntityOnlyComponents();
                         GenerateInspectors();
                         ImGui.CloseCurrentPopup();
                     }
@@ -132,6 +143,13 @@ namespace Game.Editor
                     Id = NezImGui.GetScopeId(),
                     Component = component,
                 });
+            }
+
+            _eoInspectors = new List<EntityOnlyComponentInspector>();
+            foreach (var eoComponent in data.EntityOnlyComponents)
+            {
+                var inspector = new EntityOnlyComponentInspector(eoComponent);
+                _eoInspectors.Add(inspector);
             }
         }
 

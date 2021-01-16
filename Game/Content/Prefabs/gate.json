@@ -19,7 +19,8 @@
 				"Color": 4294967295,
 				"TextureMapId": "doodads.png",
 				"FrameFilename": "empty.png"
-			}
+			},
+			"Id": "PNSYZTXVZJRGSIHBOLEQDMDDQNFKXKNATCXIXL"
 		},
 		{
 			"@id": "5",
@@ -30,7 +31,8 @@
 				"Color": 4294967295,
 				"TextureMapId": "doodads.png",
 				"FrameFilename": "gate.png"
-			}
+			},
+			"Id": "JHYWWHFHHTOJIRQLPDJOIMOMXPVQNQKZDCCXSG"
 		},
 		{
 			"@id": "7",
@@ -50,7 +52,8 @@
 				"@id": "10",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
-			}
+			},
+			"Id": "QWXIFMVOBWKIMTYJDXSMYGLOURIPFGPSSINNQZ"
 		}
 	],
 	"Id": "CRJSFXWQFPQSTCYUUMHYQXRBDSSLKKTMSVVSGF"

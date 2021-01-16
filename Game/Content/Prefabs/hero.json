@@ -12,7 +12,8 @@
 				"Color": 4294967295,
 				"TextureMapId": "hero32.png",
 				"FrameFilename": "default000.png"
-			}
+			},
+			"Id": "TLIPNROLGKNMAECHLTXJBSTPPZKPCWPNKSPZAY"
 		},
 		{
 			"@id": "4",
@@ -69,7 +70,8 @@
 				"@id": "13",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+HitData",
 				"HitMask": 2
-			}
+			},
+			"Id": "AMSWOWDCECIKRWTLOBSSAOHYJKVACHOCHNSLRE"
 		},
 		{
 			"@id": "14",
@@ -82,11 +84,13 @@
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 0,
 				"Y": 0
-			}
+			},
+			"Id": "DXLMUHHRESTZEOHHXLETNEBCAWOFDEDITJYVGN"
 		},
 		{
 			"@id": "16",
-			"@type": "Game.Editor.Prefab.PlayerControllerData"
+			"@type": "Game.Editor.Prefab.PlayerControllerData",
+			"Id": "TARRFCGDDZVZPHGYQYWIMYTBNAOLFUQMAKRECV"
 		},
 		{
 			"@id": "17",
@@ -106,11 +110,13 @@
 				"@id": "20",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 256
-			}
+			},
+			"Id": "ZYWWTOJEPWBVTZZXAVHPEFOVXIJJYEPCVUYXMP"
 		},
 		{
 			"@id": "21",
-			"@type": "Game.Editor.Prefab.FollowCameraData"
+			"@type": "Game.Editor.Prefab.FollowCameraData",
+			"Id": "EERJKSJJBQMCJWXNRUJBYKFAFKGZAYBBLKQCXV"
 		}
 	],
 	"Id": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC"

@@ -13,7 +13,8 @@
 				"X": 32,
 				"Y": 32
 			},
-			"RenderLayer": 1
+			"RenderLayer": 1,
+			"Id": "UQNRMYVQDOILIWMRPXOYPSKTIREACBAUQHKRKU"
 		},
 		{
 			"@id": "4",
@@ -25,7 +26,8 @@
 				"@id": "5",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 1
-			}
+			},
+			"Id": "AZEDTJDINREVGFLUVCGTJUUVNBNOUBMUHVXPTL"
 		}
 	],
 	"Id": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX"

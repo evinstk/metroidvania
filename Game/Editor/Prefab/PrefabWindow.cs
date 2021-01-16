@@ -54,6 +54,9 @@ namespace Game.Editor.Prefab
 
     abstract class DataComponent
     {
+        [JsonInclude]
+        public string Id { get; set; } = Utils.RandomString();
+
         public virtual void AddToEntity(Entity entity) { }
         public virtual void Render(Batcher batcher, Vector2 position) { }
         public virtual bool Select(Vector2 entityPosition, Vector2 mousePosition) => false;
@@ -140,6 +143,17 @@ namespace Game.Editor.Prefab
             if (_prefabManager.RadioButtons(EditorState.SelectedPrefabId, ref EditorState.SelectedPrefabId, out var deletedId))
             {
                 GenerateInspectors();
+                _prefabManager.TriggerPrefabChange();
+            }
+            if (deletedId != null)
+            {
+                if (deletedId == EditorState.SelectedPrefabId)
+                {
+                    EditorState.SelectedPrefabId = null;
+                    _inspectors = null;
+                }
+                // TODO: remove all room entities that use prefab
+                _prefabManager.TriggerPrefabChange();
             }
             if (NezImGui.CenteredButton("New Prefab", 1f))
             {
@@ -214,6 +228,7 @@ namespace Game.Editor.Prefab
             {
                 entity.Components.Remove(toRemove);
                 GenerateInspectors();
+                _prefabManager.TriggerPrefabChange();
             }
 
             DrawComponentSelectorPopup();
@@ -229,6 +244,7 @@ namespace Game.Editor.Prefab
                     {
                         EditorState.SelectedPrefab.Components.Add(Activator.CreateInstance(subclass) as DataComponent);
                         GenerateInspectors();
+                        _prefabManager.TriggerPrefabChange();
                         ImGui.CloseCurrentPopup();
                     }
                 }
