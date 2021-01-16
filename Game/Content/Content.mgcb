@@ -451,6 +451,12 @@
 #begin Textures/doodad8.png
 /copy:Textures/doodad8.png
 
+#begin Textures/doodads.json
+/copy:Textures/doodads.json
+
+#begin Textures/doodads.png
+/copy:Textures/doodads.png
+
 #begin Textures/environment.png
 /copy:Textures/environment.png
 
