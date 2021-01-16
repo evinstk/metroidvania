@@ -72,7 +72,7 @@ namespace Game.Editor.Prefab
 
         public override void AddToEntity(Entity entity)
         {
-            entity.AddComponent<Mover>();
+            entity.AddComponent<PlatformerMover>();
             entity.AddComponent<Animator<ObserverFrame>>();
             entity.AddComponent<Interaction>();
 

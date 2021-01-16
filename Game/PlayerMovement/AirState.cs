@@ -10,7 +10,7 @@ namespace Game.Movement
         {
             public override void Reason()
             {
-                if (_context._collisionBelow)
+                if (_context._collisionState.Below)
                 {
                     _machine.ChangeState<GroundState>();
                 }
@@ -21,7 +21,7 @@ namespace Game.Movement
                 _context._jumpElapsed += deltaTime;
 
                 // y-dir
-                if ((_context._velocity.Y < 0 && _context._controller.JumpReleased) || _context._collisionAbove)
+                if ((_context._velocity.Y < 0 && _context._controller.JumpReleased) || _context._collisionState.Above)
                 {
                     _context._velocity.Y = 0;
                 }

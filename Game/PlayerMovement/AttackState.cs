@@ -15,7 +15,7 @@ namespace Game.Movement
             {
                 if (!_context._animator.IsRunning)
                 {
-                    if (_context._collisionBelow)
+                    if (_context._collisionState.Below)
                         _machine.ChangeState<GroundState>();
                     else
                         _machine.ChangeState<AirState>();

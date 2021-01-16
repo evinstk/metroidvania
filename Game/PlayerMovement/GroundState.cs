@@ -16,7 +16,7 @@ namespace Game.Movement
 
             public override void Reason()
             {
-                if (!_context._collisionBelow)
+                if (!_context._collisionState.Below)
                 {
                     _machine.ChangeState<AirState>();
                 }
@@ -38,7 +38,7 @@ namespace Game.Movement
 
                 _context.Move(deltaTime);
 
-                if (_context._collisionBelow)
+                if (_context._collisionState.Below)
                 {
                     _context._velocity.Y = 0;
                 }

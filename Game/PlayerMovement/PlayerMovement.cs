@@ -2,6 +2,7 @@
 using Nez;
 using Nez.AI.FSM;
 using Nez.Sprites;
+using static Game.PlatformerMover;
 
 namespace Game.Movement
 {
@@ -38,13 +39,15 @@ namespace Game.Movement
         ControllerComponent _controller;
 
         Microsoft.Xna.Framework.Vector2 _velocity;
-        SubpixelFloat _subpixelX;
-        SubpixelFloat _subpixelY;
-        bool _collisionBelow = true;
-        bool _collisionAbove;
         float _jumpElapsed;
 
-        Mover _mover;
+        PlatformerMover _platformerMover;
+        BoxCollider _boxCollider;
+        CollisionState _collisionState = new CollisionState
+        {
+            Below = true
+        };
+
         Animator<ObserverFrame> _animator;
         SpriteRenderer _renderer;
         StateMachine<PlayerMovement> _fsm;
@@ -55,7 +58,9 @@ namespace Game.Movement
             if (_controller == null)
                 _controller = Entity.AddComponent<FreeController>();
 
-            _mover = Entity.GetComponentStrict<Mover>();
+            _platformerMover = Entity.GetComponentStrict<PlatformerMover>();
+            _boxCollider = Entity.GetComponentStrict<BoxCollider>();
+
             _fsm = new StateMachine<PlayerMovement>(this, new GroundState());
             _fsm.AddState(new AirState());
             _fsm.AddState(new AttackState());
@@ -119,22 +124,7 @@ namespace Game.Movement
         void Move(float deltaTime)
         {
             var motion = _velocity * deltaTime;
-            _subpixelX.Update(ref motion.X);
-            _subpixelY.Update(ref motion.Y);
-            if (_collisionBelow && motion.Y == 0 && _subpixelY.Remainder > 0)
-            {
-                motion.Y = 1;
-                _subpixelY.Reset();
-            }
-            _mover.CalculateMovement(ref motion, out var collisionResult);
-
-            _collisionBelow = collisionResult.Normal.Y < 0;
-            _collisionAbove = collisionResult.Normal.Y > 0;
-
-            if (collisionResult.Normal.X != 0) _subpixelX.Reset();
-            if (collisionResult.Normal.Y != 0) _subpixelY.Reset();
-
-            _mover.ApplyMovement(motion);
+            _platformerMover.Move(motion, _boxCollider, _collisionState);
         }
 
         void ChangeAnimation(
