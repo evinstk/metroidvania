@@ -9,6 +9,7 @@ local test_dialog = cutscene(player, function()
     dialog("This is long text to make sure text wrap algorithm doesn't completely screw up the dialog box output.")
     dialog("The gate here will shut!")
     testSwitch.Value = false
+    instantiate("Dummy Hero", 170, 112)
 end)
 
 -- print("test debug log")

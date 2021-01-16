@@ -154,7 +154,7 @@ namespace Game.Editor
             entity.SetPosition(Position + offset);
             var roomEntityData = entity.AddComponent<RoomEntityComponent>();
             roomEntityData.RoomEntityId = Id;
-            roomEntityData.RoomId = Room.Id;
+            roomEntityData.RoomId = Room?.Id;
             var prefab = Prefab;
             if (prefab != null)
             {

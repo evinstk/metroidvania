@@ -1,4 +1,5 @@
 ﻿using Game.Editor;
+using Game.Editor.Prefab;
 using Game.Editor.Scriptable;
 using Game.Movement;
 using Microsoft.Xna.Framework.Input;
@@ -172,6 +173,7 @@ namespace Game.Scripting
                 script.Globals["disable"] = (Action<Entity>)Disable;
                 script.Globals["enable"] = (Action<Entity>)Enable;
                 script.Globals["interact"] = (Func<bool>)Interact;
+                script.Globals["instantiate"] = (Action<string, int, int>)Instantiate;
                 script.Globals["vars"] = new ScriptableObjects();
 
                 script.DoString(_commonCode);
@@ -362,6 +364,23 @@ namespace Game.Scripting
                 return _interactInput.IsPressed;
             }
             return false;
+        }
+
+        void Instantiate(string name, int x, int y)
+        {
+            var prefab = Core.GetGlobalManager<PrefabManager>().GetResourceByName(name);
+            if (prefab == null)
+            {
+                Debug.Log($"No prefab name {name}");
+                return;
+            }
+            var entity = new RoomEntity
+            {
+                Name = prefab.Name,
+                PrefabId = prefab.Id,
+                Position = new Microsoft.Xna.Framework.Vector2(x, y),
+            };
+            entity.CreateEntity(Entity.Scene);
         }
     }
 
