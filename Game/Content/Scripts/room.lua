@@ -3,9 +3,12 @@ local lamp = findEntity("Special Lamp")
 local area = findEntity("Some Area")
 local practiceArea = findEntity("practiceArea")
 
+local testSwitch = vars["testSwitch"]
+
 local test_dialog = cutscene(player, function()
     dialog("This is long text to make sure text wrap algorithm doesn't completely screw up the dialog box output.")
-    dialog("This text comes after input from the player.")
+    dialog("The gate here will shut!")
+    testSwitch.Value = false
 end)
 
 -- print("test debug log")
@@ -17,8 +20,8 @@ end)
 -- roomVars["new"] = 4.0
 -- print(roomVars["new"])
 
-print(roomVars["strVal"])
-print(roomVars["someBool"])
+-- print(roomVars["strVal"])
+-- print(roomVars["someBool"])
 
 trigger(
     onEnter(player, area),

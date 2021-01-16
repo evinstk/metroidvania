@@ -1,4 +1,5 @@
 ﻿using Game.Editor;
+using Game.Editor.Scriptable;
 using Game.Movement;
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
@@ -48,6 +49,48 @@ namespace Game.Scripting
         }
     }
 
+    class ScriptableObjects
+    {
+        struct GeneralManager
+        {
+            public Manager Manager;
+            public Type Type;
+        }
+        List<GeneralManager> _soManagers = new List<GeneralManager>();
+
+        public ScriptableObjects()
+        {
+            var soTypes = ReflectionUtils.GetAllSubclasses(typeof(ScriptableObject));
+            foreach (var soType in soTypes)
+            {
+                var managerType = typeof(ScriptableObjectManager<>).MakeGenericType(soType);
+                var manager = (Manager)typeof(Core).GetMethod(nameof(Core.GetGlobalManager)).MakeGenericMethod(managerType).Invoke(null, null);
+                _soManagers.Add(new GeneralManager
+                {
+                    Manager = manager,
+                    Type = soType,
+                });
+            }
+        }
+
+        public object this[string key]
+        {
+            get
+            {
+                foreach (var gm in _soManagers)
+                {
+                    var obj = typeof(Manager<>)
+                        .MakeGenericType(gm.Type)
+                        .GetMethod("GetResourceByName")
+                        .Invoke(gm.Manager, new object[] { key });
+                    if (obj != null)
+                        return obj;
+                }
+                return null;
+            }
+        }
+    }
+
     class MapScript : Component, IUpdatable
     {
         struct QueuedScript
@@ -76,6 +119,10 @@ namespace Game.Scripting
         {
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
             UserData.RegisterType<RoomVariables>();
+            UserData.RegisterType<ScriptableObjects>();
+            var soTypes = ReflectionUtils.GetAllSubclasses(typeof(ScriptableObject));
+            foreach (var soType in soTypes)
+                UserData.RegisterType(soType);
 
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
@@ -125,6 +172,7 @@ namespace Game.Scripting
                 script.Globals["disable"] = (Action<Entity>)Disable;
                 script.Globals["enable"] = (Action<Entity>)Enable;
                 script.Globals["interact"] = (Func<bool>)Interact;
+                script.Globals["vars"] = new ScriptableObjects();
 
                 script.DoString(_commonCode);
 
