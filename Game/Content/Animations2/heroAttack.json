@@ -1,18 +1,22 @@
 {
 	"@id": "1",
+	"@type": "Game.Editor.Animation.AnimationData",
 	"Name": "heroAttack",
 	"FramesPerSecond": 12,
 	"Frames": [
 		{
 			"@id": "2",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
 			"Sprite": {
 				"@id": "3",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
 				"TextureMapId": "hero32.png",
-				"FrameFilename": "idle000.png"
+				"FrameFilename": "heroCapeIdle0001.png"
 			},
 			"HitBoxes": [
 				{
 					"@id": "4",
+					"@type": "Microsoft.Xna.Framework.Rectangle",
 					"X": 16,
 					"Y": -16,
 					"Width": 32,

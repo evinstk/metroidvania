@@ -33,13 +33,13 @@
 			"WalkRight": {
 				"@id": "7",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
-				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
+				"AnimationId": "XGETZDPGPCEFVQHEEBIGALEHSBDCKPJGWUVFLA",
 				"Flip": false
 			},
 			"WalkLeft": {
 				"@id": "8",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
-				"AnimationId": "ARAXZJUIHBRPRXHGXWFMOTEOZCHYJYJFCXWEJU",
+				"AnimationId": "XGETZDPGPCEFVQHEEBIGALEHSBDCKPJGWUVFLA",
 				"Flip": true
 			},
 			"AttackRight": {

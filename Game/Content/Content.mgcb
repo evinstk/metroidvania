@@ -272,6 +272,9 @@
 #begin Animations2/heroAttack.json
 /copy:Animations2/heroAttack.json
 
+#begin Animations2/heroWalk.json
+/copy:Animations2/heroWalk.json
+
 #begin Data/AnimationGroups.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
