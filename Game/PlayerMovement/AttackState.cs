@@ -1,4 +1,5 @@
-﻿using Nez.AI.FSM;
+﻿using Microsoft.Xna.Framework;
+using Nez.AI.FSM;
 
 namespace Game.Movement
 {
@@ -24,6 +25,21 @@ namespace Game.Movement
 
             public override void Update(float deltaTime)
             {
+                _context._jumpElapsed += deltaTime;
+
+                if ((_context._velocity.Y < 0 && _context._controller.JumpReleased) || _context._collisionState.Above)
+                {
+                    _context._velocity.Y = 0;
+                }
+                if (_context._velocity.Y >= 0 || !_context._controller.JumpDown || _context._jumpElapsed >= _context.JumpDuration)
+                {
+                    _context._velocity.Y += _context.Gravity * deltaTime;
+                }
+
+                var moveDir = new Vector2(_context._controller.XAxis, 0);
+                _context._velocity.X = _context.MoveSpeed * moveDir.X;
+
+                _context.Move(deltaTime);
             }
         }
     }

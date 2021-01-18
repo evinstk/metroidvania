@@ -123,8 +123,13 @@ namespace Game.Movement
 
         void Move(float deltaTime)
         {
+            _velocity.Y = Mathf.Clamp(_velocity.Y, -JumpVelocity, MaxFallVelocity);
             var motion = _velocity * deltaTime;
             _platformerMover.Move(motion, _boxCollider, _collisionState);
+            if (_collisionState.Below)
+            {
+                _velocity.Y = 0;
+            }
         }
 
         void ChangeAnimation(

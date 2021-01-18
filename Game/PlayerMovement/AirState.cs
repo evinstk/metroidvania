@@ -29,7 +29,6 @@ namespace Game.Movement
                 {
                     _context._velocity.Y += _context.Gravity * deltaTime;
                 }
-                _context._velocity.Y = Mathf.Clamp(_context._velocity.Y, -_context.JumpVelocity, _context.MaxFallVelocity);
 
                 // x-dir
                 var moveDir = new Vector2(_context._controller.XAxis, 0);

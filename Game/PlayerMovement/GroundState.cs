@@ -38,11 +38,6 @@ namespace Game.Movement
 
                 _context.Move(deltaTime);
 
-                if (_context._collisionState.Below)
-                {
-                    _context._velocity.Y = 0;
-                }
-
                 if (moveDir.X != 0)
                     _context.ChangeAnimation(_context.Walk);
                 else
