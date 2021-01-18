@@ -11,17 +11,43 @@
 				"@id": "3",
 				"@type": "Game.Editor.Animation.AnimationData+Sprite",
 				"TextureMapId": "hero32.png",
-				"FrameFilename": "heroCapeIdle0001.png"
+				"FrameFilename": "heroCapeAttack0008.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "5",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "hero32.png",
+				"FrameFilename": "heroCapeAttack0009.png"
 			},
 			"HitBoxes": [
 				{
-					"@id": "4",
+					"@id": "6",
 					"@type": "Microsoft.Xna.Framework.Rectangle",
 					"X": 16,
 					"Y": -16,
 					"Width": 32,
 					"Height": 32
 				}
+			]
+		},
+		{
+			"@id": "7",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "8",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "hero32.png",
+				"FrameFilename": "heroCapeAttack0010.png"
+			},
+			"HitBoxes": [
+
 			]
 		}
 	],

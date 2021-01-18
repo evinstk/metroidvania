@@ -21,8 +21,8 @@
 			"Size": {
 				"@id": "5",
 				"@type": "Microsoft.Xna.Framework.Vector2",
-				"X": 0,
-				"Y": 0
+				"X": 16,
+				"Y": 32
 			},
 			"PhysicsLayer": {
 				"@id": "6",
