@@ -26,6 +26,7 @@ namespace Game
                 {
                     var manager = Activator.CreateInstance(managerType) as Manager;
                     RegisterGlobalManager(manager);
+                    managers.Add(manager);
                 }
             }
 
@@ -34,6 +35,7 @@ namespace Game
             {
                 var manager = Activator.CreateInstance(typeof(ScriptableObjectManager<>).MakeGenericType(soType)) as Manager;
                 RegisterGlobalManager(manager);
+                managers.Add(manager);
             }
 
             foreach (var manager in managers)
