@@ -30,11 +30,6 @@ namespace Game.Editor.Prefab
         }
     }
 
-    interface IInteractable
-    {
-        void Interact();
-    }
-
     class Switch : Component, IUpdatable, IInteractable
     {
         public BooleanValue State = new BooleanValue();

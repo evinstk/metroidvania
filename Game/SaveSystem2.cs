@@ -1,4 +1,5 @@
-﻿using Nez.Persistence;
+﻿using Nez;
+using Nez.Persistence;
 using System.IO;
 
 namespace Game
@@ -23,6 +24,7 @@ namespace Game
                 PrettyPrint = true,
             });
             File.WriteAllText(GameFile.SavePath, serialized);
+            Debug.Log("Game saved.");
         }
 
         public static SaveFile Load()

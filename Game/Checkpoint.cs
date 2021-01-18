@@ -1,11 +1,20 @@
 ﻿using Game.Editor;
+using Game.Editor.Prefab;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 
 namespace Game
 {
-    class Checkpoint : Component, IUpdatable
+    class CheckpointData : DataComponent
+    {
+        public override void AddToEntity(Entity entity)
+        {
+            entity.AddComponent<Checkpoint>();
+        }
+    }
+
+    class Checkpoint : Component, IInteractable
     {
         public Vector2 Size = new Vector2(32, 32);
         public int PhysicsMask = -1;
@@ -23,18 +32,9 @@ namespace Game
             _roomEntity = Entity.GetComponentStrict<RoomEntityComponent>();
         }
 
-        public void Update()
+        public void Interact()
         {
-            // this logic should probably belong on a component on the player entity
-            if (_input.IsPressed)
-            {
-                var rect = new RectangleF(
-                    Entity.Position - Size / 2,
-                    Size);
-                var collider = Physics.OverlapRectangle(rect, PhysicsMask);
-                if (collider != null)
-                    SaveSystem2.Save(_roomEntity.RoomId, _roomEntity.RoomEntityId);
-            }
+            SaveSystem2.Save(_roomEntity.RoomId, _roomEntity.RoomEntityId);
         }
     }
 }

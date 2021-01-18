@@ -18,16 +18,26 @@
 		},
 		{
 			"@id": "4",
-			"@type": "Game.Editor.Prefab.CheckpointData",
+			"@type": "Game.CheckpointData",
+			"Id": "AZEDTJDINREVGFLUVCGTJUUVNBNOUBMUHVXPTL"
+		},
+		{
+			"@id": "5",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
 			"Size": {
 				"@ref": "3"
 			},
 			"PhysicsLayer": {
-				"@id": "5",
+				"@id": "6",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
-				"Mask": 1
+				"Mask": 512
 			},
-			"Id": "AZEDTJDINREVGFLUVCGTJUUVNBNOUBMUHVXPTL"
+			"CollidesWithLayers": {
+				"@id": "7",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			},
+			"Id": "ZIVAOHILTVOVBYDGHJSIIKUDVVPUTIGNHFFBII"
 		}
 	],
 	"Id": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX"
