@@ -9,7 +9,7 @@ namespace Game
 {
     class Interaction : Component, IUpdatable
     {
-        public Vector2 Cast = new Vector2(16, 0);
+        public Vector2 Cast = new Vector2(32, 0);
 
         List<IInteractable> _tempInteractableList = new List<IInteractable>();
         int _facing = 0;
