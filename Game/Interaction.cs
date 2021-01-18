@@ -21,6 +21,7 @@ namespace Game
         {
             _input = new VirtualButton();
             _input.Nodes.Add(new VirtualButton.KeyboardKey(Keys.E));
+            _input.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Y));
 
             _lastPosition = Entity.Position;
         }

@@ -16,8 +16,6 @@ namespace Game
 
     class PlayerController : ControllerComponent
     {
-        InteractionComponent _interaction;
-
         VirtualAxis _xAxisInput;
         VirtualAxis _yAxisInput;
         VirtualButton _jumpInput;
@@ -59,18 +57,12 @@ namespace Game
             _interactInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.DPadDown));
         }
 
-        public override void OnAddedToEntity()
-        {
-            _interaction = Entity.GetComponent<InteractionComponent>();
-            Debug.LogIf(_interaction == null, "Player controller has no interaction component.");
-        }
-
-        public override float XAxis => _interaction?.InDialog == true ? 0 : _xAxisInput.Value;
-        public override float YAxis => _interaction?.InDialog == true ? 0 : _yAxisInput.Value;
-        public override bool JumpDown => _interaction?.InDialog == true ? false : _jumpInput.IsDown;
-        public override bool JumpPressed => _interaction?.InDialog == true ? false : _jumpInput.IsPressed;
-        public override bool JumpReleased => _interaction?.InDialog == true ? false : _jumpInput.IsReleased;
-        public override bool AttackPressed => _interaction?.InDialog == true ? false : _attackInput.IsPressed;
-        public override bool InteractPressed => _interactInput.IsPressed;
+        public override float XAxis => Enabled ? _xAxisInput.Value : 0;
+        public override float YAxis => Enabled ? _yAxisInput.Value : 0;
+        public override bool JumpDown => Enabled ? _jumpInput.IsDown : false;
+        public override bool JumpPressed => Enabled ? _jumpInput.IsPressed : false;
+        public override bool JumpReleased => Enabled ? _jumpInput.IsReleased : false;
+        public override bool AttackPressed => Enabled ? _attackInput.IsPressed : false;
+        public override bool InteractPressed => Enabled ? _interactInput.IsPressed : false;
     }
 }

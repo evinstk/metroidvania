@@ -134,8 +134,8 @@ namespace Game.Scripting
             Insist.IsNotNull(_dialogSystem);
 
             _interactInput = new VirtualButton();
-            _interactInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
-            _interactInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
+            _interactInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.E));
+            _interactInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Y));
 
             _commonCode = File.ReadAllText(ContentPath.Scripts + "common.lua");
         }
@@ -329,10 +329,10 @@ namespace Game.Scripting
                 Debug.Log("Argument entity not defined");
                 return;
             }
-            var movement = entity.GetComponent<PlayerMovement>();
+            var movement = entity.GetComponent<ControllerComponent>();
             if (movement == null)
             {
-                Debug.Log("No PlayerMovement on entity");
+                Debug.Log("No ControllerComponent on entity");
                 return;
             }
             movement.SetEnabled(false);
@@ -345,10 +345,10 @@ namespace Game.Scripting
                 Debug.Log("Argument entity not defined");
                 return;
             }
-            var movement = entity.GetComponent<PlayerMovement>();
+            var movement = entity.GetComponent<ControllerComponent>();
             if (movement == null)
             {
-                Debug.Log("No PlayerMovement on entity");
+                Debug.Log("No ControllerComponent on entity");
                 return;
             }
             movement.SetEnabled(true);
