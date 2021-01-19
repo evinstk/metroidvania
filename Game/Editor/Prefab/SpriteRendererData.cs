@@ -103,7 +103,8 @@ namespace Game.Editor.Prefab
             {
                 var obj = GetValue<TextureMapSpriteData>();
                 var manager = Core.GetGlobalManager<Animation.TextureMapDataManager>();
-                manager.Combo("Texture Map", ref obj.TextureMapId);
+                if (manager.Combo("Texture Map", ref obj.TextureMapId))
+                    obj.FrameFilename = null;
                 manager.FrameCombo(obj.TextureMapId, ref obj.FrameFilename);
 
                 _colorInspector.Draw();
