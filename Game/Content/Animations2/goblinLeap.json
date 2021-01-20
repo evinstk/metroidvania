@@ -1,0 +1,22 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Animation.AnimationData",
+	"Name": "goblinLeap",
+	"FramesPerSecond": 12,
+	"Frames": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "3",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "goblin.png",
+				"FrameFilename": "goblinLeap0000.png"
+			},
+			"HitBoxes": [
+
+			]
+		}
+	],
+	"Id": "AJQUIMOOVNJSBBVPQDBBYXUWBQWHBAGNZXXYSU"
+}

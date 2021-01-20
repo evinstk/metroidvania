@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+﻿using Nez;
 using Nez.Textures;
 
 namespace Game

@@ -3630,10 +3630,48 @@
 			"Components": [
 
 			]
+		},
+		{
+			"@id": "518",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "VOJVGXTVYNSHVWJGDADDFVTKMBSFJBXWKLFLMO",
+			"Name": "Goblin",
+			"PrefabId": "YZOLVJKIEIPOEYODTDJTZHSXRYYMAYZYWHKXQA",
+			"Position": {
+				"@id": "519",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 64,
+				"Y": 196
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "520",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "WMWSBBYHQBPUJVSTQHKDOEKAJMJFRBAMEMBIRC",
+			"Name": "Checkpoint",
+			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
+			"Position": {
+				"@id": "521",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 440,
+				"Y": 112
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+
+			]
 		}
 	],
 	"RoomVariables": {
-		"@id": "518",
+		"@id": "522",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 
