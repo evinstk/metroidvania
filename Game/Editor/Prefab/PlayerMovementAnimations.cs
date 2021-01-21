@@ -1,4 +1,5 @@
 ﻿using Game.Editor.Animation;
+using Game.Hit;
 using Game.Movement;
 using ImGuiNET;
 using Nez;
@@ -28,6 +29,39 @@ namespace Game.Editor.Prefab
         {
             public string AnimationId = "default";
             public bool Flip;
+
+            public Animation<ObserverFrame> MakeAnimation()
+            {
+                var animationManager = Core.GetGlobalManager<AnimationManager>();
+                var textureMapManager = Core.GetGlobalManager<TextureMapDataManager>();
+
+                var animation = animationManager.GetResource(AnimationId);
+                var frames = new List<ObserverFrame>();
+                foreach (var frame in animation.Frames)
+                {
+                    var textureMap = textureMapManager.GetResource(frame.Sprite.TextureMapId);
+                    var spriteData = textureMap.frames.Find(f => f.filename == frame.Sprite.FrameFilename);
+                    var texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + Path.GetFileName(textureMap.meta.image));
+                    var sprite = new Sprite(
+                        texture,
+                        spriteData.bounds,
+                        new Microsoft.Xna.Framework.Vector2(
+                            spriteData.pivot.x * spriteData.sourceSize.w - spriteData.spriteSourceSize.x,
+                            spriteData.pivot.y * spriteData.sourceSize.h - spriteData.spriteSourceSize.y));
+                    var hitboxesF = new List<RectangleF>();
+                    for (var i = 0; i < frame.HitBoxes.Count; ++i)
+                        hitboxesF.Add(new RectangleF(
+                            frame.HitBoxes[i].Location.ToVector2(),
+                            frame.HitBoxes[i].Size.ToVector2()));
+                    frames.Add(new ObserverFrame
+                    {
+                        Sprite = sprite,
+                        Flip = Flip,
+                        HitBoxes = hitboxesF.ToArray(),
+                    });
+                }
+                return new Animation<ObserverFrame>(frames.ToArray(), animation.FramesPerSecond);
+            }
         }
 
         class AnimationDataInspector : AbstractTypeInspector
@@ -73,52 +107,22 @@ namespace Game.Editor.Prefab
         public override void AddToEntity(Entity entity)
         {
             entity.AddComponent<PlatformerMover>();
+            entity.AddComponent<SpriteObserver>();
             entity.AddComponent<Animator<ObserverFrame>>();
             entity.AddComponent<Interaction>();
 
             var movement = entity.AddComponent<PlayerMovement>();
-            movement.Idle.Right = MakeAnimation(IdleRight);
-            movement.Idle.Left = MakeAnimation(IdleLeft);
-            movement.Walk.Right = MakeAnimation(WalkRight);
-            movement.Walk.Left = MakeAnimation(WalkLeft);
-            movement.Attack.Right = MakeAnimation(AttackRight);
-            movement.Attack.Left = MakeAnimation(AttackLeft);
-            movement.Jump.Right = MakeAnimation(JumpRight);
-            movement.Jump.Left = MakeAnimation(JumpLeft);
-            movement.HitMask = Hit.HitMask;
-        }
+            movement.Idle.Right = IdleRight.MakeAnimation();
+            movement.Idle.Left = IdleLeft.MakeAnimation();
+            movement.Walk.Right = WalkRight.MakeAnimation();
+            movement.Walk.Left = WalkLeft.MakeAnimation();
+            movement.Attack.Right = AttackRight.MakeAnimation();
+            movement.Attack.Left = AttackLeft.MakeAnimation();
+            movement.Jump.Right = JumpRight.MakeAnimation();
+            movement.Jump.Left = JumpLeft.MakeAnimation();
 
-        Animation<ObserverFrame> MakeAnimation(AnimationData animationData)
-        {
-            var animationManager = Core.GetGlobalManager<AnimationManager>();
-            var textureMapManager = Core.GetGlobalManager<TextureMapDataManager>();
-
-            var animation = animationManager.GetResource(animationData.AnimationId);
-            var frames = new List<ObserverFrame>();
-            foreach (var frame in animation.Frames)
-            {
-                var textureMap = textureMapManager.GetResource(frame.Sprite.TextureMapId);
-                var spriteData = textureMap.frames.Find(f => f.filename == frame.Sprite.FrameFilename);
-                var texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + Path.GetFileName(textureMap.meta.image));
-                var sprite = new Sprite(
-                    texture,
-                    spriteData.bounds,
-                    new Microsoft.Xna.Framework.Vector2(
-                        spriteData.pivot.x * spriteData.sourceSize.w - spriteData.spriteSourceSize.x,
-                        spriteData.pivot.y * spriteData.sourceSize.h - spriteData.spriteSourceSize.y));
-                var hitboxesF = new List<RectangleF>();
-                for (var i = 0; i < frame.HitBoxes.Count; ++i)
-                    hitboxesF.Add(new RectangleF(
-                        frame.HitBoxes[i].Location.ToVector2(),
-                        frame.HitBoxes[i].Size.ToVector2()));
-                frames.Add(new ObserverFrame
-                {
-                    Sprite = sprite,
-                    Flip = animationData.Flip,
-                    HitBoxes = hitboxesF.ToArray(),
-                });
-            }
-            return new Animation<ObserverFrame>(frames.ToArray(), animation.FramesPerSecond);
+            var hitter = entity.AddComponent<Hitter>();
+            hitter.HitMask = Hit.HitMask;
         }
     }
 }

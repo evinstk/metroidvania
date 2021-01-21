@@ -117,6 +117,11 @@
 			"@id": "21",
 			"@type": "Game.Editor.Prefab.FollowCameraData",
 			"Id": "EERJKSJJBQMCJWXNRUJBYKFAFKGZAYBBLKQCXV"
+		},
+		{
+			"@id": "22",
+			"@type": "Game.Hit.LoggingHitListenerData",
+			"Id": "KAJVUMQMDDHWWVWIDBEIHXLGTTJHJKLCJDWLZW"
 		}
 	],
 	"Id": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC"
