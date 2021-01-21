@@ -266,6 +266,21 @@
 #begin Animations2/default.json
 /copy:Animations2/default.json
 
+#begin Animations2/goblinCrouch.json
+/copy:Animations2/goblinCrouch.json
+
+#begin Animations2/goblinIdle.json
+/copy:Animations2/goblinIdle.json
+
+#begin Animations2/goblinLeap.json
+/copy:Animations2/goblinLeap.json
+
+#begin Animations2/goblinSwipe.json
+/copy:Animations2/goblinSwipe.json
+
+#begin Animations2/goblinWalk.json
+/copy:Animations2/goblinWalk.json
+
 #begin Animations2/hero.json
 /copy:Animations2/hero.json
 
@@ -366,6 +381,9 @@
 
 #begin Prefabs/gate.json
 /copy:Prefabs/gate.json
+
+#begin Prefabs/goblin.json
+/copy:Prefabs/goblin.json
 
 #begin Prefabs/hero.json
 /copy:Prefabs/hero.json
@@ -468,6 +486,12 @@
 
 #begin Textures/farTrees.png
 /copy:Textures/farTrees.png
+
+#begin Textures/goblin.json
+/copy:Textures/goblin.json
+
+#begin Textures/goblin.png
+/copy:Textures/goblin.png
 
 #begin Textures/hero.png
 /importer:TextureImporter
