@@ -1,0 +1,35 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Animation.AnimationData",
+	"Name": "goblinIdle",
+	"FramesPerSecond": 3,
+	"Frames": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "3",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "goblin.png",
+				"FrameFilename": "goblinIdle0000.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "5",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "goblin.png",
+				"FrameFilename": "goblinIdle0001.png"
+			},
+			"HitBoxes": [
+
+			]
+		}
+	],
+	"Id": "MWOJHUPGHQBCQVHQWHXQJAIMDGISRRLVYHLERG"
+}

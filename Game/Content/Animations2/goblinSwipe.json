@@ -1,0 +1,42 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Animation.AnimationData",
+	"Name": "goblinSwipe",
+	"FramesPerSecond": 12,
+	"Frames": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "3",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "goblin.png",
+				"FrameFilename": "goblinSwipe0000.png"
+			},
+			"HitBoxes": [
+				{
+					"@id": "4",
+					"@type": "Microsoft.Xna.Framework.Rectangle",
+					"X": -4,
+					"Y": -12,
+					"Width": 32,
+					"Height": 36
+				}
+			]
+		},
+		{
+			"@id": "5",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "6",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "goblin.png",
+				"FrameFilename": "goblinCrouch0000.png"
+			},
+			"HitBoxes": [
+
+			]
+		}
+	],
+	"Id": "LHHIXYCFYUBYINBAAIPDIVMYVFKETNQDESSTYD"
+}

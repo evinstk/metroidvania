@@ -4865,14 +4865,33 @@
 			"Components": [
 
 			]
+		},
+		{
+			"@id": "690",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "LJHEZWRELUZMMPMIZATAKUUMTIYUHKDAAEXWLQ",
+			"Name": "Goblin",
+			"PrefabId": "YZOLVJKIEIPOEYODTDJTZHSXRYYMAYZYWHKXQA",
+			"Position": {
+				"@id": "691",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 152,
+				"Y": 116
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+
+			]
 		}
 	],
 	"RoomVariables": {
-		"@id": "690",
+		"@id": "692",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 			{
-				"@id": "691",
+				"@id": "693",
 				"@type": "Game.Editor.RoomVariable",
 				"Id": "LWNULXXHFOXTZJBWJYYOFPGLVWZBJXJMENWMRG",
 				"Name": "strVal",
@@ -4880,7 +4899,7 @@
 				"Value": "asdf"
 			},
 			{
-				"@id": "692",
+				"@id": "694",
 				"@type": "Game.Editor.RoomVariable",
 				"Id": "AKYJSODANBUCVTERQSPUFKKXFLKBZRMQDELSRL",
 				"Name": "someBool",
