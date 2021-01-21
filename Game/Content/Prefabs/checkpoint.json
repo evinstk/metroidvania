@@ -6,7 +6,7 @@
 		{
 			"@id": "2",
 			"@type": "Game.Editor.Prefab.RectangleRendererData",
-			"Color": 4294967295,
+			"Color": 325280611,
 			"Size": {
 				"@id": "3",
 				"@type": "Microsoft.Xna.Framework.Vector2",
