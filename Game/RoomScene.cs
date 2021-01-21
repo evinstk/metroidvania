@@ -41,6 +41,7 @@ namespace Game
             SetDesignResolution(MainScene.ResWidth, MainScene.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             ClearColor = new Color(0xff371f0f);
             Physics.SpatialHashCellSize = 16;
+            Physics.RaycastsStartInColliders = true;
 
             AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, UI_LAYER));
         }
