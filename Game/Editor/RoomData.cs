@@ -41,9 +41,24 @@ namespace Game.Editor
 
         public void Initialize()
         {
-            // set rooms for all entities before calling Initialize
+            var prefabManager = Core.GetGlobalManager<PrefabManager>();
+
+            var toRemove = new List<RoomEntity>();
             foreach (var entity in Entities)
-                entity.Room = this;
+            {
+                // remove entities with prefabs that have been deleted
+                if (!string.IsNullOrEmpty(entity.PrefabId) && prefabManager.GetResource(entity.PrefabId) == null)
+                {
+                    toRemove.Add(entity);
+                }
+                else
+                {
+                    // set rooms for all entities before calling Initialize
+                    entity.Room = this;
+                }
+            }
+            foreach (var entity in toRemove)
+                Entities.Remove(entity);
             foreach (var entity in Entities)
                 entity.Initialize();
         }
