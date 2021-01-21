@@ -4775,30 +4775,11 @@
 		{
 			"@id": "678",
 			"@type": "Game.Editor.RoomEntity",
-			"Id": "AFOSLNCGQAKEUGTRIBGJZJBSIBXITTDJLJNDCX",
-			"Name": "Dummy Hero",
-			"PrefabId": "ZQMJCXOPAMKCYGQMAOIQQYJCKTVWGYPCIFDGAQ",
-			"Position": {
-				"@id": "679",
-				"@type": "Microsoft.Xna.Framework.Vector2",
-				"X": 368,
-				"Y": 192
-			},
-			"EntityOnlyComponents": [
-
-			],
-			"Components": [
-
-			]
-		},
-		{
-			"@id": "680",
-			"@type": "Game.Editor.RoomEntity",
 			"Id": "LKSBKDXEHTMWQXJYMQATLDOVLNDCKPTTFGJZLI",
 			"Name": "Checkpoint",
 			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
 			"Position": {
-				"@id": "681",
+				"@id": "679",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 280,
 				"Y": 208
@@ -4811,23 +4792,23 @@
 			]
 		},
 		{
-			"@id": "682",
+			"@id": "680",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "SORPUWUXUZFBSNMKIFXBRHIJQNKFHPJYYRIXUW",
 			"Name": "Switch",
 			"PrefabId": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD",
 			"Position": {
-				"@id": "683",
+				"@id": "681",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 436,
 				"Y": 180
 			},
 			"EntityOnlyComponents": [
 				{
-					"@id": "684",
+					"@id": "682",
 					"@type": "Game.Editor.Prefab.SwitchState",
 					"State": {
-						"@id": "685",
+						"@id": "683",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 					},
@@ -4839,23 +4820,23 @@
 			]
 		},
 		{
-			"@id": "686",
+			"@id": "684",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "IPTXYEAFVVHJJLHBZBWHKPOHDGNGIXKDNGMWIU",
 			"Name": "Gate",
 			"PrefabId": "CRJSFXWQFPQSTCYUUMHYQXRBDSSLKKTMSVVSGF",
 			"Position": {
-				"@id": "687",
+				"@id": "685",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 108,
 				"Y": 96
 			},
 			"EntityOnlyComponents": [
 				{
-					"@id": "688",
+					"@id": "686",
 					"@type": "Game.GateState",
 					"OpenState": {
-						"@id": "689",
+						"@id": "687",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 					},
@@ -4867,13 +4848,13 @@
 			]
 		},
 		{
-			"@id": "690",
+			"@id": "688",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "LJHEZWRELUZMMPMIZATAKUUMTIYUHKDAAEXWLQ",
 			"Name": "Goblin",
 			"PrefabId": "YZOLVJKIEIPOEYODTDJTZHSXRYYMAYZYWHKXQA",
 			"Position": {
-				"@id": "691",
+				"@id": "689",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 152,
 				"Y": 116
@@ -4887,11 +4868,11 @@
 		}
 	],
 	"RoomVariables": {
-		"@id": "692",
+		"@id": "690",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 			{
-				"@id": "693",
+				"@id": "691",
 				"@type": "Game.Editor.RoomVariable",
 				"Id": "LWNULXXHFOXTZJBWJYYOFPGLVWZBJXJMENWMRG",
 				"Name": "strVal",
@@ -4899,7 +4880,7 @@
 				"Value": "asdf"
 			},
 			{
-				"@id": "694",
+				"@id": "692",
 				"@type": "Game.Editor.RoomVariable",
 				"Id": "AKYJSODANBUCVTERQSPUFKKXFLKBZRMQDELSRL",
 				"Name": "someBool",
