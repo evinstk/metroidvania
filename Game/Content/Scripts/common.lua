@@ -54,12 +54,24 @@ function dialog(line)
 	end
 end
 
+function wait_interaction(entity)
+    while not is_interacted(entity) do
+        coroutine.yield()
+    end
+end
+
+function wait()
+	coroutine.yield()
+end
+
 --- higher-order
 
 function cutscene(player, fn)
 	return function()
 		disable(player)
 		fn()
+		-- eat interaction
+		wait()
 		enable(player)
 	end
 end

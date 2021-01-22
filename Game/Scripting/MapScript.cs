@@ -107,6 +107,8 @@ namespace Game.Scripting
         List<Trigger> _pendingAdditions = new List<Trigger>();
         List<Trigger> _triggers = new List<Trigger>();
         List<Trigger> _pendingRemovals = new List<Trigger>();
+
+        List<DynValue> _pendingCoroutineAdditions = new List<DynValue>();
         List<DynValue> _coroutines = new List<DynValue>();
         List<DynValue> _pendingCoroutineRemovals = new List<DynValue>();
 
@@ -174,7 +176,13 @@ namespace Game.Scripting
                 script.Globals["enable"] = (Action<Entity>)Enable;
                 script.Globals["interact"] = (Func<bool>)Interact;
                 script.Globals["instantiate"] = (Action<string, int, int>)Instantiate;
+                script.Globals["is_interacted"] = (Func<Entity, bool>)IsInteracted;
                 script.Globals["vars"] = new ScriptableObjects();
+                script.Globals["start_coroutine"] = (Action<Closure>)((Closure fn) =>
+                {
+                    var coroutine = _scripts[payload.RoomId].CreateCoroutine(fn);
+                    _pendingCoroutineAdditions.Add(coroutine);
+                });
 
                 script.DoString(_commonCode);
 
@@ -219,6 +227,11 @@ namespace Game.Scripting
                     }
                 }
 
+                foreach (var pendingCoroutine in _pendingCoroutineAdditions)
+                {
+                    _coroutines.Add(pendingCoroutine);
+                }
+                _pendingCoroutineAdditions.Clear();
                 foreach (var coroutine in _coroutines)
                 {
                     coroutine.Coroutine.Resume();
@@ -336,6 +349,13 @@ namespace Game.Scripting
                 return;
             }
             movement.SetEnabled(false);
+            var interaction = entity.GetComponent<Interaction>();
+            if (interaction == null)
+            {
+                Debug.Log("No Interaction on entity");
+                return;
+            }
+            interaction.SetEnabled(false);
         }
 
         void Enable(Entity entity)
@@ -352,6 +372,13 @@ namespace Game.Scripting
                 return;
             }
             movement.SetEnabled(true);
+            var interaction = entity.GetComponent<Interaction>();
+            if (interaction == null)
+            {
+                Debug.Log("No Interaction on entity");
+                return;
+            }
+            interaction.SetEnabled(true);
         }
 
         // can only call interact() once per frame
@@ -381,6 +408,17 @@ namespace Game.Scripting
                 Position = new Microsoft.Xna.Framework.Vector2(x, y),
             };
             entity.CreateEntity(Entity.Scene);
+        }
+
+        bool IsInteracted(Entity entity)
+        {
+            var interaction = entity.GetComponent<ScriptInteractable>();
+            if (interaction == null)
+            {
+                Debug.Log($"No {typeof(ScriptInteractable).Name} on ${entity.Name}");
+                return false;
+            }
+            return interaction.Interacted;
         }
     }
 
