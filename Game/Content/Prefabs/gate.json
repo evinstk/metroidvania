@@ -32,6 +32,7 @@
 				"TextureMapId": "doodads.png",
 				"FrameFilename": "gate.png"
 			},
+			"Flip": false,
 			"Id": "JHYWWHFHHTOJIRQLPDJOIMOMXPVQNQKZDCCXSG"
 		},
 		{

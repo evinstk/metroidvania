@@ -16,12 +16,14 @@ namespace Game.Editor.Prefab
     class SpriteRendererData : DataComponent
     {
         public TextureMapSpriteData SpriteData = new TextureMapSpriteData();
+        public bool Flip;
 
         public override void AddToEntity(Entity entity)
         {
             var sprite = SpriteData.Sprite;
             var renderer = entity.AddComponent(new SpriteRenderer(sprite));
             renderer.Color = SpriteData.Color;
+            renderer.FlipX = Flip;
         }
 
         public override void Render(Batcher batcher, Vector2 position)
@@ -29,7 +31,7 @@ namespace Game.Editor.Prefab
             var sprite = SpriteData.Sprite;
             if (sprite != null)
             {
-                batcher.Draw(sprite, position, SpriteData.Color, 0f, sprite.Origin, 1f, SpriteEffects.None, 0);
+                batcher.Draw(sprite, position, SpriteData.Color, 0f, sprite.Origin, 1f, Flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
             }
             else
             {

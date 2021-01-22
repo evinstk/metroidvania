@@ -13,6 +13,7 @@
 				"TextureMapId": "doodads.png",
 				"FrameFilename": "rightLamp.png"
 			},
+			"Flip": false,
 			"Id": "BVQQMRPWOPKXMRQBTFKBYBCQSXDIBFPHOTQCRC"
 		},
 		{

@@ -13,6 +13,7 @@
 				"TextureMapId": "doodads.png",
 				"FrameFilename": "offSwitch.png"
 			},
+			"Flip": false,
 			"Id": "ARYTTUSIHIPJFZDRPVKAISIYPJBJVSOAQPOQGL"
 		},
 		{

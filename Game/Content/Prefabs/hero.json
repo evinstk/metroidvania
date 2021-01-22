@@ -13,6 +13,7 @@
 				"TextureMapId": "hero32.png",
 				"FrameFilename": "default000.png"
 			},
+			"Flip": false,
 			"Id": "TLIPNROLGKNMAECHLTXJBSTPPZKPCWPNKSPZAY"
 		},
 		{

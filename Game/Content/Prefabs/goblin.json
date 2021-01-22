@@ -13,6 +13,7 @@
 				"TextureMapId": "goblin.png",
 				"FrameFilename": "goblinIdle0000.png"
 			},
+			"Flip": false,
 			"Id": "FRRDGEHZNWVWRMYIWQGQTWLYIFJRSWOQMTYSBV"
 		},
 		{
