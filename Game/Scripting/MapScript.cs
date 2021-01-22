@@ -1,7 +1,6 @@
 ﻿using Game.Editor;
 using Game.Editor.Prefab;
 using Game.Editor.Scriptable;
-using Game.Movement;
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
 using Nez;
@@ -126,6 +125,7 @@ namespace Game.Scripting
             var soTypes = ReflectionUtils.GetAllSubclasses(typeof(ScriptableObject));
             foreach (var soType in soTypes)
                 UserData.RegisterType(soType);
+            UserData.RegisterType<ScriptEntity>();
 
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
@@ -167,16 +167,12 @@ namespace Game.Scripting
                     });
                 });
                 script.Globals["findEntity"] = (Func<string, Entity>)FindEntity;
+                script.Globals["find_entity"] = (Func<string, ScriptEntity>)FindScriptEntity;
                 script.Globals["move"] = (Action<Entity, Entity>)Move;
                 script.Globals["stop"] = (Action<Entity>)Stop;
-                script.Globals["collides"] = (Func<Entity, Entity, bool>)Collides;
-                script.Globals["destroy"] = (Action<Entity>)Destroy;
                 script.Globals["speak"] = (Action<string>)_dialogSystem.FeedLine;
-                script.Globals["disable"] = (Action<Entity>)Disable;
-                script.Globals["enable"] = (Action<Entity>)Enable;
                 script.Globals["interact"] = (Func<bool>)Interact;
-                script.Globals["instantiate"] = (Action<string, int, int>)Instantiate;
-                script.Globals["is_interacted"] = (Func<Entity, bool>)IsInteracted;
+                script.Globals["instantiate"] = (Func<string, int, int, ScriptEntity>)Instantiate;
                 script.Globals["vars"] = new ScriptableObjects();
                 script.Globals["start_coroutine"] = (Action<Closure>)((Closure fn) =>
                 {
@@ -258,20 +254,18 @@ namespace Game.Scripting
             }
         }
 
-        void Trigger(Closure condition, Closure effect)
-        {
-            _pendingAdditions.Add(new Trigger()
-            {
-                Condition = condition,
-                Effect = effect,
-            });
-        }
-
         Entity FindEntity(string name)
         {
             var entity = Core.Scene.FindEntity(name);
             Debug.LogIf(entity == null, $"No entity with name \"{name}\"");
             return entity;
+        }
+
+        ScriptEntity FindScriptEntity(string name)
+        {
+            var entity = Core.Scene.FindEntity(name);
+            Debug.LogIf(entity == null, $"No entity with name \"{name}\"");
+            return new ScriptEntity(entity);
         }
 
         void Move(Entity entity, Entity dest)
@@ -307,80 +301,6 @@ namespace Game.Scripting
             Debug.Log($"Stopping \"{entity.Name}\"");
         }
 
-        void Destroy(Entity entity)
-        {
-            if (entity == null)
-            {
-                Debug.Log("Argument entity not defined");
-                return;
-            }
-            entity.Destroy();
-            Debug.Log($"Destroying \"{entity.Name}\"");
-        }
-
-        bool Collides(Entity lhs, Entity rhs)
-        {
-            var lhsNull = lhs == null; var rhsNull = rhs == null;
-            Debug.LogIf(lhsNull, "Argument lhs not defined");
-            Debug.LogIf(rhsNull, "Argument rhs not defined");
-            if (lhsNull || rhsNull) return false;
-
-            var colliderL = lhs.GetComponent<Collider>();
-            var colliderR = rhs.GetComponent<Collider>();
-            var colliderLNull = colliderL == null; var colliderRNull = colliderR == null;
-            Debug.LogIf(colliderLNull, "No collider on argument \"lhs\"");
-            Debug.LogIf(colliderRNull, "No collider on argument \"rhs\"");
-            if (colliderLNull || colliderRNull) return false;
-
-            return colliderL.CollidesWith(colliderR, out _);
-        }
-
-        void Disable(Entity entity)
-        {
-            if (entity == null)
-            {
-                Debug.Log("Argument entity not defined");
-                return;
-            }
-            var movement = entity.GetComponent<ControllerComponent>();
-            if (movement == null)
-            {
-                Debug.Log("No ControllerComponent on entity");
-                return;
-            }
-            movement.SetEnabled(false);
-            var interaction = entity.GetComponent<Interaction>();
-            if (interaction == null)
-            {
-                Debug.Log("No Interaction on entity");
-                return;
-            }
-            interaction.SetEnabled(false);
-        }
-
-        void Enable(Entity entity)
-        {
-            if (entity == null)
-            {
-                Debug.Log("Argument entity not defined");
-                return;
-            }
-            var movement = entity.GetComponent<ControllerComponent>();
-            if (movement == null)
-            {
-                Debug.Log("No ControllerComponent on entity");
-                return;
-            }
-            movement.SetEnabled(true);
-            var interaction = entity.GetComponent<Interaction>();
-            if (interaction == null)
-            {
-                Debug.Log("No Interaction on entity");
-                return;
-            }
-            interaction.SetEnabled(true);
-        }
-
         // can only call interact() once per frame
         bool _interactionConsumed = false;
         bool Interact()
@@ -393,33 +313,24 @@ namespace Game.Scripting
             return false;
         }
 
-        void Instantiate(string name, int x, int y)
+        ScriptEntity Instantiate(string name, int x, int y)
         {
             var prefab = Core.GetGlobalManager<PrefabManager>().GetResourceByName(name);
             if (prefab == null)
             {
                 Debug.Log($"No prefab name {name}");
-                return;
+                return null;
             }
-            var entity = new RoomEntity
+            var roomEntity = new RoomEntity
             {
                 Name = prefab.Name,
                 PrefabId = prefab.Id,
                 Position = new Microsoft.Xna.Framework.Vector2(x, y),
             };
-            entity.CreateEntity(Entity.Scene);
+            var entity = roomEntity.CreateEntity(Entity.Scene);
+            return new ScriptEntity(entity);
         }
 
-        bool IsInteracted(Entity entity)
-        {
-            var interaction = entity.GetComponent<ScriptInteractable>();
-            if (interaction == null)
-            {
-                Debug.Log($"No {typeof(ScriptInteractable).Name} on ${entity.Name}");
-                return false;
-            }
-            return interaction.Interacted;
-        }
     }
 
     class EntityProxy

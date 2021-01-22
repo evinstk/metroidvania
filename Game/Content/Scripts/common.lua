@@ -26,6 +26,12 @@ end
 
 --- coroutines
 
+function wait_enter(entity, area)
+	while not entity.collides(area) do
+		coroutine.yield()
+	end
+end
+
 function move_to(entity, dest)
     while true
 	do
@@ -55,7 +61,7 @@ function dialog(line)
 end
 
 function wait_interaction(entity)
-    while not is_interacted(entity) do
+    while not entity.is_interacted() do
         coroutine.yield()
     end
 end
@@ -68,10 +74,10 @@ end
 
 function cutscene(player, fn)
 	return function()
-		disable(player)
+		player.set_enabled(false)
 		fn()
 		-- eat interaction
 		wait()
-		enable(player)
+		player.set_enabled(true)
 	end
 end
