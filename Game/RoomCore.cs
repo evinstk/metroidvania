@@ -43,7 +43,7 @@ namespace Game
 
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
 
-            Scene = new RoomScene();
+            Scene = new MainMenuScene();
         }
     }
 }
