@@ -13110,10 +13110,36 @@
 					"Id": "YYKRUNUPNZISJXSFTTBIKNUXOOHMSOGLEZQEXY"
 				}
 			]
+		},
+		{
+			"@id": "1870",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "IMWHVMMBVEETWKQHECDRNPZAASSZMTLYEQDLGP",
+			"Name": "sageExit",
+			"PrefabId": null,
+			"Position": {
+				"@id": "1871",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 171,
+				"Y": 160
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+				{
+					"@id": "1872",
+					"@type": "Game.Editor.Prefab.AreaData",
+					"Size": {
+						"@ref": "1594"
+					},
+					"Id": "VEZQVFDCXAKKCOOVISNWGCTNOBTGPGGFBPGZSX"
+				}
+			]
 		}
 	],
 	"RoomVariables": {
-		"@id": "1870",
+		"@id": "1873",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 

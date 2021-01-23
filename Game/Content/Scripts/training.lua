@@ -1,6 +1,7 @@
 local sage = find_entity('Sage')
 local player = find_entity('hero')
-local bypassSage = find_entity('bypassSage')
+local bypass_sage = find_entity('bypassSage')
+local sage_exit = find_entity('sageExit')
 
 local talked_to_sage = false
 local annoyed_sage = false
@@ -48,8 +49,7 @@ start_coroutine(function ()
 end)
 
 start_coroutine(function ()
-    wait_enter(player, bypassSage)
-    print('suup')
+    wait_enter(player, bypass_sage)
     if talked_to_sage == false
     then
         annoyed_sage = true
@@ -59,5 +59,7 @@ start_coroutine(function ()
             dialog("It's not like I had any crucial tips to give.")
             sage.rest()
         end)()
+
+        move_to(sage, sage_exit)
     end
 end)

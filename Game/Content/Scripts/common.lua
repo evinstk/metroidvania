@@ -35,13 +35,13 @@ end
 function move_to(entity, dest)
     while true
 	do
-		if (collides(entity, dest))
+		if (entity.collides(dest))
 		then
-			stop(entity)
+			entity.stop()
 			-- return 0
 			break
 		end
-        move(entity, dest)
+        entity.move(dest)
         coroutine.yield()
     end
 end
@@ -77,6 +77,7 @@ function cutscene(player, fn)
 		player.set_enabled(false)
 		fn()
 		-- eat interaction
+		wait()
 		wait()
 		player.set_enabled(true)
 	end
