@@ -134,7 +134,7 @@ namespace Game.Leaper
         {
             var start = Time.TimeSinceSceneLoad;
             var dt = Time.DeltaTime;
-            if (start - dt > 0)
+            if (start - dt > 0 && dt > 0)
                 _fsm.Update(Time.DeltaTime);
         }
 
