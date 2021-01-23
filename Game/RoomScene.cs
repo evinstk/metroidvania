@@ -20,6 +20,7 @@ namespace Game
         public const int LIGHT_LAYER = 100;
         public const int LIGHT_MAP_LAYER = 101;
         public const int UI_LAYER = 200;
+        public const int PAUSE_MENU_LAYER = 201;
 
         public RoomScene(string roomDataId)
         {
@@ -43,7 +44,7 @@ namespace Game
             Physics.SpatialHashCellSize = 16;
             Physics.RaycastsStartInColliders = true;
 
-            AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, UI_LAYER));
+            AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, UI_LAYER, PAUSE_MENU_LAYER));
         }
 
         public override void OnStart()
@@ -59,6 +60,7 @@ namespace Game
 
             SetupLights();
             SetupUi();
+            SetupPauseMenu();
 
             var prefabManager = Core.GetGlobalManager<PrefabManager>();
 
@@ -100,6 +102,13 @@ namespace Game
             var dialogSystem = CreateEntity("dialogSystem");
             dialogSystem.SetParent(Camera.Transform);
             dialogSystem.AddComponent<DialogSystem>().SetRenderLayer(UI_LAYER);
+        }
+
+        void SetupPauseMenu()
+        {
+            AddRenderer(new ScreenSpaceRenderer(101, PAUSE_MENU_LAYER));
+            var pauseMenu = CreateEntity("pause-menu").AddComponent<PauseMenu>();
+            pauseMenu.RenderLayer = PAUSE_MENU_LAYER;
         }
     }
 
