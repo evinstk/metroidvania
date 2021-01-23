@@ -2,6 +2,6 @@
 	"@id": "1",
 	"@type": "Game.Editor.Scriptable.BooleanValue",
 	"Value": false,
-	"Name": "testSwitch",
-	"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
+	"Name": "trainingSwitch",
+	"Id": "IFMDCBPEQMLOCSIPSBOBUBBCJNENJHDSKSUCHP"
 }

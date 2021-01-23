@@ -1,0 +1,117 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
+	"Name": "Sage",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteRendererData",
+			"SpriteData": {
+				"@id": "3",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "sage.png",
+				"FrameFilename": "sageIdle0000.png"
+			},
+			"Flip": true,
+			"Id": "OKZJZCNZYPCSCMFKRQMZTCYIVJLTKPHPCYBULG"
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 16,
+				"Y": 32
+			},
+			"PhysicsLayer": {
+				"@id": "6",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 512
+			},
+			"CollidesWithLayers": {
+				"@id": "7",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 256
+			},
+			"Id": "GTTFJQCVILUMDXTUFIWTBXDPCJBWXAKMPOPWYT"
+		},
+		{
+			"@id": "8",
+			"@type": "Game.ScriptInteractableData",
+			"Id": "SBCLVSPASJVSZLIABXGBEVVOFHHRAYCCMVJOBY"
+		},
+		{
+			"@id": "9",
+			"@type": "Game.Editor.Prefab.PlayerMovementData",
+			"IdleRight": {
+				"@id": "10",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH",
+				"Flip": false
+			},
+			"IdleLeft": {
+				"@id": "11",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH",
+				"Flip": true
+			},
+			"WalkRight": {
+				"@id": "12",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH",
+				"Flip": false
+			},
+			"WalkLeft": {
+				"@id": "13",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH",
+				"Flip": true
+			},
+			"AttackRight": {
+				"@id": "14",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "default",
+				"Flip": false
+			},
+			"AttackLeft": {
+				"@id": "15",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "default",
+				"Flip": false
+			},
+			"JumpRight": {
+				"@id": "16",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "default",
+				"Flip": false
+			},
+			"JumpLeft": {
+				"@id": "17",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "default",
+				"Flip": false
+			},
+			"TalkRight": {
+				"@id": "18",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "FOUKASQODIWWMJVHWVSZBJRWVEGRBLVJAUERIP",
+				"Flip": false
+			},
+			"TalkLeft": {
+				"@id": "19",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "FOUKASQODIWWMJVHWVSZBJRWVEGRBLVJAUERIP",
+				"Flip": true
+			},
+			"Hit": {
+				"@id": "20",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+HitData",
+				"HitMask": 0
+			},
+			"Id": "RTXYVZXMMZSCFSJMSVPUYMCTMFADPKTSBOZRNY"
+		}
+	],
+	"Id": "ICMFKIONPZCSCBHBBPELQRQNLHKFRGOJHNURYC"
+}

@@ -1,0 +1,22 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Animation.AnimationData",
+	"Name": "sageIdle",
+	"FramesPerSecond": 12,
+	"Frames": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "3",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sage.png",
+				"FrameFilename": "sageIdle0000.png"
+			},
+			"HitBoxes": [
+
+			]
+		}
+	],
+	"Id": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH"
+}
