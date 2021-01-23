@@ -46,11 +46,40 @@ namespace Game
             _confirmInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Enter));
             _confirmInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.E));
             _confirmInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
-            _confirmInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Start));
         }
 
         public void Update()
         {
+            if (_showing)
+            {
+                var input = _selectionInput.Value;
+                if (_lastInput == 0)
+                {
+                    var optionsLength = _options.Length;
+                    _selection = (_selection + input) % optionsLength;
+                    _selection = _selection == -1 ? optionsLength - 1 : _selection;
+                }
+                _lastInput = input;
+
+                if (_confirmInput.IsPressed)
+                {
+                    switch (_selection)
+                    {
+                        case 0:
+                            _showing = false;
+                            Time.TimeScale = 1;
+                            break;
+                        case 1:
+                            Time.TimeScale = 1;
+                            Core.StartSceneTransition(new FadeTransition(() => new MainMenuScene()));
+                            break;
+                        case 2:
+                            Core.Exit();
+                            break;
+                    }
+                }
+            }
+
             if (_pauseInput.IsPressed)
             {
                 _showing = !_showing;
@@ -62,33 +91,6 @@ namespace Game
                 else
                 {
                     Time.TimeScale = 1;
-                }
-            }
-
-            var input = _selectionInput.Value;
-            if (_lastInput == 0)
-            {
-                var optionsLength = _options.Length;
-                _selection = (_selection + input) % optionsLength;
-                _selection = _selection == -1 ? optionsLength - 1 : _selection;
-            }
-            _lastInput = input;
-
-            if (_confirmInput.IsPressed)
-            {
-                switch (_selection)
-                {
-                    case 0:
-                        _showing = false;
-                        Time.TimeScale = 1;
-                        break;
-                    case 1:
-                        Time.TimeScale = 1;
-                        Core.StartSceneTransition(new FadeTransition(() => new MainMenuScene()));
-                        break;
-                    case 2:
-                        Core.Exit();
-                        break;
                 }
             }
         }
