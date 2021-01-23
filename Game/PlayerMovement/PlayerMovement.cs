@@ -26,12 +26,15 @@ namespace Game.Movement
         public MovementAnimation Walk;
         public MovementAnimation Attack;
         public MovementAnimation Jump;
+        public MovementAnimation Talking;
 
         // external dependencies
         ControllerComponent _controller;
 
         Microsoft.Xna.Framework.Vector2 _velocity;
         float _jumpElapsed;
+        bool _talkPending;
+        bool _restPending;
 
         PlatformerMover _platformerMover;
         BoxCollider _boxCollider;
@@ -43,11 +46,17 @@ namespace Game.Movement
         Animator<ObserverFrame> _animator;
         StateMachine<PlayerMovement> _fsm;
 
+        public void Talk() => _talkPending = true;
+        public void Rest() => _restPending = true;
+
         public override void OnAddedToEntity()
         {
             _controller = Entity.GetComponent<ControllerComponent>();
             if (_controller == null)
+            {
+                Debug.Log($"No {typeof(ControllerComponent).Name} on ${Entity.Name}. Adding ${typeof(FreeController).Name}");
                 _controller = Entity.AddComponent<FreeController>();
+            }
 
             _platformerMover = Entity.GetComponentStrict<PlatformerMover>();
             _boxCollider = Entity.GetComponentStrict<BoxCollider>();
@@ -55,6 +64,7 @@ namespace Game.Movement
             _fsm = new StateMachine<PlayerMovement>(this, new GroundState());
             _fsm.AddState(new AirState());
             _fsm.AddState(new AttackState());
+            _fsm.AddState(new TalkingState());
 
             _animator = Entity.GetComponentStrict<Animator<ObserverFrame>>();
             _animator.Play(Idle.Right);
@@ -73,6 +83,16 @@ namespace Game.Movement
             if (_controller.AttackPressed)
             {
                 _fsm.ChangeState<AttackState>();
+            }
+            if (_talkPending && _fsm.CurrentState != _fsm.GetState<TalkingState>())
+            {
+                _talkPending = false;
+                _fsm.ChangeState<TalkingState>();
+            }
+            if (_restPending && _fsm.CurrentState == _fsm.GetState<TalkingState>())
+            {
+                _restPending = false;
+                _fsm.ChangeState<GroundState>();
             }
         }
 

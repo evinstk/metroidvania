@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using Game.Movement;
+using Nez;
 
 namespace Game.Scripting
 {
@@ -9,6 +10,18 @@ namespace Game.Scripting
         public ScriptEntity(Entity entity)
         {
             Entity = entity;
+        }
+
+        public void Talk()
+        {
+            var movement = Entity.GetComponent<PlayerMovement>();
+            movement.Talk();
+        }
+
+        public void Rest()
+        {
+            var movement = Entity.GetComponent<PlayerMovement>();
+            movement.Rest();
         }
 
         public bool IsInteracted()

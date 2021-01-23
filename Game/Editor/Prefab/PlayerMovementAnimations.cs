@@ -22,6 +22,8 @@ namespace Game.Editor.Prefab
         public AnimationData AttackLeft = new AnimationData();
         public AnimationData JumpRight = new AnimationData();
         public AnimationData JumpLeft = new AnimationData();
+        public AnimationData TalkRight = new AnimationData();
+        public AnimationData TalkLeft = new AnimationData();
         public HitData Hit = new HitData();
 
         [CustomInspector(typeof(AnimationDataInspector))]
@@ -120,6 +122,8 @@ namespace Game.Editor.Prefab
             movement.Attack.Left = AttackLeft.MakeAnimation();
             movement.Jump.Right = JumpRight.MakeAnimation();
             movement.Jump.Left = JumpLeft.MakeAnimation();
+            movement.Talking.Right = TalkRight.MakeAnimation();
+            movement.Talking.Left = TalkLeft.MakeAnimation();
 
             var hitter = entity.AddComponent<Hitter>();
             hitter.HitMask = Hit.HitMask;
