@@ -7,6 +7,14 @@ using System.Collections.Generic;
 
 namespace Game
 {
+    class InteractionData : DataComponent
+    {
+        public override void AddToEntity(Entity entity)
+        {
+            entity.AddComponent<Interaction>();
+        }
+    }
+
     class Interaction : Component, IUpdatable
     {
         public Vector2 Cast = new Vector2(32, 0);

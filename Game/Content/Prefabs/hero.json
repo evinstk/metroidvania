@@ -135,6 +135,11 @@
 			"@id": "24",
 			"@type": "Game.Hit.LoggingHitListenerData",
 			"Id": "KAJVUMQMDDHWWVWIDBEIHXLGTTJHJKLCJDWLZW"
+		},
+		{
+			"@id": "25",
+			"@type": "Game.InteractionData",
+			"Id": "TVBFWXRERFIFORJZAAJQWGUWEWUCUZSJQNJKVS"
 		}
 	],
 	"Id": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC"

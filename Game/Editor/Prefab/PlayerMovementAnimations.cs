@@ -111,7 +111,6 @@ namespace Game.Editor.Prefab
             entity.AddComponent<PlatformerMover>();
             entity.AddComponent<SpriteObserver>();
             entity.AddComponent<Animator<ObserverFrame>>();
-            entity.AddComponent<Interaction>();
 
             var movement = entity.AddComponent<PlayerMovement>();
             movement.Idle.Right = IdleRight.MakeAnimation();
