@@ -290,6 +290,12 @@
 #begin Animations2/heroWalk.json
 /copy:Animations2/heroWalk.json
 
+#begin Animations2/sageIdle.json
+/copy:Animations2/sageIdle.json
+
+#begin Animations2/sageTalk.json
+/copy:Animations2/sageTalk.json
+
 #begin Data/AnimationGroups.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -394,6 +400,9 @@
 #begin Prefabs/Right Lamp.json
 /copy:Prefabs/Right Lamp.json
 
+#begin Prefabs/sage.json
+/copy:Prefabs/sage.json
+
 #begin Prefabs/Switch.json
 /copy:Prefabs/Switch.json
 
@@ -412,6 +421,12 @@
 #begin Rooms/TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC.json
 /copy:Rooms/TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC.json
 
+#begin Rooms/VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV.json
+/copy:Rooms/VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV.json
+
+#begin ScriptableObjects/BooleanValue/IFMDCBPEQMLOCSIPSBOBUBBCJNENJHDSKSUCHP.json
+/copy:ScriptableObjects/BooleanValue/IFMDCBPEQMLOCSIPSBOBUBBCJNENJHDSKSUCHP.json
+
 #begin ScriptableObjects/BooleanValue/IVYYAUUYUCSIJMLBXZNPXVBEAAHHYGSEDNFTEA.json
 /copy:ScriptableObjects/BooleanValue/IVYYAUUYUCSIJMLBXZNPXVBEAAHHYGSEDNFTEA.json
 
@@ -426,6 +441,9 @@
 
 #begin Scripts/room.lua
 /copy:Scripts/room.lua
+
+#begin Scripts/training.lua
+/copy:Scripts/training.lua
 
 #begin Sounds/hit.wav
 /importer:WavImporter
@@ -516,6 +534,12 @@
 
 #begin Textures/pillar.png
 /copy:Textures/pillar.png
+
+#begin Textures/sage.json
+/copy:Textures/sage.json
+
+#begin Textures/sage.png
+/copy:Textures/sage.png
 
 #begin Textures/terrain16.png
 /copy:Textures/terrain16.png
