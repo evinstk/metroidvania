@@ -54,7 +54,7 @@ namespace Game.Movement
             _controller = Entity.GetComponent<ControllerComponent>();
             if (_controller == null)
             {
-                Debug.Log($"No {typeof(ControllerComponent).Name} on ${Entity.Name}. Adding ${typeof(FreeController).Name}");
+                Debug.Log($"No {typeof(ControllerComponent).Name} on {Entity.Name}. Adding {typeof(FreeController).Name}.");
                 _controller = Entity.AddComponent<FreeController>();
             }
 
