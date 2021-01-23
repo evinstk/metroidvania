@@ -17,6 +17,7 @@ namespace Game
             DebugConsole.RenderScale = 2f;
             ExitOnEscapeKeypress = false;
             Window.Title = "Metroidvania";
+            IsMouseVisible = false;
 
             var managers = new List<Manager>();
             var managerTypes = ReflectionUtils.GetAllSubclasses(typeof(Manager), true);
