@@ -24,6 +24,34 @@ namespace Game.Scripting
             movement.Rest();
         }
 
+        public void Move(ScriptEntity dest)
+        {
+            var destNull = dest == null;
+            Debug.LogIf(destNull, "Argument dest not defined");
+            if (destNull) return;
+
+            var controller = Entity.GetComponent<FreeController>();
+            if (controller == null)
+            {
+                Debug.Log($"No FreeController found on \"{Entity.Name}\"");
+                return;
+            }
+            controller.SetXAxis(Mathf.SignThreshold(dest.Entity.Position.X - Entity.Position.X, 0));
+            Debug.Log($"Moving \"{Entity.Name}\" to \"{dest.Entity.Name}\"");
+        }
+
+        public void Stop()
+        {
+            var controller = Entity.GetComponent<FreeController>();
+            if (controller == null)
+            {
+                Debug.Log($"No FreeController found on \"{Entity.Name}\"");
+                return;
+            }
+            controller.SetXAxis(0);
+            Debug.Log($"Stopping \"{Entity.Name}\"");
+        }
+
         public bool IsInteracted()
         {
             var interactable = Entity.GetComponent<ScriptInteractable>();

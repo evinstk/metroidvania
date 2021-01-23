@@ -168,8 +168,6 @@ namespace Game.Scripting
                 });
                 script.Globals["findEntity"] = (Func<string, Entity>)FindEntity;
                 script.Globals["find_entity"] = (Func<string, ScriptEntity>)FindScriptEntity;
-                script.Globals["move"] = (Action<Entity, Entity>)Move;
-                script.Globals["stop"] = (Action<Entity>)Stop;
                 script.Globals["speak"] = (Action<string>)_dialogSystem.FeedLine;
                 script.Globals["interact"] = (Func<bool>)Interact;
                 script.Globals["instantiate"] = (Func<string, int, int, ScriptEntity>)Instantiate;
@@ -266,39 +264,6 @@ namespace Game.Scripting
             var entity = Core.Scene.FindEntity(name);
             Debug.LogIf(entity == null, $"No entity with name \"{name}\"");
             return new ScriptEntity(entity);
-        }
-
-        void Move(Entity entity, Entity dest)
-        {
-            var entityNull = entity == null; var destNull = dest == null;
-            Debug.LogIf(entityNull, "Argument entity not defined");
-            Debug.LogIf(destNull, "Argument dest not defined");
-            if (entityNull || destNull) return;
-
-            var controller = entity.GetComponent<FreeController>();
-            if (controller == null)
-            {
-                Debug.Log($"No FreeController found on \"{entity.Name}\"");
-                return;
-            }
-            controller.SetXAxis(Mathf.SignThreshold(dest.Position.X - entity.Position.X, 0));
-            Debug.Log($"Moving \"{entity.Name}\" to \"{dest.Name}\"");
-        }
-
-        void Stop(Entity entity)
-        {
-            var entityNull = entity == null;
-            Debug.LogIf(entityNull, "Argument entity not defined");
-            if (entityNull) return;
-
-            var controller = entity.GetComponent<FreeController>();
-            if (controller == null)
-            {
-                Debug.Log($"No FreeController found on \"{entity.Name}\"");
-                return;
-            }
-            controller.SetXAxis(0);
-            Debug.Log($"Stopping \"{entity.Name}\"");
         }
 
         // can only call interact() once per frame
