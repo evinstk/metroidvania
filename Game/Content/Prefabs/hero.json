@@ -19,6 +19,11 @@
 		{
 			"@id": "4",
 			"@type": "Game.Editor.Prefab.PlayerMovementData",
+			"Gravity": 750,
+			"MoveSpeed": 150,
+			"MaxFallVelocity": 200,
+			"JumpVelocity": 250,
+			"JumpDuration": 0.2,
 			"IdleRight": {
 				"@id": "5",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",

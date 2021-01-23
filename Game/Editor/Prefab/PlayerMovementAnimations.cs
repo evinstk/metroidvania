@@ -14,6 +14,12 @@ namespace Game.Editor.Prefab
 {
     class PlayerMovementData : DataComponent
     {
+        public float Gravity = 750; // acceleration
+        public float MoveSpeed = 150;
+        public float MaxFallVelocity = 200;
+        public float JumpVelocity = 250;
+        public float JumpDuration = 0.2f;
+
         public AnimationData IdleRight = new AnimationData();
         public AnimationData IdleLeft = new AnimationData();
         public AnimationData WalkRight = new AnimationData();
@@ -123,6 +129,12 @@ namespace Game.Editor.Prefab
             movement.Jump.Left = JumpLeft.MakeAnimation();
             movement.Talking.Right = TalkRight.MakeAnimation();
             movement.Talking.Left = TalkLeft.MakeAnimation();
+
+            movement.Gravity = Gravity; // acceleration
+            movement.MoveSpeed = MoveSpeed;
+            movement.MaxFallVelocity = MaxFallVelocity;
+            movement.JumpVelocity = JumpVelocity;
+            movement.JumpDuration = JumpDuration;
 
             var hitter = entity.AddComponent<Hitter>();
             hitter.HitMask = Hit.HitMask;
