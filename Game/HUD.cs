@@ -52,6 +52,11 @@ namespace Game
             RenderLayer = RoomScene.HUD_LAYER;
         }
 
+        public override void OnAddedToEntity()
+        {
+            CurrHealth.Value = MaxHealth.Value;
+        }
+
         public override void Render(Batcher batcher, Camera camera)
         {
             var maxHealth = MaxHealth.Value;
