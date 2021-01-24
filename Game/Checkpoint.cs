@@ -34,7 +34,8 @@ namespace Game
 
         public void Interact()
         {
-            SaveSystem2.Save(_roomEntity.RoomId, _roomEntity.RoomEntityId);
+            var scene = Entity.Scene as RoomScene;
+            SaveSystem2.Save(scene.SaveSlotIndex, _roomEntity.RoomId, _roomEntity.RoomEntityId);
         }
     }
 }

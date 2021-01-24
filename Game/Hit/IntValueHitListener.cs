@@ -28,7 +28,10 @@ namespace Game.Hit
                 var scene = Entity.Scene as RoomScene;
                 Core.Schedule(2f, (ITimer timer) =>
                 {
-                    Core.StartSceneTransition(new FadeTransition(() => new RoomScene(scene.RoomDataId, scene.CheckpointId)));
+                    Core.StartSceneTransition(new FadeTransition(() =>
+                        scene.SaveSlotIndex != -1
+                        ? new RoomScene(scene.SaveSlotIndex)
+                        : new RoomScene(scene.RoomDataId, scene.CheckpointId)));
                 });
             }
         }

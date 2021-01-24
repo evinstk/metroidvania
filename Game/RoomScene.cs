@@ -16,6 +16,7 @@ namespace Game
     {
         public string RoomDataId { get; set; }
         public string CheckpointId { get; set; }
+        public int SaveSlotIndex = -1;
 
         public const int LIGHT_LAYER = 100;
         public const int LIGHT_MAP_LAYER = 101;
@@ -30,9 +31,10 @@ namespace Game
             CheckpointId = checkpointId;
         }
 
-        public RoomScene()
+        public RoomScene(int saveSlotIndex)
         {
-            var saveFile = SaveSystem2.Load();
+            SaveSlotIndex = saveSlotIndex;
+            var saveFile = SaveSystem2.Load(saveSlotIndex);
             RoomDataId = saveFile.RoomId;
             Insist.IsNotNull(RoomDataId);
             CheckpointId = saveFile.CheckpointId;

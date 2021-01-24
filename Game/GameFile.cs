@@ -9,6 +9,7 @@ namespace Game
 
         public static string SaveFile => "save.json";
         public static string SavePath => LocalDir + SaveFile;
+        public static string GetSavePath(int slotIndex) => $"{LocalDir}save{slotIndex}.json";
 
         public static string ConfigFile => "config.json";
         public static string ConfigPath => LocalDir + ConfigFile;

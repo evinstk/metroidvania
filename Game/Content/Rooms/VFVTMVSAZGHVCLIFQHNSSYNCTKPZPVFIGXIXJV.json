@@ -13136,10 +13136,48 @@
 					"Id": "VEZQVFDCXAKKCOOVISNWGCTNOBTGPGGFBPGZSX"
 				}
 			]
+		},
+		{
+			"@id": "1873",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "ECRGPIWXZLMFZWIJRHAPPSVQPXMFLEPOWGBZKT",
+			"Name": "Checkpoint",
+			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
+			"Position": {
+				"@id": "1874",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 400,
+				"Y": 464
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "1875",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "RSDSMMWYYYUARDCPVELVIXRQSQYQAHXMDXZGJC",
+			"Name": "Checkpoint",
+			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
+			"Position": {
+				"@id": "1876",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 200,
+				"Y": 384
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+
+			]
 		}
 	],
 	"RoomVariables": {
-		"@id": "1873",
+		"@id": "1877",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 
