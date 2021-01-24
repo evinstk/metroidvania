@@ -22,8 +22,15 @@ namespace Game.Hit
         public void OnHit()
         {
             --CurrHealth.Value;
-            if (CurrHealth.Value == 0)
+            if (CurrHealth.Value <= 0)
+            {
                 Entity.Destroy();
+                var scene = Entity.Scene as RoomScene;
+                Core.Schedule(2f, (ITimer timer) =>
+                {
+                    Core.StartSceneTransition(new FadeTransition(() => new RoomScene(scene.RoomDataId, scene.CheckpointId)));
+                });
+            }
         }
     }
 }
