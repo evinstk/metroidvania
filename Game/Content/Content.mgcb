@@ -394,6 +394,9 @@
 #begin Prefabs/hero.json
 /copy:Prefabs/hero.json
 
+#begin Prefabs/hud.json
+/copy:Prefabs/hud.json
+
 #begin Prefabs/Left Lamp.json
 /copy:Prefabs/Left Lamp.json
 
@@ -429,6 +432,12 @@
 
 #begin ScriptableObjects/BooleanValue/IVYYAUUYUCSIJMLBXZNPXVBEAAHHYGSEDNFTEA.json
 /copy:ScriptableObjects/BooleanValue/IVYYAUUYUCSIJMLBXZNPXVBEAAHHYGSEDNFTEA.json
+
+#begin ScriptableObjects/IntValue/JDCWIOFDUEAKZUHJDADIGJZINSKQUVOTZGGJZR.json
+/copy:ScriptableObjects/IntValue/JDCWIOFDUEAKZUHJDADIGJZINSKQUVOTZGGJZR.json
+
+#begin ScriptableObjects/IntValue/NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC.json
+/copy:ScriptableObjects/IntValue/NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC.json
 
 #begin Scripts/above.lua
 /copy:Scripts/above.lua
@@ -528,6 +537,12 @@
 
 #begin Textures/hero32.png
 /copy:Textures/hero32.png
+
+#begin Textures/hud.json
+/copy:Textures/hud.json
+
+#begin Textures/hud.png
+/copy:Textures/hud.png
 
 #begin Textures/nearMountain.png
 /copy:Textures/nearMountain.png

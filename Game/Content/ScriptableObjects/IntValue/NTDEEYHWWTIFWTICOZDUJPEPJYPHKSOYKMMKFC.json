@@ -1,0 +1,7 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Scriptable.IntValue",
+	"Value": 4,
+	"Name": "Current Health",
+	"Id": "NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC"
+}

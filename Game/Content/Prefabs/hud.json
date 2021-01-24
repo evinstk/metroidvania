@@ -1,0 +1,44 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
+	"Name": "HUD",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.HUDData",
+			"MaxHealth": {
+				"@id": "3",
+				"@type": "Game.Editor.Scriptable.IntReference",
+				"Id": "JDCWIOFDUEAKZUHJDADIGJZINSKQUVOTZGGJZR"
+			},
+			"CurrHealth": {
+				"@id": "4",
+				"@type": "Game.Editor.Scriptable.IntReference",
+				"Id": "NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC"
+			},
+			"FullHeart": {
+				"@id": "5",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "hud.png",
+				"FrameFilename": "full-heart.png"
+			},
+			"EmptyHeart": {
+				"@id": "6",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "hud.png",
+				"FrameFilename": "empty-heart.png"
+			},
+			"HealthOffset": {
+				"@id": "7",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 20,
+				"Y": 20
+			},
+			"HealthSpacing": 15,
+			"Id": "ZVLOVMUIDCIFKGCCHZKQCRJYMOYLICNKDVUXFC"
+		}
+	],
+	"Id": "hud"
+}

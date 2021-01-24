@@ -138,13 +138,18 @@
 		},
 		{
 			"@id": "24",
-			"@type": "Game.Hit.LoggingHitListenerData",
-			"Id": "KAJVUMQMDDHWWVWIDBEIHXLGTTJHJKLCJDWLZW"
+			"@type": "Game.InteractionData",
+			"Id": "TVBFWXRERFIFORJZAAJQWGUWEWUCUZSJQNJKVS"
 		},
 		{
 			"@id": "25",
-			"@type": "Game.InteractionData",
-			"Id": "TVBFWXRERFIFORJZAAJQWGUWEWUCUZSJQNJKVS"
+			"@type": "Game.Hit.IntValueHitListenerData",
+			"CurrHealth": {
+				"@id": "26",
+				"@type": "Game.Editor.Scriptable.IntReference",
+				"Id": "NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC"
+			},
+			"Id": "EZDHKUSNCWZFRXYVERHTITFOKVLZAAMGAAUDVF"
 		}
 	],
 	"Id": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC"
