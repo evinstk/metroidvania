@@ -42,7 +42,9 @@ namespace Game
             foreach (var manager in managers)
                 manager.Initialize();
 
+#if RELEASE
             Screen.IsFullscreen = true;
+#endif
             Screen.SetSize(MainScene.ScreenWidth, MainScene.ScreenHeight);
 
             Scene = new MainMenuScene();
