@@ -123,16 +123,7 @@ namespace Game
             {
                 if (_selection < _numSaveSlots)
                 {
-                    var saveExists = _saveExists[_selection];
-                    if (saveExists)
-                    {
-                        Core.StartSceneTransition(new FadeTransition(() => new RoomScene(_selection)));
-                    }
-                    else
-                    {
-                        SaveSystem2.Save(_selection);
-                        Core.StartSceneTransition(new FadeTransition(() => new RoomScene(_selection)));
-                    }
+                    Core.StartSceneTransition(new FadeTransition(() => new RoomScene(_selection)));
                 }
                 else if (_selection == _numSaveSlots) // back
                 {

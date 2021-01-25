@@ -9,6 +9,7 @@ using Nez.ImGuiTools;
 using Nez.Sprites;
 using Nez.Textures;
 using System;
+using System.Reflection;
 
 namespace Game
 {
@@ -34,11 +35,29 @@ namespace Game
         public RoomScene(int saveSlotIndex)
         {
             SaveSlotIndex = saveSlotIndex;
-            var saveFile = SaveSystem2.Load(saveSlotIndex);
-            RoomDataId = saveFile.RoomId;
-            Insist.IsNotNull(RoomDataId);
-            CheckpointId = saveFile.CheckpointId;
-            Insist.IsNotNull(CheckpointId);
+            if (SaveSystem2.Exists(saveSlotIndex))
+            {
+                var saveFile = SaveSystem2.Load(saveSlotIndex);
+                RoomDataId = saveFile.RoomId;
+                Insist.IsNotNull(RoomDataId);
+                CheckpointId = saveFile.CheckpointId;
+                Insist.IsNotNull(CheckpointId);
+                foreach (var saveSO in saveFile.ScriptableObjects)
+                {
+                    var manager = typeof(Core)
+                        .GetMethod(nameof(Core.GetGlobalManager), BindingFlags.Public | BindingFlags.Static)
+                        .MakeGenericMethod(typeof(ScriptableObjectManager<>).MakeGenericType(saveSO.GetType()))
+                        .Invoke(null, null);
+                    var so = manager.GetType().GetMethod("GetResource").Invoke(manager, new object[] { saveSO.Id });
+                    // TODO: this will break if the interface is not implemented
+                    so.GetType().GetProperty("RuntimeValue").SetValue(so, saveSO.GetType().GetProperty("RuntimeValue").GetValue(saveSO));
+                }
+            }
+            else
+            {
+                RoomDataId = "VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV";
+                CheckpointId = "EUTJBZWZVREDYQDPGUVCNQMHHDWPFCJFPTDUYQ";
+            }
         }
 
         public override void Initialize()

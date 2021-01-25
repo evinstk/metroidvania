@@ -11,6 +11,7 @@ namespace Game.Editor.Scriptable
         public string Id { get; set; } = Utils.RandomString();
         public string DisplayName => Name;
         public string Name = "New Scriptable Object";
+        public bool IncludeInSave;
 
         public virtual void OnStart() { }
     }
@@ -40,5 +41,11 @@ namespace Game.Editor.Scriptable
                 val.Id = id;
             }
         }
+    }
+
+    interface IValue<T>
+    {
+        T InitialValue { get; set; }
+        T RuntimeValue { get; set; }
     }
 }

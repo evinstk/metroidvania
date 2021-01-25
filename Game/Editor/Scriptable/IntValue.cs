@@ -3,12 +3,13 @@ using Nez.Persistence;
 
 namespace Game.Editor.Scriptable
 {
-    class IntValue : ScriptableObject
+    class IntValue : ScriptableObject, IValue<int>
     {
-        public int InitialValue;
+        [JsonInclude]
+        public int InitialValue { get; set; }
         [NotInspectable]
-        [JsonExclude]
-        public int RuntimeValue;
+        [JsonInclude]
+        public int RuntimeValue { get; set; }
 
         public override void OnStart()
         {

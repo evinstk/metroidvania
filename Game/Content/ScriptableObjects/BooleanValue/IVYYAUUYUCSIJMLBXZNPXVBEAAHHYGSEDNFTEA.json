@@ -1,7 +1,8 @@
 {
 	"@id": "1",
 	"@type": "Game.Editor.Scriptable.BooleanValue",
-	"InitialValue": false,
 	"Name": "testSwitch",
+	"IncludeInSave": true,
+	"InitialValue": false,
 	"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 }
