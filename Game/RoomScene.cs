@@ -48,6 +48,16 @@ namespace Game
             Physics.SpatialHashCellSize = 16;
             Physics.RaycastsStartInColliders = true;
 
+            var soTypes = ReflectionUtils.GetAllSubclasses(typeof(ScriptableObject));
+            foreach (var type in soTypes)
+            {
+                var manager = typeof(Core)
+                    .GetMethod(nameof(Core.GetGlobalManager))
+                    .MakeGenericMethod(typeof(ScriptableObjectManager<>).MakeGenericType(type))
+                    .Invoke(null, null);
+                manager.GetType().GetMethod("OnStart").Invoke(manager, null);
+            }
+
             AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, UI_LAYER, PAUSE_MENU_LAYER));
         }
 

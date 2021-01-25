@@ -45,12 +45,12 @@ namespace Game.Editor.Prefab
 
         public void Update()
         {
-            _renderer.Sprite = State.Value ? OnSprite : OffSprite;
+            _renderer.Sprite = State.RuntimeValue ? OnSprite : OffSprite;
         }
 
         public void Interact()
         {
-            State.Value = !State.Value;
+            State.RuntimeValue = !State.RuntimeValue;
         }
     }
 }

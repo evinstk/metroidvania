@@ -11,6 +11,8 @@ namespace Game.Editor.Scriptable
         public string Id { get; set; } = Utils.RandomString();
         public string DisplayName => Name;
         public string Name = "New Scriptable Object";
+
+        public virtual void OnStart() { }
     }
 
     abstract class Reference<T>

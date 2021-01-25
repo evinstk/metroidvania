@@ -48,8 +48,8 @@ namespace Game
 
         public void Update()
         {
-            _collider.Enabled = !OpenState.Value;
-            _renderer.Sprite = OpenState.Value ? OpenSprite : ClosedSprite;
+            _collider.Enabled = !OpenState.RuntimeValue;
+            _renderer.Sprite = OpenState.RuntimeValue ? OpenSprite : ClosedSprite;
         }
     }
 }

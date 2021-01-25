@@ -21,8 +21,8 @@ namespace Game.Hit
 
         public void OnHit()
         {
-            --CurrHealth.Value;
-            if (CurrHealth.Value <= 0)
+            --CurrHealth.RuntimeValue;
+            if (CurrHealth.RuntimeValue <= 0)
             {
                 Entity.Destroy();
                 var scene = Entity.Scene as RoomScene;

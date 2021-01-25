@@ -54,13 +54,13 @@ namespace Game
 
         public override void OnAddedToEntity()
         {
-            CurrHealth.Value = MaxHealth.Value;
+            CurrHealth.RuntimeValue = MaxHealth.RuntimeValue;
         }
 
         public override void Render(Batcher batcher, Camera camera)
         {
-            var maxHealth = MaxHealth.Value;
-            var currHealth = CurrHealth.Value;
+            var maxHealth = MaxHealth.RuntimeValue;
+            var currHealth = CurrHealth.RuntimeValue;
             for (var i = 0; i < maxHealth; ++i)
             {
                 var sprite = i <= currHealth - 1 ? FullHeart : EmptyHeart;

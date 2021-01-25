@@ -1,7 +1,7 @@
 {
 	"@id": "1",
 	"@type": "Game.Editor.Scriptable.BooleanValue",
-	"Value": false,
+	"InitialValue": false,
 	"Name": "trainingSwitch",
 	"Id": "IFMDCBPEQMLOCSIPSBOBUBBCJNENJHDSKSUCHP"
 }
