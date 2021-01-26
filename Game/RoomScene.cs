@@ -77,7 +77,7 @@ namespace Game
                 manager.GetType().GetMethod("OnStart").Invoke(manager, null);
             }
 
-            AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, UI_LAYER, PAUSE_MENU_LAYER));
+            AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, HUD_LAYER, UI_LAYER, PAUSE_MENU_LAYER));
         }
 
         public override void OnStart()
