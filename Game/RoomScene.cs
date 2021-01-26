@@ -21,9 +21,9 @@ namespace Game
 
         public const int LIGHT_LAYER = 100;
         public const int LIGHT_MAP_LAYER = 101;
-        public const int HUD_LAYER = 200;
+        public const int PAUSE_MENU_LAYER = 200;
         public const int UI_LAYER = 201;
-        public const int PAUSE_MENU_LAYER = 202;
+        public const int HUD_LAYER = 202;
 
         public RoomScene(string roomDataId, string checkpointId = null)
         {
@@ -78,6 +78,7 @@ namespace Game
             }
 
             AddRenderer(new RenderLayerExcludeRenderer(0, LIGHT_LAYER, LIGHT_MAP_LAYER, HUD_LAYER, UI_LAYER, PAUSE_MENU_LAYER));
+            AddRenderer(new ScreenSpaceRenderer(100, PAUSE_MENU_LAYER, UI_LAYER, HUD_LAYER));
         }
 
         public override void OnStart()
@@ -131,10 +132,8 @@ namespace Game
 
         void SetupUi()
         {
-            AddRenderer(new ScreenSpaceRenderer(100, HUD_LAYER));
             Core.GetGlobalManager<PrefabManager>().GetResource("hud").CreateEntity("hud", this);
 
-            AddRenderer(new ScreenSpaceRenderer(101, UI_LAYER));
             var dialogSystem = CreateEntity("dialogSystem");
             dialogSystem.SetParent(Camera.Transform);
             dialogSystem.AddComponent<DialogSystem>().SetRenderLayer(UI_LAYER);
@@ -142,7 +141,6 @@ namespace Game
 
         void SetupPauseMenu()
         {
-            AddRenderer(new ScreenSpaceRenderer(102, PAUSE_MENU_LAYER));
             var pauseMenu = CreateEntity("pause-menu").AddComponent<PauseMenu>();
             pauseMenu.RenderLayer = PAUSE_MENU_LAYER;
         }
