@@ -26,8 +26,8 @@ namespace Game.Editor
 
         public List<RoomLayer> Layers = new List<RoomLayer>
         {
-            new RoomLayer { Name = "terrain" },
-            new RoomLayer { Name = "doodad" },
+            new RoomLayer { Name = "terrain", RenderLayer = 11 },
+            new RoomLayer { Name = "doodad", RenderLayer = 10 },
         };
         public List<RoomEntity> Entities = new List<RoomEntity>();
         public RoomVariables RoomVariables = new RoomVariables();
@@ -80,6 +80,7 @@ namespace Game.Editor
         public string Name = "New Layer";
         public List<LayerTile> Tiles = new List<LayerTile>();
         public PhysicsLayerData PhysicsLayer = new PhysicsLayerData { Mask = 0 };
+        public int RenderLayer;
     }
 
     class LayerTile

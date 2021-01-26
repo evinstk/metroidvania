@@ -54,6 +54,7 @@ namespace Game.Editor
             }
         }
 
+        List<RoomLayer> _tempLayers = new List<RoomLayer>();
         void Draw()
         {
             var roomData = EditorState.RoomData;
@@ -61,9 +62,14 @@ namespace Game.Editor
 
             if (ImGui.Begin("Layer"))
             {
-                for (var i = roomData.Layers.Count - 1; i >= 0; --i)
+                _tempLayers.Clear();
+                _tempLayers.AddRange(roomData.Layers);
+                _tempLayers.Sort((a, b) => a.RenderLayer.CompareTo(b.RenderLayer));
+                for (var i = 0; i < _tempLayers.Count; ++i)
                 {
-                    ImGui.RadioButton((i + 1).ToString() + ": " + roomData.Layers[i].Name, ref EditorState.SelectedLayerIndex, i);
+                    var layer = _tempLayers[i];
+                    var layerIndex = roomData.Layers.IndexOf(layer);
+                    ImGui.RadioButton((i + 1).ToString() + ": " + _tempLayers[i].Name, ref EditorState.SelectedLayerIndex, layerIndex);
                 }
 
                 foreach (var layerInspector in _inspectors)

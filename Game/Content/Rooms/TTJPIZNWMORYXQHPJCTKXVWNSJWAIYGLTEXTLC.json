@@ -3659,7 +3659,8 @@
 				"@id": "523",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
-			}
+			},
+			"RenderLayer": 0
 		},
 		{
 			"@id": "524",
@@ -3672,7 +3673,8 @@
 				"@id": "525",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
-			}
+			},
+			"RenderLayer": 0
 		}
 	],
 	"Entities": [

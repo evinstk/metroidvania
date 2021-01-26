@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
+using System.Collections.Generic;
 
 namespace Game.Editor
 {
@@ -10,12 +11,16 @@ namespace Game.Editor
         public override float Height =>
             EditorState.RoomData != null ? EditorState.RoomData.Height * EditorState.RoomData.TileHeight : 1;
 
+        List<RoomLayer> _tempList = new List<RoomLayer>();
         public override void Render(Batcher batcher, Camera camera)
         {
             var roomData = EditorState.RoomData;
             if (roomData != null)
             {
-                foreach (var layer in roomData.Layers)
+                _tempList.Clear();
+                _tempList.AddRange(roomData.Layers);
+                _tempList.Sort((a, b) => b.RenderLayer.CompareTo(a.RenderLayer));
+                foreach (var layer in _tempList)
                 {
                     foreach (var tile in layer.Tiles)
                     {
