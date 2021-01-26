@@ -102,7 +102,7 @@ namespace Game
                 var layer = roomData.Layers[i];
                 var layerEntity = Core.Scene.CreateEntity(layer.Name);
                 layerEntity.Transform.SetParent(mapEntity.Transform);
-                layerEntity.AddComponent(new MapRenderer(roomData, i)).SetRenderLayer(count - 1 - i);
+                layerEntity.AddComponent(new MapRenderer(roomData, i)).SetRenderLayer(count + 9 - i);
 
                 if (layer.HasColliders)
                 {
