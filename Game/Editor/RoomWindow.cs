@@ -71,8 +71,10 @@ namespace Game.Editor
         void DrawRoomData()
         {
             var roomManager = Core.GetGlobalManager<RoomManager>();
-            if (roomManager.Combo("Room", ref EditorState.SelectedRoomId))
+            var selectedRoomId = EditorState.SelectedRoomId;
+            if (roomManager.Combo("Room", ref selectedRoomId))
             {
+                EditorState.SelectedRoomId = selectedRoomId;
                 var roomData = roomManager.GetResource(EditorState.SelectedRoomId);
                 _inspectors = TypeInspectorUtils.GetInspectableProperties(roomData);
                 Entity.Scene.Camera.Position = new Microsoft.Xna.Framework.Vector2(MainScene.ResWidth / 2, MainScene.ResHeight / 2);

@@ -12,7 +12,17 @@ namespace Game.Editor
     static class EditorState
     {
         public static RoomData RoomData => Core.GetGlobalManager<RoomManager>().GetResource(SelectedRoomId);
-        public static string SelectedRoomId = null;
+        public static string SelectedRoomId
+        {
+            get => _selectedRoomId;
+            set
+            {
+                _selectedRoomId = value;
+                OnRoomChange?.Invoke();
+            }
+        }
+        static string _selectedRoomId = null;
+        public static event Action OnRoomChange;
 
         public static PrefabData SelectedPrefab => Core.GetGlobalManager<PrefabManager>().GetResource(SelectedPrefabId);
         public static string SelectedPrefabId = null;

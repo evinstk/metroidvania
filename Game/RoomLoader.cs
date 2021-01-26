@@ -104,10 +104,10 @@ namespace Game
                 layerEntity.Transform.SetParent(mapEntity.Transform);
                 layerEntity.AddComponent(new MapRenderer(roomData, i)).SetRenderLayer(count + 9 - i);
 
-                if (layer.HasColliders)
+                if (layer.PhysicsLayer.Mask != 0)
                 {
                     var mapCollider = layerEntity.AddComponent(new MapCollider(roomData, i));
-                    Flags.SetFlagExclusive(ref mapCollider.PhysicsLayer, PhysicsLayer.Terrain);
+                    mapCollider.PhysicsLayer = layer.PhysicsLayer.Mask;
                 }
             }
 

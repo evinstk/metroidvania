@@ -26,11 +26,16 @@ namespace Game.Editor
 
         public List<RoomLayer> Layers = new List<RoomLayer>
         {
-            new RoomLayer { Name = "terrain", HasColliders = true },
+            new RoomLayer { Name = "terrain" },
             new RoomLayer { Name = "doodad" },
         };
         public List<RoomEntity> Entities = new List<RoomEntity>();
         public RoomVariables RoomVariables = new RoomVariables();
+
+        public RoomData()
+        {
+            Flags.SetFlagExclusive(ref Layers[0].PhysicsLayer.Mask, PhysicsLayer.Terrain);
+        }
 
         public void AddEntity(RoomEntity entity)
         {
@@ -74,7 +79,7 @@ namespace Game.Editor
     {
         public string Name = "New Layer";
         public List<LayerTile> Tiles = new List<LayerTile>();
-        public bool HasColliders = false;
+        public PhysicsLayerData PhysicsLayer = new PhysicsLayerData { Mask = 0 };
     }
 
     class LayerTile
