@@ -3599,27 +3599,35 @@
 					}
 				}
 			],
-			"HasColliders": true
+			"PhysicsLayer": {
+				"@id": "515",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			}
 		},
 		{
-			"@id": "515",
+			"@id": "516",
 			"@type": "Game.Editor.RoomLayer",
 			"Name": "doodad",
 			"Tiles": [
 
 			],
-			"HasColliders": false
+			"PhysicsLayer": {
+				"@id": "517",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			}
 		}
 	],
 	"Entities": [
 		{
-			"@id": "516",
+			"@id": "518",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "EBHJMERFCNATOTEKRNWVLTUFBPFGKVEORZENJP",
 			"Name": "Left Lamp",
 			"PrefabId": "OOXSIJCVTBFVFYNZQDDTHOHQZJUEMJNMSRABNL",
 			"Position": {
-				"@id": "517",
+				"@id": "519",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 364,
 				"Y": 116
@@ -3632,13 +3640,13 @@
 			]
 		},
 		{
-			"@id": "518",
+			"@id": "520",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "VOJVGXTVYNSHVWJGDADDFVTKMBSFJBXWKLFLMO",
 			"Name": "Goblin",
 			"PrefabId": "YZOLVJKIEIPOEYODTDJTZHSXRYYMAYZYWHKXQA",
 			"Position": {
-				"@id": "519",
+				"@id": "521",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 64,
 				"Y": 196
@@ -3651,13 +3659,13 @@
 			]
 		},
 		{
-			"@id": "520",
+			"@id": "522",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "WMWSBBYHQBPUJVSTQHKDOEKAJMJFRBAMEMBIRC",
 			"Name": "Checkpoint",
 			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
 			"Position": {
-				"@id": "521",
+				"@id": "523",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 440,
 				"Y": 112
@@ -3671,7 +3679,7 @@
 		}
 	],
 	"RoomVariables": {
-		"@id": "522",
+		"@id": "524",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 

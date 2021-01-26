@@ -3655,27 +3655,35 @@
 					}
 				}
 			],
-			"HasColliders": true
+			"PhysicsLayer": {
+				"@id": "523",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			}
 		},
 		{
-			"@id": "523",
+			"@id": "524",
 			"@type": "Game.Editor.RoomLayer",
 			"Name": "doodad",
 			"Tiles": [
 
 			],
-			"HasColliders": false
+			"PhysicsLayer": {
+				"@id": "525",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			}
 		}
 	],
 	"Entities": [
 		{
-			"@id": "524",
+			"@id": "526",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "RLHLPCRZRXIRNTEORXZYTVIYDQHIIQASXHHWHM",
 			"Name": "Checkpoint",
 			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
 			"Position": {
-				"@id": "525",
+				"@id": "527",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 192,
 				"Y": 464
@@ -3688,23 +3696,23 @@
 			]
 		},
 		{
-			"@id": "526",
+			"@id": "528",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "LSLNNKJYQCGTYGRQVPJDHHEFRLIFQQIDHEDHCG",
 			"Name": "Switch",
 			"PrefabId": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD",
 			"Position": {
-				"@id": "527",
+				"@id": "529",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 60,
 				"Y": 468
 			},
 			"EntityOnlyComponents": [
 				{
-					"@id": "528",
+					"@id": "530",
 					"@type": "Game.Editor.Prefab.SwitchState",
 					"State": {
-						"@id": "529",
+						"@id": "531",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 					},
@@ -3717,7 +3725,7 @@
 		}
 	],
 	"RoomVariables": {
-		"@id": "530",
+		"@id": "532",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 
