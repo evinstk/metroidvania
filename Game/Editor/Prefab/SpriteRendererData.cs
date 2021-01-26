@@ -17,6 +17,7 @@ namespace Game.Editor.Prefab
     {
         public TextureMapSpriteData SpriteData = new TextureMapSpriteData();
         public bool Flip;
+        public int RenderLayer = 0;
 
         public override void AddToEntity(Entity entity)
         {
@@ -24,6 +25,7 @@ namespace Game.Editor.Prefab
             var renderer = entity.AddComponent(new SpriteRenderer(sprite));
             renderer.Color = SpriteData.Color;
             renderer.FlipX = Flip;
+            renderer.RenderLayer = RenderLayer;
         }
 
         public override void Render(Batcher batcher, Vector2 position)

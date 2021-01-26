@@ -33,6 +33,7 @@
 				"FrameFilename": "gate.png"
 			},
 			"Flip": false,
+			"RenderLayer": 0,
 			"Id": "JHYWWHFHHTOJIRQLPDJOIMOMXPVQNQKZDCCXSG"
 		},
 		{
