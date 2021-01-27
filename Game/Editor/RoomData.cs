@@ -26,15 +26,22 @@ namespace Game.Editor
 
         public List<RoomLayer> Layers = new List<RoomLayer>
         {
-            new RoomLayer { Name = "terrain", RenderLayer = 11 },
-            new RoomLayer { Name = "doodad", RenderLayer = 10 },
+            new RoomLayer { Name = "overlay", RenderLayer = -10, IsOverlay = true },
+            new RoomLayer { Name = "terrain", RenderLayer = 10 },
+            new RoomLayer { Name = "wall", RenderLayer = 11 },
         };
         public List<RoomEntity> Entities = new List<RoomEntity>();
         public RoomVariables RoomVariables = new RoomVariables();
 
         public RoomData()
         {
-            Flags.SetFlagExclusive(ref Layers[0].PhysicsLayer.Mask, PhysicsLayer.Terrain);
+            var terrain = Layers.Find(l => l.Name == "terrain");
+            Insist.IsNotNull(terrain);
+            Flags.SetFlagExclusive(ref terrain.PhysicsLayer.Mask, PhysicsLayer.Terrain);
+
+            var overlay = Layers.Find(l => l.Name == "overlay");
+            Insist.IsNotNull(overlay);
+            Flags.SetFlagExclusive(ref overlay.PhysicsLayer.Mask, PhysicsLayer.Overlay);
         }
 
         public void AddEntity(RoomEntity entity)
