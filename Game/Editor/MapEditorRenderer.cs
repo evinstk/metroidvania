@@ -22,6 +22,7 @@ namespace Game.Editor
                 _tempList.Sort((a, b) => b.RenderLayer.CompareTo(a.RenderLayer));
                 foreach (var layer in _tempList)
                 {
+                    if (layer.IsHidden) continue;
                     foreach (var tile in layer.Tiles)
                     {
                         if (tile.LayerLocation.X < roomData.Width && tile.LayerLocation.Y < roomData.Height)

@@ -82,6 +82,7 @@ namespace Game.Editor
         public PhysicsLayerData PhysicsLayer = new PhysicsLayerData { Mask = 0 };
         public bool IsOverlay;
         public int RenderLayer;
+        public bool IsHidden;
     }
 
     class LayerTile
