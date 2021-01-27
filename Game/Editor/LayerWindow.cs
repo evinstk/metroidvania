@@ -12,7 +12,7 @@ namespace Game.Editor
     {
         struct LayerInspector
         {
-            public string Name;
+            public RoomLayer Layer;
             public List<AbstractTypeInspector> Inspectors;
         }
 
@@ -48,7 +48,7 @@ namespace Game.Editor
                 var layer = roomData.Layers[i];
                 _inspectors.Add(new LayerInspector
                 {
-                    Name = layer.Name,
+                    Layer = layer,
                     Inspectors = TypeInspectorUtils.GetInspectableProperties(layer),
                 });
             }
@@ -72,19 +72,27 @@ namespace Game.Editor
                     ImGui.RadioButton((i + 1).ToString() + ": " + _tempLayers[i].Name, ref EditorState.SelectedLayerIndex, layerIndex);
                 }
 
+                RoomLayer toDelete = null;
                 foreach (var layerInspector in _inspectors)
                 {
                     ImGui.Indent();
                     NezImGui.BeginBorderedGroup();
 
-                    if (ImGui.CollapsingHeader($"{layerInspector.Name}"))
+                    if (ImGui.CollapsingHeader($"{layerInspector.Layer.Name}"))
                     {
                         foreach (var inspector in layerInspector.Inspectors)
                             inspector.Draw();
+                        if (ImGui.Button("Delete"))
+                            toDelete = layerInspector.Layer;
                     }
 
                     NezImGui.EndBorderedGroup(new Num.Vector2(4, 1), new Num.Vector2(4, 2));
                     ImGui.Unindent();
+                }
+                if (toDelete != null)
+                {
+                    roomData.Layers.Remove(toDelete);
+                    GenerateInspectors();
                 }
 
                 if (NezImGui.CenteredButton("Add Layer", 1f))
