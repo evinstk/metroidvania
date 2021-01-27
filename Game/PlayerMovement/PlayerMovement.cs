@@ -42,6 +42,7 @@ namespace Game.Movement
         {
             Below = true
         };
+        ColliderTriggerHelper _triggerHelper;
 
         Animator<ObserverFrame> _animator;
         StateMachine<PlayerMovement> _fsm;
@@ -60,6 +61,7 @@ namespace Game.Movement
 
             _platformerMover = Entity.GetComponentStrict<PlatformerMover>();
             _boxCollider = Entity.GetComponentStrict<BoxCollider>();
+            _triggerHelper = new ColliderTriggerHelper(Entity);
 
             _fsm = new StateMachine<PlayerMovement>(this, new GroundState());
             _fsm.AddState(new AirState());
@@ -105,6 +107,7 @@ namespace Game.Movement
             _velocity.Y = Mathf.Clamp(_velocity.Y, -JumpVelocity, MaxFallVelocity);
             var motion = _velocity * deltaTime;
             _platformerMover.Move(motion, _boxCollider, _collisionState);
+            _triggerHelper.Update();
             if (_collisionState.Below)
             {
                 _velocity.Y = 0;
