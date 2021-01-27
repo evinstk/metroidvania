@@ -3661,7 +3661,8 @@
 				"Mask": 0
 			},
 			"IsOverlay": false,
-			"RenderLayer": 0
+			"RenderLayer": 0,
+			"IsHidden": false
 		},
 		{
 			"@id": "524",
@@ -3676,7 +3677,8 @@
 				"Mask": 0
 			},
 			"IsOverlay": false,
-			"RenderLayer": 0
+			"RenderLayer": 0,
+			"IsHidden": false
 		}
 	],
 	"Entities": [
