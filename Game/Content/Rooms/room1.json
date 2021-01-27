@@ -4654,6 +4654,7 @@
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			},
+			"IsOverlay": false,
 			"RenderLayer": 0
 		},
 		{
@@ -4711,6 +4712,7 @@
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			},
+			"IsOverlay": false,
 			"RenderLayer": 0
 		}
 	],
