@@ -72,7 +72,7 @@ namespace Game
                                 new Vector2(x * tileWidth, y * tileHeight) + Entity.Position + _localOffset,
                                 tileSize),
                             tile.SourceRect,
-                            Color.White);
+                            Color);
                 }
             }
         }
