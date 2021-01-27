@@ -8,6 +8,7 @@ namespace Game
     class MapCollider : RenderableComponent
     {
         public int PhysicsLayer = 1 << 0;
+        public bool IsTrigger = false;
         public override float Width => _width * _tileWidth;
         public override float Height => _height * _tileHeight;
 
@@ -72,6 +73,7 @@ namespace Game
                     rects[i].Height);
                 collider.PhysicsLayer = PhysicsLayer;
                 collider.Entity = Entity;
+                collider.IsTrigger = IsTrigger;
                 _colliders[i] = collider;
                 Physics.AddCollider(collider);
             }

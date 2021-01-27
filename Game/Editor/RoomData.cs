@@ -80,6 +80,7 @@ namespace Game.Editor
         public string Name = "New Layer";
         public List<LayerTile> Tiles = new List<LayerTile>();
         public PhysicsLayerData PhysicsLayer = new PhysicsLayerData { Mask = 0 };
+        public bool IsOverlay;
         public int RenderLayer;
     }
 

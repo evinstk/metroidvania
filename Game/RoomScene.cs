@@ -117,7 +117,9 @@ namespace Game
         void SetupLights()
         {
             var lightRenderer = AddRenderer(new StencilLightRenderer(-1, LIGHT_LAYER, new RenderTexture()));
-            Flags.SetFlagExclusive(ref lightRenderer.CollidesWithLayers, PhysicsLayer.Terrain);
+            lightRenderer.CollidesWithLayers = 0;
+            Flags.SetFlag(ref lightRenderer.CollidesWithLayers, PhysicsLayer.Terrain);
+            Flags.SetFlag(ref lightRenderer.CollidesWithLayers, PhysicsLayer.Overlay);
             var level = Core.GetGlobalManager<RoomManager>().GetResource(RoomDataId).LightRendererClearColor;
             lightRenderer.RenderTargetClearColor = new Color(level, level, level, 255);
 
@@ -151,6 +153,7 @@ namespace Game
         // layers 0-7 reserved for teams
         public const int Terrain = 8;
         public const int Interaction = 9;
+        public const int Overlay = 10;
     }
 
     class RoomTransport : Component

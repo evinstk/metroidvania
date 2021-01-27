@@ -108,7 +108,15 @@ namespace Game
                 {
                     var mapCollider = layerEntity.AddComponent(new MapCollider(roomData, i));
                     mapCollider.PhysicsLayer = layer.PhysicsLayer.Mask;
+                    if (layer.IsOverlay)
+                    {
+                        mapCollider.IsTrigger = true;
+                        layerEntity.AddComponent<Overlay>();
+                    }
                 }
+                Debug.LogIf(
+                    layer.PhysicsLayer.Mask == 0 && layer.IsOverlay,
+                    $"Layer {layer.Name} has no physics mask but is overlay. No effect.");
             }
 
             if (roomData.Script != null)
