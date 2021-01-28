@@ -439,6 +439,9 @@
 #begin ScriptableObjects/IntValue/NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC.json
 /copy:ScriptableObjects/IntValue/NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC.json
 
+#begin ScriptableObjects/StringValue/NDLGNRENMKXQLIFEIWOHPKLLHHWUZUJFHJDSMQ.json
+/copy:ScriptableObjects/StringValue/NDLGNRENMKXQLIFEIWOHPKLLHHWUZUJFHJDSMQ.json
+
 #begin Scripts/above.lua
 /copy:Scripts/above.lua
 
