@@ -18,6 +18,8 @@ namespace Game
         public Vector2 HealthOffset = new Vector2(20, 20);
         public int HealthSpacing = 15;
 
+        public StringReference Prompt = new StringReference();
+
         public override void AddToEntity(Entity entity)
         {
             var hud = entity.AddComponent<HUD>();
@@ -30,6 +32,8 @@ namespace Game
 
             hud.HealthOffset = HealthOffset;
             hud.HealthSpacing = HealthSpacing;
+
+            hud.Prompt = Prompt.Dereference();
         }
     }
 
@@ -47,6 +51,10 @@ namespace Game
         public Vector2 HealthOffset;
         public int HealthSpacing;
 
+        public StringValue Prompt;
+
+        NezSpriteFont _font;
+
         public override void Initialize()
         {
             RenderLayer = RoomScene.HUD_LAYER;
@@ -55,6 +63,9 @@ namespace Game
         public override void OnAddedToEntity()
         {
             CurrHealth.RuntimeValue = MaxHealth.RuntimeValue;
+
+            var font = Core.Content.Load<SpriteFont>("Fonts/DefaultFont");
+            _font = new NezSpriteFont(font);
         }
 
         public override void Render(Batcher batcher, Camera camera)
@@ -74,6 +85,19 @@ namespace Game
                     SpriteEffects.None,
                     0);
             }
+
+            var prompt = new FontCharacterSource(Prompt.RuntimeValue);
+            var size = _font.MeasureString(Prompt.RuntimeValue);
+            _font.DrawInto(
+                batcher,
+                ref prompt,
+                new Vector2(MainScene.ResWidth / 2, MainScene.ResHeight - 20),
+                Color.White,
+                0,
+                size / 2,
+                Vector2.One,
+                SpriteEffects.None,
+                0);
         }
     }
 }

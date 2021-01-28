@@ -1,4 +1,5 @@
 ﻿using Game.Editor.Prefab;
+using Game.Editor.Scriptable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
@@ -9,9 +10,12 @@ namespace Game
 {
     class InteractionData : DataComponent
     {
+        public StringReference Prompt = new StringReference();
+
         public override void AddToEntity(Entity entity)
         {
-            entity.AddComponent<Interaction>();
+            var interaction = entity.AddComponent<Interaction>();
+            interaction.Prompt = Prompt.Dereference();
         }
     }
 
@@ -19,8 +23,10 @@ namespace Game
     {
         public Vector2 Cast = new Vector2(32, 0);
 
+        public StringValue Prompt;
+
         List<IInteractable> _tempInteractableList = new List<IInteractable>();
-        int _facing = 0;
+        int _facing = 1;
         Vector2 _lastPosition;
 
         VirtualButton _input;
@@ -41,22 +47,27 @@ namespace Game
                 _facing = Math.Sign(diffX);
             _lastPosition = Entity.Position;
 
-            if (_input.IsPressed)
-            {
-                var startInColliderDefault = Physics.RaycastsStartInColliders;
-                Physics.RaycastsStartInColliders = true;
-                var mask = 0;
-                Flags.SetFlag(ref mask, PhysicsLayer.Interaction);
-                var hit = Physics.Linecast(Entity.Position, Entity.Position + Cast * _facing, mask);
-                Physics.RaycastsStartInColliders = startInColliderDefault;
+            var startInColliderDefault = Physics.RaycastsStartInColliders;
+            Physics.RaycastsStartInColliders = true;
+            var mask = 0;
+            Flags.SetFlag(ref mask, PhysicsLayer.Interaction);
+            var hit = Physics.Linecast(Entity.Position, Entity.Position + Cast * _facing, mask);
+            Physics.RaycastsStartInColliders = startInColliderDefault;
 
-                if (hit.Collider != null)
+            if (hit.Collider != null)
+            {
+                Prompt.RuntimeValue = "[E] Interact";
+                if (_input.IsPressed)
                 {
                     hit.Collider.GetComponents(_tempInteractableList);
                     foreach (var interactable in _tempInteractableList)
                         interactable.Interact();
                     _tempInteractableList.Clear();
                 }
+            }
+            else
+            {
+                Prompt.RuntimeValue = string.Empty;
             }
         }
     }

@@ -37,6 +37,11 @@
 				"Y": 20
 			},
 			"HealthSpacing": 15,
+			"Prompt": {
+				"@id": "8",
+				"@type": "Game.Editor.Scriptable.StringReference",
+				"Id": "NDLGNRENMKXQLIFEIWOHPKLLHHWUZUJFHJDSMQ"
+			},
 			"Id": "ZVLOVMUIDCIFKGCCHZKQCRJYMOYLICNKDVUXFC"
 		}
 	],

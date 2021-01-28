@@ -4,5 +4,6 @@
 	"Name": "Max Health",
 	"IncludeInSave": true,
 	"InitialValue": 7,
+	"RuntimeValue": 0,
 	"Id": "JDCWIOFDUEAKZUHJDADIGJZINSKQUVOTZGGJZR"
 }

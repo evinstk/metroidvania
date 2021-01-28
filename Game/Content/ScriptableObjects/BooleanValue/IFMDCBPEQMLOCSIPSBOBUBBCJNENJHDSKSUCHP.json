@@ -4,5 +4,6 @@
 	"Name": "trainingSwitch",
 	"IncludeInSave": true,
 	"InitialValue": false,
+	"RuntimeValue": false,
 	"Id": "IFMDCBPEQMLOCSIPSBOBUBBCJNENJHDSKSUCHP"
 }

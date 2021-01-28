@@ -4,5 +4,6 @@
 	"Name": "testSwitch",
 	"IncludeInSave": true,
 	"InitialValue": false,
+	"RuntimeValue": false,
 	"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 }

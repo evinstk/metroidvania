@@ -140,13 +140,18 @@
 		{
 			"@id": "24",
 			"@type": "Game.InteractionData",
+			"Prompt": {
+				"@id": "25",
+				"@type": "Game.Editor.Scriptable.StringReference",
+				"Id": "NDLGNRENMKXQLIFEIWOHPKLLHHWUZUJFHJDSMQ"
+			},
 			"Id": "TVBFWXRERFIFORJZAAJQWGUWEWUCUZSJQNJKVS"
 		},
 		{
-			"@id": "25",
+			"@id": "26",
 			"@type": "Game.Hit.IntValueHitListenerData",
 			"CurrHealth": {
-				"@id": "26",
+				"@id": "27",
 				"@type": "Game.Editor.Scriptable.IntReference",
 				"Id": "NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC"
 			},

@@ -1,0 +1,9 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Scriptable.StringValue",
+	"Name": "Prompt",
+	"IncludeInSave": false,
+	"InitialValue": "",
+	"RuntimeValue": "",
+	"Id": "NDLGNRENMKXQLIFEIWOHPKLLHHWUZUJFHJDSMQ"
+}
