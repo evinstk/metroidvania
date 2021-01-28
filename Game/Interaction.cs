@@ -31,6 +31,10 @@ namespace Game
 
         VirtualButton _input;
 
+        VirtualAxis _xAxisGamePad;
+        VirtualAxis _xAxisKeyboard;
+        bool _usingGamePad;
+
         public override void OnAddedToEntity()
         {
             _input = new VirtualButton();
@@ -38,10 +42,25 @@ namespace Game
             _input.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Y));
 
             _lastPosition = Entity.Position;
+
+            _xAxisGamePad = new VirtualAxis();
+            _xAxisGamePad.Nodes.Add(
+                new VirtualAxis.GamePadLeftStickX());
+
+            _xAxisKeyboard = new VirtualAxis();
+            _xAxisKeyboard.Nodes.Add(
+                new VirtualAxis.KeyboardKeys(
+                    VirtualInput.OverlapBehavior.CancelOut, Keys.A, Keys.D));
+            _xAxisKeyboard.Nodes.Add(
+                new VirtualAxis.KeyboardKeys(
+                    VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right));
         }
 
         public void Update()
         {
+            if (_xAxisGamePad.Value != 0) _usingGamePad = true;
+            if (_xAxisKeyboard.Value != 0) _usingGamePad = false;
+
             var diffX = Entity.Position.X - _lastPosition.X;
             if (diffX != 0)
                 _facing = Math.Sign(diffX);
@@ -56,7 +75,8 @@ namespace Game
 
             if (hit.Collider != null)
             {
-                Prompt.RuntimeValue = "[E] Interact";
+                // TODO: don't assume XBox controller
+                Prompt.RuntimeValue = $"[{(_usingGamePad ? "Y" : "E")}] Interact";
                 if (_input.IsPressed)
                 {
                     hit.Collider.GetComponents(_tempInteractableList);
