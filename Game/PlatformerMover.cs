@@ -10,6 +10,7 @@ namespace Game
             public bool Right, Left, Above, Below;
             public bool BecameGroundedThisFrame;
             public bool WasGroundedLastFrame;
+            public Collider ColliderY;
 
             public bool HasCollision => Below || Right || Left || Above;
 
@@ -18,6 +19,7 @@ namespace Game
             public void Reset()
             {
                 BecameGroundedThisFrame = Right = Left = Above = Below = false;
+                ColliderY = null;
             }
 
             public void Reset(ref Vector2 motion)
@@ -26,7 +28,10 @@ namespace Game
                     Right = Left = false;
 
                 if (motion.Y == 0)
+                {
                     Above = Below = false;
+                    ColliderY = null;
+                }
 
                 BecameGroundedThisFrame = false;
 
@@ -81,6 +86,7 @@ namespace Game
                     motion.Y -= result.MinimumTranslationVector.Y;
                     collisionState.Above = motionY < 0;
                     collisionState.Below = motionY > 0;
+                    collisionState.ColliderY = result.Collider;
                     collisionState._movementRemainderY.Reset();
                 }
                 else

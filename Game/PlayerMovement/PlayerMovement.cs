@@ -111,6 +111,11 @@ namespace Game.Movement
             if (_collisionState.Below)
             {
                 _velocity.Y = 0;
+                Entity.Parent = _collisionState.ColliderY.Transform.Parent;
+            }
+            else
+            {
+                Entity.Parent = null;
             }
         }
 
