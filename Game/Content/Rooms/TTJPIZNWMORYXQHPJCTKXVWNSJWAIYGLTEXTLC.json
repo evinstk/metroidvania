@@ -2,8 +2,6 @@
 	"@id": "1",
 	"@type": "Game.Editor.RoomData",
 	"Name": "above",
-	"Width": 30,
-	"Height": 32,
 	"TileWidth": 16,
 	"TileHeight": 16,
 	"LightRendererClearColor": 127,
