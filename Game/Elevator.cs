@@ -1,6 +1,7 @@
 ﻿using Game.Editor.Prefab;
 using Microsoft.Xna.Framework;
 using Nez;
+using System;
 using System.Collections.Generic;
 
 namespace Game
@@ -69,11 +70,10 @@ namespace Game
                 return;
             }
 
-            var motion = nextStop - Entity.Position;
-            motion.Normalize();
-            motion *= Speed * Time.DeltaTime;
-            _remainderY.Update(ref motion.Y);
-            Entity.Position += motion;
+            var motionY = (float)Math.Sign(nextStop.Y - Entity.Position.Y);
+            motionY *= Speed * Time.DeltaTime;
+            _remainderY.Update(ref motionY);
+            Entity.Position += new Vector2(0, motionY);
         }
     }
 }
