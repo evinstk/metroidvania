@@ -4259,13 +4259,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "40"
 					},
 					"LayerLocation": {
 						"@id": "610",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 30,
-						"Y": 1
+						"X": 10,
+						"Y": 9
 					}
 				},
 				{
@@ -4273,13 +4273,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "9"
 					},
 					"LayerLocation": {
 						"@id": "612",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 31,
-						"Y": 1
+						"X": 10,
+						"Y": 8
 					}
 				},
 				{
@@ -4287,13 +4287,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "9"
 					},
 					"LayerLocation": {
 						"@id": "614",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 31,
-						"Y": 0
+						"X": 11,
+						"Y": 9
 					}
 				},
 				{
@@ -4301,13 +4301,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "7"
 					},
 					"LayerLocation": {
 						"@id": "616",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 30,
-						"Y": 0
+						"X": 12,
+						"Y": 15
 					}
 				},
 				{
@@ -4315,13 +4315,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "40"
+						"@ref": "7"
 					},
 					"LayerLocation": {
 						"@id": "618",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 10,
-						"Y": 9
+						"X": 13,
+						"Y": 15
 					}
 				},
 				{
@@ -4329,13 +4329,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "9"
+						"@ref": "7"
 					},
 					"LayerLocation": {
 						"@id": "620",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 10,
-						"Y": 8
+						"X": 14,
+						"Y": 15
 					}
 				},
 				{
@@ -4343,13 +4343,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "9"
+						"@ref": "7"
 					},
 					"LayerLocation": {
 						"@id": "622",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 11,
-						"Y": 9
+						"X": 15,
+						"Y": 15
 					}
 				},
 				{
@@ -4357,13 +4357,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "7"
+						"@ref": "4"
 					},
 					"LayerLocation": {
 						"@id": "624",
 						"@type": "Microsoft.Xna.Framework.Point",
 						"X": 12,
-						"Y": 15
+						"Y": 16
 					}
 				},
 				{
@@ -4371,13 +4371,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "7"
+						"@ref": "4"
 					},
 					"LayerLocation": {
 						"@id": "626",
 						"@type": "Microsoft.Xna.Framework.Point",
 						"X": 13,
-						"Y": 15
+						"Y": 16
 					}
 				},
 				{
@@ -4385,13 +4385,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "7"
+						"@ref": "4"
 					},
 					"LayerLocation": {
 						"@id": "628",
 						"@type": "Microsoft.Xna.Framework.Point",
 						"X": 14,
-						"Y": 15
+						"Y": 16
 					}
 				},
 				{
@@ -4399,13 +4399,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "7"
+						"@ref": "4"
 					},
 					"LayerLocation": {
 						"@id": "630",
 						"@type": "Microsoft.Xna.Framework.Point",
 						"X": 15,
-						"Y": 15
+						"Y": 16
 					}
 				},
 				{
@@ -4418,7 +4418,7 @@
 					"LayerLocation": {
 						"@id": "632",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 12,
+						"X": 16,
 						"Y": 16
 					}
 				},
@@ -4432,7 +4432,7 @@
 					"LayerLocation": {
 						"@id": "634",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 13,
+						"X": 17,
 						"Y": 16
 					}
 				},
@@ -4446,7 +4446,7 @@
 					"LayerLocation": {
 						"@id": "636",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 14,
+						"X": 11,
 						"Y": 16
 					}
 				},
@@ -4455,13 +4455,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "40"
 					},
 					"LayerLocation": {
 						"@id": "638",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 15,
-						"Y": 16
+						"X": 11,
+						"Y": 15
 					}
 				},
 				{
@@ -4469,13 +4469,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "38"
 					},
 					"LayerLocation": {
 						"@id": "640",
 						"@type": "Microsoft.Xna.Framework.Point",
 						"X": 16,
-						"Y": 16
+						"Y": 15
 					}
 				},
 				{
@@ -4483,13 +4483,13 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "13"
 					},
 					"LayerLocation": {
 						"@id": "642",
 						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 17,
-						"Y": 16
+						"X": 29,
+						"Y": 5
 					}
 				},
 				{
@@ -4497,150 +4497,10 @@
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
-						"@ref": "4"
+						"@ref": "38"
 					},
 					"LayerLocation": {
 						"@id": "644",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 11,
-						"Y": 16
-					}
-				},
-				{
-					"@id": "645",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "40"
-					},
-					"LayerLocation": {
-						"@id": "646",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 11,
-						"Y": 15
-					}
-				},
-				{
-					"@id": "647",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "38"
-					},
-					"LayerLocation": {
-						"@id": "648",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 16,
-						"Y": 15
-					}
-				},
-				{
-					"@id": "649",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "24"
-					},
-					"LayerLocation": {
-						"@id": "650",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 29,
-						"Y": 6
-					}
-				},
-				{
-					"@id": "651",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "24"
-					},
-					"LayerLocation": {
-						"@id": "652",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 29,
-						"Y": 7
-					}
-				},
-				{
-					"@id": "653",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "24"
-					},
-					"LayerLocation": {
-						"@id": "654",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 29,
-						"Y": 8
-					}
-				},
-				{
-					"@id": "655",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "24"
-					},
-					"LayerLocation": {
-						"@id": "656",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 29,
-						"Y": 9
-					}
-				},
-				{
-					"@id": "657",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "24"
-					},
-					"LayerLocation": {
-						"@id": "658",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 29,
-						"Y": 10
-					}
-				},
-				{
-					"@id": "659",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "24"
-					},
-					"LayerLocation": {
-						"@id": "660",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 29,
-						"Y": 11
-					}
-				},
-				{
-					"@id": "661",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "13"
-					},
-					"LayerLocation": {
-						"@id": "662",
-						"@type": "Microsoft.Xna.Framework.Point",
-						"X": 29,
-						"Y": 5
-					}
-				},
-				{
-					"@id": "663",
-					"@type": "Game.Editor.LayerTile",
-					"Tileset": "terrain16.png",
-					"TilesetLocation": {
-						"@ref": "38"
-					},
-					"LayerLocation": {
-						"@id": "664",
 						"@type": "Microsoft.Xna.Framework.Point",
 						"X": 29,
 						"Y": 12
@@ -4648,21 +4508,21 @@
 				}
 			],
 			"PhysicsLayer": {
-				"@id": "665",
+				"@id": "645",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
-				"Mask": 0
+				"Mask": 256
 			},
 			"IsOverlay": false,
 			"RenderLayer": 0,
 			"IsHidden": false
 		},
 		{
-			"@id": "666",
+			"@id": "646",
 			"@type": "Game.Editor.RoomLayer",
 			"Name": "doodad",
 			"Tiles": [
 				{
-					"@id": "667",
+					"@id": "647",
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
@@ -4673,7 +4533,7 @@
 					}
 				},
 				{
-					"@id": "668",
+					"@id": "648",
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
@@ -4684,7 +4544,7 @@
 					}
 				},
 				{
-					"@id": "669",
+					"@id": "649",
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
@@ -4695,7 +4555,7 @@
 					}
 				},
 				{
-					"@id": "670",
+					"@id": "650",
 					"@type": "Game.Editor.LayerTile",
 					"Tileset": "terrain16.png",
 					"TilesetLocation": {
@@ -4707,7 +4567,7 @@
 				}
 			],
 			"PhysicsLayer": {
-				"@id": "671",
+				"@id": "651",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			},
@@ -4718,13 +4578,13 @@
 	],
 	"Entities": [
 		{
-			"@id": "672",
+			"@id": "652",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "WNDVKVNCXNPVTYAPEBBYFRHJYSMRMOMGYVPDMF",
 			"Name": "Lamp",
 			"PrefabId": "OOXSIJCVTBFVFYNZQDDTHOHQZJUEMJNMSRABNL",
 			"Position": {
-				"@id": "673",
+				"@id": "653",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 348,
 				"Y": 112
@@ -4737,13 +4597,13 @@
 			]
 		},
 		{
-			"@id": "674",
+			"@id": "654",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "QFHDERXYNQEWETSKFATBSLDTVHXAVKKEZPXBKU",
 			"Name": "Special Lamp",
 			"PrefabId": "YQPCIZICKSJXKXAHKAHHSZPXIKOTCNYMLEENDF",
 			"Position": {
-				"@id": "675",
+				"@id": "655",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 244,
 				"Y": 132
@@ -4756,13 +4616,13 @@
 			]
 		},
 		{
-			"@id": "676",
+			"@id": "656",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "IJLMGDPHNBNROUVRLFLLJBYPJFUDRDOSBEJJPR",
 			"Name": "Some Area",
 			"PrefabId": null,
 			"Position": {
-				"@id": "677",
+				"@id": "657",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 16,
 				"Y": 64
@@ -4772,10 +4632,10 @@
 			],
 			"Components": [
 				{
-					"@id": "678",
+					"@id": "658",
 					"@type": "Game.Editor.Prefab.AreaData",
 					"Size": {
-						"@id": "679",
+						"@id": "659",
 						"@type": "Microsoft.Xna.Framework.Point",
 						"X": 48,
 						"Y": 64
@@ -4785,13 +4645,13 @@
 			]
 		},
 		{
-			"@id": "680",
+			"@id": "660",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "LKSBKDXEHTMWQXJYMQATLDOVLNDCKPTTFGJZLI",
 			"Name": "Checkpoint",
 			"PrefabId": "EPCZHLQWGWFTYPOTSOCBJGBLWVIKHZMRKCIIHX",
 			"Position": {
-				"@id": "681",
+				"@id": "661",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 280,
 				"Y": 208
@@ -4804,23 +4664,23 @@
 			]
 		},
 		{
-			"@id": "682",
+			"@id": "662",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "SORPUWUXUZFBSNMKIFXBRHIJQNKFHPJYYRIXUW",
 			"Name": "Switch",
 			"PrefabId": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD",
 			"Position": {
-				"@id": "683",
+				"@id": "663",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 436,
 				"Y": 180
 			},
 			"EntityOnlyComponents": [
 				{
-					"@id": "684",
+					"@id": "664",
 					"@type": "Game.Editor.Prefab.SwitchState",
 					"State": {
-						"@id": "685",
+						"@id": "665",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 					},
@@ -4832,23 +4692,23 @@
 			]
 		},
 		{
-			"@id": "686",
+			"@id": "666",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "IPTXYEAFVVHJJLHBZBWHKPOHDGNGIXKDNGMWIU",
 			"Name": "Gate",
 			"PrefabId": "CRJSFXWQFPQSTCYUUMHYQXRBDSSLKKTMSVVSGF",
 			"Position": {
-				"@id": "687",
+				"@id": "667",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 108,
 				"Y": 96
 			},
 			"EntityOnlyComponents": [
 				{
-					"@id": "688",
+					"@id": "668",
 					"@type": "Game.GateState",
 					"OpenState": {
-						"@id": "689",
+						"@id": "669",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "DBBZGHWFMSVXXMOKGYFNYAUJJCKZAQIIVIPURJ"
 					},
@@ -4860,13 +4720,13 @@
 			]
 		},
 		{
-			"@id": "690",
+			"@id": "670",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "LJHEZWRELUZMMPMIZATAKUUMTIYUHKDAAEXWLQ",
 			"Name": "Goblin",
 			"PrefabId": "YZOLVJKIEIPOEYODTDJTZHSXRYYMAYZYWHKXQA",
 			"Position": {
-				"@id": "691",
+				"@id": "671",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 152,
 				"Y": 116
@@ -4880,11 +4740,11 @@
 		}
 	],
 	"RoomVariables": {
-		"@id": "692",
+		"@id": "672",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 			{
-				"@id": "693",
+				"@id": "673",
 				"@type": "Game.Editor.RoomVariable",
 				"Id": "LWNULXXHFOXTZJBWJYYOFPGLVWZBJXJMENWMRG",
 				"Name": "strVal",
@@ -4892,7 +4752,7 @@
 				"Value": "asdf"
 			},
 			{
-				"@id": "694",
+				"@id": "674",
 				"@type": "Game.Editor.RoomVariable",
 				"Id": "AKYJSODANBUCVTERQSPUFKKXFLKBZRMQDELSRL",
 				"Name": "someBool",

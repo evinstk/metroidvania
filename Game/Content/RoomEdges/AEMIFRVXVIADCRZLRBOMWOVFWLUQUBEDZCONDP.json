@@ -1,0 +1,29 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.RoomEdge.RoomEdge",
+	"Rooms": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.RoomEdge.RoomEdgeNode",
+			"RoomId": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO",
+			"Position": {
+				"@id": "3",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": 480,
+				"Y": 192
+			}
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.RoomEdge.RoomEdgeNode",
+			"RoomId": "VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV",
+			"Position": {
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -112,
+				"Y": 192
+			}
+		}
+	],
+	"Id": "AEMIFRVXVIADCRZLRBOMWOVFWLUQUBEDZCONDP"
+}

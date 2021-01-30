@@ -3600,7 +3600,7 @@
 			"PhysicsLayer": {
 				"@id": "515",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
-				"Mask": 0
+				"Mask": 256
 			},
 			"IsOverlay": false,
 			"RenderLayer": 0,
