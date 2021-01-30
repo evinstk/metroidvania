@@ -6,6 +6,7 @@ namespace Game.Editor.Prefab
     class BoxColliderData : DataComponent
     {
         public Vector2 Size;
+        public Vector2 Offset;
         public PhysicsLayerData PhysicsLayer = new PhysicsLayerData();
         public PhysicsLayerData CollidesWithLayers = new PhysicsLayerData();
 
@@ -13,6 +14,7 @@ namespace Game.Editor.Prefab
         {
             var collider = entity.AddComponent<BoxCollider>();
             collider.SetSize(Size.X, Size.Y);
+            collider.LocalOffset = Offset;
             collider.PhysicsLayer = PhysicsLayer.Mask;
             collider.CollidesWithLayers = CollidesWithLayers.Mask;
         }
