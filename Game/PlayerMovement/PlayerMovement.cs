@@ -111,11 +111,17 @@ namespace Game.Movement
             if (_collisionState.Below)
             {
                 _velocity.Y = 0;
-                Entity.Parent = _collisionState.ColliderY.Transform.Parent;
+                var transform = _collisionState.ColliderY.Transform;
+                while (transform.Parent != null) transform = transform.Parent;
+                var position = Entity.Position;
+                Entity.Parent = transform;
+                Entity.Position = position;
             }
             else
             {
+                var position = Entity.Position;
                 Entity.Parent = null;
+                Entity.Position = position;
             }
         }
 
