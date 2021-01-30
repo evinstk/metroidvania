@@ -61,6 +61,7 @@ namespace Game
             {
                 _nextStopIndex = (_nextStopIndex + 1) % Stops.Count;
                 nextStop = Stops[_nextStopIndex];
+                _remainderY.Reset();
                 _waitElapsed = 0;
             }
 
