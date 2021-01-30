@@ -7,9 +7,9 @@ namespace Game.Editor
     class MapEditorRenderer : RenderableComponent, IUpdatable
     {
         public override float Width =>
-            EditorState.RoomData != null ? EditorState.RoomData.Width * EditorState.RoomData.TileWidth : 1;
+            EditorState.RoomData != null ? EditorState.RoomData.RoomWidth * EditorState.RoomData.TileWidth : 1;
         public override float Height =>
-            EditorState.RoomData != null ? EditorState.RoomData.Height * EditorState.RoomData.TileHeight : 1;
+            EditorState.RoomData != null ? EditorState.RoomData.RoomHeight * EditorState.RoomData.TileHeight : 1;
 
         List<RoomLayer> _tempList = new List<RoomLayer>();
         public override void Render(Batcher batcher, Camera camera)
@@ -25,29 +25,29 @@ namespace Game.Editor
                     if (layer.IsHidden) continue;
                     foreach (var tile in layer.Tiles)
                     {
-                        if (tile.LayerLocation.X < roomData.Width && tile.LayerLocation.Y < roomData.Height)
-                        {
-                            var texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + tile.Tileset);
-                            batcher.Draw(
-                                texture,
-                                new Rectangle(tile.LayerLocation * roomData.TileSize, roomData.TileSize),
-                                // TODO: use tileset tile size
-                                new Rectangle(tile.TilesetLocation * new Point(16, 16), new Point(16, 16)),
-                                Color.White);
-                        }
+                        var texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + tile.Tileset);
+                        batcher.Draw(
+                            texture,
+                            new Rectangle(tile.LayerLocation * roomData.TileSize, roomData.TileSize),
+                            // TODO: use tileset tile size
+                            new Rectangle(tile.TilesetLocation * new Point(16, 16), new Point(16, 16)),
+                            Color.White);
                     }
                 }
             }
         }
 
         bool _nullLastFrame = false;
-        Vector2 _lastSize = new Vector2(EditorState.RoomData?.Width ?? 0, EditorState.RoomData?.Height ?? 0);
+        Vector2 _lastSize = new Vector2(EditorState.RoomData?.RoomWidth ?? 0, EditorState.RoomData?.RoomHeight ?? 0);
         Vector2 _lastTileSize = new Vector2(EditorState.RoomData?.TileWidth ?? 0, EditorState.RoomData?.TileHeight ?? 0);
         public void Update()
         {
-            var nullThisFrame = EditorState.RoomData == null;
-            var currSize = new Vector2(EditorState.RoomData?.Width ?? 0, EditorState.RoomData?.Height ?? 0);
-            var currTileSize = new Vector2(EditorState.RoomData?.TileWidth ?? 0, EditorState.RoomData?.TileHeight ?? 0);
+            var roomData = EditorState.RoomData;
+            // TODO: WorldPosition might be expensive to call every frame (also in PrefabEditorRenderer)
+            Entity.Position = roomData?.WorldPosition ?? Vector2.Zero;
+            var nullThisFrame = roomData == null;
+            var currSize = new Vector2(roomData?.RoomWidth ?? 0, roomData?.RoomHeight ?? 0);
+            var currTileSize = new Vector2(roomData?.TileWidth ?? 0, roomData?.TileHeight ?? 0);
             if ((_nullLastFrame && !nullThisFrame) || _lastSize != currSize || _lastTileSize != currTileSize)
                 _areBoundsDirty = true;
 

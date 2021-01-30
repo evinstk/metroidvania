@@ -16,10 +16,70 @@ namespace Game.Editor
         public string DisplayName => Name;
         public string Name = "New Room";
 
-        public int Width = 128;
-        public int Height = 128;
         public int TileWidth = 16;
         public int TileHeight = 16;
+        public Point Position
+        {
+            get
+            {
+                var minX = 0;
+                var minY = 0;
+                foreach (var layer in Layers)
+                {
+                    foreach (var tile in layer.Tiles)
+                    {
+                        if (tile.LayerLocation.X < minX)
+                            minX = tile.LayerLocation.X;
+                        if (tile.LayerLocation.Y < minY)
+                            minY = tile.LayerLocation.Y;
+                    }
+                }
+                var location = new Point(minX, minY);
+                return location;
+            }
+        }
+        public Vector2 WorldPosition => (Position * new Point(TileWidth, TileHeight)).ToVector2();
+        public int RoomWidth
+        {
+            get
+            {
+                var minX = 0;
+                var maxX = 1;
+                foreach (var layer in Layers)
+                {
+                    foreach (var tile in layer.Tiles)
+                    {
+                        if (tile.LayerLocation.X < minX)
+                            minX = tile.LayerLocation.X;
+                        if (tile.LayerLocation.X + 1 > maxX)
+                            maxX = tile.LayerLocation.X + 1;
+                    }
+                }
+                var diff = maxX - minX;
+                return diff;
+            }
+        }
+        public int RoomHeight
+        {
+            get
+            {
+                var minY = 0;
+                var maxY = 1;
+                foreach (var layer in Layers)
+                {
+                    foreach (var tile in layer.Tiles)
+                    {
+                        if (tile.LayerLocation.Y < minY)
+                            minY = tile.LayerLocation.Y;
+                        if (tile.LayerLocation.Y + 1 > maxY)
+                            maxY = tile.LayerLocation.Y + 1;
+                    }
+                }
+                var diff = maxY - minY;
+                return diff;
+            }
+        }
+
         public Point TileSize => new Point(TileWidth, TileHeight);
         public int LightRendererClearColor = 127;
         public string Script = null;

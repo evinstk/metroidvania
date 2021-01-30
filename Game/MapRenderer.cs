@@ -21,26 +21,23 @@ namespace Game
         {
             _tileWidth = roomData.TileWidth;
             _tileHeight = roomData.TileHeight;
-            _width = roomData.Width;
-            _height = roomData.Height;
+            _width = roomData.RoomWidth;
+            _height = roomData.RoomHeight;
             _tiles = new Tile[_width * _height];
+            var position = roomData.Position;
 
             var layer = roomData.Layers[layerIndex];
             foreach (var tile in layer.Tiles)
             {
                 var loc = tile.LayerLocation;
-                // location may be outside defined bounds
-                if (loc.X < _width && loc.Y < _height)
+                _tiles[loc.X - position.X + (loc.Y - position.Y) * _width] = new Tile
                 {
-                    _tiles[loc.X + loc.Y * _width] = new Tile
-                    {
-                        Texture = Core.Scene.Content.LoadTexture("Content/Textures/" + tile.Tileset),
-                        SourceRect = new RectangleF(
-                            // TODO: use tileset tile size
-                            tile.TilesetLocation.ToVector2() * new Vector2(16, 16),
-                            new Vector2(16, 16)),
-                    };
-                }
+                    Texture = Core.Scene.Content.LoadTexture(ContentPath.Textures + tile.Tileset),
+                    SourceRect = new RectangleF(
+                        // TODO: use tileset tile size
+                        tile.TilesetLocation.ToVector2() * new Vector2(16, 16),
+                        new Vector2(16, 16)),
+                };
             }
         }
 

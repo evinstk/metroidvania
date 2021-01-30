@@ -94,8 +94,9 @@ namespace Game
             if (_loadedRooms.ContainsKey(roomDataId)) return;
 
             var roomData = _roomManager.GetResource(roomDataId);
+            var worldPosition = roomData.WorldPosition + offset;
 
-            var mapEntity = Core.Scene.CreateEntity($"Map: {roomData.DisplayName}").SetPosition(offset);
+            var mapEntity = Core.Scene.CreateEntity($"Map: {roomData.DisplayName}").SetPosition(worldPosition);
             var count = roomData.Layers.Count;
             for (var i = 0; i < count; ++i)
             {
@@ -128,10 +129,10 @@ namespace Game
             _loadedRooms.Add(
                 roomData.Id,
                 new RectangleF(
-                    offset,
+                    worldPosition,
                     new Vector2(
-                        roomData.TileWidth * roomData.Width,
-                        roomData.TileHeight * roomData.Height)));
+                        roomData.TileWidth * roomData.RoomWidth,
+                        roomData.TileHeight * roomData.RoomHeight)));
         }
     }
 }

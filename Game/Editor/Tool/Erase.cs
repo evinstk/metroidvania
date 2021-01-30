@@ -24,10 +24,9 @@ namespace Game.Editor.Tool
                     && layer != null
                     && Core.Scene.Camera.Bounds.Contains(worldPoint))
                 {
+                    if (worldPoint.X < 0) worldPoint.X -= roomData.TileSize.X;
+                    if (worldPoint.Y < 0) worldPoint.Y -= roomData.TileSize.Y;
                     var layerPoint = (worldPoint / roomData.TileSize.ToVector2()).ToPoint();
-
-                    if (layerPoint.X < 0 || layerPoint.X >= roomData.Width || layerPoint.Y < 0 || layerPoint.Y >= roomData.Height)
-                        return;
 
                     layer.Tiles.RemoveAll(t => t.LayerLocation == layerPoint);
                 }

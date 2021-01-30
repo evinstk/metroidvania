@@ -12,9 +12,6 @@ namespace Game
         public override float Width => _width * _tileWidth;
         public override float Height => _height * _tileHeight;
 
-        // TODO: remove dependency on RoomLayer besides in constructor
-        //RoomLayer _roomLayer;
-
         Collider[] _colliders;
         int _width;
         int _height;
@@ -24,20 +21,18 @@ namespace Game
 
         public MapCollider(RoomData roomData, int index)
         {
-            _width = roomData.Width;
-            _height = roomData.Height;
+            _width = roomData.RoomWidth;
+            _height = roomData.RoomHeight;
             _tileWidth = roomData.TileWidth;
             _tileHeight = roomData.TileHeight;
             _hasTile = new bool[_width * _height];
+            var position = roomData.Position;
 
             var layer = roomData.Layers[index];
             foreach (var tile in layer.Tiles)
             {
                 var loc = tile.LayerLocation;
-                if (loc.X < _width && loc.Y < _height)
-                {
-                    _hasTile[loc.X + loc.Y * _width] = true;
-                }
+                _hasTile[loc.X - position.X + (loc.Y - position.Y) * _width] = true;
             }
         }
 
