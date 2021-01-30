@@ -80,15 +80,14 @@ namespace Game
             if (_text.Length > 0)
             {
                 var boxBounds = new RectangleF(
-                    camera.ScreenToWorldPoint(BoxMargin),
+                    BoxMargin,
                     new Vector2(MainScene.ResWidth - BoxMargin.X * 2, BoxHeight));
                 batcher.DrawRect(boxBounds, Color.Black);
                 batcher.DrawHollowRect(boxBounds, Color.White, 2);
-                var position = camera.ScreenToWorldPoint(Margin);
                 _font.DrawInto(
                     batcher,
                     ref _text,
-                    position,
+                    Margin,
                     Color.White,
                     0,
                     Vector2.Zero,

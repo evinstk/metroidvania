@@ -137,7 +137,6 @@ namespace Game
             Core.GetGlobalManager<PrefabManager>().GetResource("hud").CreateEntity("hud", this);
 
             var dialogSystem = CreateEntity("dialogSystem");
-            dialogSystem.SetParent(Camera.Transform);
             dialogSystem.AddComponent<DialogSystem>().SetRenderLayer(UI_LAYER);
         }
 
