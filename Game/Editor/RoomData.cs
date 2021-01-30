@@ -164,6 +164,8 @@ namespace Game.Editor
             Prefab?.Render(batcher, Position);
             foreach (var component in Components)
                 component.Render(batcher, Position);
+            foreach (var eoComponent in EntityOnlyComponents)
+                eoComponent.Render(batcher, Position);
         }
 
         public bool Select(Vector2 mousePosition)

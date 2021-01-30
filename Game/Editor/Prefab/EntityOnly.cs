@@ -1,4 +1,5 @@
 ﻿using ImGuiNET;
+using Microsoft.Xna.Framework;
 using Nez;
 using Nez.ImGuiTools;
 using Nez.ImGuiTools.TypeInspectors;
@@ -25,6 +26,7 @@ namespace Game.Editor.Prefab
         public string DataComponentId { get; set; }
 
         public virtual void AddToEntity(Entity entity) { }
+        public virtual void Render(Batcher batcher, Vector2 position) { }
     }
 
     class EntityOnlyComponentInspector
