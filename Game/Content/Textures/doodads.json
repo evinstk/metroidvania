@@ -1,8 +1,17 @@
 {"frames": [
 
 {
+	"filename": "elevator.png",
+	"frame": {"x":51,"y":27,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.75}
+},
+{
 	"filename": "empty.png",
-	"frame": {"x":51,"y":1,"w":1,"h":1},
+	"frame": {"x":1,"y":1,"w":1,"h":1},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":1},
@@ -11,7 +20,7 @@
 },
 {
 	"filename": "gate.png",
-	"frame": {"x":1,"y":1,"w":48,"h":64},
+	"frame": {"x":1,"y":27,"w":48,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":64},
@@ -20,7 +29,7 @@
 },
 {
 	"filename": "leftLamp.png",
-	"frame": {"x":1,"y":67,"w":24,"h":24},
+	"frame": {"x":56,"y":1,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -29,7 +38,7 @@
 },
 {
 	"filename": "offSwitch.png",
-	"frame": {"x":1,"y":93,"w":24,"h":24},
+	"frame": {"x":30,"y":1,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -38,7 +47,7 @@
 },
 {
 	"filename": "onSwitch.png",
-	"frame": {"x":27,"y":67,"w":24,"h":24},
+	"frame": {"x":4,"y":1,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -47,7 +56,7 @@
 },
 {
 	"filename": "rightLamp.png",
-	"frame": {"x":27,"y":93,"w":24,"h":24},
+	"frame": {"x":82,"y":1,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -59,8 +68,8 @@
 	"version": "1.0",
 	"image": "doodads.png",
 	"format": "RGBA8888",
-	"size": {"w":53,"h":118},
+	"size": {"w":116,"h":92},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:ece23e8c2f571bae1ef767f48669be75:e84549c5038f8568e360a03bce89503f:235b3058f25cc2125c9df6a215d832b6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:d643e22a6d3bcd6d393292300768282b:3e103d6f7b462a3f27cf51b2620089ff:235b3058f25cc2125c9df6a215d832b6$"
 }
 }

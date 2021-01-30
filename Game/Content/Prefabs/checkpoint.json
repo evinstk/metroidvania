@@ -27,13 +27,19 @@
 			"Size": {
 				"@ref": "3"
 			},
-			"PhysicsLayer": {
+			"Offset": {
 				"@id": "6",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 0,
+				"Y": 0
+			},
+			"PhysicsLayer": {
+				"@id": "7",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 512
 			},
 			"CollidesWithLayers": {
-				"@id": "7",
+				"@id": "8",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			},

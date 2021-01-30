@@ -120,6 +120,9 @@
 				"X": 12,
 				"Y": 32
 			},
+			"Offset": {
+				"@ref": "17"
+			},
 			"PhysicsLayer": {
 				"@id": "21",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
@@ -128,7 +131,7 @@
 			"CollidesWithLayers": {
 				"@id": "22",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
-				"Mask": 1280
+				"Mask": 3328
 			},
 			"Id": "ZYWWTOJEPWBVTZZXAVHPEFOVXIJJYEPCVUYXMP"
 		},

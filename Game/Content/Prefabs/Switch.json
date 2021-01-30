@@ -26,30 +26,36 @@
 				"X": 24,
 				"Y": 24
 			},
-			"PhysicsLayer": {
+			"Offset": {
 				"@id": "6",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 0,
+				"Y": 0
+			},
+			"PhysicsLayer": {
+				"@id": "7",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 512
 			},
 			"CollidesWithLayers": {
-				"@id": "7",
+				"@id": "8",
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			},
 			"Id": "WCYRVOKSQQVDCLDVMIIAEKTJMPUPTQKNLDYHBQ"
 		},
 		{
-			"@id": "8",
+			"@id": "9",
 			"@type": "Game.Editor.Prefab.SwitchData",
 			"OnSprite": {
-				"@id": "9",
+				"@id": "10",
 				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
 				"Color": 4294967295,
 				"TextureMapId": "doodads.png",
 				"FrameFilename": "onSwitch.png"
 			},
 			"OffSprite": {
-				"@id": "10",
+				"@id": "11",
 				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
 				"Color": 4294967295,
 				"TextureMapId": "doodads.png",
