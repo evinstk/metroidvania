@@ -1,0 +1,55 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
+	"Name": "Elevator",
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteRendererData",
+			"SpriteData": {
+				"@id": "3",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "elevator.png"
+			},
+			"Flip": false,
+			"RenderLayer": -2,
+			"Id": "CMKUZCBGTCBAEWCDTSMBZRVDKGHQOCFISWTYBH"
+		},
+		{
+			"@id": "4",
+			"@type": "Game.ElevatorData",
+			"Speed": 100,
+			"Id": "MOTQXSYFKZNUUCTBTCPEUWDTZBOMOVYXMTLPQQ"
+		},
+		{
+			"@id": "5",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@id": "6",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 32,
+				"Y": 4
+			},
+			"Offset": {
+				"@id": "7",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 0,
+				"Y": 2
+			},
+			"PhysicsLayer": {
+				"@id": "8",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 2048
+			},
+			"CollidesWithLayers": {
+				"@id": "9",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			},
+			"Id": "CHFWRECHKQWKKAFISXEYVCJDRYLKMNKKZXCRIK"
+		}
+	],
+	"Id": "FUCNCQYJYNCYYTXSYWKMBNIANLVUZRFMKWOOAB"
+}
