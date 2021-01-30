@@ -154,6 +154,7 @@ namespace Game
         public const int Terrain = 8;
         public const int Interaction = 9;
         public const int Overlay = 10;
+        public const int Platform = 11;
     }
 
     class RoomTransport : Component
