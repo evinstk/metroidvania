@@ -11,7 +11,7 @@ namespace Game
     {
         public class SaveFile
         {
-            public string RoomId;
+            public string WorldRoomId;
             public string CheckpointId;
             public List<ScriptableObject> ScriptableObjects = new List<ScriptableObject>();
 
@@ -29,25 +29,13 @@ namespace Game
             }
         }
 
-        public static void Save(int slotIndex, string roomId, string checkpointId)
+        public static void Save(int slotIndex, string worldRoomId, string checkpointId)
         {
             var saveFile = new SaveFile
             {
-                RoomId = roomId,
+                WorldRoomId = worldRoomId,
                 CheckpointId = checkpointId,
             };
-            var serialized = Json.ToJson(saveFile, new JsonSettings
-            {
-                PrettyPrint = true,
-                TypeNameHandling = TypeNameHandling.All,
-            });
-            File.WriteAllText(GameFile.GetSavePath(slotIndex), serialized);
-            Debug.Log("Game saved.");
-        }
-
-        public static void Save(int slotIndex, SaveFile saveFile = null)
-        {
-            saveFile = saveFile ?? new SaveFile();
             var serialized = Json.ToJson(saveFile, new JsonSettings
             {
                 PrettyPrint = true,

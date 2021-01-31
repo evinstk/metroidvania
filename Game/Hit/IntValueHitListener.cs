@@ -31,7 +31,7 @@ namespace Game.Hit
                     Core.StartSceneTransition(new FadeTransition(() =>
                         scene.SaveSlotIndex != -1
                         ? new RoomScene(scene.SaveSlotIndex)
-                        : new RoomScene(scene.RoomDataId, scene.CheckpointId)));
+                        : new RoomScene(scene.WorldRoomId)));
                 });
             }
         }

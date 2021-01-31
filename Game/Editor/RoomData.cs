@@ -240,13 +240,14 @@ namespace Game.Editor
             return false;
         }
 
-        public Entity CreateEntity(Scene scene, Vector2 offset = new Vector2())
+        public Entity CreateEntity(Scene scene, string worldRoomId = null, Vector2 offset = new Vector2())
         {
             var entity = scene.CreateEntity(Name);
             entity.SetPosition(Position + offset);
             var roomEntityData = entity.AddComponent<RoomEntityComponent>();
             roomEntityData.RoomEntityId = Id;
             roomEntityData.RoomId = Room?.Id;
+            roomEntityData.WorldRoomId = worldRoomId;
             var prefab = Prefab;
             if (prefab != null)
             {
@@ -266,5 +267,6 @@ namespace Game.Editor
         //public RoomEntity RoomEntity;
         public string RoomEntityId;
         public string RoomId;
+        public string WorldRoomId;
     }
 }

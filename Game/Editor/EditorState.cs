@@ -1,6 +1,7 @@
 ﻿using Game.Editor.Prefab;
 using Game.Editor.Scriptable;
 using Game.Editor.Tool;
+using Game.Editor.World;
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.ImGuiTools.TypeInspectors;
@@ -18,11 +19,15 @@ namespace Game.Editor
             set
             {
                 _selectedRoomId = value;
+                SelectedWorldId = null;
                 OnRoomChange?.Invoke();
             }
         }
         static string _selectedRoomId = null;
         public static event Action OnRoomChange;
+
+        public static World.World World => Core.GetGlobalManager<WorldManager>().GetResource(SelectedWorldId);
+        public static string SelectedWorldId;
 
         public static PrefabData SelectedPrefab => Core.GetGlobalManager<PrefabManager>().GetResource(SelectedPrefabId);
         public static string SelectedPrefabId = null;

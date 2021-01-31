@@ -1,31 +1,38 @@
 ﻿using Game.Editor;
 using Nez;
 using Microsoft.Xna.Framework;
-using Game.Editor.RoomEdge;
 using System.Collections.Generic;
 using Game.Scripting;
-using System;
 using Game.Editor.Prefab;
+using Game.Editor.World;
 
 namespace Game
 {
     class RoomLoader : Component, IUpdatable
     {
-        public RectangleF CurrentRoomBounds => _loadedRooms[_currRoomId];
+        public int LoadRadius = 512;
+        public RectangleF CurrentRoomBounds => _roomBounds.Find(b => b.WorldRoomId == _currWorldRoomId).Collider.Bounds;
 
-        string _currRoomId;
+        string _currWorldRoomId;
         string _checkpointId;
 
+        WorldManager _worldManager = Core.GetGlobalManager<WorldManager>();
         RoomManager _roomManager = Core.GetGlobalManager<RoomManager>();
-        RoomEdgeManager _roomEdgeManager = Core.GetGlobalManager<RoomEdgeManager>();
-        Dictionary<string, RectangleF> _loadedRooms = new Dictionary<string, RectangleF>();
+
+        struct RoomBounds
+        {
+            public Collider Collider;
+            public string WorldRoomId;
+        }
+        List<RoomBounds> _roomBounds = new List<RoomBounds>();
+        HashSet<string> _loadedWorldRoomIds = new HashSet<string>();
 
         MapScript _scripting;
 
-        public RoomLoader(string roomDataId, string checkpointId)
+        public RoomLoader(string worldRoomId, string checkpointId)
         {
-            _currRoomId = roomDataId;
-            Insist.IsNotNull(_currRoomId);
+            _currWorldRoomId = worldRoomId;
+            Insist.IsNotNull(_currWorldRoomId);
             _checkpointId = checkpointId;
         }
 
@@ -33,7 +40,29 @@ namespace Game
         {
             _scripting = Core.Scene.FindComponentOfType<MapScript>();
             Insist.IsNotNull(_scripting);
-            LoadRoomAndAdjacent(_currRoomId, Vector2.Zero);
+
+            var world = _worldManager.GetWorldRoom(_currWorldRoomId).World;
+            foreach (var worldRoom in world.Rooms)
+            {
+                var room = _roomManager.GetResource(worldRoom.RoomId);
+                var worldPosition = room.WorldPosition + worldRoom.Position.ToVector2();
+                var collider = new BoxCollider(
+                    new Rectangle(
+                        worldPosition.ToPoint(),
+                        new Point(
+                            room.TileWidth * room.RoomWidth,
+                            room.TileHeight * room.RoomHeight)));
+                collider.Entity = Entity;
+                Flags.SetFlagExclusive(ref collider.PhysicsLayer, PhysicsLayer.Room);
+                Physics.AddCollider(collider);
+                _roomBounds.Add(new RoomBounds
+                {
+                    Collider = collider,
+                    WorldRoomId = worldRoom.Id,
+                });
+            }
+
+            LoadRoom(_currWorldRoomId);
 
             var checkpoints = Entity.Scene.FindComponentsOfType<Checkpoint>();
             foreach (var checkpoint in checkpoints)
@@ -49,52 +78,13 @@ namespace Game
             }
         }
 
-        public void Update()
+        void LoadRoom(string worldRoomId)
         {
-            var playerEntity = Core.Scene.FindComponentOfType<PlayerController>()?.Entity;
-            if (playerEntity != null && !playerEntity.IsDestroyed)
-            {
-                var position = playerEntity.Position;
-                var currBounds = _loadedRooms[_currRoomId];
-                if (!currBounds.Contains(position))
-                {
-                    var lastRoomId = _currRoomId;
-                    foreach (var room in _loadedRooms)
-                    {
-                        if (room.Value.Contains(position))
-                        {
-                            _currRoomId = room.Key;
-                            LoadRoomAndAdjacent(_currRoomId, room.Value.Location);
-                            GC.Collect();
-                            break;
-                        }
-                    }
-                    // new room must have been found
-                    Debug.LogIf(lastRoomId == _currRoomId, "Out of bounds.");
-                }
-            }
-        }
+            if (_loadedWorldRoomIds.Contains(worldRoomId)) return;
 
-        void LoadRoomAndAdjacent(string roomDataId, Vector2 offset)
-        {
-            SetupRoom(roomDataId, offset);
-            var edges = _roomEdgeManager.GetEdges(roomDataId);
-            foreach (var edge in edges)
-            {
-                var adjacentRoomIndex = edge.Rooms.FindIndex(r => r.RoomId != roomDataId);
-                var currRoomIndex = 1 - adjacentRoomIndex;
-                SetupRoom(
-                    edge.Rooms[adjacentRoomIndex].RoomId,
-                    (edge.Rooms[currRoomIndex].Position - edge.Rooms[adjacentRoomIndex].Position).ToVector2() + offset);
-            }
-        }
-
-        void SetupRoom(string roomDataId, Vector2 offset)
-        {
-            if (_loadedRooms.ContainsKey(roomDataId)) return;
-
-            var roomData = _roomManager.GetResource(roomDataId);
-            var worldPosition = roomData.WorldPosition + offset;
+            var worldRoom = _worldManager.GetWorldRoom(worldRoomId);
+            var roomData = _roomManager.GetResource(worldRoom.RoomId);
+            var worldPosition = roomData.WorldPosition + worldRoom.Position.ToVector2();
 
             var mapEntity = Core.Scene.CreateEntity($"Map: {roomData.DisplayName}").SetPosition(worldPosition);
             var count = roomData.Layers.Count;
@@ -124,15 +114,35 @@ namespace Game
                 _scripting.Queue(roomData.Id, roomData.Script, roomData.RoomVariables.Variables);
 
             foreach (var entityData in roomData.Entities)
-                entityData.CreateEntity(Entity.Scene, offset);
+                entityData.CreateEntity(Entity.Scene, worldRoomId, worldRoom.Position.ToVector2());
 
-            _loadedRooms.Add(
-                roomData.Id,
-                new RectangleF(
-                    worldPosition,
-                    new Vector2(
-                        roomData.TileWidth * roomData.RoomWidth,
-                        roomData.TileHeight * roomData.RoomHeight)));
+            _loadedWorldRoomIds.Add(worldRoomId);
+        }
+
+        Collider[] _results = new Collider[8];
+        public void Update()
+        {
+            var playerEntity = Core.Scene.FindComponentOfType<PlayerController>()?.Entity;
+            var mask = 0;
+            Flags.SetFlag(ref mask, PhysicsLayer.Room);
+            if (playerEntity != null && !playerEntity.IsDestroyed)
+            {
+                var playerPosition = playerEntity.Position;
+                var count = Physics.OverlapCircleAll(playerPosition, LoadRadius, _results, mask);
+                for (var i = 0; i < count; ++i)
+                {
+                    var collider = _results[i];
+                    var roomBounds = _roomBounds.Find(b => b.Collider == collider);
+                    if (roomBounds.WorldRoomId != null)
+                    {
+                        LoadRoom(roomBounds.WorldRoomId);
+                        if (roomBounds.Collider.Bounds.Contains(playerPosition))
+                        {
+                            _currWorldRoomId = roomBounds.WorldRoomId;
+                        }
+                    }
+                }
+            }
         }
     }
 }

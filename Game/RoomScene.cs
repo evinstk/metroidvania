@@ -15,7 +15,7 @@ namespace Game
 {
     class RoomScene : Scene
     {
-        public string RoomDataId { get; set; }
+        public string WorldRoomId { get; set; }
         public string CheckpointId { get; set; }
         public int SaveSlotIndex = -1;
 
@@ -25,11 +25,10 @@ namespace Game
         public const int UI_LAYER = 201;
         public const int HUD_LAYER = 202;
 
-        public RoomScene(string roomDataId, string checkpointId = null)
+        public RoomScene(string worldRoomId)
         {
-            Insist.IsNotNull(roomDataId);
-            RoomDataId = roomDataId;
-            CheckpointId = checkpointId;
+            Insist.IsNotNull(worldRoomId);
+            WorldRoomId = worldRoomId;
         }
 
         public RoomScene(int saveSlotIndex)
@@ -38,8 +37,8 @@ namespace Game
             if (SaveSystem2.Exists(saveSlotIndex))
             {
                 var saveFile = SaveSystem2.Load(saveSlotIndex);
-                RoomDataId = saveFile.RoomId;
-                Insist.IsNotNull(RoomDataId);
+                WorldRoomId = saveFile.WorldRoomId;
+                Insist.IsNotNull(WorldRoomId);
                 CheckpointId = saveFile.CheckpointId;
                 Insist.IsNotNull(CheckpointId);
                 foreach (var saveSO in saveFile.ScriptableObjects)
@@ -55,7 +54,7 @@ namespace Game
             }
             else
             {
-                RoomDataId = "VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV";
+                WorldRoomId = "AQTHSGPBWRWCEEASQUXFLHGSNVOLQBWLUMJJMD";
                 CheckpointId = "EUTJBZWZVREDYQDPGUVCNQMHHDWPFCJFPTDUYQ";
             }
         }
@@ -90,7 +89,7 @@ namespace Game
 
             CreateEntity("scripting").AddComponent<MapScript>();
 
-            CreateEntity("roomLoader").AddComponent(new RoomLoader(RoomDataId, CheckpointId));
+            CreateEntity("roomLoader").AddComponent(new RoomLoader(WorldRoomId, CheckpointId));
 
             SetupLights();
             SetupUi();
@@ -110,7 +109,7 @@ namespace Game
             if (Core.GetGlobalManager<ImGuiManager>() == null) return;
 
             CreateEntity("windows")
-                .AddComponent(new RoomTransport(RoomDataId))
+                .AddComponent(new RoomTransport(WorldRoomId))
                 .AddComponent<ScriptableObjectWindow>();
         }
 
@@ -120,8 +119,8 @@ namespace Game
             lightRenderer.CollidesWithLayers = 0;
             Flags.SetFlag(ref lightRenderer.CollidesWithLayers, PhysicsLayer.Terrain);
             Flags.SetFlag(ref lightRenderer.CollidesWithLayers, PhysicsLayer.Overlay);
-            var level = Core.GetGlobalManager<RoomManager>().GetResource(RoomDataId).LightRendererClearColor;
-            lightRenderer.RenderTargetClearColor = new Color(level, level, level, 255);
+            //var level = Core.GetGlobalManager<RoomManager>().GetResource(RoomDataId).LightRendererClearColor;
+            lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
 
             AddRenderer(new RenderLayerRenderer(1, LIGHT_MAP_LAYER));
 
@@ -154,15 +153,16 @@ namespace Game
         public const int Interaction = 9;
         public const int Overlay = 10;
         public const int Platform = 11;
+        public const int Room = 12;
     }
 
     class RoomTransport : Component
     {
-        string _roomDataId;
+        string _worldRoomId;
 
-        public RoomTransport(string roomDataId)
+        public RoomTransport(string worldRoomId)
         {
-            _roomDataId = roomDataId;
+            _worldRoomId = worldRoomId;
         }
 
         public override void OnAddedToEntity()
@@ -186,7 +186,7 @@ namespace Game
                 ImGui.SameLine();
                 if (ImGui.Button("Restart"))
                 {
-                    Core.Scene = new RoomScene(_roomDataId);
+                    Core.Scene = new RoomScene(_worldRoomId);
                 }
                 ImGui.End();
             }
