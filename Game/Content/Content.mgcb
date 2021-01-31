@@ -385,6 +385,9 @@
 #begin Prefabs/DummyHero.json
 /copy:Prefabs/DummyHero.json
 
+#begin Prefabs/elevator.json
+/copy:Prefabs/elevator.json
+
 #begin Prefabs/gate.json
 /copy:Prefabs/gate.json
 
@@ -597,4 +600,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/Warrior.png
+
+#begin Worlds/IOFYXUPPMKMUBZOHZKAFKOQZNPNWBQVAEADCNM.json
+/copy:Worlds/IOFYXUPPMKMUBZOHZKAFKOQZNPNWBQVAEADCNM.json
+
+#begin Worlds/PXBXDBMCNVAFFHJZAAAJVIOFUSHTCZKWKVAPTS.json
+/copy:Worlds/PXBXDBMCNVAFFHJZAAAJVIOFUSHTCZKWKVAPTS.json
 

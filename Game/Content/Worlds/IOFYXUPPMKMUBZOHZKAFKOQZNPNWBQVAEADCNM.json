@@ -1,0 +1,72 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.World.World",
+	"Rooms": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "AQTHSGPBWRWCEEASQUXFLHGSNVOLQBWLUMJJMD",
+			"Name": "training",
+			"RoomId": "VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV",
+			"Position": {
+				"@id": "3",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": 0,
+				"Y": 0
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "ZGLJSLKCXHKSPPXKNDQJEWWWHFUBRBYWCBNCDR",
+			"Name": "room",
+			"RoomId": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO",
+			"Position": {
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -592,
+				"Y": 0
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "6",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "HUWIEMZWNELADTPCMMFZJSVDCJASKWLAMJOKLE",
+			"Name": "collision",
+			"RoomId": "FXYGBRPPFAFQUJRZACOCYEWGDCRNVHUFWHZQJN",
+			"Position": {
+				"@id": "7",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -1072,
+				"Y": 0
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "8",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "TARTINGYESALLALSYWFFOIBAVGHGUKXLMOUYBM",
+			"Name": "above",
+			"RoomId": "TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC",
+			"Position": {
+				"@id": "9",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -1072,
+				"Y": -512
+			},
+			"World": {
+				"@ref": "1"
+			}
+		}
+	],
+	"Id": "IOFYXUPPMKMUBZOHZKAFKOQZNPNWBQVAEADCNM",
+	"DisplayName": "another-world"
+}
