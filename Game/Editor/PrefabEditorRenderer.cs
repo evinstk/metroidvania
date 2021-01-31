@@ -15,7 +15,6 @@ namespace Game.Editor
 
         public override void OnAddedToEntity()
         {
-            var windows = Core.Scene.FindEntity("windows");
             _prefabManager = Core.GetGlobalManager<PrefabManager>();
         }
 
@@ -35,6 +34,7 @@ namespace Game.Editor
         public void Update()
         {
             var roomData = EditorState.RoomData;
+            // TODO: WorldPosition might be expensive to call every frame (also in PrefabEditorRenderer)
             Entity.Position = roomData?.WorldPosition ?? Vector2.Zero;
             var nullThisFrame = roomData == null;
             var currSize = new Vector2(roomData?.RoomWidth ?? 0, roomData?.RoomHeight ?? 0);
