@@ -228,6 +228,24 @@ namespace Game.Editor
 
         public bool Combo(string label, ref string selectedId) => Combo(label, selectedId, ref selectedId);
 
+        public bool Popup(string label, ref string selectedId)
+        {
+            var ret = false;
+            if (ImGui.BeginPopup(label))
+            {
+                foreach (var resource in _resources)
+                {
+                    if (ImGui.Selectable(resource.Data.DisplayName))
+                    {
+                        selectedId = resource.Data.Id;
+                        ret = true;
+                    }
+                }
+                ImGui.EndPopup();
+            }
+            return ret;
+        }
+
         #endregion
     }
 }
