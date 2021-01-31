@@ -12,6 +12,7 @@ namespace Game
         public static readonly string RoomEdges = "../../../Content/RoomEdges/";
         public static readonly string Scripts = "../../../Content/Scripts/";
         public static readonly string ScriptableObjects = "../../../Content/ScriptableObjects/";
+        public static readonly string Worlds = "../../../Content/Worlds/";
 #else
         public static readonly string Textures = "Content/Textures/";
         public static readonly string Prefabs = "Content/Prefabs/";
@@ -20,6 +21,7 @@ namespace Game
         public static readonly string RoomEdges = "Content/RoomEdges/";
         public static readonly string Scripts = "Content/Scripts/";
         public static readonly string ScriptableObjects = "Content/ScriptableObjects/";
+        public static readonly string Worlds = "Content/Worlds/";
 #endif
     }
 }
