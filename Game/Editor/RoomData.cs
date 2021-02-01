@@ -251,6 +251,7 @@ namespace Game.Editor
             var prefab = Prefab;
             if (prefab != null)
             {
+                entity.UpdateOrder = prefab.UpdateOrder;
                 foreach (var component in prefab.Components)
                     component.AddToEntity(entity);
             }

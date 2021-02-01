@@ -2,6 +2,7 @@
 	"@id": "1",
 	"@type": "Game.Editor.Prefab.PrefabData",
 	"Name": "Elevator",
+	"UpdateOrder": -1,
 	"Components": [
 		{
 			"@id": "2",

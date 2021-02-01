@@ -16,6 +16,7 @@ namespace Game.Editor.Prefab
         public string Id { get; set; } = Utils.RandomString();
         public string DisplayName => Name;
         public string Name = "New Prefab";
+        public int UpdateOrder = 0;
         public List<DataComponent> Components = new List<DataComponent>();
 
         public T GetComponent<T>() where T : DataComponent => Components.Find(c => c is T) as T;
@@ -28,6 +29,7 @@ namespace Game.Editor.Prefab
         public Entity CreateEntity(string name, Scene scene)
         {
             var entity = scene.CreateEntity(name);
+            entity.UpdateOrder = UpdateOrder;
             foreach (var component in Components)
             {
                 component.AddToEntity(entity);
@@ -192,8 +194,8 @@ namespace Game.Editor.Prefab
             DataComponent toRemove = null;
 
             var entity = _prefabManager.GetResource(EditorState.SelectedPrefabId);
-            ImGui.Text("Name:");
-            ImGui.InputText("##entityName", ref entity.Name, 25);
+            ImGui.InputText("Name", ref entity.Name, 25);
+            ImGui.InputInt("Update Order", ref entity.UpdateOrder);
 
             ImGui.Text("Components:");
             foreach (var group in _inspectors)
