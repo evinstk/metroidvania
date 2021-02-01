@@ -26,11 +26,13 @@ namespace Game.Editor.World
                 {
                     foreach (var worldRoom in world.Data.Rooms)
                     {
+                        ImGui.PushID(worldRoom.Id);
                         if (worldRoom.RoomId == roomId && ImGui.Selectable($"{world.Data.DisplayName}: {worldRoom.Name}"))
                         {
                             worldRoomId = worldRoom.Id;
                             ret = true;
                         }
+                        ImGui.PopID();
                     }
                 }
                 ImGui.EndCombo();
