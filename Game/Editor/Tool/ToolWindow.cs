@@ -10,6 +10,7 @@ namespace Game.Editor.Tool
     enum Tools
     {
         Brush,
+        Rectangle,
         Erase,
         Prefab,
         Area,
@@ -25,6 +26,7 @@ namespace Game.Editor.Tool
         EntityWindow _entityWindow;
 
         Brush _brush;
+        Rectangle _rectangle;
         Erase _erase;
         PrefabTool _prefab;
         AreaTool _area;
@@ -44,6 +46,7 @@ namespace Game.Editor.Tool
             _entityWindow = Entity.GetOrCreateComponent<EntityWindow>();
 
             _brush = new Brush(this);
+            _rectangle = new Rectangle(this);
             _erase = new Erase(this);
             _prefab = new PrefabTool(this);
             _area = new AreaTool(this);
@@ -87,6 +90,7 @@ namespace Game.Editor.Tool
                 switch (EditorState.CurrentTool)
                 {
                     case Tools.Brush: _brush.Update(); return;
+                    case Tools.Rectangle: _rectangle.Update(); return;
                     case Tools.Erase: _erase.Update(); return;
                     case Tools.Prefab: _prefab.Update(); return;
                     case Tools.Area: _area.Update(); return;
