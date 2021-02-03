@@ -1,7 +1,7 @@
 {
 	"@id": "1",
 	"@type": "Game.Editor.Prefab.PrefabData",
-	"Name": "Gate",
+	"Name": "door",
 	"UpdateOrder": 0,
 	"Components": [
 		{
@@ -10,18 +10,18 @@
 			"OpenAnimation": {
 				"@id": "3",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
-				"AnimationId": "VRYDUYTMTEBPLKPSFNABBNKRWJJTNOVPADTGHG",
+				"AnimationId": "TOMZHAWRBKFKXITMUAUYWEARNPXSXIFZLXALQZ",
 				"Flip": false,
 				"Reverse": false
 			},
 			"CloseAnimation": {
 				"@id": "4",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
-				"AnimationId": "VRYDUYTMTEBPLKPSFNABBNKRWJJTNOVPADTGHG",
+				"AnimationId": "TOMZHAWRBKFKXITMUAUYWEARNPXSXIFZLXALQZ",
 				"Flip": false,
 				"Reverse": true
 			},
-			"Id": "PNSYZTXVZJRGSIHBOLEQDMDDQNFKXKNATCXIXL"
+			"Id": "UCGRVGVOKVUYODXNUPUFCYCCOVMASBUOMWLDIM"
 		},
 		{
 			"@id": "5",
@@ -31,11 +31,11 @@
 				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
 				"Color": 4294967295,
 				"TextureMapId": "doodads.png",
-				"FrameFilename": "gate.png"
+				"FrameFilename": "door0000.png"
 			},
 			"Flip": false,
 			"RenderLayer": 0,
-			"Id": "JHYWWHFHHTOJIRQLPDJOIMOMXPVQNQKZDCCXSG"
+			"Id": "TKMGUBYGSYKTUCOVMWZECZTUVIAFMSSUFIWKTW"
 		},
 		{
 			"@id": "7",
@@ -43,8 +43,8 @@
 			"Size": {
 				"@id": "8",
 				"@type": "Microsoft.Xna.Framework.Vector2",
-				"X": 12,
-				"Y": 64
+				"X": 6,
+				"Y": 48
 			},
 			"Offset": {
 				"@id": "9",
@@ -62,8 +62,8 @@
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			},
-			"Id": "QWXIFMVOBWKIMTYJDXSMYGLOURIPFGPSSINNQZ"
+			"Id": "WFEWCIFUJDRBYCTALSZKOCHZKULVOTWECQXKNN"
 		}
 	],
-	"Id": "CRJSFXWQFPQSTCYUUMHYQXRBDSSLKKTMSVVSGF"
+	"Id": "DKNXDZVTDPJZRMXNLGFODOQHUFXTFHCIGPSIBP"
 }

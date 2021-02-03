@@ -1,0 +1,104 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.World.World",
+	"Rooms": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "EGJQGYBKZNDBXVGZNVRMGGFBANDZMDCZCXJONJ",
+			"Name": "training",
+			"RoomId": "VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV",
+			"Position": {
+				"@id": "3",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": 0,
+				"Y": 0
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "CMYCFJOMCQTDOQKSAYAHQTUBYWLEYZMSMDSFND",
+			"Name": "room",
+			"RoomId": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO",
+			"Position": {
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -592,
+				"Y": 0
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "6",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "AWNOKMGIPMPKWLNFTIRXEJXKOCEBQKXEEWXEUB",
+			"Name": "room",
+			"RoomId": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO",
+			"Position": {
+				"@id": "7",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": 688,
+				"Y": 368
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "8",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "QXQQGHBSJHNKUDZJTEQUZJBTSAIAHDRZXITKUN",
+			"Name": "above",
+			"RoomId": "TTJPIZNWMORYXQHPJCTKXVWNSJWAIYGLTEXTLC",
+			"Position": {
+				"@id": "9",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -1072,
+				"Y": -144
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "10",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "LIUYVMEJKCCKGINGLHVXXGZBLGQNMMKPOGTIZB",
+			"Name": "collision",
+			"RoomId": "FXYGBRPPFAFQUJRZACOCYEWGDCRNVHUFWHZQJN",
+			"Position": {
+				"@id": "11",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -1072,
+				"Y": 369
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "12",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "NOOJPGXWWJLQXMPXPEJTNPWRXXSMVAOFGJTGIO",
+			"Name": "training",
+			"RoomId": "VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV",
+			"Position": {
+				"@id": "13",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -480,
+				"Y": 609
+			},
+			"World": {
+				"@ref": "1"
+			}
+		}
+	],
+	"Id": "EBMULCTOMPZPENAIENUWAJKANFXRNZMZDBLBFH",
+	"DisplayName": "cody-example"
+}

@@ -63,61 +63,71 @@
 				"@id": "11",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "MWOJHUPGHQBCQVHQWHXQJAIMDGISRRLVYHLERG",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"IdleLeft": {
 				"@id": "12",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "MWOJHUPGHQBCQVHQWHXQJAIMDGISRRLVYHLERG",
-				"Flip": true
+				"Flip": true,
+				"Reverse": false
 			},
 			"WalkRight": {
 				"@id": "13",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "FEOITPWKTSURFZKPLJAEQVAMDTCHKOLEHQESEF",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"WalkLeft": {
 				"@id": "14",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "FEOITPWKTSURFZKPLJAEQVAMDTCHKOLEHQESEF",
-				"Flip": true
+				"Flip": true,
+				"Reverse": false
 			},
 			"CrouchRight": {
 				"@id": "15",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "XRCEDUVCFAXDHIWRXCOTTSQGMUHVSDDXXWGJZU",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"CrouchLeft": {
 				"@id": "16",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "XRCEDUVCFAXDHIWRXCOTTSQGMUHVSDDXXWGJZU",
-				"Flip": true
+				"Flip": true,
+				"Reverse": false
 			},
 			"LeapRight": {
 				"@id": "17",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "AJQUIMOOVNJSBBVPQDBBYXUWBQWHBAGNZXXYSU",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"LeapLeft": {
 				"@id": "18",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "AJQUIMOOVNJSBBVPQDBBYXUWBQWHBAGNZXXYSU",
-				"Flip": true
+				"Flip": true,
+				"Reverse": false
 			},
 			"SwipeRight": {
 				"@id": "19",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "LHHIXYCFYUBYINBAAIPDIVMYVFKETNQDESSTYD",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"SwipeLeft": {
 				"@id": "20",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "LHHIXYCFYUBYINBAAIPDIVMYVFKETNQDESSTYD",
-				"Flip": true
+				"Flip": true,
+				"Reverse": false
 			},
 			"Id": "ZBQGVQFJACTMLSOCGRUSAYCVPWURSWLMWPCROO"
 		},

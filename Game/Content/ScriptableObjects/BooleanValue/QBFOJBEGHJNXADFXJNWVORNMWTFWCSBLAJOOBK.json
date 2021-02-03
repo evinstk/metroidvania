@@ -1,0 +1,9 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Scriptable.BooleanValue",
+	"Name": "prison-door",
+	"IncludeInSave": false,
+	"InitialValue": false,
+	"RuntimeValue": false,
+	"Id": "QBFOJBEGHJNXADFXJNWVORNMWTFWCSBLAJOOBK"
+}

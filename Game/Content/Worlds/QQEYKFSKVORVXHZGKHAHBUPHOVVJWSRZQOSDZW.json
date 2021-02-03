@@ -1,0 +1,24 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.World.World",
+	"Rooms": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "UMTEAJFYFJRRJIUSGVAWKPJINCWSEIPVGNMONX",
+			"Name": "prison",
+			"RoomId": "NRSRQMEIXMAUMHUPXITEVFRLPVXWUCRQXUPUZI",
+			"Position": {
+				"@id": "3",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": 0,
+				"Y": 0
+			},
+			"World": {
+				"@ref": "1"
+			}
+		}
+	],
+	"Id": "QQEYKFSKVORVXHZGKHAHBUPHOVVJWSRZQOSDZW",
+	"DisplayName": "intro"
+}

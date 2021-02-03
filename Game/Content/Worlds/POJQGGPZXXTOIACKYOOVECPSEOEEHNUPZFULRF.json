@@ -1,0 +1,40 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.World.World",
+	"Rooms": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "YBSKEEPFGSOLNHLBTJHVGTKWEGVXJOPVYMOXYC",
+			"Name": "right room",
+			"RoomId": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO",
+			"Position": {
+				"@id": "3",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": 0,
+				"Y": 0
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "MXVNDKPDPXFQZCYUYFQVFYIRVRCSMBTODQXKZT",
+			"Name": "left room",
+			"RoomId": "ICLOHYCSXGMCKXQRKOULNXNVVHJKNWYYFGSXGO",
+			"Position": {
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -480,
+				"Y": -64
+			},
+			"World": {
+				"@ref": "1"
+			}
+		}
+	],
+	"Id": "POJQGGPZXXTOIACKYOOVECPSEOEEHNUPZFULRF",
+	"DisplayName": "repeating-world"
+}

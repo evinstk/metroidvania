@@ -50,6 +50,30 @@
 				"Mask": 0
 			},
 			"Id": "CHFWRECHKQWKKAFISXEYVCJDRYLKMNKKZXCRIK"
+		},
+		{
+			"@id": "10",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@ref": "6"
+			},
+			"Offset": {
+				"@id": "11",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 0,
+				"Y": -42
+			},
+			"PhysicsLayer": {
+				"@id": "12",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 2048
+			},
+			"CollidesWithLayers": {
+				"@id": "13",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			},
+			"Id": "LCFOCOEHIZEYXGRCZYWDXCJMQZRYUWGIBMFFPD"
 		}
 	],
 	"Id": "FUCNCQYJYNCYYTXSYWKMBNIANLVUZRFMKWOOAB"

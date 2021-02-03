@@ -62,61 +62,71 @@
 				"@id": "11",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"IdleLeft": {
 				"@id": "12",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH",
-				"Flip": true
+				"Flip": true,
+				"Reverse": false
 			},
 			"WalkRight": {
 				"@id": "13",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"WalkLeft": {
 				"@id": "14",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "OYZMHSEDJBPKKRTDVDULHYTNWPBQRBRKTECKWH",
-				"Flip": true
+				"Flip": true,
+				"Reverse": false
 			},
 			"AttackRight": {
 				"@id": "15",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "default",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"AttackLeft": {
 				"@id": "16",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "default",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"JumpRight": {
 				"@id": "17",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "default",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"JumpLeft": {
 				"@id": "18",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "default",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"TalkRight": {
 				"@id": "19",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "FOUKASQODIWWMJVHWVSZBJRWVEGRBLVJAUERIP",
-				"Flip": false
+				"Flip": false,
+				"Reverse": false
 			},
 			"TalkLeft": {
 				"@id": "20",
 				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
 				"AnimationId": "FOUKASQODIWWMJVHWVSZBJRWVEGRBLVJAUERIP",
-				"Flip": true
+				"Flip": true,
+				"Reverse": false
 			},
 			"Hit": {
 				"@id": "21",
