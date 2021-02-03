@@ -1,4 +1,6 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Nez;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Game.Editor.Tool
@@ -8,6 +10,7 @@ namespace Game.Editor.Tool
         class Brush
         {
             ToolWindow _window;
+            List<LayerTile> _toRemove = new List<LayerTile>();
 
             public Brush(ToolWindow window)
             {
@@ -31,24 +34,40 @@ namespace Game.Editor.Tool
                     if (worldPoint.Y < 0) worldPoint.Y -= roomData.TileSize.Y;
                     var layerPoint = (worldPoint / roomData.TileSize.ToVector2()).ToPoint();
 
-                    var tileSelection = EditorState.TileSelection;
+                    var tileSelections = EditorState.TileSelections;
 
-                    LayerTile existingTile = null;
                     foreach (var tile in layer.Tiles)
                     {
-                        if (tile.LayerLocation == layerPoint)
-                            existingTile = tile;
+                        for (var x = 0; x < tileSelections.Width; ++x)
+                        {
+                            for (var y = 0; y < tileSelections.Height; ++y)
+                            {
+                                var point = layerPoint + new Point(x, y);
+                                if (tile.LayerLocation == point)
+                                    _toRemove.Add(tile);
+                            }
+                        }
                     }
 
-                    if (existingTile != null)
-                        layer.Tiles.Remove(existingTile);
+                    foreach (var tile in _toRemove)
+                        layer.Tiles.Remove(tile);
+                    _toRemove.Clear();
 
-                    layer.Tiles.Add(new LayerTile
+                    for (var x = 0; x < tileSelections.Width; ++x)
                     {
-                        Tileset = Path.GetFileName(textureFile),
-                        TilesetLocation = tileSelection,
-                        LayerLocation = layerPoint,
-                    });
+                        for (var y = 0; y < tileSelections.Height; ++y)
+                        {
+                            var offset = new Point(x, y);
+                            var selection = tileSelections.Location + offset;
+                            var point = layerPoint + offset;
+                            layer.Tiles.Add(new LayerTile
+                            {
+                                Tileset = Path.GetFileName(textureFile),
+                                TilesetLocation = selection,
+                                LayerLocation = point,
+                            });
+                        }
+                    }
                 }
             }
         }

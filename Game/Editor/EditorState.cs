@@ -37,7 +37,7 @@ namespace Game.Editor
         public static string SelectedAnimationId = null;
 
         public static string TilesetTextureFile = null;
-        public static Point TileSelection;
+        public static Rectangle TileSelections;
 
         public static RoomLayer SelectedLayer =>
             SelectedLayerIndex >= 0 && SelectedLayerIndex < RoomData?.Layers.Count

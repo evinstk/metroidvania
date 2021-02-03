@@ -15,6 +15,7 @@ namespace Game.Editor
         Texture2D _texture;
         float _imageZoom = 3;
         Num.Vector2 _tileSize = new Num.Vector2(16, 16);
+        Point _selectionStart;
 
         public override void OnAddedToEntity()
         {
@@ -49,21 +50,33 @@ namespace Game.Editor
                 var bounds = _texture.Bounds;
                 ImGui.Image(_texturePtr, new Num.Vector2(bounds.Width, bounds.Height) * _imageZoom);
 
-                DrawRect(cursorPosImageTopLeft + EditorState.TileSelection.ToNumerics() * _tileSize * _imageZoom);
+                DrawRect(cursorPosImageTopLeft);
 
-                if (ImGui.IsWindowFocused() && ImGui.IsMouseDoubleClicked(0))
+                if (ImGui.IsWindowFocused() && ImGui.IsMouseClicked(0))
                 {
                     var tilePos = (ImGui.GetMousePos() - cursorPosImageTopLeft) / (_tileSize * _imageZoom);
-                    EditorState.TileSelection = tilePos.ToXNA().ToPoint();
+                    _selectionStart = tilePos.ToXNA().ToPoint();
+                }
+                if (ImGui.IsWindowFocused() && ImGui.IsMouseReleased(0))
+                {
+                    var selectionEnd = ((ImGui.GetMousePos() - cursorPosImageTopLeft) / (_tileSize * _imageZoom)).ToXNA().ToPoint();
+                    EditorState.TileSelections = new Rectangle
+                    {
+                        X = Math.Min(_selectionStart.X, selectionEnd.X),
+                        Y = Math.Min(_selectionStart.Y, selectionEnd.Y),
+                        Width = Math.Abs(_selectionStart.X - selectionEnd.X) + 1,
+                        Height = Math.Abs(_selectionStart.Y - selectionEnd.Y) + 1,
+                    };
                 }
             }
         }
 
-        void DrawRect(Num.Vector2 cursorPos)
+        void DrawRect(Num.Vector2 imageTopLeft)
         {
+            var rect = EditorState.TileSelections;
             ImGui.GetWindowDrawList().AddRect(
-                cursorPos,
-                cursorPos + _tileSize * _imageZoom,
+                imageTopLeft + rect.Location.ToNumerics() * _tileSize * _imageZoom,
+                imageTopLeft + (rect.Location.ToNumerics() + rect.Size.ToNumerics()) * _tileSize * _imageZoom,
                 Color.GreenYellow.PackedValue);
         }
 
