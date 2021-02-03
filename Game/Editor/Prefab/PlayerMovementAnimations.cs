@@ -37,6 +37,7 @@ namespace Game.Editor.Prefab
         {
             public string AnimationId = "default";
             public bool Flip;
+            public bool Reverse;
 
             public Animation<ObserverFrame> MakeAnimation()
             {
@@ -45,7 +46,12 @@ namespace Game.Editor.Prefab
 
                 var animation = animationManager.GetResource(AnimationId);
                 var frames = new List<ObserverFrame>();
-                foreach (var frame in animation.Frames)
+
+                var framesList = new List<Animation.AnimationData.Frame>();
+                framesList.AddRange(animation.Frames);
+                if (Reverse) framesList.Reverse();
+
+                foreach (var frame in framesList)
                 {
                     var textureMap = textureMapManager.GetResource(frame.Sprite.TextureMapId);
                     var spriteData = textureMap.frames.Find(f => f.filename == frame.Sprite.FrameFilename);
@@ -90,6 +96,7 @@ namespace Game.Editor.Prefab
                     Core.GetGlobalManager<AnimationManager>().Combo("Animation", ref data.AnimationId);
 
                     ImGui.Checkbox("Flip", ref data.Flip);
+                    ImGui.Checkbox("Reverse", ref data.Reverse);
                 }
 
                 NezImGui.EndBorderedGroup(new Num.Vector2(4, 1), new Num.Vector2(4, 2));
