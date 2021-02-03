@@ -77,6 +77,11 @@ namespace Game.Editor.Tool
                 var pos = Entity.Scene.Camera.MouseToWorldPoint();
                 ImGui.Text($"World: ({(int)pos.X}, {(int)pos.Y})");
 
+                switch (EditorState.CurrentTool)
+                {
+                    case Tools.Rectangle: _rectangle.Info(); break;
+                }
+
                 ImGui.End();
             }
         }

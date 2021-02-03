@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ImGuiNET;
+using Microsoft.Xna.Framework;
 using Nez;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,32 @@ namespace Game.Editor.Tool
                     foreach (var tile in _toRemove)
                         layer.Tiles.Remove(tile);
                     _toRemove.Clear();
+                }
+            }
+
+            public void Info()
+            {
+                var roomData = EditorState.RoomData;
+                var textureFile = EditorState.TilesetTextureFile;
+                var layer = EditorState.SelectedLayer;
+                var tileSelections = EditorState.TileSelections;
+
+                if (roomData == null || textureFile == null || layer == null || tileSelections.Width == 0 || tileSelections.Height == 0)
+                    return;
+
+                var worldPoint = Core.Scene.Camera.MouseToWorldPoint();
+                if (Input.LeftMouseButtonDown && Core.Scene.Camera.Bounds.Contains(worldPoint))
+                {
+                    if (worldPoint.X < 0) worldPoint.X -= roomData.TileSize.X;
+                    if (worldPoint.Y < 0) worldPoint.Y -= roomData.TileSize.Y;
+                    var end = (worldPoint / roomData.TileSize.ToVector2()).ToPoint();
+
+                    var minX = Math.Min(_start.X, end.X);
+                    var minY = Math.Min(_start.Y, end.Y);
+                    var width = Math.Abs(_start.X - end.X) + 1;
+                    var height = Math.Abs(_start.Y - end.Y) + 1;
+
+                    ImGui.Text($"({minX}, {minY}), ({width}, {height})");
                 }
             }
         }
