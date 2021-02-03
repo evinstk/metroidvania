@@ -12,6 +12,7 @@ namespace Game.Editor.Tool
         Brush,
         Rectangle,
         Erase,
+        RectangleErase,
         Prefab,
         Area,
         Select,
@@ -28,6 +29,7 @@ namespace Game.Editor.Tool
         Brush _brush;
         Rectangle _rectangle;
         Erase _erase;
+        RectangleErase _rectangleErase;
         PrefabTool _prefab;
         AreaTool _area;
         SelectTool _select;
@@ -48,6 +50,7 @@ namespace Game.Editor.Tool
             _brush = new Brush(this);
             _rectangle = new Rectangle(this);
             _erase = new Erase(this);
+            _rectangleErase = new RectangleErase(this);
             _prefab = new PrefabTool(this);
             _area = new AreaTool(this);
             _select = new SelectTool(this);
@@ -92,6 +95,7 @@ namespace Game.Editor.Tool
                     case Tools.Brush: _brush.Update(); return;
                     case Tools.Rectangle: _rectangle.Update(); return;
                     case Tools.Erase: _erase.Update(); return;
+                    case Tools.RectangleErase: _rectangleErase.Update(); return;
                     case Tools.Prefab: _prefab.Update(); return;
                     case Tools.Area: _area.Update(); return;
                     case Tools.Select: _select.Update(); return;
