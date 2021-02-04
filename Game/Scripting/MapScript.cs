@@ -199,6 +199,11 @@ namespace Game.Scripting
                 }
                 _pendingScripts.Clear();
 
+                foreach (var script in _scripts.Values)
+                {
+                    script.Globals["delta_time"] = Time.DeltaTime;
+                }
+
                 foreach (var addition in _pendingAdditions)
                 {
                     _triggers.Add(addition);

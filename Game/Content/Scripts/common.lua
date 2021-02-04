@@ -66,19 +66,26 @@ function wait_interaction(entity)
     end
 end
 
-function wait()
+function beat()
 	coroutine.yield()
+end
+
+function wait_for(duration)
+	local elapsed = 0
+	while elapsed < duration
+	do
+		elapsed = elapsed + delta_time
+		coroutine.yield()
+	end
 end
 
 --- higher-order
 
 function cutscene(player, fn)
-	return function()
-		player.set_enabled(false)
-		fn()
-		-- eat interaction
-		wait()
-		wait()
-		player.set_enabled(true)
-	end
+	player.set_enabled(false)
+	fn()
+	-- eat interaction
+	beat()
+	beat()
+	player.set_enabled(true)
 end
