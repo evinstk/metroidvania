@@ -266,6 +266,12 @@
 #begin Animations2/default.json
 /copy:Animations2/default.json
 
+#begin Animations2/door-open.json
+/copy:Animations2/door-open.json
+
+#begin Animations2/gate-open.json
+/copy:Animations2/gate-open.json
+
 #begin Animations2/goblinCrouch.json
 /copy:Animations2/goblinCrouch.json
 
@@ -382,6 +388,9 @@
 #begin Prefabs/checkpoint.json
 /copy:Prefabs/checkpoint.json
 
+#begin Prefabs/door.json
+/copy:Prefabs/door.json
+
 #begin Prefabs/DummyHero.json
 /copy:Prefabs/DummyHero.json
 
@@ -412,6 +421,9 @@
 #begin Prefabs/Switch.json
 /copy:Prefabs/Switch.json
 
+#begin Prefabs/wall-switch.json
+/copy:Prefabs/wall-switch.json
+
 #begin RoomEdges/NFXCOJSALQHDEALEIAFICIEUPKWWICMFSFZAMA.json
 /copy:RoomEdges/NFXCOJSALQHDEALEIAFICIEUPKWWICMFSFZAMA.json
 
@@ -420,6 +432,9 @@
 
 #begin Rooms/collision.json
 /copy:Rooms/collision.json
+
+#begin Rooms/NRSRQMEIXMAUMHUPXITEVFRLPVXWUCRQXUPUZI.json
+/copy:Rooms/NRSRQMEIXMAUMHUPXITEVFRLPVXWUCRQXUPUZI.json
 
 #begin Rooms/room1.json
 /copy:Rooms/room1.json
@@ -430,11 +445,23 @@
 #begin Rooms/VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV.json
 /copy:Rooms/VFVTMVSAZGHVCLIFQHNSSYNCTKPZPVFIGXIXJV.json
 
+#begin ScriptableObjects/BooleanValue/CGGKOVVEDJLMLGELQRIKBFGRPXSLDHKQSDTATI.json
+/copy:ScriptableObjects/BooleanValue/CGGKOVVEDJLMLGELQRIKBFGRPXSLDHKQSDTATI.json
+
 #begin ScriptableObjects/BooleanValue/IFMDCBPEQMLOCSIPSBOBUBBCJNENJHDSKSUCHP.json
 /copy:ScriptableObjects/BooleanValue/IFMDCBPEQMLOCSIPSBOBUBBCJNENJHDSKSUCHP.json
 
 #begin ScriptableObjects/BooleanValue/IVYYAUUYUCSIJMLBXZNPXVBEAAHHYGSEDNFTEA.json
 /copy:ScriptableObjects/BooleanValue/IVYYAUUYUCSIJMLBXZNPXVBEAAHHYGSEDNFTEA.json
+
+#begin ScriptableObjects/BooleanValue/NXEYPUUBQCQBYGMPIXZPUQCKBWYVUHNDSHELFC.json
+/copy:ScriptableObjects/BooleanValue/NXEYPUUBQCQBYGMPIXZPUQCKBWYVUHNDSHELFC.json
+
+#begin ScriptableObjects/BooleanValue/QBFOJBEGHJNXADFXJNWVORNMWTFWCSBLAJOOBK.json
+/copy:ScriptableObjects/BooleanValue/QBFOJBEGHJNXADFXJNWVORNMWTFWCSBLAJOOBK.json
+
+#begin ScriptableObjects/BooleanValue/TALEXKWEZAGPVJLSNVGZSBSADSDFOBIUMOYVZK.json
+/copy:ScriptableObjects/BooleanValue/TALEXKWEZAGPVJLSNVGZSBSADSDFOBIUMOYVZK.json
 
 #begin ScriptableObjects/IntValue/JDCWIOFDUEAKZUHJDADIGJZINSKQUVOTZGGJZR.json
 /copy:ScriptableObjects/IntValue/JDCWIOFDUEAKZUHJDADIGJZINSKQUVOTZGGJZR.json
@@ -445,11 +472,17 @@
 #begin ScriptableObjects/StringValue/NDLGNRENMKXQLIFEIWOHPKLLHHWUZUJFHJDSMQ.json
 /copy:ScriptableObjects/StringValue/NDLGNRENMKXQLIFEIWOHPKLLHHWUZUJFHJDSMQ.json
 
+#begin ScriptableObjects/StringValue/QURBFVXPIVAZVFFLZVVWOPVFCGCTDYNFUJJNLT.json
+/copy:ScriptableObjects/StringValue/QURBFVXPIVAZVFFLZVVWOPVFCGCTDYNFUJJNLT.json
+
 #begin Scripts/above.lua
 /copy:Scripts/above.lua
 
 #begin Scripts/common.lua
 /copy:Scripts/common.lua
+
+#begin Scripts/intro.lua
+/copy:Scripts/intro.lua
 
 #begin Scripts/prison.lua
 /copy:Scripts/prison.lua
@@ -606,4 +639,7 @@
 
 #begin Worlds/PXBXDBMCNVAFFHJZAAAJVIOFUSHTCZKWKVAPTS.json
 /copy:Worlds/PXBXDBMCNVAFFHJZAAAJVIOFUSHTCZKWKVAPTS.json
+
+#begin Worlds/QQEYKFSKVORVXHZGKHAHBUPHOVVJWSRZQOSDZW.json
+/copy:Worlds/QQEYKFSKVORVXHZGKHAHBUPHOVVJWSRZQOSDZW.json
 

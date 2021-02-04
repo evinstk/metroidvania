@@ -1,0 +1,9 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Scriptable.StringValue",
+	"Name": "player-name",
+	"IncludeInSave": false,
+	"InitialValue": "Samus",
+	"RuntimeValue": "Samus",
+	"Id": "QURBFVXPIVAZVFFLZVVWOPVFCGCTDYNFUJJNLT"
+}

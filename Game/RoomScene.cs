@@ -54,8 +54,8 @@ namespace Game
             }
             else
             {
-                WorldRoomId = "AQTHSGPBWRWCEEASQUXFLHGSNVOLQBWLUMJJMD";
-                CheckpointId = "EUTJBZWZVREDYQDPGUVCNQMHHDWPFCJFPTDUYQ";
+                WorldRoomId = "UMTEAJFYFJRRJIUSGVAWKPJINCWSEIPVGNMONX";
+                CheckpointId = "TGCPQLSEJJEYHWCCMFCLRYMMTWTWLVVGEJCUUU";
             }
         }
 

@@ -5,7 +5,7 @@
 	"TileWidth": 16,
 	"TileHeight": 16,
 	"LightRendererClearColor": 127,
-	"Script": null,
+	"Script": "intro.lua",
 	"Layers": [
 		{
 			"@id": "2",
@@ -27170,51 +27170,23 @@
 		{
 			"@id": "3614",
 			"@type": "Game.Editor.RoomEntity",
-			"Id": "VLTGPZPCILQZFDNFUMSNDGUJXZXTCEZLQCWATR",
-			"Name": "wall-switch",
-			"PrefabId": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS",
-			"Position": {
-				"@id": "3615",
-				"@type": "Microsoft.Xna.Framework.Vector2",
-				"X": 152,
-				"Y": 172
-			},
-			"EntityOnlyComponents": [
-				{
-					"@id": "3616",
-					"@type": "Game.Editor.Prefab.SwitchState",
-					"State": {
-						"@id": "3617",
-						"@type": "Game.Editor.Scriptable.BooleanReference",
-						"Id": "QBFOJBEGHJNXADFXJNWVORNMWTFWCSBLAJOOBK"
-					},
-					"DataComponentId": "YBQIUBZSHAXOITXADPRKIPCWAEMFICGMMDORXV"
-				}
-			],
-			"Components": [
-
-			]
-		},
-		{
-			"@id": "3618",
-			"@type": "Game.Editor.RoomEntity",
 			"Id": "XIINCTITGVVYKIKVMOTKGDCXUSDBWQNIDHUVOM",
 			"Name": "door",
 			"PrefabId": "DKNXDZVTDPJZRMXNLGFODOQHUFXTFHCIGPSIBP",
 			"Position": {
-				"@id": "3619",
+				"@id": "3615",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": -200,
 				"Y": 168
 			},
 			"EntityOnlyComponents": [
 				{
-					"@id": "3620",
+					"@id": "3616",
 					"@type": "Game.GateState",
 					"OpenState": {
-						"@id": "3621",
+						"@id": "3617",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
-						"Id": null
+						"Id": "TALEXKWEZAGPVJLSNVGZSBSADSDFOBIUMOYVZK"
 					},
 					"DataComponentId": "UCGRVGVOKVUYODXNUPUFCYCCOVMASBUOMWLDIM"
 				}
@@ -27224,23 +27196,23 @@
 			]
 		},
 		{
-			"@id": "3622",
+			"@id": "3618",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "UKHVLDWSOQZPSWDONTFLTKPGWQHMVDOPHZTJCL",
 			"Name": "wall-switch",
 			"PrefabId": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS",
 			"Position": {
-				"@id": "3623",
+				"@id": "3619",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 40,
 				"Y": 172
 			},
 			"EntityOnlyComponents": [
 				{
-					"@id": "3624",
+					"@id": "3620",
 					"@type": "Game.Editor.Prefab.SwitchState",
 					"State": {
-						"@id": "3625",
+						"@id": "3621",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "QBFOJBEGHJNXADFXJNWVORNMWTFWCSBLAJOOBK"
 					},
@@ -27252,15 +27224,43 @@
 			]
 		},
 		{
-			"@id": "3626",
+			"@id": "3622",
 			"@type": "Game.Editor.RoomEntity",
 			"Id": "VGSATIYOSBHSPDFMGYVSIOIDLLDEATTIVVGPLT",
 			"Name": "door",
 			"PrefabId": "DKNXDZVTDPJZRMXNLGFODOQHUFXTFHCIGPSIBP",
 			"Position": {
-				"@id": "3627",
+				"@id": "3623",
 				"@type": "Microsoft.Xna.Framework.Vector2",
 				"X": 104,
+				"Y": 328
+			},
+			"EntityOnlyComponents": [
+				{
+					"@id": "3624",
+					"@type": "Game.GateState",
+					"OpenState": {
+						"@id": "3625",
+						"@type": "Game.Editor.Scriptable.BooleanReference",
+						"Id": "NXEYPUUBQCQBYGMPIXZPUQCKBWYVUHNDSHELFC"
+					},
+					"DataComponentId": "UCGRVGVOKVUYODXNUPUFCYCCOVMASBUOMWLDIM"
+				}
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "3626",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "VHNPMUYLDUJAMYKCJGYOOIETOYHZXUXQBNCOET",
+			"Name": "door",
+			"PrefabId": "DKNXDZVTDPJZRMXNLGFODOQHUFXTFHCIGPSIBP",
+			"Position": {
+				"@id": "3627",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": -200,
 				"Y": 328
 			},
 			"EntityOnlyComponents": [
@@ -27270,7 +27270,7 @@
 					"OpenState": {
 						"@id": "3629",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
-						"Id": null
+						"Id": "CGGKOVVEDJLMLGELQRIKBFGRPXSLDHKQSDTATI"
 					},
 					"DataComponentId": "UCGRVGVOKVUYODXNUPUFCYCCOVMASBUOMWLDIM"
 				}
@@ -27282,34 +27282,119 @@
 		{
 			"@id": "3630",
 			"@type": "Game.Editor.RoomEntity",
-			"Id": "VHNPMUYLDUJAMYKCJGYOOIETOYHZXUXQBNCOET",
-			"Name": "door",
-			"PrefabId": "DKNXDZVTDPJZRMXNLGFODOQHUFXTFHCIGPSIBP",
+			"Id": "LCVILKDJWYEXDVYCEDRBUMUFSCWPHHRFADKMNM",
+			"Name": "wall-switch",
+			"PrefabId": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS",
 			"Position": {
 				"@id": "3631",
 				"@type": "Microsoft.Xna.Framework.Vector2",
-				"X": -200,
-				"Y": 328
+				"X": -152,
+				"Y": 172
 			},
 			"EntityOnlyComponents": [
 				{
 					"@id": "3632",
-					"@type": "Game.GateState",
-					"OpenState": {
+					"@type": "Game.Editor.Prefab.SwitchState",
+					"State": {
 						"@id": "3633",
 						"@type": "Game.Editor.Scriptable.BooleanReference",
-						"Id": null
+						"Id": "TALEXKWEZAGPVJLSNVGZSBSADSDFOBIUMOYVZK"
 					},
-					"DataComponentId": "UCGRVGVOKVUYODXNUPUFCYCCOVMASBUOMWLDIM"
+					"DataComponentId": "YBQIUBZSHAXOITXADPRKIPCWAEMFICGMMDORXV"
 				}
 			],
 			"Components": [
 
 			]
+		},
+		{
+			"@id": "3634",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "BKYRPXCLNHNJQUDHCYHPPIONCOHYXALLORCHCC",
+			"Name": "wall-switch",
+			"PrefabId": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS",
+			"Position": {
+				"@id": "3635",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": -152,
+				"Y": 332
+			},
+			"EntityOnlyComponents": [
+				{
+					"@id": "3636",
+					"@type": "Game.Editor.Prefab.SwitchState",
+					"State": {
+						"@id": "3637",
+						"@type": "Game.Editor.Scriptable.BooleanReference",
+						"Id": "CGGKOVVEDJLMLGELQRIKBFGRPXSLDHKQSDTATI"
+					},
+					"DataComponentId": "YBQIUBZSHAXOITXADPRKIPCWAEMFICGMMDORXV"
+				}
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "3638",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "WXDHPOCXQWCSALFYWSVKOAQDONVBUYSWEZCKLI",
+			"Name": "wall-switch",
+			"PrefabId": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS",
+			"Position": {
+				"@id": "3639",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 40,
+				"Y": 332
+			},
+			"EntityOnlyComponents": [
+				{
+					"@id": "3640",
+					"@type": "Game.Editor.Prefab.SwitchState",
+					"State": {
+						"@id": "3641",
+						"@type": "Game.Editor.Scriptable.BooleanReference",
+						"Id": "NXEYPUUBQCQBYGMPIXZPUQCKBWYVUHNDSHELFC"
+					},
+					"DataComponentId": "YBQIUBZSHAXOITXADPRKIPCWAEMFICGMMDORXV"
+				}
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "3642",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "JOQEQHNFGRPZXTPJHZALSUKMMKCEZCXUKTDRZM",
+			"Name": "cell-exit",
+			"PrefabId": null,
+			"Position": {
+				"@id": "3643",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 64,
+				"Y": 144
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+				{
+					"@id": "3644",
+					"@type": "Game.Editor.Prefab.AreaData",
+					"Size": {
+						"@id": "3645",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 16,
+						"Y": 48
+					},
+					"Id": "IWETQZPCCFOCVYADFODDSGFIGDTUODQYKUQEGZ"
+				}
+			]
 		}
 	],
 	"RoomVariables": {
-		"@id": "3634",
+		"@id": "3646",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 

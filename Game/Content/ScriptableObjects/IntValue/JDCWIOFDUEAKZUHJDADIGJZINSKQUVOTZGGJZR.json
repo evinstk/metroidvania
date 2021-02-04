@@ -3,7 +3,7 @@
 	"@type": "Game.Editor.Scriptable.IntValue",
 	"Name": "Max Health",
 	"IncludeInSave": true,
-	"InitialValue": 7,
-	"RuntimeValue": 0,
+	"InitialValue": 5,
+	"RuntimeValue": 5,
 	"Id": "JDCWIOFDUEAKZUHJDADIGJZINSKQUVOTZGGJZR"
 }
