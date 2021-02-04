@@ -27148,7 +27148,7 @@
 			"Position": {
 				"@id": "3611",
 				"@type": "Microsoft.Xna.Framework.Vector2",
-				"X": 96,
+				"X": 104,
 				"Y": 168
 			},
 			"EntityOnlyComponents": [
@@ -27170,14 +27170,14 @@
 		{
 			"@id": "3614",
 			"@type": "Game.Editor.RoomEntity",
-			"Id": "ZVAQZQNHNKYKNMUADQRYBUGXCXWDNSOKXCWZLV",
-			"Name": "Switch",
-			"PrefabId": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD",
+			"Id": "VLTGPZPCILQZFDNFUMSNDGUJXZXTCEZLQCWATR",
+			"Name": "wall-switch",
+			"PrefabId": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS",
 			"Position": {
 				"@id": "3615",
 				"@type": "Microsoft.Xna.Framework.Vector2",
-				"X": 172,
-				"Y": 180
+				"X": 152,
+				"Y": 172
 			},
 			"EntityOnlyComponents": [
 				{
@@ -27188,7 +27188,119 @@
 						"@type": "Game.Editor.Scriptable.BooleanReference",
 						"Id": "QBFOJBEGHJNXADFXJNWVORNMWTFWCSBLAJOOBK"
 					},
-					"DataComponentId": "WTNXTKNRPCWUDGHFHMJPEGUVYZFHSZMVUVLPMG"
+					"DataComponentId": "YBQIUBZSHAXOITXADPRKIPCWAEMFICGMMDORXV"
+				}
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "3618",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "XIINCTITGVVYKIKVMOTKGDCXUSDBWQNIDHUVOM",
+			"Name": "door",
+			"PrefabId": "DKNXDZVTDPJZRMXNLGFODOQHUFXTFHCIGPSIBP",
+			"Position": {
+				"@id": "3619",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": -200,
+				"Y": 168
+			},
+			"EntityOnlyComponents": [
+				{
+					"@id": "3620",
+					"@type": "Game.GateState",
+					"OpenState": {
+						"@id": "3621",
+						"@type": "Game.Editor.Scriptable.BooleanReference",
+						"Id": null
+					},
+					"DataComponentId": "UCGRVGVOKVUYODXNUPUFCYCCOVMASBUOMWLDIM"
+				}
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "3622",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "UKHVLDWSOQZPSWDONTFLTKPGWQHMVDOPHZTJCL",
+			"Name": "wall-switch",
+			"PrefabId": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS",
+			"Position": {
+				"@id": "3623",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 40,
+				"Y": 172
+			},
+			"EntityOnlyComponents": [
+				{
+					"@id": "3624",
+					"@type": "Game.Editor.Prefab.SwitchState",
+					"State": {
+						"@id": "3625",
+						"@type": "Game.Editor.Scriptable.BooleanReference",
+						"Id": "QBFOJBEGHJNXADFXJNWVORNMWTFWCSBLAJOOBK"
+					},
+					"DataComponentId": "YBQIUBZSHAXOITXADPRKIPCWAEMFICGMMDORXV"
+				}
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "3626",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "VGSATIYOSBHSPDFMGYVSIOIDLLDEATTIVVGPLT",
+			"Name": "door",
+			"PrefabId": "DKNXDZVTDPJZRMXNLGFODOQHUFXTFHCIGPSIBP",
+			"Position": {
+				"@id": "3627",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 104,
+				"Y": 328
+			},
+			"EntityOnlyComponents": [
+				{
+					"@id": "3628",
+					"@type": "Game.GateState",
+					"OpenState": {
+						"@id": "3629",
+						"@type": "Game.Editor.Scriptable.BooleanReference",
+						"Id": null
+					},
+					"DataComponentId": "UCGRVGVOKVUYODXNUPUFCYCCOVMASBUOMWLDIM"
+				}
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "3630",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "VHNPMUYLDUJAMYKCJGYOOIETOYHZXUXQBNCOET",
+			"Name": "door",
+			"PrefabId": "DKNXDZVTDPJZRMXNLGFODOQHUFXTFHCIGPSIBP",
+			"Position": {
+				"@id": "3631",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": -200,
+				"Y": 328
+			},
+			"EntityOnlyComponents": [
+				{
+					"@id": "3632",
+					"@type": "Game.GateState",
+					"OpenState": {
+						"@id": "3633",
+						"@type": "Game.Editor.Scriptable.BooleanReference",
+						"Id": null
+					},
+					"DataComponentId": "UCGRVGVOKVUYODXNUPUFCYCCOVMASBUOMWLDIM"
 				}
 			],
 			"Components": [
@@ -27197,7 +27309,7 @@
 		}
 	],
 	"RoomVariables": {
-		"@id": "3618",
+		"@id": "3634",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 

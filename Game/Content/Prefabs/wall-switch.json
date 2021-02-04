@@ -1,0 +1,69 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
+	"Name": "wall-switch",
+	"UpdateOrder": 0,
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteRendererData",
+			"SpriteData": {
+				"@id": "3",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "wall-switch-off.png"
+			},
+			"Flip": false,
+			"RenderLayer": 0,
+			"Id": "BTTOJGZQMAEWHGBFKRMMXOBFLDMPSMDLUDGQOH"
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.Prefab.SwitchData",
+			"OnSprite": {
+				"@id": "5",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "wall-switch-on.png"
+			},
+			"OffSprite": {
+				"@id": "6",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "wall-switch-off.png"
+			},
+			"Id": "YBQIUBZSHAXOITXADPRKIPCWAEMFICGMMDORXV"
+		},
+		{
+			"@id": "7",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@id": "8",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 16,
+				"Y": 16
+			},
+			"Offset": {
+				"@id": "9",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 0,
+				"Y": 0
+			},
+			"PhysicsLayer": {
+				"@id": "10",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 512
+			},
+			"CollidesWithLayers": {
+				"@id": "11",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			},
+			"Id": "LSJESWVNVFOQZHIIIIYTIQPUKFTKCFFFDIDYAD"
+		}
+	],
+	"Id": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS"
+}
