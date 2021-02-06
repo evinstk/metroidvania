@@ -9,6 +9,7 @@ namespace Game.Editor.Prefab
         public Vector2 Offset;
         public PhysicsLayerData PhysicsLayer = new PhysicsLayerData();
         public PhysicsLayerData CollidesWithLayers = new PhysicsLayerData();
+        public bool IsTrigger;
 
         public override void AddToEntity(Entity entity)
         {
@@ -17,6 +18,7 @@ namespace Game.Editor.Prefab
             collider.LocalOffset = Offset;
             collider.PhysicsLayer = PhysicsLayer.Mask;
             collider.CollidesWithLayers = CollidesWithLayers.Mask;
+            collider.IsTrigger = IsTrigger;
         }
     }
 }
