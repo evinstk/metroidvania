@@ -17,6 +17,8 @@ namespace Game.Editor.Prefab
         {
             var collider = entity.AddComponent(new BoxCollider(0, 0, Size.X, Size.Y));
             collider.IsTrigger = true;
+            collider.PhysicsLayer = 0;
+            collider.CollidesWithLayers = 0;
         }
 
         public override void Render(Batcher batcher, Vector2 position)
