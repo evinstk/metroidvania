@@ -50,8 +50,8 @@ namespace Game.Hit
             var location = hitbox.Location;
             if (flip) location.X = -location.X - hitbox.Width;
             hitbox.Location = location + Entity.Position;
-            Physics.OverlapRectangleAll(ref hitbox, _colliderResults, HitMask);
-            for (var i = 0; i < _colliderResults.Length; ++i)
+            var count = Physics.OverlapRectangleAll(ref hitbox, _colliderResults, HitMask);
+            for (var i = 0; i < count; ++i)
             {
                 var collider = _colliderResults[i];
                 if (collider != null)
