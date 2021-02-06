@@ -19,6 +19,8 @@ namespace Game.Editor.Prefab
         public int UpdateOrder = 0;
         public List<DataComponent> Components = new List<DataComponent>();
 
+        public List<PrefabData> ChildEntities = new List<PrefabData>();
+
         public T GetComponent<T>() where T : DataComponent => Components.Find(c => c is T) as T;
         public bool TryGetComponent<T>(out T component) where T : DataComponent
         {
@@ -33,6 +35,11 @@ namespace Game.Editor.Prefab
             foreach (var component in Components)
             {
                 component.AddToEntity(entity);
+            }
+            foreach (var childEntityData in ChildEntities)
+            {
+                var childEntity = childEntityData.CreateEntity(childEntityData.Name, scene);
+                childEntity.Parent = entity.Transform;
             }
             return entity;
         }
@@ -134,7 +141,6 @@ namespace Game.Editor.Prefab
         {
             public string Name;
             public List<AbstractTypeInspector> Inspectors;
-            public int Id;
             public DataComponent Component;
         }
         List<EditorComponentInspector> _inspectors;
@@ -168,6 +174,12 @@ namespace Game.Editor.Prefab
             _prefabManager.NewResourcePopup();
         }
 
+        class ChildInspector
+        {
+            public List<EditorComponentInspector> Inspectors = new List<EditorComponentInspector>();
+            public PrefabData Entity;
+        }
+        List<ChildInspector> _childInspectors = new List<ChildInspector>();
         void GenerateInspectors()
         {
             _inspectors = new List<EditorComponentInspector>();
@@ -179,9 +191,27 @@ namespace Game.Editor.Prefab
                 {
                     Name = component.GetType().Name,
                     Inspectors = TypeInspectorUtils.GetInspectableProperties(component),
-                    Id = NezImGui.GetScopeId(),
                     Component = component,
                 });
+            }
+
+            _childInspectors = new List<ChildInspector>();
+            foreach (var childEntity in data.ChildEntities)
+            {
+                var childInspector = new ChildInspector
+                {
+                    Entity = childEntity,
+                };
+                foreach (var component in childEntity.Components)
+                {
+                    childInspector.Inspectors.Add(new EditorComponentInspector
+                    {
+                        Name = component.GetType().Name,
+                        Inspectors = TypeInspectorUtils.GetInspectableProperties(component),
+                        Component = component,
+                    });
+                }
+                _childInspectors.Add(childInspector);
             }
         }
 
@@ -200,7 +230,7 @@ namespace Game.Editor.Prefab
             ImGui.Text("Components:");
             foreach (var group in _inspectors)
             {
-                ImGui.PushID(group.Id);
+                ImGui.PushID(group.Component.Id);
                 var isHeaderOpen = ImGui.CollapsingHeader(group.Name);
                 if (ImGui.BeginPopupContextItem())
                 {
@@ -220,7 +250,87 @@ namespace Game.Editor.Prefab
                 ImGui.PopID();
             }
             if (ImGui.Button("Add Component"))
+            {
+                ComponentListToAppend = entity.Components;
                 addComponent = true;
+            }
+
+            PrefabData childToRemove = null;
+            ImGui.Text("Entities:");
+            foreach (var childInspector in _childInspectors)
+            {
+                DataComponent childCompToRemove = null;
+                ImGui.PushID(childInspector.Entity.Id);
+
+                ImGui.Indent();
+                NezImGui.BeginBorderedGroup();
+
+                ImGui.InputText("Name", ref childInspector.Entity.Name, 25);
+                var isChildHeaderOpen = ImGui.CollapsingHeader(childInspector.Entity.Name);
+                if (ImGui.BeginPopupContextItem())
+                {
+                    if (ImGui.Selectable("Remove Component"))
+                        childToRemove = childInspector.Entity;
+                    ImGui.EndPopup();
+                }
+                if (isChildHeaderOpen)
+                {
+                    foreach (var group in childInspector.Inspectors)
+                    {
+                        ImGui.PushID(group.Component.Id);
+                        ImGui.Indent();
+                        NezImGui.BeginBorderedGroup();
+                        var isHeaderOpen = ImGui.CollapsingHeader(group.Name);
+                        if (ImGui.BeginPopupContextItem())
+                        {
+                            if (ImGui.Selectable("Remove Component"))
+                            {
+                                childCompToRemove = group.Component;
+                            }
+                            ImGui.EndPopup();
+                        }
+                        if (isHeaderOpen)
+                        {
+                            foreach (var inspector in group.Inspectors)
+                            {
+                                inspector.Draw();
+                            }
+                        }
+                        NezImGui.EndBorderedGroup(new Num.Vector2(4, 1), new Num.Vector2(4, 2));
+                        ImGui.Unindent();
+                        ImGui.PopID();
+                    }
+                    if (ImGui.Button("Add Component"))
+                    {
+                        ComponentListToAppend = childInspector.Entity.Components;
+                        addComponent = true;
+                    }
+
+                    if (childCompToRemove != null)
+                    {
+                        childInspector.Entity.Components.Remove(childCompToRemove);
+                        GenerateInspectors();
+                        _prefabManager.TriggerPrefabChange();
+                    }
+                }
+
+                NezImGui.EndBorderedGroup(new Num.Vector2(4, 1), new Num.Vector2(4, 2));
+                ImGui.Unindent();
+
+                ImGui.PopID();
+            }
+            if (ImGui.Button("Add Child Entity"))
+            {
+                entity.ChildEntities.Add(new PrefabData());
+                GenerateInspectors();
+                _prefabManager.TriggerPrefabChange();
+            }
+            if (childToRemove != null)
+            {
+                entity.ChildEntities.Remove(childToRemove);
+                GenerateInspectors();
+                _prefabManager.TriggerPrefabChange();
+            }
 
             if (addComponent)
             {
@@ -236,6 +346,7 @@ namespace Game.Editor.Prefab
             DrawComponentSelectorPopup();
         }
 
+        List<DataComponent> ComponentListToAppend;
         void DrawComponentSelectorPopup()
         {
             if (ImGui.BeginPopup("component-selector"))
@@ -244,7 +355,8 @@ namespace Game.Editor.Prefab
                 {
                     if (ImGui.Selectable(subclass.Name))
                     {
-                        EditorState.SelectedPrefab.Components.Add(Activator.CreateInstance(subclass) as DataComponent);
+                        ComponentListToAppend.Add(Activator.CreateInstance(subclass) as DataComponent);
+                        ComponentListToAppend = null;
                         GenerateInspectors();
                         _prefabManager.TriggerPrefabChange();
                         ImGui.CloseCurrentPopup();

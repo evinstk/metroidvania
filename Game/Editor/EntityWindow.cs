@@ -63,7 +63,7 @@ namespace Game.Editor
             ImGui.Text("Components:");
             foreach (var group in _inspectors)
             {
-                ImGui.PushID(group.Id);
+                ImGui.PushID(group.Component.Id);
                 var isHeaderOpen = ImGui.CollapsingHeader(group.Name);
                 if (ImGui.BeginPopupContextItem())
                 {
@@ -140,7 +140,7 @@ namespace Game.Editor
                 {
                     Name = component.GetType().Name,
                     Inspectors = TypeInspectorUtils.GetInspectableProperties(component),
-                    Id = NezImGui.GetScopeId(),
+                    //Id = NezImGui.GetScopeId(),
                     Component = component,
                 });
             }

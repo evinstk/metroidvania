@@ -242,19 +242,13 @@ namespace Game.Editor
 
         public Entity CreateEntity(Scene scene, string worldRoomId = null, Vector2 offset = new Vector2())
         {
-            var entity = scene.CreateEntity(Name);
+            var prefab = Prefab;
+            var entity = prefab?.CreateEntity(Name, scene) ?? scene.CreateEntity(Name);
             entity.SetPosition(Position + offset);
             var roomEntityData = entity.AddComponent<RoomEntityComponent>();
             roomEntityData.RoomEntityId = Id;
             roomEntityData.RoomId = Room?.Id;
             roomEntityData.WorldRoomId = worldRoomId;
-            var prefab = Prefab;
-            if (prefab != null)
-            {
-                entity.UpdateOrder = prefab.UpdateOrder;
-                foreach (var component in prefab.Components)
-                    component.AddToEntity(entity);
-            }
             foreach (var component in Components)
                 component.AddToEntity(entity);
             foreach (var eoComponent in EntityOnlyComponents)
