@@ -35,6 +35,8 @@ namespace Game
 
         public void Update()
         {
+            if (Time.DeltaTime == 0) return;
+
             _elapsed += Time.DeltaTime;
             if (_elapsed >= TimeToLive)
                 Entity.Destroy();
@@ -42,6 +44,8 @@ namespace Game
             var motion = Direction * MoveSpeed * Time.DeltaTime;
             if (_mover.Move(motion))
                 Entity.Destroy();
+
+            Transform.Rotation = Mathf.Deg2Rad * Mathf.RoundToNearest(Vector2.Zero.AngleBetween(new Vector2(1, 0), motion), 45);
         }
     }
 }
