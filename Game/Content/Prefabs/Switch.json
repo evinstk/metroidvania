@@ -43,6 +43,7 @@
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			},
+			"IsTrigger": false,
 			"Id": "WCYRVOKSQQVDCLDVMIIAEKTJMPUPTQKNLDYHBQ"
 		},
 		{
@@ -64,6 +65,9 @@
 			},
 			"Id": "WTNXTKNRPCWUDGHFHMJPEGUVYZFHSZMVUVLPMG"
 		}
+	],
+	"ChildEntities": [
+
 	],
 	"Id": "FAWKYDZPUWNIXSAYWDVSSRMGILAOLOJYZBFFJD"
 }

@@ -13,6 +13,7 @@ namespace Game.Sentry
         public int StopDistance = 25;
         public HitData AttackMask = new HitData();
 
+        public float TimeUntilFire = .2f;
         public float ProjectileTimeout = 1f;
         public float NoTargetTimeout = 2f;
 
@@ -23,6 +24,7 @@ namespace Game.Sentry
             controller.StopDistance = StopDistance;
             controller.AttackMask = AttackMask.HitMask;
 
+            controller.TimeUntilFire = TimeUntilFire;
             controller.ProjectileTimeout = ProjectileTimeout;
             controller.NoTargetTimeout = NoTargetTimeout;
         }
@@ -34,6 +36,7 @@ namespace Game.Sentry
         public int StopDistance = 25;
         public int AttackMask = 0;
 
+        public float TimeUntilFire = .2f;
         public float ProjectileTimeout = 1f;
         public float NoTargetTimeout = 2f;
 
@@ -93,7 +96,10 @@ namespace Game.Sentry
             }
 
             _timeout = Math.Max(_timeout - Time.DeltaTime, 0);
-            if (fireDir != 0 && _movement.CurrentState is TurtleState && _movement.ElapsedTimeInState >= 2f && _timeout <= 0)
+            if (fireDir != 0
+                && _movement.CurrentState is TurtleState
+                && _movement.ElapsedTimeInState >= TimeUntilFire
+                && _timeout <= 0)
             {
                 var projectile = _projectileSpawner.Spawn(_movement.Facing < 0);
                 var movement = projectile.GetComponent<ProjectileMovement>();

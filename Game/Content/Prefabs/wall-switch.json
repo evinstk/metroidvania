@@ -15,7 +15,7 @@
 				"FrameFilename": "wall-switch-off.png"
 			},
 			"Flip": false,
-			"RenderLayer": 0,
+			"RenderLayer": 1,
 			"Id": "BTTOJGZQMAEWHGBFKRMMXOBFLDMPSMDLUDGQOH"
 		},
 		{
@@ -62,8 +62,12 @@
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 0
 			},
+			"IsTrigger": false,
 			"Id": "LSJESWVNVFOQZHIIIIYTIQPUKFTKCFFFDIDYAD"
 		}
+	],
+	"ChildEntities": [
+
 	],
 	"Id": "WFFTQBAKTEHXBYLMWHJHVESSWBAUZQRREPUASS"
 }

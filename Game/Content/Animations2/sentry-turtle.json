@@ -1,0 +1,87 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Animation.AnimationData",
+	"Name": "sentry-turtle",
+	"FramesPerSecond": 12,
+	"Frames": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "3",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-turtle0000.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "5",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-turtle0001.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "6",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "7",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-turtle0002.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "8",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "9",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-turtle0003.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "10",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "11",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-turtle0004.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "12",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "13",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-turtle0005.png"
+			},
+			"HitBoxes": [
+
+			]
+		}
+	],
+	"Id": "TXHQQKXKZHDDSPZKNIJIGPKVUEANAJSHAIAURJ"
+}

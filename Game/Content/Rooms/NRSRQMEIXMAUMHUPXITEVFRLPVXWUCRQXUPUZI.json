@@ -27391,10 +27391,48 @@
 					"Id": "IWETQZPCCFOCVYADFODDSGFIGDTUODQYKUQEGZ"
 				}
 			]
+		},
+		{
+			"@id": "3646",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "ZGNZDWXJXWATEEJWDLSUQEARKDUGFGIDRPFOVK",
+			"Name": "sentry",
+			"PrefabId": "EXGKARPPKDGLSSVGLVEDIIYLKUXWRRUKUSFXON",
+			"Position": {
+				"@id": "3647",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 13,
+				"Y": 344
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+
+			]
+		},
+		{
+			"@id": "3648",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "RYWMNVAXLBZYVIFMKBQKMOAJFCXNPRFVOGHDZH",
+			"Name": "sentry",
+			"PrefabId": "EXGKARPPKDGLSSVGLVEDIIYLKUXWRRUKUSFXON",
+			"Position": {
+				"@id": "3649",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": -138,
+				"Y": 344
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+
+			]
 		}
 	],
 	"RoomVariables": {
-		"@id": "3646",
+		"@id": "3650",
 		"@type": "Game.Editor.RoomVariables",
 		"Variables": [
 

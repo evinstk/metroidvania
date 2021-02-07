@@ -296,11 +296,23 @@
 #begin Animations2/heroWalk.json
 /copy:Animations2/heroWalk.json
 
+#begin Animations2/projectile.json
+/copy:Animations2/projectile.json
+
 #begin Animations2/sageIdle.json
 /copy:Animations2/sageIdle.json
 
 #begin Animations2/sageTalk.json
 /copy:Animations2/sageTalk.json
+
+#begin Animations2/sentry-idle.json
+/copy:Animations2/sentry-idle.json
+
+#begin Animations2/sentry-turtle.json
+/copy:Animations2/sentry-turtle.json
+
+#begin Animations2/sentry-walk.json
+/copy:Animations2/sentry-walk.json
 
 #begin Data/AnimationGroups.xml
 /importer:XmlImporter
@@ -412,11 +424,17 @@
 #begin Prefabs/Left Lamp.json
 /copy:Prefabs/Left Lamp.json
 
+#begin Prefabs/projectile.json
+/copy:Prefabs/projectile.json
+
 #begin Prefabs/Right Lamp.json
 /copy:Prefabs/Right Lamp.json
 
 #begin Prefabs/sage.json
 /copy:Prefabs/sage.json
+
+#begin Prefabs/sentry.json
+/copy:Prefabs/sentry.json
 
 #begin Prefabs/Switch.json
 /copy:Prefabs/Switch.json
@@ -594,6 +612,12 @@
 
 #begin Textures/sage.png
 /copy:Textures/sage.png
+
+#begin Textures/sentry.json
+/copy:Textures/sentry.json
+
+#begin Textures/sentry.png
+/copy:Textures/sentry.png
 
 #begin Textures/terrain16.png
 /copy:Textures/terrain16.png

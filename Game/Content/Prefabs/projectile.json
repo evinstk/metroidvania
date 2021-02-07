@@ -1,0 +1,74 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
+	"Name": "projectile",
+	"UpdateOrder": 0,
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Prefab.SpriteRendererData",
+			"SpriteData": {
+				"@id": "3",
+				"@type": "Game.Editor.Prefab.TextureMapSpriteData",
+				"Color": 4294967295,
+				"TextureMapId": "doodads.png",
+				"FrameFilename": "projectile0000.png"
+			},
+			"Flip": false,
+			"RenderLayer": 0,
+			"Id": "SDGIQALUSKDUYYSGKVXYEKYZOCAGZZJTWQCMHP"
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.Prefab.LightData",
+			"Color": 4278201855,
+			"Radius": 16,
+			"Power": 1,
+			"LocalOffset": {
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 0,
+				"Y": 0
+			},
+			"Id": "MXYNRCABPZXPGQMCMOWXTPMAIORFBZMBIZBSTV"
+		},
+		{
+			"@id": "6",
+			"@type": "Game.ProjectileMovementData",
+			"ProjectileAnimation": {
+				"@id": "7",
+				"@type": "Game.Editor.Prefab.PlayerMovementData+AnimationData",
+				"AnimationId": "PBSFDQIVZBYKTTAHIJAVJMIHOHWNYLEBBNZXPB",
+				"Flip": false,
+				"Reverse": false
+			},
+			"Id": "XDVWJERHJGGIBTAKMKZOBOFVQXNUHHXULMHSCT"
+		},
+		{
+			"@id": "8",
+			"@type": "Game.Editor.Prefab.BoxColliderData",
+			"Size": {
+				"@ref": "5"
+			},
+			"Offset": {
+				"@ref": "5"
+			},
+			"PhysicsLayer": {
+				"@id": "9",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			},
+			"CollidesWithLayers": {
+				"@id": "10",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 257
+			},
+			"IsTrigger": false,
+			"Id": "UVTRGETKVJLSPSUCRWIXAUCSPZNTRFQAUFDDWW"
+		}
+	],
+	"ChildEntities": [
+
+	],
+	"Id": "SFXCOBDWVEMHSZDJBUPOXWHZXDDEISDFISPKML"
+}

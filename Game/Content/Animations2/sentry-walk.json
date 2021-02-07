@@ -1,0 +1,113 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Animation.AnimationData",
+	"Name": "sentry-walk",
+	"FramesPerSecond": 12,
+	"Frames": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "3",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-walk0000.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "5",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-walk0001.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "6",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "7",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-walk0002.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "8",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "9",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-walk0003.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "10",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "11",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-walk0004.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "12",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "13",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-walk0005.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "14",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "15",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-walk0006.png"
+			},
+			"HitBoxes": [
+
+			]
+		},
+		{
+			"@id": "16",
+			"@type": "Game.Editor.Animation.AnimationData+Frame",
+			"Sprite": {
+				"@id": "17",
+				"@type": "Game.Editor.Animation.AnimationData+Sprite",
+				"TextureMapId": "sentry.png",
+				"FrameFilename": "sentry-walk0007.png"
+			},
+			"HitBoxes": [
+
+			]
+		}
+	],
+	"Id": "YXEBHZNFCPVGLMUCUDMHSNODGZJKMHXSIJKXTJ"
+}

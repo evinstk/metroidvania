@@ -144,6 +144,7 @@
 				"@type": "Game.Editor.Prefab.PhysicsLayerData",
 				"Mask": 3328
 			},
+			"IsTrigger": false,
 			"Id": "ZYWWTOJEPWBVTZZXAVHPEFOVXIJJYEPCVUYXMP"
 		},
 		{
@@ -170,6 +171,52 @@
 				"Id": "NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC"
 			},
 			"Id": "EZDHKUSNCWZFRXYVERHTITFOKVLZAAMGAAUDVF"
+		}
+	],
+	"ChildEntities": [
+		{
+			"@id": "28",
+			"@type": "Game.Editor.Prefab.PrefabData",
+			"Name": "hitbox",
+			"UpdateOrder": 0,
+			"Components": [
+				{
+					"@id": "29",
+					"@type": "Game.Editor.Prefab.BoxColliderData",
+					"Size": {
+						"@ref": "20"
+					},
+					"Offset": {
+						"@ref": "17"
+					},
+					"PhysicsLayer": {
+						"@id": "30",
+						"@type": "Game.Editor.Prefab.PhysicsLayerData",
+						"Mask": 1
+					},
+					"CollidesWithLayers": {
+						"@id": "31",
+						"@type": "Game.Editor.Prefab.PhysicsLayerData",
+						"Mask": 0
+					},
+					"IsTrigger": true,
+					"Id": "LEQHVZRPIFUWSUSVUAKIJUXCUPAITYKJIIQQMM"
+				},
+				{
+					"@id": "32",
+					"@type": "Game.Hit.HitListenerData",
+					"CurrHealth": {
+						"@id": "33",
+						"@type": "Game.Editor.Scriptable.IntReference",
+						"Id": "NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC"
+					},
+					"Id": "GERGKKBIXGMCJAEPBORLGXGINBTCUEQMABPHOR"
+				}
+			],
+			"ChildEntities": [
+
+			],
+			"Id": "NFIRXWVBOOJIGOQCBCVDTNVAHDZSHYOBOIEGTS"
 		}
 	],
 	"Id": "WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC"
