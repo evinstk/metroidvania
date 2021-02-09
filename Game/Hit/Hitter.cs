@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
+﻿using Nez;
 using System.Collections.Generic;
 
 namespace Game.Hit
@@ -9,18 +8,20 @@ namespace Game.Hit
         void OnHit();
     }
 
-    class Hitter :
-#if DEBUG
-        RenderableComponent
-#else
-        Component
-#endif
+    class Hitter : Component
     {
         public int HitMask = -1;
 
         Animator<ObserverFrame> _animator;
         Collider[] _colliderResults = new Collider[8];
         List<IHitListener> _tempHitList = new List<IHitListener>();
+
+        ColliderTriggerHelper _triggerHelper;
+
+        public override void Initialize()
+        {
+            _triggerHelper = new ColliderTriggerHelper(Entity);
+        }
 
         public override void OnAddedToEntity()
         {
@@ -37,60 +38,23 @@ namespace Game.Hit
         {
             for (var i = 0; i < frame.HitBoxes.Length; ++i)
             {
-                CastHitBox(frame.HitBoxes[i], frame.Flip);
-            }
-#if DEBUG
-            _flip = frame.Flip;
-            _hitboxes = frame.HitBoxes;
-#endif
-        }
+                var hit = Entity.Scene.CreateEntity("hit");
 
-        void CastHitBox(RectangleF hitbox, bool flip)
-        {
-            var location = hitbox.Location;
-            if (flip) location.X = -location.X - hitbox.Width;
-            hitbox.Location = location + Entity.Position;
-            var count = Physics.OverlapRectangleAll(ref hitbox, _colliderResults, HitMask);
-            for (var i = 0; i < count; ++i)
-            {
-                var collider = _colliderResults[i];
-                if (collider != null)
-                    collider.GetComponents(_tempHitList);
-                _colliderResults[i] = null;
-            }
+                var hitbox = frame.HitBoxes[i];
+                var location = frame.HitBoxes[i].Location;
+                if (frame.Flip) location.X = -location.X - frame.HitBoxes[i].Width;
+                hitbox.Location = location + Entity.Position;
 
-            foreach (var listener in _tempHitList)
-                listener.OnHit();
-            _tempHitList.Clear();
-        }
+                var collider = hit.AddComponent(new BoxCollider(hitbox));
+                collider.PhysicsLayer = 0;
+                collider.CollidesWithLayers = HitMask;
+                collider.IsTrigger = true;
 
-#if DEBUG
-        RectangleF[] _hitboxes = null;
-        bool _flip = false;
+                var triggerHelper = new ColliderTriggerHelper(hit);
+                triggerHelper.Update();
 
-        public override float Width => 1f;
-        public override float Height => 1f;
-
-        public override void Render(Batcher batcher, Camera camera)
-        {
-        }
-
-        public override void DebugRender(Batcher batcher)
-        {
-            if (_hitboxes != null)
-            {
-                var color = Color.DarkRed;
-                color.A = 20;
-                for (var i = 0; i < _hitboxes.Length; ++i)
-                {
-                    var hitbox = _hitboxes[i];
-                    var location = hitbox.Location;
-                    if (_flip) location.X = -location.X - hitbox.Width;
-                    hitbox.Location = location + Entity.Position;
-                    batcher.DrawRect(hitbox, color);
-                }
+                hit.Destroy();
             }
         }
-#endif
     }
 }

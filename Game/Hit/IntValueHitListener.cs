@@ -15,14 +15,13 @@ namespace Game.Hit
         }
     }
 
-    class IntValueHitListener : Component, IHitListener
+    class IntValueHitListener : Component, ITriggerListener
     {
         public IntValue CurrHealth;
 
-        public void OnHit()
+        public void OnTriggerEnter(Collider other, Collider local)
         {
-            --CurrHealth.RuntimeValue;
-            if (CurrHealth.RuntimeValue <= 0)
+            if (--CurrHealth.RuntimeValue <= 0)
             {
                 Entity.Destroy();
                 var scene = Entity.Scene as RoomScene;
@@ -34,6 +33,10 @@ namespace Game.Hit
                         : new RoomScene(scene.WorldRoomId)));
                 });
             }
+        }
+
+        public void OnTriggerExit(Collider other, Collider local)
+        {
         }
     }
 }

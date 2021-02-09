@@ -11,11 +11,15 @@ namespace Game.Hit
         }
     }
 
-    class BasicHitListener : Component, IHitListener
+    class BasicHitListener : Component, ITriggerListener
     {
-        public void OnHit()
+        public void OnTriggerEnter(Collider other, Collider local)
         {
             Entity.Destroy();
+        }
+
+        public void OnTriggerExit(Collider other, Collider local)
+        {
         }
     }
 }

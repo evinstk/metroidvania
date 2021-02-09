@@ -125,6 +125,7 @@
 			},
 			"TimeUntilFire": 0.5,
 			"ProjectileTimeout": 1,
+			"NoTargetTimeout": 2,
 			"Id": "JFDGREMGAJHJYKNASSVDYAOUWDWAHKOZUAHPMB"
 		},
 		{
@@ -143,6 +144,11 @@
 			},
 			"EntityName": "",
 			"Id": "MXYSFVFMJUNRNSFREDZZKLQVQKYKSVLEATWBJK"
+		},
+		{
+			"@id": "24",
+			"@type": "Game.Hit.BasicHitListenerData",
+			"Id": "WDDPTQKTAYFZWYYFKAOFNTASBJIGGYIJACYMRQ"
 		}
 	],
 	"ChildEntities": [
