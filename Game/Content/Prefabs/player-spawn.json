@@ -1,0 +1,17 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Prefab.PrefabData",
+	"Name": "player-spawn",
+	"UpdateOrder": 0,
+	"Components": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.PlayerSpawnData",
+			"Id": "NDEVODLEKARLPWKLVXLRKNLZWVBEVJHBBCNKMI"
+		}
+	],
+	"ChildEntities": [
+
+	],
+	"Id": "LJREYAEJEIERLZYCGAORDOXZTLPFMIGZVCSXBE"
+}

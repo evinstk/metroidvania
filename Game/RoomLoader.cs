@@ -64,18 +64,30 @@ namespace Game
 
             LoadRoom(_currWorldRoomId);
 
-            var checkpoints = Entity.Scene.FindComponentsOfType<Checkpoint>();
-            foreach (var checkpoint in checkpoints)
+            var spawn = Entity.Scene.FindComponentOfType<PlayerSpawn>();
+            if (_checkpointId == null && spawn != null)
             {
-                if (checkpoint.GetComponent<RoomEntityComponent>().RoomEntityId == _checkpointId || _checkpointId == null)
+                CreateHero().SetPosition(spawn.Entity.Position);
+            }
+            else
+            {
+                var checkpoints = Entity.Scene.FindComponentsOfType<Checkpoint>();
+                foreach (var checkpoint in checkpoints)
                 {
-                    Core.GetGlobalManager<PrefabManager>()
-                        .GetResource("WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC")
-                        .CreateEntity("hero", Entity.Scene)
-                        .SetPosition(checkpoint.Entity.Position);
-                    break;
+                    if (checkpoint.GetComponent<RoomEntityComponent>().RoomEntityId == _checkpointId || _checkpointId == null)
+                    {
+                        CreateHero().SetPosition(checkpoint.Entity.Position);
+                        break;
+                    }
                 }
             }
+        }
+
+        Entity CreateHero()
+        {
+            return Core.GetGlobalManager<PrefabManager>()
+                .GetResource("WJUFDAADKEXSLBFZLTMHNQVZGDJPHFUVUVMHXC")
+                .CreateEntity("hero", Entity.Scene);
         }
 
         void LoadRoom(string worldRoomId)
