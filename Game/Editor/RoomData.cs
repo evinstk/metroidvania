@@ -22,6 +22,7 @@ namespace Game.Editor
         {
             get
             {
+                // TODO: 0 is not a reasonable default
                 var minX = 0;
                 var minY = 0;
                 foreach (var layer in Layers)
