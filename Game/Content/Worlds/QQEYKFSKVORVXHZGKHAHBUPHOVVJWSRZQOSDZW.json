@@ -17,6 +17,38 @@
 			"World": {
 				"@ref": "1"
 			}
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "PZZFJSRAJSGNBUINTMLBJQAIGSBIWMOWDWJBEK",
+			"Name": "prison-main",
+			"RoomId": "FVGWSJFWXNRJSGANSYBEQTKFMBJXQFLINGRDJV",
+			"Position": {
+				"@id": "5",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -240,
+				"Y": 384
+			},
+			"World": {
+				"@ref": "1"
+			}
+		},
+		{
+			"@id": "6",
+			"@type": "Game.Editor.World.WorldRoom",
+			"Id": "SMZYVNWOLISNEMGXQEBCUJYSVAIMPTSKRJYRAC",
+			"Name": "prison-left",
+			"RoomId": "YFDGQNLUYQRLVDDIUQDZATDAMGPSZXHFVCKSQL",
+			"Position": {
+				"@id": "7",
+				"@type": "Microsoft.Xna.Framework.Point",
+				"X": -768,
+				"Y": 416
+			},
+			"World": {
+				"@ref": "1"
+			}
 		}
 	],
 	"Id": "QQEYKFSKVORVXHZGKHAHBUPHOVVJWSRZQOSDZW",

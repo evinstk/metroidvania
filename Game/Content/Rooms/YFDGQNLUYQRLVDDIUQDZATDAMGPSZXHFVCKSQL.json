@@ -1,0 +1,809 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.RoomData",
+	"Name": "prison-left",
+	"TileWidth": 16,
+	"TileHeight": 16,
+	"LightRendererClearColor": 127,
+	"Script": null,
+	"Layers": [
+		{
+			"@id": "2",
+			"@type": "Game.Editor.RoomLayer",
+			"Name": "overlay",
+			"Tiles": [
+
+			],
+			"PhysicsLayer": {
+				"@id": "3",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 1024
+			},
+			"IsOverlay": true,
+			"RenderLayer": -10,
+			"IsHidden": false
+		},
+		{
+			"@id": "4",
+			"@type": "Game.Editor.RoomLayer",
+			"Name": "terrain",
+			"Tiles": [
+				{
+					"@id": "5",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@id": "6",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 1,
+						"Y": 5
+					},
+					"LayerLocation": {
+						"@id": "7",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 29,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "8",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "6"
+					},
+					"LayerLocation": {
+						"@id": "9",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 28,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "10",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@id": "11",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 0,
+						"Y": 5
+					},
+					"LayerLocation": {
+						"@id": "12",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 27,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "13",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@id": "14",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 1,
+						"Y": 3
+					},
+					"LayerLocation": {
+						"@id": "15",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 29,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "16",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "14"
+					},
+					"LayerLocation": {
+						"@id": "17",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 28,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "18",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "14"
+					},
+					"LayerLocation": {
+						"@id": "19",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 27,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "20",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "14"
+					},
+					"LayerLocation": {
+						"@id": "21",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 26,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "22",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "14"
+					},
+					"LayerLocation": {
+						"@id": "23",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 25,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "24",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "14"
+					},
+					"LayerLocation": {
+						"@id": "25",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 24,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "26",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "14"
+					},
+					"LayerLocation": {
+						"@id": "27",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 23,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "28",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "14"
+					},
+					"LayerLocation": {
+						"@id": "29",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 22,
+						"Y": 16
+					}
+				},
+				{
+					"@id": "30",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@id": "31",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 1,
+						"Y": 4
+					},
+					"LayerLocation": {
+						"@id": "32",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 22,
+						"Y": 17
+					}
+				},
+				{
+					"@id": "33",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "31"
+					},
+					"LayerLocation": {
+						"@id": "34",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 23,
+						"Y": 17
+					}
+				},
+				{
+					"@id": "35",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "31"
+					},
+					"LayerLocation": {
+						"@id": "36",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 24,
+						"Y": 17
+					}
+				},
+				{
+					"@id": "37",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "31"
+					},
+					"LayerLocation": {
+						"@id": "38",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 25,
+						"Y": 17
+					}
+				},
+				{
+					"@id": "39",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "31"
+					},
+					"LayerLocation": {
+						"@id": "40",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 26,
+						"Y": 17
+					}
+				},
+				{
+					"@id": "41",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "31"
+					},
+					"LayerLocation": {
+						"@id": "42",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 27,
+						"Y": 17
+					}
+				},
+				{
+					"@id": "43",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "31"
+					},
+					"LayerLocation": {
+						"@id": "44",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 28,
+						"Y": 17
+					}
+				},
+				{
+					"@id": "45",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "31"
+					},
+					"LayerLocation": {
+						"@id": "46",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 29,
+						"Y": 17
+					}
+				}
+			],
+			"PhysicsLayer": {
+				"@id": "47",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 256
+			},
+			"IsOverlay": false,
+			"RenderLayer": 10,
+			"IsHidden": false
+		},
+		{
+			"@id": "48",
+			"@type": "Game.Editor.RoomLayer",
+			"Name": "wall",
+			"Tiles": [
+				{
+					"@id": "49",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@id": "50",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 5,
+						"Y": 3
+					},
+					"LayerLocation": {
+						"@id": "51",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 22,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "52",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "53",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 22,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "54",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "55",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 22,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "56",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "57",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 22,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "58",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@id": "59",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 6,
+						"Y": 3
+					},
+					"LayerLocation": {
+						"@id": "60",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 23,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "61",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "62",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 23,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "63",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "64",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 23,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "65",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "66",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 23,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "67",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "68",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 24,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "69",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "70",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 24,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "71",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "72",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 24,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "73",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "74",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 24,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "75",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "76",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 25,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "77",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "78",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 25,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "79",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "80",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 25,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "81",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "82",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 25,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "83",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "84",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 26,
+						"Y": 12
+					}
+				},
+				{
+					"@id": "85",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "86",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 26,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "87",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "88",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 26,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "89",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "90",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 26,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "91",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@ref": "12"
+					}
+				},
+				{
+					"@id": "92",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "93",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 27,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "94",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "95",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 27,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "96",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "97",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 27,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "98",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@ref": "9"
+					}
+				},
+				{
+					"@id": "99",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "100",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 28,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "101",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "102",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 28,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "103",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "50"
+					},
+					"LayerLocation": {
+						"@id": "104",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 28,
+						"Y": 15
+					}
+				},
+				{
+					"@id": "105",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@ref": "7"
+					}
+				},
+				{
+					"@id": "106",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "107",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 29,
+						"Y": 13
+					}
+				},
+				{
+					"@id": "108",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "109",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 29,
+						"Y": 14
+					}
+				},
+				{
+					"@id": "110",
+					"@type": "Game.Editor.LayerTile",
+					"Tileset": "terrain16.png",
+					"TilesetLocation": {
+						"@ref": "59"
+					},
+					"LayerLocation": {
+						"@id": "111",
+						"@type": "Microsoft.Xna.Framework.Point",
+						"X": 29,
+						"Y": 15
+					}
+				}
+			],
+			"PhysicsLayer": {
+				"@id": "112",
+				"@type": "Game.Editor.Prefab.PhysicsLayerData",
+				"Mask": 0
+			},
+			"IsOverlay": false,
+			"RenderLayer": 11,
+			"IsHidden": false
+		}
+	],
+	"Entities": [
+		{
+			"@id": "113",
+			"@type": "Game.Editor.RoomEntity",
+			"Id": "YADXFJHTGQIGNWERLZCKCNKLBZHHPMWGSEAWOR",
+			"Name": "player-spawn",
+			"PrefabId": "LJREYAEJEIERLZYCGAORDOXZTLPFMIGZVCSXBE",
+			"Position": {
+				"@id": "114",
+				"@type": "Microsoft.Xna.Framework.Vector2",
+				"X": 416,
+				"Y": 240
+			},
+			"EntityOnlyComponents": [
+
+			],
+			"Components": [
+
+			]
+		}
+	],
+	"RoomVariables": {
+		"@id": "115",
+		"@type": "Game.Editor.RoomVariables",
+		"Variables": [
+
+		]
+	},
+	"Id": "YFDGQNLUYQRLVDDIUQDZATDAMGPSZXHFVCKSQL"
+}

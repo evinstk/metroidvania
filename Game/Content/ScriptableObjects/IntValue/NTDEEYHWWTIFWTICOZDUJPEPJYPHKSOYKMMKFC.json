@@ -4,6 +4,6 @@
 	"Name": "Current Health",
 	"IncludeInSave": false,
 	"InitialValue": 4,
-	"RuntimeValue": 5,
+	"RuntimeValue": 4,
 	"Id": "NTDEEYHWWTIFWTICOZDUJPEPJYPHKSOYKMMKFC"
 }

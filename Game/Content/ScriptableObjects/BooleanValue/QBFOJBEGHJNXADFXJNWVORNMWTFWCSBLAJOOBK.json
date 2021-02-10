@@ -4,6 +4,6 @@
 	"Name": "prison-door-top-right",
 	"IncludeInSave": false,
 	"InitialValue": false,
-	"RuntimeValue": false,
+	"RuntimeValue": true,
 	"Id": "QBFOJBEGHJNXADFXJNWVORNMWTFWCSBLAJOOBK"
 }

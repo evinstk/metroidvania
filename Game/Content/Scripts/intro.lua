@@ -2,7 +2,14 @@ local player = find_entity('hero')
 local door_state = vars['prison-door-top-right']
 local player_name = vars['player-name'].runtime_value
 
-start_coroutine(function()
+function begin()
+    local start = find_entity('start')
+    if (not player.collides(start))
+    then
+        print('exiting')
+        return
+    end
+
     wait_for(2)
     cutscene(player, function()
         dialog(player_name .. ', are you there? Come in.')
@@ -22,4 +29,6 @@ start_coroutine(function()
         dialog('Yes! But you\'re pretty defenseless in your current state. We\'re gonna need to find you a weapon.')
         dialog('There should be a cache of confiscated weapons somewhere. See if you can find it.')
     end)
-end)
+end
+
+start_coroutine(begin)

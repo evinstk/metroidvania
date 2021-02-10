@@ -1,0 +1,9 @@
+{
+	"@id": "1",
+	"@type": "Game.Editor.Scriptable.BooleanValue",
+	"Name": "prison-exit",
+	"IncludeInSave": true,
+	"InitialValue": false,
+	"RuntimeValue": false,
+	"Id": "ZHVAECFTPFGZIELKKILFTAKCKNYYJBESNYWBJB"
+}
