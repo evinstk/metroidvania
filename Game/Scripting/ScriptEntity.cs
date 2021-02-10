@@ -89,7 +89,10 @@ namespace Game.Scripting
             Debug.LogIf(colliderRNull, "No collider on argument \"rhs\"");
             if (colliderLNull || colliderRNull) return false;
 
-            return colliderL.CollidesWith(colliderR, out _);
+            // hack to force recalculation
+            var boundsL = colliderL.Bounds; var boundsR = colliderR.Bounds;
+            var collides = colliderL.CollidesWith(colliderR, out _);
+            return collides;
         }
 
         public void Destroy()
