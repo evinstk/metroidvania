@@ -15,7 +15,7 @@ namespace Game
 {
     class RoomScene : Scene
     {
-        public string WorldRoomId { get; set; }
+        public string WorldRoomId { get; set; } = "UMTEAJFYFJRRJIUSGVAWKPJINCWSEIPVGNMONX";
         public string CheckpointId { get; set; }
         public int SaveSlotIndex = -1;
 
@@ -51,11 +51,6 @@ namespace Game
                     // TODO: this will break if the interface is not implemented
                     so.GetType().GetProperty("RuntimeValue").SetValue(so, saveSO.GetType().GetProperty("RuntimeValue").GetValue(saveSO));
                 }
-            }
-            else
-            {
-                WorldRoomId = "UMTEAJFYFJRRJIUSGVAWKPJINCWSEIPVGNMONX";
-                CheckpointId = "TGCPQLSEJJEYHWCCMFCLRYMMTWTWLVVGEJCUUU";
             }
         }
 
