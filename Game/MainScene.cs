@@ -17,6 +17,7 @@ namespace Game
         public override void OnStart()
         {
             this.CreatePlayer(new Vector2(64, 64));
+            this.CreateSentry(new Vector2(164, 200));
 
             var map = CreateEntity("map");
 

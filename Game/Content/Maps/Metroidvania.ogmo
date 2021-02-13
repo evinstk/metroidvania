@@ -20,7 +20,7 @@
     {
       "definition": "entity",
       "name": "entities",
-      "gridSize": {"x": 16, "y": 16},
+      "gridSize": {"x": 4, "y": 4},
       "exportID": "17233218",
       "requiredTags": [],
       "excludedTags": []
