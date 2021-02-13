@@ -1,4 +1,5 @@
 ﻿using Nez;
+using Nez.Sprites;
 
 namespace Game
 {
@@ -10,10 +11,17 @@ namespace Game
             Dead,
         }
 
-        public int Health = 2;
+        public int Health = 3;
 
         States _state = States.Normal;
         float _timer = 0;
+
+        SpriteAnimator _animator;
+
+        public override void OnAddedToEntity()
+        {
+            _animator = Entity.GetComponent<SpriteAnimator>();
+        }
 
         public void OnHurt(Hurtable hurtable)
         {
@@ -21,7 +29,10 @@ namespace Game
             {
                 --Health;
                 if (Health <= 0)
+                {
                     SetState(States.Dead);
+                    Entity.RemoveComponent(hurtable);
+                }
             }
         }
 
@@ -36,8 +47,9 @@ namespace Game
             // DEAD STATE
             else if (_state == States.Dead)
             {
-                if (Timer.OnTime(_timer, 2f))
-                    Entity.Destroy();
+                _animator.Change("dead", SpriteAnimator.LoopMode.ClampForever);
+                //if (Timer.OnTime(_timer, 2f))
+                //    Entity.Destroy();
             }
         }
 
