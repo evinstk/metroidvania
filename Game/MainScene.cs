@@ -20,15 +20,22 @@ namespace Game
 
             var map = CreateEntity("map");
 
+            var ogmoProjectStr = File.ReadAllText($"{ContentPath.Maps}Metroidvania.ogmo");
+            var ogmoProject = Json.FromJson<OgmoProject>(ogmoProjectStr);
+
             var ogmoLevelStr = File.ReadAllText($"{ContentPath.Maps}level.json");
             var ogmoLevel = Json.FromJson<OgmoLevel>(ogmoLevelStr);
-            foreach (var layer in ogmoLevel.layers)
+            for (var i = 0; i < ogmoLevel.layers.Count; ++i)
             {
-                map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
+                var layer = ogmoLevel.layers[i];
+                if (layer.data != null)
+                {
+                    var renderer = map.AddComponent(new MapRenderer(ogmoProject, ogmoLevel, i));
+                    renderer.RenderLayer = i;
+                }
+                if (layer.name == "terrain")
+                    map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
             }
-
-            //var ogmoProjectStr = File.ReadAllText(ContentPath.Maps + "Metroidvania.ogmo");
-            //var ogmoProject = Json.FromJson<OgmoProject>(ogmoProjectStr);
         }
     }
 }

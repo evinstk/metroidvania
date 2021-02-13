@@ -51,7 +51,6 @@ namespace Game
             _animator.FlipX = _facing == -1;
             _onGround = _mover.OnGround();
             var inputX = _inputX.Value;
-            Debug.Log(_onGround);
 
             if (_state == States.Normal)
             {

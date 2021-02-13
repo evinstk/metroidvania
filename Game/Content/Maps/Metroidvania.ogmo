@@ -33,6 +33,15 @@
       "exportMode": 0,
       "arrayMode": 0,
       "defaultTileset": "terrain"
+    },
+    {
+      "definition": "tile",
+      "name": "wall",
+      "gridSize": {"x": 16, "y": 16},
+      "exportID": "23943561",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "terrain"
     }
   ],
   "entities": [
