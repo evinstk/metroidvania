@@ -1,8 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Nez.Console;
 
-namespace FE
+namespace Game
 {
     public class Game : Nez.Core
     {
@@ -11,6 +9,8 @@ namespace FE
             base.Initialize();
             Window.AllowUserResizing = true;
             ExitOnEscapeKeypress = false;
+            DebugConsole.RenderScale = 2;
+
             Scene = new MainScene();
         }
     }
