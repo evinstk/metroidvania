@@ -11,13 +11,21 @@ namespace Game
             Normal
         }
 
-        public float MoveSpeed = 100f;
+        public float MoveSpeed = 150f;
+        public float Gravity = 600f;
+        public float JumpTime = .4f;
+        public float JumpSpeed = 200f;
+        public float MaxFallSpeed = 200f;
 
         States _state = States.Normal;
+        int _facing = 1;
+        float _jumpTimer = 0;
+
         VirtualIntegerAxis _inputX;
+        VirtualButton _inputJump;
+
         PlatformerMover _mover;
         SpriteAnimator _animator;
-        int _facing = 1;
 
         bool _onGround = false;
 
@@ -30,6 +38,10 @@ namespace Game
             _inputX.Nodes.Add(new VirtualAxis.KeyboardKeys(
                 VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right));
 
+            _inputJump = new VirtualButton();
+            _inputJump.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
+            _inputJump.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
+
             _mover = Entity.GetComponent<PlatformerMover>();
             _animator = Entity.GetComponent<SpriteAnimator>();
         }
@@ -38,22 +50,54 @@ namespace Game
         {
             _animator.FlipX = _facing == -1;
             _onGround = _mover.OnGround();
+            var inputX = _inputX.Value;
             Debug.Log(_onGround);
 
             if (_state == States.Normal)
             {
-                var inputX = _inputX.Value;
-
+                // animation
                 if (inputX == 0)
                     _animator.Change("idle");
                 else
                     _animator.Change("walk");
 
-                _mover.Speed.X = inputX * MoveSpeed;
+                // horizontal movement
+                {
+                    _mover.Speed.X = inputX * MoveSpeed;
 
-                if (inputX != 0)
-                    _facing = inputX;
+                    if (inputX != 0 && _onGround)
+                        _facing = inputX;
+                }
+
+                // invoke jumping
+                {
+                    if (_inputJump.IsPressed && _onGround)
+                    {
+                        _inputJump.ConsumeBuffer();
+                        _jumpTimer = JumpTime;
+                    }
+                }
             }
+
+            // gravity
+            if (!_onGround)
+            {
+                _mover.Speed.Y += Gravity * Time.DeltaTime;
+            }
+
+            // jumping
+            if (_jumpTimer > 0)
+            {
+                _mover.Speed.Y = -JumpSpeed;
+                _jumpTimer -= Time.DeltaTime;
+                if (!_inputJump.IsDown || _mover.OnGround(-1) || _jumpTimer <= 0)
+                {
+                    _jumpTimer = 0;
+                    _mover.Speed.Y = 0;
+                }
+            }
+
+            _mover.Speed.Y = Mathf.Clamp(_mover.Speed.Y, -JumpSpeed, MaxFallSpeed);
         }
     }
 }
