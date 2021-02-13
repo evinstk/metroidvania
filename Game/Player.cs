@@ -19,6 +19,8 @@ namespace Game
         SpriteAnimator _animator;
         int _facing = 1;
 
+        bool _onGround = false;
+
         public override void OnAddedToEntity()
         {
             _inputX = new VirtualIntegerAxis();
@@ -35,6 +37,8 @@ namespace Game
         public void Update()
         {
             _animator.FlipX = _facing == -1;
+            _onGround = _mover.OnGround();
+            Debug.Log(_onGround);
 
             if (_state == States.Normal)
             {

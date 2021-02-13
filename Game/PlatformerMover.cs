@@ -21,5 +21,15 @@ namespace Game
 
             Entity.Position += new Vector2(motionX, motionY);
         }
+
+        public bool OnGround(int dist = 1)
+        {
+            if (Collider == null)
+                return false;
+
+            var bounds = Collider.Bounds;
+            bounds.Y += dist;
+            return Physics.OverlapRectangle(bounds, Collider.CollidesWithLayers) != null;
+        }
     }
 }
