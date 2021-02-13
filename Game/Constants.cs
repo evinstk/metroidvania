@@ -17,6 +17,7 @@ namespace Game
     {
         public const int Terrain = 1 << 0;
         public const int Player = 1 << 1;
+        public const int PlayerAttack = 1 << 2;
     }
 
     static class ContentPath

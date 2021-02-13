@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Sprites;
 
@@ -8,7 +9,8 @@ namespace Game
     {
         enum States
         {
-            Normal
+            Normal,
+            Attack,
         }
 
         public float MoveSpeed = 150f;
@@ -20,9 +22,12 @@ namespace Game
         States _state = States.Normal;
         int _facing = 1;
         float _jumpTimer = 0;
+        float _attackTimer = 0;
+        BoxCollider _attackCollider;
 
         VirtualIntegerAxis _inputX;
         VirtualButton _inputJump;
+        VirtualButton _inputAttack;
 
         PlatformerMover _mover;
         SpriteAnimator _animator;
@@ -42,6 +47,10 @@ namespace Game
             _inputJump.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
             _inputJump.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
 
+            _inputAttack = new VirtualButton();
+            _inputAttack.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.X));
+            _inputAttack.Nodes.Add(new VirtualButton.MouseLeftButton());
+
             _mover = Entity.GetComponent<PlatformerMover>();
             _animator = Entity.GetComponent<SpriteAnimator>();
         }
@@ -52,6 +61,7 @@ namespace Game
             _onGround = _mover.OnGround();
             var inputX = _inputX.Value;
 
+            // NORMAL STATE
             if (_state == States.Normal)
             {
                 // animation
@@ -75,6 +85,52 @@ namespace Game
                         _inputJump.ConsumeBuffer();
                         _jumpTimer = JumpTime;
                     }
+                }
+
+                // invoke attacking
+                {
+                    if (_inputAttack.IsPressed)
+                    {
+                        _inputAttack.ConsumeBuffer();
+                        _state = States.Attack;
+                        _attackTimer = 0;
+
+                        if (_attackCollider == null)
+                            _attackCollider = Entity.AddComponent(new BoxCollider(0, 0));
+                        _attackCollider.PhysicsLayer = Mask.PlayerAttack;
+
+                        if (_onGround)
+                            _mover.Speed.X = 0;
+                    }
+                }
+            }
+            // ATTACK STATE
+            else if (_state == States.Attack)
+            {
+                _animator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
+                _attackTimer += Time.DeltaTime;
+
+                if (_attackTimer > .08f && _attackTimer < .2f)
+                {
+                    _attackCollider.SetLocalOffset(new Vector2(16, 0));
+                    _attackCollider.SetSize(32, 32);
+                }
+                else if (_attackTimer > .08f && _attackCollider != null)
+                {
+                    Entity.RemoveComponent(_attackCollider);
+                    _attackCollider = null;
+                }
+
+                if (_facing < 0 && _attackCollider != null)
+                {
+                    var offset = _attackCollider.LocalOffset;
+                    _attackCollider.LocalOffset = new Vector2(-offset.X, offset.Y);
+                }
+
+                if (!_animator.IsRunning)
+                {
+                    _animator.Change("idle");
+                    _state = States.Normal;
                 }
             }
 

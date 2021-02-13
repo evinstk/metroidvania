@@ -21,6 +21,9 @@ namespace Game
 
             entity.AddComponent<Player>();
 
+            var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
+            followCamera.FollowLerp = 1f;
+
             return entity;
         }
     }
