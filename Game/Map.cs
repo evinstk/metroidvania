@@ -35,6 +35,14 @@ namespace Game
         public int gridCellsX;
         public int gridCellsY;
         public List<int> data;
+        public List<OgmoEntity> entities;
+    }
+
+    class OgmoEntity
+    {
+        public string name;
+        public int x;
+        public int y;
     }
 
     class MapCollider :

@@ -10,11 +10,14 @@
       "_eid": "17233218",
       "offsetX": 0,
       "offsetY": 0,
-      "gridCellWidth": 16,
-      "gridCellHeight": 16,
-      "gridCellsX": 20,
-      "gridCellsY": 15,
-      "entities": []
+      "gridCellWidth": 4,
+      "gridCellHeight": 4,
+      "gridCellsX": 80,
+      "gridCellsY": 60,
+      "entities": [
+        {"name": "player", "id": 0, "_eid": "17233867", "x": 80, "y": 192, "originX": 8, "originY": 16},
+        {"name": "sentry", "id": 1, "_eid": "25760140", "x": 200, "y": 200, "originX": 8, "originY": 8}
+      ]
     },
     {
       "name": "terrain",

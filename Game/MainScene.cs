@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Persistence;
 using System.IO;
 
 namespace Game
 {
-	class MainScene : Scene
-	{
+    class MainScene : Scene
+    {
         public override void Initialize()
         {
             SetDesignResolution(Constants.ResWidth, Constants.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
@@ -16,9 +17,6 @@ namespace Game
 
         public override void OnStart()
         {
-            this.CreatePlayer(new Vector2(64, 64));
-            this.CreateSentry(new Vector2(164, 200));
-
             var map = CreateEntity("map");
 
             var ogmoProjectStr = File.ReadAllText($"{ContentPath.Maps}Metroidvania.ogmo");
@@ -34,6 +32,25 @@ namespace Game
                     var renderer = map.AddComponent(new MapRenderer(ogmoProject, ogmoLevel, i));
                     renderer.RenderLayer = i;
                 }
+                else if (layer.entities != null)
+                {
+                    foreach (var entity in layer.entities)
+                    {
+                        switch (entity.name)
+                        {
+                            case "player":
+                                if (FindComponentOfType<Player>() == null)
+                                    this.CreatePlayer(new Vector2(entity.x, entity.y));
+                                break;
+                            case "sentry":
+                                this.CreateSentry(new Vector2(entity.x, entity.y));
+                                break;
+                            default:
+                                Debug.Log($"Unknown entity type {entity.name}");
+                                break;
+                        }
+                    }
+                }
                 if (layer.name == "terrain")
                     map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
             }
@@ -41,6 +58,10 @@ namespace Game
 
         public override void Update()
         {
+            // restart
+            if (Input.IsKeyDown(Keys.F2))
+                Core.Scene = new MainScene();
+
             if (Timer.PauseTimer > 0)
             {
                 Timer.PauseTimer -= Time.DeltaTime;
