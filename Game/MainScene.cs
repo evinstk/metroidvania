@@ -38,5 +38,18 @@ namespace Game
                     map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
             }
         }
+
+        public override void Update()
+        {
+            if (Timer.PauseTimer > 0)
+            {
+                Timer.PauseTimer -= Time.DeltaTime;
+                if (Timer.PauseTimer <= -0.0001f)
+                    Time.DeltaTime = -Timer.PauseTimer;
+                else
+                    return;
+            }
+            base.Update();
+        }
     }
 }

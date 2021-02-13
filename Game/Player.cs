@@ -110,12 +110,12 @@ namespace Game
                 _animator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
                 _attackTimer += Time.DeltaTime;
 
-                if (_attackTimer > .08f && _attackTimer < .2f)
+                if (_attackTimer > .1f && _attackTimer < .2f)
                 {
                     _attackCollider.SetLocalOffset(new Vector2(16, 0));
                     _attackCollider.SetSize(32, 32);
                 }
-                else if (_attackTimer > .08f && _attackCollider != null)
+                else if (_attackTimer > .1f && _attackCollider != null)
                 {
                     Entity.RemoveComponent(_attackCollider);
                     _attackCollider = null;
