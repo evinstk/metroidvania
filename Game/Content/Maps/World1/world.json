@@ -1,0 +1,20 @@
+{
+	"Rooms": [
+		{
+			"Id": "YAPZPMQHHPCZNSVMXGVOMPPCTXFZDKZPLRGCLY",
+			"MapName": "0x0.json",
+			"Position": {
+				"X": 626,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "LKYBVMJAMPBRQMMMBQITXFVSLAOSYNEBVKJCZC",
+			"MapName": "-1x0.json",
+			"Position": {
+				"X": 146,
+				"Y": 0
+			}
+		}
+	]
+}

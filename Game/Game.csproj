@@ -28,6 +28,7 @@
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.1.189" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nez\Nez.ImGui\Nez.ImGui.csproj" />
     <ProjectReference Include="..\Nez\Nez.Persistence\Nez.Persistence.csproj" />
     <ProjectReference Include="..\Nez\Nez.Portable\Nez.csproj" />
   </ItemGroup>

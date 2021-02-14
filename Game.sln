@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game", "Game\Game.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nez.Persistence", "Nez\Nez.Persistence\Nez.Persistence.csproj", "{FE9B99C3-3886-4A85-8B3B-6EE4778B1F77}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nez.ImGui", "Nez\Nez.ImGui\Nez.ImGui.csproj", "{ADE86C24-2BA7-4DDF-BAD9-6BA058048039}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FE9B99C3-3886-4A85-8B3B-6EE4778B1F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE9B99C3-3886-4A85-8B3B-6EE4778B1F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE9B99C3-3886-4A85-8B3B-6EE4778B1F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE86C24-2BA7-4DDF-BAD9-6BA058048039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE86C24-2BA7-4DDF-BAD9-6BA058048039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE86C24-2BA7-4DDF-BAD9-6BA058048039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE86C24-2BA7-4DDF-BAD9-6BA058048039}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
