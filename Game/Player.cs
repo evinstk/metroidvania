@@ -121,6 +121,9 @@ namespace Game
                     _attackCollider = null;
                 }
 
+                if (_onGround)
+                    _mover.Speed.X = 0;
+
                 if (_facing < 0 && _attackCollider != null)
                 {
                     var offset = _attackCollider.LocalOffset;

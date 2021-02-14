@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Nez;
 using Nez.Sprites;
 using System;
 
@@ -12,6 +13,7 @@ namespace Game
         public Action<Hurtable> OnHurt;
 
         float _stunTimer = 0;
+        Color _mColor;
 
         SpriteRenderer _renderer;
 
@@ -31,7 +33,17 @@ namespace Game
             {
                 _stunTimer -= Time.DeltaTime;
                 if (Timer.OnInterval(.05f))
-                    _renderer.Enabled = !_renderer.Enabled;
+                {
+                    if (_renderer.Color != Color.Transparent)
+                    {
+                        _mColor = _renderer.Color;
+                        _renderer.Color = Color.Transparent;
+                    }
+                    else
+                    {
+                        _renderer.Color = _mColor;
+                    }
+                }
                 if (_stunTimer <= 0)
                     _renderer.Enabled = true;
             }

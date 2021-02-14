@@ -13,16 +13,21 @@ namespace Game
             SetDesignResolution(Constants.ResWidth, Constants.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
             Screen.SetSize(Constants.ScreenWidth, Constants.ScreenHeight);
             ClearColor = Constants.ClearColor;
+
+            Physics.SpatialHashCellSize = 16;
         }
 
         public override void OnStart()
         {
+            Camera.AddComponent<CameraBounds>();
+            Camera.Entity.UpdateOrder = int.MaxValue - 1;
+
             var map = CreateEntity("map");
 
             var ogmoProjectStr = File.ReadAllText($"{ContentPath.Maps}Metroidvania.ogmo");
             var ogmoProject = Json.FromJson<OgmoProject>(ogmoProjectStr);
 
-            var ogmoLevelStr = File.ReadAllText($"{ContentPath.Maps}level.json");
+            var ogmoLevelStr = File.ReadAllText($"{ContentPath.Maps}World1/0x0.json");
             var ogmoLevel = Json.FromJson<OgmoLevel>(ogmoLevelStr);
             for (var i = 0; i < ogmoLevel.layers.Count; ++i)
             {
