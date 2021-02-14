@@ -204,6 +204,8 @@ namespace Game
 
     class World
     {
+        [JsonExclude]
+        public string Name = string.Empty;
         public List<Room> Rooms = new List<Room>();
     }
 

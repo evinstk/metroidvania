@@ -2,12 +2,19 @@
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Persistence;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Game
 {
     class MainScene : Scene
     {
+        Dictionary<string, World> _worlds = new Dictionary<string, World>();
+        Dictionary<string, OgmoLevel> _levels = new Dictionary<string, OgmoLevel>();
+        List<RoomBounds> _worldBounds = new List<RoomBounds>();
+        List<RoomBounds> _runRooms = new List<RoomBounds>();
+        RoomBounds _currentRoom;
+
         public override void Initialize()
         {
             SetDesignResolution(Constants.ResWidth, Constants.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
@@ -22,13 +29,91 @@ namespace Game
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
 
-            var map = CreateEntity("map");
+            var world = LoadWorld("World1");
+            CreateEntity("world");
+            AddWorldBounds(world);
+            RunRoom(Vector2.Zero);
+        }
+
+        World LoadWorld(string worldName)
+        {
+            if (_worlds.TryGetValue(worldName, out var world))
+                return world;
+
+            var worldPath = $"{ContentPath.Maps}{worldName}/world.json";
+            var worldStr = File.ReadAllText(worldPath);
+            world = Json.FromJson<World>(worldStr);
+            world.Name = worldName;
+            _worlds[worldName] = world;
+            return world;
+        }
+
+        class RoomBounds
+        {
+            public OgmoLevel Level;
+            public BoxCollider Collider;
+            public Vector2 Position;
+        }
+
+        void AddWorldBounds(World world)
+        {
+            _worldBounds.Clear();
+            var worldEntity = FindEntity("world");
+            foreach (var room in world.Rooms)
+            {
+                var level = LoadLevel($"{world.Name}/{room.MapName}");
+                var roomBounds = new RoomBounds
+                {
+                    Level = level,
+                    Collider = new BoxCollider(
+                        room.Position.X, room.Position.Y,
+                        level.width, level.height),
+                    Position = room.Position.ToVector2(),
+                };
+                roomBounds.Collider.PhysicsLayer = Mask.Room;
+                roomBounds.Collider.Entity = worldEntity;
+                Physics.AddCollider(roomBounds.Collider);
+                //worldEntity.AddComponent(roomBounds.Collider);
+                _worldBounds.Add(roomBounds);
+            }
+        }
+        OgmoLevel LoadLevel(string levelName)
+        {
+            if (_levels.TryGetValue(levelName, out var level))
+                return level;
+
+            var levelPath = $"{ContentPath.Maps}{levelName}";
+            var levelStr = File.ReadAllText(levelPath);
+            level = Json.FromJson<OgmoLevel>(levelStr);
+
+            return level;
+        }
+
+        void RunRoom(Vector2 location)
+        {
+            RoomBounds rb = null;
+            foreach (var roomBounds in _worldBounds)
+            {
+                if (roomBounds.Collider.Bounds.Contains(location))
+                    rb = roomBounds;
+            }
+            if (rb == null)
+            {
+                Debug.Log("No room found.");
+                return;
+            }
+
+            Camera.GetComponent<CameraBounds>().Bounds = rb.Collider.Bounds;
+            _currentRoom = rb;
+
+            if (_runRooms.Contains(rb))
+                return;
 
             var ogmoProjectStr = File.ReadAllText($"{ContentPath.Maps}Metroidvania.ogmo");
             var ogmoProject = Json.FromJson<OgmoProject>(ogmoProjectStr);
-
-            var ogmoLevelStr = File.ReadAllText($"{ContentPath.Maps}World1/0x0.json");
-            var ogmoLevel = Json.FromJson<OgmoLevel>(ogmoLevelStr);
+            var ogmoLevel = rb.Level;
+            var map = CreateEntity("map");
+            map.Position = rb.Position;
             for (var i = 0; i < ogmoLevel.layers.Count; ++i)
             {
                 var layer = ogmoLevel.layers[i];
@@ -41,14 +126,15 @@ namespace Game
                 {
                     foreach (var entity in layer.entities)
                     {
+                        var pos = new Vector2(entity.x, entity.y) + rb.Position;
                         switch (entity.name)
                         {
                             case "player":
                                 if (FindComponentOfType<Player>() == null)
-                                    this.CreatePlayer(new Vector2(entity.x, entity.y));
+                                    this.CreatePlayer(pos);
                                 break;
                             case "sentry":
-                                this.CreateSentry(new Vector2(entity.x, entity.y));
+                                this.CreateSentry(pos);
                                 break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
@@ -59,6 +145,8 @@ namespace Game
                 if (layer.name == "terrain")
                     map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
             }
+
+            _runRooms.Add(rb);
         }
 
         public override void Update()
@@ -76,6 +164,13 @@ namespace Game
                     return;
             }
             base.Update();
+
+            var player = FindEntity("player");
+            if (!_currentRoom.Collider.Bounds.Contains(player.Position))
+            {
+                // TODO: turn this into smooth transition
+                RunRoom(player.Position);
+            }
         }
     }
 }

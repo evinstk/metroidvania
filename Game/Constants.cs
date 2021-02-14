@@ -19,6 +19,7 @@ namespace Game
         public const int Player = 1 << 1;
         public const int PlayerAttack = 1 << 2;
         public const int Enemy = 1 << 3;
+        public const int Room = 1 << 4;
     }
 
     static class ContentPath
