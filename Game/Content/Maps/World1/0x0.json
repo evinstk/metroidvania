@@ -36,6 +36,26 @@
           "originX": 8,
           "originY": 24,
           "values": {"state_var": "cell_door_open"}
+        },
+        {
+          "name": "switch",
+          "id": 4,
+          "_eid": "39553167",
+          "x": 36,
+          "y": 204,
+          "originX": 8,
+          "originY": 8,
+          "values": {"state_var": "cell_door_open"}
+        },
+        {
+          "name": "switch",
+          "id": 5,
+          "_eid": "39553167",
+          "x": 328,
+          "y": 204,
+          "originX": 8,
+          "originY": 8,
+          "values": {"state_var": "default_switch"}
         }
       ]
     },

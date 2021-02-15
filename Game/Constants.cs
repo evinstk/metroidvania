@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Nez;
 using System.IO;
 
 namespace Game
@@ -11,6 +13,9 @@ namespace Game
         public const int ScreenHeight = 1080;
 
         public readonly static Color ClearColor = new Color(5, 7, 14);
+
+        public static NezSpriteFont DefaultFont =>
+            new NezSpriteFont(Core.Content.Load<SpriteFont>($"{ContentPath.Fonts}DefaultFont"));
     }
 
     static class Mask
@@ -23,12 +28,18 @@ namespace Game
         public const int Interaction = 1 << 5;
     }
 
+    static class RenderLayer
+    {
+        public const int Dialog = 100;
+    }
+
     static class ContentPath
     {
 #if DEBUG
         public static readonly string Sprites = Path.GetFullPath("../../../Content/Sprites/");
         public static readonly string Maps = "../../../Content/Maps/";
         public static readonly string Tilesets = Path.GetFullPath("../../../Content/Tilesets/");
+        public static readonly string Fonts = "Fonts/";
 #endif
     }
 }

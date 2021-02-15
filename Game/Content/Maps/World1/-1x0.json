@@ -14,7 +14,18 @@
       "gridCellHeight": 4,
       "gridCellsX": 120,
       "gridCellsY": 68,
-      "entities": []
+      "entities": [
+        {
+          "name": "switch",
+          "id": 0,
+          "_eid": "39553167",
+          "x": 408,
+          "y": 208,
+          "originX": 8,
+          "originY": 8,
+          "values": {"state_var": "cell_door_open"}
+        }
+      ]
     },
     {
       "name": "overlay",

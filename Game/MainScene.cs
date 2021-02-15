@@ -25,12 +25,18 @@ namespace Game
 
             Physics.SpatialHashCellSize = 16;
             Physics.RaycastsStartInColliders = true;
+
+            AddRenderer(new ScreenSpaceRenderer(100, RenderLayer.Dialog));
+            AddRenderer(new RenderLayerExcludeRenderer(0, RenderLayer.Dialog));
         }
 
         public override void OnStart()
         {
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
+
+            var dialogSystem = CreateEntity("dialog_system").AddComponent<DialogSystem>();
+            dialogSystem.RenderLayer = RenderLayer.Dialog;
 
             var world = LoadWorld("World1");
             CreateEntity("world");

@@ -167,6 +167,7 @@ namespace Game
                 Entity.Position, Entity.Position + new Vector2(CastDistance, 0) * _facing, Mask.Interaction);
             if (hit.Collider != null && _inputInteract.IsPressed)
             {
+                _inputInteract.ConsumeBuffer();
                 hit.Collider.GetComponents(_tempInteractableList);
                 foreach (var interactable in _tempInteractableList)
                     interactable.Interact();
