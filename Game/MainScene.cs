@@ -9,6 +9,8 @@ namespace Game
 {
     class MainScene : Scene
     {
+        public readonly ScriptVars ScriptVars = new ScriptVars();
+
         Dictionary<string, World> _worlds = new Dictionary<string, World>();
         Dictionary<string, OgmoLevel> _levels = new Dictionary<string, OgmoLevel>();
         List<RoomBounds> _worldBounds = new List<RoomBounds>();
@@ -22,6 +24,7 @@ namespace Game
             ClearColor = Constants.ClearColor;
 
             Physics.SpatialHashCellSize = 16;
+            Physics.RaycastsStartInColliders = true;
         }
 
         public override void OnStart()
@@ -129,12 +132,19 @@ namespace Game
                         var pos = new Vector2(entity.x, entity.y) + rb.Position;
                         switch (entity.name)
                         {
+                            // TODO: go with an attribute, reflection based approach
                             case "player":
                                 if (FindComponentOfType<Player>() == null)
                                     this.CreatePlayer(pos);
                                 break;
                             case "sentry":
                                 this.CreateSentry(pos);
+                                break;
+                            case "switch":
+                                this.CreateSwitch(pos, entity.values["state_var"]);
+                                break;
+                            case "door":
+                                this.CreateDoor(pos, entity.values["state_var"]);
                                 break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");

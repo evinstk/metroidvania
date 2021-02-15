@@ -44,7 +44,7 @@ namespace Game
         public float x;
         public float y;
     }
-    
+
     class FrameSize
     {
         public int w;
@@ -97,11 +97,24 @@ namespace Game
             {
                 var frames = animation.Value;
                 frames.Sort((a, b) => a.Index.CompareTo(b.Index));
-                var sprites = new Sprite[frames.Count];
-                for (var i = 0; i < sprites.Length; ++i)
-                    sprites[i] = frames[i].Sprite;
-                var spriteAnimation = new SpriteAnimation(sprites, 12);
-                animator.AddAnimation(animation.Key, spriteAnimation);
+
+                // normal
+                {
+                    var sprites = new Sprite[frames.Count];
+                    for (var i = 0; i < sprites.Length; ++i)
+                        sprites[i] = frames[i].Sprite;
+                    var spriteAnimation = new SpriteAnimation(sprites, 12);
+                    animator.AddAnimation(animation.Key, spriteAnimation);
+                }
+
+                // reverse
+                {
+                    var sprites = new Sprite[frames.Count];
+                    for (var i = 0; i < sprites.Length; ++i)
+                        sprites[i] = frames[sprites.Length - 1 - i].Sprite;
+                    var spriteAnimation = new SpriteAnimation(sprites, 12);
+                    animator.AddAnimation(animation.Key + "Reverse", spriteAnimation);
+                }
             }
             return animator;
         }

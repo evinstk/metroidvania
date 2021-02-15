@@ -15,8 +15,28 @@
       "gridCellsX": 120,
       "gridCellsY": 68,
       "entities": [
-        {"name": "player", "id": 0, "_eid": "17233867", "x": 160, "y": 208, "originX": 8, "originY": 16},
-        {"name": "sentry", "id": 1, "_eid": "25760140", "x": 280, "y": 216, "originX": 8, "originY": 8}
+        {"name": "player", "id": 0, "_eid": "17233867", "x": 204, "y": 208, "originX": 8, "originY": 16},
+        {"name": "sentry", "id": 1, "_eid": "25760140", "x": 280, "y": 216, "originX": 8, "originY": 8},
+        {
+          "name": "switch",
+          "id": 2,
+          "_eid": "39553167",
+          "x": 140,
+          "y": 204,
+          "originX": 8,
+          "originY": 8,
+          "values": {"state_var": "cell_door_open"}
+        },
+        {
+          "name": "door",
+          "id": 3,
+          "_eid": "39886853",
+          "x": 80,
+          "y": 200,
+          "originX": 8,
+          "originY": 24,
+          "values": {"state_var": "cell_door_open"}
+        }
       ]
     },
     {

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Sprites;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -18,21 +19,23 @@ namespace Game
         public float JumpTime = .4f;
         public float JumpSpeed = 200f;
         public float MaxFallSpeed = 200f;
+        public float CastDistance = 32;
 
         States _state = States.Normal;
         int _facing = 1;
+        bool _onGround = false;
         float _jumpTimer = 0;
         float _attackTimer = 0;
         BoxCollider _attackCollider;
+        List<IInteractable> _tempInteractableList = new List<IInteractable>();
 
         VirtualIntegerAxis _inputX;
         VirtualButton _inputJump;
         VirtualButton _inputAttack;
+        VirtualButton _inputInteract;
 
         PlatformerMover _mover;
         SpriteAnimator _animator;
-
-        bool _onGround = false;
 
         public override void OnAddedToEntity()
         {
@@ -50,6 +53,10 @@ namespace Game
             _inputAttack = new VirtualButton();
             _inputAttack.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.X));
             _inputAttack.Nodes.Add(new VirtualButton.MouseLeftButton());
+
+            _inputInteract = new VirtualButton();
+            _inputInteract.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Y));
+            _inputInteract.Nodes.Add(new VirtualButton.KeyboardKey(Keys.E));
 
             _mover = Entity.GetComponent<PlatformerMover>();
             _animator = Entity.GetComponent<SpriteAnimator>();
@@ -153,6 +160,17 @@ namespace Game
                     _jumpTimer = 0;
                     _mover.Speed.Y = 0;
                 }
+            }
+
+            // interaction
+            var hit = Physics.Linecast(
+                Entity.Position, Entity.Position + new Vector2(CastDistance, 0) * _facing, Mask.Interaction);
+            if (hit.Collider != null && _inputInteract.IsPressed)
+            {
+                hit.Collider.GetComponents(_tempInteractableList);
+                foreach (var interactable in _tempInteractableList)
+                    interactable.Interact();
+                _tempInteractableList.Clear();
             }
 
             _mover.Speed.Y = Mathf.Clamp(_mover.Speed.Y, -JumpSpeed, MaxFallSpeed);

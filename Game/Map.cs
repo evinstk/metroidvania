@@ -43,6 +43,7 @@ namespace Game
         public string name;
         public int x;
         public int y;
+        public Dictionary<string, string> values;
     }
 
     class MapCollider :

@@ -54,5 +54,41 @@ namespace Game
 
             return entity;
         }
+
+        public static Entity CreateSwitch(this Scene scene, Vector2 position, string stateVar)
+        {
+            var entity = scene.CreateEntity("switch", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("wallSwitchOff");
+
+            var collider = entity.AddComponent(new BoxCollider(16, 16));
+            collider.PhysicsLayer = Mask.Interaction;
+
+            var switchC = entity.AddComponent<Switch>();
+            switchC.OffAnimation = "wallSwitchOff";
+            switchC.OnAnimation = "wallSwitchOn";
+            switchC.StateVar = stateVar;
+
+            return entity;
+        }
+
+        public static Entity CreateDoor(this Scene scene, Vector2 position, string stateVar)
+        {
+            var entity = scene.CreateEntity("door", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("doorReverse", Nez.Sprites.SpriteAnimator.LoopMode.ClampForever);
+
+            var collider = entity.AddComponent(new BoxCollider(6, 48));
+            collider.PhysicsLayer = Mask.Terrain;
+
+            var switchC = entity.AddComponent<Switch>();
+            switchC.OffAnimation = "doorReverse";
+            switchC.OnAnimation = "door";
+            switchC.StateVar = stateVar;
+
+            return entity;
+        }
     }
 }
