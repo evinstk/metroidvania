@@ -1,5 +1,6 @@
 ﻿using Nez;
 using Nez.Sprites;
+using System;
 
 namespace Game
 {
@@ -8,7 +9,10 @@ namespace Game
         public string OffAnimation;
         public string OnAnimation;
 
+        public Action<Switch, bool> OnSwitch;
+
         public string StateVar;
+        bool _lastState;
 
         SpriteAnimator _animator;
 
@@ -29,6 +33,11 @@ namespace Game
             var scriptVars = Entity.Scene.GetScriptVars();
             var val = scriptVars.Get<bool>(StateVar);
             _animator.Change(val ? OnAnimation : OffAnimation, SpriteAnimator.LoopMode.ClampForever);
+
+            if (val != _lastState)
+                OnSwitch?.Invoke(this, val);
+
+            _lastState = val;
         }
     }
 }

@@ -87,6 +87,10 @@ namespace Game
             switchC.OffAnimation = "doorReverse";
             switchC.OnAnimation = "door";
             switchC.StateVar = stateVar;
+            switchC.OnSwitch = (Switch self, bool state) =>
+            {
+                collider.Enabled = !state;
+            };
 
             return entity;
         }
