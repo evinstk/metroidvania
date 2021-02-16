@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game.Scripting;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Persistence;
@@ -16,6 +17,7 @@ namespace Game
         List<RoomBounds> _worldBounds = new List<RoomBounds>();
         List<RoomBounds> _runRooms = new List<RoomBounds>();
         RoomBounds _currentRoom;
+        SceneScript _scripting;
 
         public override void Initialize()
         {
@@ -26,7 +28,7 @@ namespace Game
             Physics.SpatialHashCellSize = 16;
             Physics.RaycastsStartInColliders = true;
 
-            AddRenderer(new ScreenSpaceRenderer(100, RenderLayer.Dialog));
+            AddRenderer(new ScreenSpaceRenderer(1, RenderLayer.Dialog));
             AddRenderer(new RenderLayerExcludeRenderer(0, RenderLayer.Dialog));
         }
 
@@ -38,10 +40,14 @@ namespace Game
             var dialogSystem = CreateEntity("dialog_system").AddComponent<DialogSystem>();
             dialogSystem.RenderLayer = RenderLayer.Dialog;
 
+            _scripting = new SceneScript(dialogSystem, ScriptVars);
+
             var world = LoadWorld("World1");
             CreateEntity("world");
             AddWorldBounds(world);
             RunRoom(Vector2.Zero);
+
+            _scripting.LoadScript("start.lua");
         }
 
         World LoadWorld(string worldName)
@@ -162,6 +168,10 @@ namespace Game
                     map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
             }
 
+            string script = null;
+            if (ogmoLevel.values?.TryGetValue("script", out script) == true)
+                _scripting.LoadScript(Path.GetFileName(script));
+
             _runRooms.Add(rb);
         }
 
@@ -180,6 +190,8 @@ namespace Game
                     return;
             }
             base.Update();
+
+            _scripting.Update();
 
             var player = FindEntity("player");
             if (!_currentRoom.Collider.Bounds.Contains(player.Position))

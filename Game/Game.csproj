@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.1.189" />
+	<PackageReference Include="MoonSharp" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez.ImGui\Nez.ImGui.csproj" />

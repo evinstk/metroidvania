@@ -27,6 +27,18 @@ namespace Game
         {
             _vars[varName] = val;
         }
+
+        public object this[string varName]
+        {
+            get
+            {
+                return _vars.ContainsKey(varName) ? _vars[varName] : null;
+            }
+            set
+            {
+                _vars[varName] = value;
+            }
+        }
     }
 
     static class ScriptVarsExt

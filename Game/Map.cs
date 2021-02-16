@@ -25,6 +25,7 @@ namespace Game
         public int width;
         public int height;
         public List<OgmoLevelLayer> layers;
+        public Dictionary<string, string> values;
     }
 
     class OgmoLevelLayer

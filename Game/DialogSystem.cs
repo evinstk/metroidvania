@@ -77,7 +77,7 @@ namespace Game
 
         public override void Render(Batcher batcher, Camera camera)
         {
-            if (_text.Length > 0)
+            if (_line != null)
             {
                 var boxBounds = new RectangleF(
                     BoxMargin,
