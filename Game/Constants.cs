@@ -30,8 +30,9 @@ namespace Game
 
     static class RenderLayer
     {
-        public const int Dialog = 100;
-        public const int Hud = 101;
+        public const int PauseMenu = 100;
+        public const int Dialog = 101;
+        public const int Hud = 102;
 
         public const int Light = 200;
         public const int LightMap = 201;

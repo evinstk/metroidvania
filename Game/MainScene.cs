@@ -33,9 +33,9 @@ namespace Game
             var lightRenderer = AddRenderer(new StencilLightRenderer(0, RenderLayer.Light, new RenderTexture()));
             lightRenderer.CollidesWithLayers = Mask.Terrain;
             lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
-            AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.Light, RenderLayer.LightMap, RenderLayer.Hud));
+            AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.Light, RenderLayer.LightMap, RenderLayer.Hud, RenderLayer.PauseMenu));
             AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMap));
-            AddRenderer(new ScreenSpaceRenderer(3, RenderLayer.Dialog, RenderLayer.Hud));
+            AddRenderer(new ScreenSpaceRenderer(3, RenderLayer.PauseMenu, RenderLayer.Dialog, RenderLayer.Hud));
         }
 
         public override void OnStart()
@@ -54,6 +54,9 @@ namespace Game
 
             var hud = CreateEntity("hud").AddComponent<Hud>();
             hud.RenderLayer = RenderLayer.Hud;
+
+            var pauseMenu = CreateEntity("pause_menu").AddComponent<PauseMenu>();
+            pauseMenu.RenderLayer = RenderLayer.PauseMenu;
 
             _scripting = new SceneScript(dialogSystem, ScriptVars);
 

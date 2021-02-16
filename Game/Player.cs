@@ -75,6 +75,8 @@ namespace Game
             if (_inputX.Nodes[0].Value != 0) _usingGamePad = true;
             if (_inputX.Nodes[1].Value != 0) _usingGamePad = false;
 
+            if (Time.TimeScale == 0) return;
+
             // NORMAL STATE
             if (_state == States.Normal)
             {
