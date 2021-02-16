@@ -31,6 +31,8 @@ namespace Game
     static class RenderLayer
     {
         public const int Dialog = 100;
+        public const int LightLayer = 200;
+        public const int LightMapLayer = 201;
     }
 
     static class ContentPath

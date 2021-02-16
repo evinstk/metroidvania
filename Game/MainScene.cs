@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Persistence;
+using Nez.Sprites;
+using Nez.Textures;
 using System.Collections.Generic;
 using System.IO;
 
@@ -28,12 +30,22 @@ namespace Game
             Physics.SpatialHashCellSize = 16;
             Physics.RaycastsStartInColliders = true;
 
-            AddRenderer(new ScreenSpaceRenderer(1, RenderLayer.Dialog));
-            AddRenderer(new RenderLayerExcludeRenderer(0, RenderLayer.Dialog));
+            var lightRenderer = AddRenderer(new StencilLightRenderer(0, RenderLayer.LightLayer, new RenderTexture()));
+            lightRenderer.CollidesWithLayers = Mask.Terrain;
+            lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
+            AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.LightLayer, RenderLayer.LightMapLayer));
+            AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMapLayer));
+            AddRenderer(new ScreenSpaceRenderer(3, RenderLayer.Dialog));
         }
 
         public override void OnStart()
         {
+            CreateEntity("light_map")
+                .SetParent(Camera.Transform)
+                .AddComponent(new SpriteRenderer(GetRenderer<StencilLightRenderer>().RenderTexture))
+                .SetMaterial(Material.BlendMultiply())
+                .SetRenderLayer(RenderLayer.LightMapLayer);
+
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
 
