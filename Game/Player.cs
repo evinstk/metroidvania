@@ -28,6 +28,7 @@ namespace Game
         float _attackTimer = 0;
         BoxCollider _attackCollider;
         List<IInteractable> _tempInteractableList = new List<IInteractable>();
+        bool _usingGamePad = false;
 
         VirtualIntegerAxis _inputX;
         VirtualButton _inputJump;
@@ -36,6 +37,7 @@ namespace Game
 
         PlatformerMover _mover;
         SpriteAnimator _animator;
+        ScriptVars _vars;
 
         public override void OnAddedToEntity()
         {
@@ -60,6 +62,8 @@ namespace Game
 
             _mover = Entity.GetComponent<PlatformerMover>();
             _animator = Entity.GetComponent<SpriteAnimator>();
+
+            _vars = Entity.Scene.GetScriptVars();
         }
 
         public void Update()
@@ -67,6 +71,9 @@ namespace Game
             _animator.FlipX = _facing == -1;
             _onGround = _mover.OnGround();
             var inputX = _inputX.Value;
+
+            if (_inputX.Nodes[0].Value != 0) _usingGamePad = true;
+            if (_inputX.Nodes[1].Value != 0) _usingGamePad = false;
 
             // NORMAL STATE
             if (_state == States.Normal)
@@ -165,13 +172,21 @@ namespace Game
             // interaction
             var hit = Physics.Linecast(
                 Entity.Position, Entity.Position + new Vector2(CastDistance, 0) * _facing, Mask.Interaction);
-            if (hit.Collider != null && _inputInteract.IsPressed)
+            if (hit.Collider != null)
             {
-                _inputInteract.ConsumeBuffer();
-                hit.Collider.GetComponents(_tempInteractableList);
-                foreach (var interactable in _tempInteractableList)
-                    interactable.Interact();
-                _tempInteractableList.Clear();
+                _vars[Vars.HudPrompt] = $"[{(_usingGamePad ? "Y" : "E")}] Interact";
+                if (_inputInteract.IsPressed)
+                {
+                    _inputInteract.ConsumeBuffer();
+                    hit.Collider.GetComponents(_tempInteractableList);
+                    foreach (var interactable in _tempInteractableList)
+                        interactable.Interact();
+                    _tempInteractableList.Clear();
+                }
+            }
+            else
+            {
+                _vars[Vars.HudPrompt] = string.Empty;
             }
 
             _mover.Speed.Y = Mathf.Clamp(_mover.Speed.Y, -JumpSpeed, MaxFallSpeed);
