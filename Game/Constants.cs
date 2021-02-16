@@ -31,8 +31,15 @@ namespace Game
     static class RenderLayer
     {
         public const int Dialog = 100;
-        public const int LightLayer = 200;
-        public const int LightMapLayer = 201;
+        public const int Hud = 101;
+
+        public const int Light = 200;
+        public const int LightMap = 201;
+    }
+
+    static class Vars
+    {
+        public const string HudPrompt = "hud_prompt";
     }
 
     static class ContentPath

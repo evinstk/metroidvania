@@ -26,7 +26,7 @@ namespace Game
             followCamera.FollowLerp = 1f;
 
             var light = entity.AddComponent(new StencilLight(200f, Color.White, 1f));
-            light.RenderLayer = RenderLayer.LightLayer;
+            light.RenderLayer = RenderLayer.Light;
 
             return entity;
         }

@@ -18,7 +18,7 @@ namespace Game
                     throw new Exception($"Variable {varName} previously used for different type.");
             }
 
-            var newVal = (T)Activator.CreateInstance(typeof(T));
+            var newVal = typeof(T) == typeof(string) ? (T)(object)string.Empty : (T)Activator.CreateInstance(typeof(T));
             _vars[varName] = newVal;
             return newVal;
         }

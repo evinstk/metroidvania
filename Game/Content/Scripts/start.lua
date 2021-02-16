@@ -6,4 +6,5 @@
     interact()
     line()
     vars['cell_door_open'] = true
+    vars['hud_prompt'] = 'Sup dude.'
 end)

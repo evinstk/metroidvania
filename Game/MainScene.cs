@@ -30,12 +30,12 @@ namespace Game
             Physics.SpatialHashCellSize = 16;
             Physics.RaycastsStartInColliders = true;
 
-            var lightRenderer = AddRenderer(new StencilLightRenderer(0, RenderLayer.LightLayer, new RenderTexture()));
+            var lightRenderer = AddRenderer(new StencilLightRenderer(0, RenderLayer.Light, new RenderTexture()));
             lightRenderer.CollidesWithLayers = Mask.Terrain;
             lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
-            AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.LightLayer, RenderLayer.LightMapLayer));
-            AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMapLayer));
-            AddRenderer(new ScreenSpaceRenderer(3, RenderLayer.Dialog));
+            AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.Light, RenderLayer.LightMap, RenderLayer.Hud));
+            AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMap));
+            AddRenderer(new ScreenSpaceRenderer(3, RenderLayer.Dialog, RenderLayer.Hud));
         }
 
         public override void OnStart()
@@ -44,13 +44,16 @@ namespace Game
                 .SetParent(Camera.Transform)
                 .AddComponent(new SpriteRenderer(GetRenderer<StencilLightRenderer>().RenderTexture))
                 .SetMaterial(Material.BlendMultiply())
-                .SetRenderLayer(RenderLayer.LightMapLayer);
+                .SetRenderLayer(RenderLayer.LightMap);
 
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
 
             var dialogSystem = CreateEntity("dialog_system").AddComponent<DialogSystem>();
             dialogSystem.RenderLayer = RenderLayer.Dialog;
+
+            var hud = CreateEntity("hud").AddComponent<Hud>();
+            hud.RenderLayer = RenderLayer.Hud;
 
             _scripting = new SceneScript(dialogSystem, ScriptVars);
 
