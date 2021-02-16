@@ -40,6 +40,8 @@ namespace Game
     static class Vars
     {
         public const string HudPrompt = "hud_prompt";
+        public const string PlayerHealth = "player_health";
+        public const string PlayerMaxHealth = "player_max_health";
     }
 
     static class ContentPath
