@@ -1,8 +1,17 @@
 {"frames": [
 
 {
+	"filename": "baton.png",
+	"frame": {"x":1,"y":1,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "emptyHeart.png",
-	"frame": {"x":1,"y":1,"w":12,"h":12},
+	"frame": {"x":1,"y":19,"w":12,"h":12},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":12,"h":12},
@@ -11,11 +20,20 @@
 },
 {
 	"filename": "fullHeart.png",
-	"frame": {"x":15,"y":1,"w":12,"h":12},
+	"frame": {"x":15,"y":19,"w":12,"h":12},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":12,"h":12},
 	"sourceSize": {"w":12,"h":12},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "iconFrame.png",
+	"frame": {"x":19,"y":1,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 }],
 "meta": {
@@ -23,8 +41,8 @@
 	"version": "1.0",
 	"image": "hud.png",
 	"format": "RGBA8888",
-	"size": {"w":28,"h":14},
+	"size": {"w":36,"h":32},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:dc2d4667dc4f3f55ddb432aa100f9c49:5093ba4095a38dec28865fd276b3ad6c:1f12e3a3d447c2b9be1f7d9b1846589c$"
+	"smartupdate": "$TexturePacker:SmartUpdate:0a2a96038f75520ccf5c28b98c2ea0a9:8cedc2de3a64b2fc73c8311693f72152:1f12e3a3d447c2b9be1f7d9b1846589c$"
 }
 }

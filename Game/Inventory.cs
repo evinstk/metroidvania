@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Nez;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -9,5 +10,10 @@ namespace Game
         public Weapon EquippedWeapon => EquippedWeaponIndex > -1
             ? Weapon.Types[Weapons[EquippedWeaponIndex]]
             : null;
+    }
+
+    static class InventoryExt
+    {
+        public static Inventory GetPlayerInventory(this Scene scene) => scene.GetScriptVars().Get<Inventory>(Vars.PlayerInventory);
     }
 }
