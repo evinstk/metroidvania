@@ -10,7 +10,7 @@ namespace Game
         public float StunTime = .5f;
 
         public Collider Collider;
-        public Action<Hurtable> OnHurt;
+        public Action<Hurtable, Collider> OnHurt;
 
         float _stunTimer = 0;
         Color _mColor;
@@ -24,9 +24,9 @@ namespace Game
 
         public void Update()
         {
-            if (Collider != null && OnHurt != null && _stunTimer <= 0 && Collider.CollidesWithAny(out _))
+            if (Collider != null && OnHurt != null && _stunTimer <= 0 && Collider.CollidesWithAny(out var hit))
             {
-                Hurt();
+                Hurt(hit.Collider);
             }
 
             if (_stunTimer > 0)
@@ -49,11 +49,11 @@ namespace Game
             }
         }
 
-        void Hurt()
+        void Hurt(Collider attacker)
         {
             Timer.PauseFor(0.1f);
             _stunTimer = StunTime;
-            OnHurt(this);
+            OnHurt(this, attacker);
         }
     }
 }

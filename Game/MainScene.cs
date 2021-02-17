@@ -49,6 +49,13 @@ namespace Game
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
 
+            // TODO: load from save file
+            ScriptVars.Set(Vars.PlayerInventory, new Inventory
+            {
+                Weapons = new List<WeaponTypes> { WeaponTypes.Baton },
+                EquippedWeaponIndex = 0,
+            });
+
             var dialogSystem = CreateEntity("dialog_system").AddComponent<DialogSystem>();
             dialogSystem.RenderLayer = RenderLayer.Dialog;
 

@@ -48,9 +48,9 @@ namespace Game
 
             var hurtable = entity.AddComponent<Hurtable>();
             hurtable.Collider = hitbox;
-            hurtable.OnHurt = (Hurtable self) =>
+            hurtable.OnHurt = (Hurtable self, Collider attacker) =>
             {
-                self.GetComponent<Sentry>().OnHurt(self);
+                self.GetComponent<Sentry>().OnHurt(self, attacker);
             };
 
             var sentry = entity.AddComponent<Sentry>();

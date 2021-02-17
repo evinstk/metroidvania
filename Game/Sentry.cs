@@ -11,7 +11,7 @@ namespace Game
             Dead,
         }
 
-        public int Health = 3;
+        public int Health = 15;
 
         States _state = States.Normal;
         float _timer = 0;
@@ -23,11 +23,12 @@ namespace Game
             _animator = Entity.GetComponent<SpriteAnimator>();
         }
 
-        public void OnHurt(Hurtable hurtable)
+        public void OnHurt(Hurtable hurtable, Collider attacker)
         {
             if (Health > 0)
             {
-                --Health;
+                var damage = attacker.GetComponent<Damage>();
+                Health -= damage?.Amount ?? 1;
                 if (Health <= 0)
                 {
                     SetState(States.Dead);

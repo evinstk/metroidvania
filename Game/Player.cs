@@ -39,6 +39,8 @@ namespace Game
         SpriteAnimator _animator;
         ScriptVars _vars;
 
+        Inventory PlayerInventory => _vars.Get<Inventory>(Vars.PlayerInventory);
+
         public override void OnAddedToEntity()
         {
             _inputX = new VirtualIntegerAxis();
@@ -105,14 +107,19 @@ namespace Game
 
                 // invoke attacking
                 {
-                    if (_inputAttack.IsPressed)
+                    var equippedWeapon = PlayerInventory.EquippedWeapon;
+                    if (_inputAttack.IsPressed && equippedWeapon != null)
                     {
                         _inputAttack.ConsumeBuffer();
                         _state = States.Attack;
                         _attackTimer = 0;
 
                         if (_attackCollider == null)
+                        {
                             _attackCollider = Entity.AddComponent(new BoxCollider(0, 0));
+                            var damage = Entity.GetOrCreateComponent<Damage>();
+                            damage.Amount = equippedWeapon.Damage;
+                        }
                         _attackCollider.PhysicsLayer = Mask.PlayerAttack;
 
                         if (_onGround)
@@ -123,6 +130,7 @@ namespace Game
             // ATTACK STATE
             else if (_state == States.Attack)
             {
+                // TODO: use equipped weapon to determine attack logic
                 _animator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
                 _attackTimer += Time.DeltaTime;
 

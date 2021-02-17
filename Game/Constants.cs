@@ -43,6 +43,7 @@ namespace Game
         public const string HudPrompt = "hud_prompt";
         public const string PlayerHealth = "player_health";
         public const string PlayerMaxHealth = "player_max_health";
+        public const string PlayerInventory = "player_inventory";
     }
 
     static class ContentPath
