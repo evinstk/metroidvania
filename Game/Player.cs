@@ -38,6 +38,7 @@ namespace Game
 
         PlatformerMover _mover;
         SpriteAnimator _animator;
+        SpriteAnimator _weaponAnimator;
         ScriptVars _vars;
 
         Inventory PlayerInventory => _vars.Get<Inventory>(Vars.PlayerInventory);
@@ -66,12 +67,19 @@ namespace Game
             _mover = Entity.GetComponent<PlatformerMover>();
             _animator = Entity.GetComponent<SpriteAnimator>();
 
+            _weaponAnimator = Entity.AddComponent<SpriteAnimator>();
+            _weaponAnimator.RenderLayer = _animator.RenderLayer - 1;
+            _weaponAnimator.AddAnimation("empty", GameContent.LoadAnimation("doodads", "empty", Core.Content));
+            _weaponAnimator.Play("empty");
+
             _vars = Entity.Scene.GetScriptVars();
         }
 
         public void Update()
         {
-            _animator.FlipX = _facing == -1;
+            var flip = _facing == -1;
+            _animator.FlipX = flip;
+            _weaponAnimator.FlipX = flip;
             _onGround = _mover.OnGround();
             var inputX = _inputX.Value;
 
@@ -115,6 +123,7 @@ namespace Game
                         _state = States.Attack;
                         _attackTimer = 0;
                         _attackType = equippedWeapon.AttackType;
+                        _weaponAnimator.AddAnimation("attack", equippedWeapon.Animation);
 
                         if (_attackCollider == null)
                         {
@@ -135,6 +144,7 @@ namespace Game
                 if (_attackType == AttackTypes.Light)
                 {
                     _animator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
+                    _weaponAnimator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
                     _attackTimer += Time.DeltaTime;
 
                     if (_attackTimer > .1f && _attackTimer < .2f)
@@ -160,6 +170,7 @@ namespace Game
                     if (!_animator.IsRunning)
                     {
                         _animator.Change("idle");
+                        _weaponAnimator.Play("empty");
                         _state = States.Normal;
                     }
                 }

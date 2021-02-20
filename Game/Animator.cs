@@ -63,7 +63,7 @@ namespace Game
 
         public static SpriteAnimator MakeAnimator(string pack, NezContentManager content)
         {
-            // TODO: cache loaded packs
+            // TODO: use GameContent
             var dataPath = ContentPath.Sprites + pack + ".json";
 
             var dataStr = File.ReadAllText(dataPath);
