@@ -34,7 +34,7 @@ namespace Game
 
             _pauseInput = new VirtualButton();
             _pauseInput.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Escape));
-            _pauseInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Start));
+            _pauseInput.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Back));
 
             _selectionInput = new VirtualIntegerAxis();
             _selectionInput.Nodes.Add(new VirtualAxis.GamePadLeftStickY());

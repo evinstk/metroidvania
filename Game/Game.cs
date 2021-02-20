@@ -10,6 +10,7 @@ namespace Game
             Window.AllowUserResizing = true;
             ExitOnEscapeKeypress = false;
             DebugConsole.RenderScale = 2;
+            //IsMouseVisible = false;
 
             Scene = new MainScene();
         }

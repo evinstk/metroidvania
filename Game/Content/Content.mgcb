@@ -266,3 +266,8 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DefaultFont.spritefont
 
+#begin Skins/DefaultSkin.json
+/importer:
+/processor:
+/build:Skins/DefaultSkin.json
+

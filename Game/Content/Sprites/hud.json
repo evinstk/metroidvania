@@ -10,6 +10,24 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "buttonOver.png",
+	"frame": {"x":29,"y":19,"w":3,"h":3},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":3,"h":3},
+	"sourceSize": {"w":3,"h":3},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "buttonUp.png",
+	"frame": {"x":29,"y":24,"w":3,"h":3},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":3,"h":3},
+	"sourceSize": {"w":3,"h":3},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "emptyHeart.png",
 	"frame": {"x":1,"y":19,"w":12,"h":12},
 	"rotated": false,
@@ -43,6 +61,6 @@
 	"format": "RGBA8888",
 	"size": {"w":36,"h":32},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:0a2a96038f75520ccf5c28b98c2ea0a9:8cedc2de3a64b2fc73c8311693f72152:1f12e3a3d447c2b9be1f7d9b1846589c$"
+	"smartupdate": "$TexturePacker:SmartUpdate:7c0bfde112ad7eb111c96ad3a8011008:ce013de8d670bff09c44a98d3550254a:1f12e3a3d447c2b9be1f7d9b1846589c$"
 }
 }
