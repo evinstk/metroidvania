@@ -26,6 +26,7 @@ namespace Game
         bool _onGround = false;
         float _jumpTimer = 0;
         float _attackTimer = 0;
+        AttackTypes _attackType = AttackTypes.Light;
         BoxCollider _attackCollider;
         List<IInteractable> _tempInteractableList = new List<IInteractable>();
         bool _usingGamePad = false;
@@ -113,6 +114,7 @@ namespace Game
                         _inputAttack.ConsumeBuffer();
                         _state = States.Attack;
                         _attackTimer = 0;
+                        _attackType = equippedWeapon.AttackType;
 
                         if (_attackCollider == null)
                         {
@@ -130,34 +132,41 @@ namespace Game
             // ATTACK STATE
             else if (_state == States.Attack)
             {
-                // TODO: use equipped weapon to determine attack logic
-                _animator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
-                _attackTimer += Time.DeltaTime;
-
-                if (_attackTimer > .1f && _attackTimer < .2f)
+                if (_attackType == AttackTypes.Light)
                 {
-                    _attackCollider.SetLocalOffset(new Vector2(16, 0));
-                    _attackCollider.SetSize(32, 32);
+                    _animator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
+                    _attackTimer += Time.DeltaTime;
+
+                    if (_attackTimer > .1f && _attackTimer < .2f)
+                    {
+                        _attackCollider.SetLocalOffset(new Vector2(16, 0));
+                        _attackCollider.SetSize(32, 32);
+                    }
+                    else if (_attackTimer > .1f && _attackCollider != null)
+                    {
+                        Entity.RemoveComponent(_attackCollider);
+                        _attackCollider = null;
+                    }
+
+                    if (_onGround)
+                        _mover.Speed.X = 0;
+
+                    if (_facing < 0 && _attackCollider != null)
+                    {
+                        var offset = _attackCollider.LocalOffset;
+                        _attackCollider.LocalOffset = new Vector2(-offset.X, offset.Y);
+                    }
+
+                    if (!_animator.IsRunning)
+                    {
+                        _animator.Change("idle");
+                        _state = States.Normal;
+                    }
                 }
-                else if (_attackTimer > .1f && _attackCollider != null)
+                // handle other weapon attack types
+                else
                 {
-                    Entity.RemoveComponent(_attackCollider);
-                    _attackCollider = null;
-                }
-
-                if (_onGround)
-                    _mover.Speed.X = 0;
-
-                if (_facing < 0 && _attackCollider != null)
-                {
-                    var offset = _attackCollider.LocalOffset;
-                    _attackCollider.LocalOffset = new Vector2(-offset.X, offset.Y);
-                }
-
-                if (!_animator.IsRunning)
-                {
-                    _animator.Change("idle");
-                    _state = States.Normal;
+                    throw new System.NotImplementedException($"Attack type {System.Enum.GetName(typeof(AttackTypes), _attackType)} not implemented.");
                 }
             }
 

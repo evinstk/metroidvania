@@ -9,9 +9,16 @@ namespace Game
         Baton,
     }
 
+    enum AttackTypes
+    {
+        Light,
+        Heavy,
+    }
+
     class Weapon
     {
         public WeaponTypes Type;
+        public AttackTypes AttackType;
         public string Name;
         public string Description;
         public int Damage;
@@ -32,6 +39,8 @@ namespace Game
                 WeaponTypes.Baton,
                 new Weapon("hud", "baton")
                 {
+                    Type = WeaponTypes.Baton,
+                    AttackType = AttackTypes.Light,
                     Name = "Guard Baton",
                     Description = "Light baton commonly used by police units.",
                     Damage = 5,
