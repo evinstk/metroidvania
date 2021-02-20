@@ -1,7 +1,9 @@
-﻿namespace Game
+﻿using Nez;
+
+namespace Game
 {
     interface IInteractable
     {
-        void Interact();
+        void Interact(Entity interactor);
     }
 }

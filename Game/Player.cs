@@ -210,7 +210,7 @@ namespace Game
                     _inputInteract.ConsumeBuffer();
                     hit.Collider.GetComponents(_tempInteractableList);
                     foreach (var interactable in _tempInteractableList)
-                        interactable.Interact();
+                        interactable.Interact(Entity);
                     _tempInteractableList.Clear();
                 }
             }

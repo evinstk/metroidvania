@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Nez;
 using Nez.Persistence;
 using Nez.Sprites;
 using Nez.Systems;
@@ -15,7 +16,18 @@ namespace Game
         static Dictionary<string, Sprite> _sprites = new Dictionary<string, Sprite>();
         static Dictionary<string, SpriteAnimation> _animations = new Dictionary<string, SpriteAnimation>();
 
-        static Regex NumAlpha = new Regex("(?<Name>[a-zA-Z]*)(?<Index>[0-9]*)");
+        static Regex AlphaNum = new Regex("(?<Name>[a-zA-Z_-]*)(?<Index>[0-9]*)");
+
+        static GameContent()
+        {
+            Core.Emitter.AddObserver(CoreEvents.SceneChanged, () =>
+            {
+                _textureMaps.Clear();
+                _sprites.Clear();
+                _animations.Clear();
+            });
+        }
+
 
         public static TextureMap LoadTextureMap(string pack)
         {
@@ -65,7 +77,7 @@ namespace Game
             var frames = new List<AnimFrame>();
             foreach (var frame in textureMap.frames)
             {
-                var match = NumAlpha.Match(frame.filename);
+                var match = AlphaNum.Match(frame.filename);
                 var animName = match.Groups["Name"].Value;
                 if (animName != animationName) continue;
                 frames.Add(new AnimFrame

@@ -2,10 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Textures;
+using Nez.UI;
 
 namespace Game
 {
-    class Hud : RenderableComponent
+    class Hud : RenderableComponent, IUpdatable
     {
         public override float Width => Constants.ResWidth;
         public override float Height => Constants.ResHeight;
@@ -13,12 +14,16 @@ namespace Game
         public Vector2 HealthOffset = new Vector2(10, 10);
         public Vector2 EquipmentOffset = new Vector2(10, -10);
         public int HealthSpacing = 15;
+        public float IncomingInventoryTimeout = 3;
 
         NezSpriteFont _font;
         ScriptVars _scriptVars;
         Sprite _fullHeart;
         Sprite _emptyHeart;
         Sprite _iconFrame;
+
+        Table _incomingInventory;
+        float _incomingTimer;
 
         public override void OnAddedToEntity()
         {
@@ -32,6 +37,54 @@ namespace Game
             // TODO: don't initialize in HUD
             _scriptVars[Vars.PlayerMaxHealth] = 5;
             _scriptVars[Vars.PlayerHealth] = 5;
+
+            var playerInventory = Entity.Scene.GetPlayerInventory();
+            playerInventory.OnWeaponAdd += HandleWeaponAdd;
+
+            var canvas = Entity.AddComponent<UICanvas>();
+            canvas.RenderLayer = RenderLayer;
+
+            _incomingInventory = canvas.Stage.AddElement(new Table());
+            _incomingInventory.Bottom().Right().Pad(8);
+            _incomingInventory.FillParent = true;
+        }
+
+        void HandleWeaponAdd(WeaponTypes weaponType)
+        {
+            var weapon = Weapon.Types[weaponType];
+
+            var table = new Table();
+            table.SetBackground(new NinePatchDrawable(
+                new NinePatchSprite(GameContent.LoadSprite("hud", "buttonUp", Core.Content), 1, 1, 1, 1)));
+            table.Defaults().Pad(2);
+
+            var icon = new Table();
+            icon.SetBackground(new NinePatchDrawable(
+                new NinePatchSprite(GameContent.LoadSprite("hud", "buttonUp", Core.Content), 1, 1, 1, 1)));
+            var iconSprite = weapon.Icon;
+            if (iconSprite != null)
+                icon.Add(new Image(new SpriteDrawable(iconSprite)));
+            table.Add(icon).Top().Left().Size(16);
+
+            var label = table.Add(weapon.Name);
+            label.Expand().Top().Right();
+
+            var cell = _incomingInventory.Add(table);
+            cell.Width(96).Height(32).SetPadTop(4);
+
+            _incomingInventory.Row();
+
+            _incomingTimer = IncomingInventoryTimeout;
+        }
+
+        public void Update()
+        {
+            if (_incomingTimer > 0)
+            {
+                _incomingTimer -= Time.AltDeltaTime;
+                if (_incomingTimer <= 0)
+                    _incomingInventory.ClearChildren();
+            }
         }
 
         public override void Render(Batcher batcher, Camera camera)

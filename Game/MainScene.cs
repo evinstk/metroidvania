@@ -52,8 +52,8 @@ namespace Game
             // TODO: load from save file
             ScriptVars.Set(Vars.PlayerInventory, new Inventory
             {
-                Weapons = new List<WeaponTypes> { WeaponTypes.Baton },
-                EquippedWeaponIndex = 0,
+                //Weapons = new List<WeaponTypes> { WeaponTypes.Baton },
+                EquippedWeaponIndex = -1,
             });
 
             var dialogSystem = CreateEntity("dialog_system").AddComponent<DialogSystem>();
@@ -73,8 +73,6 @@ namespace Game
             CreateEntity("world");
             AddWorldBounds(world);
             RunRoom(Vector2.Zero);
-
-            _scripting.LoadScript("start.lua");
         }
 
         World LoadWorld(string worldName)
@@ -185,6 +183,9 @@ namespace Game
                             case "door":
                                 this.CreateDoor(pos, entity.values["state_var"]);
                                 break;
+                            case "chest":
+                                this.CreateChest(pos, entity);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;
@@ -196,7 +197,7 @@ namespace Game
             }
 
             string script = null;
-            if (ogmoLevel.values?.TryGetValue("script", out script) == true)
+            if (ogmoLevel.values?.TryGetValue("script", out script) == true && script != "proj:")
                 _scripting.LoadScript(Path.GetFileName(script));
 
             _runRooms.Add(rb);

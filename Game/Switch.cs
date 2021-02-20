@@ -21,7 +21,7 @@ namespace Game
             _animator = Entity.GetComponent<SpriteAnimator>();
         }
 
-        public void Interact()
+        public void Interact(Entity interactor)
         {
             var scriptVars = Entity.Scene.GetScriptVars();
             var val = scriptVars.Get<bool>(StateVar);

@@ -67,7 +67,7 @@ namespace Game
             _equipmentPane.Add(weaponButton);
             _equipmentPane.Row();
 
-            var gunButton = CreateEquipmentButton("GUN", null, null);
+            var gunButton = CreateEquipmentButton("RANGE", null, null);
             _equipmentPane.Add(gunButton);
 
             weaponButton.OnClicked += button =>

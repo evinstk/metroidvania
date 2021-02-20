@@ -24,6 +24,7 @@ namespace Game.Scripting
         static SceneScript()
         {
             UserData.RegisterType<ScriptVars>();
+            UserData.RegisterProxyType<ChestContentsProxy, ChestContents>(c => new ChestContentsProxy(c));
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
 

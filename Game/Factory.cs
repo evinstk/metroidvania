@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
+using Nez.Sprites;
 
 namespace Game
 {
@@ -94,6 +95,26 @@ namespace Game
             {
                 collider.Enabled = !state;
             };
+
+            return entity;
+        }
+
+        public static Entity CreateChest(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
+        {
+            var entity = scene.CreateEntity("chest", position);
+
+            var renderer = entity.AddComponent<SpriteRenderer>();
+            renderer.Sprite = GameContent.LoadSprite("doodads", "chest_closed", scene.Content);
+
+            var collider = entity.AddComponent<BoxCollider>();
+            collider.PhysicsLayer = Mask.Interaction;
+
+            var chest = entity.AddComponent<Chest>();
+            chest.ClosedSprite = GameContent.LoadSprite("doodads", "chest_closed", scene.Content);
+            chest.OpenSprite = GameContent.LoadSprite("doodads", "chest_open", scene.Content);
+            //chest.ContentsVar = ogmoEntity.values["contents"];
+            chest.Collider = collider;
+            scene.GetScriptVars().Set(ogmoEntity.values["contents"], chest.Contents);
 
             return entity;
         }

@@ -53,7 +53,7 @@ namespace Game
 
     static class Animator
     {
-        static Regex NumAlpha = new Regex("(?<Name>[a-zA-Z]*)(?<Index>[0-9]*)");
+        static Regex AlphaNum = new Regex("(?<Name>[a-zA-Z_-]*)(?<Index>[0-9]*)");
 
         struct AnimFrame
         {
@@ -75,7 +75,11 @@ namespace Game
             var animations = new Dictionary<string, List<AnimFrame>>();
             foreach (var frame in data.frames)
             {
-                var match = NumAlpha.Match(frame.filename);
+                var match = AlphaNum.Match(frame.filename);
+
+                var index = match.Groups["Index"];
+                if (index.Length == 0) continue;
+
                 var animName = match.Groups["Name"].Value;
                 if (!animations.TryGetValue(animName, out var frames))
                 {
@@ -84,7 +88,7 @@ namespace Game
                 }
                 frames.Add(new AnimFrame
                 {
-                    Index = int.Parse(match.Groups["Index"].Value),
+                    Index = int.Parse(index.Value),
                     Sprite = new Sprite(
                         texture,
                         frame.bounds,
