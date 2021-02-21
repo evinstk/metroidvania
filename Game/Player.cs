@@ -12,6 +12,7 @@ namespace Game
         {
             Normal,
             Attack,
+            Dodge,
         }
 
         public float MoveSpeed = 150f;
@@ -20,12 +21,15 @@ namespace Game
         public float JumpSpeed = 200f;
         public float MaxFallSpeed = 200f;
         public float CastDistance = 32;
+        public float DodgeTime = .2f;
+        public float DodgeSpeed = 250f;
 
         States _state = States.Normal;
         int _facing = 1;
         bool _onGround = false;
         float _jumpTimer = 0;
         float _attackTimer = 0;
+        float _dodgeTimer = 0;
         AttackTypes _attackType = AttackTypes.Light;
         BoxCollider _attackCollider;
         List<IInteractable> _tempInteractableList = new List<IInteractable>();
@@ -34,6 +38,7 @@ namespace Game
         VirtualIntegerAxis _inputX;
         VirtualButton _inputJump;
         VirtualButton _inputAttack;
+        VirtualButton _inputDodge;
         VirtualButton _inputInteract;
 
         PlatformerMover _mover;
@@ -63,6 +68,10 @@ namespace Game
             _inputInteract = new VirtualButton();
             _inputInteract.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Y));
             _inputInteract.Nodes.Add(new VirtualButton.KeyboardKey(Keys.E));
+
+            _inputDodge = new VirtualButton();
+            _inputDodge.AddGamePadButton(0, Buttons.B);
+            _inputDodge.AddKeyboardKey(Keys.LeftShift);
 
             _mover = Entity.GetComponent<PlatformerMover>();
             _animator = Entity.GetComponent<SpriteAnimator>();
@@ -137,6 +146,18 @@ namespace Game
                             _mover.Speed.X = 0;
                     }
                 }
+
+                // invoke dodging
+                {
+                    if (_inputDodge.IsPressed)
+                    {
+                        if (inputX != 0)
+                            _facing = inputX;
+                        _inputDodge.ConsumeBuffer();
+                        _state = States.Dodge;
+                        _dodgeTimer = 0;
+                    }
+                }
             }
             // ATTACK STATE
             else if (_state == States.Attack)
@@ -180,9 +201,22 @@ namespace Game
                     throw new System.NotImplementedException($"Attack type {System.Enum.GetName(typeof(AttackTypes), _attackType)} not implemented.");
                 }
             }
+            // DODGE STATE
+            else if (_state == States.Dodge)
+            {
+                _animator.Change("dodge", SpriteAnimator.LoopMode.ClampForever);
+                _dodgeTimer += Time.DeltaTime;
+                _mover.Speed.X = _facing * DodgeSpeed;
+
+                if (_dodgeTimer >= DodgeTime)
+                {
+                    _animator.Change("idle");
+                    _state = States.Normal;
+                }
+            }
 
             // gravity
-            if (!_onGround)
+            if (!_onGround && _state != States.Dodge)
             {
                 _mover.Speed.Y += Gravity * Time.DeltaTime;
             }
@@ -192,7 +226,7 @@ namespace Game
             {
                 _mover.Speed.Y = -JumpSpeed;
                 _jumpTimer -= Time.DeltaTime;
-                if (!_inputJump.IsDown || _mover.OnGround(-1) || _jumpTimer <= 0)
+                if (!_inputJump.IsDown || _mover.OnGround(-1) || _jumpTimer <= 0 || _state == States.Dodge)
                 {
                     _jumpTimer = 0;
                     _mover.Speed.Y = 0;

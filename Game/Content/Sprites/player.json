@@ -11,7 +11,7 @@
 },
 {
 	"filename": "attack0001.png",
-	"frame": {"x":67,"y":1,"w":64,"h":64},
+	"frame": {"x":1,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -20,7 +20,7 @@
 },
 {
 	"filename": "attack0002.png",
-	"frame": {"x":133,"y":1,"w":64,"h":64},
+	"frame": {"x":67,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -29,7 +29,7 @@
 },
 {
 	"filename": "baton0000.png",
-	"frame": {"x":199,"y":1,"w":64,"h":64},
+	"frame": {"x":1,"y":133,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -38,7 +38,7 @@
 },
 {
 	"filename": "baton0001.png",
-	"frame": {"x":265,"y":1,"w":64,"h":64},
+	"frame": {"x":67,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -47,7 +47,25 @@
 },
 {
 	"filename": "baton0002.png",
-	"frame": {"x":331,"y":1,"w":64,"h":64},
+	"frame": {"x":133,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "dodge0000.png",
+	"frame": {"x":67,"y":133,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "dodge0001.png",
+	"frame": {"x":133,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -56,7 +74,7 @@
 },
 {
 	"filename": "idle0000.png",
-	"frame": {"x":397,"y":1,"w":64,"h":64},
+	"frame": {"x":199,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -65,7 +83,7 @@
 },
 {
 	"filename": "walk0000.png",
-	"frame": {"x":463,"y":1,"w":64,"h":64},
+	"frame": {"x":133,"y":133,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -74,7 +92,7 @@
 },
 {
 	"filename": "walk0001.png",
-	"frame": {"x":529,"y":1,"w":64,"h":64},
+	"frame": {"x":199,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -83,7 +101,7 @@
 },
 {
 	"filename": "walk0002.png",
-	"frame": {"x":595,"y":1,"w":64,"h":64},
+	"frame": {"x":265,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -92,7 +110,7 @@
 },
 {
 	"filename": "walk0003.png",
-	"frame": {"x":661,"y":1,"w":64,"h":64},
+	"frame": {"x":199,"y":133,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -101,7 +119,7 @@
 },
 {
 	"filename": "walk0004.png",
-	"frame": {"x":727,"y":1,"w":64,"h":64},
+	"frame": {"x":265,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -110,7 +128,7 @@
 },
 {
 	"filename": "walk0005.png",
-	"frame": {"x":793,"y":1,"w":64,"h":64},
+	"frame": {"x":331,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -119,7 +137,7 @@
 },
 {
 	"filename": "walk0006.png",
-	"frame": {"x":859,"y":1,"w":64,"h":64},
+	"frame": {"x":265,"y":133,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -128,7 +146,7 @@
 },
 {
 	"filename": "walk0007.png",
-	"frame": {"x":925,"y":1,"w":64,"h":64},
+	"frame": {"x":331,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -140,8 +158,8 @@
 	"version": "1.0",
 	"image": "player.png",
 	"format": "RGBA8888",
-	"size": {"w":990,"h":66},
+	"size": {"w":396,"h":198},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:53815addc9af6c2708b15a708f38d28f:1c39274ba9c0f535d233377ceb6011be:86d5339b780aedd87b35e2b7c0a7e11b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f966a07891e36c02608aa5d33a2cf8e1:243a323988c44e317f7507b8fd48be37:86d5339b780aedd87b35e2b7c0a7e11b$"
 }
 }
