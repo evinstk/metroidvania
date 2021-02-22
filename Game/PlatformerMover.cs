@@ -85,7 +85,7 @@ namespace Game
             }
             else
             {
-                Entity.Position = new Vector2(0, amount);
+                Entity.Position += new Vector2(0, amount);
             }
         }
 

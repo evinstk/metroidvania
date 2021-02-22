@@ -1,13 +1,21 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework;
+using Nez;
 using Nez.Sprites;
 
 namespace Game
 {
     class Sentry : Component, IUpdatable
     {
+        public int CastDistance = 100;
+        public float AttackInterval = 1f;
+        public float ProjectileSpeed = 200f;
+        public float ProjectileTimeToLive = 2f;
+
         enum States
         {
             Normal,
+            Turtle,
+            Attack,
             Dead,
         }
 
@@ -15,6 +23,7 @@ namespace Game
 
         States _state = States.Normal;
         float _timer = 0;
+        int _facing = 1;
 
         SpriteAnimator _animator;
 
@@ -40,10 +49,46 @@ namespace Game
         public void Update()
         {
             _timer += Time.DeltaTime;
+            _animator.FlipX = _facing != 1;
 
             // NORMAL STATE
             if (_state == States.Normal)
             {
+                // do two directions
+                for (var i = -1; i <= 1; i += 2)
+                {
+                    if (FindTarget(i))
+                    {
+                        _facing = i;
+                        SetState(States.Turtle);
+                        break;
+                    }
+                }
+            }
+            // TURTLE STATE
+            else if (_state == States.Turtle)
+            {
+                _animator.Change("turtle", SpriteAnimator.LoopMode.ClampForever);
+                if (!_animator.IsRunning)
+                {
+                    SetState(States.Attack);
+                }
+            }
+            // ATTACK STATE
+            else if (_state == States.Attack)
+            {
+                if (_timer >= AttackInterval)
+                {
+                    // create projectile
+                    {
+                        var projectileEntity = Entity.Scene.CreateProjectile(Entity.Position + new Vector2(4 * _facing, -11));
+                        var mover = projectileEntity.GetComponent<PlatformerMover>();
+                        mover.Speed = new Vector2(_facing * ProjectileSpeed, 0);
+                        var projectile = projectileEntity.GetComponent<Projectile>();
+                        projectile.TimeToLive = ProjectileTimeToLive;
+                    }
+                    _timer = 0;
+                }
             }
             // DEAD STATE
             else if (_state == States.Dead)
@@ -52,6 +97,13 @@ namespace Game
                 //if (Timer.OnTime(_timer, 2f))
                 //    Entity.Destroy();
             }
+        }
+
+        bool FindTarget(int dir)
+        {
+            var pos = Entity.Position;
+            var hit = Physics.Linecast(pos, pos + new Vector2(dir * CastDistance, 0), Mask.Player | Mask.Terrain);
+            return (hit.Collider?.PhysicsLayer & Mask.Player) > 0;
         }
 
         void SetState(States state)

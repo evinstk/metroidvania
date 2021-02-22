@@ -82,7 +82,7 @@ namespace Game
             var entity = scene.CreateEntity("door", position);
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
-            anim.Play("doorReverse", Nez.Sprites.SpriteAnimator.LoopMode.ClampForever);
+            anim.Play("doorReverse", SpriteAnimator.LoopMode.ClampForever);
 
             var collider = entity.AddComponent(new BoxCollider(6, 48));
             collider.PhysicsLayer = Mask.Terrain;
@@ -115,6 +115,33 @@ namespace Game
             //chest.ContentsVar = ogmoEntity.values["contents"];
             chest.Collider = collider;
             scene.GetScriptVars().Set(ogmoEntity.values["contents"], chest.Contents);
+
+            return entity;
+        }
+
+        public static Entity CreateProjectile(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("projectile", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("projectile");
+            anim.RenderLayer = -5;
+
+            var collider = entity.AddComponent(new BoxCollider(8, 8));
+            collider.PhysicsLayer = Mask.EnemyAttack;
+            collider.CollidesWithLayers = Mask.Player;
+
+            var hurtable = entity.AddComponent<Hurtable>();
+            hurtable.Collider = collider;
+            hurtable.PauseTime = 0;
+            hurtable.OnHurt = (self, attacker) =>
+            {
+                self.Entity.Destroy();
+            };
+
+            entity.AddComponent<PlatformerMover>();
+
+            entity.AddComponent<Projectile>();
 
             return entity;
         }

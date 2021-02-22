@@ -8,6 +8,7 @@ namespace Game
     class Hurtable : Component, IUpdatable
     {
         public float StunTime = .5f;
+        public float PauseTime = 0.1f;
 
         public Collider Collider;
         public Action<Hurtable, Collider> OnHurt;
@@ -51,7 +52,7 @@ namespace Game
 
         void Hurt(Collider attacker)
         {
-            Timer.PauseFor(0.1f);
+            Timer.PauseFor(PauseTime);
             _stunTimer = StunTime;
             OnHurt(this, attacker);
         }
