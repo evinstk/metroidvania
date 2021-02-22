@@ -36,7 +36,7 @@ namespace Game
         {
             var bounds = Collider.Bounds;
             bounds.Location += dist;
-            return Physics.OverlapRectangle(bounds, Collider.CollidesWithLayers) != null;
+            return Physics.OverlapRectangle(bounds, Mask.Terrain) != null;
         }
 
         void MoveX(int amount)
