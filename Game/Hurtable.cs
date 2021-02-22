@@ -23,6 +23,11 @@ namespace Game
             _renderer = Entity.GetComponent<SpriteRenderer>();
         }
 
+        public override void OnRemovedFromEntity()
+        {
+            _renderer.Color = _mColor;
+        }
+
         public void Update()
         {
             if (Collider != null && OnHurt != null && _stunTimer <= 0 && Collider.CollidesWithAny(out var hit))
@@ -46,7 +51,7 @@ namespace Game
                     }
                 }
                 if (_stunTimer <= 0)
-                    _renderer.Enabled = true;
+                    _renderer.Color = _mColor;
             }
         }
 
