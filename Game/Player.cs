@@ -13,7 +13,10 @@ namespace Game
             Normal,
             Attack,
             Dodge,
+            Dead,
         }
+
+        public Collider Hitbox;
 
         public float MoveSpeed = 150f;
         public float Gravity = 600f;
@@ -214,6 +217,13 @@ namespace Game
                     _state = States.Normal;
                 }
             }
+            // DEAD STATE
+            else if (_state == States.Dead)
+            {
+                _mover.Speed.X = 0;
+                _animator.Change("dead", SpriteAnimator.LoopMode.ClampForever);
+                Hitbox.PhysicsLayer &= ~Mask.Player;
+            }
 
             // gravity
             if (!_onGround && _state != States.Dodge)
@@ -254,6 +264,19 @@ namespace Game
             }
 
             _mover.Speed.Y = Mathf.Clamp(_mover.Speed.Y, -JumpSpeed, MaxFallSpeed);
+        }
+
+        public void OnHurt(Hurtable self, Collider attacker)
+        {
+            var health = _vars.Get<int>(Vars.PlayerHealth);
+            var damage = attacker.GetComponent<Damage>();
+            health -= damage?.Amount ?? 1;
+            _vars.Set(Vars.PlayerHealth, health);
+            if (health <= 0)
+            {
+                _state = States.Dead;
+                Entity.RemoveComponent(self);
+            }
         }
     }
 }

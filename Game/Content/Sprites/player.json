@@ -20,7 +20,7 @@
 },
 {
 	"filename": "attack0002.png",
-	"frame": {"x":67,"y":1,"w":64,"h":64},
+	"frame": {"x":1,"y":133,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -29,7 +29,7 @@
 },
 {
 	"filename": "baton0000.png",
-	"frame": {"x":1,"y":133,"w":64,"h":64},
+	"frame": {"x":67,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -47,15 +47,6 @@
 },
 {
 	"filename": "baton0002.png",
-	"frame": {"x":133,"y":1,"w":64,"h":64},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
-	"sourceSize": {"w":64,"h":64},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "dodge0000.png",
 	"frame": {"x":67,"y":133,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -64,7 +55,16 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "dodge0001.png",
+	"filename": "dead0000.png",
+	"frame": {"x":133,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "dead0001.png",
 	"frame": {"x":133,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -73,16 +73,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "idle0000.png",
-	"frame": {"x":199,"y":1,"w":64,"h":64},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
-	"sourceSize": {"w":64,"h":64},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "walk0000.png",
+	"filename": "dodge0000.png",
 	"frame": {"x":133,"y":133,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -91,7 +82,16 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "walk0001.png",
+	"filename": "dodge0001.png",
+	"frame": {"x":199,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "idle0000.png",
 	"frame": {"x":199,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -100,7 +100,16 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "walk0002.png",
+	"filename": "walk0000.png",
+	"frame": {"x":199,"y":133,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "walk0001.png",
 	"frame": {"x":265,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -109,8 +118,17 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "walk0002.png",
+	"frame": {"x":331,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "walk0003.png",
-	"frame": {"x":199,"y":133,"w":64,"h":64},
+	"frame": {"x":397,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -128,15 +146,6 @@
 },
 {
 	"filename": "walk0005.png",
-	"frame": {"x":331,"y":1,"w":64,"h":64},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
-	"sourceSize": {"w":64,"h":64},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "walk0006.png",
 	"frame": {"x":265,"y":133,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -145,8 +154,17 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "walk0007.png",
+	"filename": "walk0006.png",
 	"frame": {"x":331,"y":67,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "walk0007.png",
+	"frame": {"x":397,"y":67,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -158,8 +176,8 @@
 	"version": "1.0",
 	"image": "player.png",
 	"format": "RGBA8888",
-	"size": {"w":396,"h":198},
+	"size": {"w":462,"h":198},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:f966a07891e36c02608aa5d33a2cf8e1:243a323988c44e317f7507b8fd48be37:86d5339b780aedd87b35e2b7c0a7e11b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:471c1e18c14eaa0a6e2d9545113c8b65:567a36f8d26fb88bea4bf23d681c4840:86d5339b780aedd87b35e2b7c0a7e11b$"
 }
 }

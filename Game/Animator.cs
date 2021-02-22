@@ -61,7 +61,7 @@ namespace Game
             public Sprite Sprite;
         }
 
-        public static SpriteAnimator MakeAnimator(string pack, NezContentManager content)
+        public static SpriteAnimator MakeAnimator(string pack, NezContentManager content, IDictionary<string, int> frameRateOverrides = null)
         {
             // TODO: use GameContent
             var dataPath = ContentPath.Sprites + pack + ".json";
@@ -107,7 +107,10 @@ namespace Game
                     var sprites = new Sprite[frames.Count];
                     for (var i = 0; i < sprites.Length; ++i)
                         sprites[i] = frames[i].Sprite;
-                    var spriteAnimation = new SpriteAnimation(sprites, 12);
+                    var fps = frameRateOverrides?.ContainsKey(animation.Key) == true
+                        ? frameRateOverrides[animation.Key]
+                        : 12;
+                    var spriteAnimation = new SpriteAnimation(sprites, fps);
                     animator.AddAnimation(animation.Key, spriteAnimation);
                 }
 
@@ -116,7 +119,10 @@ namespace Game
                     var sprites = new Sprite[frames.Count];
                     for (var i = 0; i < sprites.Length; ++i)
                         sprites[i] = frames[sprites.Length - 1 - i].Sprite;
-                    var spriteAnimation = new SpriteAnimation(sprites, 12);
+                    var fps = frameRateOverrides?.ContainsKey(animation.Key) == true
+                        ? frameRateOverrides[animation.Key]
+                        : 12;
+                    var spriteAnimation = new SpriteAnimation(sprites, fps);
                     animator.AddAnimation(animation.Key + "Reverse", spriteAnimation);
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Sprites;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -10,18 +11,26 @@ namespace Game
         {
             var entity = scene.CreateEntity("player", position);
 
-            var anim = entity.AddComponent(Animator.MakeAnimator("player", scene.Content));
+            var anim = entity.AddComponent(Animator.MakeAnimator("player", scene.Content, new Dictionary<string, int>
+            {
+                { "dead", 3 },
+            }));
             anim.Play("walk");
             anim.RenderLayer = -10;
 
             var hitbox = entity.AddComponent(new BoxCollider(16, 32));
             hitbox.PhysicsLayer = Mask.Player;
-            hitbox.CollidesWithLayers = Mask.Terrain;
+            hitbox.CollidesWithLayers = Mask.Terrain | Mask.EnemyAttack;
 
             var mover = entity.AddComponent<PlatformerMover>();
             mover.Collider = hitbox;
 
-            entity.AddComponent<Player>();
+            var player = entity.AddComponent<Player>();
+            player.Hitbox = hitbox;
+
+            var hurtable = entity.AddComponent<Hurtable>();
+            hurtable.Collider = hitbox;
+            hurtable.OnHurt = player.OnHurt;
 
             var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
             followCamera.FollowLerp = 1f;
@@ -129,7 +138,7 @@ namespace Game
 
             var collider = entity.AddComponent(new BoxCollider(8, 8));
             collider.PhysicsLayer = Mask.EnemyAttack;
-            collider.CollidesWithLayers = Mask.Player;
+            collider.CollidesWithLayers = Mask.Player | Mask.Terrain;
 
             var hurtable = entity.AddComponent<Hurtable>();
             hurtable.Collider = collider;
