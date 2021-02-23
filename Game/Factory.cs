@@ -136,17 +136,14 @@ namespace Game
             collider.PhysicsLayer = Mask.EnemyAttack;
             collider.CollidesWithLayers = Mask.Player | Mask.Terrain;
 
+            entity.AddComponent<PlatformerMover>();
+
+            var projectile = entity.AddComponent<Projectile>();
+
             var hurtable = entity.AddComponent<Hurtable>();
             hurtable.Collider = collider;
             hurtable.PauseTime = 0;
-            hurtable.OnHurt = (self, attacker) =>
-            {
-                self.Entity.Destroy();
-            };
-
-            entity.AddComponent<PlatformerMover>();
-
-            entity.AddComponent<Projectile>();
+            hurtable.OnHurt = projectile.OnHurt;
 
             return entity;
         }

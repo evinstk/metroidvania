@@ -4,19 +4,22 @@ namespace Game
 {
     class Projectile : Component, IUpdatable
     {
-        //public Vector2 Direction = new Vector2(1, 0);
         public float TimeToLive = 2f;
 
         float _timer = 0;
+        bool _pendingDestroy = false;
 
         public void Update()
         {
             _timer += Time.DeltaTime;
 
-            if (_timer > TimeToLive)
-            {
+            if (_timer > TimeToLive || _pendingDestroy)
                 Entity.Destroy();
-            }
+        }
+
+        public void OnHurt(Hurtable self, Collider attacker)
+        {
+            _pendingDestroy = true;
         }
     }
 }
