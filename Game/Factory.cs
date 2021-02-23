@@ -28,10 +28,6 @@ namespace Game
             var player = entity.AddComponent<Player>();
             player.Hitbox = hitbox;
 
-            var hurtable = entity.AddComponent<Hurtable>();
-            hurtable.Collider = hitbox;
-            hurtable.OnHurt = player.OnHurt;
-
             var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
             followCamera.FollowLerp = 1f;
 

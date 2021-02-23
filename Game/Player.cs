@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Sprites;
+using System;
 using System.Collections.Generic;
 
 namespace Game
@@ -13,6 +14,7 @@ namespace Game
             Normal,
             Attack,
             Dodge,
+            Hurt,
             Dead,
         }
 
@@ -26,6 +28,9 @@ namespace Game
         public float CastDistance = 32;
         public float DodgeTime = .2f;
         public float DodgeSpeed = 250f;
+        public float HurtTime = 0.2f;
+        public float InvincibleTime = 1.5f;
+        public float KnockbackSpeed = 150f;
 
         States _state = States.Normal;
         int _facing = 1;
@@ -33,8 +38,12 @@ namespace Game
         float _jumpTimer = 0;
         float _attackTimer = 0;
         float _dodgeTimer = 0;
+        float _hurtTimer = 0;
+        int _hurtDir = 0;
+        float _invincibilityTimer = 0;
         AttackTypes _attackType = AttackTypes.Light;
         BoxCollider _attackCollider;
+
         List<IInteractable> _tempInteractableList = new List<IInteractable>();
         bool _usingGamePad = false;
 
@@ -217,6 +226,18 @@ namespace Game
                     _state = States.Normal;
                 }
             }
+            // HURT STATE
+            else if (_state == States.Hurt)
+            {
+                _animator.Change("hurt");
+                _hurtTimer -= Time.DeltaTime;
+
+                _mover.Speed.X = _hurtDir * KnockbackSpeed;
+                _mover.Speed.Y = Mathf.Sin(2f * MathHelper.Pi * _hurtTimer / HurtTime) * KnockbackSpeed;
+
+                if (_hurtTimer <= 0)
+                    _state = States.Normal;
+            }
             // DEAD STATE
             else if (_state == States.Dead)
             {
@@ -226,7 +247,7 @@ namespace Game
             }
 
             // gravity
-            if (!_onGround && _state != States.Dodge)
+            if (!_onGround && _state != States.Dodge && _state != States.Hurt)
             {
                 _mover.Speed.Y += Gravity * Time.DeltaTime;
             }
@@ -240,6 +261,44 @@ namespace Game
                 {
                     _jumpTimer = 0;
                     _mover.Speed.Y = 0;
+                }
+            }
+
+            // invincible timer
+            if (_state != States.Hurt && _invincibilityTimer > 0)
+            {
+                if (Timer.OnInterval(0.05f))
+                {
+                    _animator.Color = _animator.Color == Color.Transparent ? Color.White : Color.Transparent;
+                    _weaponAnimator.Color = _weaponAnimator.Color == Color.Transparent ? Color.White : Color.Transparent;
+                }
+                _invincibilityTimer -= Time.DeltaTime;
+                if (_invincibilityTimer <= 0)
+                {
+                    _animator.Color = Color.White;
+                    _weaponAnimator.Color = Color.White;
+                }
+            }
+
+            // hurt check
+            if (_invincibilityTimer <= 0 && Hitbox.CollidesWithAny(out var hurtHit) && _state != States.Dead)
+            {
+                Timer.PauseFor(0.1f);
+                _animator.Change("hurt", SpriteAnimator.LoopMode.ClampForever);
+                var health = _vars.Get<int>(Vars.PlayerHealth);
+                var damage = hurtHit.Collider.GetComponent<Damage>();
+                health -= damage?.Amount ?? 1;
+                _vars.Set(Vars.PlayerHealth, health);
+                if (health <= 0)
+                {
+                    _state = States.Dead;
+                }
+                else
+                {
+                    _state = States.Hurt;
+                    _hurtTimer = HurtTime;
+                    _invincibilityTimer = InvincibleTime;
+                    _hurtDir = Math.Sign(Hitbox.AbsolutePosition.X - hurtHit.Collider.AbsolutePosition.X);
                 }
             }
 
@@ -264,19 +323,6 @@ namespace Game
             }
 
             _mover.Speed.Y = Mathf.Clamp(_mover.Speed.Y, -JumpSpeed, MaxFallSpeed);
-        }
-
-        public void OnHurt(Hurtable self, Collider attacker)
-        {
-            var health = _vars.Get<int>(Vars.PlayerHealth);
-            var damage = attacker.GetComponent<Damage>();
-            health -= damage?.Amount ?? 1;
-            _vars.Set(Vars.PlayerHealth, health);
-            if (health <= 0)
-            {
-                _state = States.Dead;
-                Entity.RemoveComponent(self);
-            }
         }
     }
 }
