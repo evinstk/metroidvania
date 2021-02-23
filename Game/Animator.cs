@@ -61,7 +61,7 @@ namespace Game
             public Sprite Sprite;
         }
 
-        public static SpriteAnimator MakeAnimator(string pack, NezContentManager content, IDictionary<string, int> frameRateOverrides = null)
+        public static List<(string, SpriteAnimation)> MakeAnimations(string pack, NezContentManager content, IDictionary<string, int> frameRateOverrides = null)
         {
             // TODO: use GameContent
             var dataPath = ContentPath.Sprites + pack + ".json";
@@ -96,7 +96,10 @@ namespace Game
                 });
             }
 
-            var animator = new SpriteAnimator();
+            var animationList = new List<(string, SpriteAnimation)>
+            {
+                ("empty", GameContent.LoadAnimation("doodads", "empty", content)),
+            };
             foreach (var animation in animations)
             {
                 var frames = animation.Value;
@@ -111,7 +114,7 @@ namespace Game
                         ? frameRateOverrides[animation.Key]
                         : 12;
                     var spriteAnimation = new SpriteAnimation(sprites, fps);
-                    animator.AddAnimation(animation.Key, spriteAnimation);
+                    animationList.Add((animation.Key, spriteAnimation));
                 }
 
                 // reverse
@@ -123,9 +126,19 @@ namespace Game
                         ? frameRateOverrides[animation.Key]
                         : 12;
                     var spriteAnimation = new SpriteAnimation(sprites, fps);
-                    animator.AddAnimation(animation.Key + "Reverse", spriteAnimation);
+                    animationList.Add((animation.Key + "Reverse", spriteAnimation));
                 }
             }
+
+            return animationList;
+        }
+
+        public static SpriteAnimator MakeAnimator(string pack, NezContentManager content, IDictionary<string, int> frameRateOverrides = null)
+        {
+            var animator = new SpriteAnimator();
+            var animations = MakeAnimations(pack, content, frameRateOverrides);
+            foreach ((var key, var animation) in animations)
+                animator.AddAnimation(key, animation);
             return animator;
         }
 
