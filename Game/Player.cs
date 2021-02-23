@@ -113,10 +113,17 @@ namespace Game
             if (_state == States.Normal)
             {
                 // animation
-                if (inputX == 0)
-                    _animator.Change("idle");
+                if (_onGround)
+                {
+                    if (inputX == 0)
+                        _animator.Change("idle");
+                    else
+                        _animator.Change("walk");
+                }
                 else
-                    _animator.Change("walk");
+                {
+                    _animator.Change("jump");
+                }
 
                 // horizontal movement
                 {
