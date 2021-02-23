@@ -61,18 +61,24 @@ namespace Game
             _equipmentPane.ClearChildren();
 
             var equippedWeapon = _playerInventory.EquippedWeapon;
-
             var weaponButton = CreateEquipmentButton(
                 "MELEE", equippedWeapon?.Icon, equippedWeapon?.Name);
             _equipmentPane.Add(weaponButton);
             _equipmentPane.Row();
 
-            var gunButton = CreateEquipmentButton("RANGE", null, null);
+            var equippedRanged = _playerInventory.EquippedRangedWeapon;
+            var gunButton = CreateEquipmentButton(
+                "RANGE", equippedRanged?.Icon, equippedRanged?.Name);
             _equipmentPane.Add(gunButton);
 
             weaponButton.OnClicked += button =>
             {
                 var elem = BuildWeaponMenu();
+                _canvas.Stage.SetGamepadFocusElement(elem);
+            };
+            gunButton.OnClicked += button =>
+            {
+                var elem = BuildRangedMenu();
                 _canvas.Stage.SetGamepadFocusElement(elem);
             };
             Action<ConfigurableButton> clearSelectorPane = button =>
@@ -92,7 +98,7 @@ namespace Game
             Button first = null;
             for (var i = 0; i < _playerInventory.Weapons.Count; ++i)
             {
-                var weapon = Weapon.Types[_playerInventory.Weapons[i]];
+                var weapon = _playerInventory.Weapons[i];
                 var button = CreateEquipmentButton(weapon.Name, weapon.Icon, null);
                 var index = i;
                 button.OnClicked += btn =>
@@ -115,7 +121,38 @@ namespace Game
             return first;
         }
 
+        Button BuildRangedMenu()
+        {
+            _selectorPane.ClearChildren();
+
+            Button first = null;
+            for (var i = 0; i < _playerInventory.RangedWeapons.Count; ++i)
+            {
+                var weapon = _playerInventory.RangedWeapons[i];
+                var button = CreateEquipmentButton(weapon.Name, weapon.Icon, null);
+                var index = i;
+                button.OnClicked += btn =>
+                {
+                    _playerInventory.EquippedRangedWeaponIndex = index;
+                };
+                _selectorPane.Add(button);
+                _selectorPane.Row();
+                if (first == null) first = button;
+            }
+
+            var unarmedButton = CreateEquipmentButton("Unarmed", null, null);
+            unarmedButton.OnClicked += btn =>
+            {
+                _playerInventory.EquippedRangedWeaponIndex = -1;
+            };
+            _selectorPane.Add(unarmedButton);
+            if (first == null) first = unarmedButton;
+
+            return first;
+        }
+
         int _lastWeaponIndex = -1;
+        int _lastRangedWeaponIndex = -1;
         public void Update()
         {
             if (_showMenu.IsPressed)
@@ -134,12 +171,14 @@ namespace Game
                 }
             }
 
-            if (_playerInventory.EquippedWeaponIndex != _lastWeaponIndex)
+            if (_playerInventory.EquippedWeaponIndex != _lastWeaponIndex
+                || _playerInventory.EquippedRangedWeaponIndex != _lastRangedWeaponIndex)
             {
                 BuildEquipmentMenu();
             }
 
             _lastWeaponIndex = _playerInventory.EquippedWeaponIndex;
+            _lastRangedWeaponIndex = _playerInventory.EquippedRangedWeaponIndex;
         }
 
         Skin CreateSkin()

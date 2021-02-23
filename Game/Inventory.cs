@@ -6,18 +6,27 @@ namespace Game
 {
     class Inventory
     {
-        public event Action<WeaponTypes> OnWeaponAdd;
+        public event Action<Item> OnItemAdd;
 
-        public List<WeaponTypes> Weapons = new List<WeaponTypes>();
+        public List<Weapon> Weapons = new List<Weapon>();
         public int EquippedWeaponIndex = -1;
         public Weapon EquippedWeapon => EquippedWeaponIndex > -1
-            ? Weapon.Types[Weapons[EquippedWeaponIndex]]
+            ? Weapons[EquippedWeaponIndex]
             : null;
 
-        public void Add(WeaponTypes type)
+        public List<RangedWeapon> RangedWeapons = new List<RangedWeapon>();
+        public int EquippedRangedWeaponIndex = -1;
+        public RangedWeapon EquippedRangedWeapon => EquippedRangedWeaponIndex > -1
+            ? RangedWeapons[EquippedRangedWeaponIndex]
+            : null;
+
+        public void Add(Item item)
         {
-            Weapons.Add(type);
-            OnWeaponAdd?.Invoke(type);
+            if (item is Weapon weapon)
+                Weapons.Add(weapon);
+            if (item is RangedWeapon ranged)
+                RangedWeapons.Add(ranged);
+            OnItemAdd?.Invoke(item);
         }
     }
 

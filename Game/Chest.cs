@@ -24,11 +24,8 @@ namespace Game
             var inventory = Entity.Scene.GetPlayerInventory();
             foreach (var item in Contents.Items)
             {
-                if (item is WeaponChestItem weaponItem)
-                {
-                    for (var i = 0; i < weaponItem.Quantity; ++i)
-                        inventory.Add(weaponItem.Weapon);
-                }
+                for (var i = 0; i < item.Quantity; ++i)
+                    inventory.Add(item.Item);
             }
             Contents.Items.Clear();
         }
@@ -53,13 +50,9 @@ namespace Game
         public List<ChestItem> Items = new List<ChestItem>();
     }
 
-    abstract class ChestItem
+    class ChestItem
     {
         public int Quantity;
-    }
-
-    class WeaponChestItem : ChestItem
-    {
-        public WeaponTypes Weapon;
+        public Item Item;
     }
 }

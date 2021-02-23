@@ -148,5 +148,31 @@ namespace Game
 
             return entity;
         }
+
+        public static Entity CreateLaser(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("laser", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("laser");
+            anim.RenderLayer = -5;
+
+            var collider = entity.AddComponent(new BoxCollider(8, 8));
+            collider.PhysicsLayer = Mask.PlayerAttack;
+            collider.CollidesWithLayers = Mask.Enemy | Mask.Terrain;
+
+            entity.AddComponent<PlatformerMover>();
+
+            var projectile = entity.AddComponent<Projectile>();
+
+            var hurtable = entity.AddComponent<Hurtable>();
+            hurtable.Collider = collider;
+            hurtable.PauseTime = 0;
+            hurtable.OnHurt = projectile.OnHurt;
+
+            entity.AddComponent<Damage>();
+
+            return entity;
+        }
     }
 }

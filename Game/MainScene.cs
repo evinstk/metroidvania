@@ -53,7 +53,10 @@ namespace Game
             ScriptVars.Set(Vars.PlayerInventory, new Inventory
             {
                 //Weapons = new List<WeaponTypes> { WeaponTypes.Baton },
-                EquippedWeaponIndex = -1,
+                //EquippedWeaponIndex = -1,
+
+                //RangedWeapons = new List<RangedWeapon> { (RangedWeapon)Item.Get("Blaster") },
+                //EquippedRangedWeaponIndex = 0,
             });
 
             var dialogSystem = CreateEntity("dialog_system").AddComponent<DialogSystem>();

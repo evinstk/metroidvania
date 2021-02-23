@@ -38,6 +38,7 @@ namespace Game
         bool _onGround = false;
         float _jumpTimer = 0;
         float _attackTimer = 0;
+        float _fireTimer = 0;
         float _dodgeTimer = 0;
         float _dodgeTimeoutTimer = 0;
         bool _canDodge = true;
@@ -47,6 +48,8 @@ namespace Game
         AttackTypes _attackType = AttackTypes.Light;
         BoxCollider _attackCollider;
 
+        RangedWeapon _equippedRangedWeapon;
+
         List<IInteractable> _tempInteractableList = new List<IInteractable>();
         bool _usingGamePad = false;
 
@@ -55,6 +58,7 @@ namespace Game
         VirtualButton _inputAttack;
         VirtualButton _inputDodge;
         VirtualButton _inputInteract;
+        VirtualButton _inputRangedModifier;
 
         PlatformerMover _mover;
         SpriteAnimator _animator;
@@ -88,6 +92,10 @@ namespace Game
             _inputDodge.AddGamePadButton(0, Buttons.B);
             _inputDodge.AddKeyboardKey(Keys.LeftShift);
 
+            _inputRangedModifier = new VirtualButton();
+            _inputRangedModifier.AddGamePadButton(0, Buttons.LeftShoulder);
+            _inputRangedModifier.AddKeyboardKey(Keys.LeftControl);
+
             _mover = Entity.GetComponent<PlatformerMover>();
             _animator = Entity.GetComponent<SpriteAnimator>();
 
@@ -105,10 +113,17 @@ namespace Game
             _animator.FlipX = flip;
             _weaponAnimator.FlipX = flip;
             _onGround = _mover.OnGround();
+            var lastEquippedRangedWeapon = _equippedRangedWeapon;
+            _equippedRangedWeapon = PlayerInventory.EquippedRangedWeapon;
             var inputX = _inputX.Value;
 
             if (_inputX.Nodes[0].Value != 0) _usingGamePad = true;
             if (_inputX.Nodes[1].Value != 0) _usingGamePad = false;
+
+            if (lastEquippedRangedWeapon != _equippedRangedWeapon && _equippedRangedWeapon != null)
+            {
+                _equippedRangedWeapon.AddAnimations(_weaponAnimator);
+            }
 
             if (Time.TimeScale == 0) return;
 
@@ -119,13 +134,28 @@ namespace Game
                 if (_onGround)
                 {
                     if (inputX == 0)
-                        _animator.Change("idle");
+                    {
+                        if (_inputRangedModifier.IsDown && _equippedRangedWeapon != null)
+                        {
+                            _animator.Change("ranged_idle");
+                            _weaponAnimator.Change("idle");
+                        }
+                        else
+                        {
+                            _animator.Change("idle");
+                            _weaponAnimator.Change("empty");
+                        }
+                    }
                     else
+                    {
                         _animator.Change("walk");
+                        _weaponAnimator.Change("empty");
+                    }
                 }
                 else
                 {
                     _animator.Change("jump");
+                    _weaponAnimator.Change("empty");
                 }
 
                 // horizontal movement
@@ -148,7 +178,7 @@ namespace Game
                 // invoke attacking
                 {
                     var equippedWeapon = PlayerInventory.EquippedWeapon;
-                    if (_inputAttack.IsPressed && equippedWeapon != null)
+                    if (_inputAttack.IsPressed && equippedWeapon != null && !_inputRangedModifier.IsDown)
                     {
                         _inputAttack.ConsumeBuffer();
                         _state = States.Attack;
@@ -166,6 +196,19 @@ namespace Game
 
                         if (_onGround)
                             _mover.Speed.X = 0;
+                    }
+                }
+
+                // invoke firing
+                {
+                    if (_inputAttack.IsPressed && _equippedRangedWeapon != null && _inputRangedModifier.IsDown && _fireTimer <= 0)
+                    {
+                        var projectileEntity = Entity.Scene.CreateLaser(Entity.Position + new Vector2(12 * _facing, 0));
+                        var mover = projectileEntity.GetComponent<PlatformerMover>();
+                        mover.Speed.X = _equippedRangedWeapon.ProjectileSpeed * _facing;
+                        var damage = projectileEntity.GetComponent<Damage>();
+                        damage.Amount = _equippedRangedWeapon.Damage;
+                        _fireTimer = _equippedRangedWeapon.FireTimeout;
                     }
                 }
 
@@ -230,12 +273,14 @@ namespace Game
             else if (_state == States.Dodge)
             {
                 _animator.Change("dodge", SpriteAnimator.LoopMode.ClampForever);
+                _weaponAnimator.Change("empty");
                 _dodgeTimer += Time.DeltaTime;
                 _mover.Speed.X = _facing * DodgeSpeed;
 
                 if (_dodgeTimer >= DodgeTime)
                 {
                     _animator.Change("idle");
+                    _weaponAnimator.Change("empty");
                     _state = States.Normal;
                     _dodgeTimeoutTimer = DodgeTimeout;
                     Hitbox.CollidesWithLayers |= Mask.EnemyAttack;
@@ -246,6 +291,7 @@ namespace Game
             else if (_state == States.Hurt)
             {
                 _animator.Change("hurt");
+                _weaponAnimator.Change("empty");
                 _hurtTimer -= Time.DeltaTime;
 
                 _mover.Speed.X = _hurtDir * KnockbackSpeed;
@@ -259,6 +305,7 @@ namespace Game
             {
                 _mover.Speed.X = 0;
                 _animator.Change("dead", SpriteAnimator.LoopMode.ClampForever);
+                _weaponAnimator.Change("empty");
                 Hitbox.PhysicsLayer &= ~Mask.Player;
             }
 
@@ -290,6 +337,12 @@ namespace Game
                 }
             }
 
+            // fire timer
+            if (_fireTimer > 0)
+            {
+                _fireTimer -= Time.DeltaTime;
+            }
+
             // invincible timer
             if (_state != States.Hurt && _invincibilityTimer > 0)
             {
@@ -311,6 +364,7 @@ namespace Game
             {
                 Timer.PauseFor(0.1f);
                 _animator.Change("hurt", SpriteAnimator.LoopMode.ClampForever);
+                _weaponAnimator.Change("empty");
                 var health = _vars.Get<int>(Vars.PlayerHealth);
                 var damage = hurtHit.Collider.GetComponent<Damage>();
                 health -= damage?.Amount ?? 1;

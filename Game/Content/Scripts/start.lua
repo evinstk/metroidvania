@@ -4,7 +4,8 @@
 -- }
 -- print(vars['test_contents'])
 chest_contents = vars['test_contents']
-chest_contents.add('Baton', 1)
+chest_contents.add('Guard Baton', 1)
+chest_contents.add('Blaster', 1)
 
 start_coroutine(function()
     -- wait_for(2)

@@ -29,60 +29,6 @@
 },
 {
 	"filename": "door0001.png",
-	"frame": {"x":1,"y":77,"w":16,"h":48},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
-	"sourceSize": {"w":16,"h":48},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "door0002.png",
-	"frame": {"x":19,"y":77,"w":16,"h":48},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
-	"sourceSize": {"w":16,"h":48},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "door0003.png",
-	"frame": {"x":55,"y":77,"w":16,"h":48},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
-	"sourceSize": {"w":16,"h":48},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "door0004.png",
-	"frame": {"x":1,"y":127,"w":16,"h":48},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
-	"sourceSize": {"w":16,"h":48},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "door0005.png",
-	"frame": {"x":73,"y":77,"w":16,"h":48},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
-	"sourceSize": {"w":16,"h":48},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "door0006.png",
-	"frame": {"x":91,"y":77,"w":16,"h":48},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
-	"sourceSize": {"w":16,"h":48},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
-	"filename": "door0007.png",
 	"frame": {"x":37,"y":77,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
@@ -91,8 +37,62 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "door0008.png",
+	"filename": "door0002.png",
 	"frame": {"x":97,"y":27,"w":16,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "door0003.png",
+	"frame": {"x":1,"y":77,"w":16,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "door0004.png",
+	"frame": {"x":19,"y":77,"w":16,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "door0005.png",
+	"frame": {"x":55,"y":77,"w":16,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "door0006.png",
+	"frame": {"x":1,"y":127,"w":16,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "door0007.png",
+	"frame": {"x":73,"y":77,"w":16,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "door0008.png",
+	"frame": {"x":91,"y":77,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -127,8 +127,17 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "laser0000.png",
+	"frame": {"x":22,"y":1,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "leftLamp0000.png",
-	"frame": {"x":27,"y":27,"w":24,"h":24},
+	"frame": {"x":94,"y":1,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -155,7 +164,7 @@
 },
 {
 	"filename": "projectile0000.png",
-	"frame": {"x":22,"y":1,"w":16,"h":16},
+	"frame": {"x":40,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -173,7 +182,7 @@
 },
 {
 	"filename": "rightLamp0000.png",
-	"frame": {"x":76,"y":1,"w":24,"h":24},
+	"frame": {"x":27,"y":27,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -191,7 +200,7 @@
 },
 {
 	"filename": "wallSwitchOn0000.png",
-	"frame": {"x":40,"y":1,"w":16,"h":16},
+	"frame": {"x":76,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -203,8 +212,8 @@
 	"version": "1.0",
 	"image": "doodads.png",
 	"format": "RGBA8888",
-	"size": {"w":118,"h":242},
+	"size": {"w":119,"h":242},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:569b155a74327e695b3d0f0f5e336951:945c0bca89af2c1302c77228c7815af2:235b3058f25cc2125c9df6a215d832b6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:196c1bdcb81f161b17d38d9eff497283:fc29f1073fa4cb38f12488e1a7f2a140:235b3058f25cc2125c9df6a215d832b6$"
 }
 }

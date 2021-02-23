@@ -39,7 +39,7 @@ namespace Game
             _scriptVars[Vars.PlayerHealth] = 5;
 
             var playerInventory = Entity.Scene.GetPlayerInventory();
-            playerInventory.OnWeaponAdd += HandleWeaponAdd;
+            playerInventory.OnItemAdd += HandleItemAdd;
 
             var canvas = Entity.AddComponent<UICanvas>();
             canvas.RenderLayer = RenderLayer;
@@ -49,10 +49,14 @@ namespace Game
             _incomingInventory.FillParent = true;
         }
 
-        void HandleWeaponAdd(WeaponTypes weaponType)
+        public override void OnRemovedFromEntity()
         {
-            var weapon = Weapon.Types[weaponType];
+            var playerInventory = Entity.Scene.GetPlayerInventory();
+            playerInventory.OnItemAdd -= HandleItemAdd;
+        }
 
+        void HandleItemAdd(Item item)
+        {
             var table = new Table();
             table.SetBackground(new NinePatchDrawable(
                 new NinePatchSprite(GameContent.LoadSprite("hud", "buttonUp", Core.Content), 1, 1, 1, 1)));
@@ -61,12 +65,12 @@ namespace Game
             var icon = new Table();
             icon.SetBackground(new NinePatchDrawable(
                 new NinePatchSprite(GameContent.LoadSprite("hud", "buttonUp", Core.Content), 1, 1, 1, 1)));
-            var iconSprite = weapon.Icon;
+            var iconSprite = item.Icon;
             if (iconSprite != null)
                 icon.Add(new Image(new SpriteDrawable(iconSprite)));
             table.Add(icon).Top().Left().Size(16);
 
-            var label = table.Add(weapon.Name);
+            var label = table.Add(item.Name);
             label.Expand().Top().Right();
 
             var cell = _incomingInventory.Add(table);
@@ -103,6 +107,14 @@ namespace Game
             if (equippedWeapon != null)
             {
                 DrawSprite(batcher, equippedWeapon.Icon, equipmentOffset);
+            }
+
+            var rangedOffset = equipmentOffset + new Vector2(_iconFrame.SourceRect.Width, 0);
+            DrawSprite(batcher, _iconFrame, rangedOffset);
+            var equippedRanged = Entity.Scene.GetPlayerInventory().EquippedRangedWeapon;
+            if (equippedRanged != null)
+            {
+                DrawSprite(batcher, equippedRanged.Icon, rangedOffset);
             }
 
             var val = _scriptVars.Get<string>(Vars.HudPrompt);

@@ -1,5 +1,4 @@
 ﻿using MoonSharp.Interpreter;
-using System;
 
 namespace Game.Scripting
 {
@@ -13,22 +12,14 @@ namespace Game.Scripting
             Contents = contents;
         }
 
-        public void Add(string item, int quantity = 1)
+        public void Add(string itemName, int quantity = 1)
         {
-            var weapons = Enum.GetValues(typeof(WeaponTypes));
-            foreach (WeaponTypes weapon in weapons)
+            var item = Item.Get(itemName);
+            Contents.Items.Add(new ChestItem
             {
-                var name = Enum.GetName(typeof(WeaponTypes), weapon);
-                if (name == item)
-                {
-                    Contents.Items.Add(new WeaponChestItem
-                    {
-                        Weapon = weapon,
-                        Quantity = quantity,
-                    });
-                    break;
-                }
-            }
+                Item = item,
+                Quantity = quantity,
+            });
         }
     }
 }

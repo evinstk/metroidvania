@@ -16,7 +16,7 @@
       "gridCellsX": 120,
       "gridCellsY": 68,
       "entities": [
-        {"name": "player", "id": 0, "_eid": "17233867", "x": 204, "y": 208, "originX": 8, "originY": 16},
+        {"name": "player", "id": 0, "_eid": "17233867", "x": 356, "y": 208, "originX": 8, "originY": 16},
         {"name": "sentry", "id": 1, "_eid": "25760140", "x": 56, "y": 216, "originX": 8, "originY": 8},
         {
           "name": "switch",
@@ -47,16 +47,6 @@
           "originX": 8,
           "originY": 8,
           "values": {"state_var": "cell_door_open"}
-        },
-        {
-          "name": "switch",
-          "id": 5,
-          "_eid": "39553167",
-          "x": 328,
-          "y": 204,
-          "originX": 8,
-          "originY": 8,
-          "values": {"state_var": "default_switch"}
         },
         {
           "name": "chest",
