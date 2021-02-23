@@ -31,6 +31,7 @@ namespace Game
         public float HurtTime = 0.2f;
         public float InvincibleTime = 1.5f;
         public float KnockbackSpeed = 150f;
+        public float DodgeTimeout = 0.5f;
 
         States _state = States.Normal;
         int _facing = 1;
@@ -38,6 +39,8 @@ namespace Game
         float _jumpTimer = 0;
         float _attackTimer = 0;
         float _dodgeTimer = 0;
+        float _dodgeTimeoutTimer = 0;
+        bool _canDodge = true;
         float _hurtTimer = 0;
         int _hurtDir = 0;
         float _invincibilityTimer = 0;
@@ -168,13 +171,16 @@ namespace Game
 
                 // invoke dodging
                 {
-                    if (_inputDodge.IsPressed)
+                    if (_inputDodge.IsPressed && _canDodge && _dodgeTimeoutTimer <= 0)
                     {
+                        _canDodge = false;
                         if (inputX != 0)
                             _facing = inputX;
                         _inputDodge.ConsumeBuffer();
                         _state = States.Dodge;
                         _dodgeTimer = 0;
+                        Hitbox.CollidesWithLayers &= ~Mask.EnemyAttack;
+                        Hitbox.PhysicsLayer &= ~Mask.Player;
                     }
                 }
             }
@@ -217,7 +223,7 @@ namespace Game
                 // handle other weapon attack types
                 else
                 {
-                    throw new System.NotImplementedException($"Attack type {System.Enum.GetName(typeof(AttackTypes), _attackType)} not implemented.");
+                    throw new NotImplementedException($"Attack type {Enum.GetName(typeof(AttackTypes), _attackType)} not implemented.");
                 }
             }
             // DODGE STATE
@@ -231,6 +237,9 @@ namespace Game
                 {
                     _animator.Change("idle");
                     _state = States.Normal;
+                    _dodgeTimeoutTimer = DodgeTimeout;
+                    Hitbox.CollidesWithLayers |= Mask.EnemyAttack;
+                    Hitbox.PhysicsLayer |= Mask.Player;
                 }
             }
             // HURT STATE
@@ -257,6 +266,16 @@ namespace Game
             if (!_onGround && _state != States.Dodge && _state != States.Hurt)
             {
                 _mover.Speed.Y += Gravity * Time.DeltaTime;
+            }
+
+            // reset dodge
+            if (_onGround)
+            {
+                _canDodge = true;
+            }
+            if (_dodgeTimeoutTimer > 0)
+            {
+                _dodgeTimeoutTimer -= Time.DeltaTime;
             }
 
             // jumping

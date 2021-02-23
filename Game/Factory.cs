@@ -20,7 +20,7 @@ namespace Game
 
             var hitbox = entity.AddComponent(new BoxCollider(16, 32));
             hitbox.PhysicsLayer = Mask.Player;
-            hitbox.CollidesWithLayers = Mask.Terrain | Mask.EnemyAttack;
+            hitbox.CollidesWithLayers = Mask.EnemyAttack;
 
             var mover = entity.AddComponent<PlatformerMover>();
             mover.Collider = hitbox;
