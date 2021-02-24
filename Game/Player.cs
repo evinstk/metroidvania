@@ -113,8 +113,11 @@ namespace Game
             _animator.FlipX = flip;
             _weaponAnimator.FlipX = flip;
             _onGround = _mover.OnGround();
+
+            var equippedWeapon = PlayerInventory.EquippedWeapon;
             var lastEquippedRangedWeapon = _equippedRangedWeapon;
             _equippedRangedWeapon = PlayerInventory.EquippedRangedWeapon;
+
             var inputX = _inputX.Value;
 
             if (_inputX.Nodes[0].Value != 0) _usingGamePad = true;
@@ -177,7 +180,6 @@ namespace Game
 
                 // invoke attacking
                 {
-                    var equippedWeapon = PlayerInventory.EquippedWeapon;
                     if (_inputAttack.IsPressed && equippedWeapon != null && !_inputRangedModifier.IsDown)
                     {
                         _inputAttack.ConsumeBuffer();
@@ -185,6 +187,7 @@ namespace Game
                         _attackTimer = 0;
                         _attackType = equippedWeapon.AttackType;
                         _weaponAnimator.AddAnimation("attack", equippedWeapon.Animation);
+                        equippedWeapon.Sound?.Play();
 
                         if (_attackCollider == null)
                         {

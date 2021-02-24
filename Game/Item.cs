@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using Microsoft.Xna.Framework.Audio;
+using Nez;
 using Nez.Sprites;
 using Nez.Textures;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Game
         static readonly List<Item> _items = new List<Item>
         {
             // melee
-            new Weapon("hud", "baton", "player", "baton")
+            new Weapon("hud", "baton", "player", "baton", "slash")
             {
                 AttackType = AttackTypes.Light,
                 Name = "Guard Baton",
@@ -53,18 +54,21 @@ namespace Game
         public int Damage;
         public override Sprite Icon => GameContent.LoadSprite(_iconPack, _iconFrameName, Core.Content);
         public SpriteAnimation Animation => GameContent.LoadAnimation(_animationPack, _animationName, Core.Scene.Content);
+        public SoundEffect Sound => _sound != null ? Core.Scene.Content.LoadSoundEffect($"{ContentPath.Sounds}{_sound}") : null;
 
         string _iconPack;
         string _iconFrameName;
         string _animationPack;
         string _animationName;
+        string _sound;
 
-        public Weapon(string iconPack, string iconFrameName, string animationPack, string animationName)
+        public Weapon(string iconPack, string iconFrameName, string animationPack, string animationName, string sound)
         {
             _iconPack = iconPack;
             _iconFrameName = iconFrameName;
             _animationPack = animationPack;
             _animationName = animationName;
+            _sound = sound;
         }
     }
 
