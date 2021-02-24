@@ -4,6 +4,6 @@ namespace Game
 {
     class Damage : Component
     {
-        public int Amount;
+        public int Amount = 1;
     }
 }
