@@ -56,6 +56,7 @@ namespace Game
         public static readonly string Tilesets = Path.GetFullPath("../../../Content/Tilesets/");
         public static readonly string Fonts = "Fonts/";
         public static readonly string Scripts = "../../../Content/Scripts/";
+        public static readonly string Sounds = "Sounds/";
 #endif
     }
 }

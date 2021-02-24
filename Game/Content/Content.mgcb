@@ -266,8 +266,9 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DefaultFont.spritefont
 
-#begin Skins/DefaultSkin.json
-/importer:
-/processor:
-/build:Skins/DefaultSkin.json
+#begin Sounds/slash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/slash.wav
 
