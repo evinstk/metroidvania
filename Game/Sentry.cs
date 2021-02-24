@@ -6,10 +6,11 @@ namespace Game
 {
     class Sentry : Component, IUpdatable
     {
-        public int CastDistance = 100;
+        public int CastDistance = 200;
         public float AttackInterval = 1f;
         public float ProjectileSpeed = 200f;
         public float ProjectileTimeToLive = 2f;
+        public Collider Hitbox;
 
         enum States
         {
@@ -41,6 +42,7 @@ namespace Game
                 if (Health <= 0)
                 {
                     SetState(States.Dead);
+                    Hitbox.PhysicsLayer &= ~Mask.Enemy;
                     Entity.RemoveComponent(hurtable);
                 }
             }

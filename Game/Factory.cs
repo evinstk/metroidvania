@@ -60,6 +60,7 @@ namespace Game
             };
 
             var sentry = entity.AddComponent<Sentry>();
+            sentry.Hitbox = hitbox;
 
             return entity;
         }
