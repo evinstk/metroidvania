@@ -27,6 +27,10 @@ namespace Game
 
             var player = entity.AddComponent<Player>();
             player.Hitbox = hitbox;
+            player.JumpSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}jump.wav");
+            player.HurtSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}hurt.wav");
+            player.DeathSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}death.wav");
+            player.DodgeSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}whoosh.wav");
 
             var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
             followCamera.FollowLerp = 1f;
@@ -61,6 +65,8 @@ namespace Game
 
             var sentry = entity.AddComponent<Sentry>();
             sentry.Hitbox = hitbox;
+            sentry.FireSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}projectile.wav");
+            sentry.DeathSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}sentry_death.wav");
 
             return entity;
         }
@@ -145,6 +151,7 @@ namespace Game
             hurtable.Collider = collider;
             hurtable.PauseTime = 0;
             hurtable.OnHurt = projectile.OnHurt;
+            hurtable.HurtSound = null;
 
             return entity;
         }
@@ -169,6 +176,7 @@ namespace Game
             hurtable.Collider = collider;
             hurtable.PauseTime = 0;
             hurtable.OnHurt = projectile.OnHurt;
+            hurtable.HurtSound = null;
 
             entity.AddComponent<Damage>();
 

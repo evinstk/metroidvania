@@ -21,7 +21,7 @@ namespace Game
         static readonly List<Item> _items = new List<Item>
         {
             // melee
-            new Weapon("hud", "baton", "player", "baton", "slash")
+            new Weapon("hud", "baton", "player", "baton", "slash.wav")
             {
                 AttackType = AttackTypes.Light,
                 Name = "Guard Baton",
@@ -37,6 +37,7 @@ namespace Game
                 Damage = 3,
                 FireTimeout = 0.2f,
                 ProjectileSpeed = 250f,
+                SoundFile = "blaster.wav",
             },
         };
     }
@@ -78,8 +79,10 @@ namespace Game
         public int Damage;
         public float FireTimeout;
         public float ProjectileSpeed;
+        public string SoundFile;
 
         public override Sprite Icon => GameContent.LoadSprite(_iconPack, _iconFrameName, Core.Content);
+        public SoundEffect Sound => SoundFile != null ? Core.Scene.Content.LoadSoundEffect($"{ContentPath.Sounds}{SoundFile}") : null;
 
         string _iconPack;
         string _iconFrameName;

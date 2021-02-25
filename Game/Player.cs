@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Sprites;
@@ -19,6 +20,11 @@ namespace Game
         }
 
         public Collider Hitbox;
+
+        public SoundEffect JumpSound;
+        public SoundEffect HurtSound;
+        public SoundEffect DeathSound;
+        public SoundEffect DodgeSound;
 
         public float MoveSpeed = 150f;
         public float Gravity = 600f;
@@ -94,7 +100,7 @@ namespace Game
 
             _inputRangedModifier = new VirtualButton();
             _inputRangedModifier.AddGamePadButton(0, Buttons.LeftShoulder);
-            _inputRangedModifier.AddKeyboardKey(Keys.LeftControl);
+            _inputRangedModifier.AddMouseRightButton();
 
             _mover = Entity.GetComponent<PlatformerMover>();
             _animator = Entity.GetComponent<SpriteAnimator>();
@@ -175,6 +181,7 @@ namespace Game
                     {
                         _inputJump.ConsumeBuffer();
                         _jumpTimer = JumpTime;
+                        JumpSound.Play();
                     }
                 }
 
@@ -211,6 +218,7 @@ namespace Game
                         mover.Speed.X = _equippedRangedWeapon.ProjectileSpeed * _facing;
                         var damage = projectileEntity.GetComponent<Damage>();
                         damage.Amount = _equippedRangedWeapon.Damage;
+                        _equippedRangedWeapon.Sound?.Play();
                         _fireTimer = _equippedRangedWeapon.FireTimeout;
                     }
                 }
@@ -224,6 +232,7 @@ namespace Game
                             _facing = inputX;
                         _inputDodge.ConsumeBuffer();
                         _state = States.Dodge;
+                        DodgeSound.Play();
                         _dodgeTimer = 0;
                         Hitbox.CollidesWithLayers &= ~Mask.EnemyAttack;
                         Hitbox.PhysicsLayer &= ~Mask.Player;
@@ -375,10 +384,12 @@ namespace Game
                 if (health <= 0)
                 {
                     _state = States.Dead;
+                    DeathSound.Play();
                 }
                 else
                 {
                     _state = States.Hurt;
+                    HurtSound.Play();
                     _hurtTimer = HurtTime;
                     _invincibilityTimer = InvincibleTime;
                     _hurtDir = Math.Sign(Hitbox.AbsolutePosition.X - hurtHit.Collider.AbsolutePosition.X);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Nez;
 using Nez.Sprites;
 
@@ -11,6 +12,8 @@ namespace Game
         public float ProjectileSpeed = 200f;
         public float ProjectileTimeToLive = 2f;
         public Collider Hitbox;
+        public SoundEffect FireSound;
+        public SoundEffect DeathSound;
 
         enum States
         {
@@ -42,6 +45,7 @@ namespace Game
                 if (Health <= 0)
                 {
                     SetState(States.Dead);
+                    DeathSound.Play();
                     Hitbox.PhysicsLayer &= ~Mask.Enemy;
                     Entity.RemoveComponent(hurtable);
                 }
@@ -88,6 +92,7 @@ namespace Game
                         mover.Speed = new Vector2(_facing * ProjectileSpeed, 0);
                         var projectile = projectileEntity.GetComponent<Projectile>();
                         projectile.TimeToLive = ProjectileTimeToLive;
+                        FireSound.Play();
                     }
                     _timer = 0;
                 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Nez;
 using Nez.Sprites;
 using System;
@@ -12,11 +13,17 @@ namespace Game
 
         public Collider Collider;
         public Action<Hurtable, Collider> OnHurt;
+        public SoundEffect HurtSound;
 
         float _stunTimer = 0;
         Color _mColor;
 
         SpriteRenderer _renderer;
+
+        public override void Initialize()
+        {
+            HurtSound = Core.Scene.Content.LoadSoundEffect($"{ContentPath.Sounds}impact.wav");
+        }
 
         public override void OnAddedToEntity()
         {
@@ -59,6 +66,7 @@ namespace Game
         {
             Timer.PauseFor(PauseTime);
             _stunTimer = StunTime;
+            HurtSound?.Play();
             OnHurt(this, attacker);
         }
     }
