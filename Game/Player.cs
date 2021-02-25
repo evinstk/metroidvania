@@ -30,6 +30,9 @@ namespace Game
         public float Gravity = 600f;
         public float JumpTime = .4f;
         public float JumpSpeed = 200f;
+        public float WallJumpWindowDuration = .2f;
+        public float WallJumpDuration = .5f;
+        public float WallJumpSpeedFactor = 1f;
         public float MaxFallSpeed = 200f;
         public float CastDistance = 32;
         public float DodgeTime = .2f;
@@ -43,6 +46,8 @@ namespace Game
         int _facing = 1;
         bool _onGround = false;
         float _jumpTimer = 0;
+        float _wallJumpWindowTimer = 0;
+        float _wallJumpTimer = 0;
         float _attackTimer = 0;
         float _fireTimer = 0;
         float _dodgeTimer = 0;
@@ -119,6 +124,7 @@ namespace Game
             _animator.FlipX = flip;
             _weaponAnimator.FlipX = flip;
             _onGround = _mover.OnGround();
+            var onWall = _mover.OnWall(out var wallDir);
 
             var equippedWeapon = PlayerInventory.EquippedWeapon;
             var lastEquippedRangedWeapon = _equippedRangedWeapon;
@@ -169,10 +175,13 @@ namespace Game
 
                 // horizontal movement
                 {
-                    _mover.Speed.X = inputX * MoveSpeed;
+                    if (_wallJumpTimer <= 0)
+                    {
+                        _mover.Speed.X = inputX * MoveSpeed;
 
-                    if (inputX != 0 && _onGround)
-                        _facing = inputX;
+                        if (inputX != 0 && _onGround)
+                            _facing = inputX;
+                    }
                 }
 
                 // invoke jumping
@@ -182,6 +191,23 @@ namespace Game
                         _inputJump.ConsumeBuffer();
                         _jumpTimer = JumpTime;
                         JumpSound.Play();
+                    }
+                }
+
+                // invoke wall jumping
+                {
+                    if (onWall && !_onGround && _wallJumpWindowTimer > 0)
+                    {
+                        _wallJumpWindowTimer -= Time.DeltaTime;
+                        if (_inputJump.IsPressed)
+                        {
+                            _inputJump.ConsumeBuffer();
+                            _jumpTimer = JumpTime;
+                            _wallJumpTimer = WallJumpDuration;
+                            _mover.Speed.X = -wallDir * MoveSpeed * WallJumpSpeedFactor;
+                            _facing = -wallDir;
+                            JumpSound.Play();
+                        }
                     }
                 }
 
@@ -347,6 +373,18 @@ namespace Game
                     _jumpTimer = 0;
                     _mover.Speed.Y = 0;
                 }
+            }
+
+            // wall jump window timer
+            if (!onWall || _onGround)
+            {
+                _wallJumpWindowTimer = WallJumpWindowDuration;
+            }
+
+            // wall jump timer
+            if (_wallJumpTimer > 0)
+            {
+                _wallJumpTimer -= Time.DeltaTime;
             }
 
             // fire timer
