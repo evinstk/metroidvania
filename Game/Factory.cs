@@ -118,7 +118,7 @@ namespace Game
             var renderer = entity.AddComponent<SpriteRenderer>();
             renderer.Sprite = GameContent.LoadSprite("doodads", "chest_closed", scene.Content);
 
-            var collider = entity.AddComponent<BoxCollider>();
+            var collider = entity.AddComponent(new BoxCollider(2, 48));
             collider.PhysicsLayer = Mask.Interaction;
 
             var chest = entity.AddComponent<Chest>();
