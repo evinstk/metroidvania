@@ -1,7 +1,7 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:..\bin\Debug\net471\Content
+/outputDir:..\bin\Release\net471\Content
 /intermediateDir:obj/$(Platform)
 /platform:DesktopGL
 /config:
@@ -266,9 +266,84 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DefaultFont.spritefont
 
+#begin Maps/Metroidvania.ogmo
+/copy:Maps/Metroidvania.ogmo
+
+#begin Maps/World1/0x0.json
+/copy:Maps/World1/0x0.json
+
+#begin Maps/World1/-1x0.json
+/copy:Maps/World1/-1x0.json
+
+#begin Maps/World1/world.json
+/copy:Maps/World1/world.json
+
+#begin Maps/World2/world.json
+/copy:Maps/World2/world.json
+
+#begin Scripts/common.lua
+/copy:Scripts/common.lua
+
+#begin Scripts/start.lua
+/copy:Scripts/start.lua
+
+#begin Sounds/blaster.wav
+/copy:Sounds/blaster.wav
+
+#begin Sounds/death.wav
+/copy:Sounds/death.wav
+
+#begin Sounds/hurt.wav
+/copy:Sounds/hurt.wav
+
+#begin Sounds/impact.wav
+/copy:Sounds/impact.wav
+
+#begin Sounds/jump.wav
+/copy:Sounds/jump.wav
+
+#begin Sounds/projectile.wav
+/copy:Sounds/projectile.wav
+
+#begin Sounds/sentry_death.wav
+/copy:Sounds/sentry_death.wav
+
 #begin Sounds/slash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/slash.wav
+/copy:Sounds/slash.wav
+
+#begin Sounds/whoosh.wav
+/copy:Sounds/whoosh.wav
+
+#begin Sprites/blaster.json
+/copy:Sprites/blaster.json
+
+#begin Sprites/blaster.png
+/copy:Sprites/blaster.png
+
+#begin Sprites/doodads.json
+/copy:Sprites/doodads.json
+
+#begin Sprites/doodads.png
+/copy:Sprites/doodads.png
+
+#begin Sprites/hud.json
+/copy:Sprites/hud.json
+
+#begin Sprites/hud.png
+/copy:Sprites/hud.png
+
+#begin Sprites/player.json
+/copy:Sprites/player.json
+
+#begin Sprites/player.png
+/copy:Sprites/player.png
+
+#begin Sprites/sentry.json
+/copy:Sprites/sentry.json
+
+#begin Sprites/sentry.png
+/copy:Sprites/sentry.png
+
+#begin Tilesets/terrain16.png
+/copy:Tilesets/terrain16.png
 

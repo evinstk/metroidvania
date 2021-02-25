@@ -57,6 +57,13 @@ namespace Game
         public static readonly string Fonts = "Fonts/";
         public static readonly string Scripts = "../../../Content/Scripts/";
         public static readonly string Sounds = Path.GetFullPath("../../../Content/Sounds/");
+#else
+        public static readonly string Sprites = "Content/Sprites/";
+        public static readonly string Maps = "Content/Maps/";
+        public static readonly string Tilesets = "Content/Tilesets/";
+        public static readonly string Fonts = "Fonts/";
+        public static readonly string Scripts = "Content/Scripts/";
+        public static readonly string Sounds = "Content/Sounds/";
 #endif
     }
 }

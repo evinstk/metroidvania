@@ -60,8 +60,10 @@ namespace Game
         public MapCollider(OgmoLevelLayer layer, int width, int height)
         {
             _layer = layer;
+#if DEBUG
             _width = width;
             _height = height;
+#endif
         }
 
         public override void OnAddedToEntity()
