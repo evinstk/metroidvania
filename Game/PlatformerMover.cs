@@ -32,6 +32,20 @@ namespace Game
             return Check(new Vector2(0, dist));
         }
 
+        public bool OnWall(out int dir)
+        {
+            for (var i = -1; i <= 1; i += 2)
+            {
+                if (Check(new Vector2(i, 0)))
+                {
+                    dir = i;
+                    return true;
+                }
+            }
+            dir = 0;
+            return false;
+        }
+
         bool Check(Vector2 dist)
         {
             var bounds = Collider.Bounds;
