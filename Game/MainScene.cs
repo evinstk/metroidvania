@@ -21,6 +21,8 @@ namespace Game
         RoomBounds _currentRoom;
         SceneScript _scripting;
 
+        float _resetTimer = 0f;
+
         public override void Initialize()
         {
             SetDesignResolution(Constants.ResWidth, Constants.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
@@ -229,6 +231,18 @@ namespace Game
             {
                 // TODO: turn this into smooth transition
                 RunRoom(player.Position);
+            }
+
+            var health = ScriptVars.Get<int>(Vars.PlayerHealth);
+            if (health <= 0)
+            {
+                _resetTimer += Time.DeltaTime;
+                if (Timer.OnTime(_resetTimer, 2f))
+                {
+                    var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene()));
+                    transition.FadeOutDuration = 0.3f;
+                    transition.FadeInDuration = 0.2f;
+                }
             }
         }
     }
