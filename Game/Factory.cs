@@ -50,7 +50,7 @@ namespace Game
             anim.RenderLayer = -5;
 
             var hitbox = entity.AddComponent(new BoxCollider(16, 16));
-            hitbox.PhysicsLayer = Mask.Enemy;
+            hitbox.PhysicsLayer = Mask.Enemy | Mask.EnemyAttack;
             hitbox.CollidesWithLayers = Mask.PlayerAttack;
 
             var mover = entity.AddComponent<PlatformerMover>();

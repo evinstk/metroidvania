@@ -46,7 +46,7 @@ namespace Game
                 {
                     SetState(States.Dead);
                     DeathSound.Play();
-                    Hitbox.PhysicsLayer &= ~Mask.Enemy;
+                    Hitbox.PhysicsLayer &= ~(Mask.Enemy | Mask.EnemyAttack);
                     Entity.RemoveComponent(hurtable);
                 }
             }
