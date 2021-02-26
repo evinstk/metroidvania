@@ -16,7 +16,7 @@ namespace Game
         public SoundEffect HurtSound;
 
         float _stunTimer = 0;
-        Color _mColor;
+        Color _color;
 
         SpriteRenderer _renderer;
 
@@ -28,11 +28,12 @@ namespace Game
         public override void OnAddedToEntity()
         {
             _renderer = Entity.GetComponent<SpriteRenderer>();
+            _color = _renderer.Color;
         }
 
         public override void OnRemovedFromEntity()
         {
-            _renderer.Color = _mColor;
+            _renderer.Color = _color;
         }
 
         public void Update()
@@ -49,16 +50,16 @@ namespace Game
                 {
                     if (_renderer.Color != Color.Transparent)
                     {
-                        _mColor = _renderer.Color;
+                        _color = _renderer.Color;
                         _renderer.Color = Color.Transparent;
                     }
                     else
                     {
-                        _renderer.Color = _mColor;
+                        _renderer.Color = _color;
                     }
                 }
                 if (_stunTimer <= 0)
-                    _renderer.Color = _mColor;
+                    _renderer.Color = _color;
             }
         }
 
