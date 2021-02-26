@@ -33,7 +33,7 @@ namespace Game
             Physics.RaycastsStartInColliders = true;
 
             var lightRenderer = AddRenderer(new StencilLightRenderer(0, RenderLayer.Light, new RenderTexture()));
-            lightRenderer.CollidesWithLayers = Mask.Terrain;
+            lightRenderer.CollidesWithLayers = Mask.Terrain | Mask.Overlay;
             lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
             AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.Light, RenderLayer.LightMap, RenderLayer.Hud, RenderLayer.PauseMenu, RenderLayer.PlayerMenu));
             AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMap));
@@ -60,6 +60,8 @@ namespace Game
                 //RangedWeapons = new List<RangedWeapon> { (RangedWeapon)Item.Get("Blaster") },
                 //EquippedRangedWeaponIndex = 0,
             });
+
+            CreateEntity("overlay").AddComponent<Overlay>();
 
             var dialogSystem = CreateEntity("dialog_system").AddComponent<DialogSystem>();
             dialogSystem.RenderLayer = RenderLayer.Dialog;
@@ -164,8 +166,15 @@ namespace Game
                 var layer = ogmoLevel.layers[i];
                 if (layer.data != null)
                 {
+                    var isOverlay = layer.name == "overlay";
                     var renderer = map.AddComponent(new MapRenderer(ogmoProject, ogmoLevel, i));
-                    renderer.RenderLayer = i;
+                    renderer.RenderLayer = isOverlay ? -50 : i;
+
+                    if (layer.name == "terrain" || layer.name == "overlay")
+                    {
+                        var collider = map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
+                        collider.PhysicsLayer = isOverlay ? Mask.Overlay : Mask.Terrain;
+                    }
                 }
                 else if (layer.entities != null)
                 {
@@ -197,8 +206,6 @@ namespace Game
                         }
                     }
                 }
-                if (layer.name == "terrain")
-                    map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
             }
 
             string script = null;

@@ -26,14 +26,6 @@
   "entityTags": [],
   "layers": [
     {
-      "definition": "entity",
-      "name": "entities",
-      "gridSize": {"x": 4, "y": 4},
-      "exportID": "17233218",
-      "requiredTags": [],
-      "excludedTags": []
-    },
-    {
       "definition": "tile",
       "name": "overlay",
       "gridSize": {"x": 16, "y": 16},
@@ -41,6 +33,14 @@
       "exportMode": 0,
       "arrayMode": 0,
       "defaultTileset": "terrain"
+    },
+    {
+      "definition": "entity",
+      "name": "entities",
+      "gridSize": {"x": 4, "y": 4},
+      "exportID": "17233218",
+      "requiredTags": [],
+      "excludedTags": []
     },
     {
       "definition": "tile",

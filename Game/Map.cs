@@ -54,6 +54,8 @@ namespace Game
         Component
 #endif
     {
+        public int PhysicsLayer = -1;
+
         OgmoLevelLayer _layer;
         Collider[] _colliders;
 
@@ -84,7 +86,7 @@ namespace Game
             for (var i = 0; i < rects.Count; ++i)
             {
                 var collider = new BoxCollider(rects[i]);
-                collider.PhysicsLayer = Mask.Terrain;
+                collider.PhysicsLayer = PhysicsLayer;
                 collider.Entity = Entity;
                 _colliders[i] = collider;
                 Physics.AddCollider(collider);

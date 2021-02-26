@@ -27,6 +27,7 @@ namespace Game
         public const int Room = 1 << 4;
         public const int Interaction = 1 << 5;
         public const int EnemyAttack = 1 << 6;
+        public const int Overlay = 1 << 7;
     }
 
     static class RenderLayer
