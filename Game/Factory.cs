@@ -182,5 +182,36 @@ namespace Game
 
             return entity;
         }
+
+        static Dictionary<string, int> _cypherOverrides = new Dictionary<string, int>
+        {
+            { "idle", 6 },
+        };
+
+        public static Entity CreateCypher(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("cypher", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("cypher", scene.Content, _cypherOverrides));
+            anim.Play("idle");
+            anim.RenderLayer = -5;
+
+            var hitbox = entity.AddComponent(new BoxCollider(32, 32));
+            hitbox.PhysicsLayer = Mask.Enemy | Mask.EnemyAttack;
+            hitbox.CollidesWithLayers = Mask.PlayerAttack;
+
+            var mover = entity.AddComponent<PlatformerMover>();
+            mover.Collider = hitbox;
+
+            var cypher = entity.AddComponent<Cypher>();
+            cypher.Hitbox = hitbox;
+            cypher.DeathSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}sentry_death.wav");
+
+            var hurtable = entity.AddComponent<Hurtable>();
+            hurtable.Collider = hitbox;
+            hurtable.OnHurt = cypher.OnHurt;
+
+            return entity;
+        }
     }
 }

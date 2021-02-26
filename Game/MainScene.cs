@@ -200,6 +200,9 @@ namespace Game
                             case "chest":
                                 this.CreateChest(pos, entity);
                                 break;
+                            case "cypher":
+                                this.CreateCypher(pos);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;
