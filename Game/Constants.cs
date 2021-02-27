@@ -32,6 +32,8 @@ namespace Game
 
     static class RenderLayer
     {
+        public const int Background = 50;
+
         public const int PauseMenu = 100;
         public const int PlayerMenu = 101;
         public const int Dialog = 102;
@@ -58,6 +60,7 @@ namespace Game
         public static readonly string Fonts = "Fonts/";
         public static readonly string Scripts = "../../../Content/Scripts/";
         public static readonly string Sounds = Path.GetFullPath("../../../Content/Sounds/");
+        public static readonly string Backgrounds = Path.GetFullPath("../../../Content/Backgrounds/");
 #else
         public static readonly string Sprites = "Content/Sprites/";
         public static readonly string Maps = "Content/Maps/";
@@ -65,6 +68,7 @@ namespace Game
         public static readonly string Fonts = "Fonts/";
         public static readonly string Scripts = "Content/Scripts/";
         public static readonly string Sounds = "Content/Sounds/";
+        public static readonly string Backgrounds = "Content/Backgrounds/";
 #endif
     }
 }

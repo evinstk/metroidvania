@@ -207,6 +207,7 @@ namespace Game
         [JsonExclude]
         public string Name = string.Empty;
         public List<Room> Rooms = new List<Room>();
+        public List<Background> Backgrounds = new List<Background>();
     }
 
     class Room
@@ -214,6 +215,13 @@ namespace Game
         public string Id = Utils.RandomString();
         public string MapName;
         public Point Position;
+    }
+
+    class Background
+    {
+        public string Id = Utils.RandomString();
+        public string Filename;
+        public Vector2 ScrollScale;
     }
 
     class WorldRenderer : Component, IUpdatable
@@ -297,6 +305,73 @@ namespace Game
                 delta /= camera.RawZoom;
                 _subpixelV2.Update(ref delta);
                 camera.Position -= delta;
+            }
+        }
+    }
+
+    [EditorWindow]
+    class BackgroundWindow : Component
+    {
+        List<string> _backgrounds;
+
+        public override void OnAddedToEntity()
+        {
+            Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
+
+            _backgrounds = new List<string>();
+            var dirInfo = new DirectoryInfo(ContentPath.Backgrounds);
+            foreach (var bgFile in dirInfo.GetFiles())
+                _backgrounds.Add(bgFile.Name);
+        }
+
+        public override void OnRemovedFromEntity()
+        {
+            _backgrounds = null;
+            Core.GetGlobalManager<ImGuiManager>().UnregisterDrawCommand(Draw);
+        }
+
+        void Draw()
+        {
+            var scene = Entity.Scene as EditorScene;
+            var currWorld = scene.World;
+            if (currWorld == null) return;
+
+            if (ImGui.Begin("Background"))
+            {
+                if (ImGui.Button("Add background"))
+                {
+                    currWorld.Backgrounds.Add(new Background());
+                }
+
+                Background toRemove = null;
+                foreach (var background in currWorld.Backgrounds)
+                {
+                    ImGui.PushID(background.Id);
+                    if (ImGui.BeginCombo("File", background.Filename))
+                    {
+                        foreach (var bg in _backgrounds)
+                        {
+                            if (ImGui.Selectable(bg, bg == background.Filename))
+                                background.Filename = bg;
+                        }
+                        ImGui.EndCombo();
+                    }
+
+                    var scale = background.ScrollScale.ToNumerics();
+                    if (ImGui.DragFloat2("Scroll Scale", ref scale))
+                        background.ScrollScale = scale.ToXNA();
+
+                    if (ImGui.Button("Remove"))
+                        toRemove = background;
+
+                    ImGui.Separator();
+                    ImGui.PopID();
+                }
+
+                if (toRemove != null)
+                    currWorld.Backgrounds.Remove(toRemove);
+
+                ImGui.End();
             }
         }
     }

@@ -79,6 +79,7 @@ namespace Game
             var world = LoadWorld("World1");
             CreateEntity("world");
             AddWorldBounds(world);
+            SetBackground(world);
             RunRoom(Vector2.Zero);
         }
 
@@ -124,6 +125,22 @@ namespace Game
                 _worldBounds.Add(roomBounds);
             }
         }
+
+        void SetBackground(World world)
+        {
+            var bgEntity = CreateEntity("background");
+            bgEntity.Parent = Camera.Transform;
+            for (var i = 0; i < world.Backgrounds.Count; ++i)
+            {
+                var background = world.Backgrounds[i];
+                var renderer = bgEntity.AddComponent(new TiledSpriteRenderer(Content.LoadTexture($"{ContentPath.Backgrounds}{background.Filename}")));
+                renderer.RenderLayer = RenderLayer.Background + i;
+                var parallax = bgEntity.AddComponent(new TiledParallax());
+                parallax.Renderer = renderer;
+                parallax.ScrollScale = background.ScrollScale;
+            }
+        }
+
         OgmoLevel LoadLevel(string levelName)
         {
             if (_levels.TryGetValue(levelName, out var level))
