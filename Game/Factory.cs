@@ -233,8 +233,8 @@ namespace Game
             anim.Play("small_explosion", SpriteAnimator.LoopMode.ClampForever);
             anim.RenderLayer = -6;
 
-            var light = entity.AddComponent(new StencilLight(8f, new Color(0x2671df), 1f));
-            light.RenderLayer = RenderLayer.Light;
+            var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
+            light.RenderLayer = -7;
 
             Core.Schedule(anim.CurrentAnimation.GetDuration(), onTime =>
             {
