@@ -1,0 +1,46 @@
+{
+	"Rooms": [
+		{
+			"Id": "ETMZLHPPJTRUWFDOMPWREWYUORWJGMQKGTVRTF",
+			"MapName": "spacecraft.json",
+			"Position": {
+				"X": 0,
+				"Y": 0
+			}
+		}
+	],
+	"Backgrounds": [
+		{
+			"Id": "ZFUSKRWHRHUAEBKHEGAVYOGGXIYWRZCHXJVUVC",
+			"Filename": "mountains.png",
+			"ScrollScale": {
+				"X": 0.4,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "DGTQNFWTOADVEWZLKZSYNMIEDCVEPPXUTVFNNW",
+			"Filename": "far_mountains.png",
+			"ScrollScale": {
+				"X": 0.2,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "COYGBXVGLHOOCGIVWYPIWWUUEHDLIIOGEEYVGY",
+			"Filename": "clouds.png",
+			"ScrollScale": {
+				"X": 0.05,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "TFCUZRFETYWIYFWKBTMRVKCUVBNFKHRJCVBJSX",
+			"Filename": "sky.png",
+			"ScrollScale": {
+				"X": 0,
+				"Y": 0
+			}
+		}
+	]
+}

@@ -76,7 +76,7 @@ namespace Game
 
             _scripting = new SceneScript(dialogSystem, ScriptVars);
 
-            var world = LoadWorld("World1");
+            var world = LoadWorld("Spacecraft");
             CreateEntity("world");
             AddWorldBounds(world);
             SetBackground(world);
