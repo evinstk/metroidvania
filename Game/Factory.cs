@@ -35,7 +35,7 @@ namespace Game
             var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
             followCamera.FollowLerp = 1f;
 
-            var light = entity.AddComponent(new StencilLight(200f, Color.White, 1f));
+            var light = entity.AddComponent(new StencilLight(200f, Color.White, 0.5f));
             light.RenderLayer = RenderLayer.Light;
 
             return entity;
@@ -180,6 +180,9 @@ namespace Game
 
             entity.AddComponent<Damage>();
 
+            var light = entity.AddComponent(new StencilLight(8f, new Color(0xdf7126), 1f));
+            light.RenderLayer = RenderLayer.Light;
+
             return entity;
         }
 
@@ -210,6 +213,47 @@ namespace Game
             var hurtable = entity.AddComponent<Hurtable>();
             hurtable.Collider = hitbox;
             hurtable.OnHurt = cypher.OnHurt;
+
+            return entity;
+        }
+
+        static Dictionary<string, int> _doodadsOverrides = new Dictionary<string, int>
+        {
+            { "small_explosion", 24 }
+        };
+
+        public static Entity CreateBoom(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("boom", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content, _doodadsOverrides));
+            anim.Play("small_explosion", SpriteAnimator.LoopMode.ClampForever);
+            anim.RenderLayer = -6;
+
+            var light = entity.AddComponent(new StencilLight(8f, new Color(0x2671df), 1f));
+            light.RenderLayer = RenderLayer.Light;
+
+            Core.Schedule(anim.CurrentAnimation.GetDuration(), onTime =>
+            {
+                if (!entity.IsDestroyed)
+                    entity.Destroy();
+            });
+
+            return entity;
+        }
+
+        public static Entity CreateFlash(this Scene scene, Vector2 position, Color color, float duration = 0.02f)
+        {
+            var entity = scene.CreateEntity("flash", position);
+
+            var light = entity.AddComponent(new StencilLight(8f, color, 1f));
+            light.RenderLayer = RenderLayer.Light;
+
+            Core.Schedule(duration, onTime =>
+            {
+                if (!entity.IsDestroyed)
+                    entity.Destroy();
+            });
 
             return entity;
         }

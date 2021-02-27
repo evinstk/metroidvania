@@ -87,7 +87,9 @@ namespace Game
                 {
                     // create projectile
                     {
-                        var projectileEntity = Entity.Scene.CreateProjectile(Entity.Position + new Vector2(4 * _facing, -11));
+                        var projectilePos = Entity.Position + new Vector2(4 * _facing, -11);
+                        Entity.Scene.CreateFlash(projectilePos, Color.AliceBlue);
+                        var projectileEntity = Entity.Scene.CreateProjectile(projectilePos);
                         var mover = projectileEntity.GetComponent<PlatformerMover>();
                         mover.Speed = new Vector2(_facing * ProjectileSpeed, 0);
                         var projectile = projectileEntity.GetComponent<Projectile>();

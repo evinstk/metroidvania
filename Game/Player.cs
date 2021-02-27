@@ -239,7 +239,9 @@ namespace Game
                 {
                     if (_inputAttack.IsPressed && _equippedRangedWeapon != null && _inputRangedModifier.IsDown && _fireTimer <= 0)
                     {
-                        var projectileEntity = Entity.Scene.CreateLaser(Entity.Position + new Vector2(12 * _facing, 0));
+                        var projectilePos = Entity.Position + new Vector2(12 * _facing, 0);
+                        Entity.Scene.CreateFlash(projectilePos, Color.AliceBlue);
+                        var projectileEntity = Entity.Scene.CreateLaser(projectilePos);
                         var mover = projectileEntity.GetComponent<PlatformerMover>();
                         mover.Speed.X = _equippedRangedWeapon.ProjectileSpeed * _facing;
                         var damage = projectileEntity.GetComponent<Damage>();

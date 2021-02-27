@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
+using System;
 
 namespace Game
 {
@@ -21,6 +22,8 @@ namespace Game
         {
             _timer += Time.DeltaTime;
 
+            if (_pendingDestroy)
+                Factory.CreateBoom(Entity.Scene, Entity.Position - new Vector2(Math.Sign(_mover.Speed.X), Math.Sign(_mover.Speed.Y)));
             if (_timer > TimeToLive || _pendingDestroy)
                 Entity.Destroy();
 
