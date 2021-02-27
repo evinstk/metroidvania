@@ -153,6 +153,9 @@ namespace Game
             hurtable.OnHurt = projectile.OnHurt;
             hurtable.HurtSound = null;
 
+            var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
+            light.RenderLayer = -RenderLayer.Light;
+
             return entity;
         }
 
