@@ -168,7 +168,18 @@ namespace Game
                 {
                     var isOverlay = layer.name == "overlay";
                     var renderer = map.AddComponent(new MapRenderer(ogmoProject, ogmoLevel, i));
-                    renderer.RenderLayer = isOverlay ? -50 : i;
+                    switch (layer.name)
+                    {
+                        case "overlay":
+                            renderer.RenderLayer = -50;
+                            break;
+                        case "above_details":
+                            renderer.RenderLayer = -49;
+                            break;
+                        default:
+                            renderer.RenderLayer = i;
+                            break;
+                    }
 
                     if (layer.name == "terrain" || layer.name == "overlay")
                     {
