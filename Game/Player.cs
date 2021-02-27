@@ -438,8 +438,8 @@ namespace Game
 
             // interaction
             var hit = Physics.Linecast(
-                Entity.Position, Entity.Position + new Vector2(CastDistance, 0) * _facing, Mask.Interaction);
-            if (hit.Collider != null)
+                Entity.Position, Entity.Position + new Vector2(CastDistance, 0) * _facing, Mask.Interaction | Mask.Terrain);
+            if ((hit.Collider?.PhysicsLayer & Mask.Interaction) > 0)
             {
                 _vars[Vars.HudPrompt] = $"[{(_usingGamePad ? "Y" : "E")}] Interact";
                 if (_inputInteract.IsPressed)
