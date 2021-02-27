@@ -180,8 +180,8 @@ namespace Game
 
             entity.AddComponent<Damage>();
 
-            var light = entity.AddComponent(new StencilLight(8f, new Color(0xdf7126), 1f));
-            light.RenderLayer = RenderLayer.Light;
+            var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
+            light.RenderLayer = -RenderLayer.Light;
 
             return entity;
         }
@@ -247,7 +247,7 @@ namespace Game
             var entity = scene.CreateEntity("flash", position);
 
             var light = entity.AddComponent(new StencilLight(8f, color, 1f));
-            light.RenderLayer = RenderLayer.Light;
+            light.RenderLayer = -7;
 
             Core.Schedule(duration, onTime =>
             {
