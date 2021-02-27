@@ -184,7 +184,7 @@ namespace Game
             entity.AddComponent<Damage>();
 
             var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
-            light.RenderLayer = -RenderLayer.Light;
+            light.RenderLayer = -7;
 
             return entity;
         }
