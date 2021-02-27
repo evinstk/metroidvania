@@ -148,5 +148,10 @@ namespace Game
             if (animator.CurrentAnimationName != animation)
                 animator.Play(animation, loopMode);
         }
+
+        public static float GetDuration(this SpriteAnimation animation)
+        {
+            return 1 / animation.FrameRate * animation.Sprites.Length;
+        }
     }
 }
