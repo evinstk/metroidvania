@@ -1,0 +1,30 @@
+{
+	"Rooms": [
+		{
+			"Id": "ULHEKNOOVSBSFSPQAWETLPMMXLLHQUFFVKRDVH",
+			"MapName": "sentry.json",
+			"Position": {
+				"X": -480,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "EJHSPNQVWTSGNKWSSSPLDPHPFQJARUAKTBUEDU",
+			"MapName": "cypher.json",
+			"Position": {
+				"X": 0,
+				"Y": 0
+			}
+		}
+	],
+	"Backgrounds": [
+		{
+			"Id": "EWDXQHMANAGHLXYRLFYVGZBGXBMVWUAMUTRIPO",
+			"Filename": "sky.png",
+			"ScrollScale": {
+				"X": 0,
+				"Y": 0
+			}
+		}
+	]
+}

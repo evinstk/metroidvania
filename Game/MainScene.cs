@@ -54,11 +54,11 @@ namespace Game
             // TODO: load from save file
             ScriptVars.Set(Vars.PlayerInventory, new Inventory
             {
-                //Weapons = new List<WeaponTypes> { WeaponTypes.Baton },
-                //EquippedWeaponIndex = -1,
+                Weapons = new List<Weapon> { (Weapon)Item.Get("Guard Baton") },
+                EquippedWeaponIndex = 0,
 
-                //RangedWeapons = new List<RangedWeapon> { (RangedWeapon)Item.Get("Blaster") },
-                //EquippedRangedWeaponIndex = 0,
+                RangedWeapons = new List<RangedWeapon> { (RangedWeapon)Item.Get("Blaster") },
+                EquippedRangedWeaponIndex = 0,
             });
 
             CreateEntity("overlay").AddComponent<Overlay>();
@@ -76,7 +76,7 @@ namespace Game
 
             _scripting = new SceneScript(dialogSystem, ScriptVars);
 
-            var world = LoadWorld("Spacecraft");
+            var world = LoadWorld("Training");
             CreateEntity("world");
             AddWorldBounds(world);
             SetBackground(world);
