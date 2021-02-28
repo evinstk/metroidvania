@@ -259,6 +259,33 @@
 #begin ../../Nez/DefaultContent/textures/textureWipeTransition/wink.xnb
 /copy:../../Nez/DefaultContent/textures/textureWipeTransition/wink.xnb;nez/textures/textureWipeTransition/wink.xnb
 
+#begin Backgrounds/clouds.png
+/copy:Backgrounds/clouds.png
+
+#begin Backgrounds/far_mountains.png
+/copy:Backgrounds/far_mountains.png
+
+#begin Backgrounds/mountains.png
+/copy:Backgrounds/mountains.png
+
+#begin Backgrounds/nature.png
+/copy:Backgrounds/nature.png
+
+#begin Backgrounds/sky.png
+/copy:Backgrounds/sky.png
+
+#begin FMOD/Common.bank
+/copy:FMOD/Common.bank
+
+#begin FMOD/Master.bank
+/copy:FMOD/Master.bank
+
+#begin FMOD/Master.strings.bank
+/copy:FMOD/Master.strings.bank
+
+#begin FMOD/Player.bank
+/copy:FMOD/Player.bank
+
 #begin Fonts/DefaultFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -268,6 +295,21 @@
 
 #begin Maps/Metroidvania.ogmo
 /copy:Maps/Metroidvania.ogmo
+
+#begin Maps/Spacecraft/spacecraft.json
+/copy:Maps/Spacecraft/spacecraft.json
+
+#begin Maps/Spacecraft/world.json
+/copy:Maps/Spacecraft/world.json
+
+#begin Maps/Training/cypher.json
+/copy:Maps/Training/cypher.json
+
+#begin Maps/Training/sentry.json
+/copy:Maps/Training/sentry.json
+
+#begin Maps/Training/world.json
+/copy:Maps/Training/world.json
 
 #begin Maps/World1/0x0.json
 /copy:Maps/World1/0x0.json
@@ -319,6 +361,12 @@
 
 #begin Sprites/blaster.png
 /copy:Sprites/blaster.png
+
+#begin Sprites/cypher.json
+/copy:Sprites/cypher.json
+
+#begin Sprites/cypher.png
+/copy:Sprites/cypher.png
 
 #begin Sprites/doodads.json
 /copy:Sprites/doodads.json
