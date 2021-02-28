@@ -211,6 +211,7 @@ namespace Game
 
             var cypher = entity.AddComponent<Cypher>();
             cypher.Hitbox = hitbox;
+            cypher.FireSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}projectile.wav");
             cypher.DeathSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}sentry_death.wav");
 
             var hurtable = entity.AddComponent<Hurtable>();
