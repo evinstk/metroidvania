@@ -97,7 +97,7 @@ namespace Game
                     Entity.Scene.CreateFlash(projectilePos, Color.AliceBlue);
                     var projectileEntity = Entity.Scene.CreateProjectile(projectilePos);
                     var mover = projectileEntity.GetComponent<PlatformerMover>();
-                    mover.Speed = new Vector2(ProjectileSpeed * _facing, ProjectileSpeed / 2);
+                    mover.Speed = Mathf.RotateAround(new Vector2(_facing, 0), Vector2.Zero, AttackAngle * _facing) * ProjectileSpeed;
 
                     FireSound.Play();
                 }
