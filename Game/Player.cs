@@ -179,7 +179,7 @@ namespace Game
                     {
                         _mover.Speed.X = inputX * MoveSpeed;
 
-                        if (inputX != 0 && _onGround)
+                        if (inputX != 0)
                             _facing = inputX;
                     }
                 }
