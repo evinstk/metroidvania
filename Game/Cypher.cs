@@ -18,7 +18,7 @@ namespace Game
         public float AttackAngle = 45f;
         public float ProjectileSpeed = 150f;
         public float KnockbackDuration = 0.25f;
-        public float KnockbackSpeed = 100f;
+        public float KnockbackSpeed = 150f;
         public int StartDir = 1;
         public Vector2 CheckOffset = new Vector2(100f);
         public float Gravity = 600f;
