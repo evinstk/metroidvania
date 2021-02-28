@@ -27,10 +27,10 @@ namespace Game
 
             var player = entity.AddComponent<Player>();
             player.Hitbox = hitbox;
-            player.JumpSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}jump.wav");
-            player.HurtSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}hurt.wav");
-            player.DeathSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}death.wav");
-            player.DodgeSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}whoosh.wav");
+            player.JumpSound = Core.Instance.LoadSound("Player", "jump");
+            player.HurtSound = Core.Instance.LoadSound("Player", "hurt");
+            player.DeathSound = Core.Instance.LoadSound("Player", "death");
+            player.DodgeSound = Core.Instance.LoadSound("Player", "dodge");
 
             var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
             followCamera.FollowLerp = 1f;
@@ -65,8 +65,8 @@ namespace Game
 
             var sentry = entity.AddComponent<Sentry>();
             sentry.Hitbox = hitbox;
-            sentry.FireSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}projectile.wav");
-            sentry.DeathSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}sentry_death.wav");
+            sentry.FireSound = Core.Instance.LoadSound("Common", "projectile");
+            sentry.DeathSound = Core.Instance.LoadSound("Common", "sentry_death");
 
             return entity;
         }
@@ -151,7 +151,7 @@ namespace Game
             hurtable.Collider = collider;
             hurtable.PauseTime = 0;
             hurtable.OnHurt = projectile.OnHurt;
-            hurtable.HurtSound = null;
+            hurtable.HurtSound.clearHandle();
 
             var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
             light.RenderLayer = -RenderLayer.Light;
@@ -179,7 +179,7 @@ namespace Game
             hurtable.Collider = collider;
             hurtable.PauseTime = 0;
             hurtable.OnHurt = projectile.OnHurt;
-            hurtable.HurtSound = null;
+            hurtable.HurtSound.clearHandle();
 
             entity.AddComponent<Damage>();
 
@@ -211,8 +211,8 @@ namespace Game
 
             var cypher = entity.AddComponent<Cypher>();
             cypher.Hitbox = hitbox;
-            cypher.FireSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}projectile.wav");
-            cypher.DeathSound = scene.Content.LoadSoundEffect($"{ContentPath.Sounds}sentry_death.wav");
+            cypher.FireSound = Core.Instance.LoadSound("Common", "projectile");
+            cypher.DeathSound = Core.Instance.LoadSound("Common", "sentry_death");
 
             var hurtable = entity.AddComponent<Hurtable>();
             hurtable.Collider = hitbox;

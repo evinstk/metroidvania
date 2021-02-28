@@ -11,8 +11,38 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="fmod.dll" />
+    <None Remove="fmodL.dll" />
+    <None Remove="fmodstudio.dll" />
+    <None Remove="fmodstudioL.dll" />
+    <None Remove="fsbank.dll" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+    <None Remove="libfsbvorbis64.dll" />
+    <None Remove="opus.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fmod.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fmodL.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fmodstudio.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fmodstudioL.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fsbank.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libfsbvorbis64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="opus.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />

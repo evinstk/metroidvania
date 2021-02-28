@@ -13,7 +13,7 @@ namespace Game
 
         public Collider Collider;
         public Action<Hurtable, Collider> OnHurt;
-        public SoundEffect HurtSound;
+        public FMOD.Studio.EventInstance HurtSound;
 
         float _stunTimer = 0;
         Color _color;
@@ -22,7 +22,7 @@ namespace Game
 
         public override void Initialize()
         {
-            HurtSound = Core.Scene.Content.LoadSoundEffect($"{ContentPath.Sounds}impact.wav");
+            HurtSound = Core.Instance.LoadSound("Common", "impact");
         }
 
         public override void OnAddedToEntity()
@@ -67,7 +67,8 @@ namespace Game
         {
             Timer.PauseFor(PauseTime);
             _stunTimer = StunTime;
-            HurtSound?.Play();
+            if (HurtSound.isValid())
+                HurtSound.start();
             OnHurt(this, attacker);
         }
     }

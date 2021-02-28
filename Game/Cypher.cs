@@ -25,8 +25,8 @@ namespace Game
         public float MaxFallSpeed = 300f;
         public int Health = 9;
 
-        public SoundEffect FireSound;
-        public SoundEffect DeathSound;
+        public FMOD.Studio.EventInstance FireSound;
+        public FMOD.Studio.EventInstance DeathSound;
 
         enum States
         {
@@ -56,7 +56,7 @@ namespace Game
 
             if (Health <= 0)
             {
-                DeathSound.Play();
+                DeathSound.start();
                 SetState(States.Dead);
                 Entity.RemoveComponent(self);
             }
@@ -99,7 +99,7 @@ namespace Game
                     var mover = projectileEntity.GetComponent<PlatformerMover>();
                     mover.Speed = Mathf.RotateAround(new Vector2(_facing, 0), Vector2.Zero, AttackAngle * _facing) * ProjectileSpeed;
 
-                    FireSound.Play();
+                    FireSound.start();
                 }
             }
             else if (_state == States.Dead)

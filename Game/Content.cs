@@ -105,5 +105,44 @@ namespace Game
             public int Index;
             public Sprite Sprite;
         }
+
+        static Dictionary<string, FMOD.Studio.Bank> _banks = new Dictionary<string, FMOD.Studio.Bank>();
+
+        public static FMOD.Studio.Bank LoadBank(this Core core, string bankName)
+        {
+            var bankKey = $"{ContentPath.FMOD}{bankName}.bank";
+            if (!_banks.TryGetValue(bankKey, out var bank))
+            {
+                var fmod = core.GetFMODSystem();
+                fmod.loadBankFile(bankKey, FMOD.Studio.LOAD_BANK_FLAGS.NORMAL, out bank);
+                bank.loadSampleData();
+                _banks[bankKey] = bank;
+            }
+            Insist.IsTrue(bank.handle.ToInt32() != 0);
+            return bank;
+        }
+
+        public static FMOD.Studio.EventInstance LoadSound(this Core core, string bankName, string evt)
+        {
+            var fmod = core.GetFMODSystem();
+
+            //var stringBank = core.LoadBank("Master.strings");
+            core.LoadBank(bankName);
+
+            fmod.getEvent($"event:/{bankName}/{evt}", out var desc);
+            desc.createInstance(out var instance);
+            return instance;
+
+            //bank.getEventList(out var events);
+            //for (var i = 0; i < events.Length; ++i)
+            //{
+            //    if (true)
+            //    {
+            //        events[i].createInstance(out var instance);
+            //        return instance;
+            //    }
+            //}
+            //throw new KeyNotFoundException("No event found.");
+        }
     }
 }

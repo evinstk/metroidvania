@@ -61,6 +61,7 @@ namespace Game
         public static readonly string Scripts = "../../../Content/Scripts/";
         public static readonly string Sounds = Path.GetFullPath("../../../Content/Sounds/");
         public static readonly string Backgrounds = Path.GetFullPath("../../../Content/Backgrounds/");
+        public static readonly string FMOD = Path.GetFullPath("../../../Content/FMOD/");
 #else
         public static readonly string Sprites = "Content/Sprites/";
         public static readonly string Maps = "Content/Maps/";
@@ -69,6 +70,7 @@ namespace Game
         public static readonly string Scripts = "Content/Scripts/";
         public static readonly string Sounds = "Content/Sounds/";
         public static readonly string Backgrounds = "Content/Backgrounds/";
+        public static readonly string FMOD = "Content/FMOD/";
 #endif
     }
 }
