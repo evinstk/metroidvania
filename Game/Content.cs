@@ -122,6 +122,7 @@ namespace Game
             return bank;
         }
 
+        // TODO: don't make extension method
         public static FMOD.Studio.EventInstance LoadSound(this Core core, string bankName, string evt)
         {
             var fmod = core.GetFMODSystem();

@@ -193,6 +193,9 @@ namespace Game
                         case "above_details":
                             renderer.RenderLayer = -49;
                             break;
+                        case "terrain":
+                            renderer.RenderLayer = -48;
+                            break;
                         default:
                             renderer.RenderLayer = i;
                             break;
@@ -231,6 +234,9 @@ namespace Game
                             case "cypher":
                                 this.CreateCypher(pos);
                                 break;
+                            case "boss":
+                                this.CreateBoss(pos);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;
@@ -244,6 +250,8 @@ namespace Game
                 _scripting.LoadScript(Path.GetFileName(script));
 
             _runRooms.Add(rb);
+
+            //Core.Instance.LoadSound("Music", "alert").start();
         }
 
         public override void Update()
@@ -277,6 +285,9 @@ namespace Game
                 _resetTimer += Time.DeltaTime;
                 if (Timer.OnTime(_resetTimer, 2f))
                 {
+                    var gameOver = Core.Instance.LoadSound("Music", "game_over");
+                    gameOver.start();
+
                     var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene()));
                     transition.FadeOutDuration = 0.3f;
                     transition.FadeInDuration = 0.2f;

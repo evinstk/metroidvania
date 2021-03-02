@@ -33,7 +33,7 @@ namespace Game
 
     static class CoreExt
     {
-        public static FMOD.Studio.System InitializeFMOD(this Core core)
+        public static FMOD.Studio.System InitializeFMOD(this Core _)
         {
             FMOD.Studio.System.create(out var fmodSystem);
             var systemResult = fmodSystem.initialize(8, FMOD.Studio.INITFLAGS.NORMAL, FMOD.INITFLAGS.NORMAL, IntPtr.Zero);

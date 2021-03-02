@@ -12,6 +12,14 @@
 			"Id": "EJHSPNQVWTSGNKWSSSPLDPHPFQJARUAKTBUEDU",
 			"MapName": "cypher.json",
 			"Position": {
+				"X": 480,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "RDLXGDAXLYXIBWISUIRPMFCSLPVWAINPEPJNDK",
+			"MapName": "boss.json",
+			"Position": {
 				"X": 0,
 				"Y": 0
 			}

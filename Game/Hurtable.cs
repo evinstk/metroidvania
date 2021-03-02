@@ -38,7 +38,7 @@ namespace Game
 
         public void Update()
         {
-            if (Collider != null && OnHurt != null && _stunTimer <= 0 && Collider.CollidesWithAny(out var hit))
+            if (Collider != null && _stunTimer <= 0 && Collider.CollidesWithAny(out var hit))
             {
                 Hurt(hit.Collider);
             }
@@ -69,7 +69,7 @@ namespace Game
             _stunTimer = StunTime;
             if (HurtSound.isValid())
                 HurtSound.start();
-            OnHurt(this, attacker);
+            OnHurt?.Invoke(this, attacker);
         }
     }
 }

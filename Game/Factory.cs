@@ -189,6 +189,45 @@ namespace Game
             return entity;
         }
 
+        public static Entity CreateProjectile(
+            this Scene scene,
+            Vector2 position,
+            Vector2 speed,
+            string animation,
+            int physicsLayer,
+            int collidesWithLayers)
+        {
+            scene.CreateFlash(position, Color.AliceBlue);
+
+            var entity = scene.CreateEntity("projectile", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play(animation);
+            anim.RenderLayer = -5;
+
+            var collider = entity.AddComponent(new BoxCollider(8, 8));
+            collider.PhysicsLayer = physicsLayer;
+            collider.CollidesWithLayers = collidesWithLayers;
+
+            var mover = entity.AddComponent<PlatformerMover>();
+            mover.Speed = speed;
+
+            var projectile = entity.AddComponent<Projectile>();
+
+            var hurtable = entity.AddComponent<Hurtable>();
+            hurtable.Collider = collider;
+            hurtable.PauseTime = 0;
+            hurtable.OnHurt = projectile.OnHurt;
+            hurtable.HurtSound.clearHandle();
+
+            entity.AddComponent<Damage>();
+
+            var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
+            light.RenderLayer = -7;
+
+            return entity;
+        }
+
         static Dictionary<string, int> _cypherOverrides = new Dictionary<string, int>
         {
             { "idle", 6 },
@@ -258,6 +297,38 @@ namespace Game
                 if (!entity.IsDestroyed)
                     entity.Destroy();
             });
+
+            return entity;
+        }
+
+        public static Entity CreateBoss(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("boss", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("boss", scene.Content));
+            anim.Play("idle");
+            anim.RenderLayer = -5;
+
+
+            var hitbox = entity.AddComponent(new BoxCollider(48, 48));
+            hitbox.PhysicsLayer = Mask.EnemyAttack;
+            hitbox.CollidesWithLayers = 0;
+
+            var hurtbox = entity.AddComponent(new BoxCollider(64, 64));
+            hurtbox.PhysicsLayer = Mask.Enemy;
+            hurtbox.CollidesWithLayers = Mask.PlayerAttack;
+
+            var mover = entity.AddComponent<PlatformerMover>();
+            mover.Collider = hurtbox;
+
+            var hurtable = entity.AddComponent<Hurtable>();
+            hurtable.Collider = hurtbox;
+
+            var boss = entity.AddComponent<MechBoss>();
+            boss.Hitbox = hitbox;
+            boss.FireSound = Core.Instance.LoadSound("Common", "projectile");
+            boss.DeathSound = Core.Instance.LoadSound("Common", "sentry_death");
+            hurtable.OnHurt = boss.OnHurt;
 
             return entity;
         }

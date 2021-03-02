@@ -315,6 +315,7 @@ namespace Game
                 _weaponAnimator.Change("empty");
                 _dodgeTimer += Time.DeltaTime;
                 _mover.Speed.X = _facing * DodgeSpeed;
+                _mover.Speed.Y = 0;
 
                 if (_dodgeTimer >= DodgeTime)
                 {

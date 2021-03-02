@@ -283,6 +283,9 @@
 #begin FMOD/Master.strings.bank
 /copy:FMOD/Master.strings.bank
 
+#begin FMOD/Music.bank
+/copy:FMOD/Music.bank
+
 #begin FMOD/Player.bank
 /copy:FMOD/Player.bank
 
@@ -301,6 +304,9 @@
 
 #begin Maps/Spacecraft/world.json
 /copy:Maps/Spacecraft/world.json
+
+#begin Maps/Training/boss.json
+/copy:Maps/Training/boss.json
 
 #begin Maps/Training/cypher.json
 /copy:Maps/Training/cypher.json
@@ -361,6 +367,12 @@
 
 #begin Sprites/blaster.png
 /copy:Sprites/blaster.png
+
+#begin Sprites/boss.json
+/copy:Sprites/boss.json
+
+#begin Sprites/boss.png
+/copy:Sprites/boss.png
 
 #begin Sprites/cypher.json
 /copy:Sprites/cypher.json
