@@ -420,6 +420,10 @@ namespace Game
                 var damage = hurtHit.Collider.GetComponent<Damage>();
                 health -= damage?.Amount ?? 1;
                 _vars.Set(Vars.PlayerHealth, health);
+
+                if (_attackCollider != null)
+                    Entity.RemoveComponent(_attackCollider);
+
                 if (health <= 0)
                 {
                     _state = States.Dead;
