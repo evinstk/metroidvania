@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
 using Nez;
 using System;
@@ -24,7 +25,9 @@ namespace Game.Scripting
         static SceneScript()
         {
             UserData.RegisterType<ScriptVars>();
+            UserData.RegisterType<Vector2>();
             UserData.RegisterProxyType<ChestContentsProxy, ChestContents>(c => new ChestContentsProxy(c));
+            UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
 
@@ -49,6 +52,7 @@ namespace Game.Scripting
 
             script.Globals["line"] = (Action<string>)_dialogSystem.FeedLine;
             script.Globals["vars"] = _scriptVars;
+            script.Globals["find_entity"] = (Func<string, Entity>)FindEntity;
             script.Globals["start_coroutine"] = (Action<Closure>)((Closure fn) =>
             {
                 var coroutine = script.CreateCoroutine(fn);
@@ -81,5 +85,7 @@ namespace Game.Scripting
                 _coroutines.Remove(coroutineRemoval);
             _coroutineRemovals.Clear();
         }
+
+        Entity FindEntity(string name) => Core.Scene.FindEntity(name);
     }
 }
