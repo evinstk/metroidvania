@@ -6,7 +6,7 @@ using System;
 
 namespace Game
 {
-    class MechBoss : Component, IUpdatable
+    class MechBoss : Component, IUpdatable, IHealthy
     {
         public float MoveSpeed = 50f;
 
@@ -49,7 +49,7 @@ namespace Game
         }
 
         States _state = States.Normal;
-        int _health = 75;
+        public int Health { get; set; } = 75;
         int _facing = 1;
         float _timer = 0;
 
@@ -206,8 +206,8 @@ namespace Game
         public void OnHurt(Hurtable self, Collider attacker)
         {
             var damage = attacker.GetDamageAmount();
-            _health -= damage;
-            if (_health <= 0)
+            Health -= damage;
+            if (Health <= 0)
             {
                 Entity.RemoveComponent(self);
                 Hitbox.PhysicsLayer &= ~Mask.EnemyAttack;
