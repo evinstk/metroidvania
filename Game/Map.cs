@@ -44,6 +44,8 @@ namespace Game
         public string name;
         public int x;
         public int y;
+        public int width;
+        public int height;
         public Dictionary<string, string> values;
     }
 

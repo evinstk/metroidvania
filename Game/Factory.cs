@@ -309,7 +309,6 @@ namespace Game
             anim.Play("idle");
             anim.RenderLayer = -5;
 
-
             var hitbox = entity.AddComponent(new BoxCollider(48, 48));
             hitbox.PhysicsLayer = Mask.EnemyAttack;
             hitbox.CollidesWithLayers = 0;
@@ -329,6 +328,17 @@ namespace Game
             boss.FireSound = Core.Instance.LoadSound("Common", "projectile");
             boss.DeathSound = Core.Instance.LoadSound("Common", "sentry_death");
             hurtable.OnHurt = boss.OnHurt;
+
+            return entity;
+        }
+
+        public static Entity CreateArea(this Scene scene, Vector2 position, OgmoEntity mapEntity)
+        {
+            var entity = scene.CreateEntity(mapEntity.values["name"], position);
+
+            var collider = entity.AddComponent(new BoxCollider(0, 0, mapEntity.width, mapEntity.height));
+            collider.PhysicsLayer = Mask.Area;
+            collider.CollidesWithLayers = 0;
 
             return entity;
         }

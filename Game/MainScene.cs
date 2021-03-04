@@ -237,6 +237,9 @@ namespace Game
                             case "boss":
                                 this.CreateBoss(pos);
                                 break;
+                            case "area":
+                                this.CreateArea(pos, entity);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;
