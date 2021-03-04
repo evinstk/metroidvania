@@ -4,7 +4,7 @@
   "height": 272,
   "offsetX": 0,
   "offsetY": 0,
-  "values": {"script": "proj:"},
+  "values": {"script": "proj:../Scripts/boss.lua"},
   "layers": [
     {
       "name": "overlay",
@@ -54,7 +54,7 @@
           "y": 216,
           "originX": 8,
           "originY": 24,
-          "values": {"state_var": "default_switch"}
+          "values": {"state_var": "boss_switch"}
         },
         {
           "name": "door",
@@ -64,7 +64,19 @@
           "y": 216,
           "originX": 8,
           "originY": 24,
-          "values": {"state_var": "default_switch"}
+          "values": {"state_var": "boss_switch"}
+        },
+        {
+          "name": "area",
+          "id": 7,
+          "_eid": "81745502",
+          "x": 112,
+          "y": 32,
+          "width": 32,
+          "height": 20,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "enter"}
         }
       ]
     },

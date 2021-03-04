@@ -332,8 +332,14 @@
 #begin Maps/World2/world.json
 /copy:Maps/World2/world.json
 
+#begin Scripts/boss.lua
+/copy:Scripts/boss.lua
+
 #begin Scripts/common.lua
 /copy:Scripts/common.lua
+
+#begin Scripts/spacecraft.lua
+/copy:Scripts/spacecraft.lua
 
 #begin Scripts/start.lua
 /copy:Scripts/start.lua
