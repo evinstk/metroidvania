@@ -314,6 +314,9 @@
 #begin Maps/Training/sentry.json
 /copy:Maps/Training/sentry.json
 
+#begin Maps/Training/start.json
+/copy:Maps/Training/start.json
+
 #begin Maps/Training/world.json
 /copy:Maps/Training/world.json
 

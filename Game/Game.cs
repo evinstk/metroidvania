@@ -16,6 +16,7 @@ namespace Game
             ExitOnEscapeKeypress = false;
             DebugConsole.RenderScale = 2;
             //IsMouseVisible = false;
+            //Screen.IsFullscreen = true;
 
             FMOD = this.InitializeFMOD();
             this.LoadBank("Master");

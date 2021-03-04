@@ -1,24 +1,16 @@
 {
 	"Rooms": [
 		{
-			"Id": "ULHEKNOOVSBSFSPQAWETLPMMXLLHQUFFVKRDVH",
-			"MapName": "sentry.json",
-			"Position": {
-				"X": -480,
-				"Y": 0
-			}
-		},
-		{
-			"Id": "EJHSPNQVWTSGNKWSSSPLDPHPFQJARUAKTBUEDU",
-			"MapName": "cypher.json",
-			"Position": {
-				"X": 480,
-				"Y": 0
-			}
-		},
-		{
 			"Id": "RDLXGDAXLYXIBWISUIRPMFCSLPVWAINPEPJNDK",
 			"MapName": "boss.json",
+			"Position": {
+				"X": 0,
+				"Y": 270
+			}
+		},
+		{
+			"Id": "MFPDVVGYZKXFDRKXGDQDKHQNWECKJIRABIGAEQ",
+			"MapName": "start.json",
 			"Position": {
 				"X": 0,
 				"Y": 0
