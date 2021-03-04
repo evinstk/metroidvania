@@ -51,6 +51,8 @@ namespace Game.Scripting
             var script = new Script();
 
             script.Globals["line"] = (Action<string>)_dialogSystem.FeedLine;
+            script.Globals["options"] = (Action<List<string>, bool>)_dialogSystem.FeedOptions;
+            script.Globals["read_dialog_option"] = (Func<int>)(() => _dialogSystem.OptionIndex + 1);
             script.Globals["vars"] = _scriptVars;
             script.Globals["find_entity"] = (Func<string, Entity>)FindEntity;
             script.Globals["start_coroutine"] = (Action<Closure>)((Closure fn) =>

@@ -4,7 +4,7 @@
   "height": 272,
   "offsetX": 0,
   "offsetY": 0,
-  "values": {"script": "proj:"},
+  "values": {"script": "proj:../Scripts/start.lua"},
   "layers": [
     {
       "name": "overlay",

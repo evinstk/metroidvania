@@ -20,3 +20,13 @@ function interact()
     end)
     interaction_pressed = false
 end
+
+function dialog(arg)
+    line(type(arg) == 'string' and arg or arg.line)
+    if arg.options ~= nil then
+        options(arg.options, true)
+    end
+    interact()
+    local option = read_dialog_option()
+    return arg.options and arg.options[option], option
+end
