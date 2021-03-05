@@ -19,16 +19,16 @@ start_coroutine(function()
     vars['boss_switch'] = false
 
     dialog{
-        portrait='default_neutral',
+        portrait='goblin_neutral',
         line='I cannot allow you to go any further.',
     }
     dialog{
-        portrait='default_neutral',
+        portrait='goblin_neutral',
         line='You\'ve been far too much of a nuisance to let you live.'
     }
 
     local selection, index = dialog{
-        portrait='default_neutral',
+        portrait='goblin_neutral',
         line='Any last words?',
         options={
             'You\'re not stopping me.',
@@ -38,18 +38,18 @@ start_coroutine(function()
 
     if index == 1 then
         dialog{
-            portrait='default_neutral',
+            portrait='goblin_amused',
             line='Oh I\'m not, huh? We\'ll see about that.'
         }
     else
         dialog{
-            portrait='default_neutral',
+            portrait='goblin_amused',
             line='Hah! Over my dead body.'
         }
     end
 
     dialog{
-        portrait='default_neutral',
+        portrait='goblin_neutral',
         line='Steel yourself.'
     }
 
@@ -69,7 +69,7 @@ start_coroutine(function()
     player.possess()
 
     dialog{
-        portrait='default_neutral',
+        portrait='goblin_terror',
         line='No-o-o-o-o-o!'
     }
     line()

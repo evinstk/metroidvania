@@ -8,14 +8,41 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
 	"sourceSize": {"w":64,"h":64},
 	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "goblin_amused0.png",
+	"frame": {"x":67,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "goblin_neutral0.png",
+	"frame": {"x":133,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "goblin_terror0.png",
+	"frame": {"x":199,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
 }],
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "portraits.png",
 	"format": "RGBA8888",
-	"size": {"w":66,"h":66},
+	"size": {"w":264,"h":66},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7eb84803ea2be7e23c82e9337550b0ed:3187109190d327819174420a23c9d735:b2f80d7af41902736d3ed02ec88e31a6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:e4e8dc6a3251783408fca52eb117f0f2:90445ffb0dc17048e0a1baf144efd810:b2f80d7af41902736d3ed02ec88e31a6$"
 }
 }
