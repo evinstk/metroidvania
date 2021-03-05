@@ -15,10 +15,11 @@ namespace Game
         public Vector2 BoxMargin = new Vector2(10, 10);
         public Vector2 Margin = new Vector2(20, 20);
 
-        public Vector2 OptionsOffset = new Vector2(270, 100);
+        public Vector2 OptionsOffset = new Vector2(322, 100);
         public float OptionsBoxWidth = 128;
         public Vector2 OptionsMargin = new Vector2(10, 10);
-        public float OptionsSpacing = 20f;
+        public float OptionsSpacing = 8f;
+        public float OptionsWidth = 128f;
 
         public int MsPerChar = 10;
 
@@ -32,7 +33,7 @@ namespace Game
         StringBuilder _sb = new StringBuilder(1000);
         FontCharacterSource _text;
 
-        List<string> _options;
+        List<string> _options = new List<string>();
         public int OptionIndex => _optionIndex;
         int _optionIndex = 0;
         int _lastInput = 0;
@@ -62,7 +63,7 @@ namespace Game
             _charElapsed = 0;
             _readerIndex = 0;
 
-            _options = null;
+            _options.Clear();
 
             if (line == null)
                 _portraitAnimator.Play("empty");
@@ -71,8 +72,45 @@ namespace Game
         public void FeedOptions(List<string> options)
         {
             Insist.IsTrue(options != null && options.Count > 0);
-            _options = options;
+            foreach (var option in options)
+                _options.Add(BuildOption(option));
             _optionIndex = 0;
+        }
+
+        StringBuilder _optionBuilder = new StringBuilder(100);
+        string BuildOption(string option)
+        {
+            _optionBuilder.Clear();
+            var ci = 0;
+            while (ci < option.Length)
+            {
+                var nextChar = option[ci++];
+                _optionBuilder.Append(nextChar);
+                // check if we need a line break
+                if (nextChar == ' ')
+                {
+                    var ti = ci;
+                    var tempChar = option[ti++];
+                    var length = 0;
+                    while (tempChar != ' ' && ti < option.Length)
+                    {
+                        _optionBuilder.Append(tempChar);
+                        ++length;
+                        tempChar = option[ti++];
+                    }
+                    var size = _font.MeasureString(_optionBuilder);
+                    if (size.X > OptionsWidth)
+                    {
+                        _optionBuilder.Remove(ci - 1, length + 1);
+                        _optionBuilder.Append("\n");
+                    }
+                    else
+                    {
+                        _optionBuilder.Remove(ci, length);
+                    }
+                }
+            }
+            return _optionBuilder.ToString();
         }
 
         public void ChangePortrait(string name, SpriteAnimator.LoopMode loopMode = SpriteAnimator.LoopMode.ClampForever)
@@ -117,21 +155,12 @@ namespace Game
             _text = new FontCharacterSource(_sb);
             _charElapsed += Time.DeltaTime;
 
-            UpdateOptions();
-
             var selectInput = _inputSelect.Value;
-            if (_options != null && selectInput != 0 && selectInput != _lastInput)
+            if (_options.Count > 0 && selectInput != 0 && selectInput != _lastInput)
             {
                 _optionIndex = Mathf.Clamp(_optionIndex + selectInput, 0, _options.Count - 1);
             }
             _lastInput = selectInput;
-        }
-
-        void UpdateOptions()
-        {
-            if (_sb.Length == _line.Length)
-            {
-            }
         }
 
         public override void Render(Batcher batcher, Camera camera)
@@ -159,13 +188,21 @@ namespace Game
                 batcher.DrawHollowRect(portraitBounds, Color.White);
             }
 
-            if (_options != null)
+            if (_options.Count > 0)
             {
+                var optionsHeight = 0f;
+                foreach (var option in _options)
+                    optionsHeight += _font.MeasureString(option).Y;
+
                 var boxBounds = new RectangleF(
-                    OptionsOffset, new Vector2(OptionsBoxWidth, (_options.Count * OptionsSpacing) + (OptionsMargin.Y * 2)));
+                    OptionsOffset,
+                    new Vector2(
+                        OptionsWidth + (OptionsMargin.X * 2),
+                        optionsHeight + (OptionsSpacing * (_options.Count - 1)) + (OptionsMargin.Y * 2)));
                 batcher.DrawRect(boxBounds, Color.Black);
                 batcher.DrawHollowRect(boxBounds, Color.White, 2);
 
+                var offsetY = 0f;
                 for (var i = 0; i < _options.Count; ++i)
                 {
                     var option = _options[i];
@@ -173,13 +210,14 @@ namespace Game
                     _font.DrawInto(
                         batcher,
                         ref optionText,
-                        OptionsOffset + OptionsMargin + new Vector2(0, i * OptionsSpacing),
+                        OptionsOffset + OptionsMargin + new Vector2(0, offsetY),
                         i == _optionIndex ? Color.Yellow : Color.White,
                         0,
                         Vector2.Zero,
                         Vector2.One,
                         SpriteEffects.None,
                         0);
+                    offsetY += _font.MeasureString(option).Y + OptionsSpacing;
                 }
             }
         }

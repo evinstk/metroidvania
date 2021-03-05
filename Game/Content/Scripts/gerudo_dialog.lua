@@ -11,9 +11,11 @@ function gerudo_dialog()
         line='Well, the Divine Beast probably won\'t head in this direction... But we should be on alert, just in case.',
     }
 
+    local town_option = 'Gerudo Town?'
+    local beast_option = 'Divine Beast? What\'s that?'
     local options = {
-        'Gerudo Town?',
-        'Divine Beast?',
+        town_option,
+        beast_option,
         'Good-bye.'
     }
 
@@ -60,12 +62,12 @@ function gerudo_dialog()
         }
     end
 
-    while selection == 'Gerudo Town?' or selection == 'Divine Beast?' do
+    while selection == town_option or selection == beast_option do
         table.remove(options, index)
         options = #options == 1 and { 'Thank you.' } or options
-        if selection == 'Gerudo Town?' then
+        if selection == town_option then
             selection, index = gerudo_town()
-        elseif selection == 'Divine Beast?' then
+        elseif selection == beast_option then
             selection, index = divine_beast()
         end
     end
