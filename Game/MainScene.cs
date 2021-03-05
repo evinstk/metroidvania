@@ -80,7 +80,9 @@ namespace Game
             CreateEntity("world");
             AddWorldBounds(world);
             SetBackground(world);
-            RunRoom(Vector2.Zero);
+            var startRoom = world.Rooms.Find(r => r.Id == world.StartRoomId);
+            Debug.LogIf(startRoom == null, "No start room set. Defaulting to room at (0, 0).");
+            RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero);
         }
 
         World LoadWorld(string worldName)

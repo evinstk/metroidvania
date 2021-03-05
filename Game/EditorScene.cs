@@ -163,16 +163,32 @@ namespace Game
 
             if (ImGui.Begin("Rooms"))
             {
+                if (ImGui.BeginCombo("Start Room", world.Rooms.Find(r => world.StartRoomId == r.Id)?.RoomName))
+                {
+                    foreach (var room in world.Rooms)
+                    {
+                        if (ImGui.Selectable(room.RoomName, room.Id == world.StartRoomId))
+                        {
+                            world.StartRoomId = room.Id;
+                        }
+                    }
+                    ImGui.EndCombo();
+                }
+                ImGui.Separator();
+
                 Room toRemove = null;
                 foreach (var room in world.Rooms)
                 {
                     ImGui.PushID(room.Id);
 
+                    ImGui.InputText("Room Name", ref room.RoomName, 25);
                     ImGui.Text(room.MapName);
                     ImGui.SameLine();
                     if (ImGui.Button("Remove"))
                         toRemove = room;
                     ImGui.DragInt2("Position", ref room.Position.X);
+
+                    ImGui.Separator();
 
                     ImGui.PopID();
                 }
@@ -193,6 +209,7 @@ namespace Game
                 {
                     scene.World.Rooms.Add(new Room
                     {
+                        RoomName = Path.GetFileNameWithoutExtension(_room),
                         MapName = _room,
                     });
                 }
@@ -208,11 +225,13 @@ namespace Game
         public string Name = string.Empty;
         public List<Room> Rooms = new List<Room>();
         public List<Background> Backgrounds = new List<Background>();
+        public string StartRoomId;
     }
 
     class Room
     {
         public string Id = Utils.RandomString();
+        public string RoomName;
         public string MapName;
         public Point Position;
     }
