@@ -16,7 +16,6 @@ namespace Game
         public Vector2 Margin = new Vector2(20, 20);
 
         public Vector2 OptionsOffset = new Vector2(322, 100);
-        public float OptionsBoxWidth = 128;
         public Vector2 OptionsMargin = new Vector2(10, 10);
         public float OptionsSpacing = 8f;
         public float OptionsWidth = 128f;
