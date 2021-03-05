@@ -18,7 +18,7 @@ start_coroutine(function()
 
     dialog{
         portrait='default_neutral',
-        line='I cannot allow you to go any further.'
+        line='I cannot allow you to go any further.',
     }
     dialog{
         portrait='default_neutral',

@@ -54,9 +54,10 @@ namespace Game.Scripting
                 $"{ContentPath.Scripts}?.lua",
                 $"{ContentPath.Scripts}?",
             };
-            script.Globals["line"] = (Action<string>)_dialogSystem.FeedLine;
-            script.Globals["options"] = (Action<List<string>>)_dialogSystem.FeedOptions;
-            script.Globals["portrait"] = (Action<string, SpriteAnimator.LoopMode>)_dialogSystem.ChangePortrait;
+            script.Globals["line"] = (Action<string, string, List<string>, int?, int?, bool?>)((line, portrait, options, x, y, showBorder) =>
+            {
+                _dialogSystem.FeedLine(line, portrait, options, new Vector2(x ?? 10, y ?? 10), showBorder ?? true);
+            });
             script.Globals["read_dialog_option"] = (Func<int>)(() => _dialogSystem.OptionIndex + 1);
             script.Globals["vars"] = _scriptVars;
             script.Globals["find_entity"] = (Func<string, Entity>)FindEntity;

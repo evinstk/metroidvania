@@ -22,11 +22,18 @@ function interact()
 end
 
 function dialog(arg)
-    line(type(arg) == 'string' and arg or arg.line)
-    if arg.options ~= nil then
-        options(arg.options)
+    local border = true
+    if arg.border ~= nil then
+        border = arg.border
     end
-    portrait(arg.portrait)
+    line(
+        type(arg) == 'string' and arg or arg.line,
+        arg.portrait,
+        arg.options,
+        arg.x or 10,
+        arg.y or 10,
+        border
+    )
     interact()
     local option = read_dialog_option()
     return arg.options and arg.options[option], option

@@ -12,8 +12,8 @@ namespace Game
     {
         public Vector2 PortraitSize = new Vector2(64);
 
-        public Vector2 BoxMargin = new Vector2(10, 10);
-        public Vector2 Margin = new Vector2(20, 20);
+        public Vector2 InnerMargin = new Vector2(10, 10);
+        public Vector2 BoxMarginDefault = new Vector2(10, 10);
 
         public Vector2 OptionsOffset = new Vector2(322, 100);
         public Vector2 OptionsMargin = new Vector2(10, 10);
@@ -31,6 +31,8 @@ namespace Game
         float _charElapsed;
         StringBuilder _sb = new StringBuilder(1000);
         FontCharacterSource _text;
+        bool _showBorder = true;
+        Vector2 _boxMargin = new Vector2(10, 10);
 
         List<string> _options = new List<string>();
         public int OptionIndex => _optionIndex;
@@ -51,29 +53,37 @@ namespace Game
 
             _portraitAnimator = Entity.AddComponent(Animator.MakeAnimator("portraits", Entity.Scene.Content));
             _portraitAnimator.RenderLayer = RenderLayer;
-            _portraitAnimator.LocalOffset = Margin + PortraitSize / 2;
+            _portraitAnimator.LocalOffset = InnerMargin + PortraitSize / 2;
         }
 
-        public void FeedLine(string line)
+        public void FeedLine(
+            string line,
+            string portrait = null,
+            List<string> options = null,
+            Vector2? boxMargin = null,
+            bool showBorder = true)
         {
             _line = line;
             _sb.Clear();
             _text = new FontCharacterSource(_sb);
             _charElapsed = 0;
             _readerIndex = 0;
+            _showBorder = showBorder;
+            _boxMargin = boxMargin ?? BoxMarginDefault;
 
-            _options.Clear();
+            if (options != null && options.Count > 0)
+            {
+                foreach (var option in options)
+                    _options.Add(BuildOption(option));
+                _optionIndex = 0;
+            }
+            else
+            {
+                _options.Clear();
+            }
 
-            if (line == null)
-                _portraitAnimator.Play("empty");
-        }
-
-        public void FeedOptions(List<string> options)
-        {
-            Insist.IsTrue(options != null && options.Count > 0);
-            foreach (var option in options)
-                _options.Add(BuildOption(option));
-            _optionIndex = 0;
+            _portraitAnimator.LocalOffset = _boxMargin + InnerMargin + PortraitSize / 2;
+            _portraitAnimator.Play(portrait ?? "empty", SpriteAnimator.LoopMode.ClampForever);
         }
 
         StringBuilder _optionBuilder = new StringBuilder(100);
@@ -112,16 +122,13 @@ namespace Game
             return _optionBuilder.ToString();
         }
 
-        public void ChangePortrait(string name, SpriteAnimator.LoopMode loopMode = SpriteAnimator.LoopMode.ClampForever)
-        {
-            _portraitAnimator.Change(name ?? "empty", loopMode);
-        }
+        bool HasPortrait => !_portraitAnimator.IsAnimationActive("empty");
 
         public void Update()
         {
             if (_line == null) return;
 
-            var lineWidth = Constants.ResWidth - Margin.X * 2 - (PortraitSize.X + (Margin.X - BoxMargin.X) * 2);
+            var lineWidth = Constants.ResWidth - (_boxMargin.X + InnerMargin.X) * 2 - (HasPortrait ? (PortraitSize.X + InnerMargin.X * 2) : 0);
             var charIndex = (int)(_charElapsed * 1000 / MsPerChar);
             while (_readerIndex <= charIndex && _readerIndex < _line.Length)
             {
@@ -160,6 +167,8 @@ namespace Game
                 _optionIndex = Mathf.Clamp(_optionIndex + selectInput, 0, _options.Count - 1);
             }
             _lastInput = selectInput;
+
+            _portraitAnimator.LocalOffset = _boxMargin + InnerMargin + PortraitSize / 2;
         }
 
         public override void Render(Batcher batcher, Camera camera)
@@ -167,14 +176,18 @@ namespace Game
             if (_line != null)
             {
                 var boxBounds = new RectangleF(
-                    BoxMargin,
-                    new Vector2(Constants.ResWidth - BoxMargin.X * 2, PortraitSize.Y + 2 * (Margin.Y - BoxMargin.Y)));
+                    _boxMargin,
+                    new Vector2(
+                        Constants.ResWidth - _boxMargin.X * 2,
+                        PortraitSize.Y + 2 * InnerMargin.Y));
                 batcher.DrawRect(boxBounds, Color.Black);
-                batcher.DrawHollowRect(boxBounds, Color.White, 2);
+                if (_showBorder)
+                    batcher.DrawHollowRect(boxBounds, Color.White, 2);
                 _font.DrawInto(
                     batcher,
                     ref _text,
-                    Margin + new Vector2(PortraitSize.X + (Margin.X - BoxMargin.X) * 2, 0),
+                    _boxMargin + InnerMargin
+                    + (HasPortrait ? new Vector2(PortraitSize.X + InnerMargin.X * 2, 0) : Vector2.Zero),
                     Color.White,
                     0,
                     Vector2.Zero,
@@ -182,9 +195,12 @@ namespace Game
                     SpriteEffects.None,
                     0);
 
-                var portraitBounds = new RectangleF(Margin, PortraitSize + Vector2.One);
-                batcher.DrawRect(portraitBounds, new Color(0xff202020));
-                batcher.DrawHollowRect(portraitBounds, Color.White);
+                if (!_portraitAnimator.IsAnimationActive("empty"))
+                {
+                    var portraitBounds = new RectangleF(_boxMargin + InnerMargin, PortraitSize + Vector2.One);
+                    batcher.DrawRect(portraitBounds, new Color(0xff202020));
+                    batcher.DrawHollowRect(portraitBounds, Color.White);
+                }
             }
 
             if (_options.Count > 0)
