@@ -151,7 +151,7 @@ namespace Game
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play("projectile");
-            anim.RenderLayer = -5;
+            anim.RenderLayer = -6;
 
             var collider = entity.AddComponent(new BoxCollider(8, 8));
             collider.PhysicsLayer = Mask.EnemyAttack;
@@ -179,7 +179,7 @@ namespace Game
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play("laser");
-            anim.RenderLayer = -5;
+            anim.RenderLayer = -6;
 
             var collider = entity.AddComponent(new BoxCollider(8, 8));
             collider.PhysicsLayer = Mask.PlayerAttack;
@@ -217,7 +217,7 @@ namespace Game
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play(animation);
-            anim.RenderLayer = -5;
+            anim.RenderLayer = -6;
 
             var collider = entity.AddComponent(new BoxCollider(8, 8));
             collider.PhysicsLayer = physicsLayer;
