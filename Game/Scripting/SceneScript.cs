@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
+using MoonSharp.Interpreter.Loaders;
 using Nez;
 using Nez.Sprites;
 using System;
@@ -11,8 +12,6 @@ namespace Game.Scripting
 {
     class SceneScript
     {
-        string _commonCode;
-
         DialogSystem _dialogSystem;
         ScriptVars _scriptVars;
 
@@ -38,7 +37,6 @@ namespace Game.Scripting
         {
             _dialogSystem = dialogSystem;
             _scriptVars = scriptVars;
-            _commonCode = File.ReadAllText($"{ContentPath.Scripts}common.lua");
 
             _inputInteract = new VirtualButton();
             _inputInteract.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Y));
@@ -51,6 +49,11 @@ namespace Game.Scripting
 
             var script = new Script();
 
+            ((ScriptLoaderBase)script.Options.ScriptLoader).ModulePaths = new string[]
+            {
+                $"{ContentPath.Scripts}?.lua",
+                $"{ContentPath.Scripts}?",
+            };
             script.Globals["line"] = (Action<string>)_dialogSystem.FeedLine;
             script.Globals["options"] = (Action<List<string>>)_dialogSystem.FeedOptions;
             script.Globals["portrait"] = (Action<string, SpriteAnimator.LoopMode>)_dialogSystem.ChangePortrait;
@@ -63,7 +66,6 @@ namespace Game.Scripting
                 _pendingCoroutines.Add(coroutine);
             });
 
-            script.DoString(_commonCode);
             script.DoString(scriptCode);
 
             _scripts.Add(script);

@@ -1,4 +1,6 @@
-﻿start_coroutine(function()
+﻿require 'common'
+
+start_coroutine(function()
     -- Ripp
     dialog{
         portrait='default_neutral',
