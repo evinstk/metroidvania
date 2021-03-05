@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
 using Nez;
+using Nez.Sprites;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,7 +52,8 @@ namespace Game.Scripting
             var script = new Script();
 
             script.Globals["line"] = (Action<string>)_dialogSystem.FeedLine;
-            script.Globals["options"] = (Action<List<string>, bool>)_dialogSystem.FeedOptions;
+            script.Globals["options"] = (Action<List<string>>)_dialogSystem.FeedOptions;
+            script.Globals["portrait"] = (Action<string, SpriteAnimator.LoopMode>)_dialogSystem.ChangePortrait;
             script.Globals["read_dialog_option"] = (Func<int>)(() => _dialogSystem.OptionIndex + 1);
             script.Globals["vars"] = _scriptVars;
             script.Globals["find_entity"] = (Func<string, Entity>)FindEntity;

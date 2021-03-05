@@ -24,8 +24,9 @@ end
 function dialog(arg)
     line(type(arg) == 'string' and arg or arg.line)
     if arg.options ~= nil then
-        options(arg.options, true)
+        options(arg.options)
     end
+    portrait(arg.portrait)
     interact()
     local option = read_dialog_option()
     return arg.options and arg.options[option], option

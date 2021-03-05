@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nez;
+using Nez.Sprites;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,13 +10,16 @@ namespace Game
 {
     class DialogSystem : RenderableComponent, IUpdatable
     {
+        public Vector2 PortraitSize = new Vector2(64);
+
         public Vector2 BoxMargin = new Vector2(10, 10);
-        public int BoxHeight = 70;
         public Vector2 Margin = new Vector2(20, 20);
+
         public Vector2 OptionsOffset = new Vector2(270, 100);
         public float OptionsBoxWidth = 128;
         public Vector2 OptionsMargin = new Vector2(10, 10);
         public float OptionsSpacing = 20f;
+
         public int MsPerChar = 10;
 
         public override float Width => 1;
@@ -34,6 +38,7 @@ namespace Game
         int _lastInput = 0;
 
         VirtualIntegerAxis _inputSelect;
+        SpriteAnimator _portraitAnimator;
 
         public override void OnAddedToEntity()
         {
@@ -43,6 +48,10 @@ namespace Game
             _inputSelect = new VirtualIntegerAxis();
             _inputSelect.AddGamePadDPadUpDown();
             _inputSelect.AddKeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Up, Keys.Down);
+
+            _portraitAnimator = Entity.AddComponent(Animator.MakeAnimator("portraits", Entity.Scene.Content));
+            _portraitAnimator.RenderLayer = RenderLayer;
+            _portraitAnimator.LocalOffset = Margin + PortraitSize / 2;
         }
 
         public void FeedLine(string line)
@@ -54,20 +63,28 @@ namespace Game
             _readerIndex = 0;
 
             _options = null;
+
+            if (line == null)
+                _portraitAnimator.Play("empty");
         }
 
-        public void FeedOptions(List<string> options, bool cancelLast)
+        public void FeedOptions(List<string> options)
         {
             Insist.IsTrue(options != null && options.Count > 0);
             _options = options;
             _optionIndex = 0;
         }
 
+        public void ChangePortrait(string name, SpriteAnimator.LoopMode loopMode = SpriteAnimator.LoopMode.ClampForever)
+        {
+            _portraitAnimator.Change(name ?? "empty", loopMode);
+        }
+
         public void Update()
         {
             if (_line == null) return;
 
-            var lineWidth = Constants.ResWidth - Margin.X * 2;
+            var lineWidth = Constants.ResWidth - Margin.X * 2 - (PortraitSize.X + (Margin.X - BoxMargin.X) * 2);
             var charIndex = (int)(_charElapsed * 1000 / MsPerChar);
             while (_readerIndex <= charIndex && _readerIndex < _line.Length)
             {
@@ -123,19 +140,23 @@ namespace Game
             {
                 var boxBounds = new RectangleF(
                     BoxMargin,
-                    new Vector2(Constants.ResWidth - BoxMargin.X * 2, BoxHeight));
+                    new Vector2(Constants.ResWidth - BoxMargin.X * 2, PortraitSize.Y + 2 * (Margin.Y - BoxMargin.Y)));
                 batcher.DrawRect(boxBounds, Color.Black);
                 batcher.DrawHollowRect(boxBounds, Color.White, 2);
                 _font.DrawInto(
                     batcher,
                     ref _text,
-                    Margin,
+                    Margin + new Vector2(PortraitSize.X + (Margin.X - BoxMargin.X) * 2, 0),
                     Color.White,
                     0,
                     Vector2.Zero,
                     Vector2.One,
                     SpriteEffects.None,
                     0);
+
+                var portraitBounds = new RectangleF(Margin, PortraitSize + Vector2.One);
+                batcher.DrawRect(portraitBounds, new Color(0xff202020));
+                batcher.DrawHollowRect(portraitBounds, Color.White);
             }
 
             if (_options != null)
