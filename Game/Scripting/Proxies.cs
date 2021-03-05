@@ -56,5 +56,27 @@ namespace Game.Scripting
             Entity.GetComponents(_healthy);
             return _healthy.Count > 0 ? _healthy[0].Health : 0;
         }
+
+        public void Possess()
+        {
+            var ctrl = Entity.GetComponent<CutsceneController>();
+            if (ctrl == null)
+            {
+                Debug.Log($"No {typeof(CutsceneController).Name} on ${Entity.Name}");
+                return;
+            }
+            ctrl.Possess();
+        }
+
+        public void Release()
+        {
+            var ctrl = Entity.GetComponent<CutsceneController>();
+            if (ctrl == null)
+            {
+                Debug.Log($"No {typeof(CutsceneController).Name} on ${Entity.Name}");
+                return;
+            }
+            ctrl.Release();
+        }
     }
 }

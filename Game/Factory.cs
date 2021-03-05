@@ -32,6 +32,20 @@ namespace Game
             player.DeathSound = Core.Instance.LoadSound("Player", "death");
             player.DodgeSound = Core.Instance.LoadSound("Player", "dodge");
 
+            var cutscene = entity.AddComponent<CutsceneController>();
+            cutscene.OnPossess = self =>
+            {
+                hitbox.PhysicsLayer = 0;
+                hitbox.CollidesWithLayers = 0;
+                player.Possess();
+            };
+            cutscene.OnRelease = self =>
+            {
+                hitbox.PhysicsLayer = Mask.Player;
+                hitbox.CollidesWithLayers = Mask.EnemyAttack;
+                player.Release();
+            };
+
             var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
             followCamera.FollowLerp = 1f;
 
@@ -328,6 +342,19 @@ namespace Game
             boss.FireSound = Core.Instance.LoadSound("Common", "projectile");
             boss.DeathSound = Core.Instance.LoadSound("Common", "sentry_death");
             hurtable.OnHurt = boss.OnHurt;
+
+            var cutscene = entity.AddComponent<CutsceneController>();
+            cutscene.OnPossess = self =>
+            {
+                hurtbox.PhysicsLayer = 0;
+                hurtbox.CollidesWithLayers = 0;
+            };
+            cutscene.OnRelease = self =>
+            {
+                hurtbox.PhysicsLayer = Mask.Enemy;
+                hurtbox.CollidesWithLayers = Mask.PlayerAttack;
+                boss.Begin();
+            };
 
             return entity;
         }

@@ -40,6 +40,7 @@ namespace Game
 
         enum States
         {
+            Start,
             Normal,
             Liftoff,
             Fly,
@@ -48,7 +49,7 @@ namespace Game
             Dead,
         }
 
-        States _state = States.Normal;
+        States _state = States.Start;
         public int Health { get; set; } = 75;
         int _facing = 1;
         float _timer = 0;
@@ -60,8 +61,11 @@ namespace Game
         {
             _animator = Entity.GetComponent<SpriteAnimator>();
             _mover = Entity.GetComponent<PlatformerMover>();
+        }
 
-            _mover.Speed.X = MoveSpeed * _facing;
+        public void Begin()
+        {
+            SetState(States.Normal);
         }
 
         public void Update()
@@ -70,8 +74,13 @@ namespace Game
 
             var position = Entity.Position;
             _animator.FlipX = _facing < 1;
+            var player = Entity.Scene.FindEntity("player");
 
-            if (_state == States.Normal)
+            if (_state == States.Start)
+            {
+                _facing = Math.Sign(player.Position.X - position.X);
+            }
+            else if (_state == States.Normal)
             {
                 if (_mover.OnWall(out var dir) && dir == _facing)
                     _facing = _facing * -1;
@@ -146,7 +155,6 @@ namespace Game
             }
             else if (_state == States.Fire)
             {
-                var player = Entity.Scene.FindEntity("player");
                 _facing = Math.Sign(player.Position.X - position.X);
                 _animator.Change("fire", SpriteAnimator.LoopMode.ClampForever);
                 _mover.Speed.X = 0;
