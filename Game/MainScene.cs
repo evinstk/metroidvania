@@ -273,9 +273,6 @@ namespace Game
                 else
                     return;
             }
-            base.Update();
-
-            _scripting.Update();
 
             var player = FindEntity("player");
             if (!_currentRoom.Collider.Bounds.Contains(player.Position))
@@ -283,6 +280,10 @@ namespace Game
                 // TODO: turn this into smooth transition
                 RunRoom(player.Position);
             }
+
+            base.Update();
+
+            _scripting.Update();
 
             var health = ScriptVars.Get<int>(Vars.PlayerHealth);
             if (health <= 0)
