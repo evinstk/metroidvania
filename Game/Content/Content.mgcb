@@ -311,6 +311,9 @@
 #begin Maps/Training/cypher.json
 /copy:Maps/Training/cypher.json
 
+#begin Maps/Training/left_start.json
+/copy:Maps/Training/left_start.json
+
 #begin Maps/Training/sentry.json
 /copy:Maps/Training/sentry.json
 
@@ -406,6 +409,12 @@
 
 #begin Sprites/player.png
 /copy:Sprites/player.png
+
+#begin Sprites/portraits.json
+/copy:Sprites/portraits.json
+
+#begin Sprites/portraits.png
+/copy:Sprites/portraits.png
 
 #begin Sprites/sentry.json
 /copy:Sprites/sentry.json
