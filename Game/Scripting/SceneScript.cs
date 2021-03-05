@@ -27,6 +27,7 @@ namespace Game.Scripting
             UserData.RegisterType<ScriptVars>();
             UserData.RegisterType<Vector2>();
             UserData.RegisterProxyType<ChestContentsProxy, ChestContents>(c => new ChestContentsProxy(c));
+            UserData.RegisterProxyType<SceneProxy, MainScene>(s => new SceneProxy(s));
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
@@ -66,6 +67,7 @@ namespace Game.Scripting
                 var coroutine = script.CreateCoroutine(fn);
                 _pendingCoroutines.Add(coroutine);
             });
+            script.Globals["scene"] = (MainScene)Core.Scene;
 
             script.DoString(scriptCode);
 

@@ -38,6 +38,8 @@ namespace Game
             AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.Light, RenderLayer.LightMap, RenderLayer.Hud, RenderLayer.PauseMenu, RenderLayer.PlayerMenu));
             AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMap));
             AddRenderer(new ScreenSpaceRenderer(3, RenderLayer.PauseMenu, RenderLayer.PlayerMenu, RenderLayer.Dialog, RenderLayer.Hud));
+
+            AddPostProcessor(new CinematicLetterboxPostProcessor(0));
         }
 
         public override void OnStart()

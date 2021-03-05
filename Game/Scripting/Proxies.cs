@@ -26,6 +26,23 @@ namespace Game.Scripting
         }
     }
 
+    class SceneProxy
+    {
+        MainScene Scene;
+
+        [MoonSharpHidden]
+        public SceneProxy(MainScene scene)
+        {
+            Scene = scene;
+        }
+
+        public void SetLetterbox(float size, float duration)
+        {
+            var letterbox = Scene.GetPostProcessor<CinematicLetterboxPostProcessor>();
+            letterbox.Tween("LetterboxSize", size, duration).SetRecycleTween(false).Start();
+        }
+    }
+
     class EntityProxy
     {
         Entity Entity;

@@ -12,6 +12,8 @@ start_coroutine(function()
         return player.in_area('enter')
     end)
 
+    scene.set_letterbox(24, 0.5)
+
     player.possess()
 
     vars['boss_switch'] = false
@@ -53,6 +55,7 @@ start_coroutine(function()
 
     player.release()
     boss.release()
+    scene.set_letterbox(0, 0.5)
 
     line()
 end)
@@ -62,6 +65,7 @@ start_coroutine(function()
         return boss.get_health() <= 0
     end)
 
+    scene.set_letterbox(24, 0.5)
     player.possess()
 
     dialog{
@@ -71,6 +75,7 @@ start_coroutine(function()
     line()
 
     player.release()
+    scene.set_letterbox(0, 0.5)
 
     vars['boss_switch'] = true
 end)
