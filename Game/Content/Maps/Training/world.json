@@ -2,18 +2,38 @@
 	"Rooms": [
 		{
 			"Id": "RDLXGDAXLYXIBWISUIRPMFCSLPVWAINPEPJNDK",
+			"RoomName": "boss_room",
 			"MapName": "boss.json",
 			"Position": {
 				"X": 0,
-				"Y": 270
+				"Y": 272
 			}
 		},
 		{
 			"Id": "MFPDVVGYZKXFDRKXGDQDKHQNWECKJIRABIGAEQ",
+			"RoomName": "start",
 			"MapName": "start.json",
 			"Position": {
 				"X": 0,
 				"Y": 0
+			}
+		},
+		{
+			"Id": "QGDKNPGTRRZITEMOQCBLTPPVASCLWPSKKWCLEQ",
+			"RoomName": "sentry",
+			"MapName": "sentry.json",
+			"Position": {
+				"X": 480,
+				"Y": 272
+			}
+		},
+		{
+			"Id": "FBHUWXLWBMRNNYLKSAZQIQPKQATEQOOGFVURFY",
+			"RoomName": "left_start",
+			"MapName": "left_start.json",
+			"Position": {
+				"X": -480,
+				"Y": 272
 			}
 		}
 	],
@@ -26,5 +46,6 @@
 				"Y": 0
 			}
 		}
-	]
+	],
+	"StartRoomId": "FBHUWXLWBMRNNYLKSAZQIQPKQATEQOOGFVURFY"
 }

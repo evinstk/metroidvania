@@ -2,6 +2,7 @@
 	"Rooms": [
 		{
 			"Id": "ETMZLHPPJTRUWFDOMPWREWYUORWJGMQKGTVRTF",
+			"RoomName": "spacecraft",
 			"MapName": "spacecraft.json",
 			"Position": {
 				"X": 0,
@@ -42,5 +43,6 @@
 				"Y": 0
 			}
 		}
-	]
+	],
+	"StartRoomId": "ETMZLHPPJTRUWFDOMPWREWYUORWJGMQKGTVRTF"
 }
