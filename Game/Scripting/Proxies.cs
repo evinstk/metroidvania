@@ -41,6 +41,30 @@ namespace Game.Scripting
             var letterbox = Scene.GetPostProcessor<CinematicLetterboxPostProcessor>();
             letterbox.Tween("LetterboxSize", size, duration).SetRecycleTween(false).Start();
         }
+
+        public void SetFade(int value, float duration)
+        {
+            var fadeRenderer = Scene.FadeRenderer;
+            var color = new Color(value, value, value, 255);
+            if (duration == 0)
+                fadeRenderer.RenderTargetClearColor = color;
+            else
+                fadeRenderer.Tween("RenderTargetClearColor", color, duration).SetRecycleTween(false).Start();
+        }
+
+        public void Create(string name, int x, int y)
+        {
+            // TODO: run same code/switch that room loading runs
+            switch (name)
+            {
+                case "player":
+                    Scene.CreatePlayer(new Vector2(x, y));
+                    break;
+                default:
+                    Debug.Log($"Unknown entity type {name}");
+                    break;
+            }
+        }
     }
 
     class EntityProxy
