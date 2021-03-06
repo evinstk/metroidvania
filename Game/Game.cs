@@ -2,6 +2,9 @@
 using Nez;
 using Nez.Console;
 using System;
+#if DEBUG
+using Nez.ImGuiTools;
+#endif
 
 namespace Game
 {
@@ -17,6 +20,12 @@ namespace Game
             DebugConsole.RenderScale = 2;
             //IsMouseVisible = false;
             //Screen.IsFullscreen = true;
+
+#if DEBUG
+            var imGuiManager = new ImGuiManager();
+            RegisterGlobalManager(imGuiManager);
+            imGuiManager.Enabled = false;
+#endif
 
             FMOD = this.InitializeFMOD();
             this.LoadBank("Master");
