@@ -42,6 +42,8 @@ namespace Game
 
         public const int Light = 200;
         public const int LightMap = 201;
+        public const int Fade = 202;
+        public const int FadeMap = 203;
     }
 
     static class Vars

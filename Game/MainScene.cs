@@ -13,6 +13,7 @@ namespace Game
     class MainScene : Scene
     {
         public readonly ScriptVars ScriptVars = new ScriptVars();
+        public Renderer FadeRenderer { get; private set; }
 
         Dictionary<string, World> _worlds = new Dictionary<string, World>();
         Dictionary<string, OgmoLevel> _levels = new Dictionary<string, OgmoLevel>();
@@ -35,8 +36,13 @@ namespace Game
             var lightRenderer = AddRenderer(new StencilLightRenderer(0, RenderLayer.Light, new RenderTexture()));
             lightRenderer.CollidesWithLayers = Mask.Terrain | Mask.Overlay;
             lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
-            AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.Light, RenderLayer.LightMap, RenderLayer.Hud, RenderLayer.PauseMenu, RenderLayer.PlayerMenu));
-            AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMap));
+
+            FadeRenderer = AddRenderer(new RenderLayerRenderer(0, RenderLayer.Fade));
+            FadeRenderer.RenderTexture = new RenderTexture();
+            FadeRenderer.RenderTargetClearColor = Color.White;
+
+            AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.Light, RenderLayer.LightMap, RenderLayer.Hud, RenderLayer.PauseMenu, RenderLayer.PlayerMenu, RenderLayer.Fade, RenderLayer.FadeMap));
+            AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMap, RenderLayer.FadeMap));
             AddRenderer(new ScreenSpaceRenderer(3, RenderLayer.PauseMenu, RenderLayer.PlayerMenu, RenderLayer.Dialog, RenderLayer.Hud));
 
             AddPostProcessor(new CinematicLetterboxPostProcessor(0));
@@ -52,6 +58,12 @@ namespace Game
 
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
+
+            CreateEntity("fade")
+                .SetParent(Camera.Transform)
+                .AddComponent(new SpriteRenderer(FadeRenderer.RenderTexture))
+                .SetMaterial(Material.BlendMultiply())
+                .SetRenderLayer(RenderLayer.FadeMap);
 
             // TODO: load from save file
             ScriptVars.Set(Vars.PlayerInventory, new Inventory
