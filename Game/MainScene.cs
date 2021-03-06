@@ -277,7 +277,7 @@ namespace Game
             }
 
             var player = FindEntity("player");
-            if (!_currentRoom.Collider.Bounds.Contains(player.Position))
+            if (player != null && !_currentRoom.Collider.Bounds.Contains(player.Position))
             {
                 // TODO: turn this into smooth transition
                 RunRoom(player.Position);

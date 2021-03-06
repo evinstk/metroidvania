@@ -10,18 +10,19 @@ namespace Game
 
         HashSet<MapRenderer> _renderers = new HashSet<MapRenderer>();
 
-        Collider _playerCollider;
         StencilLightRenderer _lightRenderer;
 
         public override void OnAddedToEntity()
         {
-            _playerCollider = Entity.Scene.FindEntity("player").GetComponent<Collider>();
             _lightRenderer = Entity.Scene.GetRenderer<StencilLightRenderer>();
         }
 
         public void Update()
         {
-            var hit = Physics.OverlapRectangle(_playerCollider.Bounds, Mask.Overlay);
+            var playerCollider = Entity.Scene.FindEntity("player")?.GetComponent<Collider>();
+            if (playerCollider == null) return;
+
+            var hit = Physics.OverlapRectangle(playerCollider.Bounds, Mask.Overlay);
             if (hit != null)
             {
                 var renderer = hit.GetComponent<MapRenderer>();
