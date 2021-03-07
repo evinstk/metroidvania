@@ -296,6 +296,12 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DefaultFont.spritefont
 
+#begin Maps/Intro/stasis_chambers.json
+/copy:Maps/Intro/stasis_chambers.json
+
+#begin Maps/Intro/world.json
+/copy:Maps/Intro/world.json
+
 #begin Maps/Metroidvania.ogmo
 /copy:Maps/Metroidvania.ogmo
 
@@ -346,6 +352,9 @@
 
 #begin Scripts/start.lua
 /copy:Scripts/start.lua
+
+#begin Scripts/stasis_chambers.lua
+/copy:Scripts/stasis_chambers.lua
 
 #begin Sounds/blaster.wav
 /copy:Sounds/blaster.wav

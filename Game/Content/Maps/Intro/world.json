@@ -1,0 +1,17 @@
+{
+	"Rooms": [
+		{
+			"Id": "IXURZGSCMSOGPDSAIEETGOUBWIGLTKAQQCMNZO",
+			"RoomName": "stasis_chambers",
+			"MapName": "stasis_chambers.json",
+			"Position": {
+				"X": 0,
+				"Y": 0
+			}
+		}
+	],
+	"Backgrounds": [
+
+	],
+	"StartRoomId": "IXURZGSCMSOGPDSAIEETGOUBWIGLTKAQQCMNZO"
+}

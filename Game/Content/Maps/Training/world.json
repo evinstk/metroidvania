@@ -10,15 +10,6 @@
 			}
 		},
 		{
-			"Id": "MFPDVVGYZKXFDRKXGDQDKHQNWECKJIRABIGAEQ",
-			"RoomName": "start",
-			"MapName": "start.json",
-			"Position": {
-				"X": 0,
-				"Y": 0
-			}
-		},
-		{
 			"Id": "QGDKNPGTRRZITEMOQCBLTPPVASCLWPSKKWCLEQ",
 			"RoomName": "sentry",
 			"MapName": "sentry.json",
