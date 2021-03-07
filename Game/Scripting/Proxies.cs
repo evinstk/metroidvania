@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MoonSharp.Interpreter;
 using Nez;
+using Nez.Sprites;
 using System.Collections.Generic;
 
 namespace Game.Scripting
@@ -130,5 +131,21 @@ namespace Game.Scripting
             }
             ctrl.Release();
         }
+
+        public void ChangeAnimation(string animationName, string loopModeStr = "loop")
+        {
+            var loopMode = loopModeStr == "loop" ? SpriteAnimator.LoopMode.Loop
+                : loopModeStr == "clamp_forever" ? SpriteAnimator.LoopMode.ClampForever
+                : SpriteAnimator.LoopMode.Loop;
+            var animator = Entity.GetComponent<SpriteAnimator>();
+            if (animator == null)
+            {
+                Debug.Log($"No {typeof(SpriteAnimator).Name} on {Entity.Name}");
+                return;
+            }
+            animator.Change(animationName, loopMode);
+        }
+
+        public bool IsAnimationRunning() => Entity.GetComponent<SpriteAnimator>()?.IsRunning ?? false;
     }
 }
