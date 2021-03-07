@@ -65,6 +65,11 @@ namespace Game.Scripting
                     break;
             }
         }
+
+        public void LoadWorld(string world)
+        {
+            Core.StartSceneTransition(new FadeTransition(() => new MainScene(world)));
+        }
     }
 
     class EntityProxy

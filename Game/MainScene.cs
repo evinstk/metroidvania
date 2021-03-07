@@ -22,7 +22,13 @@ namespace Game
         RoomBounds _currentRoom;
         SceneScript _scripting;
 
+        string _world;
         float _resetTimer = 0f;
+
+        public MainScene(string world)
+        {
+            _world = world;
+        }
 
         public override void Initialize()
         {
@@ -90,7 +96,7 @@ namespace Game
 
             _scripting = new SceneScript(dialogSystem, ScriptVars);
 
-            var world = LoadWorld("Training");
+            var world = LoadWorld(_world);
             CreateEntity("world");
             AddWorldBounds(world);
             SetBackground(world);
@@ -277,7 +283,7 @@ namespace Game
         {
             // restart
             if (Input.IsKeyDown(Keys.F2))
-                Core.Scene = new MainScene();
+                Core.Scene = new MainScene(_world);
 
             if (Timer.PauseTimer > 0)
             {
@@ -308,7 +314,7 @@ namespace Game
                     var gameOver = Core.Instance.LoadSound("Music", "game_over");
                     gameOver.start();
 
-                    var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene()));
+                    var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene(_world)));
                     transition.FadeOutDuration = 0.3f;
                     transition.FadeInDuration = 0.2f;
                 }

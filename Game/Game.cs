@@ -31,7 +31,7 @@ namespace Game
             this.LoadBank("Master");
             this.LoadBank("Master.strings");
 
-            Scene = new MainScene();
+            Scene = new MainScene("Intro");
         }
 
         protected override void Update(GameTime gameTime)
