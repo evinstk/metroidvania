@@ -74,6 +74,8 @@ namespace Game.Scripting
         {
             Core.StartSceneTransition(new FadeTransition(() => new MainScene(world)));
         }
+
+        public Entity FindEntity(string name) => Scene.FindEntity(name);
     }
 
     class EntityProxy

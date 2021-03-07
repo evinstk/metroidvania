@@ -61,7 +61,6 @@ namespace Game.Scripting
             });
             script.Globals["read_dialog_option"] = (Func<int>)(() => _dialogSystem.OptionIndex + 1);
             script.Globals["vars"] = _scriptVars;
-            script.Globals["find_entity"] = (Func<string, Entity>)FindEntity;
             script.Globals["start_coroutine"] = (Action<Closure>)((Closure fn) =>
             {
                 var coroutine = script.CreateCoroutine(fn);
@@ -94,7 +93,5 @@ namespace Game.Scripting
                 _coroutines.Remove(coroutineRemoval);
             _coroutineRemovals.Clear();
         }
-
-        Entity FindEntity(string name) => Core.Scene.FindEntity(name);
     }
 }
