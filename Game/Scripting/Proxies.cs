@@ -57,17 +57,16 @@ namespace Game.Scripting
             Scene.FindComponentOfType<Hud>().Enabled = show;
         }
 
-        public void Create(string name, int x, int y)
+        public Entity Create(string name, int x, int y)
         {
             // TODO: run same code/switch that room loading runs
             switch (name)
             {
                 case "player":
-                    Scene.CreatePlayer(new Vector2(x, y));
-                    break;
+                    return Scene.CreatePlayer(new Vector2(x, y));
                 default:
                     Debug.Log($"Unknown entity type {name}");
-                    break;
+                    return null;
             }
         }
 
