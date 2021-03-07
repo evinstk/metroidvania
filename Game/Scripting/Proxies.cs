@@ -52,6 +52,11 @@ namespace Game.Scripting
                 fadeRenderer.Tween("RenderTargetClearColor", color, duration).SetRecycleTween(false).Start();
         }
 
+        public void ShowHud(bool show)
+        {
+            Scene.FindComponentOfType<Hud>().Enabled = show;
+        }
+
         public void Create(string name, int x, int y)
         {
             // TODO: run same code/switch that room loading runs

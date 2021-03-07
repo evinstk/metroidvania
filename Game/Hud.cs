@@ -51,6 +51,16 @@ namespace Game
             playerInventory.OnItemAdd -= HandleItemAdd;
         }
 
+        public override void OnEnabled()
+        {
+            _incomingInventory?.SetIsVisible(true);
+        }
+
+        public override void OnDisabled()
+        {
+            _incomingInventory?.SetIsVisible(false);
+        }
+
         void HandleItemAdd(Item item)
         {
             var table = new Table();
