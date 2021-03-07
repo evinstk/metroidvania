@@ -80,6 +80,8 @@ namespace Game
                 RangedWeapons = new List<RangedWeapon> { (RangedWeapon)Item.Get("Blaster") },
                 EquippedRangedWeaponIndex = 0,
             });
+            ScriptVars[Vars.PlayerMaxHealth] = 5;
+            ScriptVars[Vars.PlayerHealth] = 5;
 
             CreateEntity("overlay").AddComponent<Overlay>();
 

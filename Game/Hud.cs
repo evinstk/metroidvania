@@ -34,10 +34,6 @@ namespace Game
             _emptyHeart = GameContent.LoadSprite("hud", "emptyHeart", Core.Content);
             _iconFrame = GameContent.LoadSprite("hud", "iconFrame", Core.Content);
 
-            // TODO: don't initialize in HUD
-            _scriptVars[Vars.PlayerMaxHealth] = 5;
-            _scriptVars[Vars.PlayerHealth] = 5;
-
             var playerInventory = Entity.Scene.GetPlayerInventory();
             playerInventory.OnItemAdd += HandleItemAdd;
 
