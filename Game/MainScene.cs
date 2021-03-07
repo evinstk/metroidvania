@@ -264,6 +264,9 @@ namespace Game
                             case "area":
                                 this.CreateArea(pos, entity);
                                 break;
+                            case "stasis_chamber":
+                                this.CreateStasisChamber(pos);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;

@@ -369,5 +369,16 @@ namespace Game
 
             return entity;
         }
+
+        public static Entity CreateStasisChamber(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("stasis_chamber", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("stasis_chamber_closed");
+            anim.RenderLayer = -5;
+
+            return entity;
+        }
     }
 }
