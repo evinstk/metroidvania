@@ -159,16 +159,42 @@ namespace Game.Scripting
             ctrl.Move(dest);
         }
 
-        public void MoveTo(string areaName)
+        public void MoveTo(string entityName)
         {
-            var area = Entity.Scene.FindEntity(areaName)?.GetComponent<Collider>();
+            var area = Entity.Scene.FindEntity(entityName);
             if (area == null)
             {
-                Debug.Log($"No area {areaName} found or configured.");
+                Debug.Log($"No entity {entityName} found.");
                 return;
             }
-            var areaPos = area.Entity.Position;
+            var areaPos = area.Position;
             Move(new Vector2(areaPos.X, areaPos.Y));
+        }
+    }
+
+    class CameraProxy
+    {
+        Camera Camera;
+
+        public CameraProxy(Camera camera)
+        {
+            Camera = camera;
+        }
+
+        public void FocusOn(string entityName, float panDuration = 1)
+        {
+            var entity = Core.Scene.FindEntity(entityName);
+            if (entity == null)
+            {
+                Debug.Log($"No entity {entityName} found.");
+                return;
+            }
+            Camera.GetComponent<CameraController>().SetFocus(entity.Position, panDuration);
+        }
+
+        public void ReleaseFocus()
+        {
+            Camera.GetComponent<CameraController>().ReleaseFocus();
         }
     }
 }

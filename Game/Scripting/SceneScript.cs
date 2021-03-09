@@ -28,6 +28,7 @@ namespace Game.Scripting
             UserData.RegisterType<Vector2>();
             UserData.RegisterProxyType<ChestContentsProxy, ChestContents>(c => new ChestContentsProxy(c));
             UserData.RegisterProxyType<SceneProxy, MainScene>(s => new SceneProxy(s));
+            UserData.RegisterProxyType<CameraProxy, Camera>(c => new CameraProxy(c));
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
@@ -67,6 +68,7 @@ namespace Game.Scripting
                 _pendingCoroutines.Add(coroutine);
             });
             script.Globals["scene"] = (MainScene)Core.Scene;
+            script.Globals["camera"] = Core.Scene.Camera;
 
             script.DoString(scriptCode);
 

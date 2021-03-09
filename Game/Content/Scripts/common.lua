@@ -67,9 +67,12 @@ function cutscene(opts_overrides, fn)
     scene.set_letterbox(opts.letterbox, 0.5)
     scene.show_hud(false)
 
+    camera.focus_on('player', 0.5)
+
     fn()
     line()
 
+    camera.focus_on('player', 0.5)
     scene.set_letterbox(0, 0.5)
     wait_for(0.5)
     if not opts.keep_hud_off then scene.show_hud(true) end
@@ -77,4 +80,6 @@ function cutscene(opts_overrides, fn)
         local entity = scene.find_entity(name)
         if entity ~= nil then entity.release() end
     end
+
+    camera.release_focus()
 end

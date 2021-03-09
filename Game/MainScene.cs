@@ -62,6 +62,7 @@ namespace Game
                 .SetMaterial(Material.BlendMultiply())
                 .SetRenderLayer(RenderLayer.LightMap);
 
+            Camera.AddComponent<CameraController>();
             Camera.AddComponent<CameraBounds>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
 
