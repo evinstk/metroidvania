@@ -15,7 +15,7 @@ namespace Game
             {
                 { "dead", 3 },
             }));
-            anim.Play("walk");
+            anim.Play("idle");
             anim.RenderLayer = -10;
 
             var hitbox = entity.AddComponent(new BoxCollider(16, 32));
