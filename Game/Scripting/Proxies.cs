@@ -147,5 +147,28 @@ namespace Game.Scripting
         }
 
         public bool IsAnimationRunning() => Entity.GetComponent<SpriteAnimator>()?.IsRunning ?? false;
+
+        public void Move(Vector2 dest)
+        {
+            var ctrl = Entity.GetComponent<CutsceneController>();
+            if (ctrl == null)
+            {
+                Debug.Log($"No {typeof(CutsceneController).Name} on ${Entity.Name}");
+                return;
+            }
+            ctrl.Move(dest);
+        }
+
+        public void MoveTo(string areaName)
+        {
+            var area = Entity.Scene.FindEntity(areaName)?.GetComponent<Collider>();
+            if (area == null)
+            {
+                Debug.Log($"No area {areaName} found or configured.");
+                return;
+            }
+            var areaPos = area.Entity.Position;
+            Move(new Vector2(areaPos.X, areaPos.Y));
+        }
     }
 }
