@@ -14,6 +14,12 @@ function wait(fn)
     end
 end
 
+function in_area(entity, area_name)
+    return function()
+        return entity.in_area(area_name)
+    end
+end
+
 function interact()
     wait(function()
         return interaction_pressed
