@@ -16,7 +16,6 @@ namespace Game
             Dodge,
             Hurt,
             Dead,
-            NoControl,
         }
 
         public Collider Hitbox;
@@ -349,13 +348,6 @@ namespace Game
                 _weaponAnimator.Change("empty");
                 Hitbox.PhysicsLayer &= ~Mask.Player;
             }
-            // NO CONTROL STATE
-            else if (_state == States.NoControl)
-            {
-                _animator.Change("idle");
-                _weaponAnimator.Change("empty");
-                _mover.Speed.X = 0;
-            }
 
             // gravity
             if (!_onGround && _state != States.Dodge && _state != States.Hurt)
@@ -469,16 +461,6 @@ namespace Game
             }
 
             _mover.Speed.Y = Mathf.Clamp(_mover.Speed.Y, -JumpSpeed, MaxFallSpeed);
-        }
-
-        public void Possess()
-        {
-            _state = States.NoControl;
-        }
-
-        public void Release()
-        {
-            _state = States.Normal;
         }
     }
 }

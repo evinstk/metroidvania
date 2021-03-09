@@ -35,15 +35,15 @@ namespace Game
             var cutscene = entity.AddComponent<CutsceneController>();
             cutscene.OnPossess = self =>
             {
+                player.SetEnabled(false);
                 hitbox.PhysicsLayer = 0;
                 hitbox.CollidesWithLayers = 0;
-                player.Possess();
             };
             cutscene.OnRelease = self =>
             {
+                player.SetEnabled(true);
                 hitbox.PhysicsLayer = Mask.Player;
                 hitbox.CollidesWithLayers = Mask.EnemyAttack;
-                player.Release();
             };
 
             var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
@@ -346,14 +346,15 @@ namespace Game
             var cutscene = entity.AddComponent<CutsceneController>();
             cutscene.OnPossess = self =>
             {
+                boss.SetEnabled(false);
                 hurtbox.PhysicsLayer = 0;
                 hurtbox.CollidesWithLayers = 0;
             };
             cutscene.OnRelease = self =>
             {
+                boss.SetEnabled(true);
                 hurtbox.PhysicsLayer = Mask.Enemy;
                 hurtbox.CollidesWithLayers = Mask.PlayerAttack;
-                boss.Begin();
             };
 
             return entity;
