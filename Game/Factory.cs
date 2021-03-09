@@ -377,7 +377,83 @@ namespace Game
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play("stasis_chamber_closed");
+            anim.RenderLayer = -1;
+
+            return entity;
+        }
+
+        public static Entity CreateDarkLord(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("dark_lord", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("dark_lord", scene.Content));
+            anim.Play("idle");
             anim.RenderLayer = -5;
+
+            var hitbox = entity.AddComponent(new BoxCollider(16, 32));
+            hitbox.PhysicsLayer = Mask.Enemy;
+            hitbox.CollidesWithLayers = Mask.PlayerAttack;
+
+            var mover = entity.AddComponent<PlatformerMover>();
+            mover.Collider = hitbox;
+
+            var hurtable = entity.AddComponent<Hurtable>();
+            hurtable.Collider = hitbox;
+
+
+            var darkLord = entity.AddComponent<DarkLord>();
+            hurtable.OnHurt = darkLord.OnHurt;
+
+            var cutscene = entity.AddComponent<CutsceneController>();
+            cutscene.WalkSpeed = 50f;
+            cutscene.OnPossess = self =>
+            {
+                self.GetComponent<DarkLord>().SetEnabled(false);
+            };
+            cutscene.OnRelease = self =>
+            {
+                self.GetComponent<DarkLord>().SetEnabled(true);
+            };
+
+            return entity;
+        }
+
+        static Dictionary<string, int> _goblinOverrides = new Dictionary<string, int>
+        {
+            { "idle", 3 },
+        };
+
+        public static Entity CreateGoblin(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("goblin", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("goblin", scene.Content, _goblinOverrides));
+            anim.Play("idle");
+            anim.RenderLayer = -5;
+
+            var hitbox = entity.AddComponent(new BoxCollider(24, 24));
+            hitbox.PhysicsLayer = Mask.Enemy;
+            hitbox.CollidesWithLayers = Mask.PlayerAttack;
+
+            var mover = entity.AddComponent<PlatformerMover>();
+            mover.Collider = hitbox;
+
+            var hurtable = entity.AddComponent<Hurtable>();
+            hurtable.Collider = hitbox;
+
+            var goblin = entity.AddComponent<Goblin>();
+            hurtable.OnHurt = goblin.OnHurt;
+
+            var cutscene = entity.AddComponent<CutsceneController>();
+            cutscene.WalkSpeed = 100f;
+            cutscene.OnPossess = self =>
+            {
+                self.GetComponent<Goblin>().SetEnabled(false);
+            };
+            cutscene.OnRelease = self =>
+            {
+                self.GetComponent<Goblin>().SetEnabled(true);
+            };
 
             return entity;
         }

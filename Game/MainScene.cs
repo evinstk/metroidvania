@@ -267,6 +267,12 @@ namespace Game
                             case "stasis_chamber":
                                 this.CreateStasisChamber(pos);
                                 break;
+                            case "dark_lord":
+                                this.CreateDarkLord(pos);
+                                break;
+                            case "goblin":
+                                this.CreateGoblin(pos);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;
