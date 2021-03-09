@@ -28,7 +28,7 @@ namespace Game
                 var renderer = hit.GetComponent<MapRenderer>();
                 if (!_renderers.Contains(renderer))
                 {
-                    renderer.TweenColorTo(Color.Transparent, TransitionDuration).SetRecycleTween(true).Start();
+                    renderer.TweenColorTo(Color.Transparent, TransitionDuration).SetRecycleTween(false).Start();
                     _lightRenderer.CollidesWithLayers &= ~Mask.Overlay;
                     _renderers.Add(renderer);
                 }
@@ -37,7 +37,7 @@ namespace Game
             {
                 foreach (var renderer in _renderers)
                 {
-                    renderer.TweenColorTo(Color.White, TransitionDuration).SetRecycleTween(true).Start();
+                    renderer.TweenColorTo(Color.White, TransitionDuration).SetRecycleTween(false).Start();
                 }
                 _lightRenderer.CollidesWithLayers |= Mask.Overlay;
                 _renderers.Clear();
