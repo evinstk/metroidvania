@@ -18,12 +18,18 @@ namespace Game
 
         public void Update()
         {
-            _panTimer += Time.DeltaTime;
+            if (_panTimer <= _panDuration)
+            {
+                _panTimer += Time.DeltaTime;
+            }
 
             if (_focus != null)
             {
                 var lerpAmount = Mathf.Clamp01(_panTimer / _panDuration);
-                Entity.Position = Vector2.Lerp(_startPosition, (Vector2)_focus, lerpAmount);
+                var pos = Vector2.Lerp(_startPosition, (Vector2)_focus, lerpAmount);
+                pos.X = (int)pos.X;
+                pos.Y = (int)pos.Y;
+                Entity.Position = pos;
             }
 
             _lastPosition = Entity.Position;
