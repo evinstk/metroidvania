@@ -401,11 +401,23 @@
 #begin Sprites/cypher.png
 /copy:Sprites/cypher.png
 
+#begin Sprites/dark_lord.json
+/copy:Sprites/dark_lord.json
+
+#begin Sprites/dark_lord.png
+/copy:Sprites/dark_lord.png
+
 #begin Sprites/doodads.json
 /copy:Sprites/doodads.json
 
 #begin Sprites/doodads.png
 /copy:Sprites/doodads.png
+
+#begin Sprites/goblin.json
+/copy:Sprites/goblin.json
+
+#begin Sprites/goblin.png
+/copy:Sprites/goblin.png
 
 #begin Sprites/hud.json
 /copy:Sprites/hud.json

@@ -26,8 +26,47 @@ local function hal_speak(line, opts)
     })
 end
 
+local function dark_lord_speak(line, opts)
+    return dialog({
+        line=line,
+        portrait=opts and opts.portrait or 'dark_lord_neutral',
+        options=opts and opts.options or nil,
+    })
+end
+
+local function goblin_speak(line, opts)
+    return dialog({
+        line=line,
+        portrait=opts and opts.portrait or 'goblin_neutral',
+        options=opts and opts.options or nil,
+    })
+end
+
+local function baddie_move()
+    local baddie = scene.find_entity('dark_lord')
+    local goblin = scene.find_entity('goblin')
+    -- local dest = scene.find_entity('dark_lord_dest').get_position()
+
+    baddie.possess()
+    baddie.move_to('switch_stop')
+    wait(in_area(baddie, 'switch_stop'))
+
+    vars['stasis_door'] = true
+    wait_for(1)
+
+    baddie.move_to('dark_lord_dest')
+    goblin.possess()
+    goblin.move_to('goblin_dest')
+end
+
 start_coroutine(function()
+    scene.load_music('Music', 'refiners_fire')
+    scene.play_music()
+
+    local player
     cutscene(function()
+        camera.focus_on('stasis_chamber')
+
         wait_for(2)
 
         center_dialog('Is that ' .. them .. '?')
@@ -41,6 +80,8 @@ start_coroutine(function()
         hal_speak('Alright. Releasing in 3, 2, 1...')
         line()
 
+        -- start_coroutine(baddie_move)
+
         local chamber = scene.find_entity('stasis_chamber')
         chamber.change_animation('stasis_chamber_opening', 'clamp_forever')
         wait(function()
@@ -49,7 +90,7 @@ start_coroutine(function()
 
         chamber.change_animation('stasis_chamber_open', 'clamp_forever')
         local spawn_pos = scene.find_entity('player_spawn').get_position()
-        local player = scene.create('player', spawn_pos.x, spawn_pos.y)
+        player = scene.create('player', spawn_pos.x, spawn_pos.y)
         player.possess()
 
         local selection = hal_speak(player_name .. ', can you read me?', {
@@ -73,6 +114,36 @@ start_coroutine(function()
         hal_speak('There should be a weapon cache in your vicinity. Get going, ' .. player_name .. '.')
     end)
 
+    vars['escape_door'] = true
+    wait(in_area(player, 'escape_area'))
+    vars['escape_door'] = false
+
+    cutscene({
+        possess={ 'player', 'dark_lord', 'goblin' },
+    }, function()
+        camera.focus_on('stasis_chamber')
+
+        local baddie = scene.find_entity('dark_lord')
+        local goblin = scene.find_entity('goblin')
+
+        baddie.move_to('switch_stop')
+        wait(in_area(baddie, 'switch_stop'))
+
+        vars['stasis_door'] = true
+        wait_for(1)
+
+        baddie.move_to('dark_lord_dest')
+        goblin.move_to('goblin_dest')
+
+        wait(in_area(baddie, 'dark_lord_dest'))
+        wait(in_area(goblin, 'goblin_dest'))
+
+        dark_lord_speak('Lieutenant?')
+        goblin_speak('Yes, boss?')
+        dark_lord_speak('Care to explain to me why our asset appears to be missing?')
+    end)
+
+    scene.stop_music(true)
     wait_for(2)
     scene.set_fade(0, 3)
     wait_for(3)

@@ -1,7 +1,7 @@
 {"frames": [
 
 {
-	"filename": "default_neutral0.png",
+	"filename": "dark_lord_neutral0.png",
 	"frame": {"x":1,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -10,7 +10,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "goblin_amused0.png",
+	"filename": "default_neutral0.png",
 	"frame": {"x":67,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -19,7 +19,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "goblin_neutral0.png",
+	"filename": "goblin_amused0.png",
 	"frame": {"x":133,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
@@ -28,8 +28,17 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "goblin_terror0.png",
+	"filename": "goblin_neutral0.png",
 	"frame": {"x":199,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "goblin_terror0.png",
+	"frame": {"x":265,"y":1,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -41,8 +50,8 @@
 	"version": "1.0",
 	"image": "portraits.png",
 	"format": "RGBA8888",
-	"size": {"w":264,"h":66},
+	"size": {"w":330,"h":66},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:e4e8dc6a3251783408fca52eb117f0f2:90445ffb0dc17048e0a1baf144efd810:b2f80d7af41902736d3ed02ec88e31a6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f5e822b40476aa11a096eba21c35e7bf:7a08266234fb07f3ef99d7eaf27a386b:b2f80d7af41902736d3ed02ec88e31a6$"
 }
 }

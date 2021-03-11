@@ -47,6 +47,9 @@ start_coroutine(function()
             }
         end
 
+        scene.load_music('Music', 'vs_solidus')
+        scene.play_music()
+
         dialog{
             portrait='goblin_neutral',
             line='Steel yourself.'
@@ -59,6 +62,7 @@ start_coroutine(function()
         return boss.get_health() <= 0
     end)
 
+    scene.stop_music(true)
     cutscene(function()
         dialog{
             portrait='goblin_terror',
