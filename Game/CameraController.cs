@@ -18,7 +18,7 @@ namespace Game
 
         public void Update()
         {
-            if (_panTimer <= _panDuration)
+            if (_panTimer < _panDuration)
             {
                 _panTimer += Time.DeltaTime;
             }
