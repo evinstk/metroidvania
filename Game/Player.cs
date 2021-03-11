@@ -117,6 +117,11 @@ namespace Game
             _vars = Entity.Scene.GetScriptVars();
         }
 
+        public override void OnDisabled()
+        {
+            _weaponAnimator?.Play("empty");
+        }
+
         public void Update()
         {
             var flip = _facing == -1;
