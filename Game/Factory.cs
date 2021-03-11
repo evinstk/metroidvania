@@ -27,10 +27,10 @@ namespace Game
 
             var player = entity.AddComponent<Player>();
             player.Hitbox = hitbox;
-            player.JumpSound = Core.Instance.LoadSound("Player", "jump");
-            player.HurtSound = Core.Instance.LoadSound("Player", "hurt");
-            player.DeathSound = Core.Instance.LoadSound("Player", "death");
-            player.DodgeSound = Core.Instance.LoadSound("Player", "dodge");
+            player.JumpSound = GameContent.LoadSound("Player", "jump");
+            player.HurtSound = GameContent.LoadSound("Player", "hurt");
+            player.DeathSound = GameContent.LoadSound("Player", "death");
+            player.DodgeSound = GameContent.LoadSound("Player", "dodge");
 
             var cutscene = entity.AddComponent<CutsceneController>();
             cutscene.OnPossess = self =>
@@ -79,8 +79,8 @@ namespace Game
 
             var sentry = entity.AddComponent<Sentry>();
             sentry.Hitbox = hitbox;
-            sentry.FireSound = Core.Instance.LoadSound("Common", "projectile");
-            sentry.DeathSound = Core.Instance.LoadSound("Common", "sentry_death");
+            sentry.FireSound = GameContent.LoadSound("Common", "projectile");
+            sentry.DeathSound = GameContent.LoadSound("Common", "sentry_death");
 
             return entity;
         }
@@ -264,8 +264,8 @@ namespace Game
 
             var cypher = entity.AddComponent<Cypher>();
             cypher.Hitbox = hitbox;
-            cypher.FireSound = Core.Instance.LoadSound("Common", "projectile");
-            cypher.DeathSound = Core.Instance.LoadSound("Common", "sentry_death");
+            cypher.FireSound = GameContent.LoadSound("Common", "projectile");
+            cypher.DeathSound = GameContent.LoadSound("Common", "sentry_death");
 
             var hurtable = entity.AddComponent<Hurtable>();
             hurtable.Collider = hitbox;
@@ -339,8 +339,8 @@ namespace Game
 
             var boss = entity.AddComponent<MechBoss>();
             boss.Hitbox = hitbox;
-            boss.FireSound = Core.Instance.LoadSound("Common", "projectile");
-            boss.DeathSound = Core.Instance.LoadSound("Common", "sentry_death");
+            boss.FireSound = GameContent.LoadSound("Common", "projectile");
+            boss.DeathSound = GameContent.LoadSound("Common", "sentry_death");
             hurtable.OnHurt = boss.OnHurt;
 
             var cutscene = entity.AddComponent<CutsceneController>();

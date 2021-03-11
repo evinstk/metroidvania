@@ -28,8 +28,8 @@ namespace Game
 #endif
 
             FMOD = this.InitializeFMOD();
-            this.LoadBank("Master");
-            this.LoadBank("Master.strings");
+            GameContent.LoadBank("Master");
+            GameContent.LoadBank("Master.strings");
 
             Scene = new MainScene("Intro");
         }

@@ -108,12 +108,12 @@ namespace Game
 
         static Dictionary<string, FMOD.Studio.Bank> _banks = new Dictionary<string, FMOD.Studio.Bank>();
 
-        public static FMOD.Studio.Bank LoadBank(this Core core, string bankName)
+        public static FMOD.Studio.Bank LoadBank(string bankName)
         {
             var bankKey = $"{ContentPath.FMOD}{bankName}.bank";
             if (!_banks.TryGetValue(bankKey, out var bank))
             {
-                var fmod = core.GetFMODSystem();
+                var fmod = Core.Instance.GetFMODSystem();
                 fmod.loadBankFile(bankKey, FMOD.Studio.LOAD_BANK_FLAGS.NORMAL, out bank);
                 bank.loadSampleData();
                 _banks[bankKey] = bank;
@@ -122,28 +122,16 @@ namespace Game
             return bank;
         }
 
-        // TODO: don't make extension method
-        public static FMOD.Studio.EventInstance LoadSound(this Core core, string bankName, string evt)
+        public static FMOD.Studio.EventInstance LoadSound(string bankName, string evt)
         {
+            var core = Core.Instance;
             var fmod = core.GetFMODSystem();
 
-            //var stringBank = core.LoadBank("Master.strings");
-            core.LoadBank(bankName);
+            LoadBank(bankName);
 
             fmod.getEvent($"event:/{bankName}/{evt}", out var desc);
             desc.createInstance(out var instance);
             return instance;
-
-            //bank.getEventList(out var events);
-            //for (var i = 0; i < events.Length; ++i)
-            //{
-            //    if (true)
-            //    {
-            //        events[i].createInstance(out var instance);
-            //        return instance;
-            //    }
-            //}
-            //throw new KeyNotFoundException("No event found.");
         }
     }
 }

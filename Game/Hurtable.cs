@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Nez;
 using Nez.Sprites;
 using System;
@@ -22,7 +21,7 @@ namespace Game
 
         public override void Initialize()
         {
-            HurtSound = Core.Instance.LoadSound("Common", "impact");
+            HurtSound = GameContent.LoadSound("Common", "impact");
         }
 
         public override void OnAddedToEntity()

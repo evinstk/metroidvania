@@ -22,8 +22,8 @@ namespace Game
             Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
 
             FMOD = this.InitializeFMOD();
-            this.LoadBank("Master");
-            this.LoadBank("Master.strings");
+            GameContent.LoadBank("Master");
+            GameContent.LoadBank("Master.strings");
 
             Scene = new EditorScene();
         }

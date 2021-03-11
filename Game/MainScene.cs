@@ -330,7 +330,7 @@ namespace Game
 
                 if (Timer.OnTime(_resetTimer, 2f))
                 {
-                    var gameOver = Core.Instance.LoadSound("Music", "game_over");
+                    var gameOver = GameContent.LoadSound("Music", "game_over");
                     gameOver.start();
 
                     var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene(_world)));
