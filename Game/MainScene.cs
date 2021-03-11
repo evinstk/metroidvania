@@ -72,6 +72,8 @@ namespace Game
                 .SetMaterial(Material.BlendMultiply())
                 .SetRenderLayer(RenderLayer.FadeMap);
 
+            CreateEntity("sound_system").AddComponent<SoundSystem>();
+
             // TODO: load from save file
             ScriptVars.Set(Vars.PlayerInventory, new Inventory
             {
@@ -321,6 +323,11 @@ namespace Game
             if (health <= 0)
             {
                 _resetTimer += Time.DeltaTime;
+                if (Timer.OnTime(_resetTimer, 0.01f))
+                {
+                    FindComponentOfType<SoundSystem>().StopMusic(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                }
+
                 if (Timer.OnTime(_resetTimer, 2f))
                 {
                     var gameOver = Core.Instance.LoadSound("Music", "game_over");

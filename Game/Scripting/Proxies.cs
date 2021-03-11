@@ -77,6 +77,14 @@ namespace Game.Scripting
         }
 
         public Entity FindEntity(string name) => Scene.FindEntity(name);
+
+        public void LoadMusic(string bankName, string evt) => Scene.FindComponentOfType<SoundSystem>().LoadMusic(bankName, evt);
+        public void PlayMusic() => Scene.FindComponentOfType<SoundSystem>().PlayMusic();
+        public void StopMusic(bool fadeOut = false)
+        {
+            var stopMode = fadeOut ? FMOD.Studio.STOP_MODE.ALLOWFADEOUT : FMOD.Studio.STOP_MODE.IMMEDIATE;
+            Scene.FindComponentOfType<SoundSystem>().StopMusic(stopMode);
+        }
     }
 
     class EntityProxy
