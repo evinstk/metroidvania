@@ -56,9 +56,9 @@ namespace Game.Scripting
                 $"{ContentPath.Scripts}?.lua",
                 $"{ContentPath.Scripts}?",
             };
-            script.Globals["line"] = (Action<string, string, List<string>, int?, int?, bool?>)((line, portrait, options, x, y, showBorder) =>
+            script.Globals["line"] = (Action<string, string, List<string>, int?, int?, bool?, float?>)((line, portrait, options, x, y, showBorder, pitch) =>
             {
-                _dialogSystem.FeedLine(line, portrait, options, new Vector2(x ?? 10, y ?? 10), showBorder ?? true);
+                _dialogSystem.FeedLine(line, portrait, options, new Vector2(x ?? 10, y ?? 10), showBorder ?? true, pitch ?? 0f);
             });
             script.Globals["read_dialog_option"] = (Func<int>)(() => _dialogSystem.OptionIndex + 1);
             script.Globals["vars"] = _scriptVars;

@@ -42,6 +42,8 @@ namespace Game
         VirtualIntegerAxis _inputSelect;
         SpriteAnimator _portraitAnimator;
 
+        FMOD.Studio.EventInstance _speechSound;
+
         public override void OnAddedToEntity()
         {
             var font = Core.Content.Load<SpriteFont>("Fonts/DefaultFont");
@@ -54,6 +56,14 @@ namespace Game
             _portraitAnimator = Entity.AddComponent(Animator.MakeAnimator("portraits", Entity.Scene.Content));
             _portraitAnimator.RenderLayer = RenderLayer;
             _portraitAnimator.LocalOffset = InnerMargin + PortraitSize / 2;
+
+            _speechSound = GameContent.LoadSound("Common", "speech");
+        }
+
+        public override void OnRemovedFromEntity()
+        {
+            _speechSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            _speechSound.release();
         }
 
         public void FeedLine(
@@ -61,7 +71,8 @@ namespace Game
             string portrait = null,
             List<string> options = null,
             Vector2? boxMargin = null,
-            bool showBorder = true)
+            bool showBorder = true,
+            float pitch = 0)
         {
             _line = line;
             _sb.Clear();
@@ -70,6 +81,9 @@ namespace Game
             _readerIndex = 0;
             _showBorder = showBorder;
             _boxMargin = boxMargin ?? BoxMarginDefault;
+            _speechSound.setParameterByName("pitch", pitch);
+            if (_line == null)
+                _speechSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
             if (options != null && options.Count > 0)
             {
@@ -159,6 +173,12 @@ namespace Game
                 }
             }
             _text = new FontCharacterSource(_sb);
+
+            if (_readerIndex >= _line.Length)
+                _speechSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            else if (_speechSound.getPlaybackState(out var playbackState) == FMOD.RESULT.OK && playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                _speechSound.start();
+
             _charElapsed += Time.DeltaTime;
 
             var selectInput = _inputSelect.Value;

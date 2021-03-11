@@ -31,6 +31,7 @@ local function dark_lord_speak(line, opts)
         line=line,
         portrait=opts and opts.portrait or 'dark_lord_neutral',
         options=opts and opts.options or nil,
+        pitch=-0.8,
     })
 end
 
@@ -39,6 +40,7 @@ local function goblin_speak(line, opts)
         line=line,
         portrait=opts and opts.portrait or 'goblin_neutral',
         options=opts and opts.options or nil,
+        pitch=0.8,
     })
 end
 

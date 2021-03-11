@@ -5,6 +5,8 @@ local boss = scene.find_entity('boss')
 
 vars['boss_switch'] = true
 
+local goblin_pitch = 0.8
+
 start_coroutine(function()
     boss.possess()
 
@@ -20,15 +22,18 @@ start_coroutine(function()
         dialog{
             portrait='goblin_neutral',
             line='I cannot allow you to go any further.',
+            pitch=goblin_pitch,
         }
         dialog{
             portrait='goblin_neutral',
-            line='You\'ve been far too much of a nuisance to let you live.'
+            line='You\'ve been far too much of a nuisance to let you live.',
+            pitch=goblin_pitch,
         }
 
         local selection, index = dialog{
             portrait='goblin_neutral',
             line='Any last words?',
+            pitch=goblin_pitch,
             options={
                 'You\'re not stopping me.',
                 'Get out of my way!',
@@ -38,12 +43,14 @@ start_coroutine(function()
         if index == 1 then
             dialog{
                 portrait='goblin_amused',
-                line='Oh I\'m not, huh? We\'ll see about that.'
+                line='Oh I\'m not, huh? We\'ll see about that.',
+                pitch=goblin_pitch,
             }
         else
             dialog{
                 portrait='goblin_amused',
-                line='Hah! Over my dead body.'
+                line='Hah! Over my dead body.',
+                pitch=goblin_pitch,
             }
         end
 
@@ -52,7 +59,8 @@ start_coroutine(function()
 
         dialog{
             portrait='goblin_neutral',
-            line='Steel yourself.'
+            line='Steel yourself.',
+            pitch=goblin_pitch,
         }
     end)
 end)
@@ -66,7 +74,8 @@ start_coroutine(function()
     cutscene(function()
         dialog{
             portrait='goblin_terror',
-            line='No-o-o-o-o-o!'
+            line='No-o-o-o-o-o!',
+            pitch=goblin_pitch,
         }
     end)
 
