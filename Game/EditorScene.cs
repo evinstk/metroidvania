@@ -1,8 +1,8 @@
 ﻿using ImGuiNET;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.ImGuiTools;
-using Nez.ImGuiTools.TypeInspectors;
 using Nez.Persistence;
 using System;
 using System.Collections.Generic;
@@ -243,10 +243,31 @@ namespace Game
         public Vector2 ScrollScale;
     }
 
-    class WorldRenderer : Component, IUpdatable
+    class WorldRenderer : RenderableComponent, IUpdatable
     {
+        public override RectangleF Bounds
+        {
+            get
+            {
+                return new RectangleF(
+                    new Vector2(float.MinValue / 2),
+                    new Vector2(float.MaxValue));
+            }
+        }
+
         World _lastWorld;
         Dictionary<string, List<MapRenderer>> _renderers = new Dictionary<string, List<MapRenderer>>();
+        new Dictionary<string, BoxCollider> _bounds = new Dictionary<string, BoxCollider>();
+
+        public string GetRoomAt(Vector2 worldPosition)
+        {
+            foreach (var bounds in _bounds)
+            {
+                if (bounds.Value.Bounds.Contains(worldPosition))
+                    return bounds.Key;
+            }
+            return null;
+        }
 
         public void Update()
         {
@@ -261,6 +282,11 @@ namespace Game
                         Entity.RemoveComponent(renderer);
                 }
                 _renderers.Clear();
+
+                foreach (var bounds in _bounds.Values)
+                    Entity.RemoveComponent(bounds);
+                _bounds.Clear();
+
                 if (world != null)
                 {
                     foreach (var room in world.Rooms)
@@ -293,6 +319,9 @@ namespace Game
                             }
                         }
                         _renderers.Add(room.Id, renderers);
+
+                        var bounds = Entity.AddComponent(new BoxCollider(room.Position.X, room.Position.Y, ogmoLevel.width, ogmoLevel.height));
+                        _bounds.Add(room.Id, bounds);
                     }
                 }
             }
@@ -304,20 +333,36 @@ namespace Game
                     var renderers = _renderers[room.Id];
                     foreach (var renderer in renderers)
                         renderer.LocalOffset = room.Position.ToVector2();
+
+                    var bounds = _bounds[room.Id];
+                    bounds.SetLocalOffset(room.Position.ToVector2() + bounds.Bounds.Size / 2);
                 }
             }
 
             _lastWorld = world;
         }
+
+        public override void Render(Batcher batcher, Camera camera)
+        {
+            var roomIds = Entity.Scene.FindComponentOfType<EditorController>().RoomSelection;
+            foreach (var id in roomIds)
+            {
+                var bounds = _bounds[id];
+                batcher.DrawHollowRect(bounds.Bounds, Color.Green, 2);
+            }
+        }
     }
 
     class EditorController : Component, IUpdatable
     {
+        public List<string> RoomSelection = new List<string>();
+
         SubpixelVector2 _subpixelV2;
+        //Vector2 _selectionDelta;
 
         public void Update()
         {
-            if (Input.LeftMouseButtonDown)
+            if (Input.MiddleMouseButtonDown)
             {
                 var camera = Entity.Scene.Camera;
                 var delta = Input.ScaledMousePositionDelta;
@@ -325,6 +370,61 @@ namespace Game
                 _subpixelV2.Update(ref delta);
                 camera.Position -= delta;
             }
+
+            if (Input.IsKeyPressed(Keys.Escape))
+            {
+                RoomSelection.Clear();
+            }
+
+            if (Input.LeftMouseButtonPressed)
+            {
+                if (!Input.IsKeyDown(Keys.LeftShift) && !Input.IsKeyDown(Keys.LeftShift))
+                    RoomSelection.Clear();
+
+                var worldRenderer = Entity.Scene.FindComponentOfType<WorldRenderer>();
+                var roomId = worldRenderer.GetRoomAt(Entity.Scene.Camera.MouseToWorldPoint());
+                if (roomId != null)
+                    RoomSelection.Add(roomId);
+            }
+
+            if (Input.RightMouseButtonDown)
+            {
+                var scene = Entity.Scene as EditorScene;
+                var currWorld = scene.World;
+                if (currWorld == null) return;
+
+                var delta = Input.ScaledMousePositionDelta;
+                foreach (var roomId in RoomSelection)
+                {
+                    var room = currWorld.Rooms.Find(r => r.Id == roomId);
+                    room.Position += delta.ToPoint();
+                }
+
+                //_selectionDelta += Input.ScaledMousePositionDelta;
+                ////delta.X = (int)Mathf.RoundToNearest(delta.X, 16);
+                ////delta.Y = (int)Mathf.RoundToNearest(delta.Y, 16);
+
+                //if (Math.Abs(_selectionDelta.X) >= 16 || Math.Abs(_selectionDelta.Y) >= 16)
+                //{
+                //    Point move;
+                //    move.X = (int)Mathf.RoundToNearest(_selectionDelta.X, 16);
+                //    move.Y = (int)Mathf.RoundToNearest(_selectionDelta.Y, 16);
+                //    foreach (var roomId in RoomSelection)
+                //    {
+                //        var room = currWorld.Rooms.Find(r => r.Id == roomId);
+                //        room.Position += move;
+                //    }
+
+                //    if (move.X != 0)
+                //        _selectionDelta.X = (Math.Abs(_selectionDelta.X) % Math.Abs(move.X)) * Math.Sign(_selectionDelta.X);
+                //    if (move.Y != 0)
+                //        _selectionDelta.Y = (Math.Abs(_selectionDelta.Y) % Math.Abs(move.Y)) * Math.Sign(_selectionDelta.Y);
+                //}
+            }
+            //else
+            //{
+            //    _selectionDelta = Vector2.Zero;
+            //}
         }
     }
 
