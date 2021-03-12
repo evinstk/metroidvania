@@ -387,11 +387,11 @@ namespace Game
                     RoomSelection.Add(roomId);
             }
 
-            if (Input.RightMouseButtonDown)
+            var scene = Entity.Scene as EditorScene;
+            var currWorld = scene.World;
+
+            if (Input.RightMouseButtonDown && currWorld != null)
             {
-                var scene = Entity.Scene as EditorScene;
-                var currWorld = scene.World;
-                if (currWorld == null) return;
 
                 var delta = Input.ScaledMousePositionDelta;
                 foreach (var roomId in RoomSelection)
@@ -399,32 +399,17 @@ namespace Game
                     var room = currWorld.Rooms.Find(r => r.Id == roomId);
                     room.Position += delta.ToPoint();
                 }
-
-                //_selectionDelta += Input.ScaledMousePositionDelta;
-                ////delta.X = (int)Mathf.RoundToNearest(delta.X, 16);
-                ////delta.Y = (int)Mathf.RoundToNearest(delta.Y, 16);
-
-                //if (Math.Abs(_selectionDelta.X) >= 16 || Math.Abs(_selectionDelta.Y) >= 16)
-                //{
-                //    Point move;
-                //    move.X = (int)Mathf.RoundToNearest(_selectionDelta.X, 16);
-                //    move.Y = (int)Mathf.RoundToNearest(_selectionDelta.Y, 16);
-                //    foreach (var roomId in RoomSelection)
-                //    {
-                //        var room = currWorld.Rooms.Find(r => r.Id == roomId);
-                //        room.Position += move;
-                //    }
-
-                //    if (move.X != 0)
-                //        _selectionDelta.X = (Math.Abs(_selectionDelta.X) % Math.Abs(move.X)) * Math.Sign(_selectionDelta.X);
-                //    if (move.Y != 0)
-                //        _selectionDelta.Y = (Math.Abs(_selectionDelta.Y) % Math.Abs(move.Y)) * Math.Sign(_selectionDelta.Y);
-                //}
             }
-            //else
-            //{
-            //    _selectionDelta = Vector2.Zero;
-            //}
+
+            if (Input.RightMouseButtonReleased && currWorld != null)
+            {
+                foreach (var roomId in RoomSelection)
+                {
+                    var room = currWorld.Rooms.Find(r => r.Id == roomId);
+                    room.Position.X = (int)Mathf.RoundToNearest(room.Position.X, 16);
+                    room.Position.Y = (int)Mathf.RoundToNearest(room.Position.Y, 16);
+                }
+            }
         }
     }
 
