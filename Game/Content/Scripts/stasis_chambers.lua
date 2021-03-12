@@ -1,4 +1,5 @@
 require 'common'
+require 'speech'
 
 scene.set_fade(0, 0)
 scene.set_letterbox(24, 0.5)
@@ -15,33 +16,6 @@ local function center_dialog(line)
         border=false,
         x = 80,
         y = 80,
-    })
-end
-
-local function hal_speak(line, opts)
-    return dialog({
-        line=line,
-        speaker='Hal',
-        portrait=opts and opts.portrait or 'default_neutral',
-        options=opts and opts.options or nil,
-    })
-end
-
-local function dark_lord_speak(line, opts)
-    return dialog({
-        line=line,
-        portrait=opts and opts.portrait or 'dark_lord_neutral',
-        options=opts and opts.options or nil,
-        pitch=-0.8,
-    })
-end
-
-local function goblin_speak(line, opts)
-    return dialog({
-        line=line,
-        portrait=opts and opts.portrait or 'goblin_neutral',
-        options=opts and opts.options or nil,
-        pitch=0.8,
     })
 end
 
@@ -141,9 +115,9 @@ start_coroutine(function()
         wait(in_area(baddie, 'dark_lord_dest'))
         wait(in_area(goblin, 'goblin_dest'))
 
-        dark_lord_speak('Lieutenant?')
-        goblin_speak('Yes, boss?')
-        dark_lord_speak('Care to explain to me why our asset appears to be missing?')
+        dark_lord_speak('Lieutenant?', { speaker='' })
+        goblin_speak('Yes, boss?', { speaker='' })
+        dark_lord_speak('Care to explain to me why our asset appears to be missing?', { speaker='' })
     end)
 
     scene.stop_music(true)
