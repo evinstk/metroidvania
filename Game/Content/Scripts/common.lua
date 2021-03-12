@@ -35,6 +35,7 @@ function dialog(arg)
     line(
         type(arg) == 'string' and arg or arg.line,
         arg.portrait,
+        arg.speaker,
         arg.options,
         arg.x or 10,
         arg.y or 10,

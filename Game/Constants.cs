@@ -31,7 +31,7 @@ namespace Game
         public const int Area = 1 << 8;
     }
 
-    static class RenderLayer
+    static class RenderLayers
     {
         public const int Background = 50;
 
@@ -44,6 +44,8 @@ namespace Game
         public const int LightMap = 201;
         public const int Fade = 202;
         public const int FadeMap = 203;
+
+        public const int Null = 500;
     }
 
     static class Vars

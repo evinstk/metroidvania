@@ -21,6 +21,7 @@ end
 local function hal_speak(line, opts)
     return dialog({
         line=line,
+        speaker='Hal',
         portrait=opts and opts.portrait or 'default_neutral',
         options=opts and opts.options or nil,
     })

@@ -27,6 +27,7 @@ namespace Game
 
         NezSpriteFont _font;
         string _line;
+        string _speaker;
         int _readerIndex;
         float _charElapsed;
         StringBuilder _sb = new StringBuilder(1000);
@@ -53,9 +54,9 @@ namespace Game
             _inputSelect.AddGamePadDPadUpDown();
             _inputSelect.AddKeyboardKeys(VirtualInput.OverlapBehavior.TakeNewer, Keys.Up, Keys.Down);
 
+            // using animator for the sprite, rendering here
             _portraitAnimator = Entity.AddComponent(Animator.MakeAnimator("portraits", Entity.Scene.Content));
-            _portraitAnimator.RenderLayer = RenderLayer;
-            _portraitAnimator.LocalOffset = InnerMargin + PortraitSize / 2;
+            _portraitAnimator.RenderLayer = RenderLayers.Null;
 
             _speechSound = GameContent.LoadSound("Common", "speech");
         }
@@ -69,12 +70,14 @@ namespace Game
         public void FeedLine(
             string line,
             string portrait = null,
+            string speaker = null,
             List<string> options = null,
             Vector2? boxMargin = null,
             bool showBorder = true,
             float pitch = 0)
         {
             _line = line;
+            _speaker = speaker;
             _sb.Clear();
             _text = new FontCharacterSource(_sb);
             _charElapsed = 0;
@@ -96,7 +99,6 @@ namespace Game
                 _options.Clear();
             }
 
-            _portraitAnimator.LocalOffset = _boxMargin + InnerMargin + PortraitSize / 2;
             _portraitAnimator.Play(portrait ?? "empty", SpriteAnimator.LoopMode.ClampForever);
         }
 
@@ -213,13 +215,34 @@ namespace Game
                     Vector2.Zero,
                     Vector2.One,
                     SpriteEffects.None,
-                    0);
+                    _layerDepth);
 
                 if (!_portraitAnimator.IsAnimationActive("empty"))
                 {
                     var portraitBounds = new RectangleF(_boxMargin + InnerMargin, PortraitSize + Vector2.One);
                     batcher.DrawRect(portraitBounds, new Color(0xff202020));
+                    batcher.Draw(_portraitAnimator.Sprite, _boxMargin + InnerMargin,
+                        Color.White, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
                     batcher.DrawHollowRect(portraitBounds, Color.White);
+                }
+
+                if (_speaker != null)
+                {
+                    var speakerSize = _font.MeasureString(_speaker);
+                    //batcher.DrawRect(
+                    //    new RectangleF(_boxMargin + InnerMargin, speakerSize),
+                    //    Color.Black);
+                    var speaker = new FontCharacterSource(_speaker);
+                    _font.DrawInto(
+                        batcher,
+                        ref speaker,
+                        _boxMargin + InnerMargin + new Vector2(0, PortraitSize.Y - speakerSize.Y),
+                        Color.White,
+                        0,
+                        Vector2.Zero,
+                        Vector2.One,
+                        SpriteEffects.None,
+                        0);
                 }
             }
 
@@ -251,7 +274,7 @@ namespace Game
                         Vector2.Zero,
                         Vector2.One,
                         SpriteEffects.None,
-                        0);
+                        _layerDepth);
                     offsetY += _font.MeasureString(option).Y + OptionsSpacing;
                 }
             }

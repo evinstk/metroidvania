@@ -50,7 +50,7 @@ namespace Game
             followCamera.FollowLerp = 1f;
 
             var light = entity.AddComponent(new StencilLight(200f, Color.White, 0.5f));
-            light.RenderLayer = RenderLayer.Light;
+            light.RenderLayer = RenderLayers.Light;
 
             return entity;
         }
@@ -168,7 +168,7 @@ namespace Game
             hurtable.HurtSound.clearHandle();
 
             var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
-            light.RenderLayer = -RenderLayer.Light;
+            light.RenderLayer = -RenderLayers.Light;
 
             return entity;
         }

@@ -39,17 +39,26 @@ namespace Game
             Physics.SpatialHashCellSize = 16;
             Physics.RaycastsStartInColliders = true;
 
-            var lightRenderer = AddRenderer(new StencilLightRenderer(0, RenderLayer.Light, new RenderTexture()));
+            var lightRenderer = AddRenderer(new StencilLightRenderer(0, RenderLayers.Light, new RenderTexture()));
             lightRenderer.CollidesWithLayers = Mask.Terrain | Mask.Overlay;
             lightRenderer.RenderTargetClearColor = new Color(127, 127, 127, 255);
 
-            FadeRenderer = AddRenderer(new RenderLayerRenderer(0, RenderLayer.Fade));
+            FadeRenderer = AddRenderer(new RenderLayerRenderer(0, RenderLayers.Fade));
             FadeRenderer.RenderTexture = new RenderTexture();
             FadeRenderer.RenderTargetClearColor = Color.White;
 
-            AddRenderer(new RenderLayerExcludeRenderer(1, RenderLayer.Dialog, RenderLayer.Light, RenderLayer.LightMap, RenderLayer.Hud, RenderLayer.PauseMenu, RenderLayer.PlayerMenu, RenderLayer.Fade, RenderLayer.FadeMap));
-            AddRenderer(new RenderLayerRenderer(2, RenderLayer.LightMap, RenderLayer.FadeMap));
-            AddRenderer(new ScreenSpaceRenderer(3, RenderLayer.PauseMenu, RenderLayer.PlayerMenu, RenderLayer.Dialog, RenderLayer.Hud));
+            AddRenderer(new RenderLayerExcludeRenderer(1,
+                RenderLayers.Dialog,
+                RenderLayers.Light,
+                RenderLayers.LightMap,
+                RenderLayers.Hud,
+                RenderLayers.PauseMenu,
+                RenderLayers.PlayerMenu,
+                RenderLayers.Fade,
+                RenderLayers.FadeMap,
+                RenderLayers.Null));
+            AddRenderer(new RenderLayerRenderer(2, RenderLayers.LightMap, RenderLayers.FadeMap));
+            AddRenderer(new ScreenSpaceRenderer(3, RenderLayers.PauseMenu, RenderLayers.PlayerMenu, RenderLayers.Dialog, RenderLayers.Hud));
 
             AddPostProcessor(new CinematicLetterboxPostProcessor(0));
         }
@@ -60,7 +69,7 @@ namespace Game
                 .SetParent(Camera.Transform)
                 .AddComponent(new SpriteRenderer(GetRenderer<StencilLightRenderer>().RenderTexture))
                 .SetMaterial(Material.BlendMultiply())
-                .SetRenderLayer(RenderLayer.LightMap);
+                .SetRenderLayer(RenderLayers.LightMap);
 
             Camera.AddComponent<CameraController>();
             Camera.AddComponent<CameraBounds>();
@@ -70,7 +79,7 @@ namespace Game
                 .SetParent(Camera.Transform)
                 .AddComponent(new SpriteRenderer(FadeRenderer.RenderTexture))
                 .SetMaterial(Material.BlendMultiply())
-                .SetRenderLayer(RenderLayer.FadeMap);
+                .SetRenderLayer(RenderLayers.FadeMap);
 
             CreateEntity("sound_system").AddComponent<SoundSystem>();
 
@@ -89,15 +98,15 @@ namespace Game
             CreateEntity("overlay").AddComponent<Overlay>();
 
             var dialogSystem = CreateEntity("dialog_system").AddComponent<DialogSystem>();
-            dialogSystem.RenderLayer = RenderLayer.Dialog;
+            dialogSystem.RenderLayer = RenderLayers.Dialog;
 
             var hud = CreateEntity("hud").AddComponent<Hud>();
-            hud.RenderLayer = RenderLayer.Hud;
+            hud.RenderLayer = RenderLayers.Hud;
 
             CreateEntity("inventory_menu").AddComponent<InventoryMenu>();
 
             var pauseMenu = CreateEntity("pause_menu").AddComponent<PauseMenu>();
-            pauseMenu.RenderLayer = RenderLayer.PauseMenu;
+            pauseMenu.RenderLayer = RenderLayers.PauseMenu;
 
             _scripting = new SceneScript(dialogSystem, ScriptVars);
 
@@ -161,7 +170,7 @@ namespace Game
             {
                 var background = world.Backgrounds[i];
                 var renderer = bgEntity.AddComponent(new TiledSpriteRenderer(Content.LoadTexture($"{ContentPath.Backgrounds}{background.Filename}")));
-                renderer.RenderLayer = RenderLayer.Background + i;
+                renderer.RenderLayer = RenderLayers.Background + i;
                 var parallax = bgEntity.AddComponent(new TiledParallax());
                 parallax.Renderer = renderer;
                 parallax.ScrollScale = background.ScrollScale;

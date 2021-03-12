@@ -27,7 +27,7 @@ namespace Game
             _skin = CreateSkin();
             _canvas = Entity.AddComponent<UICanvas>();
             _canvas.Enabled = false;
-            _canvas.RenderLayer = RenderLayer.PlayerMenu;
+            _canvas.RenderLayer = RenderLayers.PlayerMenu;
 
             _table = _canvas.Stage.AddElement(new Table());
             _table.Top().Left().Pad(48);
