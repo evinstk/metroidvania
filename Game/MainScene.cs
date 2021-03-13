@@ -124,17 +124,7 @@ namespace Game
                 ? world.Rooms.Find(r => r.RoomName == _room)
                 : world.Rooms.Find(r => r.Id == world.StartRoomId);
             Debug.LogIf(startRoom == null, "No start room set. Defaulting to room at (0, 0).");
-            RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero);
-
-            if (_area != null)
-            {
-                var player = FindEntity("player");
-                var area = FindEntity(_area);
-                if (player != null && area != null)
-                {
-                    player.Position = area.Position;
-                }
-            }
+            RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero, _area);
         }
 
         World LoadWorld(string worldName)
@@ -207,7 +197,7 @@ namespace Game
             return level;
         }
 
-        void RunRoom(Vector2 location)
+        void RunRoom(Vector2 location, string startAreaName = null)
         {
             RoomBounds rb = null;
             foreach (var roomBounds in _worldBounds)
@@ -317,13 +307,23 @@ namespace Game
                 }
             }
 
+            if (startAreaName != null)
+            {
+                var area = FindEntity(startAreaName);
+                if (area != null)
+                {
+                    var player = FindEntity("player");
+                    if (player == null)
+                        player = this.CreatePlayer(Vector2.Zero);
+                    player.Position = area.Position;
+                }
+            }
+
             string script = null;
             if (ogmoLevel.values?.TryGetValue("script", out script) == true && script != "proj:")
                 _scripting.LoadScript(Path.GetFileName(script));
 
             _runRooms.Add(rb);
-
-            //Core.Instance.LoadSound("Music", "alert").start();
         }
 
         public override void Update()
