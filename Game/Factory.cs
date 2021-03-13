@@ -124,6 +124,10 @@ namespace Game
 
             var collider = entity.AddComponent(new BoxCollider(6, 48));
             collider.PhysicsLayer = Mask.Terrain;
+            entity.AddComponent(new AddedToEntity(en =>
+            {
+                collider.Enabled = !en.Scene.GetScriptVars().Get<bool>(stateVar);
+            }));
 
             var switchC = entity.AddComponent<Switch>();
             switchC.TurningOff = "doorReverse";
