@@ -517,7 +517,8 @@ namespace Game
             };
 
             var collider = entity.AddComponent(new BoxCollider(2, 48));
-            collider.PhysicsLayer = 0; // set by trigger
+            var stateVal = scene.GetScriptVars().Get<bool>(stateVar);
+            collider.PhysicsLayer = stateVal ? Mask.Interaction : 0;
 
             var lastState = scene.GetScriptVars().Get<bool>(stateVar);
             var trigger = entity.AddComponent<Trigger>();
