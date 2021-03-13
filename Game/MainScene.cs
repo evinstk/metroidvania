@@ -23,11 +23,16 @@ namespace Game
         SceneScript _scripting;
 
         string _world;
+        string _room;
+        string _area;
+
         float _resetTimer = 0f;
 
-        public MainScene(string world)
+        public MainScene(string world, string room = null, string area = null)
         {
             _world = world;
+            _room = room;
+            _area = area;
         }
 
         public override void Initialize()
@@ -114,9 +119,21 @@ namespace Game
             CreateEntity("world");
             AddWorldBounds(world);
             SetBackground(world);
-            var startRoom = world.Rooms.Find(r => r.Id == world.StartRoomId);
+            var startRoom = _room != null
+                ? world.Rooms.Find(r => r.RoomName == _room)
+                : world.Rooms.Find(r => r.Id == world.StartRoomId);
             Debug.LogIf(startRoom == null, "No start room set. Defaulting to room at (0, 0).");
             RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero);
+
+            if (_area != null)
+            {
+                var player = FindEntity("player");
+                var area = FindEntity(_area);
+                if (player != null && area != null)
+                {
+                    player.Position = area.Position;
+                }
+            }
         }
 
         World LoadWorld(string worldName)
@@ -309,7 +326,7 @@ namespace Game
         {
             // restart
             if (Input.IsKeyDown(Keys.F2))
-                Core.Scene = new MainScene(_world);
+                Core.Scene = new MainScene(_world, _room, _area);
 
             if (Timer.PauseTimer > 0)
             {
