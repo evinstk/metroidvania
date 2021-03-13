@@ -5,6 +5,15 @@
 			"RoomName": "stasis_chambers",
 			"MapName": "stasis_chambers.json",
 			"Position": {
+				"X": -368,
+				"Y": 272
+			}
+		},
+		{
+			"Id": "KDBOBWHCQLEPGTVURTMCVHJCGBYMTOVZFYLJDM",
+			"RoomName": "baton",
+			"MapName": "baton.json",
+			"Position": {
 				"X": 0,
 				"Y": 0
 			}
@@ -13,5 +22,5 @@
 	"Backgrounds": [
 
 	],
-	"StartRoomId": "IXURZGSCMSOGPDSAIEETGOUBWIGLTKAQQCMNZO"
+	"StartRoomId": "KDBOBWHCQLEPGTVURTMCVHJCGBYMTOVZFYLJDM"
 }

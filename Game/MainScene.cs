@@ -285,6 +285,9 @@ namespace Game
                             case "goblin":
                                 this.CreateGoblin(pos);
                                 break;
+                            case "flat_door":
+                                this.CreateFlatDoor(pos, entity.values["state_var"]);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;

@@ -96,8 +96,10 @@ namespace Game
             collider.PhysicsLayer = Mask.Interaction;
 
             var switchC = entity.AddComponent<Switch>();
-            switchC.OffAnimation = "wallSwitchOff";
-            switchC.OnAnimation = "wallSwitchOn";
+            switchC.TurningOff = "wallSwitchOff";
+            switchC.TurningOn = "wallSwitchOn";
+            switchC.Off = "wallSwitchOff";
+            switchC.On = "wallSwitchOn";
             switchC.StateVar = stateVar;
 
             return entity;
@@ -114,8 +116,10 @@ namespace Game
             collider.PhysicsLayer = Mask.Terrain;
 
             var switchC = entity.AddComponent<Switch>();
-            switchC.OffAnimation = "doorReverse";
-            switchC.OnAnimation = "door";
+            switchC.TurningOff = "doorReverse";
+            switchC.TurningOn = "door";
+            switchC.Off = "door_closed";
+            switchC.On = "door_open";
             switchC.StateVar = stateVar;
             switchC.OnSwitch = (Switch self, bool state) =>
             {
@@ -454,6 +458,23 @@ namespace Game
             {
                 self.GetComponent<Goblin>().SetEnabled(true);
             };
+
+            return entity;
+        }
+
+        public static Entity CreateFlatDoor(this Scene scene, Vector2 position, string stateVar)
+        {
+            var entity = scene.CreateEntity("flat_door", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("flat_door_closed");
+
+            var switchC = entity.AddComponent<Switch>();
+            switchC.TurningOff = "flat_door_openingReverse"; // TODO: use snake case throughout
+            switchC.TurningOn = "flat_door_opening";
+            switchC.Off = "flat_door_closed";
+            switchC.On = "flat_door_open";
+            switchC.StateVar = stateVar;
 
             return entity;
         }

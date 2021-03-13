@@ -2,7 +2,7 @@
 
 {
 	"filename": "chest_closed.png",
-	"frame": {"x":1,"y":1,"w":48,"h":48},
+	"frame": {"x":69,"y":77,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -11,7 +11,7 @@
 },
 {
 	"filename": "chest_open.png",
-	"frame": {"x":51,"y":1,"w":48,"h":48},
+	"frame": {"x":19,"y":77,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -20,7 +20,7 @@
 },
 {
 	"filename": "door0000.png",
-	"frame": {"x":101,"y":1,"w":16,"h":48},
+	"frame": {"x":229,"y":27,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -29,7 +29,7 @@
 },
 {
 	"filename": "door0001.png",
-	"frame": {"x":119,"y":1,"w":16,"h":48},
+	"frame": {"x":1,"y":77,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -38,7 +38,7 @@
 },
 {
 	"filename": "door0002.png",
-	"frame": {"x":137,"y":1,"w":16,"h":48},
+	"frame": {"x":211,"y":27,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -47,7 +47,7 @@
 },
 {
 	"filename": "door0003.png",
-	"frame": {"x":155,"y":1,"w":16,"h":48},
+	"frame": {"x":193,"y":27,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -56,7 +56,7 @@
 },
 {
 	"filename": "door0004.png",
-	"frame": {"x":173,"y":1,"w":16,"h":48},
+	"frame": {"x":119,"y":77,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -65,7 +65,7 @@
 },
 {
 	"filename": "door0005.png",
-	"frame": {"x":191,"y":1,"w":16,"h":48},
+	"frame": {"x":175,"y":27,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -74,7 +74,7 @@
 },
 {
 	"filename": "door0006.png",
-	"frame": {"x":209,"y":1,"w":16,"h":48},
+	"frame": {"x":139,"y":27,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -83,7 +83,7 @@
 },
 {
 	"filename": "door0007.png",
-	"frame": {"x":227,"y":1,"w":16,"h":48},
+	"frame": {"x":121,"y":27,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -92,7 +92,25 @@
 },
 {
 	"filename": "door0008.png",
-	"frame": {"x":1,"y":51,"w":16,"h":48},
+	"frame": {"x":157,"y":27,"w":16,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "door_closed0000.png",
+	"frame": {"x":229,"y":27,"w":16,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
+	"sourceSize": {"w":16,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "door_open0000.png",
+	"frame": {"x":157,"y":27,"w":16,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":48},
@@ -101,7 +119,7 @@
 },
 {
 	"filename": "elevator0000.png",
-	"frame": {"x":19,"y":51,"w":64,"h":64},
+	"frame": {"x":1,"y":275,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -110,7 +128,7 @@
 },
 {
 	"filename": "empty0000.png",
-	"frame": {"x":85,"y":51,"w":1,"h":1},
+	"frame": {"x":1,"y":1,"w":1,"h":1},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":1},
@@ -118,8 +136,89 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "flat_door_closed0.png",
+	"frame": {"x":133,"y":275,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flat_door_open0.png",
+	"frame": {"x":67,"y":275,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flat_door_opening0.png",
+	"frame": {"x":133,"y":275,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flat_door_opening1.png",
+	"frame": {"x":183,"y":209,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flat_door_opening2.png",
+	"frame": {"x":117,"y":209,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flat_door_opening3.png",
+	"frame": {"x":51,"y":209,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flat_door_opening4.png",
+	"frame": {"x":103,"y":143,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flat_door_opening5.png",
+	"frame": {"x":169,"y":143,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "flat_door_opening6.png",
+	"frame": {"x":67,"y":275,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "gate0000.png",
-	"frame": {"x":88,"y":51,"w":48,"h":64},
+	"frame": {"x":1,"y":209,"w":48,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":64},
@@ -128,7 +227,7 @@
 },
 {
 	"filename": "large_laser0.png",
-	"frame": {"x":138,"y":51,"w":32,"h":32},
+	"frame": {"x":53,"y":27,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -137,7 +236,7 @@
 },
 {
 	"filename": "large_laser1.png",
-	"frame": {"x":172,"y":51,"w":32,"h":32},
+	"frame": {"x":87,"y":27,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -146,7 +245,7 @@
 },
 {
 	"filename": "laser0000.png",
-	"frame": {"x":206,"y":51,"w":16,"h":16},
+	"frame": {"x":40,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -155,7 +254,7 @@
 },
 {
 	"filename": "leftLamp0000.png",
-	"frame": {"x":1,"y":117,"w":24,"h":24},
+	"frame": {"x":202,"y":1,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -164,7 +263,7 @@
 },
 {
 	"filename": "offSwitch0000.png",
-	"frame": {"x":27,"y":117,"w":24,"h":24},
+	"frame": {"x":27,"y":27,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -173,7 +272,7 @@
 },
 {
 	"filename": "onSwitch0000.png",
-	"frame": {"x":53,"y":117,"w":24,"h":24},
+	"frame": {"x":1,"y":27,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -182,7 +281,7 @@
 },
 {
 	"filename": "projectile0000.png",
-	"frame": {"x":79,"y":117,"w":16,"h":16},
+	"frame": {"x":58,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -191,7 +290,7 @@
 },
 {
 	"filename": "projectile0001.png",
-	"frame": {"x":97,"y":117,"w":16,"h":16},
+	"frame": {"x":76,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -200,7 +299,7 @@
 },
 {
 	"filename": "rightLamp0000.png",
-	"frame": {"x":115,"y":117,"w":24,"h":24},
+	"frame": {"x":228,"y":1,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -209,7 +308,7 @@
 },
 {
 	"filename": "small_explosion0.png",
-	"frame": {"x":141,"y":117,"w":16,"h":16},
+	"frame": {"x":4,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -218,7 +317,7 @@
 },
 {
 	"filename": "small_explosion1.png",
-	"frame": {"x":159,"y":117,"w":16,"h":16},
+	"frame": {"x":94,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -227,7 +326,7 @@
 },
 {
 	"filename": "small_explosion2.png",
-	"frame": {"x":177,"y":117,"w":16,"h":16},
+	"frame": {"x":112,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -236,7 +335,7 @@
 },
 {
 	"filename": "small_explosion3.png",
-	"frame": {"x":177,"y":117,"w":16,"h":16},
+	"frame": {"x":112,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -245,7 +344,7 @@
 },
 {
 	"filename": "small_explosion4.png",
-	"frame": {"x":195,"y":117,"w":16,"h":16},
+	"frame": {"x":166,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -254,7 +353,7 @@
 },
 {
 	"filename": "small_explosion5.png",
-	"frame": {"x":213,"y":117,"w":16,"h":16},
+	"frame": {"x":184,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -263,7 +362,7 @@
 },
 {
 	"filename": "small_explosion6.png",
-	"frame": {"x":231,"y":117,"w":16,"h":16},
+	"frame": {"x":130,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -281,7 +380,7 @@
 },
 {
 	"filename": "stasis_chamber_open0.png",
-	"frame": {"x":35,"y":143,"w":32,"h":64},
+	"frame": {"x":205,"y":77,"w":32,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":64},
@@ -308,7 +407,7 @@
 },
 {
 	"filename": "stasis_chamber_opening2.png",
-	"frame": {"x":103,"y":143,"w":32,"h":64},
+	"frame": {"x":35,"y":143,"w":32,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":64},
@@ -317,7 +416,7 @@
 },
 {
 	"filename": "stasis_chamber_opening3.png",
-	"frame": {"x":137,"y":143,"w":32,"h":64},
+	"frame": {"x":171,"y":77,"w":32,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":64},
@@ -326,7 +425,7 @@
 },
 {
 	"filename": "stasis_chamber_opening4.png",
-	"frame": {"x":171,"y":143,"w":32,"h":64},
+	"frame": {"x":137,"y":77,"w":32,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":64},
@@ -335,7 +434,7 @@
 },
 {
 	"filename": "wallSwitchOff0000.png",
-	"frame": {"x":205,"y":143,"w":16,"h":16},
+	"frame": {"x":148,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -344,7 +443,7 @@
 },
 {
 	"filename": "wallSwitchOn0000.png",
-	"frame": {"x":223,"y":143,"w":16,"h":16},
+	"frame": {"x":22,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -356,8 +455,8 @@
 	"version": "1.0",
 	"image": "doodads.png",
 	"format": "RGBA8888",
-	"size": {"w":248,"h":208},
+	"size": {"w":253,"h":340},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:017b806da42d059f31741781ed1e9296:6fabfa2be227b5a316f01823014a349f:235b3058f25cc2125c9df6a215d832b6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:fc3932918a89ca0a437decd668d3dd27:74a6fda31693c87eace69786a84bc8e2:235b3058f25cc2125c9df6a215d832b6$"
 }
 }

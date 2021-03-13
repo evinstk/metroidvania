@@ -6,8 +6,10 @@ namespace Game
 {
     class Switch : Component, IInteractable, IUpdatable
     {
-        public string OffAnimation;
-        public string OnAnimation;
+        public string TurningOff;
+        public string TurningOn;
+        public string Off;
+        public string On;
 
         public Action<Switch, bool> OnSwitch;
 
@@ -19,6 +21,10 @@ namespace Game
         public override void OnAddedToEntity()
         {
             _animator = Entity.GetComponent<SpriteAnimator>();
+
+            var scriptVars = Entity.Scene.GetScriptVars();
+            _lastState = scriptVars.Get<bool>(StateVar);
+            _animator.Change(_lastState ? On : Off);
         }
 
         public void Interact(Entity interactor)
@@ -32,10 +38,15 @@ namespace Game
         {
             var scriptVars = Entity.Scene.GetScriptVars();
             var val = scriptVars.Get<bool>(StateVar);
-            _animator.Change(val ? OnAnimation : OffAnimation, SpriteAnimator.LoopMode.ClampForever);
+            //_animator.Change(val ? TurningOn : TurningOff, SpriteAnimator.LoopMode.ClampForever);
+            if (!_animator.IsRunning)
+                _animator.Play(val ? On : Off);
 
             if (val != _lastState)
+            {
                 OnSwitch?.Invoke(this, val);
+                _animator.Play(val ? TurningOn : TurningOff, SpriteAnimator.LoopMode.Once);
+            }
 
             _lastState = val;
         }
