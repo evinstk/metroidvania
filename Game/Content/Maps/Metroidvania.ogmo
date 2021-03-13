@@ -592,6 +592,46 @@
         {"name": "room", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "area", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]
+    },
+    {
+      "exportID": "66739148",
+      "name": "terminal",
+      "limit": -1,
+      "size": {"x": 24, "y": 32},
+      "origin": {"x": 12, "y": 16},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 24, "y": 32},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "name", "definition": "String", "display": 0, "defaults": "checkpoint", "maxLength": 0, "trimWhitespace": true}
+      ],
+      "texture": "../Placeholders/terminal0.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAgCAYAAAAIXrg4AAAAAXNSR0IArs4c6QAAALpJREFUSIljYBjqgBHGMDB1+E9Ngy+cPsDIwMDAwIIs+PnjQ6oYzssvD2ezoEuW7dcnybAux4t45TEsIKSBVEC0D8i1ePD4gFxHDA4fUGLp4PABJRbT1wfIWXxAgIGpw39SC0UmWjlm+FjAiE1w9trtZFU+qcGeGOahpCIDU4f/+rrK5JjNwMDAwBCflPz/4uW78NoMwwIGBgaGi5fvMjAwrCHLAoheVIBhAS6F5IKhn4pGLRi1YAhYAADitTc4UoRqCAAAAABJRU5ErkJggg=="
     }
   ],
   "tilesets": [
