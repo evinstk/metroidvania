@@ -12,7 +12,7 @@ function make_speaker(defaults)
                 opts[k] = v
             end
         end
-        dialog(opts)
+        return dialog(opts)
     end
 end
 
