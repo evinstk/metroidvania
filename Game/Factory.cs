@@ -103,6 +103,7 @@ namespace Game
             switchC.StateVar = stateVar;
 
             var interactable = entity.AddComponent<Interactable>();
+            interactable.Prompt = "Flip";
             interactable.OnInteract = (self, interactor) =>
             {
                 var sw = self.GetComponent<Switch>();
@@ -155,6 +156,7 @@ namespace Game
             scene.GetScriptVars().Set(ogmoEntity.values["contents"], chest.Contents);
 
             var interactable = entity.AddComponent<Interactable>();
+            interactable.Prompt = "Open";
             interactable.OnInteract = (self, interactor) =>
             {
                 var contents = self.GetComponent<Chest>().Contents;

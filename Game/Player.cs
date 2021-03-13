@@ -447,13 +447,13 @@ namespace Game
             // interaction
             var hit = Physics.Linecast(
                 Entity.Position, Entity.Position + new Vector2(CastDistance, 0) * _facing, Mask.Interaction | Mask.Terrain);
-            if ((hit.Collider?.PhysicsLayer & Mask.Interaction) > 0)
+            var interactable = hit.Collider?.GetComponent<Interactable>();
+            if ((hit.Collider?.PhysicsLayer & Mask.Interaction) > 0 && interactable != null)
             {
-                _vars[Vars.HudPrompt] = $"[{(_usingGamePad ? "Y" : "E")}] Interact";
+                _vars[Vars.HudPrompt] = $"[{(_usingGamePad ? "Y" : "E")}] {interactable.Prompt}";
                 if (_inputInteract.IsPressed)
                 {
                     _inputInteract.ConsumeBuffer();
-                    var interactable = hit.Collider.GetComponent<Interactable>();
                     if (interactable != null)
                         interactable.Interact(Entity);
                 }
