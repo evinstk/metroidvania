@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
+using Nez.Sprites;
 using Nez.Textures;
 using Nez.UI;
 
@@ -13,6 +14,7 @@ namespace Game
 
         public Vector2 HealthOffset = new Vector2(10, 10);
         public Vector2 EquipmentOffset = new Vector2(10, -10);
+        public Vector2 SaveIconOffset = new Vector2(-10, -10);
         public int HealthSpacing = 15;
         public float IncomingInventoryTimeout = 3;
 
@@ -25,6 +27,8 @@ namespace Game
         Table _incomingInventory;
         float _incomingTimer;
 
+        SpriteAnimator _saveIconAnimator;
+
         public override void OnAddedToEntity()
         {
             _font = Constants.DefaultFont;
@@ -33,6 +37,8 @@ namespace Game
             _fullHeart = GameContent.LoadSprite("hud", "fullHeart", Core.Content);
             _emptyHeart = GameContent.LoadSprite("hud", "emptyHeart", Core.Content);
             _iconFrame = GameContent.LoadSprite("hud", "iconFrame", Core.Content);
+            _saveIconAnimator = Entity.AddComponent(Animator.MakeAnimator("hud", Core.Content));
+            _saveIconAnimator.RenderLayer = RenderLayers.Null;
 
             var playerInventory = Entity.Scene.GetPlayerInventory();
             playerInventory.OnItemAdd += HandleItemAdd;
@@ -43,12 +49,16 @@ namespace Game
             _incomingInventory = canvas.Stage.AddElement(new Table());
             _incomingInventory.Bottom().Right().Pad(8);
             _incomingInventory.FillParent = true;
+
+            Core.GetGlobalManager<SaveSystem>().OnSave += OnSave;
         }
 
         public override void OnRemovedFromEntity()
         {
             var playerInventory = Entity.Scene.GetPlayerInventory();
             playerInventory.OnItemAdd -= HandleItemAdd;
+
+            Core.GetGlobalManager<SaveSystem>().OnSave -= OnSave;
         }
 
         public override void OnEnabled()
@@ -59,6 +69,11 @@ namespace Game
         public override void OnDisabled()
         {
             _incomingInventory?.SetIsVisible(false);
+        }
+
+        public void OnSave(SaveSystem saveSystem)
+        {
+            _saveIconAnimator.Play("save", SpriteAnimator.LoopMode.ClampForever);
         }
 
         void HandleItemAdd(Item item)
@@ -121,6 +136,15 @@ namespace Game
             if (equippedRanged != null)
             {
                 DrawSprite(batcher, equippedRanged.Icon, rangedOffset);
+            }
+
+            if (_saveIconAnimator.IsRunning)
+            {
+                var saveIcon = _saveIconAnimator.Sprite;
+                var saveIconOffset = new Vector2(
+                    Constants.ResWidth - saveIcon.SourceRect.Width,
+                    Constants.ResHeight - saveIcon.SourceRect.Height) + SaveIconOffset;
+                DrawSprite(batcher, saveIcon, saveIconOffset);
             }
 
             var val = _scriptVars.Get<string>(Vars.HudPrompt);

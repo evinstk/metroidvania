@@ -1,5 +1,6 @@
 ﻿using Nez;
 using Nez.Persistence;
+using System;
 using System.IO;
 
 namespace Game
@@ -13,6 +14,8 @@ namespace Game
 
     class SaveSystem : GlobalManager
     {
+        public event Action<SaveSystem> OnSave;
+
         public void Save(int saveSlot, string world, string room, string checkpoint)
         {
             var save = new Save
@@ -27,6 +30,7 @@ namespace Game
             });
             File.WriteAllText(GamePath.GetSavePath(saveSlot), serialized);
             Debug.Log("Game saved.");
+            OnSave?.Invoke(this);
         }
 
         public Save Load(int saveSlot)
