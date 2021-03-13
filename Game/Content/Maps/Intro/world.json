@@ -26,6 +26,33 @@
 				"X": 512,
 				"Y": 384
 			}
+		},
+		{
+			"Id": "QRNMOEPODURAXTSXJGOGVFWQXQFEMVDYQCNJRZ",
+			"RoomName": "boss",
+			"MapName": "boss.json",
+			"Position": {
+				"X": -16,
+				"Y": -656
+			}
+		},
+		{
+			"Id": "YRQLBDCMQTTSXFOQKLHVHHNHTZTQTDTBXRQVKO",
+			"RoomName": "left_dead_end",
+			"MapName": "left_dead_end.json",
+			"Position": {
+				"X": -496,
+				"Y": -656
+			}
+		},
+		{
+			"Id": "UECRCTJGZRSISEPZPQDIRBKLTNZSVFPSFVQCTQ",
+			"RoomName": "right_dead_end",
+			"MapName": "right_dead_end.json",
+			"Position": {
+				"X": 464,
+				"Y": -656
+			}
 		}
 	],
 	"Backgrounds": [

@@ -296,6 +296,21 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/DefaultFont.spritefont
 
+#begin Maps/Intro/baton.json
+/copy:Maps/Intro/baton.json
+
+#begin Maps/Intro/boss.json
+/copy:Maps/Intro/boss.json
+
+#begin Maps/Intro/left_dead_end.json
+/copy:Maps/Intro/left_dead_end.json
+
+#begin Maps/Intro/right_dead_end.json
+/copy:Maps/Intro/right_dead_end.json
+
+#begin Maps/Intro/side_room.json
+/copy:Maps/Intro/side_room.json
+
 #begin Maps/Intro/stasis_chambers.json
 /copy:Maps/Intro/stasis_chambers.json
 
@@ -349,6 +364,9 @@
 
 #begin Scripts/spacecraft.lua
 /copy:Scripts/spacecraft.lua
+
+#begin Scripts/speech.lua
+/copy:Scripts/speech.lua
 
 #begin Scripts/start.lua
 /copy:Scripts/start.lua

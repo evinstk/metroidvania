@@ -131,5 +131,5 @@ start_coroutine(function()
         center_dialog('For now, enjoy a fun boss fight.\n\n  -- Tanner')
     end)
 
-    scene.load_world('Training')
+    scene.load_world('Intro', 'left_dead_end')
 end)
