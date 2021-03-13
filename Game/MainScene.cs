@@ -303,7 +303,10 @@ namespace Game
                                 this.CreateGoblin(pos);
                                 break;
                             case "flat_door":
-                                this.CreateFlatDoor(pos, entity.values["state_var"]);
+                                this.CreateFlatDoor(pos, entity);
+                                break;
+                            case "exit":
+                                this.CreateExit(pos, entity);
                                 break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");

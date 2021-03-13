@@ -490,9 +490,11 @@ namespace Game
             return entity;
         }
 
-        public static Entity CreateFlatDoor(this Scene scene, Vector2 position, string stateVar)
+        public static Entity CreateFlatDoor(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
         {
-            var entity = scene.CreateEntity("flat_door", position);
+            var entity = scene.CreateEntity(ogmoEntity.values["name"], position);
+
+            var stateVar = ogmoEntity.values["state_var"];
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play("flat_door_closed");
@@ -503,6 +505,58 @@ namespace Game
             switchC.Off = "flat_door_closed";
             switchC.On = "flat_door_open";
             switchC.StateVar = stateVar;
+
+            var interactable = entity.AddComponent<Interactable>();
+            interactable.Prompt = "Enter";
+            var world = ogmoEntity.values["world"];
+            var room = ogmoEntity.values["room"];
+            var area = ogmoEntity.values["area"];
+            interactable.OnInteract = (self, interactor) =>
+            {
+                Core.StartSceneTransition(new FadeTransition(() => new MainScene(world, room, area)));
+            };
+
+            var collider = entity.AddComponent(new BoxCollider(2, 48));
+            collider.PhysicsLayer = 0; // set by trigger
+
+            var lastState = scene.GetScriptVars().Get<bool>(stateVar);
+            var trigger = entity.AddComponent<Trigger>();
+            trigger.Condition = self =>
+            {
+                var ret = false;
+                var val = self.Entity.Scene.GetScriptVars().Get<bool>(stateVar);
+                if (val != lastState)
+                    ret = true;
+                lastState = val;
+                return ret;
+            };
+            trigger.Action = self =>
+            {
+                var val = self.Entity.Scene.GetScriptVars().Get<bool>(stateVar);
+                collider.PhysicsLayer = val ? Mask.Interaction : 0;
+            };
+
+            return entity;
+        }
+
+        public static Entity CreateExit(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
+        {
+            var entity = scene.CreateEntity("exit", position);
+
+            var collider = entity.AddComponent(new BoxCollider(ogmoEntity.width, ogmoEntity.height));
+            collider.PhysicsLayer = Mask.Area;
+            collider.CollidesWithLayers = Mask.Player;
+            collider.IsTrigger = true;
+
+            var world = ogmoEntity.values["world"];
+            var room = ogmoEntity.values["room"];
+            var area = ogmoEntity.values["area"];
+
+            var listener = entity.AddComponent<TriggerListener>();
+            listener.TriggerEnter = (other, self) =>
+            {
+                Core.StartSceneTransition(new FadeTransition(() => new MainScene(world, room, area)));
+            };
 
             return entity;
         }
