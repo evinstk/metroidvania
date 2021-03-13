@@ -546,7 +546,51 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "state_var", "definition": "String", "display": 1, "defaults": "default_switch", "maxLength": 0, "trimWhitespace": true}
+        {"name": "name", "definition": "String", "display": 2, "defaults": "flat_door", "maxLength": 0, "trimWhitespace": true},
+        {"name": "state_var", "definition": "String", "display": 2, "defaults": "default_switch", "maxLength": 0, "trimWhitespace": true},
+        {"name": "world", "definition": "String", "display": 2, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "room", "definition": "String", "display": 2, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "area", "definition": "String", "display": 2, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ]
+    },
+    {
+      "exportID": "64906607",
+      "name": "exit",
+      "limit": -1,
+      "size": {"x": 16, "y": 48},
+      "origin": {"x": 8, "y": 24},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#a8ff009a",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": true,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "world", "definition": "String", "display": 2, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "room", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "area", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]
     }
   ],

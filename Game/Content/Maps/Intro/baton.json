@@ -48,8 +48,8 @@
           "name": "chest",
           "id": 0,
           "_eid": "85218235",
-          "x": 912,
-          "y": 324,
+          "x": 484,
+          "y": 164,
           "originX": 12,
           "originY": 12,
           "values": {"contents": "baton_chest"}
@@ -64,7 +64,7 @@
           "y": 144,
           "originX": 32,
           "originY": 32,
-          "values": {"state_var": "default_switch"}
+          "values": {"name": "side_room_door", "state_var": "default_switch", "world": "Intro", "room": "side_room", "area": "side_room_entry"}
         },
         {
           "name": "switch",

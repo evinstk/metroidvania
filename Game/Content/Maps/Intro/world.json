@@ -17,10 +17,19 @@
 				"X": 0,
 				"Y": 0
 			}
+		},
+		{
+			"Id": "NYSHZZGYOPNSMBEYKUVXTPVLXTRRSEPZOQLUFQ",
+			"RoomName": "side_room",
+			"MapName": "side_room.json",
+			"Position": {
+				"X": 512,
+				"Y": 384
+			}
 		}
 	],
 	"Backgrounds": [
 
 	],
-	"StartRoomId": "KDBOBWHCQLEPGTVURTMCVHJCGBYMTOVZFYLJDM"
+	"StartRoomId": "IXURZGSCMSOGPDSAIEETGOUBWIGLTKAQQCMNZO"
 }

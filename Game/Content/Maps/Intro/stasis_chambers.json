@@ -136,6 +136,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"name": "escape_area"}
+        },
+        {
+          "name": "area",
+          "id": 12,
+          "_eid": "81745502",
+          "x": 4,
+          "y": 304,
+          "width": 16,
+          "height": 16,
+          "originX": 0,
+          "originY": 0,
+          "values": {"name": "stasis_chambers_entry"}
         }
       ]
     },
