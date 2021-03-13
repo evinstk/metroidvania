@@ -513,7 +513,8 @@ namespace Game
             var area = ogmoEntity.values["area"];
             interactable.OnInteract = (self, interactor) =>
             {
-                Core.StartSceneTransition(new FadeTransition(() => new MainScene(world, room, area)));
+                var mainScene = (MainScene)self.Entity.Scene;
+                Core.StartSceneTransition(new FadeTransition(() => new MainScene(mainScene.SaveSlot, world, room, area)));
             };
 
             var collider = entity.AddComponent(new BoxCollider(2, 48));
@@ -557,8 +558,31 @@ namespace Game
             trigger.Condition = self => collider.CollidesWithAny(out _);
             trigger.Action = self =>
             {
-                Core.StartSceneTransition(new FadeTransition(() => new MainScene(world, room, area)));
+                var mainScene = (MainScene)self.Entity.Scene;
+                Core.StartSceneTransition(new FadeTransition(() => new MainScene(mainScene.SaveSlot, world, room, area)));
                 self.RemoveComponent();
+            };
+
+            return entity;
+        }
+
+        public static Entity CreateTerminal(this Scene scene, Vector2 position, OgmoEntity ogmoEntity, string world, string room)
+        {
+            var entity = scene.CreateEntity(ogmoEntity.values["name"], position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("terminal");
+            anim.RenderLayer = -5;
+
+            var collider = entity.AddComponent<BoxCollider>();
+            collider.PhysicsLayer = Mask.Interaction;
+
+            var interactable = entity.AddComponent<Interactable>();
+            interactable.Prompt = "Use";
+            interactable.OnInteract = (self, interactor) =>
+            {
+                var mainScene = self.Entity.GetMainScene();
+                Core.GetGlobalManager<SaveSystem>().Save(mainScene.SaveSlot, world, room, self.Entity.Name);
             };
 
             return entity;

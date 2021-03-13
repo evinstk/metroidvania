@@ -27,11 +27,18 @@ namespace Game
             imGuiManager.Enabled = false;
 #endif
 
+            var saveSystem = new SaveSystem();
+            RegisterGlobalManager(saveSystem);
+
             FMOD = this.InitializeFMOD();
             GameContent.LoadBank("Master");
             GameContent.LoadBank("Master.strings");
 
-            Scene = new MainScene("Intro");
+            var saveSlot = 0;
+            var save = saveSystem.Load(saveSlot);
+            Scene = save != null
+                ? new MainScene(saveSlot, save.World, save.Room, save.Checkpoint)
+                : new MainScene(saveSlot, "Intro");
         }
 
         protected override void Update(GameTime gameTime)

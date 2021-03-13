@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
+using System;
 using System.IO;
 
 namespace Game
@@ -77,5 +78,12 @@ namespace Game
         public static readonly string Backgrounds = "Content/Backgrounds/";
         public static readonly string FMOD = "Content/FMOD/";
 #endif
+    }
+
+    static class GamePath
+    {
+        static string _localDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Metroidvania/";
+
+        public static string GetSavePath(int saveSlot) => $"{_localDir}save{saveSlot}.json";
     }
 }

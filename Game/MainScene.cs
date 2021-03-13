@@ -23,14 +23,16 @@ namespace Game
         RoomBounds _currentRoom;
         SceneScript _scripting;
 
+        public readonly int SaveSlot;
         string _world;
         string _room;
         string _area;
 
         float _resetTimer = 0f;
 
-        public MainScene(string world, string room = null, string area = null)
+        public MainScene(int saveSlot, string world, string room = null, string area = null)
         {
+            SaveSlot = saveSlot;
             _world = world;
             _room = room;
             _area = area;
@@ -145,6 +147,7 @@ namespace Game
             public OgmoLevel Level;
             public BoxCollider Collider;
             public Vector2 Position;
+            public Room Room;
         }
 
         void AddWorldBounds(World world)
@@ -161,6 +164,7 @@ namespace Game
                         room.Position.X, room.Position.Y,
                         level.width, level.height),
                     Position = room.Position.ToVector2(),
+                    Room = room,
                 };
                 roomBounds.Collider.PhysicsLayer = Mask.Room;
                 roomBounds.Collider.Entity = worldEntity;
@@ -299,6 +303,9 @@ namespace Game
                             case "exit":
                                 this.CreateExit(pos, entity);
                                 break;
+                            case "terminal":
+                                this.CreateTerminal(pos, entity, _world, rb.Room.RoomName);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;
@@ -330,7 +337,7 @@ namespace Game
         {
             // restart
             if (Input.IsKeyDown(Keys.F2))
-                Core.Scene = new MainScene(_world, _room, _area);
+                Core.Scene = new MainScene(SaveSlot, _world, _room, _area);
 
             if (Timer.PauseTimer > 0)
             {
@@ -366,11 +373,22 @@ namespace Game
                     var gameOver = GameContent.LoadSound("Music", "game_over");
                     gameOver.start();
 
-                    var transition = Core.StartSceneTransition(new FadeTransition(() => new MainScene(_world)));
+                    var transition = Core.StartSceneTransition(new FadeTransition(() =>
+                    {
+                        var save = Core.GetGlobalManager<SaveSystem>().Load(SaveSlot);
+                        return save != null
+                            ? new MainScene(SaveSlot, save.World, save.Room, save.Checkpoint)
+                            : new MainScene(SaveSlot, "Intro");
+                    }));
                     transition.FadeOutDuration = 0.3f;
                     transition.FadeInDuration = 0.2f;
                 }
             }
         }
+    }
+
+    static class MainSceneExt
+    {
+        public static MainScene GetMainScene(this Entity entity) => (MainScene)entity.Scene;
     }
 }
