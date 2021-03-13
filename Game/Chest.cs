@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Game
 {
-    class Chest : Component, IInteractable, IUpdatable
+    class Chest : Component, IUpdatable
     {
         public Sprite ClosedSprite;
         public Sprite OpenSprite;
@@ -17,17 +17,6 @@ namespace Game
         public override void OnAddedToEntity()
         {
             _renderer = Entity.GetComponent<SpriteRenderer>();
-        }
-
-        public void Interact(Entity interactor)
-        {
-            var inventory = Entity.Scene.GetPlayerInventory();
-            foreach (var item in Contents.Items)
-            {
-                for (var i = 0; i < item.Quantity; ++i)
-                    inventory.Add(item.Item);
-            }
-            Contents.Items.Clear();
         }
 
         public void Update()

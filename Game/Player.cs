@@ -60,7 +60,6 @@ namespace Game
 
         RangedWeapon _equippedRangedWeapon;
 
-        List<IInteractable> _tempInteractableList = new List<IInteractable>();
         bool _usingGamePad = false;
 
         VirtualIntegerAxis _inputX;
@@ -454,10 +453,9 @@ namespace Game
                 if (_inputInteract.IsPressed)
                 {
                     _inputInteract.ConsumeBuffer();
-                    hit.Collider.GetComponents(_tempInteractableList);
-                    foreach (var interactable in _tempInteractableList)
+                    var interactable = hit.Collider.GetComponent<Interactable>();
+                    if (interactable != null)
                         interactable.Interact(Entity);
-                    _tempInteractableList.Clear();
                 }
             }
             else

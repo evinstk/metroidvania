@@ -4,7 +4,7 @@ using System;
 
 namespace Game
 {
-    class Switch : Component, IInteractable, IUpdatable
+    class Switch : Component, IUpdatable
     {
         public string TurningOff;
         public string TurningOn;
@@ -25,13 +25,6 @@ namespace Game
             var scriptVars = Entity.Scene.GetScriptVars();
             _lastState = scriptVars.Get<bool>(StateVar);
             _animator.Change(_lastState ? On : Off);
-        }
-
-        public void Interact(Entity interactor)
-        {
-            var scriptVars = Entity.Scene.GetScriptVars();
-            var val = scriptVars.Get<bool>(StateVar);
-            scriptVars.Set(StateVar, !val);
         }
 
         public void Update()

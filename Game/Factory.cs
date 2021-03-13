@@ -102,6 +102,15 @@ namespace Game
             switchC.On = "wallSwitchOn";
             switchC.StateVar = stateVar;
 
+            var interactable = entity.AddComponent<Interactable>();
+            interactable.OnInteract = (self, interactor) =>
+            {
+                var sw = self.GetComponent<Switch>();
+                var scriptVars = self.Entity.Scene.GetScriptVars();
+                var stateVal = scriptVars.Get<bool>(sw.StateVar);
+                scriptVars.Set(sw.StateVar, !stateVal);
+            };
+
             return entity;
         }
 
@@ -142,9 +151,21 @@ namespace Game
             var chest = entity.AddComponent<Chest>();
             chest.ClosedSprite = GameContent.LoadSprite("doodads", "chest_closed", scene.Content);
             chest.OpenSprite = GameContent.LoadSprite("doodads", "chest_open", scene.Content);
-            //chest.ContentsVar = ogmoEntity.values["contents"];
             chest.Collider = collider;
             scene.GetScriptVars().Set(ogmoEntity.values["contents"], chest.Contents);
+
+            var interactable = entity.AddComponent<Interactable>();
+            interactable.OnInteract = (self, interactor) =>
+            {
+                var contents = self.GetComponent<Chest>().Contents;
+                var inventory = self.Entity.Scene.GetPlayerInventory();
+                foreach (var item in contents.Items)
+                {
+                    for (var i = 0; i < item.Quantity; ++i)
+                        inventory.Add(item.Item);
+                }
+                contents.Items.Clear();
+            };
 
             return entity;
         }
