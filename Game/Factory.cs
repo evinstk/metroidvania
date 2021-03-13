@@ -20,7 +20,7 @@ namespace Game
 
             var hitbox = entity.AddComponent(new BoxCollider(16, 32));
             hitbox.PhysicsLayer = Mask.Player;
-            hitbox.CollidesWithLayers = Mask.EnemyAttack | Mask.Area;
+            hitbox.CollidesWithLayers = Mask.EnemyAttack;
 
             var mover = entity.AddComponent<PlatformerMover>();
             mover.Collider = hitbox;
@@ -553,10 +553,12 @@ namespace Game
             var room = ogmoEntity.values["room"];
             var area = ogmoEntity.values["area"];
 
-            var listener = entity.AddComponent<TriggerListener>();
-            listener.TriggerEnter = (other, self) =>
+            var trigger = entity.AddComponent<Trigger>();
+            trigger.Condition = self => collider.CollidesWithAny(out _);
+            trigger.Action = self =>
             {
                 Core.StartSceneTransition(new FadeTransition(() => new MainScene(world, room, area)));
+                self.RemoveComponent();
             };
 
             return entity;

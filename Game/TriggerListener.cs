@@ -3,6 +3,7 @@ using System;
 
 namespace Game
 {
+    // Use with caution. Encountered null reference exception with ColliderTriggerHelper.
     class TriggerListener : Component, ITriggerListener
     {
         public Action<Collider, Collider> TriggerEnter;

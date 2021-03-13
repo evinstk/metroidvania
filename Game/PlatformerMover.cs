@@ -10,12 +10,6 @@ namespace Game
         public Vector2 Speed;
 
         SubpixelFloat _movementRemainderX, _movementRemainderY;
-        ColliderTriggerHelper _triggerHelper;
-
-        public override void Initialize()
-        {
-            _triggerHelper = new ColliderTriggerHelper(Entity);
-        }
 
         public void Update()
         {
@@ -28,8 +22,6 @@ namespace Game
 
             MoveX(motionX);
             MoveY(motionY);
-
-            _triggerHelper.Update();
         }
 
         public bool OnGround(int dist = 1)
