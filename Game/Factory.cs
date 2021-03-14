@@ -498,6 +498,7 @@ namespace Game
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play("flat_door_closed");
+            anim.LocalOffset = new Vector2(0, -16);
 
             var switchC = entity.AddComponent<Switch>();
             switchC.TurningOff = "flat_door_openingReverse"; // TODO: use snake case throughout
@@ -508,13 +509,12 @@ namespace Game
 
             var interactable = entity.AddComponent<Interactable>();
             interactable.Prompt = "Enter";
-            var world = ogmoEntity.values["world"];
             var room = ogmoEntity.values["room"];
             var area = ogmoEntity.values["area"];
             interactable.OnInteract = (self, interactor) =>
             {
-                var mainScene = (MainScene)self.Entity.Scene;
-                Core.StartSceneTransition(new FadeTransition(() => new MainScene(mainScene.SaveSlot, world, room, area)));
+                var mainScene = self.Entity.GetMainScene();
+                mainScene.MoveToArea(room, area);
             };
 
             var collider = entity.AddComponent(new BoxCollider(2, 48));
@@ -550,7 +550,6 @@ namespace Game
             collider.CollidesWithLayers = Mask.Player;
             collider.IsTrigger = true;
 
-            var world = ogmoEntity.values["world"];
             var room = ogmoEntity.values["room"];
             var area = ogmoEntity.values["area"];
 
@@ -558,9 +557,8 @@ namespace Game
             trigger.Condition = self => collider.CollidesWithAny(out _);
             trigger.Action = self =>
             {
-                var mainScene = (MainScene)self.Entity.Scene;
-                Core.StartSceneTransition(new FadeTransition(() => new MainScene(mainScene.SaveSlot, world, room, area)));
-                self.RemoveComponent();
+                var mainScene = self.Entity.GetMainScene();
+                mainScene.MoveToArea(room, area);
             };
 
             return entity;

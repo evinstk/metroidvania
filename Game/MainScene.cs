@@ -30,6 +30,8 @@ namespace Game
 
         float _resetTimer = 0f;
 
+        Vector2? _pendingMove = null;
+
         public MainScene(int saveSlot, string world, string room = null, string area = null)
         {
             SaveSlot = saveSlot;
@@ -349,10 +351,18 @@ namespace Game
             }
 
             var player = FindEntity("player");
-            if (player != null && !_currentRoom.Collider.Bounds.Contains(player.Position))
+            if (player != null)
             {
-                // TODO: turn this into smooth transition
-                RunRoom(player.Position);
+                if (_pendingMove != null)
+                {
+                    player.Position = (Vector2)_pendingMove;
+                    _pendingMove = null;
+                }
+                if (!_currentRoom.Collider.Bounds.Contains(player.Position))
+                {
+                    // TODO: turn this into smooth transition
+                    RunRoom(player.Position);
+                }
             }
 
             base.Update();
@@ -384,6 +394,27 @@ namespace Game
                     transition.FadeInDuration = 0.2f;
                 }
             }
+        }
+
+        public void MoveToArea(string room, string areaName)
+        {
+            foreach (var bounds in _worldBounds)
+            {
+                if (bounds.Room.RoomName != room)
+                    continue;
+
+                var entities = bounds.Level.layers.Find(l => l.name == "entities").entities;
+                foreach (var entity in entities)
+                {
+                    var name = string.Empty;
+                    if (entity.values?.TryGetValue("name", out name) == true && name == areaName)
+                    {
+                        _pendingMove = bounds.Position + new Vector2(entity.x, entity.y);
+                        return;
+                    }
+                }
+            }
+            Debug.Log($"{areaName} not found.");
         }
     }
 
