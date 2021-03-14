@@ -254,8 +254,11 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "contents", "definition": "String", "display": 1, "defaults": "default_chest_contents", "maxLength": 0, "trimWhitespace": true}
-      ]
+        {"name": "contents", "definition": "String", "display": 2, "defaults": "default_chest_contents", "maxLength": 0, "trimWhitespace": true},
+        {"name": "name", "definition": "String", "display": 0, "defaults": "default_chest", "maxLength": 0, "trimWhitespace": true}
+      ],
+      "texture": "../Placeholders/chest_closed.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJ5JREFUSIljYBgFwx4wwhgBqRn/qWnwhtkzGOEWBKRm/Bfk42W4e/Uqg7K2NlUsuHv1KgMDAwMjI8xwZAlqWsJEFZPwgKFvAQsDAzxC4ACdT7EFyJFK7UhmwSX5ctM6nBrF/YKItoQ+cYAP1DD/hbNb/jKTbAFRPiDHYKIsgLkenaaaBdQAQ98CvKmIksglaAEpmQkfYLTz8KJqTYYOANxVLt6j1qThAAAAAElFTkSuQmCC"
     },
     {
       "exportID": "34819345",
@@ -516,7 +519,7 @@
       "name": "flat_door",
       "limit": -1,
       "size": {"x": 64, "y": 64},
-      "origin": {"x": 32, "y": 32},
+      "origin": {"x": 32, "y": 48},
       "originAnchored": true,
       "shape": {
         "label": "Rectangle",
@@ -548,7 +551,6 @@
       "values": [
         {"name": "name", "definition": "String", "display": 2, "defaults": "flat_door", "maxLength": 0, "trimWhitespace": true},
         {"name": "state_var", "definition": "String", "display": 2, "defaults": "default_switch", "maxLength": 0, "trimWhitespace": true},
-        {"name": "world", "definition": "String", "display": 2, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "room", "definition": "String", "display": 2, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "area", "definition": "String", "display": 2, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]
@@ -588,7 +590,6 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "world", "definition": "String", "display": 2, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "room", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "area", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
       ]

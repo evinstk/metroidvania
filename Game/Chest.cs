@@ -11,19 +11,20 @@ namespace Game
         public Sprite OpenSprite;
         public Collider Collider;
         public string ContentsVar;
-        public ChestContents Contents;
 
         SpriteRenderer _renderer;
+        ScriptVars _vars;
 
         public override void OnAddedToEntity()
         {
             _renderer = Entity.GetComponent<SpriteRenderer>();
-            Contents = Entity.GetMainScene().GetScriptVars().Get<ChestContents>("baton_chest_contents");
+            _vars = Entity.Scene.GetScriptVars();
         }
 
         public void Update()
         {
-            if (Contents.Items.Count > 0)
+            var openChests = _vars.Get<List<string>>(Vars.OpenChests);
+            if (!openChests.Contains(Entity.Name))
             {
                 _renderer.Sprite = ClosedSprite;
                 Collider.PhysicsLayer |= Mask.Interaction;

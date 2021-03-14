@@ -90,6 +90,7 @@ namespace Game
             CreateEntity("sound_system").AddComponent<SoundSystem>();
 
             // TODO: convert Inventory to serializable format
+            // TODO: move this to ScriptVars definition
             var inventory = new Inventory();
             foreach (var weapon in _save.Weapons)
                 inventory.Weapons.Add((Weapon)Item.Get(weapon));
@@ -101,6 +102,7 @@ namespace Game
             ScriptVars.Set(Vars.PlayerInventory, inventory);
             ScriptVars[Vars.PlayerMaxHealth] = _save.MaxHealth;
             ScriptVars[Vars.PlayerHealth] = _save.MaxHealth;
+            ScriptVars[Vars.OpenChests] = _save.OpenChests;
 
             CreateEntity("overlay").AddComponent<Overlay>();
 

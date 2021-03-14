@@ -18,6 +18,8 @@ namespace Game
         public int EquippedWeaponIndex = -1;
         public List<string> RangedWeapons = new List<string>();
         public int EquippedRangedWeaponIndex = -1;
+
+        public List<string> OpenChests = new List<string>();
     }
 
     class SaveSystem : GlobalManager
@@ -50,7 +52,10 @@ namespace Game
                 EquippedWeaponIndex = inventory.EquippedWeaponIndex,
                 RangedWeapons = rangedWeapons,
                 EquippedRangedWeaponIndex = inventory.EquippedRangedWeaponIndex,
+
+                OpenChests = vars.Get<List<string>>(Vars.OpenChests),
             };
+
             var serialized = Json.ToJson(save, new JsonSettings
             {
                 PrettyPrint = true,

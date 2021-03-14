@@ -145,7 +145,7 @@ namespace Game
 
         public static Entity CreateChest(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
         {
-            var entity = scene.CreateEntity("chest", position);
+            var entity = scene.CreateEntity(ogmoEntity.values["name"], position);
 
             var renderer = entity.AddComponent<SpriteRenderer>();
             renderer.Sprite = GameContent.LoadSprite("doodads", "chest_closed", scene.Content);
@@ -163,14 +163,15 @@ namespace Game
             interactable.Prompt = "Open";
             interactable.OnInteract = (self, interactor) =>
             {
-                var contents = self.GetComponent<Chest>().Contents;
+                var vars = self.Entity.Scene.GetScriptVars();
+                var contents = vars.Get<ChestContents>(self.GetComponent<Chest>().ContentsVar);
                 var inventory = self.Entity.Scene.GetPlayerInventory();
                 foreach (var item in contents.Items)
                 {
                     for (var i = 0; i < item.Quantity; ++i)
                         inventory.Add(item.Item);
                 }
-                contents.Items.Clear();
+                vars.Get<List<string>>(Vars.OpenChests).Add(self.Entity.Name);
             };
 
             return entity;

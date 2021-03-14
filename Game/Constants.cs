@@ -55,6 +55,7 @@ namespace Game
         public const string PlayerHealth = "player_health";
         public const string PlayerMaxHealth = "player_max_health";
         public const string PlayerInventory = "player_inventory";
+        public const string OpenChests = "game_open_chests";
     }
 
     static class ContentPath
