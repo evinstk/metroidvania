@@ -29,15 +29,31 @@
 		},
 		{
 			"Id": "COYGBXVGLHOOCGIVWYPIWWUUEHDLIIOGEEYVGY",
-			"Filename": "clouds.png",
+			"Filename": "stars.png",
+			"ScrollScale": {
+				"X": 0.005,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "TFCUZRFETYWIYFWKBTMRVKCUVBNFKHRJCVBJSX",
+			"Filename": "sky_front.png",
+			"ScrollScale": {
+				"X": 0.1,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "LINVZNDTXJXJSPESLKXARWYKIHKSJMHOMKXKWH",
+			"Filename": "sky_mid.png",
 			"ScrollScale": {
 				"X": 0.05,
 				"Y": 0
 			}
 		},
 		{
-			"Id": "TFCUZRFETYWIYFWKBTMRVKCUVBNFKHRJCVBJSX",
-			"Filename": "sky.png",
+			"Id": "TQSUNXJHMFVYYVTZKPKDNSCKKKBJWHSUVDRGIW",
+			"Filename": "sky_back.png",
 			"ScrollScale": {
 				"X": 0,
 				"Y": 0
