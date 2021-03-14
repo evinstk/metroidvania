@@ -46,8 +46,10 @@ namespace Game
                 hitbox.CollidesWithLayers = Mask.EnemyAttack;
             };
 
-            var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.CameraWindow));
+            var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.LockOn));
             followCamera.FollowLerp = 1f;
+
+            entity.AddComponent<VerticalLookAhead>();
 
             var light = entity.AddComponent(new StencilLight(200f, Color.White, 0.5f));
             light.RenderLayer = RenderLayers.Light;
