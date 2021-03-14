@@ -576,7 +576,7 @@ namespace Game
             collider.PhysicsLayer = Mask.Interaction;
 
             var interactable = entity.AddComponent<Interactable>();
-            interactable.Prompt = "Use";
+            interactable.Prompt = "Save";
             interactable.OnInteract = (self, interactor) =>
             {
                 var mainScene = self.Entity.GetMainScene();
