@@ -157,7 +157,7 @@ namespace Game
             chest.ClosedSprite = GameContent.LoadSprite("doodads", "chest_closed", scene.Content);
             chest.OpenSprite = GameContent.LoadSprite("doodads", "chest_open", scene.Content);
             chest.Collider = collider;
-            scene.GetScriptVars().Set(ogmoEntity.values["contents"], chest.Contents);
+            chest.ContentsVar = ogmoEntity.values["contents"];
 
             var interactable = entity.AddComponent<Interactable>();
             interactable.Prompt = "Open";

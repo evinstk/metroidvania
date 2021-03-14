@@ -26,12 +26,19 @@ namespace Game.Scripting
         {
             UserData.RegisterType<ScriptVars>();
             UserData.RegisterType<Vector2>();
+            UserData.RegisterType<ScriptData>();
             UserData.RegisterProxyType<ChestContentsProxy, ChestContents>(c => new ChestContentsProxy(c));
             UserData.RegisterProxyType<SceneProxy, MainScene>(s => new SceneProxy(s));
             UserData.RegisterProxyType<CameraProxy, Camera>(c => new CameraProxy(c));
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
         }
+
+        static readonly string[] _modulePaths = new string[]
+        {
+            $"{ContentPath.Scripts}?.lua",
+            $"{ContentPath.Scripts}?",
+        };
 
         public SceneScript(
             DialogSystem dialogSystem,
@@ -43,6 +50,13 @@ namespace Game.Scripting
             _inputInteract = new VirtualButton();
             _inputInteract.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.Y));
             _inputInteract.Nodes.Add(new VirtualButton.KeyboardKey(Keys.E));
+
+            var dataScript = new Script();
+            ((ScriptLoaderBase)dataScript.Options.ScriptLoader).ModulePaths = _modulePaths;
+            var scriptCode = File.ReadAllText($"{ContentPath.Scripts}data.lua");
+            dataScript.Globals["vars"] = _scriptVars;
+            dataScript.Globals["data"] = new ScriptData();
+            dataScript.DoString(scriptCode);
         }
 
         public void LoadScript(string scriptFile)
@@ -51,11 +65,7 @@ namespace Game.Scripting
 
             var script = new Script();
 
-            ((ScriptLoaderBase)script.Options.ScriptLoader).ModulePaths = new string[]
-            {
-                $"{ContentPath.Scripts}?.lua",
-                $"{ContentPath.Scripts}?",
-            };
+            ((ScriptLoaderBase)script.Options.ScriptLoader).ModulePaths = _modulePaths;
             script.Globals["line"] = (Action<string, string, string, List<string>, int?, int?, bool?, float?>)((line, portrait, speaker, options, x, y, showBorder, pitch) =>
             {
                 _dialogSystem.FeedLine(line, portrait, speaker, options, new Vector2(x ?? 10, y ?? 10), showBorder ?? true, pitch ?? 0f);

@@ -9,14 +9,16 @@ namespace Game
     {
         public Sprite ClosedSprite;
         public Sprite OpenSprite;
-        public ChestContents Contents = new ChestContents();
         public Collider Collider;
+        public string ContentsVar;
+        public ChestContents Contents;
 
         SpriteRenderer _renderer;
 
         public override void OnAddedToEntity()
         {
             _renderer = Entity.GetComponent<SpriteRenderer>();
+            Contents = Entity.GetMainScene().GetScriptVars().Get<ChestContents>("baton_chest_contents");
         }
 
         public void Update()

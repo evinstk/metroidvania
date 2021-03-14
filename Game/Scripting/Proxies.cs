@@ -205,4 +205,24 @@ namespace Game.Scripting
             Camera.GetComponent<CameraController>().ReleaseFocus();
         }
     }
+
+    class ScriptData
+    {
+        public ChestContents Contents(List<List<object>> contents)
+        {
+            var chestContents = new ChestContents();
+            foreach (var pair in contents)
+            {
+                var itemName = (string)pair[0];
+                var item = Item.Get(itemName);
+                var quantity = (double)pair[1];
+                chestContents.Items.Add(new ChestItem
+                {
+                    Item = item,
+                    Quantity = (int)quantity,
+                });
+            }
+            return chestContents;
+        }
+    }
 }
