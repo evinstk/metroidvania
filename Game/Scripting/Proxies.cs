@@ -71,6 +71,11 @@ namespace Game.Scripting
             }
         }
 
+        public void SaveGame(string world, string room, string checkpoint)
+        {
+            Core.GetGlobalManager<SaveSystem>().Save(Scene.SaveSlot, world, room, checkpoint);
+        }
+
         //public void LoadWorld(string world, string room = null, string area = null)
         //{
         //    Core.StartSceneTransition(new FadeTransition(() => new MainScene(Scene.SaveSlot, world, room, area)));
