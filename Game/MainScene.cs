@@ -352,7 +352,9 @@ namespace Game
             {
                 if (_pendingMove != null)
                 {
-                    player.Position = (Vector2)_pendingMove;
+                    var move = (Vector2)_pendingMove;
+                    player.Position = move;
+                    Camera.Position = move + new Vector2(0, -256);
                     _pendingMove = null;
                 }
                 if (!_currentRoom.Collider.Bounds.Contains(player.Position))
