@@ -240,8 +240,10 @@ namespace Game
 
                 // invoke firing
                 {
-                    if (_inputAttack.IsPressed && _equippedRangedWeapon != null && _inputRangedModifier.IsDown && _fireTimer <= 0)
+                    var mana = _vars.Get<int>(Vars.PlayerMana);
+                    if (_inputAttack.IsPressed && _equippedRangedWeapon?.ManaCost <= mana && _inputRangedModifier.IsDown && _fireTimer <= 0)
                     {
+                        _vars[Vars.PlayerMana] = mana - _equippedRangedWeapon.ManaCost;
                         var projectilePos = Entity.Position + new Vector2(12 * _facing, 0);
                         Entity.Scene.CreateFlash(projectilePos, Color.AliceBlue);
                         var projectileEntity = Entity.Scene.CreateLaser(projectilePos);

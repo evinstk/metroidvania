@@ -52,9 +52,13 @@ namespace Game
     static class Vars
     {
         public const string HudPrompt = "hud_prompt";
+
         public const string PlayerHealth = "player_health";
         public const string PlayerMaxHealth = "player_max_health";
         public const string PlayerInventory = "player_inventory";
+        public const string PlayerMana = "player_mana";
+        public const string PlayerMaxMana = "player_max_mana";
+
         public const string OpenChests = "game_open_chests";
     }
 

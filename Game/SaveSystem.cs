@@ -13,6 +13,7 @@ namespace Game
         public string Checkpoint;
 
         public int MaxHealth = 5;
+        public int MaxMana = 100;
 
         public List<string> Weapons = new List<string>();
         public int EquippedWeaponIndex = -1;
@@ -47,6 +48,7 @@ namespace Game
                 Checkpoint = checkpoint,
 
                 MaxHealth = vars.Get<int>(Vars.PlayerMaxHealth),
+                MaxMana = vars.Get<int>(Vars.PlayerMaxMana),
 
                 Weapons = weapons,
                 EquippedWeaponIndex = inventory.EquippedWeaponIndex,

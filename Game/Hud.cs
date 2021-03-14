@@ -17,12 +17,14 @@ namespace Game
         public Vector2 SaveIconOffset = new Vector2(-10, -10);
         public int HealthSpacing = 15;
         public float IncomingInventoryTimeout = 3;
+        public int ElementSpacing = 4;
 
         NezSpriteFont _font;
         ScriptVars _scriptVars;
         Sprite _fullHeart;
         Sprite _emptyHeart;
         Sprite _iconFrame;
+        NineSliceSpriteRenderer _manaBar;
 
         Table _incomingInventory;
         float _incomingTimer;
@@ -37,6 +39,12 @@ namespace Game
             _fullHeart = GameContent.LoadSprite("hud", "fullHeart", Core.Content);
             _emptyHeart = GameContent.LoadSprite("hud", "emptyHeart", Core.Content);
             _iconFrame = GameContent.LoadSprite("hud", "iconFrame", Core.Content);
+
+            var manaBarSprite = new NinePatchSprite(GameContent.LoadSprite("hud", "mana_bar", Core.Content), 2, 2, 2, 2);
+            _manaBar = Entity.AddComponent(new NineSliceSpriteRenderer(manaBarSprite));
+            _manaBar.RenderLayer = RenderLayers.Hud;
+            _manaBar.Height = 8f;
+
             _saveIconAnimator = Entity.AddComponent(Animator.MakeAnimator("hud", Core.Content));
             _saveIconAnimator.RenderLayer = RenderLayers.Null;
 
@@ -110,6 +118,12 @@ namespace Game
                 if (_incomingTimer <= 0)
                     _incomingInventory.ClearChildren();
             }
+
+            _manaBar.LocalOffset = HealthOffset + new Vector2(0, _fullHeart.SourceRect.Height + ElementSpacing);
+            var maxMana = _scriptVars.Get<int>(Vars.PlayerMaxMana);
+            var newWidth = maxMana + 4;
+            if (_manaBar.Width != newWidth)
+                _manaBar.Width = newWidth;
         }
 
         public override void Render(Batcher batcher, Camera camera)
@@ -121,6 +135,13 @@ namespace Game
                 var sprite = i <= currHealth - 1 ? _fullHeart : _emptyHeart;
                 DrawSprite(batcher, sprite, HealthOffset + new Vector2(HealthSpacing * i, 0));
             }
+
+            var mana = _scriptVars.Get<int>(Vars.PlayerMana);
+            batcher.DrawRect(
+                new Rectangle(
+                    (HealthOffset + new Vector2(2, 3 + _fullHeart.SourceRect.Height + ElementSpacing)).ToPoint(),
+                    new Point(mana, 4)),
+                new Color(0xff935424));
 
             var equipmentOffset = new Vector2(0, Constants.ResHeight - _iconFrame.SourceRect.Height) + EquipmentOffset;
             DrawSprite(batcher, _iconFrame, equipmentOffset);
@@ -154,10 +175,10 @@ namespace Game
                 Color.White, 0, size / 2, Vector2.One, SpriteEffects.None, 0);
         }
 
-        void DrawSprite(Batcher batcher, Sprite sprite, Vector2 position)
+        void DrawSprite(Batcher batcher, Sprite sprite, Vector2 position, Vector2? scale = null)
         {
             batcher.Draw(sprite, position, Color.White, 0f,
-                Vector2.Zero, 1, SpriteEffects.None, 0);
+                Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, 0);
         }
     }
 }

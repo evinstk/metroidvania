@@ -38,6 +38,7 @@ namespace Game
                 FireTimeout = 0.2f,
                 ProjectileSpeed = 250f,
                 SoundFile = "blaster.wav",
+                ManaCost = 5,
             },
         };
     }
@@ -80,6 +81,7 @@ namespace Game
         public float FireTimeout;
         public float ProjectileSpeed;
         public string SoundFile;
+        public int ManaCost;
 
         public override Sprite Icon => GameContent.LoadSprite(_iconPack, _iconFrameName, Core.Content);
         public SoundEffect Sound => SoundFile != null ? Core.Scene.Content.LoadSoundEffect($"{ContentPath.Sounds}{SoundFile}") : null;

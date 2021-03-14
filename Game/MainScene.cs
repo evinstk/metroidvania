@@ -102,6 +102,8 @@ namespace Game
             ScriptVars.Set(Vars.PlayerInventory, inventory);
             ScriptVars[Vars.PlayerMaxHealth] = _save.MaxHealth;
             ScriptVars[Vars.PlayerHealth] = _save.MaxHealth;
+            ScriptVars[Vars.PlayerMaxMana] = _save.MaxMana;
+            ScriptVars[Vars.PlayerMana] = _save.MaxMana;
             ScriptVars[Vars.OpenChests] = _save.OpenChests;
 
             CreateEntity("overlay").AddComponent<Overlay>();
