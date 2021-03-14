@@ -338,7 +338,10 @@ namespace Game
         {
             // restart
             if (Input.IsKeyDown(Keys.F2))
-                Core.Scene = new MainScene(SaveSlot, _save);
+            {
+                var save = Core.GetGlobalManager<SaveSystem>().Load(SaveSlot);
+                Core.Scene = new MainScene(SaveSlot, save);
+            }
 
             if (Timer.PauseTimer > 0)
             {
