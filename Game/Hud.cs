@@ -30,6 +30,7 @@ namespace Game
         float _incomingTimer;
 
         SpriteAnimator _saveIconAnimator;
+        FMOD.Studio.EventInstance _saveSound;
 
         public override void OnAddedToEntity()
         {
@@ -58,6 +59,8 @@ namespace Game
             _incomingInventory.Bottom().Right().Pad(8);
             _incomingInventory.FillParent = true;
 
+            _saveSound = GameContent.LoadSound("Common", "save");
+
             Core.GetGlobalManager<SaveSystem>().OnSave += OnSave;
         }
 
@@ -65,6 +68,8 @@ namespace Game
         {
             var playerInventory = Entity.Scene.GetPlayerInventory();
             playerInventory.OnItemAdd -= HandleItemAdd;
+
+            _saveSound.release();
 
             Core.GetGlobalManager<SaveSystem>().OnSave -= OnSave;
         }
@@ -82,6 +87,7 @@ namespace Game
         public void OnSave(SaveSystem saveSystem)
         {
             _saveIconAnimator.Play("save", SpriteAnimator.LoopMode.ClampForever);
+            _saveSound.start();
         }
 
         void HandleItemAdd(Item item)
