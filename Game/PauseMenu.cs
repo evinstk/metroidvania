@@ -14,7 +14,7 @@ namespace Game
         static FontCharacterSource[] _options = new FontCharacterSource[]
         {
             new FontCharacterSource("Resume"),
-            new FontCharacterSource("Main Menu"),
+            new FontCharacterSource("Restart at Checkpoint"),
             new FontCharacterSource("Quit to Desktop"),
         };
 
@@ -70,8 +70,10 @@ namespace Game
                             Time.TimeScale = 1;
                             break;
                         case 1:
-                            //Time.TimeScale = 1;
-                            //Core.StartSceneTransition(new FadeTransition(() => new MainMenuScene()));
+                            Time.TimeScale = 1;
+                            var saveSlot = Entity.GetMainScene().SaveSlot;
+                            var save = Core.GetGlobalManager<SaveSystem>().Load(saveSlot);
+                            Core.StartSceneTransition(new FadeTransition(() => new MainScene(saveSlot, save)));
                             break;
                         case 2:
                             Core.Exit();
