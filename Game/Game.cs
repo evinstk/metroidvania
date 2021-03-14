@@ -36,9 +36,7 @@ namespace Game
 
             var saveSlot = 0;
             var save = saveSystem.Load(saveSlot);
-            Scene = save != null
-                ? new MainScene(saveSlot, save.World, save.Room, save.Checkpoint)
-                : new MainScene(saveSlot, "Intro");
+            Scene = new MainScene(saveSlot, save);
         }
 
         protected override void Update(GameTime gameTime)

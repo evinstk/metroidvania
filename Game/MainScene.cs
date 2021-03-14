@@ -23,20 +23,17 @@ namespace Game
         SceneScript _scripting;
 
         public readonly int SaveSlot;
-        string _world;
-        string _room;
-        string _area;
+        Save _save;
 
         float _resetTimer = 0f;
 
         Vector2? _pendingMove = null;
 
-        public MainScene(int saveSlot, string world, string room = null, string area = null)
+
+        public MainScene(int saveSlot, Save save)
         {
             SaveSlot = saveSlot;
-            _world = world;
-            _room = room;
-            _area = area;
+            _save = save;
         }
 
         public override void Initialize()
@@ -92,17 +89,18 @@ namespace Game
 
             CreateEntity("sound_system").AddComponent<SoundSystem>();
 
-            // TODO: load from save file
-            ScriptVars.Set(Vars.PlayerInventory, new Inventory
-            {
-                Weapons = new List<Weapon> { (Weapon)Item.Get("Guard Baton") },
-                EquippedWeaponIndex = 0,
+            // TODO: convert Inventory to serializable format
+            var inventory = new Inventory();
+            foreach (var weapon in _save.Weapons)
+                inventory.Weapons.Add((Weapon)Item.Get(weapon));
+            inventory.EquippedWeaponIndex = _save.EquippedWeaponIndex;
+            foreach (var ranged in _save.RangedWeapons)
+                inventory.RangedWeapons.Add((RangedWeapon)Item.Get(ranged));
+            inventory.EquippedRangedWeaponIndex = _save.EquippedRangedWeaponIndex;
 
-                RangedWeapons = new List<RangedWeapon> { (RangedWeapon)Item.Get("Blaster") },
-                EquippedRangedWeaponIndex = 0,
-            });
-            ScriptVars[Vars.PlayerMaxHealth] = 5;
-            ScriptVars[Vars.PlayerHealth] = 5;
+            ScriptVars.Set(Vars.PlayerInventory, inventory);
+            ScriptVars[Vars.PlayerMaxHealth] = _save.MaxHealth;
+            ScriptVars[Vars.PlayerHealth] = _save.MaxHealth;
 
             CreateEntity("overlay").AddComponent<Overlay>();
 
@@ -119,15 +117,15 @@ namespace Game
 
             _scripting = new SceneScript(dialogSystem, ScriptVars);
 
-            var world = LoadWorld(_world);
+            var world = LoadWorld(_save.World);
             CreateEntity("world");
             AddWorldBounds(world);
             SetBackground(world);
-            var startRoom = _room != null
-                ? world.Rooms.Find(r => r.RoomName == _room)
+            var startRoom = _save.Room != null
+                ? world.Rooms.Find(r => r.RoomName == _save.Room)
                 : world.Rooms.Find(r => r.Id == world.StartRoomId);
             Debug.LogIf(startRoom == null, "No start room set. Defaulting to room at (0, 0).");
-            RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero, _area);
+            RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero, _save.Checkpoint);
         }
 
         World LoadWorld(string worldName)
@@ -305,7 +303,7 @@ namespace Game
                                 this.CreateExit(pos, entity);
                                 break;
                             case "terminal":
-                                this.CreateTerminal(pos, entity, _world, rb.Room.RoomName);
+                                this.CreateTerminal(pos, entity, _save.World, rb.Room.RoomName);
                                 break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
@@ -338,7 +336,7 @@ namespace Game
         {
             // restart
             if (Input.IsKeyDown(Keys.F2))
-                Core.Scene = new MainScene(SaveSlot, _world, _room, _area);
+                Core.Scene = new MainScene(SaveSlot, _save);
 
             if (Timer.PauseTimer > 0)
             {
@@ -385,9 +383,7 @@ namespace Game
                     var transition = Core.StartSceneTransition(new FadeTransition(() =>
                     {
                         var save = Core.GetGlobalManager<SaveSystem>().Load(SaveSlot);
-                        return save != null
-                            ? new MainScene(SaveSlot, save.World, save.Room, save.Checkpoint)
-                            : new MainScene(SaveSlot, "Intro");
+                        return new MainScene(SaveSlot, save);
                     }));
                     transition.FadeOutDuration = 0.3f;
                     transition.FadeInDuration = 0.2f;

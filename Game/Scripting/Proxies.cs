@@ -71,10 +71,10 @@ namespace Game.Scripting
             }
         }
 
-        public void LoadWorld(string world, string room = null, string area = null)
-        {
-            Core.StartSceneTransition(new FadeTransition(() => new MainScene(Scene.SaveSlot, world, room, area)));
-        }
+        //public void LoadWorld(string world, string room = null, string area = null)
+        //{
+        //    Core.StartSceneTransition(new FadeTransition(() => new MainScene(Scene.SaveSlot, world, room, area)));
+        //}
 
         public Entity FindEntity(string name) => Scene.FindEntity(name);
 
