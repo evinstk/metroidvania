@@ -12,8 +12,7 @@ namespace Game
 {
     class MainScene : Scene
     {
-        static readonly ScriptVars _vars = new ScriptVars(); // temp solution
-        public ScriptVars ScriptVars => _vars;
+        public ScriptVars ScriptVars = new ScriptVars();
         public Renderer FadeRenderer { get; private set; }
 
         Dictionary<string, World> _worlds = new Dictionary<string, World>();
