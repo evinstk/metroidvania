@@ -582,6 +582,10 @@ namespace Game
             {
                 var mainScene = self.Entity.GetMainScene();
                 Core.GetGlobalManager<SaveSystem>().Save(mainScene.SaveSlot, world, room, self.Entity.Name);
+
+                var vars = mainScene.GetScriptVars();
+                vars[Vars.PlayerHealth] = vars.Get<int>(Vars.PlayerMaxHealth);
+                vars[Vars.PlayerMana] = vars.Get<int>(Vars.PlayerMaxMana);
             };
 
             return entity;
