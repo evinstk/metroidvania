@@ -68,6 +68,7 @@ namespace Game
         VirtualButton _inputDodge;
         VirtualButton _inputInteract;
         VirtualButton _inputRangedModifier;
+        VirtualJoystick _inputAim;
 
         PlatformerMover _mover;
 
@@ -109,7 +110,7 @@ namespace Game
             _inputJump.Nodes.Add(new VirtualButton.KeyboardKey(Keys.Space));
 
             _inputAttack = new VirtualButton();
-            _inputAttack.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.X));
+            _inputAttack.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.RightShoulder));
             _inputAttack.Nodes.Add(new VirtualButton.MouseLeftButton());
 
             _inputInteract = new VirtualButton();
@@ -123,6 +124,9 @@ namespace Game
             _inputRangedModifier = new VirtualButton();
             _inputRangedModifier.AddGamePadButton(0, Buttons.LeftShoulder);
             _inputRangedModifier.AddMouseRightButton();
+
+            _inputAim = new VirtualJoystick(true);
+            _inputAim.AddGamePadRightStick();
 
             _mover = Entity.GetComponent<PlatformerMover>();
 
@@ -164,39 +168,62 @@ namespace Game
 
             if (Time.TimeScale == 0) return;
 
+            var weaponAnimation = string.Empty;
+
             // NORMAL STATE
             if (_state == States.Normal)
             {
                 // animation
+                var rangedWeaponActive = _inputRangedModifier.IsDown && _equippedRangedWeapon != null;
+                _weaponAnimator.Change(rangedWeaponActive ? "idle" : "empty");
+                if (rangedWeaponActive)
+                {
+                    var aim = _inputAim.Value.Y;
+                    if (aim <= -.98f)
+                        weaponAnimation = "b";
+                    else if (aim <= -.83f)
+                        weaponAnimation = "bbm";
+                    else if (aim <= -.56f)
+                        weaponAnimation = "bm";
+                    else if (aim <= -.2f)
+                        weaponAnimation = "bmm";
+                    else if (aim <= .2f)
+                        weaponAnimation = "m";
+                    else if (aim <= .56f)
+                        weaponAnimation = "tmm";
+                    else if (aim <= .83f)
+                        weaponAnimation = "tm";
+                    else if (aim <= .98f)
+                        weaponAnimation = "ttm";
+                    else if (aim <= 1f)
+                        weaponAnimation = "t";
+                    _upperAnimator.Change($"upper_{weaponAnimation}");
+                    _weaponAnimator.Change(weaponAnimation);
+                }
+                else
+                {
+                    _weaponAnimator.Change("empty");
+                }
                 if (_onGround)
                 {
                     if (inputX == 0)
                     {
-                        if (_inputRangedModifier.IsDown && _equippedRangedWeapon != null)
-                        {
-                            _upperAnimator.Change("upper_m");
-                            _lowerAnimator.Change("lower_m");
-                            _weaponAnimator.Change("idle");
-                        }
-                        else
-                        {
+                        _lowerAnimator.Change("lower_idle");
+                        if (!rangedWeaponActive)
                             _upperAnimator.Change("upper_idle");
-                            _lowerAnimator.Change("lower_idle");
-                            _weaponAnimator.Change("empty");
-                        }
                     }
                     else
                     {
-                        _upperAnimator.Change("upper_walk");
                         _lowerAnimator.Change("lower_walk");
-                        _weaponAnimator.Change("empty");
+                        if (!rangedWeaponActive)
+                            _upperAnimator.Change("upper_walk");
                     }
                 }
                 else
                 {
-                    _upperAnimator.Change("upper_jump");
                     _lowerAnimator.Change("lower_jump");
-                    _weaponAnimator.Change("empty");
+                    if (!rangedWeaponActive)
+                        _upperAnimator.Change("upper_jump");
                 }
 
                 // horizontal movement
@@ -267,11 +294,57 @@ namespace Game
                     if (_inputAttack.IsPressed && _equippedRangedWeapon?.ManaCost <= mana && _inputRangedModifier.IsDown && _fireTimer <= 0)
                     {
                         _vars[Vars.PlayerMana] = mana - _equippedRangedWeapon.ManaCost;
-                        var projectilePos = Entity.Position + new Vector2(12 * _facing, 0);
+
+                        var aimVector = Vector2.Zero;
+                        var projectilePos = Vector2.Zero;
+                        switch (weaponAnimation)
+                        {
+                            case "b":
+                                aimVector = new Vector2(0, 1);
+                                projectilePos = new Vector2(-4, 18);
+                                break;
+                            case "bbm":
+                                aimVector = new Vector2(.38f, .92f);
+                                projectilePos = new Vector2(4, 15);
+                                break;
+                            case "bm":
+                                aimVector = new Vector2(.71f, .71f);
+                                projectilePos = new Vector2(11, 9);
+                                break;
+                            case "bmm":
+                                aimVector = new Vector2(.92f, .38f);
+                                projectilePos = new Vector2(12, 4);
+                                break;
+                            case "m":
+                                aimVector = new Vector2(1, 0);
+                                projectilePos = new Vector2(12, 0);
+                                break;
+                            case "tmm":
+                                aimVector = new Vector2(.92f, -.38f);
+                                projectilePos = new Vector2(12, -4);
+                                break;
+                            case "tm":
+                                aimVector = new Vector2(.71f, -.71f);
+                                projectilePos = new Vector2(11, -9);
+                                break;
+                            case "ttm":
+                                aimVector = new Vector2(.38f, -.92f);
+                                projectilePos = new Vector2(8, -16);
+                                break;
+                            case "t":
+                                aimVector = new Vector2(0, -1);
+                                projectilePos = new Vector2(-6, -20);
+                                break;
+                        }
+                        aimVector.X = Math.Abs(aimVector.X) * _facing;
+                        projectilePos.X = projectilePos.X * _facing;
+                        projectilePos += Entity.Position;
+
                         Entity.Scene.CreateFlash(projectilePos, Color.AliceBlue);
                         var projectileEntity = Entity.Scene.CreateLaser(projectilePos);
                         var mover = projectileEntity.GetComponent<PlatformerMover>();
-                        mover.Speed.X = _equippedRangedWeapon.ProjectileSpeed * _facing;
+                        mover.Speed = _equippedRangedWeapon.ProjectileSpeed * aimVector;
+
                         var damage = projectileEntity.GetComponent<Damage>();
                         damage.Amount = _equippedRangedWeapon.Damage;
                         _equippedRangedWeapon.Sound?.Play();
