@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 
 namespace Game
@@ -11,6 +12,8 @@ namespace Game
         float _positionY = 0;
 
         VirtualIntegerAxis _input;
+        VirtualButton _inputRangedModifier;
+
         float _timer;
         int _lastInput;
 
@@ -18,19 +21,17 @@ namespace Game
         {
             _input = new VirtualIntegerAxis();
             _input.AddGamePadRightStickY();
+
+            _inputRangedModifier = new VirtualButton();
+            _inputRangedModifier.AddGamePadButton(0, Buttons.LeftShoulder);
+            _inputRangedModifier.AddMouseRightButton();
         }
 
         public void Update()
         {
-            //var lookAhead = _input.Value;
-            //Entity.Scene.Camera.Position = Mathf.Lerp(
-            //    Entity.Scene.Camera.Position,
-            //    new Vector2(0, -lookAhead * LookAheadAmount),
-            //    Time.DeltaTime);
-
             _timer += Time.DeltaTime;
 
-            var input = _input.Value;
+            var input = !_inputRangedModifier.IsDown ? _input.Value : 0;
             if (_lastInput != input)
                 _timer = 0;
 
