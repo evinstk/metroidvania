@@ -77,11 +77,13 @@ namespace Game
         public override void OnEnabled()
         {
             _incomingInventory?.SetIsVisible(true);
+            _manaBar.SetEnabled(true);
         }
 
         public override void OnDisabled()
         {
             _incomingInventory?.SetIsVisible(false);
+            _manaBar.SetEnabled(false);
         }
 
         public void OnSave(SaveSystem saveSystem)
