@@ -62,7 +62,8 @@ namespace Game
             mover.Speed.X = 0;
             mover.Speed.Y = 0;
             var anim = Entity.GetComponent<SpriteAnimator>();
-            anim.Change("idle");
+            if (anim.Animations.ContainsKey("idle"))
+                anim.Change("idle");
         }
 
         public void Update()
@@ -75,13 +76,15 @@ namespace Game
                 var pos = Entity.Position;
                 if (Math.Abs(_moveDest.X - pos.X) > 0.001f)
                 {
-                    _anim.Change("walk");
+                    if (_anim.Animations.ContainsKey("walk"))
+                        _anim.Change("walk");
                     _facing = Math.Sign(_moveDest.X - pos.X);
                     _mover.Speed.X = WalkSpeed * _facing;
                 }
                 else
                 {
-                    _anim.Change("idle");
+                    if (_anim.Animations.ContainsKey("idle"))
+                        _anim.Change("idle");
                     _mover.Speed.X = 0;
                     _state = States.Free;
                 }
