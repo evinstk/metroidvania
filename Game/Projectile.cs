@@ -33,7 +33,9 @@ namespace Game
             if (_timer > TimeToLive || shouldDestroy)
                 Entity.Destroy();
 
-            Transform.Rotation = Mathf.Deg2Rad * Mathf.RoundToNearest(Vector2.Zero.AngleBetween(new Vector2(1, 0), _mover.Speed), 45);
+            Transform.Rotation = Mathf.Deg2Rad * Mathf.RoundToNearest(Vector2.Zero.AngleBetween(new Vector2(1, 0), _mover.Speed), 22.5f);
+            if (_mover.Speed.Y < 0)
+                Transform.Rotation = -Transform.Rotation;
         }
 
         public void OnHurt(Hurtable self, Collider attacker)
