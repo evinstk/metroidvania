@@ -11,13 +11,6 @@ namespace Game
         {
             var entity = scene.CreateEntity("player", position);
 
-            var anim = entity.AddComponent(Animator.MakeAnimator("player", scene.Content, new Dictionary<string, int>
-            {
-                { "dead", 3 },
-            }));
-            anim.Play("idle");
-            anim.RenderLayer = -10;
-
             var hitbox = entity.AddComponent(new BoxCollider(16, 32));
             hitbox.PhysicsLayer = Mask.Player;
             hitbox.CollidesWithLayers = Mask.EnemyAttack;

@@ -70,11 +70,30 @@ namespace Game
         VirtualButton _inputRangedModifier;
 
         PlatformerMover _mover;
-        SpriteAnimator _animator;
+
+        SpriteAnimator _upperAnimator;
+        SpriteAnimator _lowerAnimator;
         SpriteAnimator _weaponAnimator;
+
         ScriptVars _vars;
 
         Inventory PlayerInventory => _vars.Get<Inventory>(Vars.PlayerInventory);
+
+        static Dictionary<string, int> _animOverrides = new Dictionary<string, int>
+        {
+            { "dead", 3 },
+        };
+
+        public override void Initialize()
+        {
+            _upperAnimator = Entity.AddComponent(Animator.MakeAnimator("player", Entity.Scene.Content, _animOverrides));
+            _upperAnimator.Play("upper_idle");
+            _upperAnimator.RenderLayer = -10;
+
+            _lowerAnimator = Entity.AddComponent(Animator.MakeAnimator("player", Entity.Scene.Content, _animOverrides));
+            _lowerAnimator.Play("lower_idle");
+            _lowerAnimator.RenderLayer = -10;
+        }
 
         public override void OnAddedToEntity()
         {
@@ -106,10 +125,9 @@ namespace Game
             _inputRangedModifier.AddMouseRightButton();
 
             _mover = Entity.GetComponent<PlatformerMover>();
-            _animator = Entity.GetComponent<SpriteAnimator>();
 
             _weaponAnimator = Entity.AddComponent<SpriteAnimator>();
-            _weaponAnimator.RenderLayer = _animator.RenderLayer - 1;
+            _weaponAnimator.RenderLayer = _upperAnimator.RenderLayer - 1;
             _weaponAnimator.AddAnimation("empty", GameContent.LoadAnimation("doodads", "empty", Core.Content));
             _weaponAnimator.Play("empty");
 
@@ -124,7 +142,8 @@ namespace Game
         public void Update()
         {
             var flip = _facing == -1;
-            _animator.FlipX = flip;
+            _upperAnimator.FlipX = flip;
+            _lowerAnimator.FlipX = flip;
             _weaponAnimator.FlipX = flip;
             _onGround = _mover.OnGround();
             var onWall = _mover.OnWall(out var wallDir);
@@ -155,24 +174,28 @@ namespace Game
                     {
                         if (_inputRangedModifier.IsDown && _equippedRangedWeapon != null)
                         {
-                            _animator.Change("ranged_idle");
+                            _upperAnimator.Change("upper_m");
+                            _lowerAnimator.Change("lower_m");
                             _weaponAnimator.Change("idle");
                         }
                         else
                         {
-                            _animator.Change("idle");
+                            _upperAnimator.Change("upper_idle");
+                            _lowerAnimator.Change("lower_idle");
                             _weaponAnimator.Change("empty");
                         }
                     }
                     else
                     {
-                        _animator.Change("walk");
+                        _upperAnimator.Change("upper_walk");
+                        _lowerAnimator.Change("lower_walk");
                         _weaponAnimator.Change("empty");
                     }
                 }
                 else
                 {
-                    _animator.Change("jump");
+                    _upperAnimator.Change("upper_jump");
+                    _lowerAnimator.Change("lower_jump");
                     _weaponAnimator.Change("empty");
                 }
 
@@ -277,7 +300,8 @@ namespace Game
             {
                 if (_attackType == AttackTypes.Light)
                 {
-                    _animator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
+                    _upperAnimator.Change("upper_attack", SpriteAnimator.LoopMode.ClampForever);
+                    _lowerAnimator.Change("lower_attack", SpriteAnimator.LoopMode.ClampForever);
                     _weaponAnimator.Change("attack", SpriteAnimator.LoopMode.ClampForever);
                     _attackTimer += Time.DeltaTime;
 
@@ -301,9 +325,10 @@ namespace Game
                         _attackCollider.LocalOffset = new Vector2(-offset.X, offset.Y);
                     }
 
-                    if (!_animator.IsRunning)
+                    if (!_upperAnimator.IsRunning)
                     {
-                        _animator.Change("idle");
+                        _upperAnimator.Change("upper_idle");
+                        _lowerAnimator.Change("lower_idle");
                         _weaponAnimator.Play("empty");
                         _state = States.Normal;
                     }
@@ -317,7 +342,8 @@ namespace Game
             // DODGE STATE
             else if (_state == States.Dodge)
             {
-                _animator.Change("dodge", SpriteAnimator.LoopMode.ClampForever);
+                _upperAnimator.Change("upper_dodge", SpriteAnimator.LoopMode.ClampForever);
+                _lowerAnimator.Change("lower_dodge", SpriteAnimator.LoopMode.ClampForever);
                 _weaponAnimator.Change("empty");
                 _dodgeTimer += Time.DeltaTime;
                 _mover.Speed.X = _facing * DodgeSpeed;
@@ -325,7 +351,8 @@ namespace Game
 
                 if (_dodgeTimer >= DodgeTime)
                 {
-                    _animator.Change("idle");
+                    _upperAnimator.Change("upper_idle");
+                    _lowerAnimator.Change("lower_idle");
                     _weaponAnimator.Change("empty");
                     _state = States.Normal;
                     _dodgeTimeoutTimer = DodgeTimeout;
@@ -336,7 +363,8 @@ namespace Game
             // HURT STATE
             else if (_state == States.Hurt)
             {
-                _animator.Change("hurt");
+                _upperAnimator.Change("upper_hurt");
+                _lowerAnimator.Change("lower_hurt");
                 _weaponAnimator.Change("empty");
                 _hurtTimer -= Time.DeltaTime;
 
@@ -350,7 +378,8 @@ namespace Game
             else if (_state == States.Dead)
             {
                 _mover.Speed.X = 0;
-                _animator.Change("dead", SpriteAnimator.LoopMode.ClampForever);
+                _upperAnimator.Change("upper_dead", SpriteAnimator.LoopMode.ClampForever);
+                _lowerAnimator.Change("lower_dead", SpriteAnimator.LoopMode.ClampForever);
                 _weaponAnimator.Change("empty");
                 Hitbox.PhysicsLayer &= ~Mask.Player;
             }
@@ -406,13 +435,15 @@ namespace Game
             {
                 if (Timer.OnInterval(0.05f))
                 {
-                    _animator.Color = _animator.Color == Color.Transparent ? Color.White : Color.Transparent;
+                    _upperAnimator.Color = _upperAnimator.Color == Color.Transparent ? Color.White : Color.Transparent;
+                    _lowerAnimator.Color = _lowerAnimator.Color == Color.Transparent ? Color.White : Color.Transparent;
                     _weaponAnimator.Color = _weaponAnimator.Color == Color.Transparent ? Color.White : Color.Transparent;
                 }
                 _invincibilityTimer -= Time.DeltaTime;
                 if (_invincibilityTimer <= 0)
                 {
-                    _animator.Color = Color.White;
+                    _upperAnimator.Color = Color.White;
+                    _lowerAnimator.Color = Color.White;
                     _weaponAnimator.Color = Color.White;
                 }
             }
@@ -421,7 +452,8 @@ namespace Game
             if (_invincibilityTimer <= 0 && Hitbox.CollidesWithAny(out var hurtHit) && _state != States.Dead)
             {
                 Timer.PauseFor(0.1f);
-                _animator.Change("hurt", SpriteAnimator.LoopMode.ClampForever);
+                _upperAnimator.Change("upper_hurt", SpriteAnimator.LoopMode.ClampForever);
+                _lowerAnimator.Change("lower_hurt", SpriteAnimator.LoopMode.ClampForever);
                 _weaponAnimator.Change("empty");
                 var health = _vars.Get<int>(Vars.PlayerHealth);
                 var damage = hurtHit.Collider.GetComponent<Damage>();
