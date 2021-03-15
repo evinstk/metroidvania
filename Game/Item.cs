@@ -21,7 +21,7 @@ namespace Game
         static readonly List<Item> _items = new List<Item>
         {
             // melee
-            new Weapon("hud", "baton", "player", "baton", "slash.wav")
+            new Weapon("hud", "baton", "player", "baton_attack", "slash.wav")
             {
                 AttackType = AttackTypes.Light,
                 Name = "Guard Baton",
