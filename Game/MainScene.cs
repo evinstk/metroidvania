@@ -327,6 +327,10 @@ namespace Game
                         player = this.CreatePlayer(Vector2.Zero);
                     player.Position = area.Position;
                 }
+                else
+                {
+                    Debug.Log($"Start area \"{startAreaName}\" not found.");
+                }
             }
 
             string script = null;
