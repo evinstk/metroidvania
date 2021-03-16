@@ -141,6 +141,8 @@ namespace Game
         public override void OnDisabled()
         {
             _weaponAnimator?.Play("empty");
+            _upperAnimator.Play("upper_idle");
+            _lowerAnimator.Play("lower_idle");
         }
 
         public void Update()
