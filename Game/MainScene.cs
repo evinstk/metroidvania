@@ -10,6 +10,12 @@ using System.IO;
 
 namespace Game
 {
+    class StartRoom
+    {
+        public string World;
+        public string RoomId;
+    }
+
     class MainScene : Scene
     {
         public ScriptVars ScriptVars = new ScriptVars();
@@ -24,22 +30,23 @@ namespace Game
 
         public readonly int SaveSlot;
         Save _save;
+        StartRoom _startRoom;
 
         float _resetTimer = 0f;
 
         Vector2? _pendingMove = null;
 
 
-        public MainScene(int saveSlot, Save save)
+        public MainScene(int saveSlot, Save save, StartRoom startRoom = null)
         {
             SaveSlot = saveSlot;
             _save = save;
+            _startRoom = startRoom;
         }
 
         public override void Initialize()
         {
             SetDesignResolution(Constants.ResWidth, Constants.ResHeight, SceneResolutionPolicy.ShowAllPixelPerfect);
-            Screen.SetSize(Constants.ScreenWidth, Constants.ScreenHeight);
             ClearColor = Constants.ClearColor;
 
             Physics.SpatialHashCellSize = 16;
@@ -71,6 +78,11 @@ namespace Game
 
         public override void OnStart()
         {
+#if DEBUG
+            if (_startRoom != null)
+                CreateEntity("transport").AddComponent(new Transport(_startRoom));
+#endif
+
             CreateEntity("light_map")
                 .SetParent(Camera.Transform)
                 .AddComponent(new SpriteRenderer(GetRenderer<StencilLightRenderer>().RenderTexture))
@@ -121,12 +133,12 @@ namespace Game
 
             _scripting = new SceneScript(dialogSystem, ScriptVars);
 
-            var world = LoadWorld(_save.World);
+            var world = LoadWorld(_startRoom?.World ?? _save.World);
             CreateEntity("world");
             AddWorldBounds(world);
             SetBackground(world);
-            var startRoom = _save.Room != null
-                ? world.Rooms.Find(r => r.RoomName == _save.Room)
+            var startRoom = _startRoom?.RoomId != null ? world.Rooms.Find(r => r.Id == _startRoom.RoomId)
+                : _startRoom == null && _save.Room != null ? world.Rooms.Find(r => r.RoomName == _save.Room)
                 : world.Rooms.Find(r => r.Id == world.StartRoomId);
             Debug.LogIf(startRoom == null, "No start room set. Defaulting to room at (0, 0).");
             RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero, _save.Checkpoint);
@@ -346,7 +358,7 @@ namespace Game
             if (Input.IsKeyDown(Keys.F2))
             {
                 var save = Core.GetGlobalManager<SaveSystem>().Load(SaveSlot);
-                Core.Scene = new MainScene(SaveSlot, save);
+                Core.Scene = new MainScene(SaveSlot, save, _startRoom);
             }
 
             if (Timer.PauseTimer > 0)
@@ -396,7 +408,7 @@ namespace Game
                     var transition = Core.StartSceneTransition(new FadeTransition(() =>
                     {
                         var save = Core.GetGlobalManager<SaveSystem>().Load(SaveSlot);
-                        return new MainScene(SaveSlot, save);
+                        return new MainScene(SaveSlot, save, _startRoom);
                     }));
                     transition.FadeOutDuration = 0.3f;
                     transition.FadeInDuration = 0.2f;

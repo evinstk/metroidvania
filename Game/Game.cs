@@ -34,6 +34,8 @@ namespace Game
             GameContent.LoadBank("Master");
             GameContent.LoadBank("Master.strings");
 
+            Screen.SetSize(Constants.ScreenWidth, Constants.ScreenHeight);
+
             var saveSlot = 0;
             var save = saveSystem.Load(saveSlot);
             Scene = new MainScene(saveSlot, save);

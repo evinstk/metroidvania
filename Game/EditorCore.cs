@@ -19,6 +19,8 @@ namespace Game
             var imGuiManager = new ImGuiManager();
             RegisterGlobalManager(imGuiManager);
 
+            RegisterGlobalManager(new SaveSystem());
+
             Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
 
             FMOD = this.InitializeFMOD();

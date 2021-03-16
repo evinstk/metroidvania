@@ -10,11 +10,24 @@ using System.IO;
 
 namespace Game
 {
+    public class EditorInit
+    {
+        public string World;
+        public string RoomId;
+    }
+
     class EditorScene : Scene
     {
         public string WorldName = string.Empty;
         public World World => Worlds.ContainsKey(WorldName) ? Worlds[WorldName] : null;
         public Dictionary<string, World> Worlds = new Dictionary<string, World>();
+
+        EditorInit _init;
+
+        public EditorScene(EditorInit init = null)
+        {
+            _init = init;
+        }
 
         public override void Initialize()
         {
@@ -31,6 +44,15 @@ namespace Game
             CreateEntity("world-renderer").AddComponent<WorldRenderer>();
             CreateEntity("editor-controller").AddComponent<EditorController>();
         }
+
+        public override void OnStart()
+        {
+            if (_init != null)
+            {
+                var worldWindow = FindComponentOfType<WorldWindow>();
+                worldWindow.SetWorld(_init.World, _init.RoomId);
+            }
+        }
     }
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
@@ -42,6 +64,8 @@ namespace Game
     class WorldWindow : Component
     {
         List<string> _worlds;
+        string _launchRoomId;
+        int _saveSlot;
 
         public override void OnAddedToEntity()
         {
@@ -91,11 +115,39 @@ namespace Game
                     }
                     ImGui.EndCombo();
                 }
+
+                var currWorld = scene.World;
+                if (currWorld != null)
+                {
+                    ImGui.Separator();
+
+                    var launchRoom = currWorld.Rooms.Find(r => r.Id == _launchRoomId);
+                    if (ImGui.BeginCombo("##launch-room", launchRoom?.MapName))
+                    {
+                        foreach (var room in currWorld.Rooms)
+                        {
+                            if (ImGui.Selectable(room.RoomName))
+                                _launchRoomId = room.Id;
+                        }
+                        ImGui.EndCombo();
+                    }
+
+                    if (ImGui.Button("Launch") && _launchRoomId != null)
+                    {
+                        var save = Core.GetGlobalManager<SaveSystem>().Load(_saveSlot);
+                        Core.Scene = new MainScene(_saveSlot, save, new StartRoom
+                        {
+                            World = scene.WorldName,
+                            RoomId = _launchRoomId,
+                        });
+                    }
+                }
+
                 ImGui.End();
             }
         }
 
-        public void SetWorld(string worldName)
+        public void SetWorld(string worldName, string launchRoom = null)
         {
             var scene = Entity.Scene as EditorScene;
             scene.WorldName = worldName;
@@ -113,6 +165,7 @@ namespace Game
                 }
                 scene.Worlds.Add(worldName, world);
             }
+            _launchRoomId = launchRoom;
         }
     }
 
