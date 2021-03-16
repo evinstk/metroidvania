@@ -2,6 +2,7 @@
 using Nez;
 using Nez.Sprites;
 using System;
+using System.Collections.Generic;
 
 namespace Game
 {
@@ -22,7 +23,7 @@ namespace Game
         int _facing = 1;
         Vector2 _moveDest;
 
-        SpriteAnimator _anim;
+        List<SpriteAnimator> _animators;
         PlatformerMover _mover;
 
         public void Move(Vector2 dest)
@@ -51,7 +52,7 @@ namespace Game
 
         public override void OnAddedToEntity()
         {
-            _anim = Entity.GetComponent<SpriteAnimator>();
+            _animators = Entity.GetComponents<SpriteAnimator>();
             _mover = Entity.GetComponent<PlatformerMover>();
         }
 
@@ -68,7 +69,8 @@ namespace Game
 
         public void Update()
         {
-            _anim.FlipX = _facing < 0;
+            foreach (var animator in _animators)
+                animator.FlipX = _facing < 0;
 
             // MOVE STATE
             if (_state == States.Move)
@@ -76,15 +78,17 @@ namespace Game
                 var pos = Entity.Position;
                 if (Math.Abs(_moveDest.X - pos.X) > 0.001f)
                 {
-                    if (_anim.Animations.ContainsKey("walk"))
-                        _anim.Change("walk");
+                    foreach (var animator in _animators)
+                        if (animator.Animations.ContainsKey("walk"))
+                            animator.Change("walk");
                     _facing = Math.Sign(_moveDest.X - pos.X);
                     _mover.Speed.X = WalkSpeed * _facing;
                 }
                 else
                 {
-                    if (_anim.Animations.ContainsKey("idle"))
-                        _anim.Change("idle");
+                    foreach (var animator in _animators)
+                        if (animator.Animations.ContainsKey("idle"))
+                            animator.Change("idle");
                     _mover.Speed.X = 0;
                     _state = States.Free;
                 }
