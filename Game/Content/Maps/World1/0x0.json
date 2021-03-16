@@ -84,7 +84,7 @@
           "y": 212,
           "originX": 12,
           "originY": 12,
-          "values": {"contents": "test_contents"}
+          "values": {"contents": "test_contents", "name": "default_chest"}
         },
         {"name": "cypher", "id": 7, "_eid": "34819345", "x": 152, "y": 92, "originX": 16, "originY": 16}
       ]

@@ -113,7 +113,7 @@
           "y": 260,
           "originX": 12,
           "originY": 12,
-          "values": {"contents": "spacecraft_contents"}
+          "values": {"contents": "spacecraft_contents", "name": "default_chest"}
         }
       ]
     },

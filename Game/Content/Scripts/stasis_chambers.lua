@@ -1,10 +1,6 @@
 require 'common'
 require 'speech'
 
-scene.set_fade(0, 0)
-scene.set_letterbox(24, 0.5)
-scene.show_hud(false)
-
 local them = 'them'
 local player_name = 'Samus'
 local sworn_enemy = 'Yiga'
@@ -36,11 +32,11 @@ local function baddie_move()
     goblin.move_to('goblin_dest')
 end
 
-start_coroutine(function()
+local function start()
     scene.load_music('Music', 'refiners_fire')
     scene.play_music()
+    scene.set_fade(0, 0)
 
-    local player
     cutscene(function()
         camera.focus_on('stasis_chamber')
 
@@ -91,45 +87,57 @@ start_coroutine(function()
         hal_speak('There should be a weapon cache in your vicinity. Get going, ' .. player_name .. '.')
     end)
 
-    vars['escape_door'] = true
-    wait(in_area(player, 'escape_area'))
-    vars['escape_door'] = false
+    vars['stasis_chambers_switch'] = true
 
-    cutscene({
-        possess={ 'player', 'dark_lord', 'goblin' },
-    }, function()
-        camera.focus_on('stasis_chamber')
+    scene.save_game('Intro', 'stasis_chambers', 'player_spawn')
+    -- wait(in_area(player, 'escape_area'))
+    -- vars['escape_door'] = false
 
-        local baddie = scene.find_entity('dark_lord')
-        local goblin = scene.find_entity('goblin')
+    -- cutscene({
+    --     possess={ 'player', 'dark_lord', 'goblin' },
+    -- }, function()
+    --     camera.focus_on('stasis_chamber')
 
-        baddie.move_to('switch_stop')
-        wait(in_area(baddie, 'switch_stop'))
+    --     local baddie = scene.find_entity('dark_lord')
+    --     local goblin = scene.find_entity('goblin')
 
-        vars['stasis_door'] = true
-        wait_for(1)
+    --     baddie.move_to('switch_stop')
+    --     wait(in_area(baddie, 'switch_stop'))
 
-        baddie.move_to('dark_lord_dest')
-        goblin.move_to('goblin_dest')
+    --     vars['stasis_door'] = true
+    --     wait_for(1)
 
-        wait(in_area(baddie, 'dark_lord_dest'))
-        wait(in_area(goblin, 'goblin_dest'))
+    --     baddie.move_to('dark_lord_dest')
+    --     goblin.move_to('goblin_dest')
 
-        dark_lord_speak('Lieutenant?', { speaker='' })
-        goblin_speak('Yes, boss?', { speaker='' })
-        dark_lord_speak('Care to explain to me why our asset appears to be missing?', { speaker='' })
-    end)
+    --     wait(in_area(baddie, 'dark_lord_dest'))
+    --     wait(in_area(goblin, 'goblin_dest'))
 
-    scene.stop_music(true)
-    wait_for(2)
-    scene.set_fade(0, 3)
-    wait_for(3)
+    --     dark_lord_speak('Lieutenant?', { speaker='' })
+    --     goblin_speak('Yes, boss?', { speaker='' })
+    --     dark_lord_speak('Care to explain to me why our asset appears to be missing?', { speaker='' })
+    -- end)
 
-    cutscene({ keep_hud_off=true }, function()
-        center_dialog('And then a really cool level happens.')
-        center_dialog('Still working on it ;)')
-        center_dialog('For now, enjoy a fun boss fight.\n\n  -- Tanner')
-    end)
+    -- scene.stop_music(true)
+    -- wait_for(2)
+    -- scene.set_fade(0, 3)
+    -- wait_for(3)
 
-    scene.load_world('Intro', 'left_dead_end')
-end)
+    -- cutscene({ keep_hud_off=true }, function()
+    --     center_dialog('And then a really cool level happens.')
+    --     center_dialog('Still working on it ;)')
+    --     center_dialog('For now, enjoy a fun boss fight.\n\n  -- Tanner')
+    -- end)
+
+    -- scene.load_world('Intro', 'left_dead_end')
+end
+
+
+local player = scene.find_entity('player')
+if player == nil then
+    start_coroutine(start)
+else
+    local chamber = scene.find_entity('stasis_chamber')
+    chamber.change_animation('stasis_chamber_open', 'clamp_forever')
+    vars['stasis_chambers_switch'] = true
+end

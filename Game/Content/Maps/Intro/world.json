@@ -5,8 +5,8 @@
 			"RoomName": "stasis_chambers",
 			"MapName": "stasis_chambers.json",
 			"Position": {
-				"X": -368,
-				"Y": 272
+				"X": 1344,
+				"Y": -16
 			}
 		},
 		{
@@ -16,15 +16,6 @@
 			"Position": {
 				"X": 0,
 				"Y": 0
-			}
-		},
-		{
-			"Id": "NYSHZZGYOPNSMBEYKUVXTPVLXTRRSEPZOQLUFQ",
-			"RoomName": "side_room",
-			"MapName": "side_room.json",
-			"Position": {
-				"X": 512,
-				"Y": 384
 			}
 		},
 		{
@@ -53,10 +44,75 @@
 				"X": 464,
 				"Y": -656
 			}
+		},
+		{
+			"Id": "UCHUNOJTJNIVKSJVFXPLHMBAFGRALCARDUIFVQ",
+			"RoomName": "checkpoint_right",
+			"MapName": "checkpoint_right.json",
+			"Position": {
+				"X": 848,
+				"Y": -64
+			}
+		},
+		{
+			"Id": "WCARABCXCGKPMLNDLQWWZMRFOIVOOWLDSMPTPU",
+			"RoomName": "outside",
+			"MapName": "outside.json",
+			"Position": {
+				"X": -912,
+				"Y": -64
+			}
 		}
 	],
 	"Backgrounds": [
-
+		{
+			"Id": "ZFUSKRWHRHUAEBKHEGAVYOGGXIYWRZCHXJVUVC",
+			"Filename": "mountains.png",
+			"ScrollScale": {
+				"X": 0.4,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "DGTQNFWTOADVEWZLKZSYNMIEDCVEPPXUTVFNNW",
+			"Filename": "far_mountains.png",
+			"ScrollScale": {
+				"X": 0.2,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "COYGBXVGLHOOCGIVWYPIWWUUEHDLIIOGEEYVGY",
+			"Filename": "stars.png",
+			"ScrollScale": {
+				"X": 0.005,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "TFCUZRFETYWIYFWKBTMRVKCUVBNFKHRJCVBJSX",
+			"Filename": "sky_front.png",
+			"ScrollScale": {
+				"X": 0.1,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "LINVZNDTXJXJSPESLKXARWYKIHKSJMHOMKXKWH",
+			"Filename": "sky_mid.png",
+			"ScrollScale": {
+				"X": 0.05,
+				"Y": 0
+			}
+		},
+		{
+			"Id": "TQSUNXJHMFVYYVTZKPKDNSCKKKBJWHSUVDRGIW",
+			"Filename": "sky_back.png",
+			"ScrollScale": {
+				"X": 0,
+				"Y": 0
+			}
+		}
 	],
 	"StartRoomId": "IXURZGSCMSOGPDSAIEETGOUBWIGLTKAQQCMNZO"
 }
