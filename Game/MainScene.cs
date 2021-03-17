@@ -321,6 +321,9 @@ namespace Game
                             case "terminal":
                                 this.CreateTerminal(pos, entity, _save.World, rb.Room.RoomName);
                                 break;
+                            case "wall_sign":
+                                this.CreateWallSign(pos, entity);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;

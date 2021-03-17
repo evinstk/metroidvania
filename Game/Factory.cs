@@ -585,5 +585,45 @@ namespace Game
 
             return entity;
         }
+
+        public static Entity CreateWallSign(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
+        {
+            var entity = scene.CreateEntity("wall_sign", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("wall_sign");
+            anim.RenderLayer = -5;
+
+            var collider = entity.AddComponent(new BoxCollider(2, 32));
+            collider.PhysicsLayer = Mask.Interaction;
+
+            var interactable = entity.AddComponent<Interactable>();
+            interactable.Prompt = "Read";
+            var text = ogmoEntity.values["text"];
+            interactable.OnInteract = (self, interactor) =>
+            {
+                var dialogSystem = Core.Scene.FindComponentOfType<DialogSystem>();
+                dialogSystem.FeedLine(text, boxMargin: new Vector2(120, 40), showBorder: false, playSound: false);
+                self.Enabled = false;
+
+                var trigger = self.AddComponent(new Trigger(
+                    t =>
+                    {
+                        var player = Core.Scene.FindEntity("player")?.GetComponent<Player>();
+                        if (player == null) return true;
+                        return player.InteractionCast().Collider != t.GetComponent<BoxCollider>();
+                    },
+                    t =>
+                    {
+                        var ds = Core.Scene.FindComponentOfType<DialogSystem>();
+                        if (ds.CurrentLine == text)
+                            ds.FeedLine(null);
+                        t.GetComponent<Interactable>().Enabled = true;
+                        t.RemoveComponent();
+                    }));
+            };
+
+            return entity;
+        }
     }
 }

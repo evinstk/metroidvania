@@ -523,8 +523,17 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "wall_sign0.png",
+	"frame": {"x":1,"y":375,"w":24,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":18},
+	"sourceSize": {"w":24,"h":18},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "wallSwitchOff0000.png",
-	"frame": {"x":1,"y":375,"w":16,"h":16},
+	"frame": {"x":27,"y":375,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -533,7 +542,7 @@
 },
 {
 	"filename": "wallSwitchOn0000.png",
-	"frame": {"x":19,"y":375,"w":16,"h":16},
+	"frame": {"x":45,"y":375,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -545,8 +554,8 @@
 	"version": "1.0",
 	"image": "doodads.png",
 	"format": "RGBA8888",
-	"size": {"w":250,"h":392},
+	"size": {"w":250,"h":394},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:cfb64a15fd231912489760f4a6aee6b8:b3e0f53de95fa54fc32c8da56715d9b0:235b3058f25cc2125c9df6a215d832b6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:781bde23bb43fd21937e594139a3b86e:6a2d3cabbd3af6446831a8f08b19bc3e:235b3058f25cc2125c9df6a215d832b6$"
 }
 }
