@@ -23,8 +23,8 @@
 			"RoomName": "boss",
 			"MapName": "boss.json",
 			"Position": {
-				"X": -16,
-				"Y": -656
+				"X": 0,
+				"Y": -928
 			}
 		},
 		{
@@ -32,8 +32,8 @@
 			"RoomName": "left_dead_end",
 			"MapName": "left_dead_end.json",
 			"Position": {
-				"X": -496,
-				"Y": -656
+				"X": -480,
+				"Y": -928
 			}
 		},
 		{
@@ -41,8 +41,8 @@
 			"RoomName": "right_dead_end",
 			"MapName": "right_dead_end.json",
 			"Position": {
-				"X": 464,
-				"Y": -656
+				"X": 480,
+				"Y": -928
 			}
 		},
 		{
@@ -60,7 +60,7 @@
 			"MapName": "outside.json",
 			"Position": {
 				"X": -912,
-				"Y": -64
+				"Y": -176
 			}
 		}
 	],
