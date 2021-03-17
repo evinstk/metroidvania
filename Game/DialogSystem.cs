@@ -102,6 +102,8 @@ namespace Game
             _portraitAnimator.Play(portrait ?? "empty", SpriteAnimator.LoopMode.ClampForever);
         }
 
+        public string CurrentLine => _line;
+
         StringBuilder _optionBuilder = new StringBuilder(100);
         string BuildOption(string option)
         {
