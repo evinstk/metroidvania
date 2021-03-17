@@ -40,7 +40,8 @@ function dialog(arg)
         arg.x or 10,
         arg.y or 10,
         border,
-        arg.pitch or 0
+        arg.pitch or 0,
+        arg.play_sound or true
     )
     interact()
     local option = read_dialog_option()

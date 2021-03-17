@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Loaders;
 using Nez;
-using Nez.Sprites;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -66,9 +65,9 @@ namespace Game.Scripting
             var script = new Script();
 
             ((ScriptLoaderBase)script.Options.ScriptLoader).ModulePaths = _modulePaths;
-            script.Globals["line"] = (Action<string, string, string, List<string>, int?, int?, bool?, float?>)((line, portrait, speaker, options, x, y, showBorder, pitch) =>
+            script.Globals["line"] = (Action<string, string, string, List<string>, int?, int?, bool?, float?, bool?>)((line, portrait, speaker, options, x, y, showBorder, pitch, playSound) =>
             {
-                _dialogSystem.FeedLine(line, portrait, speaker, options, new Vector2(x ?? 10, y ?? 10), showBorder ?? true, pitch ?? 0f);
+                _dialogSystem.FeedLine(line, portrait, speaker, options, new Vector2(x ?? 10, y ?? 10), showBorder ?? true, pitch ?? 0f, playSound ?? true);
             });
             script.Globals["read_dialog_option"] = (Func<int>)(() => _dialogSystem.OptionIndex + 1);
             script.Globals["vars"] = _scriptVars;

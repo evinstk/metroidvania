@@ -34,6 +34,7 @@ namespace Game
         FontCharacterSource _text;
         bool _showBorder = true;
         Vector2 _boxMargin = new Vector2(10, 10);
+        bool _playSound = true;
 
         List<string> _options = new List<string>();
         public int OptionIndex => _optionIndex;
@@ -74,7 +75,8 @@ namespace Game
             List<string> options = null,
             Vector2? boxMargin = null,
             bool showBorder = true,
-            float pitch = 0)
+            float pitch = 0,
+            bool playSound = true)
         {
             _line = line;
             _speaker = speaker;
@@ -85,6 +87,7 @@ namespace Game
             _showBorder = showBorder;
             _boxMargin = boxMargin ?? BoxMarginDefault;
             _speechSound.setParameterByName("pitch", pitch);
+            _playSound = playSound;
             if (_line == null)
                 _speechSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
@@ -180,7 +183,7 @@ namespace Game
 
             if (_readerIndex >= _line.Length)
                 _speechSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            else if (_speechSound.getPlaybackState(out var playbackState) == FMOD.RESULT.OK && playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            else if (_playSound && _speechSound.getPlaybackState(out var playbackState) == FMOD.RESULT.OK && playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 _speechSound.start();
 
             _charElapsed += Time.DeltaTime;
