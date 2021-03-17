@@ -5,14 +5,20 @@ namespace Game
 {
     class Trigger : Component, IUpdatable
     {
-        public Func<Trigger, bool> Condition;
-        public Action<Trigger> Action;
+        Func<Trigger, bool> _condition;
+        Action<Trigger> _action;
+
+        public Trigger(Func<Trigger, bool> condition, Action<Trigger> action)
+        {
+            _condition = condition;
+            _action = action;
+        }
 
         public void Update()
         {
-            var result = Condition.Invoke(this);
+            var result = _condition.Invoke(this);
             if (result)
-                Action.Invoke(this);
+                _action.Invoke(this);
         }
     }
 }

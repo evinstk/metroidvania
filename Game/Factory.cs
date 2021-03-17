@@ -518,21 +518,21 @@ namespace Game
             collider.PhysicsLayer = stateVal ? Mask.Interaction : 0;
 
             var lastState = scene.GetScriptVars().Get<bool>(stateVar);
-            var trigger = entity.AddComponent<Trigger>();
-            trigger.Condition = self =>
-            {
-                var ret = false;
-                var val = self.Entity.Scene.GetScriptVars().Get<bool>(stateVar);
-                if (val != lastState)
-                    ret = true;
-                lastState = val;
-                return ret;
-            };
-            trigger.Action = self =>
-            {
-                var val = self.Entity.Scene.GetScriptVars().Get<bool>(stateVar);
-                collider.PhysicsLayer = val ? Mask.Interaction : 0;
-            };
+            var trigger = entity.AddComponent(new Trigger(
+                self =>
+                {
+                    var ret = false;
+                    var val = self.Entity.Scene.GetScriptVars().Get<bool>(stateVar);
+                    if (val != lastState)
+                        ret = true;
+                    lastState = val;
+                    return ret;
+                },
+                self =>
+                {
+                    var val = self.Entity.Scene.GetScriptVars().Get<bool>(stateVar);
+                    collider.PhysicsLayer = val ? Mask.Interaction : 0;
+                }));
 
             return entity;
         }
@@ -549,13 +549,13 @@ namespace Game
             var room = ogmoEntity.values["room"];
             var area = ogmoEntity.values["area"];
 
-            var trigger = entity.AddComponent<Trigger>();
-            trigger.Condition = self => collider.CollidesWithAny(out _);
-            trigger.Action = self =>
-            {
-                var mainScene = self.Entity.GetMainScene();
-                mainScene.MoveToArea(room, area);
-            };
+            var trigger = entity.AddComponent(new Trigger(
+                self => collider.CollidesWithAny(out _),
+                self =>
+                {
+                    var mainScene = self.Entity.GetMainScene();
+                    mainScene.MoveToArea(room, area);
+                }));
 
             return entity;
         }
