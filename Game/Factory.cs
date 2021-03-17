@@ -625,5 +625,21 @@ namespace Game
 
             return entity;
         }
+
+        public static Entity CreateLadder(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
+        {
+            var entity = scene.CreateEntity("ladder", position);
+
+            var height = ogmoEntity.height;
+
+            var collider = entity.AddComponent(new BoxCollider(0, 0, 16, height));
+            collider.PhysicsLayer = Mask.Ladder;
+
+            var ladderSprite = GameContent.LoadSprite("doodads", "ladder0", scene.Content);
+            ladderSprite.Origin = Vector2.Zero;
+            entity.AddComponent(new LadderRenderer(ladderSprite, height));
+
+            return entity;
+        }
     }
 }

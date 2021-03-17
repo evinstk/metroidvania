@@ -16,6 +16,7 @@ namespace Game
             Dodge,
             Hurt,
             Dead,
+            Climb,
         }
 
         public Collider Hitbox;
@@ -57,12 +58,14 @@ namespace Game
         float _invincibilityTimer = 0;
         AttackTypes _attackType = AttackTypes.Light;
         BoxCollider _attackCollider;
+        BoxCollider _ladderCollider;
 
         RangedWeapon _equippedRangedWeapon;
 
         bool _usingGamePad = false;
 
         VirtualIntegerAxis _inputX;
+        VirtualIntegerAxis _inputY;
         VirtualButton _inputJump;
         VirtualButton _inputAttack;
         VirtualButton _inputDodge;
@@ -82,7 +85,10 @@ namespace Game
 
         static Dictionary<string, int> _animOverrides = new Dictionary<string, int>
         {
-            { "dead", 3 },
+            { "upper_dead", 3 },
+            { "lower_dead", 3 },
+            { "upper_climb", 8 },
+            { "lower_climb", 8 },
         };
 
         public override void Initialize()
@@ -104,6 +110,11 @@ namespace Game
                 VirtualInput.OverlapBehavior.CancelOut, Keys.A, Keys.D));
             _inputX.Nodes.Add(new VirtualAxis.KeyboardKeys(
                 VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right));
+
+            _inputY = new VirtualIntegerAxis();
+            _inputY.AddGamePadLeftStickY();
+            _inputY.AddKeyboardKeys(VirtualInput.OverlapBehavior.CancelOut, Keys.W, Keys.S);
+            _inputY.AddKeyboardKeys(VirtualInput.OverlapBehavior.CancelOut, Keys.Up, Keys.Down);
 
             _inputJump = new VirtualButton();
             _inputJump.Nodes.Add(new VirtualButton.GamePadButton(0, Buttons.A));
@@ -159,6 +170,7 @@ namespace Game
             _equippedRangedWeapon = PlayerInventory.EquippedRangedWeapon;
 
             var inputX = _inputX.Value;
+            var inputY = _inputY.Value;
 
             if (_inputX.Nodes[0].Value != 0) _usingGamePad = true;
             if (_inputX.Nodes[1].Value != 0) _usingGamePad = false;
@@ -369,6 +381,16 @@ namespace Game
                         Hitbox.PhysicsLayer &= ~Mask.Player;
                     }
                 }
+
+                // invoke climbing
+                {
+                    var ladder = Physics.OverlapRectangle(Hitbox.Bounds, Mask.Ladder);
+                    if (inputY != 0 && inputX == 0 && ladder?.Bounds.Contains(Entity.Position) == true)
+                    {
+                        _state = States.Climb;
+                        _ladderCollider = (BoxCollider)ladder;
+                    }
+                }
             }
             // ATTACK STATE
             else if (_state == States.Attack)
@@ -435,6 +457,31 @@ namespace Game
                     Hitbox.PhysicsLayer |= Mask.Player;
                 }
             }
+            // CLIMB STATE
+            else if (_state == States.Climb)
+            {
+                _upperAnimator.Change("upper_climb");
+                _lowerAnimator.Change("lower_climb");
+                _mover.Speed.X = 0;
+                _mover.Speed.Y = MoveSpeed * inputY;
+                Entity.Position = new Vector2(_ladderCollider.AbsolutePosition.X, Entity.Position.Y);
+
+                if (inputY == 0)
+                {
+                    _upperAnimator.Pause();
+                    _lowerAnimator.Pause();
+                }
+                else
+                {
+                    _upperAnimator.UnPause();
+                    _lowerAnimator.UnPause();
+                }
+                if (_inputJump.IsPressed || !Hitbox.Overlaps(_ladderCollider))
+                {
+                    _state = States.Normal;
+                    _mover.Speed.Y = 0;
+                }
+            }
             // HURT STATE
             else if (_state == States.Hurt)
             {
@@ -460,7 +507,7 @@ namespace Game
             }
 
             // gravity
-            if (!_onGround && _state != States.Dodge && _state != States.Hurt)
+            if (!_onGround && _state != States.Dodge && _state != States.Hurt && _state != States.Climb)
             {
                 _mover.Speed.Y += Gravity * Time.DeltaTime;
             }

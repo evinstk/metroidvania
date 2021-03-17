@@ -30,6 +30,7 @@ namespace Game
         public const int EnemyAttack = 1 << 6;
         public const int Overlay = 1 << 7;
         public const int Area = 1 << 8;
+        public const int Ladder = 1 << 9;
     }
 
     static class RenderLayers

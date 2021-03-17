@@ -324,6 +324,9 @@ namespace Game
                             case "wall_sign":
                                 this.CreateWallSign(pos, entity);
                                 break;
+                            case "ladder":
+                                this.CreateLadder(pos, entity);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;

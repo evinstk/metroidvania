@@ -62,6 +62,15 @@
 				"X": -912,
 				"Y": -176
 			}
+		},
+		{
+			"Id": "CPJPYIEYEAYXFLMBIZMRVZPLUBDZDJFINCDCYF",
+			"RoomName": "armory",
+			"MapName": "armory.json",
+			"Position": {
+				"X": -1392,
+				"Y": -240
+			}
 		}
 	],
 	"Backgrounds": [
