@@ -554,10 +554,9 @@ namespace Game
             }
 
             // interaction
-            var hit = Physics.Linecast(
-                Entity.Position, Entity.Position + new Vector2(CastDistance, 0) * _facing, Mask.Interaction | Mask.Terrain);
+            var hit = InteractionCast();
             var interactable = hit.Collider?.GetComponent<Interactable>();
-            if ((hit.Collider?.PhysicsLayer & Mask.Interaction) > 0 && interactable != null)
+            if ((hit.Collider?.PhysicsLayer & Mask.Interaction) > 0 && interactable?.Enabled == true)
             {
                 _vars[Vars.HudPrompt] = $"[{(_usingGamePad ? "Y" : "E")}] {interactable.Prompt}";
                 if (_inputInteract.IsPressed)
@@ -574,5 +573,10 @@ namespace Game
 
             _mover.Speed.Y = Mathf.Clamp(_mover.Speed.Y, -JumpSpeed, MaxFallSpeed);
         }
+
+        public RaycastHit InteractionCast(int mask = Mask.Interaction | Mask.Terrain) => Physics.Linecast(
+            Entity.Position,
+            Entity.Position + new Vector2(CastDistance, 0) * _facing,
+            mask);
     }
 }
