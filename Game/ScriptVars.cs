@@ -8,6 +8,9 @@ namespace Game
     {
         Dictionary<string, object> _vars = new Dictionary<string, object>();
 
+        // avoiding allocation
+        Dictionary<Type, List<KeyValuePair<string, object>>> _byType = new Dictionary<Type, List<KeyValuePair<string, object>>>();
+
         public T Get<T>(string varName)
         {
             if (_vars.TryGetValue(varName, out var val))
@@ -38,6 +41,25 @@ namespace Game
             {
                 _vars[varName] = value;
             }
+        }
+
+        public List<KeyValuePair<string, object>> GetAll<T>()
+        {
+            var type = typeof(T);
+            if (!_byType.TryGetValue(type, out var tempList))
+            {
+                tempList = new List<KeyValuePair<string, object>>();
+                _byType[type] = tempList;
+            }
+
+            tempList.Clear();
+            foreach (var obj in _vars)
+            {
+                if (obj.Value.GetType() == type)
+                    tempList.Add(obj);
+            }
+
+            return tempList;
         }
     }
 

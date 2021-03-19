@@ -80,7 +80,9 @@ namespace Game
         {
 #if DEBUG
             if (_startRoom != null)
-                CreateEntity("transport").AddComponent(new Transport(_startRoom));
+                CreateEntity("imgui")
+                    .AddComponent(new Transport(_startRoom))
+                    .AddComponent<ScriptVarsInspector>();
 #endif
 
             CreateEntity("light_map")
