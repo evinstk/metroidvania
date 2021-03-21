@@ -76,16 +76,6 @@
           "originX": 12,
           "originY": 9,
           "values": {"text": "ARMORY\n\nAuthorized personnel only."}
-        },
-        {
-          "name": "chest",
-          "id": 9,
-          "_eid": "85218235",
-          "x": 172,
-          "y": 164,
-          "originX": 12,
-          "originY": 12,
-          "values": {"contents": "default_chest_contents", "name": "default_chest"}
         }
       ]
     },
