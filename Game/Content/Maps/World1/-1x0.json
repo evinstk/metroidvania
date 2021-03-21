@@ -52,7 +52,7 @@
           "y": 208,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "cell_door_open"}
+          "values": {"state_var": "cell_door_open", "include_in_save": true}
         }
       ]
     },

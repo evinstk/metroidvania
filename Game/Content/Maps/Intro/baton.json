@@ -73,7 +73,7 @@
           "y": 248,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "baton_exit"}
+          "values": {"state_var": "baton_exit", "include_in_save": true}
         },
         {
           "name": "door",

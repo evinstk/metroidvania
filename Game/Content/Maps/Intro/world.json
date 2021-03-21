@@ -71,6 +71,24 @@
 				"X": -1392,
 				"Y": -240
 			}
+		},
+		{
+			"Id": "XOQXATPLCNAYEKSQECIKHCUDAMOPPNJJDKULKJ",
+			"RoomName": "cave",
+			"MapName": "cave.json",
+			"Position": {
+				"X": -2288,
+				"Y": 32
+			}
+		},
+		{
+			"Id": "LJXOLQCRTVPOIAOMZTLKVBEZSVMPKCPXVILHMP",
+			"RoomName": "cave_top_exit",
+			"MapName": "cave_top_exit.json",
+			"Position": {
+				"X": -2112,
+				"Y": -240
+			}
 		}
 	],
 	"Backgrounds": [

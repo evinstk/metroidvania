@@ -178,7 +178,8 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "state_var", "definition": "String", "display": 1, "defaults": "default_switch", "maxLength": 0, "trimWhitespace": true}
+        {"name": "state_var", "definition": "String", "display": 1, "defaults": "default_switch", "maxLength": 0, "trimWhitespace": true},
+        {"name": "include_in_save", "definition": "Boolean", "display": 0, "defaults": true}
       ]
     },
     {

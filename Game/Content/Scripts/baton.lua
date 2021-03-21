@@ -1,1 +1,1 @@
-vars['default_switch'] = true
+-- vars['default_switch'] = true
