@@ -119,8 +119,13 @@ namespace Game
             ScriptVars[Vars.PlayerMaxMana] = _save.MaxMana;
             ScriptVars[Vars.PlayerMana] = _save.MaxMana;
             ScriptVars[Vars.OpenChests] = _save.OpenChests;
+            var states = ScriptVars.Get<List<string>>(Vars.States);
             foreach (var state in _save.States)
+            {
                 ScriptVars[state.Key] = state.Value;
+                if (!states.Contains(state.Key))
+                    states.Add(state.Key);
+            }
 
             CreateEntity("overlay").AddComponent<Overlay>();
 
