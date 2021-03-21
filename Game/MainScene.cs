@@ -288,10 +288,10 @@ namespace Game
                                 this.CreateSentry(pos);
                                 break;
                             case "switch":
-                                this.CreateSwitch(pos, entity.values["state_var"]);
+                                this.CreateSwitch(pos, (string)entity.values["state_var"]);
                                 break;
                             case "door":
-                                this.CreateDoor(pos, entity.values["state_var"]);
+                                this.CreateDoor(pos, (string)entity.values["state_var"]);
                                 break;
                             case "chest":
                                 this.CreateChest(pos, entity);
@@ -434,8 +434,8 @@ namespace Game
                 var entities = bounds.Level.layers.Find(l => l.name == "entities").entities;
                 foreach (var entity in entities)
                 {
-                    var name = string.Empty;
-                    if (entity.values?.TryGetValue("name", out name) == true && name == areaName)
+                    object name = null;
+                    if (entity.values?.TryGetValue("name", out name) == true && (string)name == areaName)
                     {
                         _pendingMove = bounds.Position + new Vector2(entity.x, entity.y);
                         return;

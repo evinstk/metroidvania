@@ -140,7 +140,7 @@ namespace Game
 
         public static Entity CreateChest(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
         {
-            var entity = scene.CreateEntity(ogmoEntity.values["name"], position);
+            var entity = scene.CreateEntity((string)ogmoEntity.values["name"], position);
 
             var renderer = entity.AddComponent<SpriteRenderer>();
             renderer.Sprite = GameContent.LoadSprite("doodads", "chest_closed", scene.Content);
@@ -152,7 +152,7 @@ namespace Game
             chest.ClosedSprite = GameContent.LoadSprite("doodads", "chest_closed", scene.Content);
             chest.OpenSprite = GameContent.LoadSprite("doodads", "chest_open", scene.Content);
             chest.Collider = collider;
-            chest.ContentsVar = ogmoEntity.values["contents"];
+            chest.ContentsVar = (string)ogmoEntity.values["contents"];
 
             var interactable = entity.AddComponent<Interactable>();
             interactable.Prompt = "Open";
@@ -389,7 +389,7 @@ namespace Game
 
         public static Entity CreateArea(this Scene scene, Vector2 position, OgmoEntity mapEntity)
         {
-            var entity = scene.CreateEntity(mapEntity.values["name"], position);
+            var entity = scene.CreateEntity((string)mapEntity.values["name"], position);
 
             var collider = entity.AddComponent(new BoxCollider(0, 0, mapEntity.width, mapEntity.height));
             collider.PhysicsLayer = Mask.Area;
@@ -488,7 +488,7 @@ namespace Game
 
         public static Entity CreateFlatDoor(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
         {
-            var entity = scene.CreateEntity(ogmoEntity.values["name"], position);
+            var entity = scene.CreateEntity((string)ogmoEntity.values["name"], position);
 
             var stateVar = ogmoEntity.values["state_var"];
 
@@ -501,12 +501,12 @@ namespace Game
             switchC.TurningOn = "flat_door_opening";
             switchC.Off = "flat_door_closed";
             switchC.On = "flat_door_open";
-            switchC.StateVar = stateVar;
+            switchC.StateVar = (string)stateVar;
 
             var interactable = entity.AddComponent<Interactable>();
             interactable.Prompt = "Enter";
-            var room = ogmoEntity.values["room"];
-            var area = ogmoEntity.values["area"];
+            var room = (string)ogmoEntity.values["room"];
+            var area = (string)ogmoEntity.values["area"];
             interactable.OnInteract = (self, interactor) =>
             {
                 var mainScene = self.Entity.GetMainScene();
@@ -514,15 +514,15 @@ namespace Game
             };
 
             var collider = entity.AddComponent(new BoxCollider(2, 48));
-            var stateVal = scene.GetScriptVars().Get<bool>(stateVar);
+            var stateVal = scene.GetScriptVars().Get<bool>((string)stateVar);
             collider.PhysicsLayer = stateVal ? Mask.Interaction : 0;
 
-            var lastState = scene.GetScriptVars().Get<bool>(stateVar);
+            var lastState = scene.GetScriptVars().Get<bool>((string)stateVar);
             var trigger = entity.AddComponent(new Trigger(
                 self =>
                 {
                     var ret = false;
-                    var val = self.Entity.Scene.GetScriptVars().Get<bool>(stateVar);
+                    var val = self.Entity.Scene.GetScriptVars().Get<bool>((string)stateVar);
                     if (val != lastState)
                         ret = true;
                     lastState = val;
@@ -530,7 +530,7 @@ namespace Game
                 },
                 self =>
                 {
-                    var val = self.Entity.Scene.GetScriptVars().Get<bool>(stateVar);
+                    var val = self.Entity.Scene.GetScriptVars().Get<bool>((string)stateVar);
                     collider.PhysicsLayer = val ? Mask.Interaction : 0;
                 }));
 
@@ -546,8 +546,8 @@ namespace Game
             collider.CollidesWithLayers = Mask.Player;
             collider.IsTrigger = true;
 
-            var room = ogmoEntity.values["room"];
-            var area = ogmoEntity.values["area"];
+            var room = (string)ogmoEntity.values["room"];
+            var area = (string)ogmoEntity.values["area"];
 
             var trigger = entity.AddComponent(new Trigger(
                 self => collider.CollidesWithAny(out _),
@@ -562,7 +562,7 @@ namespace Game
 
         public static Entity CreateTerminal(this Scene scene, Vector2 position, OgmoEntity ogmoEntity, string world, string room)
         {
-            var entity = scene.CreateEntity(ogmoEntity.values["name"], position);
+            var entity = scene.CreateEntity((string)ogmoEntity.values["name"], position);
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play("terminal");
@@ -603,7 +603,7 @@ namespace Game
             interactable.OnInteract = (self, interactor) =>
             {
                 var dialogSystem = Core.Scene.FindComponentOfType<DialogSystem>();
-                dialogSystem.FeedLine(text, boxMargin: new Vector2(120, 40), showBorder: false, playSound: false);
+                dialogSystem.FeedLine((string)text, boxMargin: new Vector2(120, 40), showBorder: false, playSound: false);
                 self.Enabled = false;
 
                 var trigger = self.AddComponent(new Trigger(
