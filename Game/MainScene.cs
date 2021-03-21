@@ -295,7 +295,7 @@ namespace Game
                                 this.CreateSentry(pos);
                                 break;
                             case "switch":
-                                this.CreateSwitch(pos, (string)entity.values["state_var"], (bool)entity.values["include_in_save"]);
+                                this.CreateSwitch(pos, entity);
                                 break;
                             case "door":
                                 this.CreateDoor(pos, (string)entity.values["state_var"]);

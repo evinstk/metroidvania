@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MoonSharp.Interpreter;
 using Nez;
 using Nez.Sprites;
 using System.Collections.Generic;
@@ -80,8 +81,12 @@ namespace Game
             return entity;
         }
 
-        public static Entity CreateSwitch(this Scene scene, Vector2 position, string stateVar, bool includeInSave)
+        public static Entity CreateSwitch(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
         {
+            var stateVar = (string)ogmoEntity.values["state_var"];
+            var includeInSave = (bool)ogmoEntity.values["include_in_save"];
+            var canUseVar = (string)ogmoEntity.values["can_use"];
+
             var entity = scene.CreateEntity("switch", position);
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
@@ -97,14 +102,26 @@ namespace Game
             switchC.On = "wallSwitchOn";
             switchC.StateVar = stateVar;
 
+            var affirmSound = entity.AddComponent(new Sound("Common", "positive"));
+            var deniedSound = entity.AddComponent(new Sound("Common", "negative"));
+
             var interactable = entity.AddComponent<Interactable>();
             interactable.Prompt = "Flip";
             interactable.OnInteract = (self, interactor) =>
             {
-                var sw = self.GetComponent<Switch>();
                 var scriptVars = self.Entity.Scene.GetScriptVars();
-                var stateVal = scriptVars.Get<bool>(sw.StateVar);
-                scriptVars.Set(sw.StateVar, !stateVal);
+                var canUse = scriptVars.Get<Closure>(canUseVar);
+                if (canUse.Call().CastToBool())
+                {
+                    var sw = self.GetComponent<Switch>();
+                    var stateVal = scriptVars.Get<bool>(sw.StateVar);
+                    scriptVars.Set(sw.StateVar, !stateVal);
+                    affirmSound.Event.start();
+                }
+                else
+                {
+                    deniedSound.Event.start();
+                }
             };
 
             if (includeInSave)

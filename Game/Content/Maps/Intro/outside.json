@@ -65,7 +65,7 @@
           "y": 156,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "armory_door", "include_in_save": true}
+          "values": {"state_var": "armory_door", "include_in_save": true, "can_use": "default_switch_can_use"}
         },
         {
           "name": "wall_sign",
