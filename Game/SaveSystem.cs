@@ -21,6 +21,7 @@ namespace Game
         public int EquippedRangedWeaponIndex = -1;
 
         public List<string> OpenChests = new List<string>();
+        public Dictionary<string, bool> States = new Dictionary<string, bool>();
     }
 
     class SaveSystem : GlobalManager
@@ -41,6 +42,12 @@ namespace Game
             foreach (var rangedWeapon in inventory.RangedWeapons)
                 rangedWeapons.Add(rangedWeapon.Name);
 
+            var stateNames = vars.Get<List<string>>(Vars.States);
+            var states = new Dictionary<string, bool>();
+            foreach (var name in stateNames)
+                // TODO: maybe don't assume bool
+                states.Add(name, vars.Get<bool>(name));
+
             var save = new Save
             {
                 World = world,
@@ -56,6 +63,7 @@ namespace Game
                 EquippedRangedWeaponIndex = inventory.EquippedRangedWeaponIndex,
 
                 OpenChests = vars.Get<List<string>>(Vars.OpenChests),
+                States = states,
             };
 
             var serialized = Json.ToJson(save, new JsonSettings

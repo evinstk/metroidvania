@@ -119,6 +119,8 @@ namespace Game
             ScriptVars[Vars.PlayerMaxMana] = _save.MaxMana;
             ScriptVars[Vars.PlayerMana] = _save.MaxMana;
             ScriptVars[Vars.OpenChests] = _save.OpenChests;
+            foreach (var state in _save.States)
+                ScriptVars[state.Key] = state.Value;
 
             CreateEntity("overlay").AddComponent<Overlay>();
 
@@ -288,7 +290,7 @@ namespace Game
                                 this.CreateSentry(pos);
                                 break;
                             case "switch":
-                                this.CreateSwitch(pos, (string)entity.values["state_var"]);
+                                this.CreateSwitch(pos, (string)entity.values["state_var"], (bool)entity.values["include_in_save"]);
                                 break;
                             case "door":
                                 this.CreateDoor(pos, (string)entity.values["state_var"]);

@@ -61,6 +61,7 @@ namespace Game
         public const string PlayerMaxMana = "player_max_mana";
 
         public const string OpenChests = "game_open_chests";
+        public const string States = "game_states";
     }
 
     static class ContentPath

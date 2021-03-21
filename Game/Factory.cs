@@ -80,7 +80,7 @@ namespace Game
             return entity;
         }
 
-        public static Entity CreateSwitch(this Scene scene, Vector2 position, string stateVar)
+        public static Entity CreateSwitch(this Scene scene, Vector2 position, string stateVar, bool includeInSave)
         {
             var entity = scene.CreateEntity("switch", position);
 
@@ -106,6 +106,13 @@ namespace Game
                 var stateVal = scriptVars.Get<bool>(sw.StateVar);
                 scriptVars.Set(sw.StateVar, !stateVal);
             };
+
+            if (includeInSave)
+            {
+                var states = scene.GetScriptVars().Get<List<string>>(Vars.States);
+                if (!states.Contains(stateVar))
+                    states.Add(stateVar);
+            }
 
             return entity;
         }
