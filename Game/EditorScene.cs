@@ -18,7 +18,18 @@ namespace Game
 
     class EditorScene : Scene
     {
-        public string WorldName = string.Empty;
+        public string WorldName
+        {
+            get => _worldName;
+            set
+            {
+                _worldName = value;
+                OnWorldSet?.Invoke(this);
+            }
+        }
+        string _worldName = string.Empty;
+        public event Action<EditorScene> OnWorldSet;
+
         public World World => Worlds.ContainsKey(WorldName) ? Worlds[WorldName] : null;
         public Dictionary<string, World> Worlds = new Dictionary<string, World>();
 
@@ -412,6 +423,23 @@ namespace Game
 
         SubpixelVector2 _subpixelV2;
         //Vector2 _selectionDelta;
+
+        public override void OnAddedToEntity()
+        {
+            var scene = Entity.Scene as EditorScene;
+            scene.OnWorldSet += HandleWorldSet;
+        }
+
+        public override void OnRemovedFromEntity()
+        {
+            var scene = Entity.Scene as EditorScene;
+            scene.OnWorldSet -= HandleWorldSet;
+        }
+
+        void HandleWorldSet(EditorScene scene)
+        {
+            RoomSelection.Clear();
+        }
 
         public void Update()
         {
