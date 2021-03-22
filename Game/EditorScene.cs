@@ -24,6 +24,20 @@ namespace Game
             set
             {
                 _worldName = value;
+                if (!Worlds.ContainsKey(value))
+                {
+                    World world;
+                    try
+                    {
+                        var worldStr = File.ReadAllText(ContentPath.Maps + value + "/world.json");
+                        world = Json.FromJson<World>(worldStr);
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        world = new World();
+                    }
+                    Worlds.Add(value, world);
+                }
                 OnWorldSet?.Invoke(this);
             }
         }
@@ -51,7 +65,10 @@ namespace Game
         {
             SetDesignResolution(Constants.ResWidth * 4, Constants.ResHeight * 4, SceneResolutionPolicy.ShowAllPixelPerfect);
             ClearColor = new Color(0xff371f0f);
+        }
 
+        public override void OnStart()
+        {
             foreach (var windowType in ReflectionUtils.GetAllTypesWithAttribute<EditorWindowAttribute>())
             {
                 var entity = CreateEntity(windowType.Name);
@@ -61,14 +78,11 @@ namespace Game
 
             CreateEntity("world-renderer").AddComponent<WorldRenderer>();
             CreateEntity("editor-controller").AddComponent<EditorController>();
-        }
-
-        public override void OnStart()
-        {
             if (_init != null)
             {
                 var worldWindow = FindComponentOfType<WorldWindow>();
-                worldWindow.SetWorld(_init.World, _init.RoomId);
+                WorldName = _init.World;
+                worldWindow.LaunchRoomId = _init.RoomId;
             }
         }
     }
@@ -81,8 +95,9 @@ namespace Game
     [EditorWindow]
     class WorldWindow : Component
     {
+        public string LaunchRoomId;
+
         List<string> _worlds;
-        string _launchRoomId;
         int _saveSlot;
 
         public override void OnAddedToEntity()
@@ -138,28 +153,28 @@ namespace Game
                 if (currWorld != null)
                 {
                     if (ImGui.Button("Reload"))
-                        SetWorld(scene.WorldName, _launchRoomId);
+                        SetWorld(scene.WorldName, LaunchRoomId);
 
                     ImGui.Separator();
 
-                    var launchRoom = currWorld.Rooms.Find(r => r.Id == _launchRoomId);
+                    var launchRoom = currWorld.Rooms.Find(r => r.Id == LaunchRoomId);
                     if (ImGui.BeginCombo("##launch-room", launchRoom?.MapName))
                     {
                         foreach (var room in currWorld.Rooms)
                         {
                             if (ImGui.Selectable(room.RoomName))
-                                _launchRoomId = room.Id;
+                                LaunchRoomId = room.Id;
                         }
                         ImGui.EndCombo();
                     }
 
-                    if (ImGui.Button("Launch") && _launchRoomId != null)
+                    if (ImGui.Button("Launch") && LaunchRoomId != null)
                     {
                         var save = Core.GetGlobalManager<SaveSystem>().Load(_saveSlot);
                         Core.Scene = new MainScene(_saveSlot, save, new StartRoom
                         {
                             World = scene.WorldName,
-                            RoomId = _launchRoomId,
+                            RoomId = LaunchRoomId,
                         });
                     }
                 }
@@ -168,24 +183,10 @@ namespace Game
             }
         }
 
-        public void SetWorld(string worldName, string launchRoom = null)
+        void SetWorld(string worldName, string launchRoom = null)
         {
             var scene = Entity.Scene as EditorScene;
-            if (!scene.Worlds.ContainsKey(worldName))
-            {
-                World world;
-                try
-                {
-                    var worldStr = File.ReadAllText(ContentPath.Maps + worldName + "/world.json");
-                    world = Json.FromJson<World>(worldStr);
-                }
-                catch (FileNotFoundException)
-                {
-                    world = new World();
-                }
-                scene.Worlds.Add(worldName, world);
-            }
-            _launchRoomId = launchRoom;
+            LaunchRoomId = launchRoom;
             scene.WorldName = worldName;
         }
     }
@@ -332,7 +333,7 @@ namespace Game
         Dictionary<string, List<MapRenderer>> _renderers = new Dictionary<string, List<MapRenderer>>();
         new Dictionary<string, BoxCollider> _bounds = new Dictionary<string, BoxCollider>();
 
-        public override void OnAddedToEntity()
+        public override void Initialize()
         {
             var scene = Core.Scene as EditorScene;
             scene.OnWorldSet += HandleWorldSet;
@@ -450,7 +451,7 @@ namespace Game
         SubpixelVector2 _subpixelV2;
         //Vector2 _selectionDelta;
 
-        public override void OnAddedToEntity()
+        public override void Initialize()
         {
             var scene = Entity.Scene as EditorScene;
             scene.OnWorldSet += HandleWorldSet;
