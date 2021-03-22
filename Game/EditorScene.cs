@@ -269,7 +269,7 @@ namespace Game
                     }
                     ImGui.EndCombo();
                 }
-                if (ImGui.Button("Add Room"))
+                if (ImGui.Button("Add Room") && !string.IsNullOrEmpty(_room))
                 {
                     scene.World.Rooms.Add(new Room
                     {
