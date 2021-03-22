@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
+using Nez.Sprites;
 using Nez.UI;
 
 namespace Game
@@ -18,8 +19,9 @@ namespace Game
         {
             var bg = CreateEntity("background");
             bg.Parent = Camera.Transform;
-            var bgRenderer = bg.AddComponent(new TiledSpriteRenderer(Content.LoadTexture($"{ContentPath.Backgrounds}/stars.png")));
+            var bgRenderer = bg.AddComponent(new ScrollingSpriteRenderer(Content.LoadTexture($"{ContentPath.Backgrounds}/space.png")));
             bgRenderer.RenderLayer = RenderLayers.PauseMenu;
+            bgRenderer.ScrollSpeedX = 50;
 
             CreateEntity("main_menu").AddComponent<MainMenu>();
         }
