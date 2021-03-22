@@ -30,6 +30,13 @@ namespace Game
         string _worldName = string.Empty;
         public event Action<EditorScene> OnWorldSet;
 
+        public void AddRoom(Room room)
+        {
+            Worlds[WorldName].Rooms.Add(room);
+            OnRoomAdd?.Invoke(this, room);
+        }
+        public event Action<EditorScene, Room> OnRoomAdd;
+
         public World World => Worlds.ContainsKey(WorldName) ? Worlds[WorldName] : null;
         public Dictionary<string, World> Worlds = new Dictionary<string, World>();
 
@@ -130,6 +137,9 @@ namespace Game
                 var currWorld = scene.World;
                 if (currWorld != null)
                 {
+                    if (ImGui.Button("Reload"))
+                        SetWorld(scene.WorldName, _launchRoomId);
+
                     ImGui.Separator();
 
                     var launchRoom = currWorld.Rooms.Find(r => r.Id == _launchRoomId);
@@ -161,7 +171,6 @@ namespace Game
         public void SetWorld(string worldName, string launchRoom = null)
         {
             var scene = Entity.Scene as EditorScene;
-            scene.WorldName = worldName;
             if (!scene.Worlds.ContainsKey(worldName))
             {
                 World world;
@@ -177,6 +186,7 @@ namespace Game
                 scene.Worlds.Add(worldName, world);
             }
             _launchRoomId = launchRoom;
+            scene.WorldName = worldName;
         }
     }
 
@@ -271,7 +281,7 @@ namespace Game
                 }
                 if (ImGui.Button("Add Room") && !string.IsNullOrEmpty(_room))
                 {
-                    scene.World.Rooms.Add(new Room
+                    scene.AddRoom(new Room
                     {
                         RoomName = Path.GetFileNameWithoutExtension(_room),
                         MapName = _room,
@@ -319,9 +329,79 @@ namespace Game
             }
         }
 
-        World _lastWorld;
         Dictionary<string, List<MapRenderer>> _renderers = new Dictionary<string, List<MapRenderer>>();
         new Dictionary<string, BoxCollider> _bounds = new Dictionary<string, BoxCollider>();
+
+        public override void OnAddedToEntity()
+        {
+            var scene = Core.Scene as EditorScene;
+            scene.OnWorldSet += HandleWorldSet;
+            scene.OnRoomAdd += HandleRoomAdd;
+        }
+
+        public override void OnRemovedFromEntity()
+        {
+            var scene = Core.Scene as EditorScene;
+            scene.OnWorldSet -= HandleWorldSet;
+            scene.OnRoomAdd -= HandleRoomAdd;
+        }
+
+        void HandleWorldSet(EditorScene scene) => InitializeRenderer(scene);
+        void HandleRoomAdd(EditorScene scene, Room room) => InitializeRenderer(scene);
+
+        void InitializeRenderer(EditorScene scene)
+        {
+            var world = scene.World;
+
+            foreach (var renderers in _renderers.Values)
+            {
+                foreach (var renderer in renderers)
+                    Entity.RemoveComponent(renderer);
+            }
+            _renderers.Clear();
+
+            foreach (var bounds in _bounds.Values)
+                Entity.RemoveComponent(bounds);
+            _bounds.Clear();
+
+            if (world != null)
+            {
+                foreach (var room in world.Rooms)
+                {
+                    // TODO: put this in some content location
+                    var ogmoProjectStr = File.ReadAllText($"{ContentPath.Maps}Metroidvania.ogmo");
+                    var ogmoProject = Json.FromJson<OgmoProject>(ogmoProjectStr);
+
+                    string ogmoLevelStr;
+                    try
+                    {
+                        ogmoLevelStr = File.ReadAllText($"{ContentPath.Maps}{scene.WorldName}/{room.MapName}");
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        Debug.Log($"{room.MapName} not found. Make sure file names are correct.");
+                        continue;
+                    }
+
+                    var ogmoLevel = Json.FromJson<OgmoLevel>(ogmoLevelStr);
+
+                    var renderers = new List<MapRenderer>();
+                    for (var i = 0; i < ogmoLevel.layers.Count; ++i)
+                    {
+                        if (ogmoLevel.layers[i].data != null)
+                        {
+                            var renderer = Entity.AddComponent(new MapRenderer(ogmoProject, ogmoLevel, i));
+                            renderer.SetRenderLayer(i);
+                            renderers.Add(renderer);
+                        }
+                    }
+                    _renderers.Add(room.Id, renderers);
+
+                    var bounds = Entity.AddComponent(new BoxCollider(room.Position.X, room.Position.Y, ogmoLevel.width, ogmoLevel.height));
+                    _bounds.Add(room.Id, bounds);
+                }
+            }
+        }
 
         public string GetRoomAt(Vector2 worldPosition)
         {
@@ -338,58 +418,6 @@ namespace Game
             var scene = Entity.Scene as EditorScene;
             var world = scene.World;
 
-            if (world != _lastWorld || world?.Rooms.Count != _renderers.Count)
-            {
-                foreach (var renderers in _renderers.Values)
-                {
-                    foreach (var renderer in renderers)
-                        Entity.RemoveComponent(renderer);
-                }
-                _renderers.Clear();
-
-                foreach (var bounds in _bounds.Values)
-                    Entity.RemoveComponent(bounds);
-                _bounds.Clear();
-
-                if (world != null)
-                {
-                    foreach (var room in world.Rooms)
-                    {
-                        // TODO: put this in some content location
-                        var ogmoProjectStr = File.ReadAllText($"{ContentPath.Maps}Metroidvania.ogmo");
-                        var ogmoProject = Json.FromJson<OgmoProject>(ogmoProjectStr);
-
-                        string ogmoLevelStr;
-                        try
-                        {
-                            ogmoLevelStr = File.ReadAllText($"{ContentPath.Maps}{scene.WorldName}/{room.MapName}");
-                        }
-                        catch (FileNotFoundException)
-                        {
-                            Debug.Log($"{room.MapName} not found. Make sure file names are correct.");
-                            continue;
-                        }
-
-                        var ogmoLevel = Json.FromJson<OgmoLevel>(ogmoLevelStr);
-
-                        var renderers = new List<MapRenderer>();
-                        for (var i = 0; i < ogmoLevel.layers.Count; ++i)
-                        {
-                            if (ogmoLevel.layers[i].data != null)
-                            {
-                                var renderer = Entity.AddComponent(new MapRenderer(ogmoProject, ogmoLevel, i));
-                                renderer.SetRenderLayer(i);
-                                renderers.Add(renderer);
-                            }
-                        }
-                        _renderers.Add(room.Id, renderers);
-
-                        var bounds = Entity.AddComponent(new BoxCollider(room.Position.X, room.Position.Y, ogmoLevel.width, ogmoLevel.height));
-                        _bounds.Add(room.Id, bounds);
-                    }
-                }
-            }
-
             if (world != null)
             {
                 foreach (var room in world.Rooms)
@@ -402,8 +430,6 @@ namespace Game
                     bounds.SetLocalOffset(room.Position.ToVector2() + bounds.Bounds.Size / 2);
                 }
             }
-
-            _lastWorld = world;
         }
 
         public override void Render(Batcher batcher, Camera camera)
