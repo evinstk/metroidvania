@@ -274,6 +274,9 @@
 #begin Backgrounds/sky.png
 /copy:Backgrounds/sky.png
 
+#begin Backgrounds/space.png
+/copy:Backgrounds/space.png
+
 #begin FMOD/Common.bank
 /copy:FMOD/Common.bank
 
@@ -442,6 +445,12 @@
 
 #begin Sprites/hud.png
 /copy:Sprites/hud.png
+
+#begin Sprites/logo.json
+/copy:Sprites/logo.json
+
+#begin Sprites/logo.png
+/copy:Sprites/logo.png
 
 #begin Sprites/player.json
 /copy:Sprites/player.json
