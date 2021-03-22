@@ -222,20 +222,4 @@ namespace Game
             return button;
         }
     }
-
-    class ConfigurableButton : Button
-    {
-        public event Action<ConfigurableButton> OnFocusedEvent;
-
-        public ConfigurableButton(ButtonStyle style)
-            : base(style)
-        {
-        }
-
-        protected override void OnFocused()
-        {
-            base.OnFocused();
-            OnFocusedEvent?.Invoke(this);
-        }
-    }
 }

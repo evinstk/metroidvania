@@ -15,6 +15,7 @@ namespace Game
         {
             new FontCharacterSource("Resume"),
             new FontCharacterSource("Restart at Checkpoint"),
+            new FontCharacterSource("Quit to Main Menu"),
             new FontCharacterSource("Quit to Desktop"),
         };
 
@@ -76,6 +77,11 @@ namespace Game
                             Core.StartSceneTransition(new FadeTransition(() => new MainScene(saveSlot, save)));
                             break;
                         case 2:
+                            Time.TimeScale = 1;
+                            var transition = Core.StartSceneTransition(new FadeTransition(() => new MainMenuScene()));
+                            transition.FadeOutDuration = 3f;
+                            break;
+                        case 3:
                             Core.Exit();
                             break;
                     }
