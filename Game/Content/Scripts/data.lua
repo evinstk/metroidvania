@@ -20,3 +20,15 @@ end
 vars['blaster_privileges'] = function()
     return false
 end
+
+--- common
+vars['always_true'] = function()
+    return true
+end
+
+vars['always_false'] = function()
+    return false
+end
+
+vars['t'] = true
+vars['f'] = false
