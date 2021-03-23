@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using MoonSharp.Interpreter;
+using Nez;
 using Nez.Sprites;
 using System;
 
@@ -14,24 +15,33 @@ namespace Game
         public Action<Switch, bool> OnSwitch;
 
         public string StateVar;
+        public bool UseFunction;
+
+        public Func<Switch, bool> Condition;
+
         bool _lastState;
 
         SpriteAnimator _animator;
 
         public override void OnAddedToEntity()
         {
+            Insist.IsTrue(
+                (StateVar == null || Condition == null)
+                && (StateVar != null || Condition != null),
+                "Switch component should only have either StateVar or Condition set but not both.");
+
             _animator = Entity.GetComponent<SpriteAnimator>();
 
-            var scriptVars = Entity.Scene.GetScriptVars();
-            _lastState = scriptVars.Get<bool>(StateVar);
+            _lastState = GetStateValue();
             _animator.Change(_lastState ? On : Off);
         }
 
         public void Update()
         {
             var scriptVars = Entity.Scene.GetScriptVars();
-            var val = scriptVars.Get<bool>(StateVar);
-            //_animator.Change(val ? TurningOn : TurningOff, SpriteAnimator.LoopMode.ClampForever);
+
+            var val = GetStateValue();
+
             if (!_animator.IsRunning)
                 _animator.Play(val ? On : Off);
 
@@ -42,6 +52,23 @@ namespace Game
             }
 
             _lastState = val;
+        }
+
+        bool GetStateValue()
+        {
+            if (Condition != null)
+                return Condition.Invoke(this);
+
+            var scriptVars = Entity.Scene.GetScriptVars();
+            if (UseFunction)
+            {
+                var stateFn = scriptVars.Get<Closure>(StateVar);
+                return stateFn.Call().CastToBool();
+            }
+            else
+            {
+                return scriptVars.Get<bool>(StateVar);
+            }
         }
     }
 }
