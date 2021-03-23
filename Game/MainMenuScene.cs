@@ -53,8 +53,8 @@ namespace Game
             table.Row();
 
             var options = new Table();
-            options.Defaults().Left().Height(16);
-            table.Add(options).Left().SetPadLeft(80).SetPadTop(32);
+            options.Defaults().Center().Height(16);
+            table.Add(options).Bottom().Expand().SetPadBottom(48);
 
             var textButtonStyle = new TextButtonStyle();
             textButtonStyle.OverFontColor = Color.Yellow;
