@@ -336,6 +336,9 @@ namespace Game
                             case "ladder":
                                 this.CreateLadder(pos, entity);
                                 break;
+                            case "auto_door":
+                                this.CreateAutoDoor(pos, entity);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;

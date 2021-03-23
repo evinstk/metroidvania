@@ -162,6 +162,78 @@ namespace Game
             return entity;
         }
 
+        public static Entity CreateAutoDoor(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
+        {
+            var stateVar = (string)ogmoEntity.values["state_var"];
+            var useFn = (bool)ogmoEntity.values["use_function"];
+
+            var entity = scene.CreateEntity("auto_door", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
+            anim.Play("doorReverse", SpriteAnimator.LoopMode.ClampForever);
+
+            var collider = entity.AddComponent(new BoxCollider(6, 48));
+            collider.PhysicsLayer = Mask.Terrain;
+
+            var switchArea = entity.AddComponent(new BoxCollider(128, 48));
+
+            entity.AddComponent(new AddedToEntity(en =>
+            {
+                var player = Core.Scene.FindEntity("player");
+                if (!switchArea.Bounds.Contains(player.Position))
+                {
+                    collider.Enabled = true;
+                    return;
+                }
+
+                var scriptVars = Core.Scene.GetScriptVars();
+                bool state;
+                if (useFn)
+                {
+                    var stateFn = scriptVars.Get<Closure>(stateVar);
+                    state = !stateFn.Call().CastToBool();
+                }
+                else
+                {
+                    state = scriptVars.Get<bool>(stateVar);
+                }
+                collider.Enabled = !state;
+            }));
+
+            switchArea.PhysicsLayer = Mask.Area;
+
+            var switchC = entity.AddComponent<Switch>();
+            switchC.TurningOff = "doorReverse";
+            switchC.TurningOn = "door";
+            switchC.Off = "door_closed";
+            switchC.On = "door_open";
+            switchC.Condition = sw =>
+            {
+                var player = Core.Scene.FindEntity("player");
+                if (!switchArea.Bounds.Contains(player.Position))
+                    return false;
+
+                var scriptVars = Core.Scene.GetScriptVars();
+                bool state;
+                if (useFn)
+                {
+                    var stateFn = scriptVars.Get<Closure>(stateVar);
+                    state = stateFn.Call().CastToBool();
+                }
+                else
+                {
+                    state = scriptVars.Get<bool>(stateVar);
+                }
+                return state;
+            };
+            switchC.OnSwitch = (Switch self, bool state) =>
+            {
+                collider.Enabled = !state;
+            };
+
+            return entity;
+        }
+
         public static Entity CreateChest(this Scene scene, Vector2 position, OgmoEntity ogmoEntity)
         {
             var entity = scene.CreateEntity((string)ogmoEntity.values["name"], position);
