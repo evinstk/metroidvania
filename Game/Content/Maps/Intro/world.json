@@ -5,8 +5,8 @@
 			"RoomName": "stasis_chambers",
 			"MapName": "stasis_chambers.json",
 			"Position": {
-				"X": 1344,
-				"Y": -16
+				"X": 336,
+				"Y": 384
 			}
 		},
 		{
@@ -15,7 +15,7 @@
 			"MapName": "baton.json",
 			"Position": {
 				"X": 0,
-				"Y": 0
+				"Y": -576
 			}
 		},
 		{
@@ -24,7 +24,7 @@
 			"MapName": "boss.json",
 			"Position": {
 				"X": 0,
-				"Y": -928
+				"Y": -1312
 			}
 		},
 		{
@@ -33,7 +33,7 @@
 			"MapName": "left_dead_end.json",
 			"Position": {
 				"X": -480,
-				"Y": -928
+				"Y": -1312
 			}
 		},
 		{
@@ -42,7 +42,7 @@
 			"MapName": "right_dead_end.json",
 			"Position": {
 				"X": 480,
-				"Y": -928
+				"Y": -1312
 			}
 		},
 		{
@@ -50,8 +50,8 @@
 			"RoomName": "checkpoint_right",
 			"MapName": "checkpoint_right.json",
 			"Position": {
-				"X": 848,
-				"Y": -64
+				"X": -240,
+				"Y": 400
 			}
 		},
 		{
@@ -60,7 +60,7 @@
 			"MapName": "outside.json",
 			"Position": {
 				"X": -912,
-				"Y": -176
+				"Y": -704
 			}
 		},
 		{
@@ -88,6 +88,24 @@
 			"Position": {
 				"X": -2112,
 				"Y": -240
+			}
+		},
+		{
+			"Id": "WEAFKVVYHMVNOSYRNAYAVXEPTPHAPLKRHOGPYD",
+			"RoomName": "outside_right",
+			"MapName": "outside_right.json",
+			"Position": {
+				"X": 704,
+				"Y": -272
+			}
+		},
+		{
+			"Id": "LRXRHWRPINXHVMBAUPMYUKCCJRJLYWXATGLBVH",
+			"RoomName": "armory_top",
+			"MapName": "armory_top.json",
+			"Position": {
+				"X": -2384,
+				"Y": -944
 			}
 		}
 	],
