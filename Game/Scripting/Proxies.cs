@@ -90,6 +90,13 @@ namespace Game.Scripting
             var stopMode = fadeOut ? FMOD.Studio.STOP_MODE.ALLOWFADEOUT : FMOD.Studio.STOP_MODE.IMMEDIATE;
             Scene.FindComponentOfType<SoundSystem>().StopMusic(stopMode);
         }
+
+        public void IncludeInSave(string stateVar)
+        {
+            var states = Scene.GetScriptVars().Get<List<string>>(Vars.States);
+            if (!states.Contains(stateVar))
+                states.Add(stateVar);
+        }
     }
 
     class EntityProxy

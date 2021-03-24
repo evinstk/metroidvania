@@ -132,7 +132,7 @@ local function start()
     -- scene.load_world('Intro', 'left_dead_end')
 end
 
-
+scene.include_in_save('stasis_chambers_switch')
 local player = scene.find_entity('player')
 if player == nil then
     start_coroutine(start)
