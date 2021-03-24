@@ -85,7 +85,8 @@ namespace Game
         {
             var stateVar = (string)ogmoEntity.values["state_var"];
             var includeInSave = (bool)ogmoEntity.values["include_in_save"];
-            var canUseVar = (string)ogmoEntity.values["can_use"];
+            var toOn = (string)ogmoEntity.values["to_on"];
+            var toOff = (string)ogmoEntity.values["to_off"];
 
             var entity = scene.CreateEntity("switch", position);
 
@@ -110,11 +111,12 @@ namespace Game
             interactable.OnInteract = (self, interactor) =>
             {
                 var scriptVars = self.Entity.Scene.GetScriptVars();
-                var canUse = scriptVars.Get<Closure>(canUseVar);
+                var sw = self.GetComponent<Switch>();
+                var stateVal = scriptVars.Get<bool>(sw.StateVar);
+
+                var canUse = scriptVars.Get<Closure>(stateVal ? toOff : toOn);
                 if (canUse.Call().CastToBool())
                 {
-                    var sw = self.GetComponent<Switch>();
-                    var stateVal = scriptVars.Get<bool>(sw.StateVar);
                     scriptVars.Set(sw.StateVar, !stateVal);
                     affirmSound.Event.start();
                 }

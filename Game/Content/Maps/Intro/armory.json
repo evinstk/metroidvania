@@ -93,7 +93,7 @@
           "y": 216,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "blaster_gate", "include_in_save": true, "can_use": "blaster_privileges"}
+          "values": {"state_var": "blaster_gate", "include_in_save": true, "to_on": "blaster_privileges", "to_off": "always_false"}
         },
         {
           "name": "switch",
@@ -103,7 +103,7 @@
           "y": 216,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "blaster_gate", "include_in_save": true, "can_use": "default_switch_can_use"}
+          "values": {"state_var": "blaster_gate", "include_in_save": true, "to_on": "always_true", "to_off": "always_false"}
         },
         {
           "name": "terminal",

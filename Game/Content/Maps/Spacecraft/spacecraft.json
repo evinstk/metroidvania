@@ -63,7 +63,7 @@
           "y": 248,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "ship_door", "include_in_save": true, "can_use": "default_switch_can_use"}
+          "values": {"state_var": "ship_door", "include_in_save": true, "to_on": "always_true", "to_off": "always_true"}
         },
         {
           "name": "switch",
@@ -73,7 +73,7 @@
           "y": 248,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "ship_door", "include_in_save": true, "can_use": "default_switch_can_use"}
+          "values": {"state_var": "ship_door", "include_in_save": true, "to_on": "always_true", "to_off": "always_true"}
         },
         {
           "name": "door",
@@ -93,7 +93,7 @@
           "y": 152,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "cockpit_door", "include_in_save": true, "can_use": "default_switch_can_use"}
+          "values": {"state_var": "cockpit_door", "include_in_save": true, "to_on": "always_true", "to_off": "always_true"}
         },
         {
           "name": "switch",
@@ -103,7 +103,7 @@
           "y": 152,
           "originX": 8,
           "originY": 8,
-          "values": {"state_var": "cockpit_door", "include_in_save": true, "can_use": "default_switch_can_use"}
+          "values": {"state_var": "cockpit_door", "include_in_save": true, "to_on": "always_true", "to_off": "always_true"}
         },
         {
           "name": "chest",

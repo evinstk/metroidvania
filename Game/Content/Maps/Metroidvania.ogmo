@@ -180,7 +180,8 @@
       "values": [
         {"name": "state_var", "definition": "String", "display": 1, "defaults": "default_switch", "maxLength": 0, "trimWhitespace": true},
         {"name": "include_in_save", "definition": "Boolean", "display": 0, "defaults": true},
-        {"name": "can_use", "definition": "String", "display": 0, "defaults": "default_switch_can_use", "maxLength": 0, "trimWhitespace": true}
+        {"name": "to_on", "definition": "String", "display": 0, "defaults": "always_true", "maxLength": 0, "trimWhitespace": true},
+        {"name": "to_off", "definition": "String", "display": 0, "defaults": "always_false", "maxLength": 0, "trimWhitespace": true}
       ]
     },
     {
