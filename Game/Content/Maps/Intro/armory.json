@@ -56,16 +56,6 @@
           "values": {"contents": "baton_chest_contents", "name": "baton_chest"}
         },
         {
-          "name": "door",
-          "id": 4,
-          "_eid": "39886853",
-          "x": 208,
-          "y": 216,
-          "originX": 8,
-          "originY": 24,
-          "values": {"state_var": "blaster_gate"}
-        },
-        {
           "name": "chest",
           "id": 5,
           "_eid": "85218235",
@@ -87,16 +77,6 @@
         },
         {
           "name": "switch",
-          "id": 7,
-          "_eid": "39553167",
-          "x": 232,
-          "y": 216,
-          "originX": 8,
-          "originY": 8,
-          "values": {"state_var": "blaster_gate", "include_in_save": true, "to_on": "blaster_privileges", "to_off": "always_false"}
-        },
-        {
-          "name": "switch",
           "id": 9,
           "_eid": "39553167",
           "x": 176,
@@ -114,6 +94,16 @@
           "originX": 12,
           "originY": 16,
           "values": {"name": "checkpoint"}
+        },
+        {
+          "name": "auto_door",
+          "id": 11,
+          "_eid": "50313163",
+          "x": 208,
+          "y": 216,
+          "originX": 8,
+          "originY": 24,
+          "values": {"state_var": "blaster_gate_condition", "use_function": true}
         }
       ]
     },

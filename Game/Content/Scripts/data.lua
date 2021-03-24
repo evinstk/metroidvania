@@ -18,7 +18,12 @@ vars['default_switch_can_use'] = function()
 end
 
 vars['blaster_privileges'] = function()
+    -- TODO: flip this with key card or something
     return false
+end
+
+vars['blaster_gate_condition'] = function()
+    return vars['blaster_gate'] or vars['blaster_privileges']()
 end
 
 --- common
