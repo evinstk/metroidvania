@@ -89,7 +89,8 @@ local function start()
 
     vars['stasis_chambers_switch'] = true
 
-    scene.save_game('Intro', 'stasis_chambers', 'player_spawn')
+    -- scene.save_game('Intro', 'stasis_chambers', 'player_spawn')
+
     -- wait(in_area(player, 'escape_area'))
     -- vars['escape_door'] = false
 
