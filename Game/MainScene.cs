@@ -150,7 +150,7 @@ namespace Game
                 : _startRoom == null && _save.Room != null ? world.Rooms.Find(r => r.RoomName == _save.Room)
                 : world.Rooms.Find(r => r.Id == world.StartRoomId);
             Debug.LogIf(startRoom == null, "No start room set. Defaulting to room at (0, 0).");
-            RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero, _save.Checkpoint);
+            RunRoom(startRoom?.Position.ToVector2() ?? Vector2.Zero, _startRoom == null ? _save.Checkpoint : null);
         }
 
         World LoadWorld(string worldName)
