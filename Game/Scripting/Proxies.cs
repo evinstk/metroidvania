@@ -8,7 +8,7 @@ namespace Game.Scripting
 {
     class ChestContentsProxy
     {
-        ChestContents Contents;
+        readonly ChestContents Contents;
 
         [MoonSharpHidden]
         public ChestContentsProxy(ChestContents contents)
@@ -29,7 +29,7 @@ namespace Game.Scripting
 
     class SceneProxy
     {
-        MainScene Scene;
+        readonly MainScene Scene;
 
         [MoonSharpHidden]
         public SceneProxy(MainScene scene)
@@ -101,7 +101,7 @@ namespace Game.Scripting
 
     class EntityProxy
     {
-        Entity Entity;
+        readonly Entity Entity;
 
         [MoonSharpHidden]
         public EntityProxy(Entity entity)
@@ -194,7 +194,7 @@ namespace Game.Scripting
 
     class CameraProxy
     {
-        Camera Camera;
+        readonly Camera Camera;
 
         public CameraProxy(Camera camera)
         {
