@@ -15,6 +15,8 @@ namespace Game
         static Dictionary<string, TextureMap> _textureMaps = new Dictionary<string, TextureMap>();
         static Dictionary<string, Sprite> _sprites = new Dictionary<string, Sprite>();
         static Dictionary<string, SpriteAnimation> _animations = new Dictionary<string, SpriteAnimation>();
+        static Dictionary<string, OgmoProject> _ogmoProjects = new Dictionary<string, OgmoProject>();
+        static Dictionary<string, OgmoLevel> _ogmoLevels = new Dictionary<string, OgmoLevel>();
 
         static Regex AlphaNum = new Regex("(?<Name>[a-zA-Z_-]*)(?<Index>[0-9]*)");
 
@@ -132,6 +134,31 @@ namespace Game
             fmod.getEvent($"event:/{bankName}/{evt}", out var desc);
             desc.createInstance(out var instance);
             return instance;
+        }
+
+        public static OgmoProject LoadOgmoProject(string projectName)
+        {
+            if (_ogmoProjects.ContainsKey(projectName))
+                return _ogmoProjects[projectName];
+
+            var ogmoProjectStr = File.ReadAllText($"{ContentPath.Maps}{projectName}.ogmo");
+            var ogmoProject = Json.FromJson<OgmoProject>(ogmoProjectStr);
+            _ogmoProjects[projectName] = ogmoProject;
+
+            return ogmoProject;
+        }
+
+        public static OgmoLevel LoadOgmoLevel(string levelName)
+        {
+            if (_ogmoLevels.ContainsKey(levelName))
+                return _ogmoLevels[levelName];
+
+            var levelPath = $"{ContentPath.Maps}{levelName}.json";
+            var levelStr = File.ReadAllText(levelPath);
+            var ogmoLevel = Json.FromJson<OgmoLevel>(levelStr);
+            _ogmoLevels[levelName] = ogmoLevel;
+
+            return ogmoLevel;
         }
     }
 }
