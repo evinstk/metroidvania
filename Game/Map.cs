@@ -49,28 +49,23 @@ namespace Game
         public Dictionary<string, object> values;
     }
 
-    class MapCollider :
-#if DEBUG
-        RenderableComponent
-#else
-        Component
-#endif
+    class MapCollider : Component
     {
         public int PhysicsLayer = -1;
 
         OgmoLevelLayer _layer;
-        Collider[] _colliders;
 
-        public MapCollider(OgmoLevelLayer layer, int width, int height)
+        public MapCollider(OgmoLevelLayer layer)
         {
             _layer = layer;
-#if DEBUG
-            _width = width;
-            _height = height;
-#endif
         }
 
         public override void OnAddedToEntity()
+        {
+            AddColliders();
+        }
+
+        void AddColliders()
         {
             List<Rectangle> rects = new List<Rectangle>();
             for (var i = 0; i < _layer.data.Count; ++i)
@@ -84,33 +79,12 @@ namespace Game
                 }
             }
 
-            _colliders = new Collider[rects.Count];
             for (var i = 0; i < rects.Count; ++i)
             {
-                var collider = new BoxCollider(rects[i]);
+                var collider = Entity.AddComponent(new BoxCollider(rects[i]));
                 collider.PhysicsLayer = PhysicsLayer;
-                collider.Entity = Entity;
-                _colliders[i] = collider;
-                Physics.AddCollider(collider);
             }
         }
-
-#if DEBUG
-        public override float Width => _width;
-        float _width = 1;
-        public override float Height => _height;
-        float _height = 1;
-
-        public override void Render(Batcher batcher, Camera camera)
-        {
-        }
-
-        public override void DebugRender(Batcher batcher)
-        {
-            foreach (var collider in _colliders)
-                collider.DebugRender(batcher);
-        }
-#endif
     }
 
     class MapRenderer : RenderableComponent

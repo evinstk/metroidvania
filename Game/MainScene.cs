@@ -275,7 +275,7 @@ namespace Game
 
                     if (layer.name == "terrain" || layer.name == "overlay")
                     {
-                        var collider = map.AddComponent(new MapCollider(layer, ogmoLevel.width, ogmoLevel.height));
+                        var collider = map.AddComponent(new MapCollider(layer));
                         collider.PhysicsLayer = isOverlay ? Mask.Overlay : Mask.Terrain;
                     }
                 }
