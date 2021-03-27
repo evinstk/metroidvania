@@ -14,12 +14,37 @@ function wait(fn)
     end
 end
 
+function translate(entity, x, y, t)
+    local orig_pos = entity.get_position()
+    local elapsed = 0
+    repeat
+        elapsed = elapsed + delta_time
+        if elapsed >= t then
+            entity.set_position(orig_pos.x + x, orig_pos.y + y)
+        else
+            local pct = elapsed / t
+            entity.set_position(
+                orig_pos.x + x * pct,
+                orig_pos.y + y * pct)
+        end
+        coroutine.yield()
+    until elapsed >= t
+end
+
+--- predicates
 function in_area(entity, area_name)
     return function()
         return entity.in_area(area_name)
     end
 end
 
+function animation_stopped(entity)
+    return function()
+        return not entity.is_animation_running()
+    end
+end
+
+--- cutscenes
 function interact()
     wait(function()
         return interaction_pressed
