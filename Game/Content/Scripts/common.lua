@@ -111,3 +111,30 @@ function cutscene(opts_overrides, fn)
 
     camera.release_focus()
 end
+
+function liftoff()
+    local player = scene.find_entity('player')
+    wait(in_area(player, 'beam'))
+
+    cutscene({ keep_hud_off=true }, function()
+        local player = scene.find_entity('player')
+        translate(player, 0, -64, 2)
+        player.destroy()
+
+        local spacecraft = scene.find_entity('spacecraft')
+        spacecraft.change_animation('liftoff', 'clamp_forever')
+        wait(animation_stopped(spacecraft))
+        spacecraft.change_animation('rise')
+        translate(spacecraft, 0, -64, 3)
+        spacecraft.change_animation('takeoff', 'clamp_forever')
+        wait(animation_stopped(spacecraft))
+        spacecraft.change_animation('fly')
+        translate(spacecraft, -500, -100, 0.6)
+        spacecraft.change_animation('distant_fly')
+        translate(spacecraft, 0, 300, 0)
+        translate(spacecraft, 500, -350, 2)
+
+        scene.set_fade(0, 2)
+        wait_for(2)
+    end)
+end
