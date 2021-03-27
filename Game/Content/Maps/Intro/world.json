@@ -19,42 +19,6 @@
 			}
 		},
 		{
-			"Id": "QRNMOEPODURAXTSXJGOGVFWQXQFEMVDYQCNJRZ",
-			"RoomName": "boss",
-			"MapName": "boss.json",
-			"Position": {
-				"X": -480,
-				"Y": -1520
-			}
-		},
-		{
-			"Id": "YRQLBDCMQTTSXFOQKLHVHHNHTZTQTDTBXRQVKO",
-			"RoomName": "left_dead_end",
-			"MapName": "left_dead_end.json",
-			"Position": {
-				"X": -960,
-				"Y": -1520
-			}
-		},
-		{
-			"Id": "UECRCTJGZRSISEPZPQDIRBKLTNZSVFPSFVQCTQ",
-			"RoomName": "right_dead_end",
-			"MapName": "right_dead_end.json",
-			"Position": {
-				"X": 0,
-				"Y": -1520
-			}
-		},
-		{
-			"Id": "UCHUNOJTJNIVKSJVFXPLHMBAFGRALCARDUIFVQ",
-			"RoomName": "checkpoint_right",
-			"MapName": "checkpoint_right.json",
-			"Position": {
-				"X": -240,
-				"Y": 400
-			}
-		},
-		{
 			"Id": "WCARABCXCGKPMLNDLQWWZMRFOIVOOWLDSMPTPU",
 			"RoomName": "outside",
 			"MapName": "outside.json",
@@ -115,6 +79,15 @@
 			"Position": {
 				"X": -912,
 				"Y": -976
+			}
+		},
+		{
+			"Id": "HTUOWGRWKSQTUAKELQEUKYINKQAOWLRUWTQWUC",
+			"RoomName": "roof_exit",
+			"MapName": "roof_exit.json",
+			"Position": {
+				"X": 0,
+				"Y": -1424
 			}
 		}
 	],
