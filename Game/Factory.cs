@@ -739,5 +739,23 @@ namespace Game
 
             return entity;
         }
+
+        public static Entity CreateSpacecraft(this Scene scene, Vector2 position)
+        {
+            var entity = scene.CreateEntity("spacecraft", position);
+
+            var anim = entity.AddComponent(Animator.MakeAnimator("spacecraft", scene.Content));
+            anim.Play("beam");
+            anim.RenderLayer = -15;
+
+            var beam = scene.CreateEntity("beam");
+            beam.Parent = entity.Transform;
+
+            var collider = beam.AddComponent(new BoxCollider(8, 52));
+            collider.LocalOffset = new Vector2(-24, 47);
+            collider.PhysicsLayer = Mask.Area;
+
+            return entity;
+        }
     }
 }

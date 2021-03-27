@@ -715,6 +715,42 @@
         {"name": "state_var", "definition": "String", "display": 2, "defaults": "t", "maxLength": 0, "trimWhitespace": true},
         {"name": "use_function", "definition": "Boolean", "display": 0, "defaults": false}
       ]
+    },
+    {
+      "exportID": "67761338",
+      "name": "spacecraft",
+      "limit": -1,
+      "size": {"x": 440, "y": 146},
+      "origin": {"x": 220, "y": 73},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#7f9d99ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": []
     }
   ],
   "tilesets": [

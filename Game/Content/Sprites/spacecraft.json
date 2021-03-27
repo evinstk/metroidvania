@@ -1,0 +1,255 @@
+{"frames": [
+
+{
+	"filename": "beam0.png",
+	"frame": {"x":53,"y":1,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "beam1.png",
+	"frame": {"x":555,"y":1,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "beam2.png",
+	"frame": {"x":1057,"y":1,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "beam3.png",
+	"frame": {"x":1,"y":149,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "distant_fly0.png",
+	"frame": {"x":1,"y":1,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "distant_fly1.png",
+	"frame": {"x":27,"y":1,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "fly0.png",
+	"frame": {"x":503,"y":149,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "fly1.png",
+	"frame": {"x":1005,"y":149,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "fly2.png",
+	"frame": {"x":1507,"y":149,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "fly3.png",
+	"frame": {"x":1005,"y":149,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "idle0.png",
+	"frame": {"x":1,"y":297,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "liftoff0.png",
+	"frame": {"x":503,"y":297,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "liftoff1.png",
+	"frame": {"x":1005,"y":297,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "liftoff2.png",
+	"frame": {"x":1507,"y":297,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "liftoff3.png",
+	"frame": {"x":1,"y":445,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "liftoff4.png",
+	"frame": {"x":503,"y":445,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "liftoff5.png",
+	"frame": {"x":1005,"y":445,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "liftoff6.png",
+	"frame": {"x":1507,"y":445,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "liftoff7.png",
+	"frame": {"x":1,"y":593,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "rise0.png",
+	"frame": {"x":1,"y":593,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "rise1.png",
+	"frame": {"x":503,"y":593,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "rise2.png",
+	"frame": {"x":1005,"y":593,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "rise3.png",
+	"frame": {"x":1507,"y":593,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "spacecraft0.png",
+	"frame": {"x":1559,"y":1,"w":440,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":440,"h":146},
+	"sourceSize": {"w":440,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "takeoff0.png",
+	"frame": {"x":1,"y":741,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "takeoff1.png",
+	"frame": {"x":503,"y":741,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "takeoff2.png",
+	"frame": {"x":1005,"y":741,"w":500,"h":146},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":146},
+	"sourceSize": {"w":500,"h":146},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "spacecraft.png",
+	"format": "RGBA8888",
+	"size": {"w":2008,"h":888},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:35349cbc5f27326c2360bca00fe7e93c:b43cf1538dcead8ec01d1189db8fde42:a072cde6044f0396e27be1bcf0a9eac3$"
+}
+}
