@@ -110,6 +110,10 @@ namespace Game.Scripting
         }
 
         public Vector2 GetPosition() => Entity.Position;
+        public void SetPosition(int x, int y) => Entity.SetPosition(x, y);
+        public void Translate(int x, int y) => Entity.Position += new Vector2(x, y);
+
+        public void Destroy() => Entity.Destroy();
 
         public bool InArea(string areaName)
         {
