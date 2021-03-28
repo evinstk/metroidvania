@@ -146,6 +146,8 @@ namespace Game
             CreateEntity("world");
             AddWorldBounds(world);
             SetBackground(world);
+            SetAreas(world);
+
             var startRoom = _startRoom?.RoomId != null ? world.Rooms.Find(r => r.Id == _startRoom.RoomId)
                 : _startRoom == null && _save.Room != null ? world.Rooms.Find(r => r.RoomName == _save.Room)
                 : world.Rooms.Find(r => r.Id == world.StartRoomId);
@@ -210,6 +212,23 @@ namespace Game
                 var parallax = bgEntity.AddComponent(new TiledParallax());
                 parallax.Renderer = renderer;
                 parallax.ScrollScale = background.ScrollScale;
+            }
+        }
+
+        void SetAreas(World world)
+        {
+            for (var i = 0; i < world.Areas.Count; ++i)
+            {
+                var area = world.Areas[i];
+                var entity = CreateEntity($"area-{i}");
+                var collider = entity.AddComponent(new BoxCollider(area.Bounds));
+                collider.PhysicsLayer = Mask.Area;
+
+                if (!string.IsNullOrWhiteSpace(area.Music))
+                {
+                    var musicTrigger = entity.AddComponent<MusicTrigger>();
+                    musicTrigger.Track = area.Music;
+                }
             }
         }
 
