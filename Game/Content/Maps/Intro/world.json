@@ -91,6 +91,17 @@
 			}
 		}
 	],
+	"Areas": [
+		{
+			"Bounds": {
+				"X": -2416,
+				"Y": -992,
+				"Width": 4000,
+				"Height": 4000
+			},
+			"Music": "refiners_fire"
+		}
+	],
 	"Backgrounds": [
 		{
 			"Id": "ZFUSKRWHRHUAEBKHEGAVYOGGXIYWRZCHXJVUVC",
