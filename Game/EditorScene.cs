@@ -16,6 +16,12 @@ namespace Game
         public string RoomId;
     }
 
+    public enum EditorModes
+    {
+        Room,
+        Area,
+    }
+
     class EditorScene : Scene
     {
         public string WorldName
@@ -43,6 +49,21 @@ namespace Game
         }
         string _worldName = string.Empty;
         public event Action<EditorScene> OnWorldSet;
+
+        public EditorModes Mode
+        {
+            get => _mode;
+            set
+            {
+                if (_mode != value)
+                {
+                    _mode = value;
+                    OnModeSet?.Invoke(this, value);
+                }
+            }
+        }
+        EditorModes _mode;
+        public event Action<EditorScene, EditorModes> OnModeSet;
 
         public void AddRoom(Room room)
         {
@@ -77,7 +98,7 @@ namespace Game
             }
 
             CreateEntity("world-renderer").AddComponent<WorldRenderer>();
-            CreateEntity("editor-controller").AddComponent<EditorController>();
+            CreateEntity("editor-controller").AddComponent<EditorController>().SetRenderLayer(int.MinValue);
             if (_init != null)
             {
                 var worldWindow = FindComponentOfType<WorldWindow>();
@@ -87,9 +108,47 @@ namespace Game
         }
     }
 
+    static class EditorSceneExt
+    {
+        public static EditorScene GetEditorScene(this Entity entity) => entity.Scene as EditorScene;
+    }
+
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     class EditorWindowAttribute : Attribute
     {
+    }
+
+    [EditorWindow]
+    class ModeWindow : Component
+    {
+        public override void OnAddedToEntity()
+        {
+            Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
+        }
+
+        public override void OnRemovedFromEntity()
+        {
+            Core.GetGlobalManager<ImGuiManager>().UnregisterDrawCommand(Draw);
+        }
+
+        void Draw()
+        {
+            if (ImGui.Begin("Editor Mode"))
+            {
+                ModeRadioButton("Room", EditorModes.Room);
+                ModeRadioButton("Area", EditorModes.Area);
+
+                ImGui.End();
+            }
+        }
+
+        void ModeRadioButton(string label, EditorModes mode)
+        {
+            var scene = Entity.GetEditorScene();
+            var currMode = scene.Mode;
+            if (ImGui.RadioButton(label, currMode == mode))
+                scene.Mode = mode;
+        }
     }
 
     [EditorWindow]
@@ -299,6 +358,7 @@ namespace Game
         [JsonExclude]
         public string Name = string.Empty;
         public List<Room> Rooms = new List<Room>();
+        public List<Area> Areas = new List<Area>();
         public List<Background> Backgrounds = new List<Background>();
         public string StartRoomId;
     }
@@ -309,6 +369,12 @@ namespace Game
         public string RoomName;
         public string MapName;
         public Point Position;
+    }
+
+    class Area
+    {
+        public Rectangle Bounds;
+        public string Music = string.Empty;
     }
 
     class Background
@@ -441,15 +507,28 @@ namespace Game
                 var bounds = _bounds[id];
                 batcher.DrawHollowRect(bounds.Bounds, Color.Green, 2);
             }
+
+            var scene = Entity.GetEditorScene();
+            var world = scene.World;
+            var mode = scene.Mode;
+            if (world != null && mode == EditorModes.Area)
+            {
+                var color = Color.Green;
+                color.A = 2;
+                foreach (var area in world.Areas)
+                    batcher.DrawRect(area.Bounds, color);
+            }
         }
     }
 
-    class EditorController : Component, IUpdatable
+    class EditorController : RenderableComponent, IUpdatable
     {
         public List<string> RoomSelection = new List<string>();
 
         SubpixelVector2 _subpixelV2;
-        //Vector2 _selectionDelta;
+
+        Point _areaStart;
+        Point _areaEnd;
 
         public override void Initialize()
         {
@@ -484,39 +563,127 @@ namespace Game
                 RoomSelection.Clear();
             }
 
-            if (Input.LeftMouseButtonPressed)
-            {
-                if (!Input.IsKeyDown(Keys.LeftShift) && !Input.IsKeyDown(Keys.LeftShift))
-                    RoomSelection.Clear();
-
-                var worldRenderer = Entity.Scene.FindComponentOfType<WorldRenderer>();
-                var roomId = worldRenderer.GetRoomAt(Entity.Scene.Camera.MouseToWorldPoint());
-                if (roomId != null)
-                    RoomSelection.Add(roomId);
-            }
-
-            var scene = Entity.Scene as EditorScene;
+            var scene = Entity.GetEditorScene();
+            var mode = scene.Mode;
             var currWorld = scene.World;
-
-            if (Input.RightMouseButtonDown && currWorld != null)
+            if (mode == EditorModes.Room && currWorld != null)
             {
-
-                var delta = Input.ScaledMousePositionDelta;
-                foreach (var roomId in RoomSelection)
+                if (Input.LeftMouseButtonPressed)
                 {
-                    var room = currWorld.Rooms.Find(r => r.Id == roomId);
-                    room.Position += delta.ToPoint();
+                    if (!Input.IsKeyDown(Keys.LeftShift) && !Input.IsKeyDown(Keys.LeftShift))
+                        RoomSelection.Clear();
+
+                    var worldRenderer = Entity.Scene.FindComponentOfType<WorldRenderer>();
+                    var roomId = worldRenderer.GetRoomAt(Entity.Scene.Camera.MouseToWorldPoint());
+                    if (roomId != null)
+                        RoomSelection.Add(roomId);
+                }
+
+                if (Input.RightMouseButtonDown)
+                {
+                    var delta = Input.ScaledMousePositionDelta;
+                    foreach (var roomId in RoomSelection)
+                    {
+                        var room = currWorld.Rooms.Find(r => r.Id == roomId);
+                        room.Position += delta.ToPoint();
+                    }
+                }
+
+                if (Input.RightMouseButtonReleased)
+                {
+                    foreach (var roomId in RoomSelection)
+                    {
+                        var room = currWorld.Rooms.Find(r => r.Id == roomId);
+                        room.Position.X = (int)Mathf.RoundToNearest(room.Position.X, 16);
+                        room.Position.Y = (int)Mathf.RoundToNearest(room.Position.Y, 16);
+                    }
                 }
             }
-
-            if (Input.RightMouseButtonReleased && currWorld != null)
+            else if (mode == EditorModes.Area && currWorld != null)
             {
-                foreach (var roomId in RoomSelection)
+                var pos = scene.Camera.MouseToWorldPoint();
+                pos.X = Mathf.RoundToNearest(pos.X, 16);
+                pos.Y = Mathf.RoundToNearest(pos.Y, 16);
+
+                if (Input.LeftMouseButtonPressed)
                 {
-                    var room = currWorld.Rooms.Find(r => r.Id == roomId);
-                    room.Position.X = (int)Mathf.RoundToNearest(room.Position.X, 16);
-                    room.Position.Y = (int)Mathf.RoundToNearest(room.Position.Y, 16);
+                    _areaStart = pos.ToPoint();
                 }
+                if (Input.LeftMouseButtonDown)
+                {
+                    _areaEnd = pos.ToPoint();
+                }
+                if (Input.LeftMouseButtonReleased)
+                {
+                    var bounds = Bounds;
+                    if (bounds.Width > 0 && bounds.Height > 0)
+                    {
+                        currWorld.Areas.Add(new Area
+                        {
+                            Bounds = bounds,
+                        });
+                    }
+                }
+            }
+        }
+
+        public override RectangleF Bounds
+        {
+            get
+            {
+                return RectangleF.FromMinMax(
+                    new Vector2(Math.Min(_areaStart.X, _areaEnd.X), Math.Min(_areaStart.Y, _areaEnd.Y)),
+                    new Vector2(Math.Max(_areaStart.X, _areaEnd.X), Math.Max(_areaStart.Y, _areaEnd.Y)));
+            }
+        }
+
+        public override void Render(Batcher batcher, Camera camera)
+        {
+            if (Input.LeftMouseButtonDown)
+            {
+                var bounds = Bounds;
+                batcher.DrawHollowRect(bounds, Color.Green, 4);
+            }
+        }
+    }
+
+    [EditorWindow]
+    class AreaWindow : Component
+    {
+        public override void OnAddedToEntity()
+        {
+            Core.GetGlobalManager<ImGuiManager>().RegisterDrawCommand(Draw);
+        }
+
+        public override void OnRemovedFromEntity()
+        {
+            Core.GetGlobalManager<ImGuiManager>().UnregisterDrawCommand(Draw);
+        }
+
+        void Draw()
+        {
+            var world = Entity.GetEditorScene().World;
+            if (world == null) return;
+
+            if (ImGui.Begin("Areas"))
+            {
+                Area toDelete = null;
+                foreach (var area in world.Areas)
+                {
+                    ImGui.DragInt2("position", ref area.Bounds.X);
+                    ImGui.DragInt2("size", ref area.Bounds.Width);
+
+                    ImGui.InputText("music", ref area.Music, 25);
+
+                    if (ImGui.Button("Delete"))
+                        toDelete = area;
+                    ImGui.Separator();
+                }
+
+                if (toDelete != null)
+                    world.Areas.Remove(toDelete);
+
+                ImGui.End();
             }
         }
     }
