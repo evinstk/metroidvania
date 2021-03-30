@@ -1,4 +1,5 @@
-﻿using Game.Scripting;
+﻿using Game.Cinema;
+using Game.Scripting;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
@@ -92,7 +93,7 @@ namespace Game
                 .SetRenderLayer(RenderLayers.LightMap);
 
             Camera.AddComponent<CameraController>();
-            Camera.AddComponent<CameraBounds>();
+            Camera.AddComponent<CameraBrain>();
             Camera.Entity.UpdateOrder = int.MaxValue - 1;
 
             CreateEntity("fade")
@@ -246,7 +247,6 @@ namespace Game
                 return;
             }
 
-            Camera.GetComponent<CameraBounds>().Bounds = rb.Collider.Bounds;
             _currentRoom = rb;
 
             if (_runRooms.Contains(rb))
@@ -348,6 +348,13 @@ namespace Game
                             case "spacecraft":
                                 this.CreateSpacecraft(pos);
                                 break;
+                            case "vcam":
+                                this.CreateVirtualCamera(
+                                    new Rectangle(
+                                        pos.ToPoint() - new Point(0, entity.height),
+                                        new Point(entity.width, entity.height)),
+                                    (int)(ulong)entity.values["priority"]);
+                                break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
                                 break;
@@ -355,6 +362,11 @@ namespace Game
                     }
                 }
             }
+
+            // default vcam
+            this.CreateVirtualCamera(
+                new Rectangle(rb.Position.ToPoint(), new Point(ogmoLevel.width, ogmoLevel.height)),
+                -1);
 
             if (startAreaName != null)
             {

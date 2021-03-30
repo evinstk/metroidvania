@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game.Cinema;
+using Microsoft.Xna.Framework;
 using MoonSharp.Interpreter;
 using Nez;
 using Nez.Sprites;
@@ -40,10 +41,7 @@ namespace Game
                 hitbox.CollidesWithLayers = Mask.EnemyAttack;
             };
 
-            var followCamera = entity.AddComponent(new FollowCamera(entity, FollowCamera.CameraStyle.LockOn));
-            followCamera.FollowLerp = 1f;
-
-            entity.AddComponent<VerticalLookAhead>();
+            //entity.AddComponent<VerticalLookAhead>();
 
             var light = entity.AddComponent(new StencilLight(200f, Color.White, 0.5f));
             light.RenderLayer = RenderLayers.Light;
@@ -754,6 +752,25 @@ namespace Game
             var collider = beam.AddComponent(new BoxCollider(8, 52));
             collider.LocalOffset = new Vector2(-24, 47);
             collider.PhysicsLayer = Mask.Area;
+
+            return entity;
+        }
+
+        public static Entity CreateVirtualCamera(this Scene scene, Rectangle confiner, int priority)
+        {
+            var entity = scene.CreateEntity("vcam");
+
+            var collider = entity.AddComponent(new BoxCollider(confiner));
+            collider.PhysicsLayer = 0;
+
+            var vcam = entity.AddComponent<VirtualCamera>();
+            vcam.Priority = priority;
+            vcam.Confiner = collider;
+            vcam.FollowName = "player";
+
+            var activator = entity.AddComponent<PlayerActivator>();
+            activator.Collider = collider;
+            activator.VirtualCamera = vcam;
 
             return entity;
         }

@@ -52,7 +52,7 @@
           "id": 8,
           "_eid": "94960092",
           "x": 48,
-          "y": 680,
+          "y": 684,
           "originX": 12,
           "originY": 9,
           "values": {"text": "ARMORY\n\nAuthorized personnel only."}
@@ -109,7 +109,19 @@
         },
         {"name": "cypher", "id": 14, "_eid": "34819345", "x": 280, "y": 192, "originX": 16, "originY": 16},
         {"name": "cypher", "id": 15, "_eid": "34819345", "x": 716, "y": 196, "originX": 16, "originY": 16},
-        {"name": "cypher", "id": 16, "_eid": "34819345", "x": 492, "y": 192, "originX": 16, "originY": 16}
+        {"name": "cypher", "id": 16, "_eid": "34819345", "x": 492, "y": 192, "originX": 16, "originY": 16},
+        {
+          "name": "vcam",
+          "id": 17,
+          "_eid": "07148980",
+          "x": 0,
+          "y": 736,
+          "width": 912,
+          "height": 270,
+          "originX": 0,
+          "originY": 270,
+          "values": {"priority": 0}
+        }
       ]
     },
     {

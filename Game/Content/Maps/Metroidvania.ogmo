@@ -751,6 +751,44 @@
       "nodeGhost": true,
       "tags": [],
       "values": []
+    },
+    {
+      "exportID": "07148980",
+      "name": "vcam",
+      "limit": -1,
+      "size": {"x": 480, "y": 270},
+      "origin": {"x": 0, "y": 270},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#6cffef18",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": true,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "priority", "definition": "Integer", "display": 2, "defaults": 0, "bounded": false, "min": 0, "max": 100}
+      ]
     }
   ],
   "tilesets": [
