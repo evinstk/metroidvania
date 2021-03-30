@@ -756,9 +756,14 @@ namespace Game
             return entity;
         }
 
-        public static Entity CreateVirtualCamera(this Scene scene, Rectangle confiner, int priority)
+        public static Entity CreateVirtualCamera(
+            this Scene scene,
+            Rectangle confiner,
+            int priority,
+            string name,
+            bool selfActivated)
         {
-            var entity = scene.CreateEntity("vcam");
+            var entity = scene.CreateEntity(name);
 
             var collider = entity.AddComponent(new BoxCollider(confiner));
             collider.PhysicsLayer = 0;
@@ -768,9 +773,29 @@ namespace Game
             vcam.Confiner = collider;
             vcam.FollowName = "player";
 
+            if (selfActivated)
+            {
+                var activator = entity.AddComponent<PlayerActivator>();
+                activator.Collider = collider;
+                activator.VirtualCameraName = name;
+            }
+
+            return entity;
+        }
+
+        public static Entity CreateVirtualCameraActivator(
+            this Scene scene,
+            Rectangle zone,
+            string vcamName)
+        {
+            var entity = scene.CreateEntity("vcam_activator");
+
+            var collider = entity.AddComponent(new BoxCollider(zone));
+            collider.PhysicsLayer = 0;
+
             var activator = entity.AddComponent<PlayerActivator>();
             activator.Collider = collider;
-            activator.VirtualCamera = vcam;
+            activator.VirtualCameraName = vcamName;
 
             return entity;
         }

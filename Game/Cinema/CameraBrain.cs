@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
 using System;
+using System.Collections.Generic;
 
 namespace Game.Cinema
 {
@@ -12,42 +13,48 @@ namespace Game.Cinema
         float _transitionTimer;
         Vector2 _transitionStart;
 
+        List<VirtualCamera> _vcams = new List<VirtualCamera>();
+
         public void Update()
         {
-            var vcams = Entity.Scene.FindComponentsOfType<VirtualCamera>();
+            _vcams.Clear();
 
-            if (vcams.Count > 0)
+            var activators = Entity.Scene.FindComponentsOfType<PlayerActivator>();
+            activators.Sort((a, b) => b.Active.CompareTo(a.Active));
+            if (activators.Count > 0 && activators[0].Active)
             {
-                // take higher priority that's enabled
-                vcams.Sort((a, b) =>
+                foreach (var activator in activators)
                 {
-                    var enabled = b.Enabled.CompareTo(a.Enabled);
-                    return enabled == 0 ? b.Priority.CompareTo(a.Priority) : enabled;
-                });
-                var vcam = vcams[0];
-                if (!vcam.Enabled) return;
-
-                if (vcam != _lastCam && _lastCam != null)
-                {
-                    _transitionTimer = TransitionDuration;
-                    _transitionStart = Entity.Position;
+                    if (!activator.Active) break;
+                    _vcams.Add(Entity.Scene.FindEntity(activator.VirtualCameraName)?.GetComponent<VirtualCamera>());
                 }
 
-                if (_transitionTimer > 0)
+                _vcams.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+                if (_vcams.Count > 0 && _vcams[0] != null)
                 {
-                    _transitionTimer = Math.Max(_transitionTimer - Time.DeltaTime, 0);
-                    Entity.Position = Vector2.Lerp(
-                        _transitionStart,
-                        vcam.CameraPosition,
-                        (TransitionDuration - _transitionTimer) / TransitionDuration)
-                        .ToPoint().ToVector2();
-                }
-                else
-                {
-                    Entity.Position = vcam.CameraPosition;
-                }
+                    var vcam = _vcams[0];
+                    if (vcam != _lastCam && _lastCam != null)
+                    {
+                        _transitionTimer = TransitionDuration;
+                        _transitionStart = Entity.Position;
+                    }
 
-                _lastCam = vcam;
+                    if (_transitionTimer > 0)
+                    {
+                        _transitionTimer = Math.Max(_transitionTimer - Time.DeltaTime, 0);
+                        Entity.Position = Vector2.Lerp(
+                            _transitionStart,
+                            vcam.CameraPosition,
+                            (TransitionDuration - _transitionTimer) / TransitionDuration)
+                            .ToPoint().ToVector2();
+                    }
+                    else
+                    {
+                        Entity.Position = vcam.CameraPosition;
+                    }
+
+                    _lastCam = vcam;
+                }
             }
         }
     }

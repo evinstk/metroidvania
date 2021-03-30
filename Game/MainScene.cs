@@ -254,6 +254,7 @@ namespace Game
 
             var ogmoProject = GameContent.LoadOgmoProject("Metroidvania");
             var ogmoLevel = rb.Level;
+            var id = Utils.RandomString(8);
             var map = CreateEntity("map");
             map.Position = rb.Position;
             for (var i = 0; i < ogmoLevel.layers.Count; ++i)
@@ -353,7 +354,16 @@ namespace Game
                                     new Rectangle(
                                         pos.ToPoint() - new Point(0, entity.height),
                                         new Point(entity.width, entity.height)),
-                                    (int)(ulong)entity.values["priority"]);
+                                    (int)(ulong)entity.values["priority"],
+                                    $"{(string)entity.values["name"]}_{id}",
+                                    (bool)entity.values["self_activated"]);
+                                break;
+                            case "vcam_activator":
+                                this.CreateVirtualCameraActivator(
+                                    new Rectangle(
+                                        pos.ToPoint() - new Point(0, entity.height),
+                                        new Point(entity.width, entity.height)),
+                                    $"{(string)entity.values["vcam"]}_{id}");
                                 break;
                             default:
                                 Debug.Log($"Unknown entity type {entity.name}");
@@ -366,7 +376,9 @@ namespace Game
             // default vcam
             this.CreateVirtualCamera(
                 new Rectangle(rb.Position.ToPoint(), new Point(ogmoLevel.width, ogmoLevel.height)),
-                -1);
+                -1,
+                $"default_vcam_{id}",
+                true);
 
             if (startAreaName != null)
             {

@@ -55,7 +55,7 @@
           "height": 270,
           "originX": 0,
           "originY": 270,
-          "values": {"priority": 0}
+          "values": {"name": "vcam", "priority": 0, "self_activated": true}
         }
       ]
     },

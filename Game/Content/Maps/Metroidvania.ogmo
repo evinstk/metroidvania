@@ -787,7 +787,47 @@
       "nodeGhost": true,
       "tags": [],
       "values": [
-        {"name": "priority", "definition": "Integer", "display": 2, "defaults": 0, "bounded": false, "min": 0, "max": 100}
+        {"name": "name", "definition": "String", "display": 0, "defaults": "vcam", "maxLength": 0, "trimWhitespace": true},
+        {"name": "priority", "definition": "Integer", "display": 2, "defaults": 0, "bounded": false, "min": 0, "max": 100},
+        {"name": "self_activated", "definition": "Boolean", "display": 2, "defaults": true}
+      ]
+    },
+    {
+      "exportID": "11071368",
+      "name": "vcam_activator",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 16},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#2eff000c",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": true,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "vcam", "definition": "String", "display": 0, "defaults": "vcam", "maxLength": 0, "trimWhitespace": true}
       ]
     }
   ],
