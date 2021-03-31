@@ -30,6 +30,14 @@ namespace Game
             });
         }
 
+        public static void ClearCache()
+        {
+            _textureMaps.Clear();
+            _sprites.Clear();
+            _animations.Clear();
+            _ogmoProjects.Clear();
+            _ogmoLevels.Clear();
+        }
 
         public static TextureMap LoadTextureMap(string pack)
         {

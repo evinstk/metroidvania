@@ -73,7 +73,7 @@
           "y": 216,
           "originX": 12,
           "originY": 9,
-          "values": {"text": "Blaster storage.\n\nElevated privileges required."}
+          "values": {"text": "BLASTER STORAGE\n\nElevated privileges required."}
         },
         {
           "name": "switch",

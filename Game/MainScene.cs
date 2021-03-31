@@ -408,6 +408,7 @@ namespace Game
             // restart
             if (Input.IsKeyDown(Keys.F2))
             {
+                GameContent.ClearCache();
                 var save = Core.GetGlobalManager<SaveSystem>().Load(SaveSlot);
                 Core.Scene = new MainScene(SaveSlot, save, _startRoom);
             }
