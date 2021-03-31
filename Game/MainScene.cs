@@ -233,7 +233,7 @@ namespace Game
             }
         }
 
-        void RunRoom(Vector2 location, string startAreaName = null)
+        bool RunRoom(Vector2 location, string startAreaName = null)
         {
             RoomBounds rb = null;
             foreach (var roomBounds in _worldBounds)
@@ -244,13 +244,13 @@ namespace Game
             if (rb == null)
             {
                 Debug.Log("No room found.");
-                return;
+                return false;
             }
 
             _currentRoom = rb;
 
             if (_runRooms.Contains(rb))
-                return;
+                return true;
 
             var ogmoProject = GameContent.LoadOgmoProject("Metroidvania");
             var ogmoLevel = rb.Level;
@@ -401,6 +401,8 @@ namespace Game
                 _scripting.LoadScript(Path.GetFileName(script));
 
             _runRooms.Add(rb);
+
+            return true;
         }
 
         public override void Update()
@@ -432,10 +434,16 @@ namespace Game
                     Camera.Position = move + new Vector2(0, -256);
                     _pendingMove = null;
                 }
-                if (!_currentRoom.Collider.Bounds.Contains(player.Position))
+                var currentBounds = _currentRoom.Collider.Bounds;
+                if (!currentBounds.Contains(player.Position))
                 {
-                    // TODO: turn this into smooth transition
-                    RunRoom(player.Position);
+                    var currPos = player.Position;
+                    if (!RunRoom(currPos))
+                    {
+                        player.Position = new Vector2(
+                            Mathf.Clamp(currPos.X, currentBounds.X, currentBounds.X + currentBounds.Width),
+                            Mathf.Clamp(currPos.Y, currentBounds.Y, currentBounds.Y + currentBounds.Height + 100));
+                    }
                 }
             }
 
