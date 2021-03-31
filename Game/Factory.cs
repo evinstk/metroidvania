@@ -605,6 +605,7 @@ namespace Game
             var area = (string)ogmoEntity.values["area"];
             interactable.OnInteract = (self, interactor) =>
             {
+                Core.Scene.FindComponentOfType<CameraBrain>()?.QueueCut();
                 var mainScene = self.Entity.GetMainScene();
                 mainScene.MoveToArea(room, area);
             };
@@ -649,6 +650,7 @@ namespace Game
                 self => collider.CollidesWithAny(out _),
                 self =>
                 {
+                    Core.Scene.FindComponentOfType<CameraBrain>()?.QueueCut();
                     var mainScene = self.Entity.GetMainScene();
                     mainScene.MoveToArea(room, area);
                 }));

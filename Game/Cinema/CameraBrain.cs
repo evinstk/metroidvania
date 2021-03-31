@@ -15,6 +15,9 @@ namespace Game.Cinema
 
         List<VirtualCamera> _vcams = new List<VirtualCamera>();
 
+        bool _pendingCut = false;
+        public void QueueCut() => _pendingCut = true;
+
         public void Update()
         {
             _vcams.Clear();
@@ -35,8 +38,15 @@ namespace Game.Cinema
                     var vcam = _vcams[0];
                     if (vcam != _lastCam && _lastCam != null)
                     {
-                        _transitionTimer = TransitionDuration;
-                        _transitionStart = Entity.Position;
+                        if (!_pendingCut)
+                        {
+                            _transitionTimer = TransitionDuration;
+                            _transitionStart = Entity.Position;
+                        }
+                        else
+                        {
+                            _pendingCut = false;
+                        }
                     }
 
                     if (_transitionTimer > 0)
