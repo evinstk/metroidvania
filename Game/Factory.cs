@@ -271,6 +271,7 @@ namespace Game
         public static Entity CreateProjectile(this Scene scene, Vector2 position)
         {
             var entity = scene.CreateEntity("projectile", position);
+            entity.UpdateOrder = 100;
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play("projectile");
@@ -280,8 +281,6 @@ namespace Game
             collider.PhysicsLayer = Mask.EnemyAttack;
             collider.CollidesWithLayers = Mask.Player | Mask.Terrain;
 
-            entity.AddComponent<PlatformerMover>();
-
             var projectile = entity.AddComponent<Projectile>();
 
             var hurtable = entity.AddComponent<Hurtable>();
@@ -289,6 +288,8 @@ namespace Game
             hurtable.PauseTime = 0;
             hurtable.OnHurt = projectile.OnHurt;
             hurtable.HurtSound.clearHandle();
+
+            entity.AddComponent<PlatformerMover>();
 
             var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
             light.RenderLayer = -RenderLayers.Light;
@@ -299,6 +300,7 @@ namespace Game
         public static Entity CreateLaser(this Scene scene, Vector2 position)
         {
             var entity = scene.CreateEntity("laser", position);
+            entity.UpdateOrder = 100;
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play("laser");
@@ -308,8 +310,6 @@ namespace Game
             collider.PhysicsLayer = Mask.PlayerAttack;
             collider.CollidesWithLayers = Mask.Enemy | Mask.Terrain;
 
-            entity.AddComponent<PlatformerMover>();
-
             var projectile = entity.AddComponent<Projectile>();
 
             var hurtable = entity.AddComponent<Hurtable>();
@@ -317,6 +317,8 @@ namespace Game
             hurtable.PauseTime = 0;
             hurtable.OnHurt = projectile.OnHurt;
             hurtable.HurtSound.clearHandle();
+
+            entity.AddComponent<PlatformerMover>();
 
             entity.AddComponent<Damage>();
 
@@ -337,6 +339,7 @@ namespace Game
             scene.CreateFlash(position, Color.AliceBlue);
 
             var entity = scene.CreateEntity("projectile", position);
+            entity.UpdateOrder = 100;
 
             var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content));
             anim.Play(animation);
@@ -346,9 +349,6 @@ namespace Game
             collider.PhysicsLayer = physicsLayer;
             collider.CollidesWithLayers = collidesWithLayers;
 
-            var mover = entity.AddComponent<PlatformerMover>();
-            mover.Speed = speed;
-
             var projectile = entity.AddComponent<Projectile>();
 
             var hurtable = entity.AddComponent<Hurtable>();
@@ -356,6 +356,9 @@ namespace Game
             hurtable.PauseTime = 0;
             hurtable.OnHurt = projectile.OnHurt;
             hurtable.HurtSound.clearHandle();
+
+            var mover = entity.AddComponent<PlatformerMover>();
+            mover.Speed = speed;
 
             entity.AddComponent<Damage>();
 
