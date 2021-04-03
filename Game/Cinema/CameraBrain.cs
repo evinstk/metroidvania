@@ -29,7 +29,11 @@ namespace Game.Cinema
                 foreach (var activator in activators)
                 {
                     if (!activator.Active) break;
-                    _vcams.Add(Entity.Scene.FindEntity(activator.VirtualCameraName)?.GetComponent<VirtualCamera>());
+                    var vcam = Entity.Scene.FindEntity(activator.VirtualCameraName)?.GetComponent<VirtualCamera>();
+                    if (vcam != null)
+                        _vcams.Add(vcam);
+                    else
+                        Debug.Log($"Virtual camera {activator.VirtualCameraName} not found.");
                 }
 
                 _vcams.Sort((a, b) => b.Priority.CompareTo(a.Priority));
