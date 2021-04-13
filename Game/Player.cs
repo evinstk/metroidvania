@@ -214,7 +214,6 @@ namespace Game
                     else if (aim <= 1f)
                         weaponAnimation = "t";
                     _upperAnimator.Change($"upper_{weaponAnimation}");
-                    _lowerAnimator.Change($"lower_aiming");
                     _weaponAnimator.Change(weaponAnimation);
                 }
                 else
@@ -225,9 +224,15 @@ namespace Game
                 {
                     if (inputX == 0)
                     {
-                        _lowerAnimator.Change("lower_idle");
                         if (!rangedWeaponActive)
+                        {
+                            _lowerAnimator.Change("lower_idle");
                             _upperAnimator.Change("upper_idle");
+                        }
+                        else
+                        {
+                            _lowerAnimator.Change($"lower_aiming");
+                        }
                     }
                     else
                     {
@@ -465,6 +470,7 @@ namespace Game
             {
                 _upperAnimator.Change("upper_climb");
                 _lowerAnimator.Change("lower_climb");
+                _weaponAnimator.Change("empty");
                 _mover.Speed.X = 0;
                 _mover.Speed.Y = MoveSpeed * inputY;
                 Entity.Position = new Vector2(_ladderCollider.AbsolutePosition.X, Entity.Position.Y);
