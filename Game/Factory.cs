@@ -402,15 +402,20 @@ namespace Game
 
         static Dictionary<string, int> _doodadsOverrides = new Dictionary<string, int>
         {
-            { "small_explosion", 24 }
+            { "small_explosion", 24 },
+            { "large_explosion", 14 },
         };
 
-        public static Entity CreateBoom(this Scene scene, Vector2 position)
+        public static Entity CreateBoom(
+            this Scene scene,
+            Vector2 position,
+            string animationPack = "doodads",
+            string animation = "small_explosion")
         {
             var entity = scene.CreateEntity("boom", position);
 
-            var anim = entity.AddComponent(Animator.MakeAnimator("doodads", scene.Content, _doodadsOverrides));
-            anim.Play("small_explosion", SpriteAnimator.LoopMode.ClampForever);
+            var anim = entity.AddComponent(Animator.MakeAnimator(animationPack, scene.Content, _doodadsOverrides));
+            anim.Play(animation, SpriteAnimator.LoopMode.ClampForever);
             anim.RenderLayer = -6;
 
             var light = entity.AddComponent(new StencilLight(16f, Color.White, 0.2f));
