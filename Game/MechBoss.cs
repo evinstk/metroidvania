@@ -188,9 +188,7 @@ namespace Game
                 {
                     _animator.Change("dead", SpriteAnimator.LoopMode.ClampForever);
                     DeathSound.start();
-                    for (int x = -1; x < 2; ++x)
-                        for (int y = -1; y < 2; ++y)
-                            Entity.Scene.CreateBoom(position + new Vector2(x * 12, -2 + y * 12));
+                    Entity.Scene.CreateBoom(position, animation: "large_explosion");
                 }
             }
         }
