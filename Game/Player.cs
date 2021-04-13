@@ -85,6 +85,8 @@ namespace Game
 
         static Dictionary<string, int> _animOverrides = new Dictionary<string, int>
         {
+            { "upper_idle", 3 },
+            { "lower_idle", 3 },
             { "upper_dead", 3 },
             { "lower_dead", 3 },
             { "upper_climb", 8 },
@@ -212,6 +214,7 @@ namespace Game
                     else if (aim <= 1f)
                         weaponAnimation = "t";
                     _upperAnimator.Change($"upper_{weaponAnimation}");
+                    _lowerAnimator.Change($"lower_aiming");
                     _weaponAnimator.Change(weaponAnimation);
                 }
                 else
