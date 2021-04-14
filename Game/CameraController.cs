@@ -11,11 +11,6 @@ namespace Game
         float _panTimer;
         float _panDuration = 0.5f;
 
-        public override void OnAddedToEntity()
-        {
-            SetUpdateOrder(int.MaxValue - 1);
-        }
-
         public void Update()
         {
             if (_panTimer < _panDuration)
