@@ -17,6 +17,7 @@ namespace Game
         static Dictionary<string, SpriteAnimation> _animations = new Dictionary<string, SpriteAnimation>();
         static Dictionary<string, OgmoProject> _ogmoProjects = new Dictionary<string, OgmoProject>();
         static Dictionary<string, OgmoLevel> _ogmoLevels = new Dictionary<string, OgmoLevel>();
+        static Dictionary<string, World> _worlds = new Dictionary<string, World>();
 
         static Regex AlphaNum = new Regex("(?<Name>[a-zA-Z_-]*)(?<Index>[0-9]*)");
 
@@ -167,6 +168,19 @@ namespace Game
             _ogmoLevels[levelName] = ogmoLevel;
 
             return ogmoLevel;
+        }
+
+        public static World LoadWorld(string worldName)
+        {
+            if (_worlds.ContainsKey(worldName))
+                return _worlds[worldName];
+
+            var worldPath = $"{ContentPath.Root}{worldName}/world.json";
+            var worldStr = File.ReadAllText(worldPath);
+            var world = Json.FromJson<World>(worldStr);
+            _worlds[worldName] = world;
+
+            return world;
         }
     }
 }

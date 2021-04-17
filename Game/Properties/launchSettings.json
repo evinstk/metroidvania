@@ -6,6 +6,10 @@
     "Editor": {
       "commandName": "Project",
       "commandLineArgs": "-e"
+    },
+    "Prototype": {
+      "commandName": "Project",
+      "commandLineArgs": "-p PrototypeProject/prototype.lua"
     }
   }
 }

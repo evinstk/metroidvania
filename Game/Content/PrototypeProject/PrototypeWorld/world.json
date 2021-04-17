@@ -1,0 +1,20 @@
+{
+	"Rooms": [
+		{
+			"Id": "FRDVXZLNDFAFGCIWEYPWIWZSXNQKYLBHGDISNF",
+			"RoomName": "Start",
+			"MapName": "Start.json",
+			"Position": {
+				"X": 0,
+				"Y": 0
+			}
+		}
+	],
+	"Areas": [
+
+	],
+	"Backgrounds": [
+
+	],
+	"StartRoomId": null
+}

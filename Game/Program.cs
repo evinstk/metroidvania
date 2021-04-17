@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.Prototypes;
+using System;
 
 namespace Game
 {
@@ -11,6 +12,11 @@ namespace Game
             {
                 using (var editor = new EditorCore())
                     editor.Run();
+            }
+            else if (args.Length == 2 && args[0] == "-p")
+            {
+                using (var prototype = new PrototypeCore(args[1]))
+                    prototype.Run();
             }
             else
             {
