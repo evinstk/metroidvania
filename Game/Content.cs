@@ -149,7 +149,7 @@ namespace Game
             if (_ogmoProjects.ContainsKey(projectName))
                 return _ogmoProjects[projectName];
 
-            var ogmoProjectStr = File.ReadAllText($"{ContentPath.Maps}{projectName}.ogmo");
+            var ogmoProjectStr = File.ReadAllText($"{ContentPath.Root}{projectName}");
             var ogmoProject = Json.FromJson<OgmoProject>(ogmoProjectStr);
             _ogmoProjects[projectName] = ogmoProject;
 
@@ -161,7 +161,7 @@ namespace Game
             if (_ogmoLevels.ContainsKey(levelName))
                 return _ogmoLevels[levelName];
 
-            var levelPath = $"{ContentPath.Maps}{levelName}.json";
+            var levelPath = $"{ContentPath.Root}{levelName}";
             var levelStr = File.ReadAllText(levelPath);
             var ogmoLevel = Json.FromJson<OgmoLevel>(levelStr);
             _ogmoLevels[levelName] = ogmoLevel;

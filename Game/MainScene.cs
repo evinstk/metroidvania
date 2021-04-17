@@ -183,7 +183,7 @@ namespace Game
             var worldEntity = FindEntity("world");
             foreach (var room in world.Rooms)
             {
-                var level = GameContent.LoadOgmoLevel($"{world.Name}/{Path.GetFileNameWithoutExtension(room.MapName)}");
+                var level = GameContent.LoadOgmoLevel($"Maps/{world.Name}/{Path.GetFileNameWithoutExtension(room.MapName)}.json");
                 var roomBounds = new RoomBounds
                 {
                     Level = level,
@@ -252,7 +252,7 @@ namespace Game
             if (_runRooms.Contains(rb))
                 return true;
 
-            var ogmoProject = GameContent.LoadOgmoProject("Metroidvania");
+            var ogmoProject = GameContent.LoadOgmoProject("Maps/Metroidvania.ogmo");
             var ogmoLevel = rb.Level;
             var id = Utils.RandomString(8);
             var map = CreateEntity("map");

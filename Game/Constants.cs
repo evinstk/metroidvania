@@ -67,6 +67,8 @@ namespace Game
     static class ContentPath
     {
 #if DEBUG
+        public static readonly string Root = "../../../Content/";
+
         public static readonly string Sprites = Path.GetFullPath("../../../Content/Sprites/");
         public static readonly string Maps = "../../../Content/Maps/";
         public static readonly string Tilesets = Path.GetFullPath("../../../Content/Tilesets/");
@@ -76,6 +78,8 @@ namespace Game
         public static readonly string Backgrounds = Path.GetFullPath("../../../Content/Backgrounds/");
         public static readonly string FMOD = Path.GetFullPath("../../../Content/FMOD/");
 #else
+        public static readonly string Root = "Content/";
+
         public static readonly string Sprites = "Content/Sprites/";
         public static readonly string Maps = "Content/Maps/";
         public static readonly string Tilesets = "Content/Tilesets/";
