@@ -70,7 +70,12 @@
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
-      "values": []
+      "values": [
+        {"name": "gravity", "definition": "Float", "display": 0, "defaults": 600, "bounded": false, "min": 0, "max": 100},
+        {"name": "move_speed", "definition": "Float", "display": 0, "defaults": 150, "bounded": false, "min": 0, "max": 100},
+        {"name": "jump_time", "definition": "Float", "display": 0, "defaults": 0.4, "bounded": false, "min": 0, "max": 100},
+        {"name": "jump_speed", "definition": "Float", "display": 0, "defaults": 200, "bounded": false, "min": 0, "max": 100}
+      ]
     }
   ],
   "tilesets": [
