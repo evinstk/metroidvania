@@ -76,6 +76,44 @@
         {"name": "jump_time", "definition": "Float", "display": 0, "defaults": 0.4, "bounded": false, "min": 0, "max": 100},
         {"name": "jump_speed", "definition": "Float", "display": 0, "defaults": 200, "bounded": false, "min": 0, "max": 100}
       ]
+    },
+    {
+      "exportID": "70223281",
+      "name": "keese",
+      "limit": -1,
+      "size": {"x": 48, "y": 48},
+      "origin": {"x": 24, "y": 24},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "../Placeholders/keese.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAvxJREFUaIHtlT9IG1Ecx79PhFasFtNqoiYIkdhgDQfGVNChDkpnhxJEkEzuwaFubtIM4TYHBwlumQKuyVAHhaAOh0WDxS6etv5pQg1iB/F16L3ru9y7tDWpFPo+8Ljj3r3f7/t9v9+9AyQSiUQikUgk/yfjr0YBgAKgocH+O683rvcLS76zv0YTSwsUP4z8KXRnf43ivk2EIwNmcib+LhUAQBNLC6YJI259CPa2A0Z7iIaT+NnJMADQ8Rd+YVzjOQ0HO+EP9NhMiIahRQgRCS8cnlMASKnRqiZj8TRGR/rJxuaeKb750QNMTwzQoZllBHvbSeHw3Hw/HOzETuET3V6dxdDMMgCQ0ZF+bGzu0Wq5YvE002aJZzEgEq7pRfNFNZm1BU6pUcTiaUQUH9nSjgCAbq/O4v2Xr5bEPGzemCMAqCgfj+J1ORppjCg+bGlHtHB4bhPOix6fHLYF1vQiM0G73K3k5PTSZrASZg4AQkEPdgufHXMy4nMTlnixeJoCQETxEeEOsCAi0WZyf6t5r3hd5u78qu14YvE0UmoUml7E7sdLx/dymbzFCF8RwirAL/B628jVtxuULspUZIIXz5twYuDJY/OerwBgbRuRiVwmj7anLaT5YSN0vWTRGVF8pMHoXcIPXS+hdFFGR7eL5DJ5hPytliFC1O8AMJ9Yx+CNhmevDzB4o2E+sW4K1/SipWUqY+cyeXR0u0jpogxdL9l0bmlHaBBmBRDoc+PsuIhAn5uI+pKhJrNQk1mEnneRShPziXWcLPbgaqoJLU3vcDXVhJPFHtOEmsza4jMTTPzZsfjD/i0CfW7+Kjyjvd42fglNqVGaUqPU4/FQj8dDb1eGafl6jAKg5esxersybM4ZMYTxO7qdW5LHsQIA8OHglL8S0TBKa+Ptm5dVE09NhyrzWOLWtPN3JaL4AK4KrBKsCmz343MTFABlFa4F25+4VtipVu3nxHqfVbgW6m4A+GmCnds89RT/V3H68OvRNhKJRCKRSCQSiUQi+Rf4DndJnTlc/19+AAAAAElFTkSuQmCC"
     }
   ],
   "tilesets": [
