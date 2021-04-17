@@ -13,7 +13,7 @@ namespace Game.Prototypes
 
         public override void Initialize()
         {
-            ClearColor = Color.Black;
+            ClearColor = Color.DarkSlateGray;
         }
 
         public PrototypeScene(string scriptPath)
