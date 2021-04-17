@@ -2,6 +2,7 @@
 using Game.Scripts;
 using Game.Worlds;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 
 namespace Game.Prototypes
@@ -27,6 +28,17 @@ namespace Game.Prototypes
 
             var scriptLoader = AddSceneComponent<ScriptLoader>();
             scriptLoader.LoadScript(_scriptPath);
+        }
+
+        public override void Update()
+        {
+            if (Input.IsKeyDown(Keys.F2))
+            {
+                GameContent.ClearCache();
+                Core.Scene = new PrototypeScene(_scriptPath);
+            }
+
+            base.Update();
         }
     }
 }
