@@ -1,4 +1,5 @@
-﻿using Nez;
+﻿using Game.Audio;
+using Nez;
 
 namespace Game.Prototypes
 {
@@ -14,6 +15,8 @@ namespace Game.Prototypes
         protected override void Initialize()
         {
             base.Initialize();
+
+            RegisterGlobalManager(new AudioManager());
 
             Scene = new PrototypeScene(_scriptPath);
         }
