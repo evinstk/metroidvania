@@ -17,6 +17,11 @@ namespace Game.Audio
             Insist.IsTrue(systemResult == FMOD.RESULT.OK);
         }
 
+        public override void OnDisabled()
+        {
+            _system.clearHandle();
+        }
+
         public override void Update()
         {
             _system.update();
