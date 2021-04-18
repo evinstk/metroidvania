@@ -3,6 +3,9 @@ scene.set_design_resolution(480, 270)
 
 scene_settings.default_camera_target = 'simple_player'
 
+audio.load_bank('FMOD/Master.bank')
+audio.load_bank('FMOD/Master.strings.bank')
+
 scene.load_world(
     'PrototypeProject/PrototypeProject.ogmo',
     'PrototypeProject/PrototypeWorld',
