@@ -4,24 +4,21 @@ using System.Collections.Generic;
 
 namespace Game.Entities.Factories
 {
-    [EntityDef("keese")]
-    class Keese : EntityFactory
+    [EntityDef("korok_flower")]
+    class KorokFlower : EntityFactory
     {
         static Dictionary<string, int> _fps = new Dictionary<string, int>
         {
-            { "fly", 14 },
+            { "korok_flower_idle", 4 },
         };
 
         public override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
-            var entity = Core.Scene.CreateEntity("keese", position);
+            var entity = Core.Scene.CreateEntity("korok_flower", position);
 
             var anim = entity.AddComponent(Animator.MakeAnimator("prototype", Core.Scene.Content, _fps));
-            anim.Play("keese_fly");
+            anim.Play("korok_flower_idle");
             anim.RenderLayer = -5;
-
-            var collider = entity.AddComponent(new BoxCollider(16, 16));
-            collider.PhysicsLayer = Mask.Enemy;
 
             return entity;
         }
