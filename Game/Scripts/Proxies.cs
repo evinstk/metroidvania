@@ -1,4 +1,5 @@
-﻿using Game.Worlds;
+﻿using Game.Entities;
+using Game.Worlds;
 using Microsoft.Xna.Framework;
 using MoonSharp.Interpreter;
 using Nez;
@@ -42,6 +43,8 @@ namespace Game.Scripts
             _scene.GetSceneComponent<WorldLoader>().LoadWorld(projectName, worldName, properties);
         }
         public void RunRoom(Vector2 location) => _scene.GetSceneComponent<WorldLoader>().RunRoom(location);
+
+        public Entity Instantiate(string entityType, Vector2 position) => _scene.GetSceneComponent<EntityLoader>().Create(new OgmoEntity { name = entityType }, position);
     }
 
     class EntityProxy
@@ -54,5 +57,6 @@ namespace Game.Scripts
         }
 
         public string GetName() => _entity.Name;
+        public Vector2 GetPosition() => _entity.Position;
     }
 }
