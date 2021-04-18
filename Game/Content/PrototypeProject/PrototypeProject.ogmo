@@ -10,7 +10,15 @@
   "levelDefaultSize": {"x": 320, "y": 240},
   "levelMinSize": {"x": 128, "y": 128},
   "levelMaxSize": {"x": 4096, "y": 4096},
-  "levelValues": [],
+  "levelValues": [
+    {
+      "name": "script",
+      "definition": "Filepath",
+      "display": 0,
+      "defaults": "proj:",
+      "extensions": []
+    }
+  ],
   "defaultExportMode": ".json",
   "compactExport": false,
   "externalScript": "",
@@ -144,12 +152,14 @@
       "canFlipX": false,
       "canFlipY": false,
       "canSetColor": false,
-      "hasNodes": false,
+      "hasNodes": true,
       "nodeLimit": 0,
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
-      "values": [],
+      "values": [
+        {"name": "event_emitter", "definition": "String", "display": 0, "defaults": "found_korok_seed", "maxLength": 0, "trimWhitespace": true}
+      ],
       "texture": "../Placeholders/korok_flower.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAbdJREFUWIXtli9Pw0AAxX9lfIZlqoqEzCEmZgiZm56Z4QPMg53Cgt8HmJmpxi0NBlGSuaWKpAoGFtkc4nqXK7t211uD2jPt/Xvv3bs/LZxwgj9EGyRnvuIiu2/FROAt/vMmCfprXx4Azl1Fi2edkJmGsyGXjipugvARc/aapL9GbEelsquJQwmU4hbbEbxfQLcwsJsW9S5SdrgloGa3m5KnMZ3LGwDyNAaQ5e5KEjbcE64d90wo4TyN6Vx/eIk37SzEdkT+0isloGbvexpc7wGZQLHmeRrryFUaRUKN7wXXYyjRXUHa05Gr5zFotgnVIBm3bLS3OS9FowQM4QAQ0TAsmTHaWodgf31FMpvY6hvBdRMGVMwsmU2oMSGwm9c4eBP+MVFCtklqxyySO105GzxZvydVBkQNQR2EOebr+1O/PzzfAjAfL4VpwmZAk9gIFObjJQDh1QBeMz3OHGPrz58Eqnasnq0pbJAQDUMpDgwWUaXBQ1pO94Clvyg2H9kmYSIT8OH2+yOyiHuffd9/wqoT8D8G2hL3NtAmmq6diIahLpinwIMLOCIBJX7scngZaEvcy0Cb4gC/iUzDutkjiwkAAAAASUVORK5CYII="
     }

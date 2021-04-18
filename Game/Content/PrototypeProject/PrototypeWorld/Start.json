@@ -4,6 +4,7 @@
   "height": 368,
   "offsetX": 0,
   "offsetY": 0,
+  "values": {"script": "proj:PrototypeWorld/korok_level.lua"},
   "layers": [
     {
       "name": "entities",
@@ -26,7 +27,20 @@
           "values": {"gravity": 600, "move_speed": 150, "jump_time": 0.4, "jump_speed": 200}
         },
         {"name": "keese", "id": 3, "_eid": "70223281", "x": 236, "y": 140, "originX": 24, "originY": 24},
-        {"name": "korok_flower", "id": 4, "_eid": "71436589", "x": 376, "y": 128, "originX": 16, "originY": 16}
+        {
+          "name": "korok_flower",
+          "id": 6,
+          "_eid": "71436589",
+          "x": 372,
+          "y": 128,
+          "originX": 16,
+          "originY": 16,
+          "nodes": [
+            {"x": 36, "y": 176},
+            {"x": 292, "y": 192}
+          ],
+          "values": {"event_emitter": "found_korok_seed"}
+        }
       ]
     },
     {
