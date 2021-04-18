@@ -1,4 +1,5 @@
-﻿using Game.Entities;
+﻿using Game.Cinema;
+using Game.Entities;
 using Game.Scripts;
 using Game.Worlds;
 using Microsoft.Xna.Framework;
@@ -28,6 +29,10 @@ namespace Game.Prototypes
             AddSceneComponent<WorldLoader>();
 
             var scriptLoader = AddSceneComponent<ScriptLoader>();
+
+            Camera.AddComponent<CameraBrain>();
+            Camera.Entity.UpdateOrder = int.MaxValue;
+
             scriptLoader.LoadScript(_scriptPath);
         }
 

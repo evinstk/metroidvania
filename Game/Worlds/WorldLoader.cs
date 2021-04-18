@@ -1,4 +1,6 @@
-﻿using Game.Entities;
+﻿using Game.Cinema;
+using Game.Entities;
+using Game.Prototypes;
 using Game.Scripts;
 using Microsoft.Xna.Framework;
 using Nez;
@@ -101,6 +103,16 @@ namespace Game.Worlds
                         }
                     }
                 }
+
+                var id = Utils.RandomString(8);
+                var defaultVcam = Scene.CreateVirtualCamera(
+                    new Rectangle(roomBounds.Bounds.Location, new Point(level.width, level.height)),
+                    -1,
+                    $"default_vcam_{id}",
+                    true);
+                var settings = Scene.GetSceneComponent<SceneSettings>();
+                defaultVcam.GetComponent<VirtualCamera>().FollowName = settings.DefaultCameraTarget;
+                defaultVcam.GetComponent<EntityVcamActivator>().ActivatorName = settings.DefaultCameraTarget;
 
                 string script = null;
                 if (level.values?.TryGetValue("script", out script) == true && script != "proj:")

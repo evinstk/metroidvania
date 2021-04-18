@@ -1,6 +1,8 @@
 ﻿screen.set_size(1920, 1080)
 scene.set_design_resolution(480, 270)
 
+scene_settings.default_camera_target = 'simple_player'
+
 scene.load_world(
     'PrototypeProject/PrototypeProject.ogmo',
     'PrototypeProject/PrototypeWorld',
