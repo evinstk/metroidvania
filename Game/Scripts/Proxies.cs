@@ -1,4 +1,5 @@
-﻿using Game.Entities;
+﻿using Game.Audio;
+using Game.Entities;
 using Game.Worlds;
 using Microsoft.Xna.Framework;
 using MoonSharp.Interpreter;
@@ -11,6 +12,19 @@ namespace Game.Scripts
     class ScreenProxy
     {
         public void SetSize(int width, int height) => Screen.SetSize(width, height);
+    }
+
+    class AudioManagerProxy
+    {
+        AudioManager _manager;
+
+        public AudioManagerProxy(AudioManager manager)
+        {
+            _manager = manager;
+        }
+
+        public void LoadBank(string bankName) => _manager.LoadBank(bankName);
+        public FMOD.Studio.EventInstance LoadSound(string bankName, string soundEvent) => _manager.LoadSound(bankName, soundEvent);
     }
 
     class PrototypeSceneProxy

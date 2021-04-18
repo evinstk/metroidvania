@@ -1,4 +1,5 @@
-﻿using Game.Prototypes;
+﻿using Game.Audio;
+using Game.Prototypes;
 using Microsoft.Xna.Framework;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Loaders;
@@ -33,6 +34,8 @@ namespace Game.Scripts
             UserData.RegisterType<ScreenProxy>();
             UserData.RegisterType<Vector2>();
             UserData.RegisterType<SceneSettings>();
+            UserData.RegisterType<FMOD.Studio.EventInstance>();
+            UserData.RegisterProxyType<AudioManagerProxy, AudioManager>(m => new AudioManagerProxy(m));
             UserData.RegisterProxyType<PrototypeSceneProxy, Scene>(s => new PrototypeSceneProxy(s));
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
@@ -52,6 +55,7 @@ namespace Game.Scripts
             foreach (var mask in _masks)
                 script.Globals[mask.Key] = mask.Value;
             script.Globals["screen"] = _screenProxy;
+            script.Globals["audio"] = Core.GetGlobalManager<AudioManager>();
             script.Globals["scene"] = Scene;
             script.Globals["scene_settings"] = Scene.GetSceneComponent<SceneSettings>();
             script.Globals["on_event"] = (Action<string, Closure>)OnEvent;
