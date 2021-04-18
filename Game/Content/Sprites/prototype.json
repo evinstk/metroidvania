@@ -2,7 +2,7 @@
 
 {
 	"filename": "keese_fly0.png",
-	"frame": {"x":1,"y":119,"w":48,"h":48},
+	"frame": {"x":301,"y":69,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -11,7 +11,7 @@
 },
 {
 	"filename": "keese_fly1.png",
-	"frame": {"x":51,"y":69,"w":48,"h":48},
+	"frame": {"x":101,"y":69,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -20,7 +20,7 @@
 },
 {
 	"filename": "keese_fly2.png",
-	"frame": {"x":51,"y":119,"w":48,"h":48},
+	"frame": {"x":151,"y":69,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -29,7 +29,7 @@
 },
 {
 	"filename": "keese_fly3.png",
-	"frame": {"x":1,"y":219,"w":48,"h":48},
+	"frame": {"x":251,"y":69,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -38,7 +38,7 @@
 },
 {
 	"filename": "keese_fly4.png",
-	"frame": {"x":1,"y":169,"w":48,"h":48},
+	"frame": {"x":351,"y":69,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -47,7 +47,7 @@
 },
 {
 	"filename": "keese_fly5.png",
-	"frame": {"x":51,"y":169,"w":48,"h":48},
+	"frame": {"x":401,"y":69,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -56,7 +56,7 @@
 },
 {
 	"filename": "keese_fly6.png",
-	"frame": {"x":1,"y":69,"w":48,"h":48},
+	"frame": {"x":201,"y":69,"w":48,"h":48},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
@@ -64,8 +64,116 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "korok_appear0.png",
+	"frame": {"x":201,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear1.png",
+	"frame": {"x":301,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear2.png",
+	"frame": {"x":351,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear3.png",
+	"frame": {"x":51,"y":69,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear4.png",
+	"frame": {"x":401,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear5.png",
+	"frame": {"x":1,"y":69,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear6.png",
+	"frame": {"x":101,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear7.png",
+	"frame": {"x":35,"y":1,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear8.png",
+	"frame": {"x":153,"y":1,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear9.png",
+	"frame": {"x":251,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear10.png",
+	"frame": {"x":251,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_appear11.png",
+	"frame": {"x":251,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "korok_flower_final_idle0.png",
-	"frame": {"x":35,"y":1,"w":32,"h":32},
+	"frame": {"x":119,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -74,7 +182,7 @@
 },
 {
 	"filename": "korok_flower_final_idle1.png",
-	"frame": {"x":1,"y":1,"w":32,"h":32},
+	"frame": {"x":203,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -83,7 +191,7 @@
 },
 {
 	"filename": "korok_flower_final_idle2.png",
-	"frame": {"x":69,"y":1,"w":32,"h":32},
+	"frame": {"x":85,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -92,7 +200,7 @@
 },
 {
 	"filename": "korok_flower_final_idle3.png",
-	"frame": {"x":1,"y":1,"w":32,"h":32},
+	"frame": {"x":203,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -101,7 +209,7 @@
 },
 {
 	"filename": "korok_flower_idle0.png",
-	"frame": {"x":69,"y":35,"w":32,"h":32},
+	"frame": {"x":1,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -110,7 +218,7 @@
 },
 {
 	"filename": "korok_flower_idle1.png",
-	"frame": {"x":1,"y":35,"w":32,"h":32},
+	"frame": {"x":237,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -119,7 +227,7 @@
 },
 {
 	"filename": "korok_flower_idle2.png",
-	"frame": {"x":35,"y":35,"w":32,"h":32},
+	"frame": {"x":321,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -128,11 +236,146 @@
 },
 {
 	"filename": "korok_flower_idle3.png",
-	"frame": {"x":1,"y":35,"w":32,"h":32},
+	"frame": {"x":237,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump0.png",
+	"frame": {"x":251,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump1.png",
+	"frame": {"x":251,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump2.png",
+	"frame": {"x":251,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump3.png",
+	"frame": {"x":251,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump4.png",
+	"frame": {"x":271,"y":1,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump5.png",
+	"frame": {"x":151,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump6.png",
+	"frame": {"x":1,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump7.png",
+	"frame": {"x":405,"y":1,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump8.png",
+	"frame": {"x":251,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump9.png",
+	"frame": {"x":151,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump10.png",
+	"frame": {"x":1,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump11.png",
+	"frame": {"x":405,"y":1,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump12.png",
+	"frame": {"x":51,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump13.png",
+	"frame": {"x":355,"y":1,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "korok_jump14.png",
+	"frame": {"x":51,"y":35,"w":48,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":32},
+	"sourceSize": {"w":48,"h":32},
 	"pivot": {"x":0.5,"y":0.5}
 }],
 "meta": {
@@ -140,8 +383,8 @@
 	"version": "1.0",
 	"image": "prototype.png",
 	"format": "RGBA8888",
-	"size": {"w":102,"h":268},
+	"size": {"w":454,"h":118},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:edbe6b7176885d27c67529877cc6811c:3f378bf898bbd171f3cbb519e3ccb8f5:614b1a136b237f5241de02d5c26ba723$"
+	"smartupdate": "$TexturePacker:SmartUpdate:410c299c7afae7bf40cb57f615a1eaa1:5962ec78c90c04ad6c9b2a0a4b791d2e:614b1a136b237f5241de02d5c26ba723$"
 }
 }
