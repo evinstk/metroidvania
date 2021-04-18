@@ -785,7 +785,7 @@ namespace Game
 
             if (selfActivated)
             {
-                var activator = entity.AddComponent<PlayerActivator>();
+                var activator = entity.AddComponent<EntityVcamActivator>();
                 activator.Collider = collider;
                 activator.VirtualCameraName = name;
             }
@@ -803,7 +803,7 @@ namespace Game
             var collider = entity.AddComponent(new BoxCollider(zone));
             collider.PhysicsLayer = 0;
 
-            var activator = entity.AddComponent<PlayerActivator>();
+            var activator = entity.AddComponent<EntityVcamActivator>();
             activator.Collider = collider;
             activator.VirtualCameraName = vcamName;
 

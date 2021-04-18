@@ -22,7 +22,7 @@ namespace Game.Cinema
         {
             _vcams.Clear();
 
-            var activators = Entity.Scene.FindComponentsOfType<PlayerActivator>();
+            var activators = Entity.Scene.FindComponentsOfType<EntityVcamActivator>();
             activators.Sort((a, b) => b.Active.CompareTo(a.Active));
             if (activators.Count > 0 && activators[0].Active)
             {
