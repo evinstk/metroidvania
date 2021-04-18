@@ -23,6 +23,7 @@ namespace Game.Prototypes
 
         public override void OnStart()
         {
+            AddSceneComponent<SceneSettings>();
             AddSceneComponent<EntityLoader>();
             AddSceneComponent<WorldLoader>();
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game.Prototypes;
+using Microsoft.Xna.Framework;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Loaders;
 using Nez;
@@ -31,6 +32,7 @@ namespace Game.Scripts
         {
             UserData.RegisterType<ScreenProxy>();
             UserData.RegisterType<Vector2>();
+            UserData.RegisterType<SceneSettings>();
             UserData.RegisterProxyType<PrototypeSceneProxy, Scene>(s => new PrototypeSceneProxy(s));
             UserData.RegisterProxyType<EntityProxy, Entity>(e => new EntityProxy(e));
             Script.DefaultOptions.DebugPrint = s => Debug.Log(s);
@@ -51,6 +53,7 @@ namespace Game.Scripts
                 script.Globals[mask.Key] = mask.Value;
             script.Globals["screen"] = _screenProxy;
             script.Globals["scene"] = Scene;
+            script.Globals["scene_settings"] = Scene.GetSceneComponent<SceneSettings>();
             script.Globals["on_event"] = (Action<string, Closure>)OnEvent;
             script.Globals["start_coroutine"] = (Action<Closure>)((Closure fn) =>
             {
