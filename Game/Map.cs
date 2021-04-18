@@ -47,6 +47,16 @@ namespace Game
         public int width;
         public int height;
         public Dictionary<string, object> values;
+        public List<OgmoPoint> nodes;
+    }
+
+    struct OgmoPoint
+    {
+        public int x;
+        public int y;
+
+        public static implicit operator Vector2(OgmoPoint p) => new Vector2(p.x, p.y);
+        public static implicit operator Point(OgmoPoint p) => new Point(p.x, p.y);
     }
 
     class MapCollider : Component
