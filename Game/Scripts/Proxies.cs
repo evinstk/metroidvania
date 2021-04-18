@@ -43,4 +43,16 @@ namespace Game.Scripts
         }
         public void RunRoom(Vector2 location) => _scene.GetSceneComponent<WorldLoader>().RunRoom(location);
     }
+
+    class EntityProxy
+    {
+        Entity _entity;
+
+        public EntityProxy(Entity entity)
+        {
+            _entity = entity;
+        }
+
+        public string GetName() => _entity.Name;
+    }
 }
