@@ -1,8 +1,10 @@
 ﻿using Game.Entities;
+using Game.Scripts;
 using Microsoft.Xna.Framework;
 using Nez;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Game.Worlds
 {
@@ -28,6 +30,7 @@ namespace Game.Worlds
 
 
         OgmoProject _project;
+        string _projectRoot;
         World _world;
         WorldProperties _properties;
         List<RoomBounds> _bounds = new List<RoomBounds>();
@@ -38,6 +41,7 @@ namespace Game.Worlds
             WorldProperties properties = null)
         {
             _project = GameContent.LoadOgmoProject(ogmoProject);
+            _projectRoot = Path.GetDirectoryName(ogmoProject);
             _world = GameContent.LoadWorld(worldName);
             _properties = properties;
 
@@ -65,6 +69,8 @@ namespace Game.Worlds
             var roomBounds = _bounds.Find(r => r.Bounds.Contains(location));
             if (roomBounds != null)
             {
+                _bounds.Remove(roomBounds);
+
                 var entityLoader = Scene.GetSceneComponent<EntityLoader>();
 
                 var map = Scene.CreateEntity("map");
@@ -94,6 +100,13 @@ namespace Game.Worlds
                             entityLoader.Create(entity, pos);
                         }
                     }
+                }
+
+                string script = null;
+                if (level.values?.TryGetValue("script", out script) == true && script != "proj:")
+                {
+                    var scriptPath = $"{_projectRoot}/{script.Substring(5)}";
+                    Scene.GetSceneComponent<ScriptLoader>().LoadScript(scriptPath);
                 }
             }
         }
