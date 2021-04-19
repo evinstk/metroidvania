@@ -41,7 +41,8 @@
             {"x": 376, "y": 272}
           ],
           "values": {"event_emitter": "found_korok_seed"}
-        }
+        },
+        {"name": "korok_platform", "id": 7, "_eid": "79104641", "x": 196, "y": 192, "originX": 16, "originY": 16}
       ]
     },
     {

@@ -200,6 +200,44 @@
       "values": [],
       "texture": "../Placeholders/korok.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAtBJREFUWIXtl79rGmEYxz9va9NSG0E5bFJRzJKmCbRLaDPkL8gYurlk6ZyhHTI5OGXokjFbl4MMxVHI3iFQOxpC6CCmR0QOBYOUgOnbQZ/L63l65meXfuE4PZ97vt/3+7zPcyf8xz+Guk+ylYV5AL36SqmnL39pQD24D+L8VpT8VtT7/mFqVcvnexEA6EwnzevZKQDsuT0ynbS6MwFLmRkA3T8DqFr0RH9MvtMA379ZqhY9obDduRsBlVpdF3JrVGp1bV635/YAaLmPgV5pImHJljIzVGp1vZSZUZVanZTl/aT9sdPWQ3XmXuC4gamU3BO3zr0coQ6Yq0lZEE9FPPLl9djAceZeaEAbIklZUNjuAD3rAeZiT7wcE5egkFvDcdEtp6uFsFxsD8Qsr8e88+5+CREsIsT6zWmvC8LbMJtMqLxd8lYjJEIUJKJcbHuutJyu7rvmweyCSQeRZ6spQCCEo66Vi23S1rxw6ecvfqs3b5sUtjvjBQip4/YEmKubVISgL0DTX/TB0TEwxgGpX8vpehtuHJmf0LzHcEADSsiB8W0oG86PoNoHiZRzPBVRnA+FhwrQZqJxZP44cUjIW06XZ5Y/Q7gABQQ64Bc1qv5C7riQvoYA4qmIKhfbA3vATzZqP/SmYXfUVAwXIAkA5bhoAkoxilyg/8TIJiNUG019cHQs7wPjBcjsB3j0IKGqjSYAOxs5L2bziw2Mngk7GzkOT1vk7ZKG3hQFKP34ORQf1IZabpAJCPD106WAw9MWALv7JfwQoRIjyNslcWCgDYcEiAMiQrA4Gx9KOglkESsLwXMgcBCZZfALuSpxNnlZxiCMHcXZZIJqoznkhonF2Xjg9fef7dD8EPI4rjaaA09DITSPmyL0cWzadxuEVxZg4jqbMAyh74RBIvxO3ETYlQWY+yEI1+2aMOhCbk0DOptMjAzq/+bF3hp7wB+NW4kF+AvQLlmdNUFOoQAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "79104641",
+      "name": "korok_platform",
+      "limit": -1,
+      "size": {"x": 32, "y": 32},
+      "origin": {"x": 16, "y": 16},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "../Placeholders/korok_platform.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAKJJREFUWIVjYBgFo2AUjIJRMApGwSgYBaNgkID/UEx3wMTAwPDfP42P4eX9PphD6O4AOBgIR7AwMDAwbpz16T8DQwM97cUK/jMwMPxvivYasPQAdwg9HcGES6Ip2ouBHo5AdwCKhUiOoDaGA0Zky6EW4gVakoJw9rXn7wmqR9d77fl7hrql2+B2sxCrER2QYzk2s2AhgOF7bJZSajmyXlgoAADHLkhglfiRkAAAAABJRU5ErkJggg=="
     }
   ],
   "tilesets": [
