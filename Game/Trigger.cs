@@ -7,18 +7,32 @@ namespace Game
     {
         Func<Trigger, bool> _condition;
         Action<Trigger> _action;
+        bool _noRepeat;
 
-        public Trigger(Func<Trigger, bool> condition, Action<Trigger> action)
+        bool _trueConditionLastFrame;
+
+        public Trigger(Func<Trigger, bool> condition, Action<Trigger> action, bool noRepeat = false)
         {
             _condition = condition;
             _action = action;
+            _noRepeat = noRepeat;
         }
 
         public void Update()
         {
             var result = _condition.Invoke(this);
             if (result)
-                _action.Invoke(this);
+            {
+                if (!_noRepeat || !_trueConditionLastFrame)
+                {
+                    _action.Invoke(this);
+                }
+                _trueConditionLastFrame = true;
+            }
+            else
+            {
+                _trueConditionLastFrame = false;
+            }
         }
     }
 }
