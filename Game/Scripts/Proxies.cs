@@ -4,6 +4,7 @@ using Game.Worlds;
 using Microsoft.Xna.Framework;
 using MoonSharp.Interpreter;
 using Nez;
+using Nez.Particles;
 using System.Collections.Generic;
 using static Game.Worlds.WorldLoader;
 
@@ -72,5 +73,9 @@ namespace Game.Scripts
 
         public string GetName() => _entity.Name;
         public Vector2 GetPosition() => _entity.Position;
+
+        public void SetSpeed(Vector2 speed) => _entity.GetComponent<PlatformerMover>().Speed = speed;
+
+        public void PauseEmission() => _entity.GetComponent<ParticleEmitter>().PauseEmission();
     }
 }
