@@ -31,6 +31,7 @@ namespace Game.Scripts
 
         static ScriptLoader()
         {
+            UserData.RegisterAssembly();
             UserData.RegisterType<ScreenProxy>();
             UserData.RegisterType<Vector2>();
             UserData.RegisterType<SceneSettings>();
