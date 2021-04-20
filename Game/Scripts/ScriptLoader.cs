@@ -53,6 +53,7 @@ namespace Game.Scripts
             ((ScriptLoaderBase)script.Options.ScriptLoader).ModulePaths = _modulePaths;
 
             script.Globals["vec2"] = (Func<float, float, Vector2>)Vec2;
+            script.Globals["normalize"] = (Func<Vector2, Vector2>)Normalize;
             foreach (var mask in _masks)
                 script.Globals[mask.Key] = mask.Value;
             script.Globals["screen"] = _screenProxy;
@@ -108,5 +109,10 @@ namespace Game.Scripts
         }
 
         static Vector2 Vec2(float x, float y) => new Vector2(x, y);
+        static Vector2 Normalize(Vector2 v)
+        {
+            v.Normalize();
+            return v;
+        }
     }
 }
