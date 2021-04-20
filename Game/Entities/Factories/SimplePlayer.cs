@@ -13,7 +13,7 @@ namespace Game.Entities.Factories
             var entity = Core.Scene.CreateEntity("simple_player", position);
 
             var renderer = entity.AddComponent(new PrototypeSpriteRenderer(16, 16));
-            renderer.Color = Color.White;
+            renderer.Color = Color.Black;
             renderer.RenderLayer = -10;
 
             var collider = entity.AddComponent(new BoxCollider(16, 16));
