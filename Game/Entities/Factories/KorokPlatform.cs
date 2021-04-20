@@ -1,5 +1,6 @@
 ﻿using Game.Scripts;
 using Microsoft.Xna.Framework;
+using MoonSharp.Interpreter;
 using Nez;
 using System.Collections.Generic;
 
@@ -30,10 +31,23 @@ namespace Game.Entities.Factories
 
             entity.AddComponent(new Trigger(
                 self => triggerArea.CollidesWithAny(out _),
-                self => Core.Scene.GetSceneComponent<ScriptLoader>().RaiseEvent("korok_platform_hit", self.Entity),
+                self => Core.Scene.GetSceneComponent<ScriptLoader>().RaiseEvent(
+                    "korok_platform_hit",
+                    new KorokPlatformHitPayload
+                    {
+                        Platform = self.Entity,
+                        Target = ogmoEntity.nodes[0],
+                    }),
                 true));
 
             return entity;
+        }
+
+        [MoonSharpUserData]
+        class KorokPlatformHitPayload
+        {
+            public Entity Platform;
+            public Vector2 Target;
         }
     }
 }
