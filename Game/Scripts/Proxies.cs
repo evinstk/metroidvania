@@ -59,7 +59,10 @@ namespace Game.Scripts
         }
         public void RunRoom(Vector2 location) => _scene.GetSceneComponent<WorldLoader>().RunRoom(location);
 
-        public Entity Instantiate(string entityType, Vector2 position) => _scene.GetSceneComponent<EntityLoader>().Create(new OgmoEntity { name = entityType }, position);
+        public Entity Instantiate(string entityType, Vector2 position, Dictionary<string, object> values = null) =>
+            _scene.GetSceneComponent<EntityLoader>().Create(
+                new OgmoEntity { name = entityType, values = values },
+                position);
     }
 
     class EntityProxy
