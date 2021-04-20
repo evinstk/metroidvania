@@ -1,7 +1,7 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:..\bin\Release\net471\Content
+/outputDir:..\bin\Debug\net471\Content
 /intermediateDir:obj/$(Platform)
 /platform:DesktopGL
 /config:
@@ -358,6 +358,9 @@
 
 #begin Maps/World2/world.json
 /copy:Maps/World2/world.json
+
+#begin Particles/sparks.pex
+/copy:Particles/sparks.pex
 
 #begin Scripts/boss.lua
 /copy:Scripts/boss.lua
