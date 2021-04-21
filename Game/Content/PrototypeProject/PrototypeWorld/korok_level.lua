@@ -39,6 +39,9 @@ on_event('korok_platform_hit', function(payload)
         wait(function()
             return curr_trail == nil or (curr_trail.get_position() - payload.target).length_squared() < 16
         end)
+        if curr_trail then
+            scene.instantiate('korok_ring', curr_trail.get_position())
+        end
         release_trail()
     end)
 end)
