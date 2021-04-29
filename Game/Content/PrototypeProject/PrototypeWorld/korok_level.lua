@@ -5,10 +5,14 @@ print('playing korok_level')
 -- local korok_sound = core.load_sound('FMOD/Common.bank', 'save')
 local korok_sound = audio.load_sound('FMOD/Common.bank', 'korok_discovery')
 
+local function spawn_korok(position)
+    scene.instantiate('korok', position)
+    korok_sound.start()
+end
+
 on_event('found_korok_seed', function(flower)
     local pos = flower.get_position()
-    scene.instantiate('korok', pos)
-    korok_sound.start()
+    spawn_korok(pos)
 end)
 
 local curr_trail, korok_pop
@@ -51,7 +55,7 @@ end)
 
 on_event('korok_ring_enter', function(entity)
     entity.destroy()
-    scene.instantiate('korok', entity.get_position())
+    spawn_korok(entity.get_position())
 end)
 
 -- start_coroutine(function()
