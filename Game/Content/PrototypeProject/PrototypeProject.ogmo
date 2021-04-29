@@ -235,7 +235,9 @@
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
-      "values": [],
+      "values": [
+        {"name": "duration", "definition": "Float", "display": 0, "defaults": 1, "bounded": false, "min": 1, "max": 100}
+      ],
       "texture": "../Placeholders/korok_platform.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAKJJREFUWIVjYBgFo2AUjIJRMApGwSgYBaNgkID/UEx3wMTAwPDfP42P4eX9PphD6O4AOBgIR7AwMDAwbpz16T8DQwM97cUK/jMwMPxvivYasPQAdwg9HcGES6Ip2ouBHo5AdwCKhUiOoDaGA0Zky6EW4gVakoJw9rXn7wmqR9d77fl7hrql2+B2sxCrER2QYzk2s2AhgOF7bJZSajmyXlgoAADHLkhglfiRkAAAAABJRU5ErkJggg=="
     },

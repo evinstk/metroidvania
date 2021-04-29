@@ -52,7 +52,8 @@
           "originY": 16,
           "nodes": [
             {"x": 428, "y": 136}
-          ]
+          ],
+          "values": {"duration": 5}
         }
       ]
     },

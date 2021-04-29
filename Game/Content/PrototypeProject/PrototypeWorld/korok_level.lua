@@ -40,10 +40,17 @@ on_event('korok_platform_hit', function(payload)
             return curr_trail == nil or (curr_trail.get_position() - payload.target).length_squared() < 16
         end)
         if curr_trail then
-            scene.instantiate('korok_ring', curr_trail.get_position())
+            scene.instantiate(
+                'korok_ring',
+                curr_trail.get_position(),
+                { duration=payload.platform['duration'] })
         end
         release_trail()
     end)
+end)
+
+on_event('korok_ring_enter', function(entity)
+    print(entity.get_name())
 end)
 
 -- start_coroutine(function()
