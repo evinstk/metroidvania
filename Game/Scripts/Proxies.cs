@@ -77,6 +77,7 @@ namespace Game.Scripts
 
         public string GetName() => _entity.Name;
         public Vector2 GetPosition() => _entity.Position;
+        public void Destroy() => _entity.Destroy();
 
         public void SetSpeed(Vector2 speed) => _entity.GetComponent<PlatformerMover>().Speed = speed;
 

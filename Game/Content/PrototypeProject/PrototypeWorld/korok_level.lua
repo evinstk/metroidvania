@@ -50,7 +50,8 @@ on_event('korok_platform_hit', function(payload)
 end)
 
 on_event('korok_ring_enter', function(entity)
-    print(entity.get_name())
+    entity.destroy()
+    scene.instantiate('korok', entity.get_position())
 end)
 
 -- start_coroutine(function()
