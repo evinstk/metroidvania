@@ -63,11 +63,7 @@ namespace Game
 
         public static List<(string, SpriteAnimation)> MakeAnimations(string pack, NezContentManager content, IDictionary<string, int> frameRateOverrides = null)
         {
-            // TODO: use GameContent
-            var dataPath = ContentPath.Sprites + pack + ".json";
-
-            var dataStr = File.ReadAllText(dataPath);
-            var data = Json.FromJson<TextureMap>(dataStr);
+            var data = GameContent.LoadTextureMap(pack);
 
             var texturePath = ContentPath.Sprites + pack + ".png";
             var texture = content.LoadTexture(texturePath);
