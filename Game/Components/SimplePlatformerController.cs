@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Nez;
+using System;
 
 namespace Game.Components
 {
@@ -66,6 +67,25 @@ namespace Game.Components
                     _mover.Speed.Y = 0;
                 }
             }
+        }
+
+        public static SimplePlatformerController AddToEntity(Entity entity, OgmoEntity ogmoEntity = null)
+        {
+            var controller = entity.AddComponent<SimplePlatformerController>();
+            var values = ogmoEntity?.values;
+            if (values != null)
+            {
+                if (values.ContainsKey("gravity"))
+                    controller.Gravity = Convert.ToSingle(values["gravity"]);
+                if (values.ContainsKey("move_speed"))
+                    controller.MoveSpeed = Convert.ToSingle(values["move_speed"]);
+                if (values.ContainsKey("jump_time"))
+                    controller.JumpTime = Convert.ToSingle(values["jump_time"]);
+                if (values.ContainsKey("jump_speed"))
+                    controller.JumpSpeed = Convert.ToSingle(values["jump_speed"]);
+            }
+
+            return controller;
         }
     }
 }

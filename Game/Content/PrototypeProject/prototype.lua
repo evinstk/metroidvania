@@ -1,7 +1,7 @@
 ﻿screen.set_size(1920, 1080)
 scene.set_design_resolution(480, 270)
 
-scene_settings.default_camera_target = 'simple_player'
+scene_settings.default_camera_target = 'botw_link'
 
 audio.load_bank('FMOD/Master.bank')
 audio.load_bank('FMOD/Master.strings.bank')

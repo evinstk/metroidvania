@@ -278,6 +278,44 @@
       "values": [],
       "texture": "../Placeholders/korok_trail.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAABVQTFRFAAAAa6tcmsdN9/9i+f/bf5rVSGeqLhfa3gAAAAd0Uk5TAP///////6V/pvsAAAA5SURBVDiNY2AYBQMDGIEArzQTEOBWApJnZsajAiwPVoHTAGYwwGUEQQUErSDsSILeZCAYUKOAlgAAVm8ApeDvk3sAAAAASUVORK5CYII="
+    },
+    {
+      "exportID": "70162699",
+      "name": "botw_link",
+      "limit": -1,
+      "size": {"x": 32, "y": 48},
+      "origin": {"x": 16, "y": 24},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "../Placeholders/botw_link.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAwCAYAAABwrHhvAAAAAXNSR0IArs4c6QAAAqpJREFUWIXtl79rE2EYx7+nbh1dDGiFcggO4lSJSQUzRZAMDdgk0EEhcIPEDp2aWkMTm1DBIVSHA8EMQk+FZAgBWwoObWJQEEIGJRyBZjFLBv+C1yH3nvf73ktPp/tAofe+zz3f7z3v+7yXAwICAgJmh9j8QcpHmZNws4rbiaTLbU95z7EGDhslQHlKpydU5ojvBhaWt8iwUaJGLLm1eI81nXcDw0aJW1jeshWaRdyTASouHR2ahLXi6XIbUj7q/x7Q8vXbJ1XciJSPIl1u+78HjAx/z3zr7AbKj+9w+dfHtvPS0aHnJWAKTIR5NLuyrqzi00e6GOH5W/X/SKHKdbbXmAy4ViBSqKLZlUkizGN9ZQn9XguRQtUyjs51tteIVYwVLBVQk1082MO1+Ut4uLkBoS7rgsQkrxtTKuCa/wKTTYVJPIfBwR5qOxWImxu6OaMhAOj3Wrhx875jTqYK9HstnYi2ElbiYpIHACruqMHUBUJdhlCX1cSTeA6D0Ri1nYopli6FVUWscHSnlNBUAQqtxJfrD3QGKGeugFYcUDeWSlmsYjAa4/aPj0ZR5IWztyFJhHnUdiqWpQamFaHLoTVBWV9ZAlxezb6cp04m3PDUhsB03e0YjMb/3sAknjMdOhQxyaPp0vdGnJaAa3Zl9anmht+Zk3qJ9bQH6JGsPRO0CHUZ2q55+eEEcGlDx0njWzBSqGJ3roH5K5eR+bloaQL424qJMM81u84HkuMeUG6mJk3t5HLauYp7Qik/OX5xl5zur5LT/VXdBwkdh+btyQLzHnhyvqO7vpp5h5NXGU4qpkzLaIx1wsuXEZGKKfUi/ew9vd9unAl/fln+D5SnJNlYiGRjoeknWjFlO86K149Tko2F1Is3n3/RHHbjvhsA9O3IMYwHBAQEOPIHgMUowovN80IAAAAASUVORK5CYII="
     }
   ],
   "tilesets": [

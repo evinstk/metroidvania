@@ -16,16 +16,6 @@
       "gridCellsX": 148,
       "gridCellsY": 92,
       "entities": [
-        {
-          "name": "simple_player",
-          "id": 2,
-          "_eid": "59208064",
-          "x": 116,
-          "y": 200,
-          "originX": 8,
-          "originY": 8,
-          "values": {"gravity": 600, "move_speed": 150, "jump_time": 0.4, "jump_speed": 200}
-        },
         {"name": "keese", "id": 3, "_eid": "70223281", "x": 236, "y": 140, "originX": 24, "originY": 24},
         {
           "name": "korok_flower",
@@ -54,7 +44,8 @@
             {"x": 428, "y": 136}
           ],
           "values": {"duration": 5}
-        }
+        },
+        {"name": "botw_link", "id": 8, "_eid": "70162699", "x": 140, "y": 192, "originX": 16, "originY": 24}
       ]
     },
     {

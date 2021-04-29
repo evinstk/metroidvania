@@ -9,7 +9,7 @@ namespace Game.Entities.Factories
     {
         static Dictionary<string, int> _fps = new Dictionary<string, int>
         {
-            { "fly", 14 },
+            { "keese_fly", 14 },
         };
 
         protected override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
