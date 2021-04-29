@@ -7,7 +7,7 @@ namespace Game.Entities.Factories
     [EntityDef("korok_trail")]
     class KorokTrail : EntityFactory
     {
-        public override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
+        protected override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
             var entity = Core.Scene.CreateEntity("korok_trail", position);
 

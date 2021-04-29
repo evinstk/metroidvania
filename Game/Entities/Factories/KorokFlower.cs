@@ -15,15 +15,15 @@ namespace Game.Entities.Factories
             { "korok_flower_final_idle", 4 },
         };
 
-        public override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
+        protected override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
             var nodes = new List<Vector2>();
             foreach (var node in ogmoEntity.nodes)
                 nodes.Add(node);
-            return Instantiate(position, nodes);
+            return Make(position, nodes);
         }
 
-        Entity Instantiate(Vector2 position, List<Vector2> nodes)
+        Entity Make(Vector2 position, List<Vector2> nodes)
         {
             var entity = Core.Scene.CreateEntity("korok_flower", position);
 
@@ -43,7 +43,7 @@ namespace Game.Entities.Factories
                     {
                         var next = nodes[0];
                         nodes.RemoveAt(0);
-                        Instantiate(next, nodes);
+                        Make(next, nodes);
                         self.Entity.Destroy();
                     }
                     else

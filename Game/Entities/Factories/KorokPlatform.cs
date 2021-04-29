@@ -14,7 +14,7 @@ namespace Game.Entities.Factories
             { "korok_platform_active", 15 },
         };
 
-        public override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
+        protected override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
             var entity = Core.Scene.CreateEntity("korok_platform", position);
 

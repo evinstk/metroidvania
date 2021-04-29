@@ -7,7 +7,7 @@ namespace Game.Entities.Factories
     [EntityDef("korok")]
     class Korok : EntityFactory
     {
-        public override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
+        protected override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
             var entity = Core.Scene.CreateEntity("korok", position);
 

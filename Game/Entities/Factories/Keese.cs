@@ -12,7 +12,7 @@ namespace Game.Entities.Factories
             { "fly", 14 },
         };
 
-        public override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
+        protected override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
             var entity = Core.Scene.CreateEntity("keese", position);
 

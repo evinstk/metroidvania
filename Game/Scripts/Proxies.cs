@@ -1,4 +1,5 @@
 ﻿using Game.Audio;
+using Game.Components;
 using Game.Entities;
 using Game.Worlds;
 using Microsoft.Xna.Framework;
@@ -80,5 +81,22 @@ namespace Game.Scripts
         public void SetSpeed(Vector2 speed) => _entity.GetComponent<PlatformerMover>().Speed = speed;
 
         public void PauseEmission() => _entity.GetComponent<ParticleEmitter>().PauseEmission();
+
+        public object this[string key]
+        {
+            get
+            {
+                object val = null;
+                _entity.GetComponent<EntityProperties>()?.Properties?.TryGetValue(key, out val);
+                return val;
+            }
+            set
+            {
+                var props = _entity.GetOrCreateComponent<EntityProperties>();
+                if (props.Properties == null)
+                    props.Properties = new Dictionary<string, object>();
+                props.Properties[key] = value;
+            }
+        }
     }
 }

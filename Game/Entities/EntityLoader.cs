@@ -23,7 +23,7 @@ namespace Game.Entities
         public Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
             if (_factories.TryGetValue(ogmoEntity.name, out var factory))
-                return factory.Create(ogmoEntity, position);
+                return factory.Instantiate(ogmoEntity, position);
             Debug.Log($"No entity type {ogmoEntity.name}");
             return null;
         }

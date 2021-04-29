@@ -16,7 +16,7 @@ namespace Game.Entities.Factories
         static float Radius = 32f;
         static int OrbCount = 8;
 
-        public override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
+        protected override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
             var entity = Core.Scene.CreateEntity("korok_ring", position);
 

@@ -8,7 +8,7 @@ namespace Game.Entities.Factories
     [EntityDef("simple_player")]
     class SimplePlayer : EntityFactory
     {
-        public override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
+        protected override Entity Create(OgmoEntity ogmoEntity, Vector2 position)
         {
             var entity = Core.Scene.CreateEntity("simple_player", position);
 
