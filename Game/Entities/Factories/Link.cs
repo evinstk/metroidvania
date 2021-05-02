@@ -8,7 +8,7 @@ namespace Game.Entities.Factories
     [EntityDef("botw_link")]
     class Link : EntityFactory
     {
-        static Dictionary<string, int> _fps = new Dictionary<string, int>
+        static readonly Dictionary<string, int> _fps = new Dictionary<string, int>
         {
             { "link_idle", 10 },
             { "link_walk", 10 },
@@ -28,7 +28,9 @@ namespace Game.Entities.Factories
             var mover = entity.AddComponent<PlatformerMover>();
             mover.Collider = collider;
 
-            SimplePlatformerController.AddToEntity(entity, ogmoEntity);
+            var ctrl = entity.AddComponent<LinkController>();
+            ctrl.AnimationIdle = "link_idle";
+            ctrl.AnimationWalk = "link_walk";
 
             return entity;
         }
