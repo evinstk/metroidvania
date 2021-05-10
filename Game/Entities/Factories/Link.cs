@@ -31,6 +31,7 @@ namespace Game.Entities.Factories
             var ctrl = entity.AddComponent<LinkController>();
             ctrl.AnimationIdle = "link_idle";
             ctrl.AnimationWalk = "link_walk";
+            ctrl.AnimationRun = "link_run";
 
             return entity;
         }

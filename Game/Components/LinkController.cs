@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Sprites;
+using System;
 
 namespace Game.Components
 {
@@ -8,6 +9,7 @@ namespace Game.Components
     {
         public string AnimationIdle;
         public string AnimationWalk;
+        public string AnimationRun;
 
         public float Gravity = 600f;
         public float MoveSpeed = 150f;
@@ -17,7 +19,7 @@ namespace Game.Components
         PlatformerMover _mover;
         SpriteAnimator _anim;
 
-        VirtualIntegerAxis _inputX;
+        VirtualJoystick _inputMovement;
         VirtualButton _inputJump;
 
         int _facing = 1;
@@ -28,10 +30,10 @@ namespace Game.Components
             _mover = Entity.GetComponent<PlatformerMover>();
             _anim = Entity.GetComponent<SpriteAnimator>();
 
-            _inputX = new VirtualIntegerAxis();
-            _inputX.AddGamePadLeftStickX();
-            _inputX.AddKeyboardKeys(VirtualInput.OverlapBehavior.CancelOut, Keys.A, Keys.D);
-            _inputX.AddKeyboardKeys(VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right);
+            _inputMovement = new VirtualJoystick(false);
+            _inputMovement.AddGamePadLeftStick();
+            _inputMovement.AddKeyboardKeys(VirtualInput.OverlapBehavior.CancelOut, Keys.A, Keys.D, Keys.W, Keys.S);
+            _inputMovement.AddKeyboardKeys(VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right, Keys.Up, Keys.Down);
 
             _inputJump = new VirtualButton();
             _inputJump.AddGamePadButton(0, Buttons.A);
@@ -41,13 +43,16 @@ namespace Game.Components
         public void Update()
         {
             var onGround = _mover.OnGround();
-            var inputX = _inputX.Value;
+            var inputX = _inputMovement.Value.X;
+            var halfSpeed = Math.Abs(inputX) < .5f;
 
             // horizontal movement
             {
-                _mover.Speed.X = inputX * MoveSpeed;
+                var dir = Math.Sign(inputX);
+                var multiplier = halfSpeed ? .5f : 1;
+                _mover.Speed.X = dir * multiplier * MoveSpeed;
                 if (inputX != 0)
-                    _facing = inputX;
+                    _facing = dir;
             }
 
             // invoke jumping
@@ -61,9 +66,12 @@ namespace Game.Components
             // animation
             var flip = _facing == -1;
             _anim.FlipX = flip;
-            if (inputX != 0 && AnimationWalk != null)
+            if (inputX != 0)
             {
-                _anim.Change(AnimationWalk);
+                if (halfSpeed && AnimationWalk != null)
+                    _anim.Change(AnimationWalk);
+                else if (AnimationRun != null)
+                    _anim.Change(AnimationRun);
             }
             else if (AnimationIdle != null)
             {
