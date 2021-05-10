@@ -32,6 +32,7 @@ namespace Game.Entities.Factories
             ctrl.AnimationIdle = "link_idle";
             ctrl.AnimationWalk = "link_walk";
             ctrl.AnimationRun = "link_run";
+            ctrl.AnimationAttack = "link_attack";
 
             return entity;
         }

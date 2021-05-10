@@ -7,20 +7,30 @@ namespace Game.Components
 {
     class LinkController : Component, IUpdatable
     {
+        enum States
+        {
+            Normal,
+            Attack,
+        }
+
         public string AnimationIdle;
         public string AnimationWalk;
         public string AnimationRun;
+        public string AnimationAttack;
 
         public float Gravity = 600f;
         public float MoveSpeed = 150f;
         public float JumpTime = .4f;
         public float JumpSpeed = 200f;
 
+        States _state = States.Normal;
+
         PlatformerMover _mover;
         SpriteAnimator _anim;
 
         VirtualJoystick _inputMovement;
         VirtualButton _inputJump;
+        VirtualButton _inputAttack;
 
         int _facing = 1;
         float _jumpTimer;
@@ -38,6 +48,10 @@ namespace Game.Components
             _inputJump = new VirtualButton();
             _inputJump.AddGamePadButton(0, Buttons.A);
             _inputJump.AddKeyboardKey(Keys.Space);
+
+            _inputAttack = new VirtualButton();
+            _inputAttack.AddGamePadButton(0, Buttons.X);
+            _inputAttack.AddMouseLeftButton();
         }
 
         public void Update()
@@ -46,36 +60,61 @@ namespace Game.Components
             var inputX = _inputMovement.Value.X;
             var halfSpeed = Math.Abs(inputX) < .5f;
 
-            // horizontal movement
+            // NORMAL STATE
+            if (_state == States.Normal)
             {
-                var dir = Math.Sign(inputX);
-                var multiplier = halfSpeed ? .5f : 1;
-                _mover.Speed.X = dir * multiplier * MoveSpeed;
-                if (inputX != 0)
-                    _facing = dir;
-            }
-
-            // invoke jumping
-            {
-                if (_inputJump.IsPressed && onGround)
+                // horizontal movement
                 {
-                    _jumpTimer = JumpTime;
+                    var dir = Math.Sign(inputX);
+                    var multiplier = halfSpeed ? .5f : 1;
+                    _mover.Speed.X = dir * multiplier * MoveSpeed;
+                    if (inputX != 0)
+                        _facing = dir;
+                }
+
+                // invoke jumping
+                {
+                    if (_inputJump.IsPressed && onGround)
+                    {
+                        _jumpTimer = JumpTime;
+                    }
+                }
+
+                // invoke attacking
+                {
+                    if (_inputAttack.IsPressed)
+                    {
+                        _state = States.Attack;
+                    }
+                }
+
+                // animation
+                var flip = _facing == -1;
+                _anim.FlipX = flip;
+                if (inputX != 0)
+                {
+                    if (halfSpeed && AnimationWalk != null)
+                        _anim.Change(AnimationWalk);
+                    else if (AnimationRun != null)
+                        _anim.Change(AnimationRun);
+                }
+                else if (AnimationIdle != null)
+                {
+                    _anim.Change(AnimationIdle);
                 }
             }
+            // ATTACK STATE
+            else if (_state == States.Attack)
+            {
+                _anim.Change(AnimationAttack, SpriteAnimator.LoopMode.ClampForever);
 
-            // animation
-            var flip = _facing == -1;
-            _anim.FlipX = flip;
-            if (inputX != 0)
-            {
-                if (halfSpeed && AnimationWalk != null)
-                    _anim.Change(AnimationWalk);
-                else if (AnimationRun != null)
-                    _anim.Change(AnimationRun);
-            }
-            else if (AnimationIdle != null)
-            {
-                _anim.Change(AnimationIdle);
+                if (onGround)
+                    _mover.Speed.X = 0;
+
+                if (!_anim.IsRunning)
+                {
+                    _state = States.Normal;
+                }
             }
 
             // gravity
