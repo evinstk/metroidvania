@@ -22,6 +22,7 @@ namespace Game.Components
         public float MoveSpeed = 150f;
         public float JumpTime = .4f;
         public float JumpSpeed = 200f;
+        public float MaxFallSpeed = 200f;
 
         States _state = States.Normal;
 
@@ -134,6 +135,8 @@ namespace Game.Components
                     _mover.Speed.Y = 0;
                 }
             }
+
+            _mover.Speed.Y = Mathf.Clamp(_mover.Speed.Y, -JumpSpeed, MaxFallSpeed);
         }
     }
 }
