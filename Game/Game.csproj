@@ -59,9 +59,10 @@
 	<PackageReference Include="MoonSharp" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nez\Nez.ImGui\Nez.ImGui.csproj" />
-    <ProjectReference Include="..\Nez\Nez.Persistence\Nez.Persistence.csproj" />
-    <ProjectReference Include="..\Nez\Nez.Portable\Nez.csproj" />
+    <ProjectReference Include="..\Engine\Engine\Engine.csproj" />
+    <ProjectReference Include="..\Engine\Nez\Nez.ImGui\Nez.ImGui.csproj" />
+    <ProjectReference Include="..\Engine\Nez\Nez.Persistence\Nez.Persistence.csproj" />
+    <ProjectReference Include="..\Engine\Nez\Nez.Portable\Nez.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>
